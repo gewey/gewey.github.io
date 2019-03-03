@@ -1,0 +1,85 @@
+* .btnbarfull:hover, * .btnbarfull {
+  cursor: pointer;
+}
+
+/*FULL SIZE*/
+@media (min-width: 1250px) {
+  .geweyName {
+    content: url("../img/logo/gewey/geweyName.png");
+  }
+
+  .geweyLogo {
+    content: url("../img/logo/gewey/geweyLogo.png");
+  }
+
+  .hobosLogo {
+    content: url("../img/logo/hobos/hobosLogo.png");
+  }
+
+  #bookmark {
+    max-width: 10vw;
+    max-height: 9vh;
+    border-radius: 50%;
+  }
+
+  #bookmark:hover {
+    box-shadow: 2px 2px 5px 1px #00EA00;
+    filter: invert(1);
+  }
+}
+/*BITE SIZE*/
+@media (max-width: 1249px) {
+  .geweyName {
+    content: url("../img/logo/gewey/geweyG.png");
+  }
+
+  .geweyLogo {
+    content: url("../img/logo/gewey/geweyG.png");
+  }
+
+  .hobosLogo {
+    content: url("../img/logo/hobos/hobosLogo.png");
+  }
+
+  #bookmark {
+    max-width: 20vw;
+    max-height: 10vh;
+    border-radius: 35%;
+  }
+
+  #bookmark:hover {
+    box-shadow: 2px 2px 5px 1px #00EA00;
+    filter: invert(1);
+  }
+}
+/*************************************************************************************************************/
+* .btnbarfull {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+* .btnbarfull:hover {
+  background-color: rgba(0, 255, 0, 0.25);
+}
+* html li, * body li {
+  list-style-image: url("../img/ico/arrow_right.png");
+}
+* html .viewArea, * body .viewArea {
+  background-image: url("../img/bg/skulls.png");
+}
+* html .pageHeader, * html .pageFooter, * body .pageHeader, * body .pageFooter {
+  background-image: url("../img/bg/bricks.png");
+}
+* html .pageLeftMenu, * body .pageLeftMenu {
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+* html .pageContent, * body .pageContent {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+* html .minecraft_container, * body .minecraft_container {
+  background-image: url("../img/bg/dirt.png");
+}
+* html .copyrightContainer, * body .copyrightContainer {
+  background-image: url("../img/bg/PurpleBlackStripes.png");
+}
+
+/*# sourceMappingURL=images.css.map */

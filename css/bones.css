@@ -1,0 +1,91 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  overflow-y: auto;
+  justify-content: center;
+}
+* .btnbarfull {
+  width: 80%;
+  height: auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-left: 10%;
+  margin-right: 10%;
+  transition: 0.4s;
+}
+* html, * body {
+  width: 100vw;
+  height: 100vh;
+}
+* html .viewArea, * body .viewArea {
+  width: 100vw;
+  height: 100vh;
+}
+* html .viewArea .pageHeader, * body .viewArea .pageHeader {
+  width: 100vw;
+  height: 3vh;
+  float: left;
+  clear: right;
+  position: relative top;
+}
+* html .viewArea .pageLeftMenu, * body .viewArea .pageLeftMenu {
+  height: 90vh;
+  margin: 0.25%;
+  float: left;
+  clear: left;
+  position: relative left;
+}
+* html .viewArea .pageContent, * body .viewArea .pageContent {
+  display: grid;
+  grid-template-rows: 90vh;
+  max-height: 90vh;
+  margin: 0.25%;
+  float: right;
+  clear: right;
+  position: relative right;
+}
+* html .viewArea .pageContent .todo, * body .viewArea .pageContent .todo {
+  width: 35%;
+  height: 95%;
+  float: left;
+  clear: none;
+}
+* html .viewArea .pageContent .changelog, * body .viewArea .pageContent .changelog {
+  width: 60%;
+  height: 95%;
+  float: right;
+  clear: none;
+}
+* html .viewArea .pageFooter, * body .viewArea .pageFooter {
+  width: 100vw;
+  height: 3vh;
+  float: right;
+  clear: left;
+  position: absolute;
+  bottom: 0px;
+}
+
+@media (min-width: 1250px) {
+  .pageLeftMenu {
+    width: 15vw;
+  }
+
+  .pageContent {
+    width: 84vw;
+    grid-template-columns: 84vw;
+  }
+}
+@media (max-width: 1249px) {
+  .pageLeftMenu {
+    width: 7vw;
+    overflow-y: hidden;
+  }
+
+  .pageContent {
+    width: 92vw;
+    grid-template-columns: 92vw;
+  }
+}
+
+/*# sourceMappingURL=bones.css.map */
