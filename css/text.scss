@@ -1,0 +1,119 @@
+$gewPurple:#EA00EA;
+$gewGreen:#00EA00;
+$gewWhite:#FFFFFF;
+$gewBlack:#000000;
+$gewGlowGreen: 
+0 0 05px $gewWhite, 
+0 0 10px $gewGreen, 
+0 0 15px $gewGreen, 
+0 0 20px $gewGreen, 
+0 0 30px $gewGreen, 
+0 0 40px $gewPurple, 
+0 0 55px $gewPurple, 
+0 0 75px $gewBlack;
+* 
+{
+    color: $gewWhite;
+    font-family: 'Inconsolata', monospace;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-variant: inherit;    
+    text-decoration: inherit;
+    text-transform: inherit;
+    text-shadow: inherit;
+    
+    *::selection 
+    {
+        color: $gewPurple;
+        background-color: $gewGreen;
+    }
+    
+    a, a:visited, .pageFooter a 
+    {
+        color:$gewGreen;
+    }
+    
+    a:active, a:hover 
+    {
+        color:$gewPurple;    
+        text-shadow: $gewGlowGreen;    
+    }
+    p 
+    {
+    .date 
+    {
+        text-align: center;
+    }
+    }
+    .btnbarfull 
+    {
+        color: $gewPurple;    
+        font-size: 24px;
+        font-weight: 700;    
+        text-align: left;
+        .material-icons.md-24 
+        {
+            color:$gewGreen;   
+            text-align: left;
+        }
+    }
+    
+    .pageFooter 
+    {
+        font-size: 13px;
+        text-align: center;
+        .material-icons.md-24 
+        {
+            color: $gewPurple;
+            font-size: inherit;
+        }
+    }
+}
+@media (min-width: 1250px) 
+{   
+    button[name=iBookmarks]::after
+    {   
+        content: " Bookmarks";
+    }
+    button[name=iSocial]::after
+    {   
+        content: " Social";
+    }
+    button[name=iEmail]::after
+    {   
+        content: " Email";
+    }
+    button[name=iShopping]::after
+    {   
+        content: " Shopping";
+    }
+    button[name=iFinance]::after
+    {   
+        content: " Finance";
+    }
+    button[name=iNews]::after
+    {   
+        content: " News";
+    }
+    button[name=iReference]::after
+    {   
+        content: " Reference";
+    }
+    button[name=iDownloads]::after
+    {   
+        content: " Downloads";
+    }
+    button[name=iMedia]::after
+    {   
+        content: " Media";
+    }
+    button[name=iGames]::after
+    {   
+        content: " Games";
+    }
+    button[name=iShare]::after
+    {   
+        content: " Share";
+    }
+}

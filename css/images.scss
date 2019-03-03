@@ -1,0 +1,121 @@
+$gewPurple:#EA00EA;
+$gewGreen:#00EA00;
+$gewWhite:#FFFFFF;
+$gewBlack:#000000;
+$geweyName:url("../img/logo/gewey/geweyName.png"); 
+$geweyG:url("../img/logo/gewey/geweyG.png");
+$geweyLogo:url("../img/logo/gewey/geweyLogo.png"); 
+$hobosLogo:url("../img/logo/hobos/hobosLogo.png");
+%button
+{
+    cursor: pointer;
+}
+
+/*FULL SIZE*/
+@media (min-width: 1250px) 
+{
+    .geweyName 
+    {
+        content:$geweyName;
+    }
+    .geweyLogo
+    {
+        content:$geweyLogo;
+    }
+    .hobosLogo 
+    {
+        content:$hobosLogo;
+    }
+    #bookmark 
+    {
+                max-width: 10vw;
+                max-height: 9vh;
+                border-radius: 50%;
+
+    }
+    #bookmark:hover 
+{
+    box-shadow: 2px 2px 5px 1px $gewGreen;
+    filter: invert(1);
+}
+}
+/*BITE SIZE*/
+@media (max-width: 1249px) 
+{
+    .geweyName 
+    {
+        content:$geweyG;
+    }
+    .geweyLogo 
+    {
+        content:$geweyG;
+    }    
+    .hobosLogo 
+    {
+        content:$hobosLogo;
+    }
+
+    #bookmark {
+                max-width: 20vw;
+                max-height: 10vh;
+                border-radius: 35%;
+
+    }    
+    #bookmark:hover 
+{
+    box-shadow: 2px 2px 5px 1px $gewGreen;
+    filter: invert(1);
+}
+}
+/*************************************************************************************************************/
+*
+{
+    .btnbarfull 
+    {  
+        @extend %button;
+        background-color : rgba(0, 0, 0, 0.25);
+    }
+    
+    .btnbarfull:hover 
+    {
+        @extend %button;
+        background-color: rgba(0,255,0,0.25);
+    }
+    
+    html, body
+    { 
+        li 
+        {
+            list-style-image: url('../img/ico/arrow_right.png');
+        }  
+
+        .viewArea
+        {
+            background-image:url('../img/bg/skulls.png');
+        }
+        
+        .pageHeader, .pageFooter 
+        {
+            background-image:url('../img/bg/bricks.png');
+        }
+        
+        .pageLeftMenu 
+        {
+            background-color : rgba(0, 0, 0, 0.75);
+            box-shadow: 5px 5px 15px 5px $gewBlack;
+        }
+        
+        .pageContent 
+        {
+            background-color : rgba(0, 0, 0, 0.25);
+        }
+        .minecraft_container 
+            {
+                background-image:url('../img/bg/dirt.png');
+            }
+        .copyrightContainer 
+        {
+            background-image:url('../img/bg/PurpleBlackStripes.png');
+        }
+    }
+}

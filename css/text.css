@@ -1,0 +1,91 @@
+* {
+  color: #FFFFFF;
+  font-family: "Inconsolata", monospace;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  text-decoration: inherit;
+  text-transform: inherit;
+  text-shadow: inherit;
+}
+* *::selection {
+  color: #EA00EA;
+  background-color: #00EA00;
+}
+* a, * a:visited, * .pageFooter a {
+  color: #00EA00;
+}
+* a:active, * a:hover {
+  color: #EA00EA;
+  text-shadow: 0 0 5px #FFFFFF, 0 0 10px #00EA00, 0 0 15px #00EA00, 0 0 20px #00EA00, 0 0 30px #00EA00, 0 0 40px #EA00EA, 0 0 55px #EA00EA, 0 0 75px #000000;
+}
+* p .date {
+  text-align: center;
+}
+* .btnbarfull {
+  color: #EA00EA;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+}
+* .btnbarfull .material-icons.md-24 {
+  color: #00EA00;
+  text-align: left;
+}
+* .pageFooter {
+  font-size: 13px;
+  text-align: center;
+}
+* .pageFooter .material-icons.md-24 {
+  color: #EA00EA;
+  font-size: inherit;
+}
+
+@media (min-width: 1250px) {
+  button[name=iBookmarks]::after {
+    content: " Bookmarks";
+  }
+
+  button[name=iSocial]::after {
+    content: " Social";
+  }
+
+  button[name=iEmail]::after {
+    content: " Email";
+  }
+
+  button[name=iShopping]::after {
+    content: " Shopping";
+  }
+
+  button[name=iFinance]::after {
+    content: " Finance";
+  }
+
+  button[name=iNews]::after {
+    content: " News";
+  }
+
+  button[name=iReference]::after {
+    content: " Reference";
+  }
+
+  button[name=iDownloads]::after {
+    content: " Downloads";
+  }
+
+  button[name=iMedia]::after {
+    content: " Media";
+  }
+
+  button[name=iGames]::after {
+    content: " Games";
+  }
+
+  button[name=iShare]::after {
+    content: " Share";
+  }
+}
+
+/*# sourceMappingURL=text.css.map */
