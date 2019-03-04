@@ -1,5 +1,5 @@
 var document;
-var socialBookmarks
+var referenceBookmarks
     = "<a title='Google' target='_parent'href='http://www.google.com/' ><img id='bookmark' alt='google'></a>"
     + "<a title='Google Maps'target='_parent'href='https://www.google.com/maps/' ><img id='bookmark' alt='GMapsPlatform'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
@@ -26,9 +26,6 @@ var socialBookmarks
     + "<a title='Open Culture' target='_parent'href='www.openculture.com'><img id='bookmark' alt='openculture'></a>"
     + "<a title='Ptable' target='_parent'href='https://www.ptable.com/'><img id='bookmark' alt='ptable'></a>"
     + "<a title='MIT APP INVENTOR' target='_parent'href='http://ai2.appinventor.mit.edu/'><img id='bookmark' alt='mitappinventor'></a>"
-    + "<a title='sublime'target='_parent'href='https://www.sublimetext.com'><img id='bookmark' alt='sublimehq'></a>"
-    + "<a title='brackets' target='_parent'href='http://brackets.io/'><img id='bookmark' alt='brackets'></a>"
-    + "<a title='eclipse'target='_parent'href='https://www.eclipse.org/' ><img id='bookmark' alt='EclipseFdn'></a>"
     + "<a title='Kurzgesagt' target='_parent'href='https://www.youtube.com/user/Kurzgesagt'><img id='bookmark' alt='Kurz_Gesagt'></a>"
     + "<a title='Crash Course' target='_parent'href='https://www.youtube.com/user/crashcourse' ><img id='bookmark' alt='thecrashcourse'></a>";
-document.body.innerHTML += socialBookmarks;
+document.body.innerHTML += referenceBookmarks;
