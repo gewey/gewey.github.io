@@ -20,11 +20,3 @@ var mediaBookmarks
     + "<a title='ShutterStock' target='_parent'href='http://www.shutterstock.com/?rid=224491653' ><img id='bookmark' alt='shutterstock'></a>"
     + "<a title='Blogger'target='_parent'href='https://www.blogger.com/' ><img id='bookmark' alt='blogger'></a>";
 document.body.innerHTML += mediaBookmarks;
-
-
-
-
-
-
-
-
