@@ -26,6 +26,10 @@ var referenceBookmarks
     + "<a title='Open Culture' target='_parent'href='www.openculture.com'><img id='bookmark' alt='openculture'></a>"
     + "<a title='Ptable' target='_parent'href='https://www.ptable.com/'><img id='bookmark' alt='ptable'></a>"
     + "<a title='MIT APP INVENTOR' target='_parent'href='http://ai2.appinventor.mit.edu/'><img id='bookmark' alt='mitappinventor'></a>"
+    + "<a title='Dictionary' target='_parent'href='http://dictionary.reference.com/' ><img id='bookmark' alt='dictionarycom'></a>"
+    + "<a title='Google Translate' target='_parent'href='https://translate.google.com/'><img id='bookmark' alt='googletranslate'></a>"
+    + "<a title='Duolingo' target='_parent'href='https://www.duolingo.com' ><img id='bookmark' alt='duolingo'></a>"
     + "<a title='Kurzgesagt' target='_parent'href='https://www.youtube.com/user/Kurzgesagt'><img id='bookmark' alt='Kurz_Gesagt'></a>"
     + "<a title='Crash Course' target='_parent'href='https://www.youtube.com/user/crashcourse' ><img id='bookmark' alt='thecrashcourse'></a>";
 document.body.innerHTML += referenceBookmarks;
+
