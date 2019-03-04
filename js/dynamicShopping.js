@@ -9,13 +9,3 @@ var shoppingBookmarks
     + "<a title='UPS'target='_parent'href='http://www.ups.com/'><img id='bookmark' alt='ups'></a>"
     + "<a title='USPS' target='_parent'href='https://www.usps.com/'><img id='bookmark' alt='usps'></a>";
 document.body.innerHTML += shoppingBookmarks;
-
-
-
-
-
-
-
-
-
-
