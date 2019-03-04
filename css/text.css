@@ -55,6 +55,10 @@
     content: " Email";
   }
 
+  button[name=iCloud]::after {
+    content: " Cloud";
+  }
+
   button[name=iShopping]::after {
     content: " Shopping";
   }
