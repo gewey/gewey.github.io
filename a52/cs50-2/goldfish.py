@@ -1,1 +1,0 @@
-print("so there i was spitting on my goldfish trying to keep it alive")
