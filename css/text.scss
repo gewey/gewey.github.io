@@ -96,6 +96,10 @@ $gewGlowGreen:
     {   
         content: " News";
     }
+    button[name=iSports]::after
+    {   
+        content: " Sports";
+    }
     button[name=iReference]::after
     {   
         content: " Reference";
