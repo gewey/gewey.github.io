@@ -1,5 +1,5 @@
 var document;
-var emailBookmarks
+var newsBookmarks
     = "<a title='CNN'target='_parent'href='http://www.cnn.com/'><img id='bookmark' alt='cnn'></a>"
     + "<a title='Huffington Post'target='_parent'href='http://www.huffingtonpost.com/' ><img id='bookmark' alt='huffpost'></a>"
     + "<a title='New York Times' target='_parent'href='http://www.nytimes.com/'><img id='bookmark' alt='nytimes'></a>"
@@ -9,4 +9,4 @@ var emailBookmarks
     + "<a title='Science Channel'target='_parent'href='https://www.sciencechannel.com/'><img id='bookmark' alt='ScienceChannel'></a>"
     + "<a title='cnet' target='_parent'href='http://www.cnet.com/' ><img id='bookmark' alt='cnet'></a>"
     + "<a title='Global Citizen' target='_parent'href='https://www.globalcitizen.org/en/#' ><img id='bookmark' alt='glblctzn'></a>";
-document.body.innerHTML += emailBookmarks;
+document.body.innerHTML += newsBookmarks;
