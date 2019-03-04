@@ -1,8 +1,4 @@
-//THIS MAKES ME DEPENDANT ON GITHUB... THINGS LIKE CSS CHANGES WON'T BE REFLECTED UNTIL AFTER A PUSH
-//var window;
 var document;
-var body = document.getElementsByTagName('body');
-
 var socialBookmarks
     = "<a title='Facebook' target='_parent' href='https://www.facebook.com/'><img id='bookmark' alt='facebook'></a>"
     + "<a title='Twitter'target='_parent'href='http://twitter.com/'><img id='bookmark' alt='twitter'></a>"
@@ -19,36 +15,5 @@ var socialBookmarks
     + "<a title='Wordpress'target='_parent'href='http://wordpress.org/'><img id='bookmark' alt='wordpress'></a>"
     + "<a title='ning' target='_parent'href='http://www.ning.com/' ><img id='bookmark' alt='ning'></a>"
     + "<a title='Delicious'target='_parent'href='http://delicious.com/'><img id='bookmark' alt='delicious'></a>"
-    + "<a title='Text Free Pinger' target='_parent'href='https://textfree.us/' ><img id='bookmark' alt='textfreeapp'></a>"
-    + ""
-    + ""
-    + ""
-    + ""
-    + ""
-
-
-//window.onload = function() {
-//   document.getElementsByTagName("head")[0].innerHTML = theHead;
-//
-//};
-//    document.getElementsByTagName("body")[0].innerHTML = socialBookmarks;
-//    document.body.appendChild(socialBookmarks);
-    document.body.innerHTML +=socialBookmarks;
-        
-
-
-
-
-
-
-
-
-
-
-
-        
-//MIGHT BE USEFUL LATER NOT CURRENTLY NEEDED:     
-//<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        
-        
-        
+    + "<a title='Text Free Pinger' target='_parent'href='https://textfree.us/' ><img id='bookmark' alt='textfreeapp'></a>";
+document.body.innerHTML += socialBookmarks;
