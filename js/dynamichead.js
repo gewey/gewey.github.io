@@ -15,7 +15,8 @@ let theHead
     + "<link rel='stylesheet' href='https://gewey.github.io/css/text.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>"
     + "<script src='http://www.wowhead.com/widgets/power.js'></script>"
-    + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>";
+    + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>"
+    + "<script src='https://gewey.github.io/js/google_analytics.js'></script>";
 
 
 //window.onload = function() {
