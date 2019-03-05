@@ -18,12 +18,7 @@ let theHead
     + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>"
     + "<!-- Global site tag (gtag.js) - Google Analytics -->"
     + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-135630428-1'></script>"
-    + "<script>"
-    + "  window.dataLayer = window.dataLayer || [];"
-    + "  function gtag(){dataLayer.push(arguments);}"
-    + "  gtag('js', new Date());"
-    + "  gtag('config', 'UA-135630428-1');"
-    + "</script>";
+    + "<script src='https://gewey.github.io/js/google_analytics.js'></script>";
 
 
 //window.onload = function() {
