@@ -19,6 +19,8 @@ let theHead
     + ""
     + "<script src='http://www.wowhead.com/widgets/power.js'></script>"
     + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>"
+    + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-135630428-1'></script>"
+    + "<script src='https://gewey.github.io/js/google_analytics.js'></script>"
 
 
 //window.onload = function() {
