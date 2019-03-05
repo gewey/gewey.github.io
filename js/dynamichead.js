@@ -1,7 +1,6 @@
 //THIS MAKES ME DEPENDANT ON GITHUB... THINGS LIKE CSS CHANGES WON'T BE REFLECTED UNTIL AFTER A PUSH
-//var window;
-var document;
-var theHead
+//let window;
+let theHead
     = "<meta charset='utf-8'>"
     + "<meta name='generator'>"
     + "<meta name='dcterms.created' content='Mon, 14 Jan 2019 21:47:16 GMT'>"

@@ -23,7 +23,7 @@
 
 function createXHR() 
 {
-    var request = false;
+    let request = false;
         try {
             request = new ActiveXObject('Msxml2.XMLHTTP');
         }
@@ -47,13 +47,13 @@ function createXHR()
 function getBody(content) 
 {
    test = content.toLowerCase();    // to eliminate case sensitivity
-   var x = test.indexOf("<body");
+   let x = test.indexOf("<body");
    if(x == -1) return "";
 
    x = test.indexOf(">", x);
    if(x == -1) return "";
 
-   var y = test.lastIndexOf("</body>");
+   let y = test.lastIndexOf("</body>");
    if(y == -1) y = test.lastIndexOf("</html>");
    if(y == -1) y = content.length;    // If no HTML then just grab everything till end
 
@@ -70,7 +70,7 @@ function getBody(content)
 
 function loadHTML(url, fun, storage, param)
 {
-	var xhr = createXHR();
+	let xhr = createXHR();
 	xhr.onreadystatechange=function()
 	{ 
 		if(xhr.readyState == 4)
@@ -101,8 +101,8 @@ function loadHTML(url, fun, storage, param)
 
 	function loadWholePage(url)
 	{
-		var y = document.getElementById("storage");
-		var x = document.getElementById("displayed");
+		let y = document.getElementById("storage");
+		let x = document.getElementById("displayed");
 		loadHTML(url, processHTML, x, y);
 	}	
 

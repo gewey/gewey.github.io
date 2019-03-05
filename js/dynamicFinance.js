@@ -1,5 +1,5 @@
-var document;
-var financeBookmarks
+
+let financeBookmarks
     = "<a title='Paypal' target='_parent'href='https://www.paypal.com/'><img id='bookmark' alt='paypal'></a>"
     + "<a title='E*Trade'target='_parent'href='https://us.etrade.com/home' ><img id='bookmark' alt='etrade'></a>"
     + "<a title='Chase'target='_parent'href='https://www.chase.com/' ><img id='bookmark' alt='chase'></a>"

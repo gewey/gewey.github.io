@@ -1,5 +1,5 @@
-var document;
-var socialBookmarks
+
+let socialBookmarks
     = "<a title='Facebook' target='_parent' href='https://www.facebook.com/'><img id='bookmark' alt='facebook'></a>"
     + "<a title='Twitter'target='_parent'href='http://twitter.com/'><img id='bookmark' alt='twitter'></a>"
     + "<a title='Instagram'target='_parent'href='https://www.instagram.com/' ><img id='bookmark' alt='instagram'></a>"

@@ -1,5 +1,5 @@
-var document;
-var mediaBookmarks
+
+let mediaBookmarks
     = "<a title='Spotify'target='_parent'href='http://www.spotify.com/'><img id='bookmark' alt='spotify'></a>"
     + "<a title='Pandora'target='_parent'href='https://www.pandora.com'><img id='bookmark' alt='pandoramusic'></a>"
     + "<a title='Lastfm' target='_parent'href='http://www.last.fm/'><img id='bookmark' alt='lastfm'></a>"
