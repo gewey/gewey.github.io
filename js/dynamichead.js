@@ -7,20 +7,17 @@ let theHead
     + "<meta name='description' content='Like your phone, but for chrome.'>"
     + "<meta name='keywords' content='gewey&#039;s homepage'>"
     + "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'>"
-    + ""
     + "<title>Gewey's Homepage</title>"
-    + ""
     + "<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>"
     + "<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>"
     + "<link rel='shortcut icon' href='https://gewey.github.io//favicon.ico'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/bones.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/text.css' type='text/css'>"
-    + "<link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>";
-    + ""
+    + "<link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>"
     + "<script src='http://www.wowhead.com/widgets/power.js'></script>"
     + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>"
     + "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-135630428-1'></script>"
-    + "<script src='https://gewey.github.io/js/google_analytics.js'></script>"
+    + "<script src='https://gewey.github.io/js/google_analytics.js'></script>";
 
 
 //window.onload = function() {
