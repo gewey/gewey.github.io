@@ -1,5 +1,4 @@
-var document;
-var newsBookmarks
+let newsBookmarks
     = "<a title='CNN'target='_parent'href='http://www.cnn.com/'><img id='bookmark' alt='cnn'></a>"
     + "<a title='Huffington Post'target='_parent'href='http://www.huffingtonpost.com/' ><img id='bookmark' alt='huffpost'></a>"
     + "<a title='New York Times' target='_parent'href='http://www.nytimes.com/'><img id='bookmark' alt='nytimes'></a>"

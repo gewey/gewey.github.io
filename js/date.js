@@ -1,4 +1,4 @@
-var months=new Array(13);
+let months=new Array(13);
 months[1]="January";
 months[2]="February";
 months[3]="March";
@@ -11,10 +11,10 @@ months[9]="September";
 months[10]="October";
 months[11]="November";
 months[12]="December";
-var time=new Date();
-var lmonth=months[time.getMonth() + 1];
-var date=time.getDate();
-var year=time.getYear();
+let time=new Date();
+let lmonth=months[time.getMonth() + 1];
+let date=time.getDate();
+let year=time.getYear();
 if (year < 2000)    
 year = year + 1900; 
 document.write("<center>" + lmonth + " ");

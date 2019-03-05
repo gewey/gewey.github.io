@@ -1,5 +1,5 @@
-var document;
-var downloadsBookmarks
+
+let downloadsBookmarks
     = "<a title='Google Chrome'target='_parent'href='https://www.google.com/chrome/' ><img id='bookmark' alt='googlechrome'></a>"
     + "<a title='AVG'target='_parent'href='http://www.avg.com/us-en/homepage'><img id='bookmark' alt='avgfree'></a>"
     + "<a title='Microsoft'target='_parent'href='http://www.microsoft.com/'><img id='bookmark' alt='microsoft'></a>"

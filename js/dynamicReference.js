@@ -1,5 +1,5 @@
-var document;
-var referenceBookmarks
+
+let referenceBookmarks
     = "<a title='Google' target='_parent'href='http://www.google.com/' ><img id='bookmark' alt='google'></a>"
     + "<a title='Google Maps'target='_parent'href='https://www.google.com/maps/' ><img id='bookmark' alt='GMapsPlatform'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"

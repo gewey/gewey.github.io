@@ -1,5 +1,5 @@
-var document;
-var cloudBookmarks
+
+let cloudBookmarks
     = "<a title='Dropbox'target='_parent'href='https://www.dropbox.com/' ><img id='bookmark' alt='dropbox'></a>"
     + "<a title='Google Drive' target='_parent'href='https://drive.google.com/'><img id='bookmark' alt='googledrive'></a>"
     + "<a title='Google Docs'target='_parent'href='https://docs.google.com'><img id='bookmark' alt='googledocs'></a>"
