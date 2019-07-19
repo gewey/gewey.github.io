@@ -17,6 +17,7 @@ let gamesBookmarks
     + "<a title='Rune HQ'target='_parent'href='https://www.runehq.com' ><img id='bookmark' alt='officialrunehq'></a>"
     + "<a title='minecraft'target='_parent'href='https://minecraft.net/' ><img id='bookmark' alt='minecraft'></a>"
     + "<a title='Forge'target='_parent'href='https://files.minecraftforge.net/'><img id='bookmark' alt='ForgeDevTeam'></a>"
+    + "<a title='FTBWiki'target='_parent'href='https://ftb.gamepedia.com/FTB_Wiki/'><img id='bookmark' alt='ftb_team'></a>"
     + "<a title='MCREATOR' target='_parent'href='https://mcreator.net/'><img id='bookmark' alt='PyloDEV'></a>"
     + "<a title='Crafatar' target='_parent'href='https://crafatar.com/'><img id='bookmark' alt='Crafatar'></a>"
     + "<a title='Steam'target='_parent'href='https://store.steampowered.com/'><img id='bookmark' alt='steam_games'></a>"
