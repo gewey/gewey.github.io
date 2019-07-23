@@ -68,11 +68,11 @@
 
 @media (min-width: 1250px) {
   .pageLeftMenu {
-    width: 15vw;
+    width: 18vw;
   }
 
   .pageContent {
-    width: 84vw;
+    width: 81vw;
     grid-template-columns: 84vw;
   }
 }
