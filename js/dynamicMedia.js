@@ -18,5 +18,6 @@ let mediaBookmarks
     + "<a title='Tumblr' target='_parent'href='https://www.tumblr.com/dashboard' ><img id='bookmark' alt='tumblr'></a>"
     + "<a title='Gravit' target='_parent'href='https://designer.io/' ><img id='bookmark' alt='gravitdesigner'></a>"
     + "<a title='ShutterStock' target='_parent'href='http://www.shutterstock.com/?rid=224491653' ><img id='bookmark' alt='shutterstock'></a>"
-    + "<a title='Blogger'target='_parent'href='https://www.blogger.com/' ><img id='bookmark' alt='blogger'></a>";
+    + "<a title='Blogger'target='_parent'href='https://www.blogger.com/' ><img id='bookmark' alt='blogger'></a>"
+    + "<a title='The Late Show'target='pageContent'href='https://www.youtube.com/channel/UCMtFAi84ehTSYSE9XoHefig/videos' ><img id='bookmark' alt='colbertlateshow'></a>";
 document.body.innerHTML += mediaBookmarks;
