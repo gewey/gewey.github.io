@@ -23,7 +23,7 @@ let referenceBookmarks
     + "<a title='Font Awesome' target='_parent'href='https://fontawesome.com/' ><img id='bookmark' alt='fontawesome'></a>"
     + "<a title='CodePen.IO' target='_parent'href='https://codepen.io/'><img id='bookmark' alt='codepen'></a>"
     + "<a title='Material.IO'target='_parent'href='https://material.io/' ><img id='bookmark' alt='materialdesign'></a>"
-    + "<a title='Open Culture' target='_parent'href='www.openculture.com'><img id='bookmark' alt='openculture'></a>"
+    + "<a title='Open Culture' target='_parent'href='http://www.openculture.com'><img id='bookmark' alt='openculture'></a>"
     + "<a title='Ptable' target='_parent'href='https://www.ptable.com/'><img id='bookmark' alt='ptable'></a>"
     + "<a title='MIT APP INVENTOR' target='_parent'href='http://ai2.appinventor.mit.edu/'><img id='bookmark' alt='mitappinventor'></a>"
     + "<a title='Dictionary' target='_parent'href='http://dictionary.reference.com/' ><img id='bookmark' alt='dictionarycom'></a>"
