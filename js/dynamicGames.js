@@ -21,6 +21,8 @@ let gamesBookmarks
     + "<a title='FTBWiki'target='_parent'href='https://ftb.gamepedia.com/FTB_Wiki/'><img id='bookmark' alt='ftb_team'></a>"
     + "<a title='MCREATOR' target='_parent'href='https://mcreator.net/'><img id='bookmark' alt='PyloDEV'></a>"
     + "<a title='Crafatar' target='_parent'href='https://crafatar.com/'><img id='bookmark' alt='Crafatar'></a>"
+    + "<a title='The Sims' target='_parent'href='https://www.ea.com/games/the-sims'><img id='bookmark' alt='TheSims'></a>"
+    + "<a title='Mod The Sims' target='_parent'href='http://www.modthesims.info/'><img id='bookmark' alt='modthesimsinfo'></a>"
     + "<a title='Steam'target='_parent'href='https://store.steampowered.com/'><img id='bookmark' alt='steam_games'></a>"
     + "<a title='Origin'target='_parent'href='https://www.origin.com/'><img id='bookmark' alt='origininsider'></a>"
     + "<a title='Guild Wars 2' target='_parent'href='https://www.guildwars2.com/'><img id='bookmark' alt='GuildWars2'></a>"
