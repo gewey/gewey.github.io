@@ -5,7 +5,7 @@ let mediaBookmarks
     + "<a title='Lastfm' target='_parent'href='http://www.last.fm/'><img id='bookmark' alt='lastfm'></a>"
     + "<a title='Sound Cloud'target='_parent'href='http://soundcloud.com/' ><img id='bookmark' alt='soundcloud'></a>"
     + "<a title='Audible'target='_parent'href='https://amzn.to/2D4mwBB'><img id='bookmark' alt='audible_com'></a>"
-    + "<a title='Youtube'target='_parent'href='http://www.youtube.com/'><img id='bookmark' alt='youtube'></a>"
+    + "<a title='Youtube'target='_parent'href='https://www.youtube.com/feed/subscriptions'><img id='bookmark' alt='youtube'></a>"
     + "<a title='Netflix'target='_parent'href='http://www.netflix.com/'><img id='bookmark' alt='netflix'></a>"
     + "<a title='Hulu' target='_parent'href='http://www.hulu.com/' ><img id='bookmark' alt='hulu'></a>"
     + "<a title='HBO'target='_parent'href='https://play.hbogo.com' ><img id='bookmark' alt='hbo'></a>"
