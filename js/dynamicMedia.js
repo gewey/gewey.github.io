@@ -14,6 +14,7 @@ let mediaBookmarks
     + "<a title='Photobucket'target='_parent'href='http://photobucket.com/'><img id='bookmark' alt='photobucket'></a>"
     + "<a title='Deviant Art'target='_parent'href='http://www.deviantart.com/' ><img id='bookmark' alt='deviantart'></a>"
     + "<a title='Flickr' target='_parent'href='http://www.flickr.com/' ><img id='bookmark' alt='flickr'></a>"
+    + "<a title='imgflip' target='_parent'href='https://imgflip.com/' ><img id='bookmark' alt='imgflip'></a>"
     + "<a title='Beehive'target='_parent'href='http://beehivecollective.org/'><img id='bookmark' alt='beehivedesign'></a>"
     + "<a title='Tumblr' target='_parent'href='https://www.tumblr.com/dashboard' ><img id='bookmark' alt='tumblr'></a>"
     + "<a title='Gravit' target='_parent'href='https://designer.io/' ><img id='bookmark' alt='gravitdesigner'></a>"
