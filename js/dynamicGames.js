@@ -12,6 +12,7 @@ let gamesBookmarks
     + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"
     + "<a title='WowHead'target='_parent'href='https://www.wowhead.com'><img id='bookmark' alt='wowhead'></a>"
     + "<a title='Wago.IO'target='_parent'href='https://wago.io/'><img id='bookmark' alt='wago_io'></a>"
+    + "<a title='Simple Armory'target='_parent'href='https://simplearmory.com/#/us/thrall/tandu'><img id='bookmark' alt='simplearmory'></a>"
     + "<a title='Runescape'target='_parent'href='http://runescape.com/'><img id='bookmark' alt='runescape'></a>"
     + "<a title='Old SChool RS'target='_parent'href='https://oldschool.runescape.com'><img id='bookmark' alt='oldschoolrs'></a>"
     + "<a title='Rune Tips'target='_parent'href='https://www.tip.it/runescape/'><img id='bookmark' alt='runetips'></a>"
