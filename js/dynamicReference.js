@@ -19,6 +19,7 @@ let referenceBookmarks
     + "<a title='github' target='_parent'href='https://github.com/'><img id='bookmark' alt='github'></a>"
     + "<a title='Khan Academy' target='_parent'href='https://www.khanacademy.org/' ><img id='bookmark' alt='khanacademy'></a>"
     + "<a title='codecademy' target='_parent'href='https://www.codecademy.com//' ><img id='bookmark' alt='codecademy'></a>"
+    + "<a title='freecodecamp' target='_parent'href='https://learn.freecodecamp.org/' ><img id='bookmark' alt='freeCodeCamp'></a>"
     + "<a title='Tensorflow' target='_parent'href='https://js.tensorflow.org/' ><img id='bookmark' alt='tensorflow'></a>"
     + "<a title='Font Awesome' target='_parent'href='https://fontawesome.com/' ><img id='bookmark' alt='fontawesome'></a>"
     + "<a title='CodePen.IO' target='_parent'href='https://codepen.io/'><img id='bookmark' alt='codepen'></a>"
