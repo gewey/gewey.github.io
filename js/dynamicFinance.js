@@ -6,7 +6,9 @@ let financeBookmarks
     + "<a title='Bank of America'target='_parent'href='https://www.bankofamerica.com/' ><img id='bookmark' alt='bankofamerica'></a>"
     + "<a title='Coinbase' target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>"
     + "<a title='Acorns' target='_parent' href='https://www.acorns.com/' ><img id='bookmark' alt='acorns'></a>"
+    + "<a title='Robinhood' target='_parent' href='https://robinhood.com' ><img id='bookmark' alt='RobinhoodApp'></a>"
     + "<a title='ShutterStock Affil' target='_parent'href='https://submit.shutterstock.com/?ref=224491653' ><img id='bookmark' alt='ShutterstockReq'></a>"
     + "<a title='Amazon Associate' target='_parent'href='https://affiliate-program.amazon.com/home'><img id='bookmark' alt='AmazonAssociate'></a>"
+    + "<a title='Analytics' target='_parent'href='https://analytics.google.com'><img id='bookmark' alt='googleanalytics'></a>"
     + "<a title='Ad Fly' target='_parent'href='https://join-adf.ly/2964346'><img id='bookmark' alt='adfly'></a>";
 document.body.innerHTML += financeBookmarks;
