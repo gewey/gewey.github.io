@@ -9,6 +9,7 @@ let mediaBookmarks
     + "<a title='Youtube'target='_parent'href='https://www.youtube.com/feed/subscriptions'><img id='bookmark' alt='youtube'></a>"
     + "<a title='Netflix'target='_parent'href='http://www.netflix.com/'><img id='bookmark' alt='netflix'></a>"
     + "<a title='Hulu' target='_parent'href='http://www.hulu.com/' ><img id='bookmark' alt='hulu'></a>"
+    + "<a title='Aamozn Prime Video' target='_parent'href='https://www.amazon.com/gp/video/storefront' ><img id='bookmark' alt='primevideo'></a>"
     + "<a title='HBO'target='_parent'href='https://play.hbogo.com' ><img id='bookmark' alt='hbo'></a>"
     + "<a title='Dish Anywhere'target='_parent'href='http://www.dishanywhere.com/' ><img id='bookmark' alt='dish'></a>"
     + "<a title='Google Photos'target='_parent'href='https://photos.google.com/' ><img id='bookmark' alt='googlephotos'></a>"
