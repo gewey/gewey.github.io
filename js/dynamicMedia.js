@@ -23,5 +23,7 @@ let mediaBookmarks
     + "<a title='Gravit' target='_parent'href='https://designer.io/' ><img id='bookmark' alt='gravitdesigner'></a>"
     + "<a title='ShutterStock' target='_parent'href='http://www.shutterstock.com/?rid=224491653' ><img id='bookmark' alt='shutterstock'></a>"
     + "<a title='Blogger'target='_parent'href='https://www.blogger.com/' ><img id='bookmark' alt='blogger'></a>"
-    + "<a title='The Late Show'target='pageContent'href='https://www.youtube.com/channel/UCMtFAi84ehTSYSE9XoHefig/videos' ><img id='bookmark' alt='colbertlateshow'></a>";
+    + "<a title='The Late Show'target='pageContent'href='https://www.youtube.com/channel/UCMtFAi84ehTSYSE9XoHefig/videos' ><img id='bookmark' alt='colbertlateshow'></a>"
+    + "<a title='Last Week Tonight' target='_parent'href='https://www.youtube.com/user/LastWeekTonight' ><img id='bookmark' alt='LastWeekTonight'></a>"
+    + "<a title='Real Time' target='_parent'href='https://www.youtube.com/user/RealTime' ><img id='bookmark' alt='RealTimers'></a>";
 document.body.innerHTML += mediaBookmarks;
