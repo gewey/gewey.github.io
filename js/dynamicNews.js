@@ -9,7 +9,5 @@ let newsBookmarks
     + "<a title='NASA' target='_parent'href='http://www.nasa.gov/' ><img id='bookmark' alt='nasa'></a>"
     + "<a title='Science Channel'target='_parent'href='https://www.sciencechannel.com'><img id='bookmark' alt='ScienceChannel'></a>"
     + "<a title='cnet' target='_parent'href='http://www.cnet.com/' ><img id='bookmark' alt='cnet'></a>"
-    + "<a title='Last Week Tonight' target='_parent'href='https://www.youtube.com/user/LastWeekTonight' ><img id='bookmark' alt='LastWeekTonight'></a>"
-    + "<a title='Real Time' target='_parent'href='https://www.youtube.com/user/RealTime' ><img id='bookmark' alt='RealTimers'></a>"
     + "<a title='Global Citizen' target='_parent'href='https://www.globalcitizen.org' ><img id='bookmark' alt='glblctzn'></a>";
 document.body.innerHTML += newsBookmarks;
