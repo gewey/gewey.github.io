@@ -30,6 +30,7 @@ let gamesBookmarks
     + "<a title='Origin'target='_parent'href='https://www.origin.com/'><img id='bookmark' alt='origininsider'></a>"
     + "<a title='Guild Wars 2' target='_parent'href='https://www.guildwars2.com/'><img id='bookmark' alt='GuildWars2'></a>"
     + "<a title='ElderScrollsOnline' target='_parent'href='https://www.elderscrollsonline.com/'><img id='bookmark' alt='tesonline'></a>"
+    + "<a title='Wizard101' target='_parent'href='https://www.wizard101.com/'><img id='bookmark' alt='wizard101'></a>"
     + "<a title='XBOX' target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
     + "<a title='Magic the Gathering'target='_parent'href='https://magic.wizards.com/en' ><img id='bookmark' alt='wizards_magic'></a>";
 document.body.innerHTML += gamesBookmarks;
