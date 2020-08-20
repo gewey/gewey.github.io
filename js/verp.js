@@ -10,7 +10,7 @@ for (iC = 0; iC < images.length; iC++) {
 }
 function imgError(image) {
     image.onerror = "";
-    image.src = "/images/" + verp + ".png";
+    image.src = "/img/btn/bm/" + verp + ".png";
     return true;
 }
 document.getElementById("demo").innerHTML = txt;
