@@ -5,7 +5,7 @@ let iC = "";
 let verp = "";
 for (iC = 0; iC < images.length; iC++) {
     verp = images[iC].getAttribute("alt");
-    images[iC].setAttribute("src", "/img/btn/bm/" + verp + ".png");
+    images[iC].setAttribute("src", "https://gewey.github.io/img/btn/bm/" + verp + ".png");
     txt = txt +  images[iC].alt + "___" + images[iC].src + "<br>";
 }
 
