@@ -11,6 +11,7 @@ let mediaBookmarks
     + "<a title='Hulu' target='_parent'href='http://www.hulu.com/' ><img id='bookmark' alt='hulu'></a>"
     + "<a title='Aamozn Prime Video' target='_parent'href='https://www.amazon.com/gp/video/storefront' ><img id='bookmark' alt='primevideo'></a>"
     + "<a title='HBO'target='_parent'href='https://play.hbogo.com' ><img id='bookmark' alt='hbo'></a>"
+    + "<a title='HBOmax'target='_parent'href='https://play.hbomax.com/profileSelect' ><img id='bookmark' alt='hbomax'></a>"
     + "<a title='The Roku Channel'target='_parent'href='https://therokuchannel.roku.com/' ><img id='bookmark' alt='RokuChannels'></a>"
     + "<a title='Dish Anywhere'target='_parent'href='http://www.dishanywhere.com/' ><img id='bookmark' alt='dish'></a>"
     + "<a title='Google Photos'target='_parent'href='https://photos.google.com/' ><img id='bookmark' alt='googlephotos'></a>"
