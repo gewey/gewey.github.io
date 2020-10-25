@@ -2,6 +2,7 @@ let gamesBookmarks
     = "<br />"
     + "<a title='Twitch' target='_parent'href='https://www.twitch.tv'><img id='bookmark' alt='twitch'></a>"
     + "<a title='Discord'target='_parent'href='https://discordapp.com' ><img id='bookmark' alt='discordapp'></a>"
+    + "<a title='Gewey Warcraft'target='contentframe'href='./games/warcraft.html' ><img id='bookmark' alt='geweywarcraft'></a>"
     + "<a title='Blizzard' target='_parent'href='https://www.blizzard.com/'><img id='bookmark' alt='blizzardcs'></a>"
     + "<a title='World of Warcraft'target='_parent'href='http://www.worldofwarcraft.com/'><img id='bookmark' alt='warcraft'></a>"
     + "<a title='Raidbots' target='_parent'href='https://www.raidbots.com/simbot'><img id='bookmark' alt='raidbots'></a>"
