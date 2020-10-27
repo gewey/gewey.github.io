@@ -2,8 +2,6 @@
 let mediaBookmarks
     = "<br />"
     + "<a title='Spotify'target='_parent'href='http://www.spotify.com/'><img id='bookmark' alt='spotify'></a>"
-    + "<a title='Pandora'target='_parent'href='https://www.pandora.com'><img id='bookmark' alt='pandoramusic'></a>"
-    + "<a title='Lastfm' target='_parent'href='http://www.last.fm/'><img id='bookmark' alt='lastfm'></a>"
     + "<a title='Sound Cloud'target='_parent'href='http://soundcloud.com/' ><img id='bookmark' alt='soundcloud'></a>"
     + "<a title='Audible'target='_parent'href='https://amzn.to/2D4mwBB'><img id='bookmark' alt='audible_com'></a>"
     + "<a title='Youtube'target='_parent'href='https://www.youtube.com/feed/subscriptions'><img id='bookmark' alt='youtube'></a>"

@@ -6,7 +6,6 @@ let socialBookmarks
     + "<a title='Pinterest'target='_parent'href='http://pinterest.com/'><img id='bookmark' alt='pinterest'></a>"
     + "<a title='Skype'target='_parent'href='https://www.skype.com/en/'><img id='bookmark' alt='skype'></a>"
     + "<a title='Linked In'target='_parent'href='http://www.linkedin.com/' ><img id='bookmark' alt='linkedin'></a>"
-    + "<a title='hi5'target='_parent'href='http://hi5.com/'><img id='bookmark' alt='hi5'></a>"
     + "<a title='Mix/Stumble Upon' target='_parent'href='https://mix.com/' ><img id='bookmark' alt='getmixapp'></a>"
     + "<a title='Digg' target='_parent'href='http://digg.com/' ><img id='bookmark' alt='digg'></a>"
     + "<a title='Reddit' target='_parent'href='http://www.reddit.com/' ><img id='bookmark' alt='reddit'></a>"
