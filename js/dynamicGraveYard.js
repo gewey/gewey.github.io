@@ -13,6 +13,7 @@ let graveyardBookmarks
     + "<a title='Guru3D' target='_parent'href='https://www.guru3d.com/'><img id='bookmark' alt='guru_3d'></a>"
     + "<a title='Pandora'target='_parent'href='https://www.pandora.com'><img id='bookmark' alt='pandoramusic'></a>"
     + "<a title='Lastfm' target='_parent'href='http://www.last.fm/'><img id='bookmark' alt='lastfm'></a>"
+    + "<a title='Sound Cloud'target='_parent'href='http://soundcloud.com/' ><img id='bookmark' alt='soundcloud'></a>"
     + "<a title='Chase'target='_parent'href='https://www.chase.com/' ><img id='bookmark' alt='chase'></a>"
     + "<a title='Bank of America'target='_parent'href='https://www.bankofamerica.com/' ><img id='bookmark' alt='bankofamerica'></a>"
     + "<a title='Ad Fly' target='_parent'href='https://join-adf.ly/2964346'><img id='bookmark' alt='adfly'></a>"
