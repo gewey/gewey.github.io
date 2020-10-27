@@ -9,8 +9,6 @@ let referenceBookmarks
     + "<a title='Ted'target='_parent'href='https://www.ted.com'><img id='bookmark' alt='tedtalks'></a>"
     + "<a title='Allrecipes' target='_parent'href='https://www.allrecipes.com/'><img id='bookmark' alt='allrecipes'></a>"
     + "<a title='Life Hacker'target='_parent'href='https://lifehacker.com/'><img id='bookmark' alt='lifehacker'></a>"
-    + "<a title='Bing' target='_parent'href='http://go.microsoft.com/?linkid=9778718&rrid=_1842a0ac-32d7-bb98-f569-514a0a9eb5ad'><img id='bookmark' alt='bing'></a>"
-    + "<a title='Guru3D' target='_parent'href='https://www.guru3d.com/'><img id='bookmark' alt='guru_3d'></a>"
     + "<a title='Bleeping Computer'target='_parent'href='https://www.bleepingcomputer.com/'><img id='bookmark' alt='BleepinComputer'></a>"
     + "<a title='w3 schools' target='_parent'href='http://www.w3schools.com/'><img id='bookmark' alt='w3schoolsonline'></a>"
     + "<a title='stack overflow' target='_parent'href='https://stackoverflow.com/' ><img id='bookmark' alt='StackOverflow'></a>"
