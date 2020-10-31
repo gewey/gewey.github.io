@@ -1,6 +1,6 @@
 
 let mediaBookmarks
-    = "<br />"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
     + "<a title='Spotify'           target='_parent'href='http://www.spotify.com/'                      ><img id='bookmark' alt='spotify'           ></a>"
     + "<a title='Youtube'           target='_parent'href='https://www.youtube.com/feed/subscriptions'   ><img id='bookmark' alt='youtube'           ></a>"
     + "<a title='netflix'           target='_parent'href='http://www.netflix.com/'                      ><img id='bookmark' alt='netflix'           ></a>"
@@ -10,7 +10,6 @@ let mediaBookmarks
     + "<a title='HBOmax'            target='_parent'href='https://play.hbomax.com/profileSelect'        ><img id='bookmark' alt='hbomax'            ></a>"
     + "<a title='The Roku Channel'  target='_parent'href='https://therokuchannel.roku.com/'             ><img id='bookmark' alt='RokuChannels'      ></a>"
     + "<a title='Dish Anywhere'     target='_parent'href='http://www.dishanywhere.com/'                 ><img id='bookmark' alt='dish'              ></a>"
-    + "<a title='Google Photos'     target='_parent'href='https://photos.google.com/'                   ><img id='bookmark' alt='googlephotos'      ></a>"
     + "<a title='Photobucket'       target='_parent'href='http://photobucket.com/'                      ><img id='bookmark' alt='photobucket'       ></a>"
     + "<a title='Deviant Art'       target='_parent'href='http://www.deviantart.com/'                   ><img id='bookmark' alt='deviantart'        ></a>"
     + "<a title='Flickr'            target='_parent'href='http://www.flickr.com/'                       ><img id='bookmark' alt='flickr'            ></a>"
