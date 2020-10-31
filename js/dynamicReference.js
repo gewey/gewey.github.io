@@ -1,7 +1,5 @@
-
 let referenceBookmarks
-    = "<a title='Google' target='_parent'href='http://www.google.com/' ><img id='bookmark' alt='google'></a>"
-    + "<a title='Google Maps'target='_parent'href='https://www.google.com/maps/' ><img id='bookmark' alt='GMapsPlatform'></a>"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
     + "<a title='IMDB' target='_parent'href='http://www.imdb.com/' ><img id='bookmark' alt='imdb'></a>"
     + "<a title='ehow' target='_parent'href='http://www.ehow.com/' ><img id='bookmark' alt='ehow'></a>"
@@ -29,4 +27,3 @@ let referenceBookmarks
     + "<a title='Kurzgesagt' target='_parent'href='https://www.youtube.com/user/Kurzgesagt'><img id='bookmark' alt='Kurz_Gesagt'></a>"
     + "<a title='Crash Course' target='_parent'href='https://www.youtube.com/user/crashcourse' ><img id='bookmark' alt='thecrashcourse'></a>";
 document.body.innerHTML += referenceBookmarks;
-

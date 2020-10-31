@@ -1,6 +1,6 @@
 
 let downloadsBookmarks
-    = "<a title='Google Chrome'target='_parent'href='https://www.google.com/chrome/' ><img id='bookmark' alt='googlechrome'></a>"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
     + "<a title='AVG'target='_parent'href='http://www.avg.com/us-en/homepage'><img id='bookmark' alt='avgfree'></a>"
     + "<a title='Microsoft'target='_parent'href='http://www.microsoft.com/'><img id='bookmark' alt='microsoft'></a>"
     + "<a title='Direct X' target='_parent'href='http://www.microsoft.com/en-us/download/details.aspx?id=35'><img id='bookmark' alt='directx12' /></a>"

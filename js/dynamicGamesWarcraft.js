@@ -1,5 +1,5 @@
 let gamesBookmarks
-    = "<br />"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
     + "<a title='Blizzard' target='_parent'href='https://www.blizzard.com/'><img id='bookmark' alt='blizzardcs'></a>"
     + "<a title='World of Warcraft'target='_parent'href='http://www.worldofwarcraft.com/'><img id='bookmark' alt='warcraft'></a>"
     + "<a title='Raidbots' target='_parent'href='https://www.raidbots.com/simbot'><img id='bookmark' alt='raidbots'></a>"

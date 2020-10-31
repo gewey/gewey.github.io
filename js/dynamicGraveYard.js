@@ -1,6 +1,6 @@
-
 let graveyardBookmarks
-    = "<a title='ESPN' target='_parent'href='http://espn.go.com/'><img id='bookmark' alt='espn'></a>"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    + "<a title='ESPN' target='_parent'href='http://espn.go.com/'><img id='bookmark' alt='espn'></a>"
     + "<a title='Sports Illustrated' target='_parent'href='https://www.si.com/'><img id='bookmark' alt='sinow'></a>"
     + "<a title='Nascar' target='_parent'href='https://www.nascar.com/'><img id='bookmark' alt='nascar'></a>"
     + "<a title='MySpace'target='_parent'href='http://home.myspace.com/' ><img id='bookmark' alt='myspace'></a>"

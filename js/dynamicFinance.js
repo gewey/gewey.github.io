@@ -1,6 +1,6 @@
-
 let financeBookmarks
-    = "<a title='Paypal' target='_parent'href='https://www.paypal.com/'><img id='bookmark' alt='paypal'></a>"
+    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    + "<a title='Paypal' target='_parent'href='https://www.paypal.com/'><img id='bookmark' alt='paypal'></a>"
     + "<a title='E*Trade'target='_parent'href='https://us.etrade.com/home' ><img id='bookmark' alt='etrade'></a>"
     + "<a title='Coinbase' target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>"
     + "<a title='Acorns' target='_parent' href='https://www.acorns.com/' ><img id='bookmark' alt='acorns'></a>"
