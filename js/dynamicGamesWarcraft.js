@@ -1,10 +1,12 @@
-let gamesBookmarks
+let gameswarcraftBookmarks
     = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    + "<a title='Gewey Warcraft'    target='contentframe'href='./games/warcraft.html'                       ><img id='bookmark' alt='geweywarcraft'></a>"
     + "<a title='Blizzard' target='_parent'href='https://www.blizzard.com/'><img id='bookmark' alt='blizzardcs'></a>"
     + "<a title='World of Warcraft'target='_parent'href='http://www.worldofwarcraft.com/'><img id='bookmark' alt='warcraft'></a>"
     + "<a title='Raidbots' target='_parent'href='https://www.raidbots.com/simbot'><img id='bookmark' alt='raidbots'></a>"
     + "<a title='Warcraft Logs'target='_parent'href='https://www.warcraftlogs.com' ><img id='bookmark' alt='warcraftlogs'></a>"
     + "<a title='Raider IO'target='_parent'href='https://raider.io/' ><img id='bookmark' alt='raiderio_wow'></a>"
+    + "<a title='WoW Progress'      target='_parent'href='https://www.wowprogress.com/'                               ><img id='bookmark' alt='wowprogress'></a>"
     + "<a title='TradeSkillMaster' target='_parent'href='https://www.tradeskillmaster.com' ><img id='bookmark' alt='tsmaddon'></a>"
     + "<a title='Petopia'target='_parent'href='http://www.wow-petopia.com' ><img id='bookmark' alt='wowpetopia'></a>"
     + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"
@@ -13,6 +15,5 @@ let gamesBookmarks
     + "<a title='Wago.IO'target='_parent'href='https://wago.io/'><img id='bookmark' alt='wago_io'></a>"
     + "<a title='Simple Armory'target='_parent'href='https://simplearmory.com/#/us/thrall/tandu'><img id='bookmark' alt='simplearmory'></a>"
     + "<a title='Warcraft Secrets'target='_parent'href='https://warcraft-secrets.com/'><img id='bookmark' alt='WarcraftSecrets'></a>";
-document.body.innerHTML += gamesBookmarks;
-
+document.body.innerHTML += gameswarcraftBookmarks;
 
