@@ -9,7 +9,6 @@ let mediaBookmarks
     + "<a title='HBO'               target='_parent'href='https://play.hbogo.com'                       ><img id='bookmark' alt='hbo'               ></a>"
     + "<a title='HBOmax'            target='_parent'href='https://play.hbomax.com/profileSelect'        ><img id='bookmark' alt='hbomax'            ></a>"
     + "<a title='The Roku Channel'  target='_parent'href='https://therokuchannel.roku.com/'             ><img id='bookmark' alt='RokuChannels'      ></a>"
-    + "<a title='Dish Anywhere'     target='_parent'href='http://www.dishanywhere.com/'                 ><img id='bookmark' alt='dish'              ></a>"
     + "<a title='Photobucket'       target='_parent'href='http://photobucket.com/'                      ><img id='bookmark' alt='photobucket'       ></a>"
     + "<a title='Deviant Art'       target='_parent'href='http://www.deviantart.com/'                   ><img id='bookmark' alt='deviantart'        ></a>"
     + "<a title='Flickr'            target='_parent'href='http://www.flickr.com/'                       ><img id='bookmark' alt='flickr'            ></a>"
