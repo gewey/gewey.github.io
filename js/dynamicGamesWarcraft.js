@@ -14,6 +14,7 @@ let gameswarcraftBookmarks
     + "<a title='WowHead'target='_parent'href='https://www.wowhead.com'><img id='bookmark' alt='wowhead'></a>"
     + "<a title='Wago.IO'target='_parent'href='https://wago.io/'><img id='bookmark' alt='wago_io'></a>"
     + "<a title='Simple Armory'target='_parent'href='https://simplearmory.com/#/us/thrall/tandu'><img id='bookmark' alt='simplearmory'></a>"
+    + "<a title='wowrealmpopulation'target='_parent'https://www.wowrealmpopulation.com/'><img id='bookmark' alt='wowrealmpopulation'></a>"
     + "<a title='Warcraft Secrets'target='_parent'href='https://warcraft-secrets.com/'><img id='bookmark' alt='WarcraftSecrets'></a>";
 document.body.innerHTML += gameswarcraftBookmarks;
 
