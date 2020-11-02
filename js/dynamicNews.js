@@ -1,5 +1,5 @@
 let newsBookmarks
-    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    = "<a title='News'    target='contentframe'href='./news/index.html'                    ><img id='bookmark' alt='news'></a>"
     + "<a title='CNN'target='_parent'href='http://www.cnn.com/'><img id='bookmark' alt='cnn'></a>"
     + "<a title='Huffington Post'target='_parent'href='http://www.huffingtonpost.com/' ><img id='bookmark' alt='huffpost'></a>"
     + "<a title='New York Times' target='_parent'href='http://www.nytimes.com/'><img id='bookmark' alt='nytimes'></a>"
