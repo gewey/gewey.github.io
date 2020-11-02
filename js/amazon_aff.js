@@ -1,4 +1,4 @@
-let    amzn_assoc_ad_type = "banner";
+let amzn_assoc_ad_type = "banner";
 let amzn_assoc_marketplace = "amazon";
 let amzn_assoc_region = "US";
 let amzn_assoc_placement = "assoc_banner_placement_default";
