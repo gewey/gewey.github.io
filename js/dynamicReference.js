@@ -1,5 +1,5 @@
 let referenceBookmarks
-    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    = "<a title='Reference'    target='contentframe'href='./reference/index.html'                    ><img id='bookmark' alt='reference'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
     + "<a title='IMDB' target='_parent'href='http://www.imdb.com/' ><img id='bookmark' alt='imdb'></a>"
     + "<a title='ehow' target='_parent'href='http://www.ehow.com/' ><img id='bookmark' alt='ehow'></a>"

@@ -1,6 +1,6 @@
 
 let mediaBookmarks
-    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
+    = "<a title='Media'    target='contentframe'href='./media/index.html'                    ><img id='bookmark' alt='media'></a>"
     + "<a title='Spotify'           target='_parent'href='http://www.spotify.com/'                      ><img id='bookmark' alt='spotify'           ></a>"
     + "<a title='Youtube'           target='_parent'href='https://www.youtube.com/feed/subscriptions'   ><img id='bookmark' alt='youtube'           ></a>"
     + "<a title='netflix'           target='_parent'href='http://www.netflix.com/'                      ><img id='bookmark' alt='netflix'           ></a>"
