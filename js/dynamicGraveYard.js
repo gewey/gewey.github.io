@@ -12,6 +12,7 @@ let graveyardBookmarks
     + "<a title='Dothdash' target='_parent'href='http://www.dotdash.com/'><img id='bookmark' alt='dotdashco'></a>"
     + "<a title='Bing' target='_parent'href='http://go.microsoft.com/?linkid=9778718&rrid=_1842a0ac-32d7-bb98-f569-514a0a9eb5ad'><img id='bookmark' alt='bing'></a>"
     + "<a title='Guru3D' target='_parent'href='https://www.guru3d.com/'><img id='bookmark' alt='guru_3d'></a>"
+    + "<a title='Beehive'           target='_parent'href='http://beehivecollective.org/'                ><img id='bookmark' alt='beehivedesign'     ></a>"
     + "<a title='Pandora'target='_parent'href='https://www.pandora.com'><img id='bookmark' alt='pandoramusic'></a>"
     + "<a title='Lastfm' target='_parent'href='http://www.last.fm/'><img id='bookmark' alt='lastfm'></a>"
     + "<a title='Photobucket'       target='_parent'href='http://photobucket.com/'                      ><img id='bookmark' alt='photobucket'       ></a>"

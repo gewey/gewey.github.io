@@ -10,7 +10,6 @@ let mediaBookmarks
     + "<a title='The Roku Channel'  target='_parent'href='https://therokuchannel.roku.com/'             ><img id='bookmark' alt='RokuChannels'      ></a>"
     + "<a title='Deviant Art'       target='_parent'href='http://www.deviantart.com/'                   ><img id='bookmark' alt='deviantart'        ></a>"
     + "<a title='imgflip'           target='_parent'href='https://imgflip.com/'                         ><img id='bookmark' alt='imgflip'           ></a>"
-    + "<a title='Beehive'           target='_parent'href='http://beehivecollective.org/'                ><img id='bookmark' alt='beehivedesign'     ></a>"
     + "<a title='Audible'           target='_parent'href='https://amzn.to/2D4mwBB'                      ><img id='bookmark' alt='audible_com'       ></a>"
     + "<a title='Tumblr'            target='_parent'href='https://www.tumblr.com/dashboard'             ><img id='bookmark' alt='tumblr'            ></a>"
     + "<a title='Gravit'            target='_parent'href='https://designer.io/'                         ><img id='bookmark' alt='gravitdesigner'    ></a>"
