@@ -1,8 +1,8 @@
 
 let shoppingBookmarks
     = "<a title='Gewey Referral'        target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='shopping'></a>"
-    + "<a title='Amazon'                target='_parent'href='https://www.amazon.com?&_encoding=UTF8&tag=gewey-20&linkCode=ur2&linkId=0c48ef8dc6e3009ccbaad420f071e1c5&camp=1789&creative=9325'><img id='bookmark' alt='amazon'></a>"
-    + "<a title='Amazon'                target='_parent'href='https://www.amazon.com?&_encoding=UTF8&tag=gewey-20&linkCode=ur2&linkId=0c48ef8dc6e3009ccbaad420f071e1c5&camp=1789&creative=9325'><img id='bookmark' alt='amazon'></a>"
+    + "<a title='Amazon'                target='_parent'href='https://amzn.to/391VsnT'                          ><img id='bookmark' alt='amazon'></a>"
+    + "<a title='Amazon'                target='_parent'href='https://amzn.to/391VsnT'                          ><img id='bookmark' alt='amazon'></a>"
     + "<a title='Candle Science'        target='_parent'href='https://www.candlescience.com/'                   ><img id='bookmark' alt='CandleScience'></a>"
     + "<a title='The Flaming Candle'    target='_parent'href='https://www.theflamingcandle.com/'                ><img id='bookmark' alt='Flaming_Candle'></a>"
     + "<a title='Ebay'                  target='_parent'href='http://www.ebay.com/'                             ><img id='bookmark' alt='ebay'></a>"
