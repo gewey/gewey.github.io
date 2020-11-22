@@ -1,0 +1,42 @@
+VER 3 0100000000000006 "1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [harm,nodead]Avenger's Shield
+/use [harm,nodead]Hand of Reckoning
+/use [nodead,help]Blessing of Freedom
+/use [dead,help]Redemption
+/cleartarget [harm,dead]
+END
+VER 3 0100000000000004 "2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [harm,nodead]Judgment
+/use [nodead,help]Blessing of Sacrifice
+/cleartarget [dead]
+END
+VER 3 0100000000000005 "3" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Crusader Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000008 "N2" "INV_MISC_QUESTIONMARK"
+#Showtooltip
+/cast [@mouseover, harm] Hammer of Justice; [@player] Flash of Light
+END
+VER 3 0100000000000007 "N2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [harm,nodead]Avenger's Shield
+/use [harm,nodead]Hand of Reckoning
+/use [nodead,help]Blessing of Freedom
+/use [dead,help]Redemption
+/cleartarget [harm,dead]
+END
+VER 3 0100000000000003 "N2" "INV_MISC_QUESTIONMARK"
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Divine Steed; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+END
+VER 3 0100000000000009 "N6 - Freedom" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [@mouseover, noharm, nodead, exists] Blessing of Freedom; [@player] Blessing of Freedom
+END
