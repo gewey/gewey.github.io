@@ -1,0 +1,35 @@
+VER 3 0100000000000004 "2" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Rockbiter
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000006 "3" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Stormstrike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000007 "4" "INV_MISC_QUESTIONMARK"
+/cast [noharm] chain heal; [harm] chain lightning
+END
+VER 3 0100000000000002 "N1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [harm, nomod]Wind Shear; [harm, mod] Purge; [noharm, nomod]Cleanse Spirit
+END
+VER 3 0100000000000001 "N3" "INV_MISC_QUESTIONMARK"
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Ghost Wolf; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+END
+VER 3 0100000000000005 "Q" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Lava Lash
+/script UIErrorsFrame:Clear()
+END
