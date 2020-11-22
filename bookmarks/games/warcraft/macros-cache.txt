@@ -389,11 +389,11 @@ END
 VER 3 00000000000000DA "Dk-E" "INV_MISC_QUESTIONMARK"
 /cast [@player] Death and Decay
 END
-VER 3 00000000000000F1 "FLARE" "INV_MISC_QUESTIONMARK"
-/cast [@cursor] Flare
-END
 VER 3 0000000000000109 "flare" "INV_MISC_QUESTIONMARK"
 /cast [@cursor] flare
+END
+VER 3 00000000000000F1 "FLARE" "INV_MISC_QUESTIONMARK"
+/cast [@cursor] Flare
 END
 VER 3 0000000000000112 "GRM_Roster" "inv_bannerpvp_01"
 /run GuildFrame_Toggle()
@@ -409,7 +409,7 @@ Phizz:p:ayer-3678-0CBD038F:1:
 END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
-/cast Headless Horseman's Hearthstone
+/cast Eternal Traveler's Hearthstone
 END
 VER 3 0000000000000002 "Melee template" "132418"
 /cleartarget [dead]
