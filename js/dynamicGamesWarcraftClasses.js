@@ -1,5 +1,5 @@
 let gameswarcraftclassesBookmarks
-    = "<a title='General Macros'	target='contentframe'	href='./macros-cache.html'				><img id='bookmark' alt='warcraftgeneralmacros'></a>"
+    = "<a title='General Macros'	target='contentframe'	href='./generalMacros.html'				><img id='bookmark' alt='warcraftgeneralmacros'></a>"
     + "<a title='Mage'    			target='contentframe'	href='./class/mage/index.html'			><img id='bookmark' alt='warcraftmage'></a>"
     + "<a title='Priest'    		target='contentframe'	href='./class/priest/index.html'		><img id='bookmark' alt='warcraftpriest'></a>"
     + "<a title='Warlock'			target='contentframe'	href='./class/warlock/index.html'		><img id='bookmark' alt='warcraftwarlock'></a>"

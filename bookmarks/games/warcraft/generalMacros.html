@@ -1,0 +1,40 @@
+<script> 
+function read()  
+{  
+     var txtFile = new XMLHttpRequest();  
+     txtFile.open("GET", "/macros-cache.html", true);  
+     txtFile.onreadystatechange = function()   
+     {  
+          if (txtFile.readyState === 4)   
+          {  
+               // Makes sure the document is ready to parse.  
+               if (txtFile.status === 200)   
+               {  
+                    // Makes sure it's found the file.  
+                    document.getElementById("div").innerHTML = txtFile.responseText;  
+               }  
+          }  
+     }  
+     txtFile.send(null)  
+}  	  
+</script> 
+
+<script type="text/javascript">
+var input = 'john smith~123 Street~Apt 4~New York~NY~12345';
+
+var fields = input.split('~');
+
+var name = fields[0];
+var street = fields[1];
+// etc.
+</script>
+
+
+<body onload="read();">  
+    <form id="form1" runat="server">  
+       <div id="div">  
+       </div>  
+    </form>  
+</body> 
+
+
