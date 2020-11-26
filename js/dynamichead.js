@@ -14,7 +14,7 @@ let theHead
     + "<link rel='stylesheet' href='https://gewey.github.io/css/bones.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/text.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>"
-    + "<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>"
+    + "<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>"
     + "<script type='text/javascript' src='https://gewey.github.io/js/google_analytics.js'></script>";
 
 //window.onload = function() {

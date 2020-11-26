@@ -24,7 +24,7 @@ VER 3 000000000000000E "!4" "2178503"
 /run SetSpecialization(4)
 END
 VER 3 0000000000000114 "!JUNK" "1325312"
-/run for bag=0,4,1 do for slot=1,GetContainerNumSlots(bag),1 do local name=GetContainerItemLink(bag,slot) if name and string.find(name,"ff9d9d9d") then DEFAULT_CHAT_FRAME:AddMessage("- Selling "..name) UseContainerItem(bag,slot) end end end
+/run for bag=0,4,1 do for slot=1,GetContainerNumSlots(bag),1 do local name=GetContainerItemLink(bag,slot)if name and name:find("ff9d9d9d")then print("-Selling "..name)UseContainerItem(bag,slot)end end end
 END
 VER 3 0000000000000115 "!Scourge" "INV_MISC_QUESTIONMARK"
 /script C_GossipInfo.SelectAvailableQuest(2)
@@ -34,11 +34,19 @@ END
 VER 3 00000000000000FD "!SND" "133014"
 /run local x=tonumber(GetCVar("Sound_OutputDriverIndex"))if x==1 then SetCVar("Sound_OutputDriverIndex", "2")else SetCVar("Sound_OutputDriverIndex", "1")end AudioOptionsFrame_AudioRestart()
 END
-VER 3 0000000000000100 "!STOP" "132094"
+VER 3 0000000000000100 "!STOP" "1322719"
 /petpassive
 /stopattack
 /stopcasting
 /cast Follow(Pet Command)
+END
+VER 3 0000000000000119 "#ES2" "INV_Misc_QuestionMark"
+#showtooltip
+/use [@cursor]Signature Ability
+END
+VER 3 0000000000000118 "#ESS" "INV_Misc_QuestionMark"
+#showtooltip
+/use [@cursor]Covenant Ability
 END
 VER 3 0000000000000067 "#Farm" "1029718"
 /target Deepcoral Bud
@@ -389,11 +397,11 @@ END
 VER 3 00000000000000DA "Dk-E" "INV_MISC_QUESTIONMARK"
 /cast [@player] Death and Decay
 END
-VER 3 0000000000000109 "flare" "INV_MISC_QUESTIONMARK"
-/cast [@cursor] flare
-END
 VER 3 00000000000000F1 "FLARE" "INV_MISC_QUESTIONMARK"
 /cast [@cursor] Flare
+END
+VER 3 0000000000000109 "flare" "INV_MISC_QUESTIONMARK"
+/cast [@cursor] flare
 END
 VER 3 0000000000000112 "GRM_Roster" "inv_bannerpvp_01"
 /run GuildFrame_Toggle()
