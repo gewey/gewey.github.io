@@ -34,19 +34,19 @@ END
 VER 3 00000000000000FD "!SND" "133014"
 /run local x=tonumber(GetCVar("Sound_OutputDriverIndex"))if x==1 then SetCVar("Sound_OutputDriverIndex", "2")else SetCVar("Sound_OutputDriverIndex", "1")end AudioOptionsFrame_AudioRestart()
 END
-VER 3 0000000000000100 "!STOP" "1322719"
+VER 3 0000000000000100 "!STOP" "135996"
 /petpassive
 /stopattack
 /stopcasting
 /cast Follow(Pet Command)
 END
-VER 3 0000000000000119 "#ES2" "INV_Misc_QuestionMark"
+VER 3 0000000000000118 "#ESV" "INV_Misc_QuestionMark"
 #showtooltip
-/use [@cursor]Signature Ability
+/use [@cursor]Flayed Shot(Venthyr)
 END
-VER 3 0000000000000118 "#ESS" "INV_Misc_QuestionMark"
+VER 3 0000000000000119 "#ESV2" "INV_Misc_QuestionMark"
 #showtooltip
-/use [@cursor]Covenant Ability
+/cast [@cursor]Door of Shadows(Venthyr)
 END
 VER 3 0000000000000067 "#Farm" "1029718"
 /target Deepcoral Bud
@@ -82,9 +82,10 @@ VER 3 0000000000000046 "$D.E." "132853"
 /click DeM
 END
 VER 3 000000000000004C "$Fish" "INV_Misc_QuestionMark"
-/cast [nocombat,nomod]Fishing; [combat]Fetch; [mod] Survey
+/equip [nogroup]The Brokers Angle'r
+/cast [nocombat,nomod]Fishing; [group][combat]Fetch; [mod] Survey
 /cast Crate of Bobbers: Wooden Pepe
-/script a = GetItemCount("Midnight Salmon"); if a==b then b=a else print(a.." Midnight Salmon Looted"); b=a end
+/click MultiBarLeftButton1
 END
 VER 3 000000000000006B "$Mill" "463461"
 /run local f=DeM or CreateFrame("Button","DeM",nil,"SecureActionButtonTemplate") f:SetAttribute("type","click") f:SetAttribute("clickbutton",GetMouseFocus())
@@ -96,15 +97,16 @@ VER 3 0000000000000075 "$Run" "132296"
 /click MovePadForward
 /run if IsMouselooking() then MouselookStop() else MouselookStart() end
 END
-VER 3 0000000000000013 "*Afl`" "INV_Misc_QuestionMark"
-#showtooltip seed of corruption
-/use 13
-/use 14
-/cast Seed of Corruption
-/petattack
+VER 3 000000000000011B "$Tracking" "413587"
+/click [btn:1]MTSB1 LeftButton;[btn:2]MTSB1 RightButton;[btn:3]MTSB1 MiddleButton;[btn:4]MTSB1 Button4;[btn:5]MTSB1 Button5
 END
-VER 3 0000000000000014 "*AflG" "INV_Misc_QuestionMark"
-/cast [party] grimoire of sac; solo healfh funnnel
+VER 3 0000000000000002 "**Melee template" "132418"
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Crusader Strike
+/script UIErrorsFrame:Clear()
 END
 VER 3 000000000000007E "*ArcF" "INV_Misc_QuestionMark"
 /cleartarget [dead]
@@ -148,15 +150,6 @@ VER 3 0000000000000018 "*Bal2" "INV_Misc_QuestionMark"
 /cast [harm]Sunfire
 /script UIErrorsFrame:Clear()
 END
-VER 3 000000000000007D "*Frs2" "135846"
-/click [btn:1]MTSB1 LeftButton;[btn:2]MTSB1 RightButton;[btn:3]MTSB1 MiddleButton;[btn:4]MTSB1 Button4;[btn:5]MTSB1 Button5
-END
-VER 3 00000000000000C7 "*HPr2" "INV_Misc_QuestionMark"
-/cast [@mouseover] Prayer of Healing
-END
-VER 3 00000000000000C8 "*HPr4" "INV_Misc_QuestionMark"
-/cast [@mouseover] Guardian Spirit
-END
 VER 3 0000000000000024 "*Prot3" "INV_MISC_QUESTIONMARK"
 /cleartarget [dead]
 /assist focus [noexists][help]
@@ -176,13 +169,6 @@ VER 3 0000000000000026 "*Prot5" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /use [noexists,nocombat]Unusual Compass
 /use [nodead,help]Lay on Hands
-/cleartarget [dead]
-END
-VER 3 0000000000000027 "*Prot`" "INV_Misc_QuestionMark"
-#showtooltip
-/use Avenging Wrath
-/use 13
-/use 14
 /cleartarget [dead]
 END
 VER 3 0000000000000028 "*ProtF" "INV_Misc_QuestionMark"
@@ -263,8 +249,6 @@ VER 3 0000000000000078 "*Sdw2" "INV_Misc_QuestionMark"
 #show [nocombat,noexists]Create Soulwell;[noharm,nodead]Purify Disease;[harm,nodead]Mind Flay
 /click [btn:1]MTSB13 LeftButton;[btn:2]MTSB13 RightButton;[btn:3]MTSB13 MiddleButton;[btn:4]MTSB13 Button4;[btn:5]MTSB13 Button5
 END
-VER 3 000000000000002C "*sdw3" "134400"
-END
 VER 3 0000000000000080 "*Ven1" "INV_Misc_QuestionMark"
 #showtooltip
 /use [noexists,nocombat]Druid and Priest Statue Set
@@ -298,10 +282,6 @@ VER 3 000000000000007F "*Ven4" "INV_Misc_QuestionMark"
 /use [harm,nodead]Immolation Aura
 /use [nodead,help]Blessing of Protection
 /cleartarget [dead]
-END
-VER 3 0000000000000084 "*Ven`" "INV_Misc_QuestionMark"
-#showtooltip Spectral Sight
-/click [btn:1]MTSB3 LeftButton;[btn:2]MTSB3 RightButton;[btn:3]MTSB3 MiddleButton;[btn:4]MTSB3 Button4;[btn:5]MTSB3 Button5
 END
 VER 3 0000000000000083 "*Venq" "INV_Misc_QuestionMark"
 #showtooltip
@@ -340,16 +320,8 @@ VER 3 00000000000000C4 "/AQT" "132096"
 /console autoQuestWatch 1
 /reload ui
 END
-VER 3 0000000000000104 "/DT /OT" "132092"
-/details toggle
-/omen toggle
-END
 VER 3 00000000000000CA "/Elv" "2027568"
 /elvui
-END
-VER 3 000000000000002D "/QC" "236667"
-/mtfm [noflying]
-/qc
 END
 VER 3 00000000000000E5 "/routes" "134269"
 /routes
@@ -364,74 +336,22 @@ END
 VER 3 0000000000000085 "/TSM" "134063"
 /tsm
 END
-VER 3 0000000000000108 "/way" "INV_MISC_QUESTIONMARK"
-/way 16.69, 54.44
-/way 23, 29
-/way 16, 60
-/way 24.31, 39.69
-/way 23.58, 76.66
-/way 30.23, 41.71
-END
 VER 3 00000000000000FF "/WQA" "132093"
 /wqa
 END
-VER 3 0000000000000037 "2" "134400"
-#showtooltip
-/cast [nostealth] Sinister Strike
-/startattack
-END
-VER 3 0000000000000103 "AAP_MACRO" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/click ExtraActionButton1
+VER 3 000000000000011C "AAP_MACRO" "INV_MISC_QUESTIONMARK"
+/script print('no button yet')
 END
 VER 3 0000000000000117 "ab?" "INV_MISC_QUESTIONMARK"
 /click ActionButton1
 /click[@cursor]
 END
-VER 3 0000000000000107 "BReZ" "INV_MISC_QUESTIONMARK"
-/use [@mouseover] Unstable Temporal Time Shifter
-END
-VER 3 000000000000010B "cheer" "INV_MISC_QUESTIONMARK"
-/cheer
-END
-VER 3 00000000000000DA "Dk-E" "INV_MISC_QUESTIONMARK"
-/cast [@player] Death and Decay
-END
-VER 3 00000000000000F1 "FLARE" "INV_MISC_QUESTIONMARK"
-/cast [@cursor] Flare
-END
-VER 3 0000000000000109 "flare" "INV_MISC_QUESTIONMARK"
-/cast [@cursor] flare
-END
-VER 3 0000000000000112 "GRM_Roster" "inv_bannerpvp_01"
-/run GuildFrame_Toggle()
-/run GuildFrame_TabClicked ( GuildFrameTab2 )
-END
-VER 3 0000000000000113 "GRM_Tool" "INV_MISC_QUESTIONMARK"
-END
-VER 3 000000000000010F "hbCrashProt_0" "Spell_Holy_SealOfSacrifice"
-1:H:1:1:Group:
-END
-VER 3 000000000000010E "hbCrashProt_1" "Spell_Holy_SealOfSacrifice"
-Phizz:p:ayer-3678-0CBD038F:1:
-END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
-/cast Eternal Traveler's Hearthstone
+/cast Peddlefeet's Lovely Hearthstone
 END
-VER 3 0000000000000002 "Melee template" "132418"
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/cast Crusader Strike
-/script UIErrorsFrame:Clear()
-END
-VER 3 000000000000010A "tar" "INV_MISC_QUESTIONMARK"
-/cast [@cursor] tar trap
-END
-VER 3 0000000000000111 "TBE: Random Toy" "inv_misc_dice_02"
-/click TBERandomFavoredToy
+VER 3 0000000000000107 "ReZ" "INV_MISC_QUESTIONMARK"
+/use [@mouseover, combat] Disposable Spectrophasic Reanimator; [@mouseover, nocombat] Ultimate Gnomish Army Knife
 END
 VER 3 00000000000000E2 "TSMMacro" "Achievement_Faction_GoldenLotus"
 /click TSMCancelAuctionBtn
@@ -441,26 +361,16 @@ VER 3 00000000000000E2 "TSMMacro" "Achievement_Faction_GoldenLotus"
 /click TSMCraftingBtn
 END
 VER 3 00000000000000F7 "WAYDUMP" "236179"
-/way The Cape of Stranglethorn 40.9 73.7
-/way The Hinterlands 31.8 57.8
-/way The Hinterlands 78.1 81.4
-/way Tirisfal Glades 60.9 51.4
-/way Tirisfal Glades 83 72
-/way Twilight Highlands 45.1 76.8
-/way Twilight Highlands 53.4 42.8
+/way 38.86 60.05 Gardener's Wand
+/way 38.49 58.07 Gardener's Flute
+/way 38.99 56.99 Diary of the Night (On top platform)
+/way 40.11 53.70 Road up the trees
+/way 39.76 54.46  Gardener's Hammer
+/way 40.30 52.65 Gardener's Basket
+/way 63.90 37.53 Twinklestar
 END
 VER 3 0000000000000102 "wm1" "INV_MISC_QUESTIONMARK"
 /worldmarker 1
-END
-VER 3 00000000000000F4 "~!H-1" "INV_MISC_QUESTIONMARK"
-/cast [spec:1, talent:4/3] A Murder of Crows  
-/cast [spec:2] 
-/cast [spec:3] Harpoon
-END
-VER 3 00000000000000F5 "~!H-2" "INV_MISC_QUESTIONMARK"
-/cast [spec:1, talent:4/3] A Murder of Crows  
-/cast [spec:2] 
-/cast [spec:3] Raptor Strike
 END
 VER 3 0000000000000008 "~!umod" "327916"
 /targetlasttarget [@target,dead]
