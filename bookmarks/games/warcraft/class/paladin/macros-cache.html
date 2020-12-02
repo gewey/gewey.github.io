@@ -20,9 +20,16 @@ VER 3 0100000000000005 "3" "INV_MISC_QUESTIONMARK"
 /cast Crusader Strike
 /script UIErrorsFrame:Clear()
 END
-VER 3 0100000000000008 "N2" "INV_MISC_QUESTIONMARK"
-#Showtooltip
-/cast [@mouseover, harm] Hammer of Justice; [@player] Flash of Light
+VER 3 010000000000000A "5" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use Avenging Wrath
+/use 13
+/use 14
+/cleartarget [dead]
+END
+VER 3 0100000000000003 "N2" "INV_MISC_QUESTIONMARK"
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Divine Steed; [mounted] Goblin Glider Kit; [nomounted] Mount Up
 END
 VER 3 0100000000000007 "N2" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -32,9 +39,9 @@ VER 3 0100000000000007 "N2" "INV_MISC_QUESTIONMARK"
 /use [dead,help]Redemption
 /cleartarget [harm,dead]
 END
-VER 3 0100000000000003 "N2" "INV_MISC_QUESTIONMARK"
-/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
-/use [combat][indoors][mod] Divine Steed; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+VER 3 0100000000000008 "N2" "INV_MISC_QUESTIONMARK"
+#Showtooltip
+/cast [@mouseover, harm] Hammer of Justice; [@player] Flash of Light
 END
 VER 3 0100000000000009 "N6 - Freedom" "INV_MISC_QUESTIONMARK"
 #showtooltip
