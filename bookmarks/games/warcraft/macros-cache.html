@@ -1,16 +1,3 @@
-VER 3 0000000000000105 "!!BLING" "1005279"
-/use Azerite Firework Launcher
-/use Robo-Gnomebulator
-/use Blingtron 7000
-/use Blingtron 5000
-/use Wind-Up Train Wrecker
-/use Personal Hologram
-/use Nightmarish Hitching Post
-/use World Shrinker
-END
-VER 3 00000000000000FB "!-LUST" "INV_MISC_QUESTIONMARK"
-/use [pet:Spunky]Primal Rage(Ferocity Ability);[pet:Gadget]Drums of Fury;[pet:Faust]Drums of Fury;[nopet]Drums of Fury
-END
 VER 3 000000000000000B "!1" "2178508"
 /run SetSpecialization(1)
 END
@@ -22,6 +9,16 @@ VER 3 000000000000000D "!3" "2178502"
 END
 VER 3 000000000000000E "!4" "2178503"
 /run SetSpecialization(4)
+END
+VER 3 0000000000000105 "!BLING" "1005279"
+/use Azerite Firework Launcher
+/use Robo-Gnomebulator
+/use Blingtron 7000
+/use Blingtron 5000
+/use Wind-Up Train Wrecker
+/use Personal Hologram
+/use Nightmarish Hitching Post
+/use World Shrinker
 END
 VER 3 0000000000000114 "!JUNK" "1325312"
 /run for bag=0,4,1 do for slot=1,GetContainerNumSlots(bag),1 do local name=GetContainerItemLink(bag,slot)if name and name:find("ff9d9d9d")then print("-Selling "..name)UseContainerItem(bag,slot)end end end
@@ -62,17 +59,9 @@ VER 3 0000000000000067 "#Farm" "1029718"
 /castsequence Cobra Shot, Fetch
 /run SetRaidTarget("target", 8)
 END
-VER 3 00000000000000FE "#Fluff" "319458"
-/equipset Corrupted
-/camp
-END
 VER 3 0000000000000101 "#Hearth" "INV_MISC_QUESTIONMARK"
 #showtooltip Hearthstone
 /castrandom 166747, 172179, 162973, 163045, 165670
-END
-VER 3 0000000000000056 "#Pet" "INV_Misc_QuestionMark"
-#showtooltip Mr. Chilly
-/rfp
 END
 VER 3 00000000000000FA "#Whistle" "INV_MISC_QUESTIONMARK"
 #showtooltip Flight Master's Whistle
@@ -104,6 +93,8 @@ VER 3 0000000000000075 "$Run" "132296"
 /click MovePadForward
 /run if IsMouselooking() then MouselookStop() else MouselookStart() end
 END
+VER 3 0000000000000123 "$Targeting" "1380366"
+END
 VER 3 000000000000011B "$Tracking" "413587"
 /click [btn:1]MTSB1 LeftButton;[btn:2]MTSB1 RightButton;[btn:3]MTSB1 MiddleButton;[btn:4]MTSB1 Button4;[btn:5]MTSB1 Button5
 END
@@ -119,42 +110,6 @@ VER 3 000000000000007E "*ArcF" "INV_Misc_QuestionMark"
 /cleartarget [dead]
 /use [harm,nodead]Polymorph(Sheep)
 /use [nodead,help]The Pigskin
-/script UIErrorsFrame:Clear()
-END
-VER 3 0000000000000015 "*Arm2" "134400"
-#showtooltip
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/cast Slam
-/script UIErrorsFrame:Clear()
-END
-VER 3 0000000000000016 "*Arm3" "134400"
-#showtooltip
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/cast Victory Rush
-/script UIErrorsFrame:Clear()
-END
-VER 3 0000000000000017 "*Bal1" "INV_Misc_QuestionMark"
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/use [form:0][form:2]!Moonkin Form
-/cast [harm]Moonfire(Lunar)
-/script UIErrorsFrame:Clear()
-END
-VER 3 0000000000000018 "*Bal2" "INV_Misc_QuestionMark"
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/use [form:0][form:2]!Moonkin Form
-/cast [harm]Sunfire
 /script UIErrorsFrame:Clear()
 END
 VER 3 0000000000000024 "*Prot3" "INV_MISC_QUESTIONMARK"
@@ -181,12 +136,6 @@ END
 VER 3 0000000000000028 "*ProtF" "INV_Misc_QuestionMark"
 /use Hand of Reckoning
 END
-VER 3 000000000000004A "*prst Fiend" "INV_Misc_QuestionMark"
-#showtooltip Shadowfiend
-/cast [nopet] Shadowfiend
-/petattack
-/cast Shadowcrawl
-END
 VER 3 0000000000000052 "*Prst Mount" "INV_Misc_QuestionMark"
 #showtooltip
 /cast [nomounted, nocombat] Flying Carpet; [combat] Power Word: Shield; [indoors] Power Word: Shield
@@ -212,14 +161,6 @@ VER 3 0000000000000022 "*Prtp1" "INV_MISC_QUESTIONMARK"
 /use [nodead,help]Blessing of Freedom
 /use [dead,help]Redemption
 /cleartarget [harm,dead]
-END
-VER 3 0000000000000032 "*Prtw1" "INV_Misc_QuestionMark"
-#showtooltip [harm,exists][combat] shield slam; [noexists,nocombat] heroic leap
-/click [btn:1]MTSB17 LeftButton;[btn:2]MTSB17 RightButton;[btn:3]MTSB17 MiddleButton;[btn:4]MTSB17 Button4;[btn:5]MTSB17 Button5
-END
-VER 3 0000000000000060 "*Prtw2" "INV_Misc_QuestionMark"
-#showtooltip [harm,exists][combat] Devastate; [noexists,nocombat] heroic leap
-/click [btn:1]MTSB19 LeftButton;[btn:2]MTSB19 RightButton;[btn:3]MTSB19 MiddleButton;[btn:4]MTSB19 Button4;[btn:5]MTSB19 Button5
 END
 VER 3 0000000000000029 "*RDr`" "134400"
 /assist [help]
@@ -334,8 +275,8 @@ VER 3 00000000000000E5 "/routes" "134269"
 /routes
 END
 VER 3 00000000000000E6 "/s Wicked" "2056011"
-/s https://www.worldofwarcraft.com/invite/xMGWXe4SG0B?region=US&faction=Horde
-/s https://discord.gg/tFaSNVs
+/s https://www.worldofwarcraft.com/invite/dyZEx4bHnoz?region=US&faction=Horde
+/s https://discord.gg/bPy5exyYpS
 END
 VER 3 0000000000000106 "/tar @mouse" "236199"
 /focus [@mouseover]
@@ -346,6 +287,24 @@ END
 VER 3 00000000000000FF "/WQA" "132093"
 /wqa
 END
+VER 3 0000000000000122 "@Banker" "134571"
+/acp addset 25
+/reload ui
+END
+VER 3 0000000000000121 "@Legere" "133040"
+/acp addset 3
+/reload ui
+END
+VER 3 0000000000000120 "@Raid" "1380676"
+/acp disableall
+/acp disableall
+/acp disableall
+/reload ui
+END
+VER 3 000000000000011F "@Tandu" "135490"
+/acp addset 2
+/acp addset 2
+END
 VER 3 000000000000011C "AAP_MACRO" "INV_MISC_QUESTIONMARK"
 /script print('no button yet')
 END
@@ -355,7 +314,7 @@ VER 3 0000000000000117 "ab?" "INV_MISC_QUESTIONMARK"
 END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
-/cast Hearthstone
+/cast Headless Horseman's Hearthstone
 END
 VER 3 0000000000000107 "ReZ" "INV_MISC_QUESTIONMARK"
 /use [@mouseover, combat] Disposable Spectrophasic Reanimator; [@mouseover, nocombat] Ultimate Gnomish Army Knife

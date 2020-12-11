@@ -1,0 +1,43 @@
+
+DBT_AllPersistentOptions = {
+	["Default"] = {
+		["DBM"] = {
+			["TimerPoint"] = "TOP",
+			["Scale"] = 1,
+			["HugeTimerPoint"] = "BOTTOM",
+			["HugeScale"] = 1,
+			["Width"] = 188,
+			["HugeBarYOffset"] = 13,
+			["Font"] = "Interface\\AddOns\\ElvUI_GennUI\\media\\fonts\\CenturyGothicBold.ttf",
+			["HugeWidth"] = 200,
+			["TimerX"] = -402.2940368652344,
+			["HugeTimerX"] = 291.5556640625,
+			["HugeTimerY"] = 227.9445190429688,
+			["BarYOffset"] = 13,
+			["TimerY"] = -100.5081024169922,
+		},
+	},
+	["GennUI"] = {
+		["DBM"] = {
+			["FontSize"] = 15,
+			["HugeTimerY"] = -223.6269226074219,
+			["Scale"] = 1,
+			["TimerY"] = -14.91291046142578,
+			["HugeWidth"] = 200,
+			["BarYOffset"] = 3,
+			["ExpandUpwardsLarge"] = false,
+			["EnlargeBarTime"] = 10,
+			["TimerPoint"] = "CENTER",
+			["TimerX"] = 291.8004150390625,
+			["Width"] = 169,
+			["HugeTimerPoint"] = "TOP",
+			["Font"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\ContinuumMedium.ttf",
+			["HugeScale"] = 1.25,
+			["HugeBarYOffset"] = 3,
+			["Height"] = 35,
+			["HugeTimerX"] = 274.0321350097656,
+			["BarXOffset"] = 25,
+			["ClickThrough"] = true,
+		},
+	},
+}
