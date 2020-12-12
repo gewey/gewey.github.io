@@ -1,0 +1,2 @@
+
+MinimapRangeExtenderDB = nil

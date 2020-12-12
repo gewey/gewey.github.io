@@ -9,7 +9,7 @@ AstralKeys = {
 		["dungeon_id"] = 378,
 		["week"] = 177,
 		["faction"] = 1,
-		["time_stamp"] = 285457,
+		["time_stamp"] = 292736,
 	}, -- [1]
 	{
 		["source"] = "guild",
@@ -20,7 +20,7 @@ AstralKeys = {
 		["dungeon_id"] = 378,
 		["week"] = 177,
 		["faction"] = 1,
-		["time_stamp"] = 277456,
+		["time_stamp"] = 295267,
 	}, -- [2]
 	{
 		["source"] = "guild",
@@ -31,7 +31,7 @@ AstralKeys = {
 		["dungeon_id"] = 382,
 		["week"] = 177,
 		["faction"] = 1,
-		["time_stamp"] = 283824,
+		["time_stamp"] = 294953,
 	}, -- [3]
 	{
 		["source"] = "guild",
@@ -42,7 +42,7 @@ AstralKeys = {
 		["dungeon_id"] = 380,
 		["week"] = 177,
 		["faction"] = 1,
-		["time_stamp"] = 285007,
+		["time_stamp"] = 288320,
 	}, -- [4]
 	{
 		["btag"] = "AaronC#11555",
@@ -82,7 +82,7 @@ AstralKeys = {
 	}, -- [7]
 	{
 		["btag"] = "maplefire#1200",
-		["weekly_best"] = 0,
+		["weekly_best"] = 4,
 		["class"] = "PRIEST",
 		["key_level"] = 3,
 		["unit"] = "Maplefirè-Thrall",
@@ -101,7 +101,7 @@ AstralKeys = {
 		["dungeon_id"] = 378,
 		["week"] = 177,
 		["faction"] = "1",
-		["time_stamp"] = 2,
+		["time_stamp"] = 0,
 		["source"] = "friend",
 	}, -- [9]
 	{
@@ -137,21 +137,21 @@ AstralKeys = {
 		["dungeon_id"] = 376,
 		["week"] = 177,
 		["faction"] = 1,
-		["time_stamp"] = 271719,
+		["time_stamp"] = 286925,
 	}, -- [12]
 }
 AstralCharacters = {
 	{
 		["weekly_best"] = 0,
 		["class"] = "HUNTER",
-		["unit"] = "Tandieu-Hyjal",
 		["faction"] = 1,
+		["unit"] = "Tandieu-Hyjal",
 	}, -- [1]
 	{
 		["weekly_best"] = 0,
 		["class"] = "MAGE",
-		["faction"] = 1,
 		["unit"] = "Karkol-Thrall",
+		["faction"] = 1,
 	}, -- [2]
 }
 AstralKeysSettings = {
@@ -165,10 +165,10 @@ AstralKeysSettings = {
 			["isEnabled"] = true,
 		},
 		["report_on_message"] = {
-			["no_key"] = true,
 			["party"] = true,
-			["guild"] = true,
 			["raid"] = true,
+			["guild"] = true,
+			["no_key"] = true,
 		},
 		["show_tooltip_key"] = {
 			["isEnabled"] = true,
@@ -193,9 +193,7 @@ AstralKeysSettings = {
 			true, -- [9]
 			true, -- [10]
 		},
-		["show_offline"] = {
-			["isEnabled"] = true,
-		},
+		["current_list"] = "GUILD",
 		["isCollapsed"] = {
 			["isEnabled"] = false,
 		},
@@ -204,8 +202,11 @@ AstralKeysSettings = {
 			["isEnabled"] = false,
 		},
 		["sorth_method"] = "character_name",
-		["current_list"] = "GUILD",
+		["show_offline"] = {
+			["isEnabled"] = true,
+		},
 	},
+	["new_settings_config"] = true,
 	["friendOptions"] = {
 		["friend_sync"] = {
 			["isEnabled"] = true,
@@ -214,7 +215,6 @@ AstralKeysSettings = {
 			["isEnabled"] = true,
 		},
 	},
-	["new_settings_config"] = true,
 }
 AstralMinimap = {
 	["profileKeys"] = {
@@ -231,11 +231,11 @@ AstralMinimap = {
 		["Nahko - Thrall"] = "Nahko - Thrall",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Karkol - Thrall"] = "Karkol - Thrall",
+		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
 		["Christar - Hyjal"] = "Christar - Hyjal",
 		["Eleryla - Thrall"] = "Eleryla - Thrall",
 		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
+		["Karkol - Thrall"] = "Karkol - Thrall",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -264,7 +264,7 @@ AstralMinimap = {
 		},
 		["Mortesque - Thrall"] = {
 		},
-		["Karkol - Thrall"] = {
+		["Mnuchin - Thrall"] = {
 		},
 		["Christar - Hyjal"] = {
 		},
@@ -275,7 +275,7 @@ AstralMinimap = {
 				["minimapPos"] = 200.8694060696802,
 			},
 		},
-		["Mnuchin - Thrall"] = {
+		["Karkol - Thrall"] = {
 		},
 	},
 }
@@ -293,34 +293,34 @@ AstralLists = {
 			["Gwendyla-Hyjal"] = "Zimm25#1783",
 			["Frìed-Thrall"] = true,
 			["Adoraboo-Hyjal"] = true,
-			["Hoofpriest-Thrall"] = true,
+			["Mowglis-Thrall"] = true,
 			["Maahkdk-Hyjal"] = true,
 			["Eskimo-Thrall"] = true,
 			["Vedelmage-Thrall"] = true,
 			["Twilightmoon-Hyjal"] = "Twilight#1236",
 			["Maahktwo-Hyjal"] = true,
 			["Maahkshift-Hyjal"] = true,
-			["Jumpnroll-Thrall"] = true,
+			["Pöached-Thrall"] = true,
 			["Garruto-Hyjal"] = "Gerudo#1567",
-			["Shammyboo-Hyjal"] = true,
+			["Dawningglory-Hyjal"] = "Twilight#1236",
 			["Healthisguy-Thrall"] = true,
 			["Loremeister-Thrall"] = true,
 			["Sweetsyzygy-Hyjal"] = "Twilight#1236",
 			["Gwendii-Hyjal"] = "Zimm25#1783",
-			["Tandieu-Hyjal"] = true,
-			["Ultrachaos-Thrall"] = true,
 			["Ranoki-Hyjal"] = true,
+			["Ultrachaos-Thrall"] = true,
+			["Pìckled-Thrall"] = true,
 			["Skeetonyah-Thrall"] = true,
-			["Karkol-Thrall"] = true,
 			["Jumpn-Thrall"] = true,
+			["Karkol-Thrall"] = true,
 			["Kazian-Thrall"] = true,
 			["Kazean-Thrall"] = true,
-			["Pìckled-Thrall"] = true,
-			["Dawningglory-Hyjal"] = "Twilight#1236",
-			["Pöached-Thrall"] = true,
+			["Tandieu-Hyjal"] = true,
+			["Shammyboo-Hyjal"] = true,
+			["Jumpnroll-Thrall"] = true,
 			["Neart-Thrall"] = true,
 			["Rredundant-Thrall"] = true,
-			["Mowglis-Thrall"] = true,
+			["Hoofpriest-Thrall"] = true,
 		},
 	}, -- [1]
 	{
@@ -329,17 +329,17 @@ AstralLists = {
 			["Sweetsyzygy-Hyjal"] = "Twilight#1236",
 			["Rhonaldyne-Thrall"] = "Rhonstint#1515",
 			["Shamydavis-Thrall"] = "AaronC#11555",
-			["Gwendyla-Hyjal"] = "Zimm25#1783",
-			["Maplefirè-Thrall"] = "maplefire#1200",
-			["Rhon-Thrall"] = "Rhonstint#1515",
+			["Gwendii-Hyjal"] = "Zimm25#1783",
 			["Twilightmoon-Hyjal"] = "Twilight#1236",
+			["Rhon-Thrall"] = "Rhonstint#1515",
+			["Maplefirè-Thrall"] = "maplefire#1200",
 			["Rootyshooty-Thrall"] = "Rhonstint#1515",
 			["Loalicker-Thrall"] = "Rhonstint#1515",
 			["Dawningglory-Hyjal"] = "Twilight#1236",
 			["Euphy-Hyjal"] = "Zimm25#1783",
 			["Garruto-Hyjal"] = "Gerudo#1567",
 			["Syrlinus-Thrall"] = "syrlinus#1595",
-			["Gwendii-Hyjal"] = "Zimm25#1783",
+			["Gwendyla-Hyjal"] = "Zimm25#1783",
 		},
 	}, -- [2]
 }

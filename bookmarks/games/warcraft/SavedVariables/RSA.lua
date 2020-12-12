@@ -66,13 +66,13 @@ RSADB = {
 			},
 		},
 		["MAGE"] = {
-			["General"] = {
-				["Class"] = "MAGE",
-			},
 			["Modules"] = {
 				["Racials"] = true,
 				["Utilities"] = true,
 				["Mage"] = true,
+			},
+			["General"] = {
+				["Class"] = "MAGE",
 			},
 			["Mage"] = {
 				["Spells"] = {
@@ -132,8 +132,8 @@ RSADB = {
 					},
 					["EngineerRessBFA"] = {
 						["Whisper"] = false,
-						["Say"] = true,
 						["SmartGroup"] = false,
+						["Say"] = true,
 					},
 					["Feasts"] = {
 						["SmartGroup"] = false,
@@ -209,13 +209,13 @@ RSADB = {
 			},
 		},
 		["HUNTER"] = {
+			["General"] = {
+				["Class"] = "HUNTER",
+			},
 			["Modules"] = {
 				["Racials"] = true,
 				["Utilities"] = true,
 				["Hunter"] = true,
-			},
-			["General"] = {
-				["Class"] = "HUNTER",
 			},
 			["Fixed"] = true,
 			["Utilities"] = {
@@ -243,18 +243,18 @@ RSADB = {
 			},
 			["Hunter"] = {
 				["Spells"] = {
-					["Tranq"] = {
-						["Emote"] = true,
-					},
 					["SilencingShot"] = {
 						["Emote"] = true,
 						["SmartGroup"] = false,
 					},
-					["BindingShot"] = {
-						["Emote"] = true,
-					},
 					["FreezingTrap"] = {
 						["Say"] = true,
+					},
+					["Tranq"] = {
+						["Emote"] = true,
+					},
+					["BindingShot"] = {
+						["Emote"] = true,
 					},
 				},
 			},
