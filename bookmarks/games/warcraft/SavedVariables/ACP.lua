@@ -12,146 +12,141 @@ ACP_Data = {
 			"ConRO_Hunter", -- [2]
 			"AllTheThings", -- [3]
 			"AchieveIt", -- [4]
-			"AspectOfTheHunter", -- [5]
-			"BetterWardrobe", -- [6]
-			"BtWQuests", -- [7]
-			"BtWQuestsBattleForAzeroth", -- [8]
-			"BtWQuestsBattleForAzerothPrologue", -- [9]
-			"BtWQuestsCataclysm", -- [10]
-			"BtWQuestsLegion", -- [11]
-			"BtWQuestsMistsOfPandaria", -- [12]
-			"BtWQuestsShadowlands", -- [13]
-			"BtWQuestsShadowlandsPrologue", -- [14]
-			"BtWQuestsTheBurningCrusade", -- [15]
-			"BtWQuestsWarlordsOfDraenor", -- [16]
-			"ButtonForge", -- [17]
-			"KayrCovenantMissions", -- [18]
-			"CovenantForge", -- [19]
-			"HolidayReminder", -- [20]
-			"ImprovedMacroFrame", -- [21]
-			"!KalielsTracker", -- [22]
-			"LargerMacroIconSelection", -- [23]
-			"LargerMacroIconSelectionData", -- [24]
-			"Ace3", -- [25]
-			"Masque", -- [26]
-			"MinimapRangeExtender", -- [27]
-			"MountCollector", -- [28]
-			"MythicDungeonTools", -- [29]
-			"Overachiever", -- [30]
-			"Overachiever_Cache", -- [31]
-			"Overachiever_Tabs", -- [32]
-			"Overachiever_Trade", -- [33]
-			"Peggle", -- [34]
-			"PetTracker", -- [35]
-			"QuestPointer", -- [36]
-			"QuestsChanged", -- [37]
-			"RareScanner", -- [38]
-			"Rematch", -- [39]
-			"Rematch_TSMPetValues", -- [40]
-			"TomTom", -- [41]
-			"UnlimitedMapPinDistance", -- [42]
-			"WoWChallenger", -- [43]
-			"WQAchievements", -- [44]
-			"TradeSkillMaster", -- [45]
-			"TradeSkillMaster_AppHelper", -- [46]
+			"AckisRecipeList", -- [5]
+			"AckisRecipeList_Cooking", -- [6]
+			"AckisRecipeList_Enchanting", -- [7]
+			"AckisRecipeList_Engineering", -- [8]
+			"AckisRecipeList_QuickScan", -- [9]
+			"AspectOfTheHunter", -- [10]
+			"BetterWardrobe", -- [11]
+			"BtWQuests", -- [12]
+			"BtWQuestsBattleForAzeroth", -- [13]
+			"BtWQuestsBattleForAzerothPrologue", -- [14]
+			"BtWQuestsCataclysm", -- [15]
+			"BtWQuestsLegion", -- [16]
+			"BtWQuestsMistsOfPandaria", -- [17]
+			"BtWQuestsShadowlands", -- [18]
+			"BtWQuestsShadowlandsPrologue", -- [19]
+			"BtWQuestsTheBurningCrusade", -- [20]
+			"BtWQuestsWarlordsOfDraenor", -- [21]
+			"ButtonForge", -- [22]
+			"KayrCovenantMissions", -- [23]
+			"CovenantForge", -- [24]
+			"HolidayReminder", -- [25]
+			"ImprovedMacroFrame", -- [26]
+			"!KalielsTracker", -- [27]
+			"Ace3", -- [28]
+			"MinimapRangeExtender", -- [29]
+			"MountCollector", -- [30]
+			"MythicDungeonTools", -- [31]
+			"Overachiever", -- [32]
+			"Overachiever_Cache", -- [33]
+			"Overachiever_Tabs", -- [34]
+			"Overachiever_Trade", -- [35]
+			"Peggle", -- [36]
+			"PetTracker", -- [37]
+			"QuestPointer", -- [38]
+			"QuestsChanged", -- [39]
+			"RareScanner", -- [40]
+			"Rematch", -- [41]
+			"Rematch_TSMPetValues", -- [42]
+			"Skillet", -- [43]
+			"TomTom", -- [44]
+			"UnlimitedMapPinDistance", -- [45]
+			"WoWChallenger", -- [46]
+			"WQAchievements", -- [47]
+			"TradeSkillMaster", -- [48]
+			"TradeSkillMaster_AppHelper", -- [49]
 			["name"] = "Tandu",
 		}, -- [2]
 		{
 			"ConRO", -- [1]
 			"ConRO_Paladin", -- [2]
-			"AchieveIt", -- [3]
-			"BetterWardrobe", -- [4]
-			"BtWQuests", -- [5]
-			"BtWQuestsShadowlands", -- [6]
-			"BtWQuestsShadowlandsPrologue", -- [7]
-			"ButtonForge", -- [8]
-			"CovenantForge", -- [9]
-			"!KalielsTracker", -- [10]
-			"Ace3", -- [11]
-			"Masque", -- [12]
-			"PetTracker", -- [13]
-			"PremadeGroupsFilter", -- [14]
-			"RSA", -- [15]
-			"RSA_Paladin", -- [16]
-			"KayrCovenantMissions", -- [17]
-			"TomTom", -- [18]
-			"ElvUI_LocPlus", -- [19]
+			"ButtonForge", -- [3]
 			["name"] = "Legere",
 		}, -- [3]
 		[25] = {
-			"Rematch", -- [1]
-			"Rematch_TSMPetValues", -- [2]
-			"TradeSkillMaster", -- [3]
-			"TradeSkillMaster_AppHelper", -- [4]
+			"Auctionator", -- [1]
+			"Rematch", -- [2]
+			"Rematch_TSMPetValues", -- [3]
+			"TradeSkillMaster", -- [4]
+			"TradeSkillMaster_AppHelper", -- [5]
 			["name"] = "Banker",
 		},
 	},
 	["collapsed"] = {
 	},
 	["ProtectedAddons"] = {
-		["AdiBags_Config"] = true,
-		["WowheadQuickLink"] = true,
+		["RSA_Mage"] = true,
 		["Plater"] = true,
 		["RSA_Druid"] = true,
-		["MacroToolkitIcons"] = true,
 		["REFlex"] = true,
-		["AstralKeys"] = true,
 		["HandyNotes"] = true,
-		["MacroToolkit"] = true,
-		["WorldFlightMap"] = true,
-		["RSA_Warlock"] = true,
+		["MoveAnything"] = true,
 		["RSA_Warrior"] = true,
-		["RSA_Paladin"] = true,
-		["RSA_Mage"] = true,
-		["WeakAuras"] = true,
-		["RaiderIO"] = true,
-		["RSA_Shaman"] = true,
-		["IcyVeinsStatPriority"] = true,
-		["RaiderIO_DB_US_H_R"] = true,
-		["RSA_Hunter"] = true,
-		["Details"] = true,
-		["AdiBags"] = true,
-		["DBM-CastleNathria"] = true,
-		["ElvUI_OptionsUI"] = true,
-		["ACP"] = true,
-		["DBM-DefaultSkin"] = true,
-		["RSA_DemonHunter"] = true,
-		["DBM-Shadowlands"] = true,
-		["MBB"] = true,
-		["WIM"] = true,
-		["LargerMacroIconSelectionData"] = true,
-		["WeakAurasModelPaths"] = true,
-		["Simulationcraft"] = true,
-		["RSA"] = true,
-		["Details_DataStorage"] = true,
-		["RSA_Options"] = true,
 		["CursorMod"] = true,
+		["IcyVeinsStatPriority"] = true,
+		["RSA_Monk"] = true,
+		["!KalielsTracker"] = true,
+		["ElvUI_OptionsUI"] = true,
+		["RSA_DemonHunter"] = true,
+		["ACP"] = true,
+		["WeakAurasModelPaths"] = true,
+		["WIM"] = true,
+		["LiteMount"] = true,
+		["CanIMogIt"] = true,
+		["SavedInstances"] = true,
+		["RaiderIO_DB_US_H"] = true,
+		["RSA_Rogue"] = true,
+		["DBM-GUI"] = true,
+		["ElvUI"] = true,
+		["DBM-StatusBarTimers"] = true,
+		["WowheadQuickLink"] = true,
+		["WeakAurasOptions"] = true,
+		["Details_SlackMeter"] = true,
+		["Details_DataStorage"] = true,
+		["DropTheCheapestThing"] = true,
+		["RSA_Warlock"] = true,
+		["MacroToolkitIcons"] = true,
+		["WeakAuras"] = true,
+		["RSA_Paladin"] = true,
+		["RSA_Shaman"] = true,
+		["LootSpecManager"] = true,
+		["SimpleRareElite"] = true,
+		["Details"] = true,
+		["DBM-DefaultSkin"] = true,
+		["DBM-Shadowlands"] = true,
+		["LargerMacroIconSelectionData"] = true,
+		["Simulationcraft"] = true,
+		["NameplateSCT"] = true,
+		["FriendGroups"] = true,
+		["AdiBags"] = true,
 		["RSA_Priest"] = true,
-		["RSA_DeathKnight"] = true,
+		["AdiBags_Config"] = true,
 		["ExRT"] = true,
 		["DBM-Core"] = true,
 		["Blizzard_ArchaeologyUI"] = true,
-		["WeakAurasOptions"] = true,
-		["CanIMogIt"] = true,
-		["LargerMacroIconSelection"] = true,
-		["PremadeGroupsFilter"] = true,
+		["AstralKeys"] = true,
+		["MacroToolkit"] = true,
+		["RaiderIO_DB_US_H_R"] = true,
+		["DoesMyAltKnowThat"] = true,
 		["DBM-Party-Shadowlands"] = true,
-		["SavedInstances"] = true,
-		["RaiderIO_DB_US_H"] = true,
+		["RaiderIO"] = true,
+		["RSA_Options"] = true,
 		["RSA_Reminders"] = true,
-		["RSA_Rogue"] = true,
 		["HandyNotes_DungeonLocations"] = true,
-		["Details_SlackMeter"] = true,
+		["RSA_DeathKnight"] = true,
+		["RSA_Hunter"] = true,
 		["WeakAurasArchive"] = true,
-		["LiteMount"] = true,
-		["DBM-GUI"] = true,
-		["ElvUI"] = true,
-		["NameplateSCT"] = true,
+		["MBB"] = true,
+		["Buffet"] = true,
+		["WorldFlightMap"] = true,
+		["RSA"] = true,
 		["WeakAurasCompanion"] = true,
 		["Blizzard_AchievementUI"] = true,
 		["Pawn"] = true,
-		["SimpleRareElite"] = true,
-		["RSA_Monk"] = true,
-		["DBM-StatusBarTimers"] = true,
+		["LargerMacroIconSelection"] = true,
+		["PremadeGroupsFilter"] = true,
+		["DBM-CastleNathria"] = true,
 	},
 }

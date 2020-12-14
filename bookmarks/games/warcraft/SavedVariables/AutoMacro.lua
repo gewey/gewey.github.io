@@ -1,0 +1,2 @@
+
+AutoMacroDB = nil

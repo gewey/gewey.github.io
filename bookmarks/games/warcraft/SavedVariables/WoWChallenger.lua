@@ -38,19 +38,19 @@ DBProfile = {
 	},
 	["showTuto"] = false,
 	["pdv"] = 50,
+	["Equip"] = {
+		76390, -- [1]
+		46471, -- [2]
+	},
+	["pdvMax"] = 50,
+	["skillPoints"] = 50,
 	["bonusLvL"] = {
 		0, -- [1]
 		0, -- [2]
 		0, -- [3]
 	},
-	["pdvMax"] = 50,
-	["firstVisit"] = false,
-	["Equip"] = {
-		76390, -- [1]
-		46471, -- [2]
-	},
 	["damageMax"] = 5,
-	["skillPoints"] = 50,
+	["firstVisit"] = false,
 	["damage"] = 5,
 }
 Campaign1 = {

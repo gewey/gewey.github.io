@@ -12,6 +12,10 @@ petlogDB = {
 		"152708", -- [1]
 		"Mawsworn Seeker Hound 27/11/20 21:48:21", -- [2]
 	}, -- [3]
+	{
+		"168862", -- [1]
+		"Hulking Doomfang Hound 12/12/20 21:46:46", -- [2]
+	}, -- [4]
 }
 AOTHLDBIconDB = {
 	["minimapPos"] = 218.0469545647706,
@@ -23,14 +27,14 @@ AspectDB = {
 		["Loremeister - Thrall"] = "Loremeister - Thrall",
 		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 		["Nahko - Thrall"] = "Nahko - Thrall",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
 		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
-		["Légere - Thrall"] = "Légere - Thrall",
 		["Eleryla - Thrall"] = "Eleryla - Thrall",
+		["Légere - Thrall"] = "Légere - Thrall",
 		["Christar - Thrall"] = "Christar - Thrall",
-		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -43,7 +47,7 @@ AspectDB = {
 		},
 		["Nahko - Thrall"] = {
 		},
-		["Tandieu - Hyjal"] = {
+		["Fortehmogs - Hyjal"] = {
 		},
 		["Tandu - Thrall"] = {
 		},
@@ -51,13 +55,13 @@ AspectDB = {
 		},
 		["Bullscht - Hyjal"] = {
 		},
-		["Légere - Thrall"] = {
-		},
 		["Eleryla - Thrall"] = {
+		},
+		["Légere - Thrall"] = {
 		},
 		["Christar - Thrall"] = {
 		},
-		["Fortehmogs - Hyjal"] = {
+		["Tandieu - Hyjal"] = {
 		},
 	},
 }

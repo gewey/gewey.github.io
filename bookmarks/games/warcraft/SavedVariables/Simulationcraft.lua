@@ -14,14 +14,14 @@ SimulationCraftDB = {
 		["Loremeister - Thrall"] = "Loremeister - Thrall",
 		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Nahko - Thrall"] = "Nahko - Thrall",
+		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Phizzle - Thrall"] = "Phizzle - Thrall",
 		["Christar - Hyjal"] = "Christar - Hyjal",
 		["Eleryla - Thrall"] = "Eleryla - Thrall",
-		["Phizzle - Thrall"] = "Phizzle - Thrall",
-		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
+		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Nahko - Thrall"] = "Nahko - Thrall",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -49,29 +49,29 @@ SimulationCraftDB = {
 		["Quazzarr - Thrall"] = {
 		},
 		["Tandieu - Hyjal"] = {
+			["minimap"] = {
+				["minimapPos"] = 161.9032328345956,
+			},
 			["frame"] = {
 				["ofsx"] = 303.5899353027344,
 				["ofsy"] = -8.205153465270996,
 			},
-			["minimap"] = {
-				["minimapPos"] = 161.9032328345956,
-			},
 		},
-		["Nahko - Thrall"] = {
+		["Mnuchin - Thrall"] = {
 		},
 		["Tandu - Thrall"] = {
 		},
 		["Mortesque - Thrall"] = {
 		},
-		["Obsequy - Thrall"] = {
+		["Phizzle - Thrall"] = {
 		},
 		["Christar - Hyjal"] = {
 		},
 		["Eleryla - Thrall"] = {
 		},
-		["Phizzle - Thrall"] = {
+		["Obsequy - Thrall"] = {
 		},
-		["Mnuchin - Thrall"] = {
+		["Nahko - Thrall"] = {
 		},
 	},
 }
