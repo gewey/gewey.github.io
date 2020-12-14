@@ -112,55 +112,11 @@ VER 3 000000000000007E "*ArcF" "INV_Misc_QuestionMark"
 /use [nodead,help]The Pigskin
 /script UIErrorsFrame:Clear()
 END
-VER 3 0000000000000024 "*Prot3" "INV_MISC_QUESTIONMARK"
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/cast Crusader Strike
-/script UIErrorsFrame:Clear()
-END
-VER 3 0000000000000025 "*Prot4" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/use [harm,nodead]Shield of the Righteous
-/use [harm,nodead]Consecration
-/use [nodead,help]Blessing of Protection
-/cleartarget [dead]
-END
-VER 3 0000000000000026 "*Prot5" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/use [noexists,nocombat]Unusual Compass
-/use [nodead,help]Lay on Hands
-/cleartarget [dead]
-END
-VER 3 0000000000000028 "*ProtF" "INV_Misc_QuestionMark"
-/use Hand of Reckoning
-END
 VER 3 0000000000000052 "*Prst Mount" "INV_Misc_QuestionMark"
 #showtooltip
 /cast [nomounted, nocombat] Flying Carpet; [combat] Power Word: Shield; [indoors] Power Word: Shield
 /dismount
 /cast [@player] Levitate
-END
-VER 3 0000000000000044 "*Prt BOSS!" "INV_Misc_QuestionMark"
-/cast Avenging Wrath
-/cast Divine Protection
-/cast Holy Shield
-/cast Divine Guardian
-/cast Arcane Torrent(Racial)
-/cast Hand of Reckoning
-/startattack
-/use 13
-/use 14
-/use Shadow Crystal Focusing Lens
-END
-VER 3 0000000000000022 "*Prtp1" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/use [harm,nodead]Avenger's Shield
-/use [harm,nodead]Hand of Reckoning
-/use [nodead,help]Blessing of Freedom
-/use [dead,help]Redemption
-/cleartarget [harm,dead]
 END
 VER 3 0000000000000029 "*RDr`" "134400"
 /assist [help]
@@ -222,24 +178,6 @@ VER 3 0000000000000082 "*Ven3" "INV_Misc_QuestionMark"
 /cast Soul Cleave
 /script UIErrorsFrame:Clear()
 END
-VER 3 000000000000007F "*Ven4" "INV_Misc_QuestionMark"
-#showtooltip
-/use [noexists,nocombat]Romantic Picnic Basket
-/use [harm,nodead]Demon Spikes
-/use [harm,nodead]Rebuke
-/use [harm,nodead]Immolation Aura
-/use [nodead,help]Blessing of Protection
-/cleartarget [dead]
-END
-VER 3 0000000000000083 "*Venq" "INV_Misc_QuestionMark"
-#showtooltip
-/cleartarget [dead]
-/assist focus [noexists][help]
-/targetenemy [noexists][help][dead]
-/startattack
-/cast Soul Carver(Artifact)
-/script UIErrorsFrame:Clear()
-END
 VER 3 0000000000000073 "*Ww1" "INV_Misc_QuestionMark"
 #showtooltip
 /use [harm,nodead] chi wave
@@ -270,6 +208,9 @@ VER 3 00000000000000C4 "/AQT" "132096"
 END
 VER 3 00000000000000CA "/Elv" "2027568"
 /elvui
+END
+VER 3 000000000000012A "/lootspecmanager" "133648"
+/ltsm
 END
 VER 3 00000000000000E5 "/routes" "134269"
 /routes
@@ -305,12 +246,33 @@ VER 3 000000000000011F "@Tandu" "135490"
 /acp addset 2
 /acp addset 2
 END
-VER 3 000000000000011C "AAP_MACRO" "INV_MISC_QUESTIONMARK"
-/script print('no button yet')
-END
 VER 3 0000000000000117 "ab?" "INV_MISC_QUESTIONMARK"
 /click ActionButton1
 /click[@cursor]
+END
+VER 3 0000000000000124 "AutoHP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [combat] item:171267; item:6948
+END
+VER 3 0000000000000125 "AutoMP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast item:6948
+END
+VER 3 0000000000000128 "ConsumableHP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast item:171267
+END
+VER 3 0000000000000129 "ConsumableMP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast item:6948
+END
+VER 3 0000000000000127 "DrinkOnlyMP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast item:6948
+END
+VER 3 0000000000000126 "FoodOnlyHP" "INV_Misc_QuestionMark"
+#showtooltip
+/cast item:6948
 END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
@@ -318,6 +280,10 @@ VER 3 0000000000000110 "HearthRoulette" "413582"
 END
 VER 3 0000000000000107 "ReZ" "INV_MISC_QUESTIONMARK"
 /use [@mouseover, combat] Disposable Spectrophasic Reanimator; [@mouseover, nocombat] Ultimate Gnomish Army Knife
+END
+VER 3 000000000000012B "TOYSPLOSION" "134511"
+/use Black Ice
+/use coin of many faces
 END
 VER 3 00000000000000E2 "TSMMacro" "Achievement_Faction_GoldenLotus"
 /click TSMCancelAuctionBtn
