@@ -12,6 +12,7 @@ let gameswarcraftBookmarks
     + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"
     + "<a title='noxxic'target='_parent'href='https://www.noxxic.com/wow/'><img id='bookmark' alt='noxxic'></a>"
     + "<a title='WowHead'target='_parent'href='https://www.wowhead.com'><img id='bookmark' alt='wowhead'></a>"
+    + "<a title='bloodmallet'target='_parent'href='https://www.bloodmallet.com'><img id='bookmark' alt='bloodmallet'></a>"
     + "<a title='Wago.IO'target='_parent'href='https://wago.io/'><img id='bookmark' alt='wago_io'></a>"
     + "<a title='Simple Armory'target='_parent'href='https://simplearmory.com/#/us/thrall/tandu'><img id='bookmark' alt='simplearmory'></a>"
     + "<a title='wowrealmpopulation'target='_parent'https://www.wowrealmpopulation.com/'><img id='bookmark' alt='wowrealmpopulation'></a>"
