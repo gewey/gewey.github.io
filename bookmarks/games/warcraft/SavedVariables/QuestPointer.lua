@@ -1,4 +1,0 @@
-
-QuestPointerDB = {
-	["autoTomTom"] = true,
-}
