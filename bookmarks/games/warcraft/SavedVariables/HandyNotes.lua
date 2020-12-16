@@ -14,46 +14,47 @@ HandyNotesDB = {
 		["Karkol - Thrall"] = "Karkol - Thrall",
 		["Jozef - Arygos"] = "Jozef - Arygos",
 		["Zandu - Illidan"] = "Zandu - Illidan",
+		["Karkol - Hyjal"] = "Karkol - Hyjal",
 		["Tandieu - Hyjal"] = "Default",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Obsequy - Thrall"] = "Obsequy - Thrall",
 		["Reinze - Thrall"] = "Reinze - Thrall",
-		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
+		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
 		["Tandu - Arygos"] = "Tandu - Arygos",
-		["Nahko - Thrall"] = "Nahko - Thrall",
-		["Eleryla - Thrall"] = "Eleryla - Thrall",
-		["Painter - Shadowsong"] = "Painter - Shadowsong",
+		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
+		["Goulette - Thrall"] = "Goulette - Thrall",
+		["Quazlespaz - Borean Tundra"] = "Quazlespaz - Borean Tundra",
 		["Goulette - Shadowsong"] = "Goulette - Shadowsong",
-		["Eleryla - Illidan"] = "Eleryla - Illidan",
+		["Goulette - Illidan"] = "Goulette - Illidan",
 		["Phizzle - Thrall"] = "Phizzle - Thrall",
 		["Stawka - Thrall"] = "Stawka - Thrall",
 		["Fattee - Arygos"] = "Fattee - Arygos",
 		["Jozeph - Thrall"] = "Jozeph - Thrall",
 		["Quazzarr - Shadowsong"] = "Quazzarr - Shadowsong",
 		["Obsequy - Shadowsong"] = "Obsequy - Shadowsong",
-		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
+		["Tandont - Hyjal"] = "Tandont - Hyjal",
 		["Legere - Arygos"] = "Legere - Arygos",
-		["Obsequy - Illidan"] = "Obsequy - Illidan",
+		["Speshul - Borean Tundra"] = "Speshul - Borean Tundra",
 		["Karnos - Thrall"] = "Karnos - Thrall",
-		["Karkol - Shadowsong"] = "Karkol - Shadowsong",
+		["Scaryjoey - Thrall"] = "Scaryjoey - Thrall",
 		["Christar - Thrall"] = "Christar - Thrall",
 		["Vodevil - Borean Tundra"] = "Vodevil - Borean Tundra",
 		["Eleryla - Shadowsong"] = "Eleryla - Shadowsong",
-		["Légere - Shadowsong"] = "Légere - Shadowsong",
 		["Gewey - Shadowsong"] = "Gewey - Shadowsong",
+		["Légere - Shadowsong"] = "Légere - Shadowsong",
 		["Loremeister - Thrall"] = "Loremeister - Thrall",
-		["Scaryjoey - Thrall"] = "Scaryjoey - Thrall",
-		["Speshul - Borean Tundra"] = "Speshul - Borean Tundra",
-		["Tandont - Hyjal"] = "Tandont - Hyjal",
+		["Karkol - Shadowsong"] = "Karkol - Shadowsong",
+		["Obsequy - Illidan"] = "Obsequy - Illidan",
+		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 		["Gewey - Arygos"] = "Gewey - Arygos",
 		["Stawkah - Borean Tundra"] = "Stawkah - Borean Tundra",
 		["Stegaspike - Shadowsong"] = "Stegaspike - Shadowsong",
 		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Goulette - Illidan"] = "Goulette - Illidan",
-		["Quazlespaz - Borean Tundra"] = "Quazlespaz - Borean Tundra",
-		["Goulette - Thrall"] = "Goulette - Thrall",
-		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
+		["Eleryla - Illidan"] = "Eleryla - Illidan",
+		["Painter - Shadowsong"] = "Painter - Shadowsong",
+		["Eleryla - Thrall"] = "Eleryla - Thrall",
+		["Nahko - Thrall"] = "Nahko - Thrall",
+		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -82,9 +83,11 @@ HandyNotesDB = {
 		},
 		["Zandu - Illidan"] = {
 		},
+		["Karkol - Hyjal"] = {
+		},
 		["Tandieu - Hyjal"] = {
 		},
-		["Fortehmogs - Hyjal"] = {
+		["Bullscht - Hyjal"] = {
 		},
 		["Tandu - Thrall"] = {
 		},
@@ -92,19 +95,19 @@ HandyNotesDB = {
 		},
 		["Reinze - Thrall"] = {
 		},
-		["Nahko - Thrall"] = {
+		["Mnuchin - Thrall"] = {
 		},
 		["Tandu - Arygos"] = {
 		},
-		["Eleryla - Thrall"] = {
+		["Goulette - Thrall"] = {
 		},
-		["Painter - Shadowsong"] = {
+		["Quazlespaz - Borean Tundra"] = {
 		},
-		["Stawka - Thrall"] = {
+		["Goulette - Illidan"] = {
 		},
 		["Goulette - Shadowsong"] = {
 		},
-		["Mortesque - Thrall"] = {
+		["Default"] = {
 		},
 		["Phizzle - Thrall"] = {
 		},
@@ -116,13 +119,13 @@ HandyNotesDB = {
 		},
 		["Scaryjoey - Thrall"] = {
 		},
-		["Quazzarr - Thrall"] = {
+		["Tandont - Hyjal"] = {
 		},
-		["Speshul - Borean Tundra"] = {
+		["Obsequy - Shadowsong"] = {
 		},
 		["Legere - Arygos"] = {
 		},
-		["Obsequy - Illidan"] = {
+		["Karkol - Shadowsong"] = {
 		},
 		["Karnos - Thrall"] = {
 		},
@@ -130,21 +133,21 @@ HandyNotesDB = {
 		},
 		["Christar - Thrall"] = {
 		},
-		["Légere - Shadowsong"] = {
+		["Gewey - Shadowsong"] = {
 		},
 		["Eleryla - Shadowsong"] = {
 		},
 		["Vodevil - Borean Tundra"] = {
 		},
-		["Gewey - Shadowsong"] = {
+		["Légere - Shadowsong"] = {
 		},
 		["Loremeister - Thrall"] = {
 		},
-		["Karkol - Shadowsong"] = {
+		["Obsequy - Illidan"] = {
 		},
-		["Obsequy - Shadowsong"] = {
+		["Speshul - Borean Tundra"] = {
 		},
-		["Tandont - Hyjal"] = {
+		["Quazzarr - Thrall"] = {
 		},
 		["Gewey - Arygos"] = {
 		},
@@ -152,87 +155,21 @@ HandyNotesDB = {
 		},
 		["Stegaspike - Shadowsong"] = {
 		},
-		["Default"] = {
+		["Mortesque - Thrall"] = {
 		},
-		["Goulette - Illidan"] = {
+		["Stawka - Thrall"] = {
 		},
-		["Quazlespaz - Borean Tundra"] = {
+		["Painter - Shadowsong"] = {
 		},
-		["Goulette - Thrall"] = {
+		["Eleryla - Thrall"] = {
 		},
-		["Mnuchin - Thrall"] = {
+		["Nahko - Thrall"] = {
 		},
-		["Bullscht - Hyjal"] = {
+		["Fortehmogs - Hyjal"] = {
 		},
 	},
 }
 HandyNotes_HandyNotesDB = {
-	["profileKeys"] = {
-		["Missnuggles - Borean Tundra"] = "Missnuggles - Borean Tundra",
-		["Nahko - Shadowsong"] = "Nahko - Shadowsong",
-		["Eleryla - Arygos"] = "Eleryla - Arygos",
-		["Stawka - Thrall"] = "Stawka - Thrall",
-		["Bobahh - Shadowsong"] = "Bobahh - Shadowsong",
-		["Obsequy - Arygos"] = "Obsequy - Arygos",
-		["Haedrig - Shadowsong"] = "Haedrig - Shadowsong",
-		["Eleryla - Thrall"] = "Eleryla - Thrall",
-		["Painter - Shadowsong"] = "Painter - Shadowsong",
-		["Turing - Shadowsong"] = "Turing - Shadowsong",
-		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
-		["That - Shadowsong"] = "That - Shadowsong",
-		["Christar - Shadowsong"] = "Christar - Shadowsong",
-		["Légere - Thrall"] = "Légere - Thrall",
-		["Skeevee - Shadowsong"] = "Skeevee - Shadowsong",
-		["Phizzle - Thrall"] = "Phizzle - Thrall",
-		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
-		["Goulette - Illidan"] = "Goulette - Illidan",
-		["Dahtsihk - Shadowsong"] = "Dahtsihk - Shadowsong",
-		["Stawkah - Borean Tundra"] = "Stawkah - Borean Tundra",
-		["Zandu - Illidan"] = "Zandu - Illidan",
-		["Obsequy - Shadowsong"] = "Obsequy - Shadowsong",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
-		["Speshul - Borean Tundra"] = "Speshul - Borean Tundra",
-		["Obsequy - Thrall"] = "Obsequy - Thrall",
-		["Reinze - Thrall"] = "Reinze - Thrall",
-		["Christar - Hyjal"] = "Christar - Hyjal",
-		["Tandu - Arygos"] = "Tandu - Arygos",
-		["Tandu - Thrall"] = "Tandu - Thrall",
-		["Jozef - Arygos"] = "Jozef - Arygos",
-		["Gewey - Shadowsong"] = "Gewey - Shadowsong",
-		["Goulette - Shadowsong"] = "Goulette - Shadowsong",
-		["Obsequy - Illidan"] = "Obsequy - Illidan",
-		["Bahnka - Borean Tundra"] = "Bahnka - Borean Tundra",
-		["Jozeph - Thrall"] = "Jozeph - Thrall",
-		["Fattee - Arygos"] = "Fattee - Arygos",
-		["Scaryjoey - Thrall"] = "Scaryjoey - Thrall",
-		["Eleryla - Illidan"] = "Eleryla - Illidan",
-		["Légere - Shadowsong"] = "Légere - Shadowsong",
-		["Karnos - Thrall"] = "Karnos - Thrall",
-		["Karkol - Shadowsong"] = "Karkol - Shadowsong",
-		["Coo - Shadowsong"] = "Coo - Shadowsong",
-		["Christar - Illidan"] = "Christar - Illidan",
-		["Christar - Borean Tundra"] = "Christar - Borean Tundra",
-		["Christar - Thrall"] = "Christar - Thrall",
-		["Legere - Arygos"] = "Legere - Arygos",
-		["Eleryla - Shadowsong"] = "Eleryla - Shadowsong",
-		["Vodevil - Borean Tundra"] = "Vodevil - Borean Tundra",
-		["Bullschit - Thrall"] = "Bullschit - Thrall",
-		["Loremeister - Thrall"] = "Loremeister - Thrall",
-		["Bahnker - Thrall"] = "Bahnker - Thrall",
-		["Nahko - Thrall"] = "Nahko - Thrall",
-		["Tandont - Hyjal"] = "Tandont - Hyjal",
-		["Gewey - Arygos"] = "Gewey - Arygos",
-		["Bahnk - Illidan"] = "Bahnk - Illidan",
-		["Stegaspike - Shadowsong"] = "Stegaspike - Shadowsong",
-		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Quazzarr - Shadowsong"] = "Quazzarr - Shadowsong",
-		["Quazlespaz - Borean Tundra"] = "Quazlespaz - Borean Tundra",
-		["Goulette - Thrall"] = "Goulette - Thrall",
-		["Karkol - Thrall"] = "Karkol - Thrall",
-		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
-	},
 	["global"] = {
 		[641] = {
 			[67657382] = {
@@ -255,16 +192,16 @@ HandyNotes_HandyNotesDB = {
 				["icon"] = 8,
 				["desc"] = "",
 			},
+			[25637633] = {
+				["cont"] = true,
+				["icon"] = 1,
+				["title"] = "Chunk of meat",
+				["desc"] = "",
+			},
 			[65395552] = {
 				["icon"] = 1,
 				["title"] = "elites faceless",
 				["cont"] = true,
-				["desc"] = "",
-			},
-			[76666419] = {
-				["cont"] = true,
-				["icon"] = 10,
-				["title"] = "Coffer",
 				["desc"] = "",
 			},
 			[29164966] = {
@@ -273,10 +210,10 @@ HandyNotes_HandyNotesDB = {
 				["cont"] = true,
 				["desc"] = "",
 			},
-			[25637633] = {
+			[76666419] = {
 				["cont"] = true,
-				["icon"] = 1,
-				["title"] = "Chunk of meat",
+				["icon"] = 10,
+				["title"] = "Coffer",
 				["desc"] = "",
 			},
 		},
@@ -313,7 +250,7 @@ HandyNotes_HandyNotesDB = {
 				["cont"] = false,
 				["desc"] = "",
 			},
-			[29744380] = {
+			[22992827] = {
 				["icon"] = 16,
 				["title"] = "Lightning Paw",
 				["cont"] = true,
@@ -337,7 +274,7 @@ HandyNotes_HandyNotesDB = {
 				["cont"] = true,
 				["desc"] = "",
 			},
-			[22992827] = {
+			[29744380] = {
 				["icon"] = 16,
 				["title"] = "Lightning Paw",
 				["cont"] = true,
@@ -368,10 +305,28 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
-		[95] = {
-			[47643239] = {
-				["icon"] = 25,
-				["title"] = "Tranquillien Quartermaster",
+		[862] = {
+			[49795452] = {
+				["cont"] = true,
+				["icon"] = 8,
+				["title"] = "Meaty Haunch Farm",
+				["desc"] = "",
+			},
+			[70422391] = {
+				["icon"] = 20,
+				["title"] = "Redtail Loach/Great Sea Catfish & Hippos <3",
+				["cont"] = true,
+				["desc"] = "",
+			},
+			[63261802] = {
+				["title"] = "STRINGY LOINS",
+				["cont"] = true,
+				["icon"] = 21,
+				["desc"] = "",
+			},
+			[68184181] = {
+				["icon"] = 23,
+				["title"] = "Child of Torcali",
 				["cont"] = true,
 				["desc"] = "",
 			},
@@ -406,17 +361,17 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
-		[1165] = {
-			[56708964] = {
-				["title"] = "WEEKLY QUEST!",
+		[1543] = {
+			[23423126] = {
+				["icon"] = 1,
+				["title"] = "port to Cauldron",
 				["cont"] = true,
-				["icon"] = 9,
 				["desc"] = "",
 			},
-			[34981303] = {
+			[34854357] = {
 				["icon"] = 1,
-				["title"] = "pet supplies",
-				["cont"] = false,
+				["title"] = "Port",
+				["cont"] = true,
 				["desc"] = "",
 			},
 		},
@@ -478,6 +433,164 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
+		[35] = {
+			[54328343] = {
+				["icon"] = 8,
+				["title"] = "Molten Core",
+				["cont"] = false,
+				["desc"] = "",
+			},
+		},
+		[70] = {
+			[36383178] = {
+				["cont"] = true,
+				["icon"] = 19,
+				["title"] = "LOREMASTER Dustwallow Marsh",
+				["desc"] = "",
+			},
+		},
+		[379] = {
+			[62478008] = {
+				["title"] = "Kun Quests Start",
+				["cont"] = true,
+				["icon"] = 19,
+				["desc"] = "(did start quests to clear village to get candy)",
+			},
+		},
+		[77] = {
+			[63180861] = {
+				["icon"] = 7,
+				["title"] = "Timbermaw",
+				["cont"] = true,
+				["desc"] = "",
+			},
+			[51398046] = {
+				["title"] = "Timbermaw Rep",
+				["cont"] = true,
+				["icon"] = 17,
+				["desc"] = "",
+			},
+			[62911462] = {
+				["cont"] = true,
+				["icon"] = 7,
+				["title"] = "Timbermaw",
+				["desc"] = "",
+			},
+			[59320990] = {
+				["icon"] = 7,
+				["title"] = "Timbermaw",
+				["cont"] = true,
+				["desc"] = "",
+			},
+			[64001029] = {
+				["icon"] = 17,
+				["title"] = "Timbermaw Feathers for 2k Rep.",
+				["cont"] = false,
+				["desc"] = "",
+			},
+			[61171536] = {
+				["cont"] = true,
+				["icon"] = 7,
+				["title"] = "Timbermaw",
+				["desc"] = "",
+			},
+		},
+		[830] = {
+			[56556749] = {
+				["title"] = "Ridgestalker for Resources",
+				["cont"] = true,
+				["icon"] = 6,
+				["desc"] = "",
+			},
+		},
+		[95] = {
+			[47643239] = {
+				["icon"] = 25,
+				["title"] = "Tranquillien Quartermaster",
+				["cont"] = true,
+				["desc"] = "",
+			},
+		},
+		[863] = {
+			[24086303] = {
+				["cont"] = false,
+				["icon"] = 8,
+				["title"] = "hyper spawn",
+				["desc"] = "",
+			},
+			[26783975] = {
+				["cont"] = true,
+				["icon"] = 8,
+				["title"] = "2x4",
+				["desc"] = "",
+			},
+			[48337667] = {
+				["title"] = "HYPERSPAWN - NAZ",
+				["cont"] = true,
+				["icon"] = 8,
+				["desc"] = "",
+			},
+			[48795191] = {
+				["cont"] = false,
+				["icon"] = 8,
+				["title"] = "2x4",
+				["desc"] = "",
+			},
+		},
+		[1525] = {
+			[72975200] = {
+				["title"] = "Sinstone Daily",
+				["cont"] = true,
+				["icon"] = 6,
+				["desc"] = "",
+			},
+			[61346379] = {
+				["title"] = "Court of Harvesters QM",
+				["cont"] = true,
+				["icon"] = 10,
+				["desc"] = "",
+			},
+			[48706855] = {
+				["cont"] = true,
+				["icon"] = 7,
+				["title"] = "Ruby Vendor",
+				["desc"] = "",
+			},
+			[42198072] = {
+				["icon"] = 20,
+				["title"] = "BOLT",
+				["cont"] = true,
+				["desc"] = "",
+			},
+		},
+		[627] = {
+			[46412067] = {
+				["cont"] = true,
+				["icon"] = 1,
+				["title"] = "Preist Quests Start",
+				["desc"] = "",
+			},
+			[45192900] = {
+				["title"] = "Spend Wakening Essences at Arcanomancer Vridiel",
+				["cont"] = true,
+				["icon"] = 9,
+				["desc"] = "",
+			},
+		},
+		[1533] = {
+			[57716714] = {
+				["title"] = "Star to Star",
+				["cont"] = true,
+				["icon"] = 1,
+				["desc"] = "",
+			},
+			[54336404] = {
+				["title"] = "Star to Star",
+				["cont"] = true,
+				["icon"] = 1,
+				["desc"] = "",
+			},
+		},
 		[1355] = {
 			[36002200] = {
 				["cont"] = false,
@@ -515,9 +628,9 @@ HandyNotes_HandyNotesDB = {
 				["title"] = "Mrrl",
 				["desc"] = "",
 			},
-			[46083253] = {
-				["icon"] = 10,
-				["title"] = "Tentacle Taco",
+			[27754135] = {
+				["icon"] = 6,
+				["title"] = "CAVE",
 				["cont"] = false,
 				["desc"] = "",
 			},
@@ -527,21 +640,9 @@ HandyNotes_HandyNotesDB = {
 				["title"] = "Hurlgrl",
 				["desc"] = "",
 			},
-			[36338715] = {
-				["icon"] = 1,
-				["title"] = "we need it all",
-				["cont"] = false,
-				["desc"] = "",
-			},
-			[47096261] = {
-				["cont"] = false,
-				["icon"] = 1,
-				["title"] = "Flrgrrl",
-				["desc"] = "",
-			},
-			[54834182] = {
-				["icon"] = 1,
-				["title"] = "Fertile Soil?",
+			[46083253] = {
+				["icon"] = 10,
+				["title"] = "Tentacle Taco",
 				["cont"] = false,
 				["desc"] = "",
 			},
@@ -551,112 +652,38 @@ HandyNotes_HandyNotesDB = {
 				["title"] = "Makrura",
 				["desc"] = "",
 			},
-			[27754135] = {
-				["icon"] = 6,
-				["title"] = "CAVE",
+			[54834182] = {
+				["icon"] = 1,
+				["title"] = "Fertile Soil?",
+				["cont"] = false,
+				["desc"] = "",
+			},
+			[47096261] = {
+				["cont"] = false,
+				["icon"] = 1,
+				["title"] = "Flrgrrl",
+				["desc"] = "",
+			},
+			[36338715] = {
+				["icon"] = 1,
+				["title"] = "we need it all",
 				["cont"] = false,
 				["desc"] = "",
 			},
 		},
-		[70] = {
-			[36383178] = {
-				["cont"] = true,
-				["icon"] = 19,
-				["title"] = "LOREMASTER Dustwallow Marsh",
-				["desc"] = "",
-			},
-		},
-		[35] = {
-			[54328343] = {
-				["icon"] = 8,
-				["title"] = "Molten Core",
+		[199] = {
+			[67753531] = {
+				["icon"] = 1,
+				["title"] = "door to southern barrens",
 				["cont"] = false,
 				["desc"] = "",
 			},
 		},
-		[830] = {
-			[56556749] = {
-				["title"] = "Ridgestalker for Resources",
+		[1671] = {
+			[54365891] = {
 				["cont"] = true,
-				["icon"] = 6,
-				["desc"] = "",
-			},
-		},
-		[862] = {
-			[70422391] = {
-				["icon"] = 20,
-				["title"] = "Redtail Loach/Great Sea Catfish & Hippos <3",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[68184181] = {
-				["icon"] = 23,
-				["title"] = "Child of Torcali",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[63261802] = {
-				["title"] = "STRINGY LOINS",
-				["cont"] = true,
-				["icon"] = 21,
-				["desc"] = "",
-			},
-			[49795452] = {
-				["cont"] = true,
-				["icon"] = 8,
-				["title"] = "Meaty Haunch Farm",
-				["desc"] = "",
-			},
-		},
-		[1525] = {
-			[72975200] = {
-				["title"] = "Sinstone Daily",
-				["cont"] = true,
-				["icon"] = 6,
-				["desc"] = "",
-			},
-			[48706855] = {
-				["cont"] = true,
-				["icon"] = 7,
-				["title"] = "Ruby Vendor",
-				["desc"] = "",
-			},
-			[42198072] = {
-				["icon"] = 20,
-				["title"] = "BOLT",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[61346379] = {
-				["title"] = "Court of Harvesters QM",
-				["cont"] = true,
-				["icon"] = 10,
-				["desc"] = "",
-			},
-		},
-		[863] = {
-			[24086303] = {
-				["cont"] = false,
-				["icon"] = 8,
-				["title"] = "hyper spawn",
-				["desc"] = "",
-			},
-			[26783975] = {
-				["cont"] = true,
-				["icon"] = 8,
-				["title"] = "2x4",
-				["desc"] = "",
-			},
-			[48795191] = {
-				["cont"] = false,
-				["icon"] = 8,
-				["title"] = "2x4",
-				["desc"] = "",
-			},
-			[48337667] = {
-				["title"] = "HYPERSPAWN - NAZ",
-				["cont"] = true,
-				["icon"] = 8,
+				["icon"] = 12,
+				["title"] = "USE ONE OF THESE TO GET TO FP",
 				["desc"] = "",
 			},
 		},
@@ -700,28 +727,6 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
-		[1533] = {
-			[57716714] = {
-				["title"] = "Star to Star",
-				["cont"] = true,
-				["icon"] = 1,
-				["desc"] = "",
-			},
-			[54336404] = {
-				["title"] = "Star to Star",
-				["cont"] = true,
-				["icon"] = 1,
-				["desc"] = "",
-			},
-		},
-		[65] = {
-			[74274765] = {
-				["icon"] = 1,
-				["title"] = "start",
-				["cont"] = false,
-				["desc"] = "stonetalon quest start",
-			},
-		},
 		[1670] = {
 			[37794413] = {
 				["title"] = "Engineering/Auctionhouse",
@@ -730,80 +735,18 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
-		[1671] = {
-			[54365891] = {
-				["cont"] = true,
-				["icon"] = 12,
-				["title"] = "USE ONE OF THESE TO GET TO FP",
-				["desc"] = "",
-			},
-		},
-		[77] = {
-			[63180861] = {
-				["icon"] = 7,
-				["title"] = "Timbermaw",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[51398046] = {
-				["title"] = "Timbermaw Rep",
-				["cont"] = true,
-				["icon"] = 17,
-				["desc"] = "",
-			},
-			[59320990] = {
-				["icon"] = 7,
-				["title"] = "Timbermaw",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[61171536] = {
-				["cont"] = true,
-				["icon"] = 7,
-				["title"] = "Timbermaw",
-				["desc"] = "",
-			},
-			[64001029] = {
-				["icon"] = 17,
-				["title"] = "Timbermaw Feathers for 2k Rep.",
-				["cont"] = false,
-				["desc"] = "",
-			},
-			[62911462] = {
-				["cont"] = true,
-				["icon"] = 7,
-				["title"] = "Timbermaw",
-				["desc"] = "",
-			},
-		},
-		[627] = {
-			[46412067] = {
-				["cont"] = true,
-				["icon"] = 1,
-				["title"] = "Preist Quests Start",
-				["desc"] = "",
-			},
-			[45192900] = {
-				["title"] = "Spend Wakening Essences at Arcanomancer Vridiel",
+		[1165] = {
+			[56708964] = {
+				["title"] = "WEEKLY QUEST!",
 				["cont"] = true,
 				["icon"] = 9,
 				["desc"] = "",
 			},
-		},
-		[199] = {
-			[67753531] = {
+			[34981303] = {
 				["icon"] = 1,
-				["title"] = "door to southern barrens",
+				["title"] = "pet supplies",
 				["cont"] = false,
 				["desc"] = "",
-			},
-		},
-		[379] = {
-			[62478008] = {
-				["title"] = "Kun Quests Start",
-				["cont"] = true,
-				["icon"] = 19,
-				["desc"] = "(did start quests to clear village to get candy)",
 			},
 		},
 		[1565] = {
@@ -820,43 +763,94 @@ HandyNotes_HandyNotesDB = {
 				["desc"] = "",
 			},
 		},
-		[1543] = {
-			[23423126] = {
+		[65] = {
+			[74274765] = {
 				["icon"] = 1,
-				["title"] = "port to Cauldron",
-				["cont"] = true,
-				["desc"] = "",
-			},
-			[34854357] = {
-				["icon"] = 1,
-				["title"] = "Port",
-				["cont"] = true,
-				["desc"] = "",
+				["title"] = "start",
+				["cont"] = false,
+				["desc"] = "stonetalon quest start",
 			},
 		},
 	},
+	["profileKeys"] = {
+		["Nahko - Shadowsong"] = "Nahko - Shadowsong",
+		["Eleryla - Arygos"] = "Eleryla - Arygos",
+		["Stawka - Thrall"] = "Stawka - Thrall",
+		["Obsequy - Arygos"] = "Obsequy - Arygos",
+		["Haedrig - Shadowsong"] = "Haedrig - Shadowsong",
+		["Vodevil - Borean Tundra"] = "Vodevil - Borean Tundra",
+		["That - Shadowsong"] = "That - Shadowsong",
+		["Christar - Shadowsong"] = "Christar - Shadowsong",
+		["Légere - Thrall"] = "Légere - Thrall",
+		["Skeevee - Shadowsong"] = "Skeevee - Shadowsong",
+		["Turing - Shadowsong"] = "Turing - Shadowsong",
+		["Bahnker - Thrall"] = "Bahnker - Thrall",
+		["Jozef - Arygos"] = "Jozef - Arygos",
+		["Nahko - Thrall"] = "Nahko - Thrall",
+		["Reinze - Thrall"] = "Reinze - Thrall",
+		["Gewey - Shadowsong"] = "Gewey - Shadowsong",
+		["Bahnka - Borean Tundra"] = "Bahnka - Borean Tundra",
+		["Jozeph - Thrall"] = "Jozeph - Thrall",
+		["Karkol - Shadowsong"] = "Karkol - Shadowsong",
+		["Coo - Shadowsong"] = "Coo - Shadowsong",
+		["Christar - Illidan"] = "Christar - Illidan",
+		["Christar - Borean Tundra"] = "Christar - Borean Tundra",
+		["Christar - Thrall"] = "Christar - Thrall",
+		["Eleryla - Shadowsong"] = "Eleryla - Shadowsong",
+		["Tandont - Hyjal"] = "Tandont - Hyjal",
+		["Mortesque - Thrall"] = "Mortesque - Thrall",
+		["Painter - Shadowsong"] = "Painter - Shadowsong",
+		["Eleryla - Thrall"] = "Eleryla - Thrall",
+		["Missnuggles - Borean Tundra"] = "Missnuggles - Borean Tundra",
+		["Bobahh - Shadowsong"] = "Bobahh - Shadowsong",
+		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
+		["Phizzle - Thrall"] = "Phizzle - Thrall",
+		["Eleryla - Illidan"] = "Eleryla - Illidan",
+		["Zandu - Illidan"] = "Zandu - Illidan",
+		["Karkol - Hyjal"] = "Karkol - Hyjal",
+		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
+		["Tandu - Thrall"] = "Tandu - Thrall",
+		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Christar - Hyjal"] = "Christar - Hyjal",
+		["Tandu - Arygos"] = "Tandu - Arygos",
+		["Goulette - Shadowsong"] = "Goulette - Shadowsong",
+		["Fattee - Arygos"] = "Fattee - Arygos",
+		["Scaryjoey - Thrall"] = "Scaryjoey - Thrall",
+		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
+		["Karkol - Thrall"] = "Karkol - Thrall",
+		["Karnos - Thrall"] = "Karnos - Thrall",
+		["Legere - Arygos"] = "Legere - Arygos",
+		["Quazlespaz - Borean Tundra"] = "Quazlespaz - Borean Tundra",
+		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
+		["Goulette - Illidan"] = "Goulette - Illidan",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Bahnk - Illidan"] = "Bahnk - Illidan",
+		["Loremeister - Thrall"] = "Loremeister - Thrall",
+		["Dahtsihk - Shadowsong"] = "Dahtsihk - Shadowsong",
+		["Quazzarr - Shadowsong"] = "Quazzarr - Shadowsong",
+		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
+		["Gewey - Arygos"] = "Gewey - Arygos",
+		["Stawkah - Borean Tundra"] = "Stawkah - Borean Tundra",
+		["Stegaspike - Shadowsong"] = "Stegaspike - Shadowsong",
+		["Obsequy - Shadowsong"] = "Obsequy - Shadowsong",
+		["Speshul - Borean Tundra"] = "Speshul - Borean Tundra",
+		["Bullschit - Thrall"] = "Bullschit - Thrall",
+		["Goulette - Thrall"] = "Goulette - Thrall",
+		["Légere - Shadowsong"] = "Légere - Shadowsong",
+		["Obsequy - Illidan"] = "Obsequy - Illidan",
+	},
 	["profiles"] = {
-		["Missnuggles - Borean Tundra"] = {
-		},
 		["Nahko - Shadowsong"] = {
 		},
 		["Eleryla - Arygos"] = {
 		},
 		["Stawka - Thrall"] = {
 		},
-		["Bobahh - Shadowsong"] = {
-		},
 		["Obsequy - Arygos"] = {
 		},
 		["Haedrig - Shadowsong"] = {
 		},
-		["Eleryla - Thrall"] = {
-		},
-		["Painter - Shadowsong"] = {
-		},
-		["Turing - Shadowsong"] = {
-		},
-		["Tandu - Shadowsong"] = {
+		["Vodevil - Borean Tundra"] = {
 		},
 		["That - Shadowsong"] = {
 		},
@@ -866,59 +860,21 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Skeevee - Shadowsong"] = {
 		},
-		["Phizzle - Thrall"] = {
+		["Turing - Shadowsong"] = {
 		},
-		["Mnuchin - Thrall"] = {
-		},
-		["Fortehmogs - Hyjal"] = {
-		},
-		["Goulette - Illidan"] = {
-		},
-		["Dahtsihk - Shadowsong"] = {
-		},
-		["Stawkah - Borean Tundra"] = {
-		},
-		["Zandu - Illidan"] = {
-		},
-		["Obsequy - Shadowsong"] = {
-		},
-		["Tandieu - Hyjal"] = {
-		},
-		["Quazzarr - Thrall"] = {
-		},
-		["Speshul - Borean Tundra"] = {
-		},
-		["Obsequy - Thrall"] = {
-		},
-		["Reinze - Thrall"] = {
-		},
-		["Christar - Hyjal"] = {
-		},
-		["Tandu - Arygos"] = {
-		},
-		["Tandu - Thrall"] = {
+		["Bahnker - Thrall"] = {
 		},
 		["Jozef - Arygos"] = {
 		},
+		["Nahko - Thrall"] = {
+		},
+		["Reinze - Thrall"] = {
+		},
 		["Gewey - Shadowsong"] = {
-		},
-		["Goulette - Shadowsong"] = {
-		},
-		["Obsequy - Illidan"] = {
 		},
 		["Bahnka - Borean Tundra"] = {
 		},
 		["Jozeph - Thrall"] = {
-		},
-		["Fattee - Arygos"] = {
-		},
-		["Scaryjoey - Thrall"] = {
-		},
-		["Eleryla - Illidan"] = {
-		},
-		["Légere - Shadowsong"] = {
-		},
-		["Karnos - Thrall"] = {
 		},
 		["Karkol - Shadowsong"] = {
 		},
@@ -930,39 +886,89 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Christar - Thrall"] = {
 		},
-		["Legere - Arygos"] = {
-		},
 		["Eleryla - Shadowsong"] = {
-		},
-		["Vodevil - Borean Tundra"] = {
-		},
-		["Bullschit - Thrall"] = {
-		},
-		["Loremeister - Thrall"] = {
-		},
-		["Bahnker - Thrall"] = {
-		},
-		["Nahko - Thrall"] = {
 		},
 		["Tandont - Hyjal"] = {
 		},
-		["Gewey - Arygos"] = {
-		},
-		["Bahnk - Illidan"] = {
-		},
-		["Stegaspike - Shadowsong"] = {
-		},
 		["Mortesque - Thrall"] = {
 		},
-		["Quazzarr - Shadowsong"] = {
+		["Painter - Shadowsong"] = {
 		},
-		["Quazlespaz - Borean Tundra"] = {
+		["Eleryla - Thrall"] = {
 		},
-		["Goulette - Thrall"] = {
+		["Missnuggles - Borean Tundra"] = {
+		},
+		["Bobahh - Shadowsong"] = {
+		},
+		["Tandu - Shadowsong"] = {
+		},
+		["Phizzle - Thrall"] = {
+		},
+		["Eleryla - Illidan"] = {
+		},
+		["Zandu - Illidan"] = {
+		},
+		["Karkol - Hyjal"] = {
+		},
+		["Mnuchin - Thrall"] = {
+		},
+		["Tandu - Thrall"] = {
+		},
+		["Obsequy - Thrall"] = {
+		},
+		["Christar - Hyjal"] = {
+		},
+		["Tandu - Arygos"] = {
+		},
+		["Goulette - Shadowsong"] = {
+		},
+		["Fattee - Arygos"] = {
+		},
+		["Scaryjoey - Thrall"] = {
+		},
+		["Bullscht - Hyjal"] = {
 		},
 		["Karkol - Thrall"] = {
 		},
-		["Bullscht - Hyjal"] = {
+		["Karnos - Thrall"] = {
+		},
+		["Legere - Arygos"] = {
+		},
+		["Quazlespaz - Borean Tundra"] = {
+		},
+		["Fortehmogs - Hyjal"] = {
+		},
+		["Goulette - Illidan"] = {
+		},
+		["Tandieu - Hyjal"] = {
+		},
+		["Bahnk - Illidan"] = {
+		},
+		["Loremeister - Thrall"] = {
+		},
+		["Dahtsihk - Shadowsong"] = {
+		},
+		["Quazzarr - Shadowsong"] = {
+		},
+		["Quazzarr - Thrall"] = {
+		},
+		["Gewey - Arygos"] = {
+		},
+		["Stawkah - Borean Tundra"] = {
+		},
+		["Stegaspike - Shadowsong"] = {
+		},
+		["Obsequy - Shadowsong"] = {
+		},
+		["Speshul - Borean Tundra"] = {
+		},
+		["Bullschit - Thrall"] = {
+		},
+		["Goulette - Thrall"] = {
+		},
+		["Légere - Shadowsong"] = {
+		},
+		["Obsequy - Illidan"] = {
 		},
 	},
 }

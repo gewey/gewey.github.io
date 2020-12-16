@@ -27,14 +27,14 @@ AspectDB = {
 		["Loremeister - Thrall"] = "Loremeister - Thrall",
 		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 		["Nahko - Thrall"] = "Nahko - Thrall",
-		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
 		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
-		["Eleryla - Thrall"] = "Eleryla - Thrall",
 		["Légere - Thrall"] = "Légere - Thrall",
+		["Eleryla - Thrall"] = "Eleryla - Thrall",
 		["Christar - Thrall"] = "Christar - Thrall",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Fortehmogs - Hyjal"] = "Fortehmogs - Hyjal",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -47,7 +47,7 @@ AspectDB = {
 		},
 		["Nahko - Thrall"] = {
 		},
-		["Fortehmogs - Hyjal"] = {
+		["Tandieu - Hyjal"] = {
 		},
 		["Tandu - Thrall"] = {
 		},
@@ -55,13 +55,13 @@ AspectDB = {
 		},
 		["Bullscht - Hyjal"] = {
 		},
-		["Eleryla - Thrall"] = {
-		},
 		["Légere - Thrall"] = {
+		},
+		["Eleryla - Thrall"] = {
 		},
 		["Christar - Thrall"] = {
 		},
-		["Tandieu - Hyjal"] = {
+		["Fortehmogs - Hyjal"] = {
 		},
 	},
 }

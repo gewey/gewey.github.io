@@ -29,6 +29,7 @@ ButtonForgeGlobalBackup = {
 				["HBonusBar"] = true,
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
+				["GridAlwaysOn"] = true,
 				["Buttons"] = {
 					{
 						["ItemName"] = "Black Ice",
@@ -191,7 +192,6 @@ ButtonForgeGlobalBackup = {
 						["ItemId"] = 183986,
 					}, -- [30]
 				},
-				["GridAlwaysOn"] = true,
 				["HSpec2"] = false,
 				["BonusBar"] = false,
 				["Alpha"] = 1,
@@ -218,6 +218,7 @@ ButtonForgeGlobalBackup = {
 				["HBonusBar"] = true,
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
+				["GridAlwaysOn"] = true,
 				["Buttons"] = {
 					{
 						["ItemName"] = "Dimensional Ripper - Everlook",
@@ -320,7 +321,6 @@ ButtonForgeGlobalBackup = {
 					{
 					}, -- [32]
 				},
-				["GridAlwaysOn"] = true,
 				["HSpec2"] = false,
 				["BonusBar"] = false,
 				["Alpha"] = 1,
@@ -347,6 +347,7 @@ ButtonForgeGlobalBackup = {
 				["HBonusBar"] = true,
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
+				["GridAlwaysOn"] = true,
 				["Buttons"] = {
 					{
 						["ItemName"] = "JewelCraft",
@@ -361,7 +362,6 @@ ButtonForgeGlobalBackup = {
 						["ItemId"] = 132518,
 					}, -- [2]
 				},
-				["GridAlwaysOn"] = true,
 				["HSpec2"] = false,
 				["BonusBar"] = false,
 				["Alpha"] = 1,
@@ -388,6 +388,7 @@ ButtonForgeGlobalBackup = {
 				["HBonusBar"] = false,
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
+				["GridAlwaysOn"] = false,
 				["Buttons"] = {
 					{
 						["BonusActionId"] = 1,
@@ -442,7 +443,6 @@ ButtonForgeGlobalBackup = {
 						["CustomActionName"] = "vehicleexit",
 					}, -- [13]
 				},
-				["GridAlwaysOn"] = false,
 				["HSpec2"] = false,
 				["BonusBar"] = true,
 				["Alpha"] = 1,
@@ -469,6 +469,7 @@ ButtonForgeGlobalBackup = {
 				["HBonusBar"] = true,
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
+				["GridAlwaysOn"] = true,
 				["Buttons"] = {
 					{
 						["ItemName"] = "Dalaran Disc",
@@ -519,7 +520,6 @@ ButtonForgeGlobalBackup = {
 					{
 					}, -- [14]
 				},
-				["GridAlwaysOn"] = true,
 				["HSpec2"] = false,
 				["BonusBar"] = false,
 				["Alpha"] = 1,
@@ -547,16 +547,6 @@ ButtonForgeGlobalBackup = {
 		["Version"] = 0.9,
 		["VersionMinor"] = 50,
 	},
-	["Quazzarr-Thrall"] = {
-		["AdvancedMode"] = false,
-		["AddonName"] = "Button Forge",
-		["ConfigureMode"] = false,
-		["RightClickSelfCast"] = false,
-		["Bars"] = {
-		},
-		["Version"] = 0.9,
-		["VersionMinor"] = 50,
-	},
 	["Légere-Thrall"] = {
 		["AdvancedMode"] = false,
 		["AddonName"] = "Button Forge",
@@ -566,6 +556,16 @@ ButtonForgeGlobalBackup = {
 		},
 		["Version"] = 1,
 		["VersionMinor"] = 0.2,
+	},
+	["Tandu-Thrall"] = {
+		["AdvancedMode"] = false,
+		["AddonName"] = "Button Forge",
+		["ConfigureMode"] = false,
+		["RightClickSelfCast"] = false,
+		["Bars"] = {
+		},
+		["Version"] = 0.9,
+		["VersionMinor"] = 50,
 	},
 	["Mortesque-Thrall"] = {
 		["AdvancedMode"] = false,
@@ -587,14 +587,7 @@ ButtonForgeGlobalBackup = {
 				["KeyBindText"] = true,
 				["HSpec3"] = false,
 				["Enabled"] = true,
-				["Buttons"] = {
-					{
-						["SpellNameRank"] = "Path of Frost",
-						["Mode"] = "spell",
-						["SpellId"] = 3714,
-						["SpellName"] = "Path of Frost",
-					}, -- [1]
-				},
+				["GridAlwaysOn"] = true,
 				["Top"] = 929.666259765625,
 				["BonusBar"] = false,
 				["Alpha"] = 1,
@@ -606,13 +599,20 @@ ButtonForgeGlobalBackup = {
 				["MacroText"] = true,
 				["Scale"] = 1.115732230556521,
 				["ButtonGap"] = 6,
-				["GridAlwaysOn"] = true,
+				["Buttons"] = {
+					{
+						["SpellNameRank"] = "Path of Frost",
+						["Mode"] = "spell",
+						["SpellId"] = 3714,
+						["SpellName"] = "Path of Frost",
+					}, -- [1]
+				},
 			}, -- [1]
 		},
 		["Version"] = 0.9,
 		["VersionMinor"] = 50,
 	},
-	["Tandu-Thrall"] = {
+	["Quazzarr-Thrall"] = {
 		["AdvancedMode"] = false,
 		["AddonName"] = "Button Forge",
 		["ConfigureMode"] = false,

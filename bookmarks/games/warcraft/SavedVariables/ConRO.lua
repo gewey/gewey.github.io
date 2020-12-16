@@ -9,10 +9,10 @@ ConROPreferences = {
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Karkol - Shadowsong"] = "Karkol - Shadowsong",
 		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Karkol - Thrall"] = "Karkol - Thrall",
 		["Légere - Thrall"] = "Légere - Thrall",
 		["Christar - Thrall"] = "Christar - Thrall",
-		["Karkol - Thrall"] = "Karkol - Thrall",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 	},
 	["profiles"] = {
 		["Fortehmogs - Hyjal"] = {
@@ -31,13 +31,13 @@ ConROPreferences = {
 		},
 		["Bullscht - Hyjal"] = {
 		},
-		["Tandieu - Hyjal"] = {
+		["Karkol - Thrall"] = {
 		},
 		["Légere - Thrall"] = {
 		},
 		["Christar - Thrall"] = {
 		},
-		["Karkol - Thrall"] = {
+		["Tandieu - Hyjal"] = {
 		},
 	},
 }

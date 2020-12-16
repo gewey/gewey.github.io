@@ -1,0 +1,2 @@
+
+WorldBossStatusDB = nil

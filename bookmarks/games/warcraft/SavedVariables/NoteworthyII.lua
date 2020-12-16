@@ -6,29 +6,29 @@ Noteworthy_DB = {
 	["show_floating_button"] = false,
 	["qnote_edit"] = false,
 	["initialised"] = true,
-	["snd_scribble"] = {
-		["type"] = -20,
-		["snd"] = 3093,
-	},
+	["last_curs"] = 20,
+	["Remind_Tandieu"] = true,
 	["character_count"] = 1,
-	["qnote_prefix"] = true,
-	["save_on_close"] = true,
 	["chat_logging"] = true,
+	["date_only_format"] = "%d %b %Y",
+	["save_on_close"] = true,
+	["last_tab"] = 1,
 	["snd_pageturn"] = {
-		["type"] = -20,
 		["snd"] = 875,
-	},
-	["character_list"] = {
-		"Tandieu", -- [1]
-	},
-	["snd_pageclose"] = {
 		["type"] = -20,
+	},
+	["Tandieu"] = "Tandieu's notes.\n\n44",
+	["snd_pageclose"] = {
 		["snd"] = 876,
+		["type"] = -20,
 	},
 	["quick_text"] = "This page is used to store quick notes created via the context menu (right-click minimap and floating buttons, or use /quicknotes or QuickNotes macro).",
 	["focus_text"] = true,
+	["snd_scribble"] = {
+		["snd"] = 3093,
+		["type"] = -20,
+	},
 	["play_sounds"] = true,
-	["date_only_format"] = "%d %b %Y",
 	["minimap_button"] = {
 	},
 	["date_time_format"] = "%d %b %Y %H:%M",
@@ -36,6 +36,8 @@ Noteworthy_DB = {
 	["shared_text"] = "These notes are shared between all of your characters.",
 	["remember_page"] = false,
 	["coord_format"] = "%.2f %.2f",
-	["Tandieu"] = "Tandieu's notes.",
-	["last_tab"] = 1,
+	["character_list"] = {
+		"Tandieu", -- [1]
+	},
+	["qnote_prefix"] = true,
 }

@@ -1,5 +1,6 @@
 VER 3 0100000000000009 "#N*" "1738657"
-#showtooltip
+#showtooltip aspect of the turtle
+/use Barnacle-Encrusted Gem
 /use Aspect of the Turtle
 /use [@player]Tar Trap
 /use 15
@@ -27,8 +28,10 @@ VER 3 010000000000000B "#N2" "INV_MISC_QUESTIONMARK"
 /use [spec:1,talent:5/3,nomod,@cursor]Binding Shot;[spec:3,talent:5/3,nomod,@cursor]Binding Shot;[mod:ctrl,@cursor]Tar Trap;[mod:alt,@cursor]Freezing Trap;[spec:1,talent:5/2,@cursor]Flare;[spec:2]Binding Shot; Binding Shot
 END
 VER 3 010000000000000A "#N3" "INV_MISC_QUESTIONMARK"
+#showtooltip aspect of the cheetah
 /run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
 /use [combat][indoors][mod]Aspect of the Cheetah
+/use Moonfang's Paw
 END
 VER 3 0100000000000005 "1" "237524"
 #showtooltip
@@ -76,16 +79,17 @@ END
 VER 3 010000000000001B "=" "132293"
 #showtooltip Feign Death
 /use The Necronom-i-nom
-/use Coin of Many Faces
 /use Feign Death
 /use play dead
 END
 VER 3 010000000000000F "F" "INV_MISC_QUESTIONMARK"
 /use [spec:1,talent:6/2]Barrage;[spec:3]Wildfire Bomb
 /castsequence [@cursor] reset=10 Tar Trap, Flare
+/use Azerite Firework Launcher
 END
 VER 3 010000000000000D "G" "458729"
-#showtooltip
+#showtooltip misdirection
+/use [@focus,help,nodead][@pet,nodead][@none]Aqir Egg Cluster
 /use [@focus,help,nodead][@pet,nodead][@none]Misdirection
 /use [@focus,help,nodead][@pet,nodead][@none]Spirit Mend(Exotic Ability)
 /use Mend Pet

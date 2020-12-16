@@ -2,61 +2,151 @@
 ACP_Data = {
 	["sorter"] = "Default",
 	["NoRecurse"] = false,
-	["NoChildren"] = true,
 	["AddonSet"] = {
 		{
 			["name"] = "Raid",
 		}, -- [1]
 		{
 			"ConRO", -- [1]
-			"ConRO_Hunter", -- [2]
-			"AllTheThings", -- [3]
-			"AchieveIt", -- [4]
-			"AckisRecipeList", -- [5]
-			"AckisRecipeList_Cooking", -- [6]
-			"AckisRecipeList_Enchanting", -- [7]
-			"AckisRecipeList_Engineering", -- [8]
-			"AckisRecipeList_QuickScan", -- [9]
-			"AspectOfTheHunter", -- [10]
-			"BetterWardrobe", -- [11]
-			"BtWQuests", -- [12]
-			"BtWQuestsBattleForAzeroth", -- [13]
-			"BtWQuestsBattleForAzerothPrologue", -- [14]
-			"BtWQuestsCataclysm", -- [15]
-			"BtWQuestsLegion", -- [16]
-			"BtWQuestsMistsOfPandaria", -- [17]
-			"BtWQuestsShadowlands", -- [18]
-			"BtWQuestsShadowlandsPrologue", -- [19]
-			"BtWQuestsTheBurningCrusade", -- [20]
-			"BtWQuestsWarlordsOfDraenor", -- [21]
-			"ButtonForge", -- [22]
-			"KayrCovenantMissions", -- [23]
-			"CovenantForge", -- [24]
-			"HolidayReminder", -- [25]
-			"ImprovedMacroFrame", -- [26]
-			"!KalielsTracker", -- [27]
-			"Ace3", -- [28]
-			"MinimapRangeExtender", -- [29]
-			"MountCollector", -- [30]
-			"MythicDungeonTools", -- [31]
-			"Overachiever", -- [32]
-			"Overachiever_Cache", -- [33]
-			"Overachiever_Tabs", -- [34]
-			"Overachiever_Trade", -- [35]
-			"Peggle", -- [36]
-			"PetTracker", -- [37]
-			"QuestPointer", -- [38]
-			"QuestsChanged", -- [39]
-			"RareScanner", -- [40]
-			"Rematch", -- [41]
-			"Rematch_TSMPetValues", -- [42]
-			"Skillet", -- [43]
-			"TomTom", -- [44]
-			"UnlimitedMapPinDistance", -- [45]
-			"WoWChallenger", -- [46]
-			"WQAchievements", -- [47]
-			"TradeSkillMaster", -- [48]
-			"TradeSkillMaster_AppHelper", -- [49]
+			"ConRO_Shaman", -- [2]
+			"ConRO_Monk", -- [3]
+			"ConRO_Mage", -- [4]
+			"ConRO_Warlock", -- [5]
+			"ConRO_DemonHunter", -- [6]
+			"ConRO_Hunter", -- [7]
+			"ConRO_DeathKnight", -- [8]
+			"ConRO_Warrior", -- [9]
+			"ConRO_Paladin", -- [10]
+			"ConRO_Druid", -- [11]
+			"ConRO_Rogue", -- [12]
+			"ConRO_Priest", -- [13]
+			"AllTheThings", -- [14]
+			"AchieveIt", -- [15]
+			"AckisRecipeList", -- [16]
+			"AckisRecipeList_Alchemy", -- [17]
+			"AckisRecipeList_Blacksmithing", -- [18]
+			"AckisRecipeList_Cooking", -- [19]
+			"AckisRecipeList_Enchanting", -- [20]
+			"AckisRecipeList_Engineering", -- [21]
+			"AckisRecipeList_FirstAid", -- [22]
+			"AckisRecipeList_Inscription", -- [23]
+			"AckisRecipeList_Jewelcrafting", -- [24]
+			"AckisRecipeList_Leatherworking", -- [25]
+			"AckisRecipeList_Mining", -- [26]
+			"AckisRecipeList_Tailoring", -- [27]
+			"AckisRecipeList_QuickScan", -- [28]
+			"AskMrRobot", -- [29]
+			"AspectOfTheHunter", -- [30]
+			"BetterWardrobe", -- [31]
+			"BetterWardrobe_Tooltips", -- [32]
+			"BigWigs", -- [33]
+			"BigWigs_CastleNathria", -- [34]
+			"BigWigs_Core", -- [35]
+			"BigWigs_Options", -- [36]
+			"BigWigs_Plugins", -- [37]
+			"BigWigs_Shadowlands", -- [38]
+			"BtWQuests", -- [39]
+			"BtWQuestsBattleForAzerothPrologue", -- [40]
+			"BtWQuestsCataclysm", -- [41]
+			"BtWQuestsLegion", -- [42]
+			"BtWQuestsMistsOfPandaria", -- [43]
+			"BtWQuestsShadowlands", -- [44]
+			"BtWQuestsTheBurningCrusade", -- [45]
+			"BtWQuestsWarlordsOfDraenor", -- [46]
+			"ChampionCommander", -- [47]
+			"KayrCovenantMissions", -- [48]
+			"CovenantForge", -- [49]
+			"Details_RaidPowerBars", -- [50]
+			"Details_TargetCaller", -- [51]
+			"Details_CastHistory", -- [52]
+			"Details_DeathGraphs", -- [53]
+			"Details_EncounterDetails", -- [54]
+			"Details_RaidCheck", -- [55]
+			"Details_Streamer", -- [56]
+			"Details_TimeLine", -- [57]
+			"Details_TinyThreat", -- [58]
+			"Details_Vanguard", -- [59]
+			"Details_ChartViewer", -- [60]
+			"GarrisonCommander", -- [61]
+			"GarrisonCommander-Broker", -- [62]
+			"HandyNotes_Achievements", -- [63]
+			"HandyNotes_BattleForAzerothTreasures", -- [64]
+			"HandyNotes_CovenantSanctum", -- [65]
+			"HandyNotes_FieldPhotographer", -- [66]
+			"HandyNotes_Oribos", -- [67]
+			"HandyNotes_Shadowlands", -- [68]
+			"HandyNotes_ShadowlandsTreasures", -- [69]
+			"HandyNotes_TravelGuide", -- [70]
+			"HandyNotes_VisionsOfNZoth", -- [71]
+			"HandyNotes_HigherDimensionalLearning", -- [72]
+			"HandyNotes_LegionTreasures", -- [73]
+			"HandyNotes_LongForgottenHippogryph", -- [74]
+			"HandyNotes_Lorewalkers", -- [75]
+			"HandyNotes_LostAndFound", -- [76]
+			"HandyNotes_SuramarLeylines", -- [77]
+			"HandyNotes_SuramarTelemancy", -- [78]
+			"HandyNotes_TreasureHunter", -- [79]
+			"HearthRoulette", -- [80]
+			"HolidayReminder", -- [81]
+			"Immersion", -- [82]
+			"ImprovedMacroFrame", -- [83]
+			"Ace3", -- [84]
+			"ListTracker", -- [85]
+			"LootAppraiser", -- [86]
+			"ls_Toasts", -- [87]
+			"MinimapRangeExtender", -- [88]
+			"MountCollector", -- [89]
+			"MythicDungeonTools", -- [90]
+			"OrderHallCommander", -- [91]
+			"Overachiever", -- [92]
+			"Overachiever_Cache", -- [93]
+			"Overachiever_Tabs", -- [94]
+			"Overachiever_Trade", -- [95]
+			"Peggle", -- [96]
+			"PetTracker", -- [97]
+			"PetTracker_Battle", -- [98]
+			"PetTracker_Config", -- [99]
+			"PetTracker_Journal", -- [100]
+			"QuestPointer", -- [101]
+			"RaiderIO_DB_US_A", -- [102]
+			"RaiderIO_DB_EU_A", -- [103]
+			"RaiderIO_DB_EU_H", -- [104]
+			"RaiderIO_DB_KR_A", -- [105]
+			"RaiderIO_DB_KR_H", -- [106]
+			"RaiderIO_DB_TW_A", -- [107]
+			"RaiderIO_DB_TW_H", -- [108]
+			"RaiderIO_DB_US_A_R", -- [109]
+			"RaiderIO_DB_EU_A_R", -- [110]
+			"RaiderIO_DB_EU_H_R", -- [111]
+			"RaiderIO_DB_KR_A_R", -- [112]
+			"RaiderIO_DB_KR_H_R", -- [113]
+			"RaiderIO_DB_TW_A_R", -- [114]
+			"RaiderIO_DB_TW_H_R", -- [115]
+			"RareScanner", -- [116]
+			"Rematch", -- [117]
+			"Rematch_TSMPetValues", -- [118]
+			"RepHelper", -- [119]
+			"Routes", -- [120]
+			"TomTom", -- [121]
+			"totalRP3", -- [122]
+			"totalRP3_Data", -- [123]
+			"UnlimitedMapPinDistance", -- [124]
+			"WeakAurasTemplates", -- [125]
+			"WorldQuestsList", -- [126]
+			"WorldFlightMap", -- [127]
+			"WoWChallenger", -- [128]
+			"WQAchievements", -- [129]
+			"AzeriteUI", -- [130]
+			"WIT", -- [131]
+			"TradeSkillMaster", -- [132]
+			"TradeSkillMaster_AppHelper", -- [133]
+			"IcyVeinsStatPriority", -- [134]
+			"Narcissus", -- [135]
+			"Narcissus_Database", -- [136]
+			"Narcissus_Barbershop", -- [137]
+			"DBM-Brawlers", -- [138]
+			"DBM-DMF", -- [139]
+			"DBM-WorldEvents", -- [140]
 			["name"] = "Tandu",
 		}, -- [2]
 		{
@@ -74,18 +164,19 @@ ACP_Data = {
 			["name"] = "Banker",
 		},
 	},
+	["NoChildren"] = true,
 	["collapsed"] = {
 	},
 	["ProtectedAddons"] = {
 		["RSA_Mage"] = true,
 		["Plater"] = true,
 		["RSA_Druid"] = true,
+		["SharedMedia_MyMedia"] = true,
 		["REFlex"] = true,
 		["HandyNotes"] = true,
 		["MoveAnything"] = true,
 		["RSA_Warrior"] = true,
 		["CursorMod"] = true,
-		["IcyVeinsStatPriority"] = true,
 		["RSA_Monk"] = true,
 		["!KalielsTracker"] = true,
 		["ElvUI_OptionsUI"] = true,
@@ -103,6 +194,7 @@ ACP_Data = {
 		["DBM-StatusBarTimers"] = true,
 		["WowheadQuickLink"] = true,
 		["WeakAurasOptions"] = true,
+		["DejaCharacterStats"] = true,
 		["Details_SlackMeter"] = true,
 		["Details_DataStorage"] = true,
 		["DropTheCheapestThing"] = true,
@@ -115,38 +207,40 @@ ACP_Data = {
 		["SimpleRareElite"] = true,
 		["Details"] = true,
 		["DBM-DefaultSkin"] = true,
+		["SharedMedia"] = true,
 		["DBM-Shadowlands"] = true,
+		["HunterBuddy"] = true,
 		["LargerMacroIconSelectionData"] = true,
 		["Simulationcraft"] = true,
 		["NameplateSCT"] = true,
 		["FriendGroups"] = true,
-		["AdiBags"] = true,
+		["ParagonReputation"] = true,
 		["RSA_Priest"] = true,
-		["AdiBags_Config"] = true,
+		["AdiBags"] = true,
 		["ExRT"] = true,
 		["DBM-Core"] = true,
 		["Blizzard_ArchaeologyUI"] = true,
+		["AdiBags_Config"] = true,
+		["LargerMacroIconSelection"] = true,
 		["AstralKeys"] = true,
 		["MacroToolkit"] = true,
-		["RaiderIO_DB_US_H_R"] = true,
 		["DoesMyAltKnowThat"] = true,
-		["DBM-Party-Shadowlands"] = true,
 		["RaiderIO"] = true,
-		["RSA_Options"] = true,
+		["DBM-Party-Shadowlands"] = true,
 		["RSA_Reminders"] = true,
+		["RSA_Options"] = true,
 		["HandyNotes_DungeonLocations"] = true,
 		["RSA_DeathKnight"] = true,
-		["RSA_Hunter"] = true,
 		["WeakAurasArchive"] = true,
+		["RSA_Hunter"] = true,
 		["MBB"] = true,
-		["Buffet"] = true,
-		["WorldFlightMap"] = true,
 		["RSA"] = true,
+		["RaiderIO_DB_US_H_R"] = true,
 		["WeakAurasCompanion"] = true,
 		["Blizzard_AchievementUI"] = true,
 		["Pawn"] = true,
-		["LargerMacroIconSelection"] = true,
 		["PremadeGroupsFilter"] = true,
 		["DBM-CastleNathria"] = true,
+		["TinyPad"] = true,
 	},
 }

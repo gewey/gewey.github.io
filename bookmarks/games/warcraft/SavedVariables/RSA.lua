@@ -4,12 +4,6 @@ RSADB = {
 		["LibDualSpec-1.0"] = {
 		},
 	},
-	["global"] = {
-		["ID"] = "1448520341714",
-		["revision"] = "542",
-		["version"] = 4,
-		["releaseType"] = "Release",
-	},
 	["profileKeys"] = {
 		["Nahko - Shadowsong"] = "DRUID",
 		["Karkol - Shadowsong"] = "MAGE",
@@ -20,16 +14,23 @@ RSADB = {
 		["Fortehmogs - Hyjal"] = "PRIEST",
 		["Karkol - Thrall"] = "MAGE",
 		["Loremeister - Thrall"] = "SHAMAN",
+		["Karkol - Hyjal"] = "MAGE",
 		["Quazzarr - Thrall"] = "WARLOCK",
 		["Nahko - Thrall"] = "DRUID",
-		["Mnuchin - Thrall"] = "ROGUE",
+		["Tandieu - Hyjal"] = "HUNTER",
 		["Tandu - Thrall"] = "HUNTER",
 		["Obsequy - Thrall"] = "MONK",
-		["Mortesque - Thrall"] = "DEATHKNIGHT",
+		["Phizzle - Thrall"] = "MAGE",
 		["Christar - Hyjal"] = "MAGE",
 		["Eleryla - Thrall"] = "PRIEST",
-		["Phizzle - Thrall"] = "MAGE",
-		["Tandieu - Hyjal"] = "HUNTER",
+		["Mortesque - Thrall"] = "DEATHKNIGHT",
+		["Mnuchin - Thrall"] = "ROGUE",
+	},
+	["global"] = {
+		["ID"] = "1448520341714",
+		["revision"] = "542",
+		["version"] = 4,
+		["releaseType"] = "Release",
 	},
 	["profiles"] = {
 		["DEATHKNIGHT"] = {
@@ -92,12 +93,12 @@ RSADB = {
 						["Yell"] = true,
 					},
 					["TimeWarp"] = {
-						["SmartGroup"] = false,
 						["Messages"] = {
 							["Start"] = {
 								"LET'S DO THE [LINK] AGAIN!", -- [1]
 							},
 						},
+						["SmartGroup"] = false,
 						["Yell"] = true,
 					},
 					["Counterspell"] = {
@@ -105,15 +106,14 @@ RSADB = {
 						["Emote"] = true,
 						["Yell"] = false,
 					},
-					["SlowFall"] = {
-						["Whisper"] = false,
-					},
 					["RemoveCurse"] = {
 						["Emote"] = true,
 					},
+					["SlowFall"] = {
+						["Whisper"] = false,
+					},
 				},
 			},
-			["Fixed"] = true,
 			["Utilities"] = {
 				["Spells"] = {
 					["Cauldrons"] = {
@@ -142,6 +142,7 @@ RSADB = {
 					},
 				},
 			},
+			["Fixed"] = true,
 		},
 		["PRIEST"] = {
 			["Modules"] = {
@@ -162,6 +163,50 @@ RSADB = {
 			["Fixed"] = true,
 			["General"] = {
 				["Class"] = "WARLOCK",
+			},
+		},
+		["PALADIN"] = {
+			["Modules"] = {
+				["Racials"] = true,
+				["Utilities"] = true,
+				["Paladin"] = true,
+			},
+			["Fixed"] = true,
+			["General"] = {
+				["Class"] = "PALADIN",
+			},
+		},
+		["ROGUE"] = {
+			["Modules"] = {
+				["Racials"] = true,
+				["Utilities"] = true,
+				["Rogue"] = true,
+			},
+			["Fixed"] = true,
+			["General"] = {
+				["Class"] = "ROGUE",
+			},
+		},
+		["DRUID"] = {
+			["Modules"] = {
+				["Racials"] = true,
+				["Druid"] = true,
+				["Utilities"] = true,
+			},
+			["Fixed"] = true,
+			["General"] = {
+				["Class"] = "DRUID",
+			},
+		},
+		["MONK"] = {
+			["Modules"] = {
+				["Racials"] = true,
+				["Utilities"] = true,
+				["Monk"] = true,
+			},
+			["Fixed"] = true,
+			["General"] = {
+				["Class"] = "MONK",
 			},
 		},
 		["HUNTER"] = {
@@ -213,50 +258,6 @@ RSADB = {
 						["Emote"] = true,
 					},
 				},
-			},
-		},
-		["ROGUE"] = {
-			["Modules"] = {
-				["Racials"] = true,
-				["Utilities"] = true,
-				["Rogue"] = true,
-			},
-			["Fixed"] = true,
-			["General"] = {
-				["Class"] = "ROGUE",
-			},
-		},
-		["DRUID"] = {
-			["Modules"] = {
-				["Racials"] = true,
-				["Druid"] = true,
-				["Utilities"] = true,
-			},
-			["Fixed"] = true,
-			["General"] = {
-				["Class"] = "DRUID",
-			},
-		},
-		["MONK"] = {
-			["Modules"] = {
-				["Racials"] = true,
-				["Utilities"] = true,
-				["Monk"] = true,
-			},
-			["Fixed"] = true,
-			["General"] = {
-				["Class"] = "MONK",
-			},
-		},
-		["PALADIN"] = {
-			["Modules"] = {
-				["Racials"] = true,
-				["Utilities"] = true,
-				["Paladin"] = true,
-			},
-			["Fixed"] = true,
-			["General"] = {
-				["Class"] = "PALADIN",
 			},
 		},
 	},

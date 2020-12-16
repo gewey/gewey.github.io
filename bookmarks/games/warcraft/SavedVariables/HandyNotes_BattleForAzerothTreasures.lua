@@ -1,0 +1,10 @@
+
+HandyNotes_BattleForAzerothTreasuresDB = {
+	["profileKeys"] = {
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+	},
+	["profiles"] = {
+		["Tandieu - Hyjal"] = {
+		},
+	},
+}

@@ -57,9 +57,9 @@ HandyNotes_ShadowlandsDB = {
 		["Mortesque - Thrall"] = "Default",
 		["Bullscht - Hyjal"] = "Default",
 		["Christar - Hyjal"] = "Default",
-		["Eleryla - Thrall"] = "Default",
-		["Christar - Thrall"] = "Default",
 		["Légere - Thrall"] = "Default",
+		["Christar - Thrall"] = "Default",
+		["Eleryla - Thrall"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {

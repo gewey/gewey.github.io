@@ -1,5 +1,13 @@
 
 WQADB = {
+	["global"] = {
+		["custom"] = {
+			["missionReward"] = {
+				[151843] = true,
+				[163036] = true,
+			},
+		},
+	},
 	["profileKeys"] = {
 		["Nahko - Shadowsong"] = "Default",
 		["Jozeph - Thrall"] = "Default",
@@ -13,22 +21,14 @@ WQADB = {
 		["Loremeister - Thrall"] = "Default",
 		["Quazzarr - Thrall"] = "Default",
 		["Mnuchin - Thrall"] = "Default",
-		["Nahko - Thrall"] = "Default",
+		["Obsequy - Thrall"] = "Default",
 		["Tandu - Thrall"] = "Default",
 		["Mortesque - Thrall"] = "Default",
-		["Karkol - Thrall"] = "Default",
+		["Tandieu - Hyjal"] = "Default",
 		["Christar - Hyjal"] = "Default",
 		["Eleryla - Thrall"] = "Default",
-		["Tandieu - Hyjal"] = "Default",
-		["Obsequy - Thrall"] = "Default",
-	},
-	["global"] = {
-		["custom"] = {
-			["missionReward"] = {
-				[151843] = true,
-				[163036] = true,
-			},
-		},
+		["Karkol - Thrall"] = "Default",
+		["Nahko - Thrall"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {

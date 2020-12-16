@@ -6,84 +6,6 @@ MythicDungeonToolsDB = {
 		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 	},
 	["global"] = {
-		["currentDungeonIdx"] = 29,
-		["nonFullscreenScale"] = 1,
-		["MDI"] = {
-		},
-		["maximized"] = false,
-		["presets"] = {
-			[15] = {
-				{
-					["objects"] = {
-					},
-					["week"] = 1,
-					["value"] = {
-						["currentPull"] = 1,
-						["currentSublevel"] = 1,
-						["pulls"] = {
-							{
-								["color"] = "ff3eff",
-							}, -- [1]
-						},
-						["currentDungeonIdx"] = 15,
-						["teeming"] = false,
-						["selection"] = {
-							1, -- [1]
-						},
-						["riftOffsets"] = {
-							{
-							}, -- [1]
-						},
-					},
-					["mdi"] = {
-						["freeholdJoined"] = false,
-						["freehold"] = 1,
-						["beguiling"] = 1,
-					},
-					["difficulty"] = 10,
-				}, -- [1]
-			},
-			[29] = {
-				{
-					["objects"] = {
-					},
-					["week"] = 1,
-					["value"] = {
-						["currentPull"] = 1,
-						["currentSublevel"] = 1,
-						["pulls"] = {
-							{
-								["color"] = "ff3eff",
-								[20] = {
-								},
-							}, -- [1]
-						},
-						["currentDungeonIdx"] = 29,
-						["teeming"] = false,
-						["selection"] = {
-							1, -- [1]
-						},
-						["riftOffsets"] = {
-							{
-							}, -- [1]
-						},
-					},
-					["mdi"] = {
-						["freeholdJoined"] = false,
-						["freehold"] = 1,
-						["beguiling"] = 1,
-					},
-					["difficulty"] = 10,
-				}, -- [1]
-			},
-		},
-		["dataCollection"] = {
-		},
-		["dataCollectionCC"] = {
-		},
-		["version"] = 333,
-		["dataCollectionGUID"] = {
-		},
 		["colorPaletteInfo"] = {
 			["customPaletteValues"] = {
 				{
@@ -148,5 +70,83 @@ MythicDungeonToolsDB = {
 				}, -- [12]
 			},
 		},
+		["nonFullscreenScale"] = 1,
+		["MDI"] = {
+		},
+		["maximized"] = false,
+		["presets"] = {
+			[15] = {
+				{
+					["objects"] = {
+					},
+					["week"] = 1,
+					["value"] = {
+						["currentPull"] = 1,
+						["currentSublevel"] = 1,
+						["riftOffsets"] = {
+							{
+							}, -- [1]
+						},
+						["currentDungeonIdx"] = 15,
+						["teeming"] = false,
+						["selection"] = {
+							1, -- [1]
+						},
+						["pulls"] = {
+							{
+								["color"] = "ff3eff",
+							}, -- [1]
+						},
+					},
+					["difficulty"] = 10,
+					["mdi"] = {
+						["freeholdJoined"] = false,
+						["beguiling"] = 1,
+						["freehold"] = 1,
+					},
+				}, -- [1]
+			},
+			[29] = {
+				{
+					["objects"] = {
+					},
+					["week"] = 1,
+					["value"] = {
+						["currentPull"] = 1,
+						["currentSublevel"] = 1,
+						["riftOffsets"] = {
+							{
+							}, -- [1]
+						},
+						["currentDungeonIdx"] = 29,
+						["teeming"] = false,
+						["selection"] = {
+							1, -- [1]
+						},
+						["pulls"] = {
+							{
+								["color"] = "ff3eff",
+								[20] = {
+								},
+							}, -- [1]
+						},
+					},
+					["difficulty"] = 10,
+					["mdi"] = {
+						["freeholdJoined"] = false,
+						["beguiling"] = 1,
+						["freehold"] = 1,
+					},
+				}, -- [1]
+			},
+		},
+		["dataCollection"] = {
+		},
+		["dataCollectionCC"] = {
+		},
+		["version"] = 333,
+		["dataCollectionGUID"] = {
+		},
+		["currentDungeonIdx"] = 29,
 	},
 }

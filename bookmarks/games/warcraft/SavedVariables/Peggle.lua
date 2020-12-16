@@ -19,8 +19,8 @@ PeggleData = {
 				["progress"] = 2,
 			}, -- [4]
 			{
-				["score"] = 0,
-				["progress"] = 0,
+				["score"] = 180305,
+				["progress"] = 1,
 			}, -- [5]
 			{
 				["score"] = 98085,
@@ -47,8 +47,8 @@ PeggleData = {
 				["progress"] = 2,
 			}, -- [11]
 			{
-				["score"] = 100630,
-				["progress"] = 1,
+				["score"] = 128280,
+				["progress"] = 2,
 			}, -- [12]
 			{
 				["score"] = 266750,
@@ -59,11 +59,11 @@ PeggleData = {
 			["activated"] = {
 				5, -- [1]
 				0, -- [2]
-				1, -- [3]
+				2, -- [3]
 				0, -- [4]
 				3, -- [5]
 				0, -- [6]
-				0, -- [7]
+				2, -- [7]
 				0, -- [8]
 				0, -- [9]
 				0, -- [10]
@@ -75,38 +75,38 @@ PeggleData = {
 		["highFPS"] = false,
 		["openLogIn"] = false,
 		["openDeath"] = false,
-		["showMinimapIcon"] = false,
+		["hideOutdated"] = false,
 		["closeCombat"] = true,
-		["mouseOffTrans"] = 0.6,
+		["showMinimapIcon"] = false,
 		["mouseOnTrans"] = 1,
 		["inviteRaid"] = false,
 		["openDuel"] = true,
 		["defaultPublish"] = "GUILD",
 		["closeReadyCheck"] = true,
-		["closePeggleLoot"] = false,
+		["minimapAngle"] = -125.975463261376,
 		["closeDuelComplete"] = false,
-		["inviteChat"] = true,
+		["soundVolume"] = 2,
 		["openFlightStart"] = true,
 		["inviteDecline"] = false,
 		["closeFlightEnd"] = false,
 		["inviteMinimap"] = true,
-		["soundVolume"] = 0,
-		["minimapAngle"] = -125.975463261376,
-		["hideOutdated"] = false,
+		["inviteChat"] = true,
+		["closePeggleLoot"] = false,
+		["mouseOffTrans"] = 0.6,
 	},
 	["recent"] = {
 		6480, -- [1]
 		228220, -- [2]
 		213885, -- [3]
 		247380, -- [4]
-		nil, -- [5]
+		116309, -- [5]
 		98085, -- [6]
 		233480, -- [7]
 		273120, -- [8]
 		150315, -- [9]
 		155980, -- [10]
 		97860, -- [11]
-		100630, -- [12]
+		128280, -- [12]
 		266750, -- [13]
 	},
 	["legalDisplayed"] = true,

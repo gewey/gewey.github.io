@@ -1,9 +1,5 @@
 
 ARLDB2 = {
-	["profileKeys"] = {
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Légere - Thrall"] = "Légere - Thrall",
-	},
 	["global"] = {
 		["tradeskill"] = {
 			["Hyjal"] = {
@@ -16,10 +12,14 @@ ARLDB2 = {
 			},
 		},
 	},
+	["profileKeys"] = {
+		["Légere - Thrall"] = "Légere - Thrall",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+	},
 	["profiles"] = {
-		["Tandieu - Hyjal"] = {
-		},
 		["Légere - Thrall"] = {
+		},
+		["Tandieu - Hyjal"] = {
 		},
 	},
 }

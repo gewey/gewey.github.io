@@ -1,8 +1,8 @@
 
 CovenantForgeDB = {
 	["profileKeys"] = {
-		["Légere - Thrall"] = "Default",
 		["Tandu - Thrall"] = "Default",
+		["Légere - Thrall"] = "Default",
 		["Karkol - Thrall"] = "Default",
 		["Tandieu - Hyjal"] = "Default",
 	},

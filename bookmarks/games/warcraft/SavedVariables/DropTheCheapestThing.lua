@@ -7,8 +7,9 @@ DropTheCheapestThingDB = {
 		},
 	},
 	["profileKeys"] = {
-		["Légere - Thrall"] = "Default",
 		["Tandu - Thrall"] = "Default",
+		["Légere - Thrall"] = "Default",
+		["Karkol - Hyjal"] = "Default",
 		["Tandieu - Hyjal"] = "Default",
 	},
 	["profiles"] = {

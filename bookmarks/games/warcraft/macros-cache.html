@@ -94,6 +94,9 @@ VER 3 0000000000000075 "$Run" "132296"
 /run if IsMouselooking() then MouselookStop() else MouselookStart() end
 END
 VER 3 0000000000000123 "$Targeting" "1380366"
+/tar shade
+/tar infuser
+/tar occu 
 END
 VER 3 000000000000011B "$Tracking" "413587"
 /click [btn:1]MTSB1 LeftButton;[btn:2]MTSB1 RightButton;[btn:3]MTSB1 MiddleButton;[btn:4]MTSB1 Button4;[btn:5]MTSB1 Button5
@@ -232,8 +235,11 @@ VER 3 0000000000000122 "@Banker" "134571"
 /acp addset 25
 /reload ui
 END
-VER 3 0000000000000121 "@Legere" "133040"
-/acp addset 3
+VER 3 000000000000011F "@NO RAID" "135490"
+/acp addset 2
+/acp addset 2
+/acp addset 2
+/acp addset 2
 /reload ui
 END
 VER 3 0000000000000120 "@Raid" "1380676"
@@ -241,10 +247,6 @@ VER 3 0000000000000120 "@Raid" "1380676"
 /acp disableall
 /acp disableall
 /reload ui
-END
-VER 3 000000000000011F "@Tandu" "135490"
-/acp addset 2
-/acp addset 2
 END
 VER 3 0000000000000117 "ab?" "INV_MISC_QUESTIONMARK"
 /click ActionButton1
@@ -276,10 +278,11 @@ VER 3 0000000000000126 "FoodOnlyHP" "INV_Misc_QuestionMark"
 END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
-/cast Headless Horseman's Hearthstone
+/cast Hearthstone
 END
 VER 3 0000000000000107 "ReZ" "INV_MISC_QUESTIONMARK"
 /use [@mouseover, combat] Disposable Spectrophasic Reanimator; [@mouseover, nocombat] Ultimate Gnomish Army Knife
+/use [@mouseover, combat] Spirit Mend(Exotic Ability); [@mouseover, nocombat] Drust Ritual Knife
 END
 VER 3 000000000000012B "TOYSPLOSION" "134511"
 /use Black Ice

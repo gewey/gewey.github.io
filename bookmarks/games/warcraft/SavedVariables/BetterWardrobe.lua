@@ -12,14 +12,14 @@ BetterWardrobe_Options = {
 		["Loremeister - Thrall"] = "Default",
 		["Quazzarr - Thrall"] = "Default",
 		["Mnuchin - Thrall"] = "Default",
-		["Nahko - Thrall"] = "Default",
+		["Phizzle - Thrall"] = "Default",
 		["Tandu - Thrall"] = "Default",
 		["Mortesque - Thrall"] = "Default",
-		["Obsequy - Thrall"] = "Default",
+		["Tandieu - Hyjal"] = "Default",
 		["Christar - Hyjal"] = "Default",
 		["Eleryla - Thrall"] = "Default",
-		["Tandieu - Hyjal"] = "Default",
-		["Phizzle - Thrall"] = "Default",
+		["Obsequy - Thrall"] = "Default",
+		["Nahko - Thrall"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
@@ -41,14 +41,14 @@ BetterWardrobe_CharacterData = {
 		["Loremeister - Thrall"] = "Loremeister - Thrall",
 		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-		["Nahko - Thrall"] = "Nahko - Thrall",
+		["Phizzle - Thrall"] = "Phizzle - Thrall",
 		["Tandu - Thrall"] = "Tandu - Thrall",
 		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		["Christar - Hyjal"] = "Christar - Hyjal",
 		["Eleryla - Thrall"] = "Eleryla - Thrall",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Phizzle - Thrall"] = "Phizzle - Thrall",
+		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Nahko - Thrall"] = "Nahko - Thrall",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -114,10 +114,17 @@ BetterWardrobe_CharacterData = {
 		},
 		["Mortesque - Thrall"] = {
 		},
-		["Nahko - Thrall"] = {
-			["listUpdate"] = 1,
+		["Obsequy - Thrall"] = {
+			["lastTransmogOutfitIDSpec"] = {
+				3, -- [1]
+				3, -- [2]
+				"3", -- [3]
+			},
 		},
 		["Christar - Hyjal"] = {
+		},
+		["Mnuchin - Thrall"] = {
+			["listUpdate"] = 1,
 		},
 		["Karkol - Thrall"] = {
 			["listUpdate"] = 1,
@@ -127,33 +134,46 @@ BetterWardrobe_CharacterData = {
 				5, -- [3]
 			},
 		},
-		["Mnuchin - Thrall"] = {
+		["Nahko - Thrall"] = {
 			["listUpdate"] = 1,
-		},
-		["Obsequy - Thrall"] = {
-			["lastTransmogOutfitIDSpec"] = {
-				3, -- [1]
-				3, -- [2]
-				"3", -- [3]
-			},
 		},
 	},
 }
 BetterWardrobe_SavedSetData = {
+	["profileKeys"] = {
+		["Nahko - Shadowsong"] = "Nahko - Shadowsong",
+		["Jozeph - Thrall"] = "Jozeph - Thrall",
+		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
+		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
+		["Christar - Shadowsong"] = "Christar - Shadowsong",
+		["Légere - Thrall"] = "Légere - Thrall",
+		["Christar - Thrall"] = "Christar - Thrall",
+		["Karkol - Thrall"] = "Karkol - Thrall",
+		["Loremeister - Thrall"] = "Loremeister - Thrall",
+		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
+		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
+		["Phizzle - Thrall"] = "Phizzle - Thrall",
+		["Tandu - Thrall"] = "Tandu - Thrall",
+		["Mortesque - Thrall"] = "Mortesque - Thrall",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Christar - Hyjal"] = "Christar - Hyjal",
+		["Eleryla - Thrall"] = "Eleryla - Thrall",
+		["Obsequy - Thrall"] = "Obsequy - Thrall",
+		["Nahko - Thrall"] = "Nahko - Thrall",
+	},
 	["global"] = {
 		["sets"] = {
 			["Nahko - Shadowsong"] = {
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1729378,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 100,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						101189, -- [1]
 						0, -- [2]
@@ -176,23 +196,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "1",
-					["patchID"] = "",
 					["setID"] = 5000,
-					["uiOrder"] = 100,
-					["icon"] = 1729378,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [1]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1729378,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 200,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						77344, -- [1]
 						0, -- [2]
@@ -215,22 +235,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "nekked",
-					["patchID"] = "",
 					["setID"] = 5001,
-					["uiOrder"] = 200,
-					["icon"] = 1729378,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [2]
 			},
 			["Karkol - Thrall"] = {
 				{
-					["name"] = "1",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -255,21 +276,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5000,
+					["name"] = "1",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [1]
 				{
-					["name"] = "2",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 200,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -294,21 +315,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5001,
+					["name"] = "2",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5001,
+					["uiOrder"] = 200,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [2]
 				{
-					["name"] = "nekked",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 300,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -333,21 +354,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5002,
+					["name"] = "nekked",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5002,
+					["uiOrder"] = 300,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [3]
 				{
-					["name"] = "3",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 133101,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 400,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -372,21 +393,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5003,
+					["name"] = "3",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5003,
+					["uiOrder"] = 400,
+					["icon"] = 133101,
+					["isClass"] = true,
 				}, -- [4]
 				{
-					["name"] = "4",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 500,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -411,21 +432,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5004,
+					["name"] = "4",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5004,
+					["uiOrder"] = 500,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [5]
 				{
-					["name"] = "5",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1670848,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 600,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -450,21 +471,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						81604, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5005,
+					["name"] = "5",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5005,
+					["uiOrder"] = 600,
+					["icon"] = 1670848,
+					["isClass"] = true,
 				}, -- [6]
 				{
-					["name"] = "6",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 340540,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 700,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -489,23 +510,23 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5006,
+					["name"] = "6",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5006,
+					["uiOrder"] = 700,
+					["icon"] = 340540,
+					["isClass"] = true,
 				}, -- [7]
 			},
 			["Loremeister - Thrall"] = {
 				{
-					["name"] = "Black",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -530,21 +551,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5000,
+					["name"] = "Black",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [1]
 				{
-					["name"] = "Totes",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 132768,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 200,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -569,21 +590,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						20961, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5001,
+					["name"] = "Totes",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5001,
+					["uiOrder"] = 200,
+					["icon"] = 132768,
+					["isClass"] = true,
 				}, -- [2]
 				{
-					["name"] = "Totes 2",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 132768,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 300,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -608,21 +629,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						20961, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5002,
+					["name"] = "Totes 2",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5002,
+					["uiOrder"] = 300,
+					["icon"] = 132768,
+					["isClass"] = true,
 				}, -- [3]
 				{
-					["name"] = "nekked",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1360261,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 400,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -647,21 +668,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5003,
+					["name"] = "nekked",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5003,
+					["uiOrder"] = 400,
+					["icon"] = 1360261,
+					["isClass"] = true,
 				}, -- [4]
 				{
-					["name"] = "ghost wolf",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 2324580,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 500,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -686,21 +707,21 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5004,
+					["name"] = "ghost wolf",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5004,
+					["uiOrder"] = 500,
+					["icon"] = 2324580,
+					["isClass"] = true,
 				}, -- [5]
 				{
-					["name"] = "sprite",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 3036699,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 600,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -725,26 +746,25 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5005,
+					["name"] = "sprite",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5005,
+					["uiOrder"] = 600,
+					["icon"] = 3036699,
+					["isClass"] = true,
 				}, -- [6]
 			},
 			["Quazzarr - Thrall"] = {
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 133146,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 100,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						4267, -- [1]
 						0, -- [2]
@@ -767,23 +787,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "1",
-					["patchID"] = "",
 					["setID"] = 5000,
-					["uiOrder"] = 100,
-					["icon"] = 133146,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [1]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 133174,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 200,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						12061, -- [1]
 						0, -- [2]
@@ -806,23 +826,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "2",
-					["patchID"] = "",
 					["setID"] = 5001,
-					["uiOrder"] = 200,
-					["icon"] = 133174,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [2]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 937859,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 300,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						57525, -- [1]
 						0, -- [2]
@@ -845,23 +865,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "AQ",
-					["patchID"] = "",
 					["setID"] = 5002,
-					["uiOrder"] = 300,
-					["icon"] = 937859,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [3]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1125585,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 400,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						4267, -- [1]
 						0, -- [2]
@@ -884,23 +904,23 @@ BetterWardrobe_SavedSetData = {
 						81604, -- [19]
 					},
 					["name"] = "lord",
-					["patchID"] = "",
 					["setID"] = 5003,
-					["uiOrder"] = 400,
-					["icon"] = 1125585,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [4]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 340019,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 500,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						24637, -- [1]
 						0, -- [2]
@@ -923,23 +943,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "4",
-					["patchID"] = "",
 					["setID"] = 5004,
-					["uiOrder"] = 500,
-					["icon"] = 340019,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [5]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1762578,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 600,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						97063, -- [1]
 						0, -- [2]
@@ -962,23 +982,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "nekked",
-					["patchID"] = "",
 					["setID"] = 5005,
-					["uiOrder"] = 600,
-					["icon"] = 1762578,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [6]
 				{
-					["expansionID"] = 1,
+					["isClass"] = true,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1360261,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 700,
 					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 					["sources"] = {
 						77344, -- [1]
 						0, -- [2]
@@ -1001,16 +1021,17 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["name"] = "shadow concil",
-					["patchID"] = "",
 					["setID"] = 5006,
-					["uiOrder"] = 700,
-					["icon"] = 1360261,
-					["isClass"] = true,
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["items"] = {
+					},
 				}, -- [7]
 			},
 			["Tandieu - Hyjal"] = {
 				{
-					["isClass"] = true,
+					["name"] = "Honourbound",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1018,7 +1039,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 100,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						76358, -- [1]
 						0, -- [2]
@@ -1040,16 +1062,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						22002, -- [19]
 					},
-					["name"] = "Honourbound",
+					["isClass"] = true,
 					["setID"] = 5001,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [1]
 				{
-					["isClass"] = true,
+					["name"] = "Dark Ranger </3",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1057,7 +1078,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 200,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						76358, -- [1]
 						0, -- [2]
@@ -1079,16 +1101,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "Dark Ranger </3",
+					["isClass"] = true,
 					["setID"] = 5003,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [2]
 				{
-					["isClass"] = true,
+					["name"] = "horde engineer",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1096,7 +1117,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 300,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						76358, -- [1]
 						0, -- [2]
@@ -1118,16 +1140,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						14607, -- [19]
 					},
-					["name"] = "horde engineer",
+					["isClass"] = true,
 					["setID"] = 5004,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [3]
 				{
-					["isClass"] = true,
+					["name"] = "Steampunk Noble",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1135,7 +1156,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 400,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						107300, -- [1]
 						0, -- [2]
@@ -1157,16 +1179,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "Steampunk Noble",
+					["isClass"] = true,
 					["setID"] = 5005,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [4]
 				{
-					["isClass"] = true,
+					["name"] = "wicked",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1174,7 +1195,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 500,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						69881, -- [1]
 						0, -- [2]
@@ -1196,16 +1218,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						46589, -- [19]
 					},
-					["name"] = "wicked",
+					["isClass"] = true,
 					["setID"] = 5006,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [5]
 				{
-					["isClass"] = true,
+					["name"] = "Cap'n Fishy",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1213,7 +1234,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 600,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						30035, -- [1]
 						0, -- [2]
@@ -1235,16 +1257,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						96514, -- [19]
 					},
-					["name"] = "Cap'n Fishy",
+					["isClass"] = true,
 					["setID"] = 5009,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [6]
 				{
-					["isClass"] = true,
+					["name"] = "N Uldir (not done)",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1252,7 +1273,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 700,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						76358, -- [1]
 						0, -- [2]
@@ -1274,16 +1296,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						96517, -- [19]
 					},
-					["name"] = "N Uldir (not done)",
+					["isClass"] = true,
 					["setID"] = 5010,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [7]
 				{
-					["isClass"] = true,
+					["name"] = "NYA",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1291,7 +1312,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 800,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						108184, -- [1]
 						0, -- [2]
@@ -1313,16 +1335,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "NYA",
+					["isClass"] = true,
 					["setID"] = 5011,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [8]
 				{
-					["isClass"] = true,
+					["name"] = "fuuuuutuuuuurreeee",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1330,7 +1351,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 900,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						59105, -- [1]
 						0, -- [2]
@@ -1352,16 +1374,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						104599, -- [19]
 					},
-					["name"] = "fuuuuutuuuuurreeee",
+					["isClass"] = true,
 					["setID"] = 5012,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [9]
 				{
-					["isClass"] = true,
+					["name"] = "M Uldir (not done)",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1369,7 +1390,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1000,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						21684, -- [1]
 						0, -- [2]
@@ -1391,16 +1413,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						96515, -- [19]
 					},
-					["name"] = "M Uldir (not done)",
+					["isClass"] = true,
 					["setID"] = 5013,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [10]
 				{
-					["isClass"] = true,
+					["name"] = "Edge-Horde",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1408,7 +1429,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1100,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						105890, -- [1]
 						0, -- [2]
@@ -1430,16 +1452,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						14607, -- [19]
 					},
-					["name"] = "Edge-Horde",
+					["isClass"] = true,
 					["setID"] = 5014,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [11]
 				{
-					["isClass"] = true,
+					["name"] = "M BOD",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1447,7 +1468,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1200,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						101862, -- [1]
 						0, -- [2]
@@ -1469,16 +1491,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "M BOD",
+					["isClass"] = true,
 					["setID"] = 5015,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [12]
 				{
-					["isClass"] = true,
+					["name"] = "EP",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1486,7 +1507,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1300,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						104436, -- [1]
 						0, -- [2]
@@ -1508,16 +1530,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "EP",
+					["isClass"] = true,
 					["setID"] = 5017,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [13]
 				{
-					["isClass"] = true,
+					["name"] = "N SRV BOD ",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1525,7 +1546,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1400,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						38891, -- [1]
 						0, -- [2]
@@ -1547,16 +1569,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						14607, -- [19]
 					},
-					["name"] = "N SRV BOD ",
+					["isClass"] = true,
 					["setID"] = 5018,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [14]
 				{
-					["isClass"] = true,
+					["name"] = "nekked",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1564,7 +1585,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1500,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						77344, -- [1]
 						0, -- [2]
@@ -1586,16 +1608,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "nekked",
+					["isClass"] = true,
 					["setID"] = 5019,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [15]
 				{
-					["isClass"] = true,
+					["name"] = "Oh you fancy, huh?",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1603,7 +1624,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1600,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						10543, -- [1]
 						0, -- [2]
@@ -1625,16 +1647,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "Oh you fancy, huh?",
+					["isClass"] = true,
 					["setID"] = 5002,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [16]
 				{
-					["isClass"] = true,
+					["name"] = "Miss Scarlet",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1642,7 +1663,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1700,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						10543, -- [1]
 						0, -- [2]
@@ -1664,16 +1686,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						9122, -- [19]
 					},
-					["name"] = "Miss Scarlet",
+					["isClass"] = true,
 					["setID"] = 5000,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [17]
 				{
-					["isClass"] = true,
+					["name"] = "Bitey Boy",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1681,7 +1702,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 1800,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						105890, -- [1]
 						0, -- [2]
@@ -1703,16 +1725,15 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						83203, -- [19]
 					},
-					["name"] = "Bitey Boy",
+					["isClass"] = true,
 					["setID"] = 5007,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [18]
 				{
-					["isClass"] = true,
+					["name"] = "9.0.2",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
@@ -1720,7 +1741,8 @@ BetterWardrobe_SavedSetData = {
 					["limitedTimeSet"] = false,
 					["uiOrder"] = 100,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						107438, -- [1]
 						0, -- [2]
@@ -1739,24 +1761,23 @@ BetterWardrobe_SavedSetData = {
 						114245, -- [15]
 						99089, -- [16]
 					},
-					["name"] = "9.0.2",
+					["isClass"] = true,
 					["setID"] = 5021,
 					["patchID"] = "",
 					["collected"] = true,
 					["favorite"] = false,
-					["items"] = {
-					},
+					["expansionID"] = 1,
 				}, -- [19]
 			},
 			["Tandu - Thrall"] = {
 				{
-					["name"] = "1",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 3071787,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -1781,26 +1802,26 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5000,
+					["name"] = "1",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 3071787,
+					["isClass"] = true,
 				}, -- [1]
 			},
 			["Mortesque - Thrall"] = {
 				{
-					["items"] = {
-					},
+					["name"] = "Goth",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1360261,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 100,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						77344, -- [1]
 						0, -- [2]
@@ -1823,23 +1844,23 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["isClass"] = true,
-					["patchID"] = "",
 					["setID"] = 5000,
-					["uiOrder"] = 100,
-					["icon"] = 1360261,
-					["name"] = "Goth",
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["expansionID"] = 1,
 				}, -- [1]
 				{
-					["items"] = {
-					},
+					["name"] = "Reven",
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["favorite"] = false,
+					["icon"] = 1360261,
 					["limitedTimeSet"] = false,
-					["collected"] = true,
+					["uiOrder"] = 200,
 					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
+					["items"] = {
+					},
 					["sources"] = {
 						77344, -- [1]
 						0, -- [2]
@@ -1862,927 +1883,24 @@ BetterWardrobe_SavedSetData = {
 						83203, -- [19]
 					},
 					["isClass"] = true,
-					["patchID"] = "",
 					["setID"] = 5001,
-					["uiOrder"] = 200,
-					["icon"] = 1360261,
-					["name"] = "Reven",
+					["patchID"] = "",
+					["collected"] = true,
+					["favorite"] = false,
+					["expansionID"] = 1,
 				}, -- [2]
 			},
 			["Bullscht - Hyjal"] = {
 			},
-			["Mnuchin - Thrall"] = {
-			},
-			["Légere - Thrall"] = {
-				{
-					["name"] = "naked",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						104602, -- [5]
-						84223, -- [6]
-						104130, -- [7]
-						104603, -- [8]
-						104604, -- [9]
-						94331, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						96628, -- [16]
-						57448, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5000,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [1]
-				{
-					["name"] = "1",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133176,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 200,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						12066, -- [1]
-						0, -- [2]
-						13562, -- [3]
-						83202, -- [4]
-						12137, -- [5]
-						3757, -- [6]
-						12037, -- [7]
-						3758, -- [8]
-						42778, -- [9]
-						3060, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						21275, -- [15]
-						16080, -- [16]
-						16331, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5001,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [2]
-				{
-					["name"] = "shield sucks",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1672319,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 300,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						93990, -- [1]
-						0, -- [2]
-						99326, -- [3]
-						30, -- [4]
-						94019, -- [5]
-						96224, -- [6]
-						94056, -- [7]
-						95689, -- [8]
-						94371, -- [9]
-						94053, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						99294, -- [15]
-						94390, -- [16]
-						25941, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5002,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [3]
-				{
-					["name"] = "<3",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 400,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						13562, -- [3]
-						0, -- [4]
-						12137, -- [5]
-						74343, -- [6]
-						45527, -- [7]
-						21457, -- [8]
-						42161, -- [9]
-						13452, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						21275, -- [15]
-						46911, -- [16]
-						16331, -- [17]
-						0, -- [18]
-						0, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5003,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [4]
-				{
-					["name"] = "zuldz",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 500,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						95244, -- [3]
-						83202, -- [4]
-						98587, -- [5]
-						95249, -- [6]
-						93135, -- [7]
-						96973, -- [8]
-						6942, -- [9]
-						68165, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						92318, -- [15]
-						14939, -- [16]
-						95815, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5004,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [5]
-				{
-					["name"] = "lite",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1450790,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 600,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						80966, -- [1]
-						0, -- [2]
-						91149, -- [3]
-						83202, -- [4]
-						10033, -- [5]
-						80969, -- [6]
-						96975, -- [7]
-						10032, -- [8]
-						42161, -- [9]
-						14196, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						28813, -- [15]
-						0, -- [16]
-						0, -- [17]
-						0, -- [18]
-						20961, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5005,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [6]
-				{
-					["name"] = "bloo",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 647895,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 700,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						42715, -- [1]
-						0, -- [2]
-						29971, -- [3]
-						83202, -- [4]
-						42733, -- [5]
-						68378, -- [6]
-						21441, -- [7]
-						45466, -- [8]
-						42778, -- [9]
-						68377, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						68699, -- [15]
-						65952, -- [16]
-						13061, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5006,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [7]
-				{
-					["name"] = "goth",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 800,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						4464, -- [3]
-						20495, -- [4]
-						9961, -- [5]
-						74343, -- [6]
-						14296, -- [7]
-						13903, -- [8]
-						42161, -- [9]
-						13902, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						74325, -- [15]
-						13104, -- [16]
-						33368, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5007,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [8]
-				{
-					["name"] = "lok'tar",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 900,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						99326, -- [3]
-						20495, -- [4]
-						99338, -- [5]
-						74343, -- [6]
-						99189, -- [7]
-						99340, -- [8]
-						99319, -- [9]
-						99336, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						17579, -- [16]
-						99971, -- [17]
-						0, -- [18]
-						22002, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5008,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [9]
-				{
-					["name"] = "sin",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 1000,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						102660, -- [3]
-						26321, -- [4]
-						102661, -- [5]
-						80969, -- [6]
-						102664, -- [7]
-						102665, -- [8]
-						102666, -- [9]
-						102662, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						102668, -- [15]
-						16177, -- [16]
-						9060, -- [17]
-						0, -- [18]
-						22006, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5009,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [10]
-				{
-					["name"] = "Angel",
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 3447985,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 1100,
-					["hiddenUtilCollected"] = false,
-					["items"] = {
-					},
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						80890, -- [3]
-						83202, -- [4]
-						109292, -- [5]
-						0, -- [6]
-						95696, -- [7]
-						109295, -- [8]
-						104604, -- [9]
-						109300, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						107263, -- [15]
-						0, -- [16]
-						0, -- [17]
-						0, -- [18]
-						20961, -- [19]
-					},
-					["isClass"] = true,
-					["setID"] = 5010,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
-				}, -- [11]
-			},
-			["Obsequy - Thrall"] = {
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133147,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						13669, -- [1]
-						0, -- [2]
-						14945, -- [3]
-						83202, -- [4]
-						31713, -- [5]
-						6087, -- [6]
-						5470, -- [7]
-						4737, -- [8]
-						8735, -- [9]
-						31514, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						15343, -- [15]
-						13082, -- [16]
-						11961, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "1",
-					["setID"] = 5000,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [1]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133148,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 200,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						30878, -- [1]
-						0, -- [2]
-						10459, -- [3]
-						83202, -- [4]
-						10456, -- [5]
-						33323, -- [6]
-						1196, -- [7]
-						8568, -- [8]
-						8543, -- [9]
-						32857, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						9568, -- [15]
-						16512, -- [16]
-						16512, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "2",
-					["setID"] = 5001,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [2]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133694,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 300,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						46420, -- [1]
-						0, -- [2]
-						9724, -- [3]
-						2620, -- [4]
-						30528, -- [5]
-						10497, -- [6]
-						1578, -- [7]
-						30517, -- [8]
-						8735, -- [9]
-						3813, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						7093, -- [15]
-						4094, -- [16]
-						4094, -- [17]
-						0, -- [18]
-						19567, -- [19]
-					},
-					["name"] = "3",
-					["setID"] = 5002,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [3]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 400,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						104602, -- [5]
-						78631, -- [6]
-						2809, -- [7]
-						104603, -- [8]
-						104604, -- [9]
-						94331, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						62415, -- [16]
-						14636, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "Tribal Whore",
-					["setID"] = 5003,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [4]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133077,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 500,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						33094, -- [1]
-						0, -- [2]
-						12409, -- [3]
-						83202, -- [4]
-						3425, -- [5]
-						33323, -- [6]
-						60870, -- [7]
-						29657, -- [8]
-						19031, -- [9]
-						4788, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						36552, -- [15]
-						93169, -- [16]
-						93169, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "5",
-					["setID"] = 5004,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [5]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133135,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 600,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						9762, -- [1]
-						0, -- [2]
-						13636, -- [3]
-						1254, -- [4]
-						9536, -- [5]
-						2505, -- [6]
-						9578, -- [7]
-						10565, -- [8]
-						31569, -- [9]
-						32857, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						74625, -- [15]
-						29723, -- [16]
-						29723, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "Purpleblack rogue i guess ",
-					["setID"] = 5005,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [6]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133148,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 700,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						30878, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						9809, -- [5]
-						6087, -- [6]
-						4118, -- [7]
-						4737, -- [8]
-						2734, -- [9]
-						1195, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						93749, -- [16]
-						93749, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "7",
-					["setID"] = 5006,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [7]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133148,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 800,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						30878, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						3041, -- [5]
-						2505, -- [6]
-						1196, -- [7]
-						4737, -- [8]
-						2734, -- [9]
-						1195, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						17579, -- [16]
-						17579, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "8",
-					["setID"] = 5007,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [8]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133147,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 900,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						13669, -- [1]
-						0, -- [2]
-						14945, -- [3]
-						83202, -- [4]
-						31713, -- [5]
-						2505, -- [6]
-						46886, -- [7]
-						29651, -- [8]
-						8735, -- [9]
-						5469, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						80808, -- [15]
-						29289, -- [16]
-						13104, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "99",
-					["setID"] = 5008,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [9]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 133148,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 1000,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						30878, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						89250, -- [5]
-						63128, -- [6]
-						2809, -- [7]
-						2880, -- [8]
-						46466, -- [9]
-						9810, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						77345, -- [15]
-						42893, -- [16]
-						42893, -- [17]
-						0, -- [18]
-						46589, -- [19]
-					},
-					["name"] = "klaxxxi",
-					["setID"] = 5009,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [10]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1674415,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 1100,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						94006, -- [1]
-						0, -- [2]
-						96142, -- [3]
-						83202, -- [4]
-						96141, -- [5]
-						94455, -- [6]
-						96138, -- [7]
-						74647, -- [8]
-						96220, -- [9]
-						95115, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						94392, -- [15]
-						93169, -- [16]
-						93169, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "sneaky snaek",
-					["setID"] = 5010,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [11]
-				{
-					["isClass"] = true,
-					["type"] = "Saved",
-					["description"] = "",
-					["label"] = "Saved Set",
-					["icon"] = 1360261,
-					["limitedTimeSet"] = false,
-					["uiOrder"] = 1200,
-					["hiddenUtilCollected"] = false,
-					["expansionID"] = 1,
-					["sources"] = {
-						77344, -- [1]
-						0, -- [2]
-						77343, -- [3]
-						83202, -- [4]
-						2429, -- [5]
-						63128, -- [6]
-						46886, -- [7]
-						29651, -- [8]
-						8735, -- [9]
-						5469, -- [10]
-						0, -- [11]
-						0, -- [12]
-						0, -- [13]
-						0, -- [14]
-						74625, -- [15]
-						95418, -- [16]
-						0, -- [17]
-						0, -- [18]
-						83203, -- [19]
-					},
-					["name"] = "prp",
-					["setID"] = 5011,
-					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["items"] = {
-					},
-				}, -- [12]
-			},
 			["Jozeph - Thrall"] = {
 				{
-					["name"] = "Powder Ranger",
+					["expansionID"] = 1,
 					["type"] = "Saved",
 					["description"] = "",
 					["label"] = "Saved Set",
-					["icon"] = 1266406,
+					["favorite"] = false,
 					["limitedTimeSet"] = false,
-					["uiOrder"] = 100,
+					["collected"] = true,
 					["hiddenUtilCollected"] = false,
 					["items"] = {
 					},
@@ -2807,36 +1925,918 @@ BetterWardrobe_SavedSetData = {
 						0, -- [18]
 						0, -- [19]
 					},
-					["isClass"] = true,
-					["setID"] = 5000,
+					["name"] = "Powder Ranger",
 					["patchID"] = "",
-					["collected"] = true,
-					["favorite"] = false,
-					["expansionID"] = 1,
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 1266406,
+					["isClass"] = true,
 				}, -- [1]
 			},
+			["Légere - Thrall"] = {
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						104602, -- [5]
+						84223, -- [6]
+						104130, -- [7]
+						104603, -- [8]
+						104604, -- [9]
+						94331, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						96628, -- [16]
+						57448, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "naked",
+					["patchID"] = "",
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [1]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						12066, -- [1]
+						0, -- [2]
+						13562, -- [3]
+						83202, -- [4]
+						12137, -- [5]
+						3757, -- [6]
+						12037, -- [7]
+						3758, -- [8]
+						42778, -- [9]
+						3060, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						21275, -- [15]
+						16080, -- [16]
+						16331, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "1",
+					["patchID"] = "",
+					["setID"] = 5001,
+					["uiOrder"] = 200,
+					["icon"] = 133176,
+					["isClass"] = true,
+				}, -- [2]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						93990, -- [1]
+						0, -- [2]
+						99326, -- [3]
+						30, -- [4]
+						94019, -- [5]
+						96224, -- [6]
+						94056, -- [7]
+						95689, -- [8]
+						94371, -- [9]
+						94053, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						99294, -- [15]
+						94390, -- [16]
+						25941, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "shield sucks",
+					["patchID"] = "",
+					["setID"] = 5002,
+					["uiOrder"] = 300,
+					["icon"] = 1672319,
+					["isClass"] = true,
+				}, -- [3]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						13562, -- [3]
+						0, -- [4]
+						12137, -- [5]
+						74343, -- [6]
+						45527, -- [7]
+						21457, -- [8]
+						42161, -- [9]
+						13452, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						21275, -- [15]
+						46911, -- [16]
+						16331, -- [17]
+						0, -- [18]
+						0, -- [19]
+					},
+					["name"] = "<3",
+					["patchID"] = "",
+					["setID"] = 5003,
+					["uiOrder"] = 400,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [4]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						95244, -- [3]
+						83202, -- [4]
+						98587, -- [5]
+						95249, -- [6]
+						93135, -- [7]
+						96973, -- [8]
+						6942, -- [9]
+						68165, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						92318, -- [15]
+						14939, -- [16]
+						95815, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "zuldz",
+					["patchID"] = "",
+					["setID"] = 5004,
+					["uiOrder"] = 500,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [5]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						80966, -- [1]
+						0, -- [2]
+						91149, -- [3]
+						83202, -- [4]
+						10033, -- [5]
+						80969, -- [6]
+						96975, -- [7]
+						10032, -- [8]
+						42161, -- [9]
+						14196, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						28813, -- [15]
+						0, -- [16]
+						0, -- [17]
+						0, -- [18]
+						20961, -- [19]
+					},
+					["name"] = "lite",
+					["patchID"] = "",
+					["setID"] = 5005,
+					["uiOrder"] = 600,
+					["icon"] = 1450790,
+					["isClass"] = true,
+				}, -- [6]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						42715, -- [1]
+						0, -- [2]
+						29971, -- [3]
+						83202, -- [4]
+						42733, -- [5]
+						68378, -- [6]
+						21441, -- [7]
+						45466, -- [8]
+						42778, -- [9]
+						68377, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						68699, -- [15]
+						65952, -- [16]
+						13061, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "bloo",
+					["patchID"] = "",
+					["setID"] = 5006,
+					["uiOrder"] = 700,
+					["icon"] = 647895,
+					["isClass"] = true,
+				}, -- [7]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						4464, -- [3]
+						20495, -- [4]
+						9961, -- [5]
+						74343, -- [6]
+						14296, -- [7]
+						13903, -- [8]
+						42161, -- [9]
+						13902, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						74325, -- [15]
+						13104, -- [16]
+						33368, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["name"] = "goth",
+					["patchID"] = "",
+					["setID"] = 5007,
+					["uiOrder"] = 800,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [8]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						99326, -- [3]
+						20495, -- [4]
+						99338, -- [5]
+						74343, -- [6]
+						99189, -- [7]
+						99340, -- [8]
+						99319, -- [9]
+						99336, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						17579, -- [16]
+						99971, -- [17]
+						0, -- [18]
+						22002, -- [19]
+					},
+					["name"] = "lok'tar",
+					["patchID"] = "",
+					["setID"] = 5008,
+					["uiOrder"] = 900,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [9]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						102660, -- [3]
+						26321, -- [4]
+						102661, -- [5]
+						80969, -- [6]
+						102664, -- [7]
+						102665, -- [8]
+						102666, -- [9]
+						102662, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						102668, -- [15]
+						16177, -- [16]
+						9060, -- [17]
+						0, -- [18]
+						22006, -- [19]
+					},
+					["name"] = "sin",
+					["patchID"] = "",
+					["setID"] = 5009,
+					["uiOrder"] = 1000,
+					["icon"] = 1360261,
+					["isClass"] = true,
+				}, -- [10]
+				{
+					["expansionID"] = 1,
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["items"] = {
+					},
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						80890, -- [3]
+						83202, -- [4]
+						109292, -- [5]
+						0, -- [6]
+						95696, -- [7]
+						109295, -- [8]
+						104604, -- [9]
+						109300, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						107263, -- [15]
+						0, -- [16]
+						0, -- [17]
+						0, -- [18]
+						20961, -- [19]
+					},
+					["name"] = "Angel",
+					["patchID"] = "",
+					["setID"] = 5010,
+					["uiOrder"] = 1100,
+					["icon"] = 3447985,
+					["isClass"] = true,
+				}, -- [11]
+			},
+			["Obsequy - Thrall"] = {
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						13669, -- [1]
+						0, -- [2]
+						14945, -- [3]
+						83202, -- [4]
+						31713, -- [5]
+						6087, -- [6]
+						5470, -- [7]
+						4737, -- [8]
+						8735, -- [9]
+						31514, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						15343, -- [15]
+						13082, -- [16]
+						11961, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5000,
+					["uiOrder"] = 100,
+					["icon"] = 133147,
+					["name"] = "1",
+				}, -- [1]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						30878, -- [1]
+						0, -- [2]
+						10459, -- [3]
+						83202, -- [4]
+						10456, -- [5]
+						33323, -- [6]
+						1196, -- [7]
+						8568, -- [8]
+						8543, -- [9]
+						32857, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						9568, -- [15]
+						16512, -- [16]
+						16512, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5001,
+					["uiOrder"] = 200,
+					["icon"] = 133148,
+					["name"] = "2",
+				}, -- [2]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						46420, -- [1]
+						0, -- [2]
+						9724, -- [3]
+						2620, -- [4]
+						30528, -- [5]
+						10497, -- [6]
+						1578, -- [7]
+						30517, -- [8]
+						8735, -- [9]
+						3813, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						7093, -- [15]
+						4094, -- [16]
+						4094, -- [17]
+						0, -- [18]
+						19567, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5002,
+					["uiOrder"] = 300,
+					["icon"] = 133694,
+					["name"] = "3",
+				}, -- [3]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						104602, -- [5]
+						78631, -- [6]
+						2809, -- [7]
+						104603, -- [8]
+						104604, -- [9]
+						94331, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						62415, -- [16]
+						14636, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5003,
+					["uiOrder"] = 400,
+					["icon"] = 1360261,
+					["name"] = "Tribal Whore",
+				}, -- [4]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						33094, -- [1]
+						0, -- [2]
+						12409, -- [3]
+						83202, -- [4]
+						3425, -- [5]
+						33323, -- [6]
+						60870, -- [7]
+						29657, -- [8]
+						19031, -- [9]
+						4788, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						36552, -- [15]
+						93169, -- [16]
+						93169, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5004,
+					["uiOrder"] = 500,
+					["icon"] = 133077,
+					["name"] = "5",
+				}, -- [5]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						9762, -- [1]
+						0, -- [2]
+						13636, -- [3]
+						1254, -- [4]
+						9536, -- [5]
+						2505, -- [6]
+						9578, -- [7]
+						10565, -- [8]
+						31569, -- [9]
+						32857, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						74625, -- [15]
+						29723, -- [16]
+						29723, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5005,
+					["uiOrder"] = 600,
+					["icon"] = 133135,
+					["name"] = "Purpleblack rogue i guess ",
+				}, -- [6]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						30878, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						9809, -- [5]
+						6087, -- [6]
+						4118, -- [7]
+						4737, -- [8]
+						2734, -- [9]
+						1195, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						93749, -- [16]
+						93749, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5006,
+					["uiOrder"] = 700,
+					["icon"] = 133148,
+					["name"] = "7",
+				}, -- [7]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						30878, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						3041, -- [5]
+						2505, -- [6]
+						1196, -- [7]
+						4737, -- [8]
+						2734, -- [9]
+						1195, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						17579, -- [16]
+						17579, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5007,
+					["uiOrder"] = 800,
+					["icon"] = 133148,
+					["name"] = "8",
+				}, -- [8]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						13669, -- [1]
+						0, -- [2]
+						14945, -- [3]
+						83202, -- [4]
+						31713, -- [5]
+						2505, -- [6]
+						46886, -- [7]
+						29651, -- [8]
+						8735, -- [9]
+						5469, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						80808, -- [15]
+						29289, -- [16]
+						13104, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5008,
+					["uiOrder"] = 900,
+					["icon"] = 133147,
+					["name"] = "99",
+				}, -- [9]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						30878, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						89250, -- [5]
+						63128, -- [6]
+						2809, -- [7]
+						2880, -- [8]
+						46466, -- [9]
+						9810, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						77345, -- [15]
+						42893, -- [16]
+						42893, -- [17]
+						0, -- [18]
+						46589, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5009,
+					["uiOrder"] = 1000,
+					["icon"] = 133148,
+					["name"] = "klaxxxi",
+				}, -- [10]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						94006, -- [1]
+						0, -- [2]
+						96142, -- [3]
+						83202, -- [4]
+						96141, -- [5]
+						94455, -- [6]
+						96138, -- [7]
+						74647, -- [8]
+						96220, -- [9]
+						95115, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						94392, -- [15]
+						93169, -- [16]
+						93169, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5010,
+					["uiOrder"] = 1100,
+					["icon"] = 1674415,
+					["name"] = "sneaky snaek",
+				}, -- [11]
+				{
+					["items"] = {
+					},
+					["type"] = "Saved",
+					["description"] = "",
+					["label"] = "Saved Set",
+					["favorite"] = false,
+					["limitedTimeSet"] = false,
+					["collected"] = true,
+					["hiddenUtilCollected"] = false,
+					["expansionID"] = 1,
+					["sources"] = {
+						77344, -- [1]
+						0, -- [2]
+						77343, -- [3]
+						83202, -- [4]
+						2429, -- [5]
+						63128, -- [6]
+						46886, -- [7]
+						29651, -- [8]
+						8735, -- [9]
+						5469, -- [10]
+						0, -- [11]
+						0, -- [12]
+						0, -- [13]
+						0, -- [14]
+						74625, -- [15]
+						95418, -- [16]
+						0, -- [17]
+						0, -- [18]
+						83203, -- [19]
+					},
+					["isClass"] = true,
+					["patchID"] = "",
+					["setID"] = 5011,
+					["uiOrder"] = 1200,
+					["icon"] = 1360261,
+					["name"] = "prp",
+				}, -- [12]
+			},
+			["Mnuchin - Thrall"] = {
+			},
 		},
-	},
-	["profileKeys"] = {
-		["Nahko - Shadowsong"] = "Nahko - Shadowsong",
-		["Jozeph - Thrall"] = "Jozeph - Thrall",
-		["Tandu - Shadowsong"] = "Tandu - Shadowsong",
-		["Bullscht - Hyjal"] = "Bullscht - Hyjal",
-		["Christar - Shadowsong"] = "Christar - Shadowsong",
-		["Légere - Thrall"] = "Légere - Thrall",
-		["Christar - Thrall"] = "Christar - Thrall",
-		["Karkol - Thrall"] = "Karkol - Thrall",
-		["Loremeister - Thrall"] = "Loremeister - Thrall",
-		["Quazzarr - Thrall"] = "Quazzarr - Thrall",
-		["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-		["Nahko - Thrall"] = "Nahko - Thrall",
-		["Tandu - Thrall"] = "Tandu - Thrall",
-		["Mortesque - Thrall"] = "Mortesque - Thrall",
-		["Obsequy - Thrall"] = "Obsequy - Thrall",
-		["Christar - Hyjal"] = "Christar - Hyjal",
-		["Eleryla - Thrall"] = "Eleryla - Thrall",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Phizzle - Thrall"] = "Phizzle - Thrall",
 	},
 	["profiles"] = {
 		["Nahko - Shadowsong"] = {
@@ -2863,14 +2863,14 @@ BetterWardrobe_SubstituteItemData = {
 		["Loremeister - Thrall"] = "Default",
 		["Quazzarr - Thrall"] = "Default",
 		["Mnuchin - Thrall"] = "Default",
-		["Nahko - Thrall"] = "Default",
+		["Phizzle - Thrall"] = "Default",
 		["Tandu - Thrall"] = "Default",
 		["Mortesque - Thrall"] = "Default",
-		["Obsequy - Thrall"] = "Default",
+		["Tandieu - Hyjal"] = "Default",
 		["Christar - Hyjal"] = "Default",
 		["Eleryla - Thrall"] = "Default",
-		["Tandieu - Hyjal"] = "Default",
-		["Phizzle - Thrall"] = "Default",
+		["Obsequy - Thrall"] = "Default",
+		["Nahko - Thrall"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
@@ -2891,14 +2891,14 @@ BetterWardrobe_ListData = {
 			["Loremeister - Thrall"] = "Loremeister - Thrall",
 			["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 			["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+			["Nahko - Thrall"] = "Nahko - Thrall",
 			["Tandu - Thrall"] = "Tandu - Thrall",
 			["Mortesque - Thrall"] = "Mortesque - Thrall",
-			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Obsequy - Thrall"] = "Obsequy - Thrall",
 			["Christar - Hyjal"] = "Christar - Hyjal",
 			["Eleryla - Thrall"] = "Eleryla - Thrall",
-			["Obsequy - Thrall"] = "Obsequy - Thrall",
-			["Nahko - Thrall"] = "Nahko - Thrall",
+			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		},
 		["profiles"] = {
 			["Nahko - Shadowsong"] = {
@@ -2932,15 +2932,15 @@ BetterWardrobe_ListData = {
 			},
 			["Mortesque - Thrall"] = {
 			},
-			["Obsequy - Thrall"] = {
+			["Nahko - Thrall"] = {
 			},
 			["Christar - Hyjal"] = {
 			},
-			["Mnuchin - Thrall"] = {
-			},
 			["Karkol - Thrall"] = {
 			},
-			["Nahko - Thrall"] = {
+			["Mnuchin - Thrall"] = {
+			},
+			["Obsequy - Thrall"] = {
 			},
 		},
 	},
@@ -2957,26 +2957,26 @@ BetterWardrobe_ListData = {
 			["Loremeister - Thrall"] = "Loremeister - Thrall",
 			["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 			["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+			["Nahko - Thrall"] = "Nahko - Thrall",
 			["Tandu - Thrall"] = "Tandu - Thrall",
 			["Mortesque - Thrall"] = "Mortesque - Thrall",
-			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Obsequy - Thrall"] = "Obsequy - Thrall",
 			["Christar - Hyjal"] = "Christar - Hyjal",
 			["Eleryla - Thrall"] = "Eleryla - Thrall",
-			["Obsequy - Thrall"] = "Obsequy - Thrall",
-			["Nahko - Thrall"] = "Nahko - Thrall",
+			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		},
 		["profiles"] = {
 			["Nahko - Shadowsong"] = {
 				["lists"] = {
 					{
-						["set"] = {
+						["extraset"] = {
 						},
+						["name"] = "Collection List",
 						["item"] = {
 							[8611] = true,
 						},
-						["name"] = "Collection List",
-						["extraset"] = {
+						["set"] = {
 						},
 					}, -- [1]
 				},
@@ -2988,12 +2988,12 @@ BetterWardrobe_ListData = {
 			["Tandu - Shadowsong"] = {
 				["lists"] = {
 					{
-						["set"] = {
-						},
-						["item"] = {
+						["extraset"] = {
 						},
 						["name"] = "Collection List",
-						["extraset"] = {
+						["item"] = {
+						},
+						["set"] = {
 						},
 					}, -- [1]
 				},
@@ -3003,12 +3003,12 @@ BetterWardrobe_ListData = {
 			["Christar - Shadowsong"] = {
 				["lists"] = {
 					{
-						["extraset"] = {
+						["set"] = {
 						},
-						["name"] = "Collection List",
 						["item"] = {
 						},
-						["set"] = {
+						["name"] = "Collection List",
+						["extraset"] = {
 						},
 					}, -- [1]
 				},
@@ -3025,12 +3025,12 @@ BetterWardrobe_ListData = {
 			["Phizzle - Thrall"] = {
 				["lists"] = {
 					{
-						["extraset"] = {
+						["set"] = {
 						},
-						["name"] = "Collection List",
 						["item"] = {
 						},
-						["set"] = {
+						["name"] = "Collection List",
+						["extraset"] = {
 						},
 					}, -- [1]
 				},
@@ -3056,9 +3056,42 @@ BetterWardrobe_ListData = {
 					}, -- [1]
 				},
 			},
-			["Mortesque - Thrall"] = {
+			["Karkol - Thrall"] = {
+				["lists"] = {
+					{
+						["name"] = "Collection List",
+					}, -- [1]
+				},
 			},
 			["Tandu - Thrall"] = {
+				["lists"] = {
+					{
+						["name"] = "Collection List",
+					}, -- [1]
+				},
+			},
+			["Mortesque - Thrall"] = {
+			},
+			["Nahko - Thrall"] = {
+				["lists"] = {
+					{
+						["set"] = {
+						},
+						["item"] = {
+						},
+						["name"] = "Collection List",
+						["extraset"] = {
+						},
+					}, -- [1]
+				},
+			},
+			["Christar - Hyjal"] = {
+				["lists"] = {
+				},
+			},
+			["Eleryla - Thrall"] = {
+			},
+			["Mnuchin - Thrall"] = {
 				["lists"] = {
 					{
 						["name"] = "Collection List",
@@ -3069,41 +3102,9 @@ BetterWardrobe_ListData = {
 				["lists"] = {
 				},
 			},
-			["Mnuchin - Thrall"] = {
-				["lists"] = {
-					{
-						["name"] = "Collection List",
-					}, -- [1]
-				},
-			},
-			["Christar - Hyjal"] = {
-				["lists"] = {
-				},
-			},
-			["Eleryla - Thrall"] = {
-			},
-			["Nahko - Thrall"] = {
-				["lists"] = {
-					{
-						["extraset"] = {
-						},
-						["name"] = "Collection List",
-						["item"] = {
-						},
-						["set"] = {
-						},
-					}, -- [1]
-				},
-			},
-			["Karkol - Thrall"] = {
-				["lists"] = {
-					{
-						["name"] = "Collection List",
-					}, -- [1]
-				},
-			},
 		},
 	},
+	["lastUpdte"] = 1,
 	["OutfitDB"] = {
 		["profileKeys"] = {
 			["Nahko - Shadowsong"] = "Nahko - Shadowsong",
@@ -3117,14 +3118,14 @@ BetterWardrobe_ListData = {
 			["Loremeister - Thrall"] = "Loremeister - Thrall",
 			["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 			["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+			["Nahko - Thrall"] = "Nahko - Thrall",
 			["Tandu - Thrall"] = "Tandu - Thrall",
 			["Mortesque - Thrall"] = "Mortesque - Thrall",
-			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Obsequy - Thrall"] = "Obsequy - Thrall",
 			["Christar - Hyjal"] = "Christar - Hyjal",
 			["Eleryla - Thrall"] = "Eleryla - Thrall",
-			["Obsequy - Thrall"] = "Obsequy - Thrall",
-			["Nahko - Thrall"] = "Nahko - Thrall",
+			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		},
 		["char"] = {
 			["Nahko - Shadowsong"] = {
@@ -3180,13 +3181,13 @@ BetterWardrobe_ListData = {
 						114245, -- [15]
 						99089, -- [16]
 						["outfitID"] = 21,
-						["name"] = "9.0.2",
-						["index"] = 1,
-						["offHandEnchant"] = 0,
-						[19] = 83203,
-						["mainHandEnchant"] = 0,
-						["icon"] = 3514677,
 						["set"] = "extra",
+						["name"] = "9.0.2",
+						["offHandEnchant"] = 0,
+						["mainHandEnchant"] = 0,
+						[19] = 83203,
+						["icon"] = 3514677,
+						["index"] = 1,
 					}, -- [1]
 				},
 			},
@@ -3218,7 +3219,6 @@ BetterWardrobe_ListData = {
 			},
 		},
 	},
-	["lastUpdte"] = 1,
 	["HiddenAppearanceDB"] = {
 		["profileKeys"] = {
 			["Nahko - Shadowsong"] = "Nahko - Shadowsong",
@@ -3232,14 +3232,14 @@ BetterWardrobe_ListData = {
 			["Loremeister - Thrall"] = "Loremeister - Thrall",
 			["Quazzarr - Thrall"] = "Quazzarr - Thrall",
 			["Mnuchin - Thrall"] = "Mnuchin - Thrall",
-			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+			["Nahko - Thrall"] = "Nahko - Thrall",
 			["Tandu - Thrall"] = "Tandu - Thrall",
 			["Mortesque - Thrall"] = "Mortesque - Thrall",
-			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Obsequy - Thrall"] = "Obsequy - Thrall",
 			["Christar - Hyjal"] = "Christar - Hyjal",
 			["Eleryla - Thrall"] = "Eleryla - Thrall",
-			["Obsequy - Thrall"] = "Obsequy - Thrall",
-			["Nahko - Thrall"] = "Nahko - Thrall",
+			["Karkol - Thrall"] = "Karkol - Thrall",
+			["Tandieu - Hyjal"] = "Tandieu - Hyjal",
 		},
 		["profiles"] = {
 			["Nahko - Shadowsong"] = {
@@ -3268,15 +3268,15 @@ BetterWardrobe_ListData = {
 			},
 			["Mortesque - Thrall"] = {
 			},
-			["Obsequy - Thrall"] = {
+			["Nahko - Thrall"] = {
 			},
 			["Christar - Hyjal"] = {
 			},
-			["Mnuchin - Thrall"] = {
-			},
 			["Karkol - Thrall"] = {
 			},
-			["Nahko - Thrall"] = {
+			["Mnuchin - Thrall"] = {
+			},
+			["Obsequy - Thrall"] = {
 			},
 		},
 	},

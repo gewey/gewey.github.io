@@ -1,6 +1,9 @@
 
 KalielsTrackerDB = {
 	["char"] = {
+		["Karkol - Hyjal"] = {
+			["collapsed"] = true,
+		},
 		["Nahko - Shadowsong"] = {
 			["quests"] = {
 				["num"] = 9,
@@ -16,14 +19,14 @@ KalielsTrackerDB = {
 				["num"] = 21,
 			},
 		},
-		["Tandieu - Hyjal"] = {
+		["Nahko - Thrall"] = {
 			["quests"] = {
-				["num"] = 23,
+				["num"] = 10,
 			},
 		},
-		["Tandu - Shadowsong"] = {
+		["Légere - Thrall"] = {
 			["quests"] = {
-				["num"] = 1,
+				["num"] = 12,
 			},
 		},
 		["Quazzarr - Thrall"] = {
@@ -31,14 +34,14 @@ KalielsTrackerDB = {
 				["num"] = 17,
 			},
 		},
-		["Nahko - Thrall"] = {
+		["Mnuchin - Thrall"] = {
 			["quests"] = {
-				["num"] = 10,
+				["num"] = 1,
 			},
 		},
-		["Eleryla - Thrall"] = {
+		["Mortesque - Thrall"] = {
 			["quests"] = {
-				["num"] = 3,
+				["num"] = 2,
 			},
 		},
 		["Tandu - Thrall"] = {
@@ -46,9 +49,9 @@ KalielsTrackerDB = {
 				["num"] = 5,
 			},
 		},
-		["Mortesque - Thrall"] = {
+		["Tandu - Shadowsong"] = {
 			["quests"] = {
-				["num"] = 2,
+				["num"] = 1,
 			},
 		},
 		["Bullscht - Hyjal"] = {
@@ -61,9 +64,9 @@ KalielsTrackerDB = {
 				["num"] = 2,
 			},
 		},
-		["Légere - Thrall"] = {
+		["Eleryla - Thrall"] = {
 			["quests"] = {
-				["num"] = 12,
+				["num"] = 3,
 			},
 		},
 		["Christar - Thrall"] = {
@@ -71,32 +74,33 @@ KalielsTrackerDB = {
 				["num"] = 1,
 			},
 		},
-		["Mnuchin - Thrall"] = {
+		["Tandieu - Hyjal"] = {
 			["quests"] = {
-				["num"] = 1,
+				["num"] = 21,
 			},
 		},
+	},
+	["profileKeys"] = {
+		["Nahko - Shadowsong"] = "Default",
+		["Fortehmogs - Hyjal"] = "Default",
+		["Karkol - Thrall"] = "Default",
+		["Loremeister - Thrall"] = "Default",
+		["Mnuchin - Thrall"] = "Default",
+		["Légere - Thrall"] = "Default",
+		["Karkol - Hyjal"] = "Default",
+		["Nahko - Thrall"] = "Default",
+		["Mortesque - Thrall"] = "Default",
+		["Tandu - Thrall"] = "Default",
+		["Tandu - Shadowsong"] = "Default",
+		["Bullscht - Hyjal"] = "Default",
+		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
+		["Eleryla - Thrall"] = "Default",
+		["Christar - Thrall"] = "Default",
+		["Quazzarr - Thrall"] = "Default",
 	},
 	["global"] = {
 		["helpTutorial"] = 11,
 		["version"] = "4.2.11",
-	},
-	["profileKeys"] = {
-		["Nahko - Shadowsong"] = "Default",
-		["Karkol - Thrall"] = "Default",
-		["Loremeister - Thrall"] = "Default",
-		["Mnuchin - Thrall"] = "Default",
-		["Tandu - Shadowsong"] = "Default",
-		["Quazzarr - Thrall"] = "Default",
-		["Nahko - Thrall"] = "Default",
-		["Eleryla - Thrall"] = "Default",
-		["Tandu - Thrall"] = "Default",
-		["Mortesque - Thrall"] = "Default",
-		["Bullscht - Hyjal"] = "Default",
-		["Tandieu - Hyjal"] = "Tandieu - Hyjal",
-		["Légere - Thrall"] = "Default",
-		["Christar - Thrall"] = "Default",
-		["Fortehmogs - Hyjal"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
@@ -119,9 +123,9 @@ KalielsTrackerDB = {
 			["colorDifficulty"] = true,
 			["bgrColor"] = {
 				["a"] = 0.7000000178813934,
-				["b"] = 1,
-				["g"] = 1,
 				["r"] = 1,
+				["g"] = 1,
+				["b"] = 1,
 			},
 			["hdrTxtColorShare"] = true,
 			["fontFlag"] = "OUTLINE",
@@ -131,9 +135,9 @@ KalielsTrackerDB = {
 			["font"] = "Continuum Medium",
 			["hdrCollapsedTxt"] = 2,
 			["hdrBgr"] = 4,
-			["maxHeight"] = 570,
-			["bgr"] = "Blizzard Marble",
 			["frameScrollbar"] = false,
+			["bgr"] = "Blizzard Marble",
+			["maxHeight"] = 570,
 		},
 		["Tandieu - Hyjal"] = {
 			["classBorder"] = true,
@@ -144,22 +148,25 @@ KalielsTrackerDB = {
 			["font"] = "Continuum Medium",
 			["frameScrollbar"] = false,
 			["modulesOrder"] = {
-				nil, -- [1]
-				nil, -- [2]
-				nil, -- [3]
-				"WORLD_QUEST_TRACKER_MODULE", -- [4]
+				"CAMPAIGN_QUEST_TRACKER_MODULE", -- [1]
+				"WORLD_QUEST_TRACKER_MODULE", -- [2]
+				"SCENARIO_CONTENT_TRACKER_MODULE", -- [3]
+				"UI_WIDGET_TRACKER_MODULE", -- [4]
 				nil, -- [5]
 				"QUEST_TRACKER_MODULE", -- [6]
 			},
 			["hdrCollapsedTxt"] = 2,
 			["bgrColor"] = {
 				["a"] = 0.7000000178813934,
-				["r"] = 1,
-				["g"] = 1,
 				["b"] = 1,
+				["g"] = 1,
+				["r"] = 1,
 			},
 			["hideEmptyTracker"] = true,
 			["hdrBgr"] = 4,
+			["filterAuto"] = {
+				"zone", -- [1]
+			},
 			["fontSize"] = 13,
 			["border"] = "Blizzard Dialog Gold",
 			["hdrBgrColorShare"] = true,
