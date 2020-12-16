@@ -1,0 +1,35 @@
+VER 3 0100000000000002 "1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Marrowrend
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000003 "2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Heart Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000004 "3" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Death Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000005 "E" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod, @player] Death and Decay; [mod, @cursor] Death and Decay
+END
+VER 3 0100000000000001 "N2" "INV_MISC_QUESTIONMARK"
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Death's Advance; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+END
