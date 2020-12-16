@@ -1,0 +1,117 @@
+VER 3 0100000000000009 "#N*" "1738657"
+#showtooltip aspect of the turtle
+/use Barnacle-Encrusted Gem
+/use Aspect of the Turtle
+/use [@player]Tar Trap
+/use 15
+/use [pet:SpiritBeast,@player]Spirit Mend;[pet:Gadget,@player]Master's Call(Cunning Ability)
+/use Foul Belly
+END
+VER 3 0100000000000008 "#N+" "1786407"
+#showtooltip
+/use Exhilaration
+/use [pet:Faust,@player]Spirit Mend
+/use Survival of the Fittest(Command Pet Ability)
+END
+VER 3 0100000000000007 "#N-" "1029744"
+#showtooltip
+/use Disengage
+/use [@player]Tar Trap
+/use Survival of the Fittest(Command Pet Ability)
+END
+VER 3 010000000000000C "#N1" "INV_Misc_QuestionMark"
+#showtooltip
+/use [spec:3,nomod]Muzzle;[mod:alt]Tranquilizing Shot; Counter Shot
+END
+VER 3 010000000000000B "#N2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [spec:1,talent:5/3,nomod,@cursor]Binding Shot;[spec:3,talent:5/3,nomod,@cursor]Binding Shot;[mod:ctrl,@cursor]Tar Trap;[mod:alt,@cursor]Freezing Trap;[spec:1,talent:5/2,@cursor]Flare;[spec:2]Binding Shot; Binding Shot
+END
+VER 3 010000000000000A "#N3" "INV_MISC_QUESTIONMARK"
+#showtooltip aspect of the cheetah
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod]Aspect of the Cheetah
+/use Moonfang's Paw
+END
+VER 3 0100000000000005 "1" "237524"
+#showtooltip
+/click [vehicleui]ActionButton1
+/cancelaura Aspect of the Turtle
+/use [nopet,spec:1]call pet 2;[nopet,spec:3]call pet 5;[pet,spec:1]Bestial Wrath;[pet,spec:3]Coordinated Assaultt
+/use [pet]Aspect of the Wild
+/use 13
+/use 14
+END
+VER 3 010000000000000E "2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [vehicleui]ActionButton2
+/click MultiBarLeftButton2
+/petattack 
+/use [spec:1]Kill Command;[spec:2]Steady Shot
+/use Claw(Basic Attack)
+/use Echoes of Rezan
+END
+VER 3 0100000000000020 "3" "1412205"
+#showtooltip [spec:1] Cobra Shot
+/click [vehicleui]ActionButton3
+/cast [spec:1] Cobra Shot
+END
+VER 3 010000000000001E "4" "INV_MISC_QUESTIONMARK"
+/use Multi-Shot
+/click [vehicleui]ActionButton1
+/use Froststorm Breath(Exotic Ability)
+/use Frost Breath(Special Ability)
+END
+VER 3 0100000000000012 "5" "1357816"
+#showtooltip
+/use [spec:1]Aspect of the Wild;[spec:3]Aspect of the Eagle
+/use Croak Crock
+/use Lightning-Forged Augment Rune
+END
+VER 3 0100000000000011 "6" "3614364"
+#showtooltip
+/tar spirit of xuen
+/petpassive
+/petassist
+/petattack
+/use Intimidation
+END
+VER 3 010000000000001B "=" "132293"
+#showtooltip Feign Death
+/use The Necronom-i-nom
+/use Feign Death
+/use play dead
+END
+VER 3 010000000000000F "F" "INV_MISC_QUESTIONMARK"
+/use [spec:1,talent:6/2]Barrage;[spec:3]Wildfire Bomb
+/castsequence [@cursor] reset=10 Tar Trap, Flare
+/use Azerite Firework Launcher
+END
+VER 3 010000000000000D "G" "458729"
+#showtooltip misdirection
+/use [@focus,help,nodead][@pet,nodead][@none]Aqir Egg Cluster
+/use [@focus,help,nodead][@pet,nodead][@none]Misdirection
+/use [@focus,help,nodead][@pet,nodead][@none]Spirit Mend(Exotic Ability)
+/use Mend Pet
+END
+VER 3 0100000000000010 "Q" "INV_MISC_QUESTIONMARK"
+#showtooltip [spec:1]Barbed Shot;[spec:3]Serpent Sting
+/tar [nodead]aqir ravager
+/tar [nodead]aqir darter
+/tar Explosives
+/a [dead]focus
+/petattack
+/use [spec:1,harm,nodead]Barbed Shot;[spec:3,harm,nodead]Serpent Sting;Mend Pet
+END
+VER 3 010000000000001F "R/T" "INV_Misc_QuestionMark"
+#showtooltip
+/use [spec:1,talent:7/1]Arcane Shot;[spec:1,talent:7/2]Arcane Shot;[spec:1,talent:7/3]Bloodshed;[spec:2]Arcane Shot
+END
+VER 3 0100000000000006 "Srv3" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Raptor Strike
+/script UIErrorsFrame:Clear()
+END
