@@ -2,6 +2,7 @@ let financeBookmarks
     = "<a title='Finance'    	target='contentframe'href='./finance/index.html'                    ><img id='bookmark' alt='finance'></a>"
     + "<a title='Paypal' 		target='_parent'href='https://www.paypal.com/'><img id='bookmark' alt='paypal'></a>"
     + "<a title='E*Trade'		target='_parent'href='https://us.etrade.com/home' ><img id='bookmark' alt='etrade'></a>"
+    + "<a title='fidelity'     target='_parent' href='https://oltx.fidelity.com/ftgw/fbc/oftop/portfolio#summary' ><img id='bookmark' alt='fidelity'></a>"
     + "<a title='Robinhood'     target='_parent' href='https://robinhood.com' ><img id='bookmark' alt='RobinhoodApp'></a>"
     + "<a title='Acorns'        target='_parent' href='https://www.acorns.com/' ><img id='bookmark' alt='acorns'></a>"
     + "<a title='            '  target='_parent' href='                                     ' ><img id='bookmark' alt='                              '></a>"
