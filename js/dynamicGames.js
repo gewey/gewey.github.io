@@ -8,6 +8,7 @@ let gamesBookmarks
     + "<a title='Wizard101' target='_parent'href='https://www.wizard101.com/'><img id='bookmark' alt='wizard101'></a>"
     + "<a title='XBOX' target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
     + "<a title='starcraft2' target='_parent'https://starcraft2.com/en-us/' ><img id='bookmark' alt='starcraft2'></a>"
+    + "<a title='https://deckbox.org/'target='_parent'https://deckbox.org/' ><img id='bookmark' alt='deckbox'></a>"
     + "<a title='Magic the Gathering'target='_parent'href='https://magic.wizards.com/en' ><img id='bookmark' alt='wizards_magic'></a>";
 document.body.innerHTML += gamesBookmarks;
 
