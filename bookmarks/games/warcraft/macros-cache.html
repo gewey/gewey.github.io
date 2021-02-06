@@ -45,7 +45,8 @@ VER 3 000000000000011E "#ESN2" "INV_Misc_QuestionMark"
 /use Fleshcraft
 END
 VER 3 0000000000000118 "#ESV" "INV_Misc_QuestionMark"
-#showtooltip
+#showtooltip Flayed Shot(Venthyr)
+/use Tithe Collector's Vessel
 /use [@cursor]Flayed Shot(Venthyr)
 END
 VER 3 0000000000000119 "#ESV2" "INV_Misc_QuestionMark"
@@ -59,9 +60,14 @@ VER 3 0000000000000067 "#Farm" "1029718"
 /castsequence Cobra Shot, Fetch
 /run SetRaidTarget("target", 8)
 END
+VER 3 000000000000012C "#FIRE" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/castsequence Akunda's Firesticks,Leylight Brazier, Ever-Abundant Hearth
+END
 VER 3 0000000000000101 "#Hearth" "INV_MISC_QUESTIONMARK"
 #showtooltip Hearthstone
-/castrandom 166747, 172179, 162973, 163045, 165670
+/use Inky Black Potion
+/castrandom 166747, 172179, 162973, 163045, 165670, 183986
 END
 VER 3 00000000000000FA "#Whistle" "INV_MISC_QUESTIONMARK"
 #showtooltip Flight Master's Whistle
@@ -94,9 +100,10 @@ VER 3 0000000000000075 "$Run" "132296"
 /run if IsMouselooking() then MouselookStop() else MouselookStart() end
 END
 VER 3 0000000000000123 "$Targeting" "1380366"
-/tar shade
-/tar infuser
-/tar occu 
+/target Echo of Sin
+/target Crimson Cabalist
+/target Soul Infuser
+/target explosives
 END
 VER 3 000000000000011B "$Tracking" "413587"
 /click [btn:1]MTSB1 LeftButton;[btn:2]MTSB1 RightButton;[btn:3]MTSB1 MiddleButton;[btn:4]MTSB1 Button4;[btn:5]MTSB1 Button5
@@ -212,6 +219,11 @@ END
 VER 3 00000000000000CA "/Elv" "2027568"
 /elvui
 END
+VER 3 0000000000000134 "/follow" "1616893"
+/target [@mouseover]
+/follow
+/targetlasttarget
+END
 VER 3 000000000000012A "/lootspecmanager" "133648"
 /ltsm
 END
@@ -230,6 +242,17 @@ VER 3 0000000000000085 "/TSM" "134063"
 END
 VER 3 00000000000000FF "/WQA" "132093"
 /wqa
+END
+VER 3 0000000000000131 "123" "INV_MISC_QUESTIONMARK"
+/cast [@player] Spirit Mend
+END
+VER 3 000000000000012F "424324" "877481"
+/target Explosive
+/targetlasttarget
+END
+VER 3 0000000000000132 "7" "INV_MISC_QUESTIONMARK"
+/use [btn:1] loot-a-rang
+/cast fetch
 END
 VER 3 0000000000000122 "@Banker" "134571"
 /acp addset 25
@@ -252,37 +275,29 @@ VER 3 0000000000000117 "ab?" "INV_MISC_QUESTIONMARK"
 /click ActionButton1
 /click[@cursor]
 END
-VER 3 0000000000000124 "AutoHP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [combat] item:171267; item:6948
-END
-VER 3 0000000000000125 "AutoMP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast item:6948
-END
-VER 3 0000000000000128 "ConsumableHP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast item:171267
-END
-VER 3 0000000000000129 "ConsumableMP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast item:6948
-END
-VER 3 0000000000000127 "DrinkOnlyMP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast item:6948
-END
-VER 3 0000000000000126 "FoodOnlyHP" "INV_Misc_QuestionMark"
-#showtooltip
-/cast item:6948
+VER 3 0000000000000130 "Armour Kit" "INV_MISC_QUESTIONMARK"
+/use Heavy Desolate Armor Kit
+/use 5
 END
 VER 3 0000000000000110 "HearthRoulette" "413582"
 #showtooltip
-/cast Eternal Traveler's Hearthstone
+/cast Brewfest Reveler's Hearthstone
+END
+VER 3 0000000000000133 "KICK" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/target Baroness Frieda
+/use [spec:3,nomod]Muzzle;[mod:alt]Tranquilizing Shot; Counter Shot
+/targetlasttarget
+END
+VER 3 000000000000012D "MOTE SMASH" "132842"
+/click [btn:1]MTSB2 LeftButton;[btn:2]MTSB2 RightButton;[btn:3]MTSB2 MiddleButton;[btn:4]MTSB2 Button4;[btn:5]MTSB2 Button5
 END
 VER 3 0000000000000107 "ReZ" "INV_MISC_QUESTIONMARK"
 /use [@mouseover, combat] Disposable Spectrophasic Reanimator; [@mouseover, nocombat] Ultimate Gnomish Army Knife
 /use [@mouseover, combat] Spirit Mend(Exotic Ability); [@mouseover, nocombat] Drust Ritual Knife
+END
+VER 3 000000000000012E "TBE: Random Toy" "inv_misc_dice_02"
+/click TBERandomFavoredToy
 END
 VER 3 000000000000012B "TOYSPLOSION" "134511"
 /use Black Ice
@@ -306,6 +321,10 @@ VER 3 00000000000000F7 "WAYDUMP" "236179"
 END
 VER 3 0000000000000102 "wm1" "INV_MISC_QUESTIONMARK"
 /worldmarker 1
+END
+VER 3 0000000000000135 "Z" "INV_MISC_QUESTIONMARK"
+/cast double tap
+/cast trueshot
 END
 VER 3 0000000000000008 "~!umod" "327916"
 /targetlasttarget [@target,dead]
