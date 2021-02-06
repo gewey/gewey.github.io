@@ -18,5 +18,3 @@ let financeBookmarks
     + "<a title='Amazon Associate' target='_parent'href='https://affiliate-program.amazon.com/home'><img id='bookmark' alt='AmazonAssociate'></a>"
     + "<a title='Analytics' target='_parent'href='https://analytics.google.com'><img id='bookmark' alt='googleanalytics'></a>";
 document.body.innerHTML += financeBookmarks;
-
-
