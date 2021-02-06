@@ -13,5 +13,9 @@ let financeBookmarks
     + "<a title='Coinbase'      target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>"
     + "<a title='Coinbase'      target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>"
     + "<a title='Coinbase'      target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>"
-    + "<a title='Coinbase'      target='_parent' href='https://www.coinbase.com/' ><img id='bookmark' alt='coinbase'></a>";
+    + "<a title='Gem Select'            target='_parent'href='https://www.gemselect.com/index.php'              ><img id='bookmark' alt='GemSelect'></a>"
+    + "<a title='Apmex'                 target='_parent'href='https://www.apmex.com/account/portfolio'                           ><img id='bookmark' alt='apmex'></a>"
+    + "<a title='ucoin'                 target='_parent'href='https://en.ucoin.net/?ref=ZvVW2bgHAaqB2UEt'                           ><img id='bookmark' alt='ucoin'></a>"
+    + "<a title='JMBullion'             target='_parent'href='https://www.JMBullion.com/'                           ><img id='bookmark' alt='JMBullion'></a>"
+    + "<a title='Investing'     target='contentframe'href='./investing/index.html'                    ><img id='bookmark' alt='investing'></a>";
 document.body.innerHTML += financeBookmarks;
