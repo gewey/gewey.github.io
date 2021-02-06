@@ -1,5 +1,8 @@
 let referenceBookmarks
     = "<a title='Reference'     target='contentframe'   href='./reference/index.html'                   ><img id='bookmark' alt='reference'></a>"
+    + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
+    + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
+    + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
     + "<a title='Ancestry'      target='_parent'        href='https://www.ancestry.com/'                ><img id='bookmark' alt='Ancestry'></a>"
     + "<a title='23 & Me'       target='_parent'        href='https://www.23andme.com/'                 ><img id='bookmark' alt='23andMe'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
