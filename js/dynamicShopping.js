@@ -5,6 +5,7 @@ let shoppingBookmarks
     + "<a title='Amazon'                target='_parent'href='https://amzn.to/391VsnT'                          ><img id='bookmark' alt='amazon'></a>"
     + "<a title='Gem Select'            target='_parent'href='https://www.gemselect.com/index.php'              ><img id='bookmark' alt='GemSelect'></a>"
     + "<a title='Apmex'                 target='_parent'href='https://www.apmex.com/'                           ><img id='bookmark' alt='apmex'></a>"
+    + "<a title='ucoin'                 target='_parent'href='https://en.ucoin.net/?ref=ZvVW2bgHAaqB2UEt'                           ><img id='bookmark' alt='ucoin'></a>"
     + "<a title='JMBullion'             target='_parent'href='https://www.JMBullion.com/'                           ><img id='bookmark' alt='JMBullion'></a>"
     + "<a title='Candle Science'        target='_parent'href='https://www.candlescience.com/'                   ><img id='bookmark' alt='CandleScience'></a>"
     + "<a title='The Flaming Candle'    target='_parent'href='https://www.theflamingcandle.com/'                ><img id='bookmark' alt='Flaming_Candle'></a>"
