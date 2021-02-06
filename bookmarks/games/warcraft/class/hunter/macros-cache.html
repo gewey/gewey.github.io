@@ -17,6 +17,7 @@ VER 3 0100000000000007 "#N-" "1029744"
 #showtooltip
 /use Disengage
 /use [@player]Tar Trap
+/use [@player] Roar of Sacrifice
 /use Survival of the Fittest(Command Pet Ability)
 END
 VER 3 010000000000000C "#N1" "INV_Misc_QuestionMark"
@@ -37,7 +38,7 @@ VER 3 0100000000000005 "1" "237524"
 #showtooltip
 /click [vehicleui]ActionButton1
 /cancelaura Aspect of the Turtle
-/use [nopet,spec:1]call pet 2;[nopet,spec:3]call pet 5;[pet,spec:1]Bestial Wrath;[pet,spec:3]Coordinated Assaultt
+/use [nopet,spec:1]call pet 2;[nopet,spec:3]call pet 5;[pet,spec:1]Bestial Wrath;[pet,spec:3]Coordinated Assault
 /use [pet]Aspect of the Wild
 /use 13
 /use 14
@@ -47,13 +48,14 @@ VER 3 010000000000000E "2" "INV_MISC_QUESTIONMARK"
 /click [vehicleui]ActionButton2
 /click MultiBarLeftButton2
 /petattack 
-/use [spec:1]Kill Command;[spec:2]Steady Shot
+/use [spec:1]Kill Command;[spec:2]Steady Shot;[spec:3]Kill command
 /use Claw(Basic Attack)
 /use Echoes of Rezan
 END
 VER 3 0100000000000020 "3" "1412205"
 #showtooltip [spec:1] Cobra Shot
 /click [vehicleui]ActionButton3
+/target explosives
 /cast [spec:1] Cobra Shot
 END
 VER 3 010000000000001E "4" "INV_MISC_QUESTIONMARK"
@@ -82,7 +84,7 @@ VER 3 010000000000001B "=" "132293"
 /use Feign Death
 /use play dead
 END
-VER 3 010000000000000F "F" "INV_MISC_QUESTIONMARK"
+VER 3 010000000000000F "F.n5" "INV_MISC_QUESTIONMARK"
 /use [spec:1,talent:6/2]Barrage;[spec:3]Wildfire Bomb
 /castsequence [@cursor] reset=10 Tar Trap, Flare
 /use Azerite Firework Launcher
