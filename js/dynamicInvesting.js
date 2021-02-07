@@ -1,4 +1,4 @@
-let financeBookmarks
+let investingBookmarks
     = "<a title='Investing'    	target='contentframe'href='./investing/index.html'                    ><img id='bookmark' alt='investing'></a>"
     + "<a title='E*Trade'		target='_parent'href='https://us.etrade.com/home' ><img id='bookmark' alt='etrade'></a>"
     + "<a title='fidelity'     target='_parent' href='https://oltx.fidelity.com/ftgw/fbc/oftop/portfolio#summary' ><img id='bookmark' alt='fidelity'></a>"
@@ -21,4 +21,4 @@ let financeBookmarks
     + "<a title='https://www.investopedia.com/https://www.investopedia.com/'        target='_parent' href='https://www.investopedia.com/' ><img id='bookmark' alt='investopedia'></a>"
     + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
     + "<a title='Investing'     target='contentframe'href='./investing/index.html'                    ><img id='bookmark' alt='investing'></a>";
-document.body.innerHTML += financeBookmarks;
+document.body.innerHTML += investingBookmarks;
