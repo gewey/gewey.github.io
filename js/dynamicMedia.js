@@ -2,6 +2,7 @@
 let mediaBookmarks
     = "<a title='Media'    target='contentframe'href='./media/index.html'                    ><img id='bookmark' alt='media'></a>"
     + "<a title='Spotify'           target='_parent'href='http://www.spotify.com/'                      ><img id='bookmark' alt='spotify'           ></a>"
+    + "<a title='radio.garden'           target='_parent'href='http://radio.garden/'                      ><img id='bookmark' alt='radiogarden'           ></a>"
     + "<a title='Youtube'           target='_parent'href='https://www.youtube.com/feed/subscriptions'   ><img id='bookmark' alt='youtube'           ></a>"
     + "<a title='netflix'           target='_parent'href='http://www.netflix.com/'                      ><img id='bookmark' alt='netflix'           ></a>"
     + "<a title='Hulu'              target='_parent'href='http://www.hulu.com/'                         ><img id='bookmark' alt='hulu'              ></a>"
