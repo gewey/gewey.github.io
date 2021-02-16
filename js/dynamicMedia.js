@@ -9,6 +9,7 @@ let mediaBookmarks
     + "<a title='Prime Video'       target='_parent'href='https://www.amazon.com/gp/video/storefront'   ><img id='bookmark' alt='primevideo'        ></a>"
     + "<a title='HBOmax'            target='_parent'href='https://play.hbomax.com/profileSelect'        ><img id='bookmark' alt='hbomax'            ></a>"
     + "<a title='The Roku Channel'  target='_parent'href='https://therokuchannel.roku.com/'             ><img id='bookmark' alt='RokuChannels'      ></a>"
+    + "<a title='9animeOfficial'  target='_parent'href='https://www12.9anime.to/home'             ><img id='bookmark' alt='9animeOfficial'      ></a>"
     + "<a title='Deviant Art'       target='_parent'href='http://www.deviantart.com/'                   ><img id='bookmark' alt='deviantart'        ></a>"
     + "<a title='imgflip'           target='_parent'href='https://imgflip.com/'                         ><img id='bookmark' alt='imgflip'           ></a>"
     + "<a title='Audible'           target='_parent'href='https://amzn.to/2D4mwBB'                      ><img id='bookmark' alt='audible_com'       ></a>"
