@@ -16,6 +16,7 @@ let investingBookmarks
     + "<a title='Apmex'                 target='_parent'href='https://www.apmex.com/account/portfolio'                           ><img id='bookmark' alt='apmex'></a>"
     + "<a title='ucoin'                 target='_parent'href='https://en.ucoin.net/?ref=ZvVW2bgHAaqB2UEt'                           ><img id='bookmark' alt='ucoin'></a>"
     + "<a title='JMBullion'             target='_parent'href='https://www.JMBullion.com/'                           ><img id='bookmark' alt='JMBullion'></a>"
+    + "<a title='https://luciteria.com/'             target='_parent'href='https://luciteria.com/'                           ><img id='bookmark' alt='luciteria'></a>"
     + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
     + "<a title='https://www.investopedia.com/https://www.investopedia.com/'        target='_parent' href='https://www.investopedia.com/' ><img id='bookmark' alt='investopedia'></a>"
     + "<a title='FINVIZ_com'        target='_parent' href='https://finviz.com/' ><img id='bookmark' alt='FINVIZ_com'></a>"
