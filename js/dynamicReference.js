@@ -1,6 +1,8 @@
 let referenceBookmarks
     = "<a title='Reference'     target='contentframe'   href='./reference/index.html'                   ><img id='bookmark' alt='reference'></a>"
     + "<a title='Ancestry'      target='_parent'        href='https://www.ancestry.com/'                ><img id='bookmark' alt='Ancestry'></a>"
+    + "<a title='My Heritage'      target='_parent'        href='https://www.myheritage.com/'                ><img id='bookmark' alt='MyHeritage'></a>"
+    + "<a title='Genomelink'      target='_parent'        href='https://genomelink.io/dashboard/'                ><img id='bookmark' alt='genomelink'></a>"
     + "<a title='23 & Me'       target='_parent'        href='https://www.23andme.com/'                 ><img id='bookmark' alt='23andMe'></a>"
     + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
     + "<a title='IMDB' target='_parent'href='http://www.imdb.com/' ><img id='bookmark' alt='imdb'></a>"
