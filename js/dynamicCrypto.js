@@ -5,5 +5,6 @@ let cryptoBookmarks
     + "<a title='BinanceUS'     target='_parent' href='https://www.binance.us/en/usercenter/wallet/balances' ><img id='bookmark' alt='BinanceUS'></a>"
     + "<a title='AtomicWallet'  target='_parent' href='https://atomicwallet.io/' ><img id='bookmark' alt='AtomicWallet'></a>"
     + "<a title='Coinbase'      target='_parent' href='https://www.coinbase.com/join/jgoulette_4hiaeA' ><img id='bookmark' alt='coinbase'></a>"
+    + "<a title='2Miners'      target='_parent' href='https://2miners.com/' ><img id='bookmark' alt='pool2miners'></a>"
     + "<a title='Crypto'    	target='contentframe'href='./crypto/index.html'                    ><img id='bookmark' alt='crypto'></a>";
 document.body.innerHTML += cryptoBookmarks;
