@@ -67,6 +67,14 @@
     content: " Finance";
   }
 
+  button[name=iInvesting]::after {
+    content: " Investing";
+  }
+
+  button[name=iCrypto]::after {
+    content: " Crypto";
+  }
+
   button[name=iNews]::after {
     content: " News";
   }
