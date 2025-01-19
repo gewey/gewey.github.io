@@ -1,6 +1,7 @@
 
 let socialBookmarks
-    = "<a title='Twitter'           target='_parent'href='http://twitter.com/'          ><img id='bookmark' alt='twitter'           ></a>"
+    = "<a title='Facebook'          target='_parent'href='http://facebook.com/'         ><img id='bookmark' alt='facebook'          ></a>"
+    + "<a title='Twitter'           target='_parent'href='http://twitter.com/'          ><img id='bookmark' alt='twitter'           ></a>"
     + "<a title='Instagram'         target='_parent'href='https://www.instagram.com/'   ><img id='bookmark' alt='instagram'         ></a>"
     + "<a title='Pinterest'         target='_parent'href='http://pinterest.com/'        ><img id='bookmark' alt='pinterest'         ></a>"
     + "<a title='Skype'             target='_parent'href='https://www.skype.com/en/'    ><img id='bookmark' alt='skype'             ></a>"
