@@ -15,5 +15,6 @@ let webdevelopmentBookmarks
     + "<a title='airbrush'             target='_parent'        href='https://airbrush.com/'                   ><img id='bookmark' alt='airbrush'       ></a>"
     + "<a title='facyai'             target='_parent'        href='https://facy.ai/swap-face-ai/photo'                   ><img id='bookmark' alt='facyai'       ></a>"
     + "<a title='tutorialspoint'             target='_parent'        href='https://www.tutorialspoint.com/index.htm'                   ><img id='bookmark' alt='tutorialspoint'       ></a>"
+    + "<a title=blizzardpress             target='_parent'        href='https://blizzard.gamespress.com/World-of-Warcraft'                   ><img id='bookmark' alt='blizzardpress'       ></a>"
     + "<a title='MIT APP INVENTOR'      target='_parent'        href='http://ai2.appinventor.mit.edu/'          ><img id='bookmark' alt='mitappinventor'    ></a>";
 document.body.innerHTML += webdevelopmentBookmarks;
