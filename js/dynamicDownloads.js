@@ -11,6 +11,7 @@ let downloadsBookmarks
     + "<a title='Notepad++'     target='_parent'href='https://notepad-plus-plus.org/'                               ><img id='bookmark'     alt='Notepad_plus'  ></a>"
     + "<a title='sublime'       target='_parent'href='https://www.sublimetext.com'                                  ><img id='bookmark'     alt='sublimehq'     ></a>"
     + "<a title='brackets'      target='_parent'href='http://brackets.io/'                                          ><img id='bookmark'     alt='brackets'      ></a>"
+    + "<a title='speedify'      target='_parent'href='https://speedify.com/'                                          ><img id='bookmark'     alt='speedify'      ></a>"
     + "<a title='eclipse'       target='_parent'href='https://www.eclipse.org/'                                     ><img id='bookmark'     alt='EclipseFdn'    ></a>";
 document.body.innerHTML += downloadsBookmarks;
 
