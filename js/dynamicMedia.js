@@ -1,4 +1,3 @@
-
 let mediaBookmarks
     = "<a title='Media'    target='contentframe'href='./media/index.html'                    ><img id='bookmark' alt='media'></a>"
     + "<a title='Spotify'           target='_parent'href='http://www.spotify.com/'                      ><img id='bookmark' alt='spotify'           ></a>"
@@ -23,6 +22,3 @@ let mediaBookmarks
     + "<a title='HelluvaBoss'      target='_parent'href='https://www.stylishoccult.com/'   ><img id='bookmark' alt='HelluvaBoss'      ></a>"
     + "<a title='Blogger'           target='_parent'href='https://www.blogger.com/'                     ><img id='bookmark' alt='blogger'           ></a>";
 document.body.innerHTML += mediaBookmarks;
-
-
-need media i stan .js
