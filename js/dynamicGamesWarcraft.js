@@ -8,6 +8,8 @@ let gameswarcraftBookmarks
     + "<a title='Warcraft Logs'target='_parent'href='https://www.warcraftlogs.com' ><img id='bookmark' alt='warcraftlogs'></a>"
     + "<a title='Raider IO'target='_parent'href='https://raider.io/' ><img id='bookmark' alt='raiderio_wow'></a>"
     + "<a title='WoW Progress'      target='_parent'href='https://www.wowprogress.com/'                               ><img id='bookmark' alt='wowprogress'></a>"
+    + "<a title='Archon'      target='_parent'https://www.archon.gg/'                               ><img id='bookmark' alt='archon'></a>"
+    + "<a title='arenamaster'      target='_parent'https://arenamaster.io/'                               ><img id='bookmark' alt='arenamaster'></a>"
     + "<a title='TradeSkillMaster' target='_parent'href='https://www.tradeskillmaster.com' ><img id='bookmark' alt='tsmaddon'></a>"
     + "<a title='Petopia'target='_parent'href='http://www.wow-petopia.com' ><img id='bookmark' alt='wowpetopia'></a>"
     + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"

@@ -8,6 +8,7 @@ let shoppingBookmarks
     + "<a title='Jinx'                  target='_parent'href='http://www.jinx.com/member/336691?bid=49'         ><img id='bookmark' alt='jinx'></a>"
     + "<a title='Newegg'                target='_parent'href='http://www.newegg.com/'                           ><img id='bookmark' alt='newegg'></a>"
     + "<a title='Wal Mart'              target='_parent'href='http://www.walmart.com/'                          ><img id='bookmark' alt='walmart'></a>"
+    + "<a title='sharkrobot'              target='_parent'href='https://sharkrobot.com/collections/vivziepop'                          ><img id='bookmark' alt='sharkrobot'></a>"
     + "<a title='UPS'                   target='_parent'href='http://www.ups.com/'                              ><img id='bookmark' alt='ups'></a>"
     + "<a title='USPS'                  target='_parent'href='https://www.usps.com/'                            ><img id='bookmark' alt='usps'></a>";
 document.body.innerHTML += shoppingBookmarks;
