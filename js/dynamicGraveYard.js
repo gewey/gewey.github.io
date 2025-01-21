@@ -29,5 +29,13 @@ let graveyardBookmarks
     + "<a title='Bank of America'target='_parent'href='https://www.bankofamerica.com/' ><img id='bookmark' alt='bankofamerica'></a>"
     + "<a title='Ad Fly' target='_parent'href='https://join-adf.ly/2964346'><img id='bookmark' alt='adfly'></a>"
     + "<a title='AOL [HTTPS]'target='_parent'href='https://www.aol.com/' ><img id='bookmark' alt='aol'></a>"
+    + "<a title='Craigslist'            target='_parent'href='http://www.craigslist.org/'                       ><img id='bookmark' alt='craigslist'></a>"
+    + "<a title='binance'       target='_parent' href='https://www.binance.com/en/my/wallet/account/overview' ><img id='bookmark' alt='binance'></a>"
+    + "<a title='BinanceUS'     target='_parent' href='https://www.binance.us/en/usercenter/wallet/balances' ><img id='bookmark' alt='BinanceUS'></a>"
+    
+    + "<a title='Last Week Tonight' target='_parent'href='https://www.youtube.com/user/LastWeekTonight' ><img id='bookmark' alt='LastWeekTonight'   ></a>"
+    + "<a title='Real Time'         target='_parent'href='https://www.youtube.com/user/RealTime'        ><img id='bookmark' alt='RealTimers'        ></a>"
+    + "<a title='The Late Show'     target='pageContent'href='https://www.youtube.com/channel/UCMtFAi84ehTSYSE9XoHefig/videos' ><img id='bookmark' alt='colbertlateshow'></a>"
+    + "<a title='Misfits Market'        target='_parent'href='https://www.misfitsmarket.com/'                   ><img id='bookmark' alt='misfitsmarket'></a>"
     + "<a title='Technorati' target='_parent'href='http://technorati.com/' ><img id='bookmark' alt='technorati'></a>";
 document.body.innerHTML += graveyardBookmarks;
