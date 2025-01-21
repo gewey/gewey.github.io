@@ -32,7 +32,7 @@ let graveyardBookmarks
     + "<a title='Craigslist'            target='_parent'href='http://www.craigslist.org/'                       ><img id='bookmark' alt='craigslist'></a>"
     + "<a title='binance'       target='_parent' href='https://www.binance.com/en/my/wallet/account/overview' ><img id='bookmark' alt='binance'></a>"
     + "<a title='BinanceUS'     target='_parent' href='https://www.binance.us/en/usercenter/wallet/balances' ><img id='bookmark' alt='BinanceUS'></a>"
-    
+    + "<a title='9animeOfficial'    target='_parent'href='https://www12.9anime.to/home'                 ><img id='bookmark' alt='9animeOfficial'    ></a>"
     + "<a title='Last Week Tonight' target='_parent'href='https://www.youtube.com/user/LastWeekTonight' ><img id='bookmark' alt='LastWeekTonight'   ></a>"
     + "<a title='Real Time'         target='_parent'href='https://www.youtube.com/user/RealTime'        ><img id='bookmark' alt='RealTimers'        ></a>"
     + "<a title='The Late Show'     target='pageContent'href='https://www.youtube.com/channel/UCMtFAi84ehTSYSE9XoHefig/videos' ><img id='bookmark' alt='colbertlateshow'></a>"
