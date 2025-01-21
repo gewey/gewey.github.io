@@ -12,5 +12,6 @@ let webdevelopmentBookmarks
     + "<a title='Material.IO'           target='_parent'        href='https://material.io/'                     ><img id='bookmark' alt='materialdesign'    ></a>"
     + "<a title='Open Culture'          target='_parent'        href='http://www.openculture.com'               ><img id='bookmark' alt='openculture'       ></a>"
     + "<a title='Fontvilla'             target='_parent'        href='https://fontvilla.com/'                   ><img id='bookmark' alt='Fontvillacs'       ></a>"
+    + "<a title='tutorialspoint'             target='_parent'        href='https://www.tutorialspoint.com/index.htm'                   ><img id='bookmark' alt='tutorialspoint'       ></a>"
     + "<a title='MIT APP INVENTOR'      target='_parent'        href='http://ai2.appinventor.mit.edu/'          ><img id='bookmark' alt='mitappinventor'    ></a>";
 document.body.innerHTML += webdevelopmentBookmarks;
