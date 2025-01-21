@@ -10,6 +10,8 @@ let gameswarcraftBookmarks
     + "<a title='WoW Progress'      target='_parent'href='https://www.wowprogress.com/'                               ><img id='bookmark' alt='wowprogress'></a>"
     + "<a title='Archon'      target='_parent'https://www.archon.gg/'                               ><img id='bookmark' alt='archon'></a>"
     + "<a title='arenamaster'      target='_parent'https://arenamaster.io/'                               ><img id='bookmark' alt='arenamaster'></a>"
+    + "<a title='dataforazeroth'      target='_parent'https://www.dataforazeroth.com/characters/US/Hyjal/tandumonium'><img id='bookmark' alt='dataforazeroth'></a>"
+    + "<a title='raidplan'      target='_parent'https://raidplan.io/'><img id='bookmark' alt='raidplan'></a>"
     + "<a title='TradeSkillMaster' target='_parent'href='https://www.tradeskillmaster.com' ><img id='bookmark' alt='tsmaddon'></a>"
     + "<a title='Petopia'target='_parent'href='http://www.wow-petopia.com' ><img id='bookmark' alt='wowpetopia'></a>"
     + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"

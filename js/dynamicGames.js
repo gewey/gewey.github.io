@@ -5,6 +5,7 @@ let gamesBookmarks
     + "<a title='Steam'                 target='_parent'href='https://store.steampowered.com/'><img id='bookmark' alt='steam_games'></a>"
     + "<a title='Guild Wars 2'          target='_parent'href='https://www.guildwars2.com/'><img id='bookmark' alt='GuildWars2'></a>"
     + "<a title='ElderScrollsOnline'    target='_parent'href='https://www.elderscrollsonline.com/'><img id='bookmark' alt='tesonline'></a>"
+    + "<a title='alcasthq'    target='_parent'https://alcasthq.com/'><img id='bookmark' alt='alcasthq'></a>"
     + "<a title='Wizard101'             target='_parent'href='https://www.wizard101.com/'><img id='bookmark' alt='wizard101'></a>"
     + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
     + "<a title='starcraft2'            target='_parent'https://starcraft2.com/en-us/' ><img id='bookmark' alt='starcraft2'></a>"
