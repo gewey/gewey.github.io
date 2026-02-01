@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Broken Images</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        h1 { color: #333; }
+        .status { padding: 15px; background: white; border-radius: 5px; margin: 10px 0; }
+        .loading { color: orange; }
+        .broken { color: red; font-weight: bold; }
+        .found { color: green; }
+        .list { max-height: 400px; overflow-y: auto; background: white; padding: 10px; border-radius: 5px; }
+        .item { padding: 5px; border-bottom: 1px solid #eee; }
+        button { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 10px 0; }
+        button:hover { background: #764ba2; }
+        #content { display: none; }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Image Integrity Checker</h1>
+    <div class="status loading">
+        Loading bookmarks page...
+    </div>
+    <div id="status"></div>
+    <button onclick="moveImages()">Move Broken Images to BM Folder</button>
+    <div class="list" id="imageList"></div>
+
+    <iframe id="content" src="bookmarks/all.html" style="width:100%; height:1000px;"></iframe>
+
+    <script>
+        let brokenImages = [];
+
+        function checkImages() {
+            const statusDiv = document.querySelector('.status');
+            try {
+                // Get all images from the iframe
+                const iframeDoc = document.getElementById('content').contentDocument || 
+                                 document.getElementById('content').contentWindow.document;
+                const images = iframeDoc.querySelectorAll('img');
+                
+                console.log(`Found ${images.length} images`);
+                
+                images.forEach(img => {
+                    const alt = img.getAttribute('alt') || 'unknown';
+                    const src = img.getAttribute('src') || '';
+                    
+                    // Check if image loaded
+                    img.onload = function() {
+                        console.log(`✓ ${alt}`);
+                    };
+                    
+                    img.onerror = function() {
+                        console.log(`✗ ${alt}: ${src}`);
+                        brokenImages.push({ alt, src });
+                        updateUI();
+                    };
+                    
+                    // Force a check
+                    if (!img.complete) {
+                        img.src = img.src; // Trigger load
+                    } else if (img.naturalHeight === 0) {
+                        brokenImages.push({ alt, src });
+                    }
+                });
+                
+                // Set timeout to show results
+                setTimeout(() => {
+                    updateUI();
+                }, 3000);
+                
+            } catch (e) {
+                statusDiv.innerHTML = `<span class="broken">Error loading iframe: ${e.message}</span>`;
+                console.error(e);
+            }
+        }
+
+        function updateUI() {
+            const statusDiv = document.getElementById('status');
+            const listDiv = document.getElementById('imageList');
+            
+            if (brokenImages.length === 0) {
+                statusDiv.innerHTML = '<span class="found">No broken images found!</span>';
+                listDiv.innerHTML = '';
+            } else {
+                statusDiv.innerHTML = `<span class="broken">Found ${brokenImages.length} broken images</span>`;
+                listDiv.innerHTML = brokenImages.map(img => 
+                    `<div class="item">
+                        <strong>${img.alt}</strong> 
+                        <small style="color:#999;">${img.src}</small>
+                    </div>`
+                ).join('');
+            }
+        }
+
+        function moveImages() {
+            if (brokenImages.length === 0) {
+                alert('No broken images to move');
+                return;
+            }
+            
+            const names = brokenImages.map(img => img.alt).join(',');
+            alert(`Ready to move ${brokenImages.length} images:\n\n${names}`);
+            
+            // Send to server to move files
+            fetch('move_images.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ images: brokenImages.map(img => img.alt) })
+            })
+            .then(r => r.json())
+            .then(data => alert(data.message))
+            .catch(e => alert('Error: ' + e.message));
+        }
+
+        // Start checking when iframe loads
+        document.getElementById('content').onload = checkImages;
+    </script>
+</body>
+</html>
