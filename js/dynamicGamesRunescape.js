@@ -1,9 +1,19 @@
-let gamesrunescapeBookmarks
-    = "<a title='Runescape'target='_parent'href='http://runescape.com/'><img id='bookmark' alt='runescape'></a>"
-    + "<a title='Old SChool RS'target='_parent'href='https://oldschool.runescape.com'><img id='bookmark' alt='oldschoolrs'></a>"
-    + "<a title='Rune Wiki'target='_parent'href='https://runescape.wiki/'><img id='bookmark' alt='RSWiki'></a>"
-    + "<a title='Rune Tips'target='_parent'href='https://www.tip.it/runescape/'><img id='bookmark' alt='runetips'></a>"
-    + "<a title='Rune HQ'target='_parent'href='https://www.runehq.com' ><img id='bookmark' alt='officialrunehq'></a>";
-document.body.innerHTML += gamesrunescapeBookmarks;
+/**
+ * RuneScape gaming bookmarks
+ */
+const gamesrunescapeBookmarks = [
+  { title: 'RuneScape', href: 'https://www.runescape.com/', alt: 'runescape' },
+  { title: 'Old School RuneScape', href: 'https://oldschool.runescape.com/', alt: 'oldschoolrs' },
+  { title: 'RuneScape Wiki', href: 'https://runescape.wiki/', alt: 'RSWiki' },
+  { title: 'OSRS Wiki', href: 'https://oldschool.runescape.wiki/', alt: 'OsrsWiki' },
+  { title: 'RuneHQ', href: 'https://www.runehq.com/', alt: 'officialrunehq' },
+  { title: 'RuneLite', href: 'https://runelite.net/', alt: 'RuneLiteClient' },
+  { title: 'OSRS Tracker', href: 'https://www.osrs-tracker.com/', alt: 'osrs_tracker' },
+  { title: 'Rune Tips', href: 'https://www.tip.it/runescape/', alt: 'runetips' },
+  { title: 'GE Tracker', href: 'https://www.ge-tracker.com/', alt: 'getracker' },
+  { title: 'Oodle', href: 'https://oodle.rs/', alt: 'oodlers' }
+];
+
+BookmarkBuilder.renderBookmarks(gamesrunescapeBookmarks);
 
 
