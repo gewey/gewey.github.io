@@ -1,21 +1,7 @@
-let months=new Array(13);
-months[1]="January";
-months[2]="February";
-months[3]="March";
-months[4]="April";
-months[5]="May";
-months[6]="June";
-months[7]="July";
-months[8]="August";
-months[9]="September";
-months[10]="October";
-months[11]="November";
-months[12]="December";
-let time=new Date();
-let lmonth=months[time.getMonth() + 1];
-let date=time.getDate();
-let year=time.getYear();
-if (year < 2000)    
-year = year + 1900; 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const time = new Date();
+const lmonth = months[time.getMonth()];
+const date = time.getDate();
+let year = time.getFullYear();
 document.write("<center>" + lmonth + " ");
 document.write(date + ", " + year + "</center>");
