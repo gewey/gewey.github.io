@@ -1,0 +1,429 @@
+/* ============================================================================
+   Top 50 Websites Section Styling
+   ============================================================================ */
+
+.top-50-container {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Category Sections */
+.top-50-category {
+    margin-bottom: 40px;
+    animation: fadeIn var(--transition-normal);
+}
+
+.category-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--accent-color);
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+}
+
+.category-title:hover {
+    color: var(--accent-color);
+    padding-left: 10px;
+}
+
+/* Websites Grid */
+.websites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Website Button Card */
+.website-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: var(--button-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.website-button:hover {
+    background-color: var(--button-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px var(--shadow-color);
+}
+
+.website-button:active {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.website-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+.website-button:hover::before {
+    opacity: 1;
+}
+
+/* Logo Container */
+.website-logo {
+    width: 80px;
+    height: 80px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.website-button:hover .website-logo {
+    background-color: var(--accent-color);
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Logo Image */
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: all var(--transition-normal);
+}
+
+.website-button:hover .logo-image {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) brightness(1.2);
+}
+
+html[data-theme="dark"] .logo-image {
+    filter: brightness(0.9) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+html[data-theme="dark"] .website-button:hover .logo-image {
+    filter: brightness(1.1) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+}
+
+/* Website Name */
+.website-name {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    transition: all var(--transition-normal);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.website-button:hover .website-name {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Rank Badge */
+.website-rank {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: all var(--transition-normal);
+}
+
+.website-button:hover .website-rank {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+/* Top 10 Highlight */
+.website-button[data-rank="1"],
+.website-button[data-rank="2"],
+.website-button[data-rank="3"],
+.website-button[data-rank="4"],
+.website-button[data-rank="5"],
+.website-button[data-rank="6"],
+.website-button[data-rank="7"],
+.website-button[data-rank="8"],
+.website-button[data-rank="9"],
+.website-button[data-rank="10"] {
+    position: relative;
+}
+
+/* Focus States for Keyboard Navigation */
+.website-button:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+}
+
+body.keyboard-nav .website-button:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .websites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .website-button {
+        min-height: 150px;
+        padding: 12px;
+    }
+
+    .website-logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
+    }
+
+    .website-name {
+        font-size: 13px;
+    }
+}
+
+/* Mobile (480px - 768px) */
+@media (max-width: 768px) {
+    .top-50-container {
+        padding: 15px;
+    }
+
+    .websites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+    }
+
+    .website-button {
+        min-height: 130px;
+        padding: 10px;
+    }
+
+    .category-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .website-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 8px;
+    }
+
+    .website-name {
+        font-size: 12px;
+    }
+
+    .website-rank {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .top-50-category {
+        margin-bottom: 30px;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .top-50-container {
+        padding: 10px;
+    }
+
+    .websites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+    }
+
+    .website-button {
+        min-height: 110px;
+        padding: 8px;
+    }
+
+    .category-title {
+        font-size: 18px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+
+    .website-logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 6px;
+    }
+
+    .website-name {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .website-rank {
+        font-size: 9px;
+        padding: 2px 5px;
+    }
+
+    .top-50-category {
+        margin-bottom: 20px;
+    }
+}
+
+/* ============================================================================
+   ACCESSIBILITY & DARK MODE
+   ============================================================================ */
+
+/* Dark Mode Adjustments */
+html[data-theme="dark"] .website-button {
+    background-color: var(--button-bg);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .website-button:hover {
+    background-color: var(--button-hover);
+    border-color: var(--accent-color);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .website-logo {
+    background-color: var(--bg-secondary);
+}
+
+html[data-theme="dark"] .category-title {
+    border-bottom-color: var(--accent-color);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+    .website-button {
+        border-width: 3px;
+    }
+
+    .website-rank {
+        font-weight: 900;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .website-name {
+        font-weight: 900;
+    }
+
+    .category-title {
+        border-bottom-width: 4px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .website-button,
+    .website-button:hover,
+    .website-button:active,
+    .website-logo,
+    .website-button:hover .website-logo {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
+
+    .website-button:hover {
+        box-shadow: none;
+    }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.websites-grid > .website-button {
+    animation: slideInUp var(--transition-normal);
+}
+
+.category-title {
+    animation: slideInUp var(--transition-slow);
+}
+
+/* ============================================================================
+   UTILITIES
+   ============================================================================ */
+
+.website-button[title] {
+    cursor: help;
+}
+
+.website-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.website-button:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Print Styles */
+@media print {
+    .website-button {
+        page-break-inside: avoid;
+        border-color: #000;
+    }
+
+    .website-rank {
+        display: none;
+    }
+}

@@ -16,6 +16,23 @@
 		<script type="text/javascript" src="http://wow.zamimg.com/widgets/newsfeed.js"></script>
 		
         <script type="text/javascript" src="./js/dynamichead.js"></script>
+        
+        <!-- PWA Support -->
+        <link rel="manifest" href="./manifest.json">
+        <script>
+            // Register service worker for offline support
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./js/sw.js')
+                        .then(registration => {
+                            console.log('Service Worker registered:', registration);
+                        })
+                        .catch(error => {
+                            console.log('Service Worker registration failed:', error);
+                        });
+                });
+            }
+        </script>
     </head>
     <body>
         <div class="viewArea">

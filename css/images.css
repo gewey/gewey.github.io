@@ -63,7 +63,8 @@
   list-style-image: url("../img/ico/arrow_right.png");
 }
 * html .viewArea, * body .viewArea {
-  background-image: url("../img/bg/skulls.png");
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(100, 200, 255, 0.05) 100%);
+  background-color: var(--bg-primary, #ffffff);
 }
 * html .pageHeader, * html .pageFooter, * body .pageHeader, * body .pageFooter {
   background-image: url("../img/bg/bricks.png");

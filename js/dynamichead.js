@@ -7,6 +7,7 @@ let theHead
     + "<meta name='description' content='Like your phone, but for chrome.'>"
     + "<meta name='keywords' content='gewey&#039;s homepage'>"
     + "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'>"
+    + "<meta name='theme-color' content='#ffffff'>"
     + "<title>Gewey's Homepage</title>"
     + "<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>"
     + "<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>"
@@ -14,8 +15,12 @@ let theHead
     + "<link rel='stylesheet' href='https://gewey.github.io/css/bones.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/text.css' type='text/css'>"
     + "<link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>"
+    + "<link rel='stylesheet' href='https://gewey.github.io/css/modern.css' type='text/css'>"
+    + "<link rel='stylesheet' href='https://gewey.github.io/css/top50.css' type='text/css'>"
     + "<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>"
-    + "<script type='text/javascript' src='https://gewey.github.io/js/google_analytics.js'></script>";
+    + "<script type='text/javascript' src='https://gewey.github.io/js/google_analytics.js'></script>"
+    + "<script type='text/javascript' src='https://gewey.github.io/js/modernEnhancements.js'></script>"
+    + "<script type='text/javascript' src='https://gewey.github.io/js/top50Websites.js'></script>";
 
 //window.onload = function() {
 //   document.getElementsByTagName("head")[0].innerHTML = theHead;
