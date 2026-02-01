@@ -17,9 +17,10 @@
   }
 
   #bookmark {
-    max-width: 10vw;
-    max-height: 9vh;
-    border-radius: 50%;
+    width: 10vw;
+    height: 10vw;
+    object-fit: contain;
+    border-radius: 0;
   }
 
   #bookmark:hover {
@@ -42,9 +43,10 @@
   }
 
   #bookmark {
-    max-width: 10vw;
-    max-height: 10vh;
-    border-radius: 35%;
+    width: 10vw;
+    height: 10vw;
+    object-fit: contain;
+    border-radius: 0;
   }
 
   #bookmark:hover {
