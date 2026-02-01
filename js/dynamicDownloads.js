@@ -4,7 +4,7 @@
 const downloadsBookmarks = [
   { title: 'Download', href: './download/index.html', target: 'contentframe', alt: 'download' },
   { title: 'Microsoft', href: 'https://www.microsoft.com/', alt: 'microsoft' },
-  { title: 'Windows 11', href: 'https://www.microsoft.com/software-download/windows11', alt: 'windows' },
+  { title: 'Windows 11', href: 'https://www.microsoft.com/software-download/windows11', alt: 'Windows' },
   { title: 'Visual Studio Code', href: 'https://code.visualstudio.com/download', alt: 'code' },
   { title: 'Direct X', href: 'https://www.microsoft.com/en-us/download/details.aspx?id=35', alt: 'directx12' },
   { title: 'Firefox', href: 'https://www.mozilla.org/en-US/firefox/new/', alt: 'firefox' },
@@ -13,7 +13,7 @@ const downloadsBookmarks = [
   { title: 'Kali Linux', href: 'https://www.kali.org/', alt: 'kalilinux' },
   { title: 'Nvidia Drivers', href: 'https://www.nvidia.com/Download/index.aspx', alt: 'nvidia' },
   { title: 'Java', href: 'https://www.java.com/en/download/manual.jsp', alt: 'java' },
-  { title: 'Python', href: 'https://www.python.org/downloads/', alt: 'python' },
+  { title: 'Python', href: 'https://www.python.org/downloads/', alt: 'ThePSF' },
   { title: 'Node.js', href: 'https://nodejs.org/', alt: 'nodejs' },
   { title: 'Git', href: 'https://git-scm.com/download', alt: 'git' },
   { title: 'Notepad++', href: 'https://notepad-plus-plus.org/downloads/', alt: 'Notepad_plus' },

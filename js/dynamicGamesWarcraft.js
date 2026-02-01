@@ -4,7 +4,7 @@
 const gameswarcraftBookmarks = [
   { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'blank' },
   { title: 'Gewey Warcraft', href: './games/warcraft/index.html', target: 'contentframe', alt: 'geweywarcraft' },
-  { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'warcraft' },
+  { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'Warcraft' },
   { title: 'Blizzard', href: 'https://www.blizzard.com/', alt: 'blizzardcs' },
   { title: 'Wowhead', href: 'https://www.wowhead.com/', alt: 'wowhead' },
   { title: 'Icy Veins', href: 'https://www.icy-veins.com/', alt: 'icyveins' },
@@ -18,5 +18,11 @@ const gameswarcraftBookmarks = [
   { title: 'Simple Armory', href: 'https://simplearmory.com/', alt: 'simplearmory' },
   { title: 'Bloodmallet', href: 'https://www.bloodmallet.com/', alt: 'bloodmallet' },
   { title: 'Archon', href: 'https://www.archon.gg/', alt: 'archon' },
-  { title: 'ArenaTeam', href: 'https://www.arenateam.net/', alt: 'arenateam' },\n  { title: 'Data for Azeroth', href: 'https://www.dataforazeroth.com/', alt: 'dataforazeroth' },\n  { title: 'RaidPlan', href: 'https://raidplan.io/', alt: 'raidplan' },\n  { title: 'Warcraft Secrets', href: 'https://warcraft-secrets.com/', alt: 'WarcraftSecrets' }\n];\n\nBookmarkBuilder.renderBookmarks(gameswarcraftBookmarks);
+  { title: 'ArenaTeam', href: 'https://www.arenateam.net/', alt: 'arenateam' },
+  { title: 'Data for Azeroth', href: 'https://www.dataforazeroth.com/', alt: 'dataforazeroth' },
+  { title: 'RaidPlan', href: 'https://raidplan.io/', alt: 'raidplan' },
+  { title: 'Warcraft Secrets', href: 'https://warcraft-secrets.com/', alt: 'WarcraftSecrets' }
+];
+
+BookmarkBuilder.renderBookmarks(gameswarcraftBookmarks);
 
