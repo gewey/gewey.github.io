@@ -91,8 +91,7 @@ $hobosLogo:url("../img/logo/hobos/hobosLogo.png");
 
         .viewArea
         {
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(100, 200, 255, 0.05) 100%);
-            background-color: var(--bg-primary, #ffffff);
+            background-image:url('../img/bg/skulls.png');
         }
         
         .pageHeader, .pageFooter 

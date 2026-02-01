@@ -1,0 +1,46 @@
+VER 3 0100000000000006 "1" "INV_MISC_QUESTIONMARK"
+#showtooltip Arcane Blast
+/startattack
+/cast Shoot
+/cast Arcane Blast
+END
+VER 3 0100000000000007 "3" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast Arcane Barrage
+END
+VER 3 010000000000000B "`" "136048"
+#showtooltip
+/cast Arcane Power
+/cast Presence of Mind
+END
+VER 3 0100000000000005 "F" "INV_MISC_QUESTIONMARK"
+/use [spec:1,talent:7/1]Frost Nova
+/use [spec:1,talent:7/2]Frost Nova
+/use [spec:1,talent:7/3]Arcane Orb
+/use [spec:3]Wildfire Bomb
+END
+VER 3 0100000000000004 "G" "INV_MISC_QUESTIONMARK"
+/cast [spec:1,talent:6/3] Frost Nova; [spec:1,talent:6/2] Slow; [spec:3] Wildfire Bomb
+/use Invisibility
+END
+VER 3 010000000000000A "Mana Gem" "INV_MISC_QUESTIONMARK"
+/cast [btn:2] Conjure Mana Gem; [btn:1] Mana Gem
+END
+VER 3 0100000000000003 "N1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [harm, nomod] Counterspell; [noharm, nomod, @mouseover] Remove Curse; [harm. mod:alt] Spellsteal
+END
+VER 3 0100000000000009 "N2" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead]
+/use [harm,nodead]Polymorph(Sheep)
+/use [nodead,help]The Pigskin
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000002 "N4" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod] Ice Block; [mod] Slow Fall
+END
+VER 3 0100000000000008 "Run" "INV_MISC_QUESTIONMARK"
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Blink; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+END
