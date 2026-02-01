@@ -1,20 +1,25 @@
-let downloadsBookmarks
-    = "<a title='Download'      target='contentframe'href='./download/index.html'                                   ><img id='bookmark'     alt='download'      ></a>"
-    + "<a title='Microsoft'     target='_parent'href='http://www.microsoft.com/'                                    ><img id='bookmark'     alt='microsoft'     ></a>"
-    + "<a title='Direct X'      target='_parent'href='http://www.microsoft.com/en-us/download/details.aspx?id=35'   ><img id='bookmark'     alt='directx12'     ></a>"
-    + "<a title='Ubuntu'        target='_parent'href='https://www.ubuntu.com'                                       ><img id='bookmark'     alt='ubuntu'        ></a>"
-    + "<a title='Kali Linux'    target='_parent'href='https://www.kali.org/'                                        ><img id='bookmark'     alt='kalilinux'     ></a>"
-    + "<a title='Nvidia'        target='_parent'href='https://www.nvidia.com/en-us/'                                ><img id='bookmark'     alt='nvidia'        ></a>"
-    + "<a title='Firefox'       target='_parent'href='https://www.mozilla.org/en-US/firefox/new/'                   ><img id='bookmark'     alt='firefox'       ></a>"
-    + "<a title='Ninite'        target='_parent'href='https://ninite.com/'                                          ><img id='bookmark'     alt='ninite'        ></a>"
-    + "<a title='Java'          target='_parent'href='http://java.com/en/download/index.jsp'                        ><img id='bookmark'     alt='java'          ></a>"
-    + "<a title='Notepad++'     target='_parent'href='https://notepad-plus-plus.org/'                               ><img id='bookmark'     alt='Notepad_plus'  ></a>"
-    + "<a title='sublime'       target='_parent'href='https://www.sublimetext.com'                                  ><img id='bookmark'     alt='sublimehq'     ></a>"
-    + "<a title='brackets'      target='_parent'href='http://brackets.io/'                                          ><img id='bookmark'     alt='brackets'      ></a>"
-    + "<a title='speedify'      target='_parent'href='https://speedify.com/'                                          ><img id='bookmark'     alt='speedify'      ></a>"
-    + "<a title='userbenchmark'      target='_parent'href='https://www.userbenchmark.com/'                                          ><img id='bookmark'     alt='userbenchmark'      ></a>"
-    + "<a title='eclipse'       target='_parent'href='https://www.eclipse.org/'                                     ><img id='bookmark'     alt='EclipseFdn'    ></a>";
-document.body.innerHTML += downloadsBookmarks;
+/**
+ * Software downloads and developer tools bookmarks
+ */
+const downloadsBookmarks = [
+  { title: 'Download', href: './download/index.html', target: 'contentframe', alt: 'download' },
+  { title: 'Microsoft', href: 'http://www.microsoft.com/', alt: 'microsoft' },
+  { title: 'Direct X', href: 'http://www.microsoft.com/en-us/download/details.aspx?id=35', alt: 'directx12' },
+  { title: 'Ubuntu', href: 'https://www.ubuntu.com', alt: 'ubuntu' },
+  { title: 'Kali Linux', href: 'https://www.kali.org/', alt: 'kalilinux' },
+  { title: 'Nvidia', href: 'https://www.nvidia.com/en-us/', alt: 'nvidia' },
+  { title: 'Firefox', href: 'https://www.mozilla.org/en-US/firefox/new/', alt: 'firefox' },
+  { title: 'Ninite', href: 'https://ninite.com/', alt: 'ninite' },
+  { title: 'Java', href: 'http://java.com/en/download/index.jsp', alt: 'java' },
+  { title: 'Notepad++', href: 'https://notepad-plus-plus.org/', alt: 'Notepad_plus' },
+  { title: 'Sublime Text', href: 'https://www.sublimetext.com', alt: 'sublimehq' },
+  { title: 'Brackets', href: 'http://brackets.io/', alt: 'brackets' },
+  { title: 'Speedify', href: 'https://speedify.com/', alt: 'speedify' },
+  { title: 'UserBenchmark', href: 'https://www.userbenchmark.com/', alt: 'userbenchmark' },
+  { title: 'Eclipse', href: 'https://www.eclipse.org/', alt: 'EclipseFdn' }
+];
+
+BookmarkBuilder.renderBookmarks(downloadsBookmarks);
 
 
 

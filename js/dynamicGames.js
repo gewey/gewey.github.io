@@ -1,38 +1,27 @@
-let gamesBookmarks
-    = "<a title='Games'                 target='contentframe'   href='./games/index.html'                    ><img id='bookmark' alt='game'></a>"
-    + "<a title='Twitch'                target='_parent'href='https://www.twitch.tv'><img id='bookmark' alt='twitch'></a>"
-    + "<a title='Discord'               target='_parent'href='https://discordapp.com' ><img id='bookmark' alt='discordapp'></a>"
-    + "<a title='Steam'                 target='_parent'href='https://store.steampowered.com/'><img id='bookmark' alt='steam_games'></a>"
-    + "<a title='Guild Wars 2'          target='_parent'href='https://www.guildwars2.com/'><img id='bookmark' alt='GuildWars2'></a>"
-    + "<a title='ElderScrollsOnline'    target='_parent'href='https://www.elderscrollsonline.com/'><img id='bookmark' alt='tesonline'></a>"
-    + "<a title='alcasthq'    target='_parent'https://alcasthq.com/'><img id='bookmark' alt='alcasthq'></a>"
-    + "<a title='Wizard101'             target='_parent'href='https://www.wizard101.com/'><img id='bookmark' alt='wizard101'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='starcraft2'            target='_parent'https://starcraft2.com/en-us/' ><img id='bookmark' alt='starcraft2'></a>"
-    + "<a title='https://deckbox.org/'  target='_parent'https://deckbox.org/' ><img id='bookmark' alt='deckbox'></a>"
-    + "<a title='Dododex'               target='_parent'href='https://www.dododex.com/' ><img id='bookmark' alt='Dododex'></a>"
-    + "<a title='rimworldwiki'                  target='_parent'https://rimworldwiki.com/wiki/Main_Page/' ><img id='bookmark' alt='rimworldwiki'></a>"
-    + "<a title='MountainDewGaming'                  target='_parent'href='https://www.mtndewgaming.com/' ><img id='bookmark' alt='MountainDewGaming'></a>"
-    + "<a title='satisfactorycalculator'                  target='_parent'href='https://satisfactory-calculator.com/' ><img id='bookmark' alt='satisfactorycalculator'></a>"
-    + "<a title='satisfactorytools'                  target='_parent'https://www.satisfactorytools.com' ><img id='bookmark' alt='satisfactorytools'></a>"
-    + "<a title='ficsitapp'                  target='_parent'href='https://ficsit.app/' ><img id='bookmark' alt='ficsitapp'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='XBOX'                  target='_parent'href='http://www.xbox.com/en-US/' ><img id='bookmark' alt='xbox'></a>"
-    + "<a title='Magic the Gathering'target='_parent'href='https://magic.wizards.com/en' ><img id='bookmark' alt='wizards_magic'></a>";
-document.body.innerHTML += gamesBookmarks;
+/**
+ * Gaming bookmarks - includes MMOs, streaming, and game tools
+ */
+const gamesBookmarks = [
+  { title: 'Games', href: './games/index.html', target: 'contentframe', alt: 'game' },
+  { title: 'Twitch', href: 'https://www.twitch.tv', alt: 'twitch' },
+  { title: 'Discord', href: 'https://discordapp.com', alt: 'discordapp' },
+  { title: 'Steam', href: 'https://store.steampowered.com/', alt: 'steam_games' },
+  { title: 'Guild Wars 2', href: 'https://www.guildwars2.com/', alt: 'GuildWars2' },
+  { title: 'Elder Scrolls Online', href: 'https://www.elderscrollsonline.com/', alt: 'tesonline' },
+  { title: 'AlcastHQ', href: 'https://alcasthq.com/', alt: 'alcasthq' },
+  { title: 'Wizard101', href: 'https://www.wizard101.com/', alt: 'wizard101' },
+  { title: 'XBOX', href: 'http://www.xbox.com/en-US/', alt: 'xbox' },
+  { title: 'StarCraft 2', href: 'https://starcraft2.com/en-us/', alt: 'starcraft2' },
+  { title: 'Deckbox', href: 'https://deckbox.org/', alt: 'deckbox' },
+  { title: 'Dododex', href: 'https://www.dododex.com/', alt: 'Dododex' },
+  { title: 'RimWorld Wiki', href: 'https://rimworldwiki.com/wiki/Main_Page/', alt: 'rimworldwiki' },
+  { title: 'Mountain Dew Gaming', href: 'https://www.mtndewgaming.com/', alt: 'MountainDewGaming' },
+  { title: 'Satisfactory Calculator', href: 'https://satisfactory-calculator.com/', alt: 'satisfactorycalculator' },
+  { title: 'Satisfactory Tools', href: 'https://www.satisfactorytools.com', alt: 'satisfactorytools' },
+  { title: 'FicsitApp', href: 'https://ficsit.app/', alt: 'ficsitapp' },
+  { title: 'Magic the Gathering', href: 'https://magic.wizards.com/en', alt: 'wizards_magic' }
+];
+
+BookmarkBuilder.renderBookmarks(gamesBookmarks);
 
 

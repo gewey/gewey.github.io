@@ -1,14 +1,19 @@
 
-let shoppingBookmarks
-    = "<a title='Gewey Referral'        target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='shopping'></a>"
-    + "<a title='Amazon'                target='_parent'href='https://amzn.to/391VsnT'                          ><img id='bookmark' alt='amazon'></a>"
-    + "<a title='Candle Science'        target='_parent'href='https://www.candlescience.com/'                   ><img id='bookmark' alt='CandleScience'></a>"
-    + "<a title='The Flaming Candle'    target='_parent'href='https://www.theflamingcandle.com/'                ><img id='bookmark' alt='Flaming_Candle'></a>"
-    + "<a title='Ebay'                  target='_parent'href='http://www.ebay.com/'                             ><img id='bookmark' alt='ebay'></a>"
-    + "<a title='Jinx'                  target='_parent'href='http://www.jinx.com/member/336691?bid=49'         ><img id='bookmark' alt='jinx'></a>"
-    + "<a title='Newegg'                target='_parent'href='http://www.newegg.com/'                           ><img id='bookmark' alt='newegg'></a>"
-    + "<a title='Wal Mart'              target='_parent'href='http://www.walmart.com/'                          ><img id='bookmark' alt='walmart'></a>"
-    + "<a title='sharkrobot'              target='_parent'href='https://sharkrobot.com/collections/vivziepop'                          ><img id='bookmark' alt='sharkrobot'></a>"
-    + "<a title='UPS'                   target='_parent'href='http://www.ups.com/'                              ><img id='bookmark' alt='ups'></a>"
-    + "<a title='USPS'                  target='_parent'href='https://www.usps.com/'                            ><img id='bookmark' alt='usps'></a>";
-document.body.innerHTML += shoppingBookmarks;
+/**
+ * Shopping and e-commerce bookmarks
+ */
+const shoppingBookmarks = [
+  { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'shopping' },
+  { title: 'Amazon', href: 'https://amzn.to/391VsnT', alt: 'amazon' },
+  { title: 'Candle Science', href: 'https://www.candlescience.com/', alt: 'CandleScience' },
+  { title: 'The Flaming Candle', href: 'https://www.theflamingcandle.com/', alt: 'Flaming_Candle' },
+  { title: 'eBay', href: 'http://www.ebay.com/', alt: 'ebay' },
+  { title: 'Jinx', href: 'http://www.jinx.com/member/336691?bid=49', alt: 'jinx' },
+  { title: 'Newegg', href: 'http://www.newegg.com/', alt: 'newegg' },
+  { title: 'Walmart', href: 'http://www.walmart.com/', alt: 'walmart' },
+  { title: 'SharkRobot', href: 'https://sharkrobot.com/collections/vivziepop', alt: 'sharkrobot' },
+  { title: 'UPS', href: 'http://www.ups.com/', alt: 'ups' },
+  { title: 'USPS', href: 'https://www.usps.com/', alt: 'usps' }
+];
+
+BookmarkBuilder.renderBookmarks(shoppingBookmarks);

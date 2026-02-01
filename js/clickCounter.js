@@ -1,28 +1,32 @@
+/**
+ * Click counter utility
+ * Tracks clicks using browser localStorage
+ */
 
-let images = document.images;
-let iC = "";
-let localStorage;
-let txt;
+const initClickCounter = () => {
+  const images = document.images;
+  let clickCount = localStorage.getItem('verpCount') || 0;
 
+  /**
+   * Increment click counter
+   */
+  const incrementCounter = () => {
+    clickCount = Number(clickCount) + 1;
+    localStorage.setItem('verpCount', clickCount);
+  };
 
-function clickCounter() {
-    if (localStorage.verp) {
-        localStorage.verp = Number(localStorage.verp) + 1;
-    } else {
-        localStorage.verp = 1;
-    }
-}
+  /**
+   * Initialize image click tracking
+   */
+  for (let i = 0; i < images.length; i++) {
+    const imageAlt = images[i].getAttribute('alt');
+    images[i].setAttribute('title', clickCount);
+  }
 
-for (iC = 0; iC < images.length; iC++) {
-    let verp = images[iC].getAttribute("alt");
+  return { incrementCounter, getCount: () => clickCount };
+};
 
-    images[iC].setAttribute("src", "https://avatars.io/twitter/" + verp + "/256/");
-    images[iC].setAttribute("title", localStorage.verp);
-    let clerp = images[iC].getAttribute("title");
-    txt = txt +  images[iC].alt + "___" + images[iC].src + "___" + clerp[iC] + verp + "<br><br>";
-
-    document.getElementById("demo").innerHTML = txt + verp + localStorage.verp;
-
-}
+// Initialize on page load
+const counter = initClickCounter();
 
 
