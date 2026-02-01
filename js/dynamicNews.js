@@ -1,15 +1,20 @@
-let newsBookmarks
-    = "<a title='News'    target='contentframe'href='./news/index.html'                    ><img id='bookmark' alt='news'></a>"
-    + "<a title='apnews'target='_parent'href='https://apnews.com/'><img id='bookmark' alt='apnews'></a>"
-    + "<a title='CNN'target='_parent'href='http://www.cnn.com/'><img id='bookmark' alt='cnn'></a>"
-    + "<a title='Huffington Post'target='_parent'href='http://www.huffingtonpost.com/' ><img id='bookmark' alt='huffpost'></a>"
-    + "<a title='New York Times' target='_parent'href='http://www.nytimes.com/'><img id='bookmark' alt='nytimes'></a>"
-    + "<a title='Newsweek' target='_parent'href='https://www.newsweek.com/'><img id='bookmark' alt='newsweek'></a>"
-    + "<a title='BBC'target='_parent'href='http://www.bbc.com/'><img id='bookmark' alt='bbc'></a>"
-    + "<a title='Weather'target='_parent'href='http://www.weather.com/'><img id='bookmark' alt='weatherchannel'></a>"
-    + "<a title='NASA' target='_parent'href='http://www.nasa.gov/' ><img id='bookmark' alt='nasa'></a>"
-    + "<a title='Science Channel'target='_parent'href='https://www.sciencechannel.com'><img id='bookmark' alt='ScienceChannel'></a>"
-    + "<a title='cnet' target='_parent'href='http://www.cnet.com/' ><img id='bookmark' alt='cnet'></a>"
-    + "<a title='Yahoo![HTTPS]'target='_parent'href='https://www.yahoo.com/' ><img id='bookmark' alt='yahoo'></a>"
-    + "<a title='Global Citizen' target='_parent'href='https://www.globalcitizen.org' ><img id='bookmark' alt='glblctzn'></a>";
-document.body.innerHTML += newsBookmarks;
+/**
+ * News and media bookmarks
+ */
+const newsBookmarks = [
+  { title: 'News', href: './news/index.html', target: 'contentframe', alt: 'news' },
+  { title: 'AP News', href: 'https://apnews.com/', alt: 'apnews' },
+  { title: 'CNN', href: 'http://www.cnn.com/', alt: 'cnn' },
+  { title: 'Huffington Post', href: 'http://www.huffingtonpost.com/', alt: 'huffpost' },
+  { title: 'New York Times', href: 'http://www.nytimes.com/', alt: 'nytimes' },
+  { title: 'Newsweek', href: 'https://www.newsweek.com/', alt: 'newsweek' },
+  { title: 'BBC', href: 'http://www.bbc.com/', alt: 'bbc' },
+  { title: 'Weather', href: 'http://www.weather.com/', alt: 'weatherchannel' },
+  { title: 'NASA', href: 'http://www.nasa.gov/', alt: 'nasa' },
+  { title: 'Science Channel', href: 'https://www.sciencechannel.com', alt: 'ScienceChannel' },
+  { title: 'CNET', href: 'http://www.cnet.com/', alt: 'cnet' },
+  { title: 'Yahoo', href: 'https://www.yahoo.com/', alt: 'yahoo' },
+  { title: 'Global Citizen', href: 'https://www.globalcitizen.org', alt: 'glblctzn' }
+];
+
+BookmarkBuilder.renderBookmarks(newsBookmarks);

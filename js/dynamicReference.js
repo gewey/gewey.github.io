@@ -1,22 +1,27 @@
-let referenceBookmarks
-    = "<a title='Reference'     target='contentframe'   href='./reference/index.html'                   ><img id='bookmark' alt='reference'></a>"
-    + "<a title='Brilliant'      target='_parent'        href='https://brilliant.org/'                ><img id='bookmark' alt='brilliant'></a>"
-    + "<a title='Ancestry'      target='_parent'        href='https://www.ancestry.com/'                ><img id='bookmark' alt='Ancestry'></a>"
-    + "<a title='My Heritage'      target='_parent'        href='https://www.myheritage.com/'                ><img id='bookmark' alt='MyHeritage'></a>"
-    + "<a title='Genomelink'      target='_parent'        href='https://genomelink.io/dashboard/'                ><img id='bookmark' alt='genomelink'></a>"
-    + "<a title='23 & Me'       target='_parent'        href='https://www.23andme.com/'                 ><img id='bookmark' alt='23andMe'></a>"
-    + "<a title='Wikipedia'target='_parent'href='http://wikipedia.org/'><img id='bookmark' alt='wikipedia'></a>"
-    + "<a title='IMDB' target='_parent'href='http://www.imdb.com/' ><img id='bookmark' alt='imdb'></a>"
-    + "<a title='ehow' target='_parent'href='http://www.ehow.com/' ><img id='bookmark' alt='ehow'></a>"
-    + "<a title='Almanac'target='_parent'href='https://www.almanac.com/' ><img id='bookmark' alt='almanac'></a>"
-    + "<a title='Ted'target='_parent'href='https://www.ted.com'><img id='bookmark' alt='tedtalks'></a>"
-    + "<a title='Allrecipes' target='_parent'href='https://www.allrecipes.com/'><img id='bookmark' alt='allrecipes'></a>"
-    + "<a title='Life Hacker'target='_parent'href='https://lifehacker.com/'><img id='bookmark' alt='lifehacker'></a>"
-    + "<a title='Khan Academy' target='_parent'href='https://www.khanacademy.org/' ><img id='bookmark' alt='khanacademy'></a>"
-    + "<a title='Font Awesome' target='_parent'href='https://fontawesome.com/' ><img id='bookmark' alt='fontawesome'></a>"
-    + "<a title='Ptable' target='_parent'href='https://www.ptable.com/'><img id='bookmark' alt='ptable'></a>"
-    + "<a title='Dictionary' target='_parent'href='http://dictionary.reference.com/' ><img id='bookmark' alt='dictionarycom'></a>"
-    + "<a title='Duolingo' target='_parent'href='https://www.duolingo.com' ><img id='bookmark' alt='duolingo'></a>"
-    + "<a title='Kurzgesagt' target='_parent'href='https://www.youtube.com/user/Kurzgesagt'><img id='bookmark' alt='Kurz_Gesagt'></a>"
-    + "<a title='Crash Course' target='_parent'href='https://www.youtube.com/user/crashcourse' ><img id='bookmark' alt='thecrashcourse'></a>";
-document.body.innerHTML += referenceBookmarks;
+/**
+ * Reference and educational bookmarks
+ */
+const referenceBookmarks = [
+  { title: 'Reference', href: './reference/index.html', target: 'contentframe', alt: 'reference' },
+  { title: 'Brilliant', href: 'https://brilliant.org/', alt: 'brilliant' },
+  { title: 'Ancestry', href: 'https://www.ancestry.com/', alt: 'Ancestry' },
+  { title: 'MyHeritage', href: 'https://www.myheritage.com/', alt: 'MyHeritage' },
+  { title: 'Genomelink', href: 'https://genomelink.io/dashboard/', alt: 'genomelink' },
+  { title: '23andMe', href: 'https://www.23andme.com/', alt: '23andMe' },
+  { title: 'Wikipedia', href: 'http://wikipedia.org/', alt: 'wikipedia' },
+  { title: 'IMDB', href: 'http://www.imdb.com/', alt: 'imdb' },
+  { title: 'eHow', href: 'http://www.ehow.com/', alt: 'ehow' },
+  { title: 'Almanac', href: 'https://www.almanac.com/', alt: 'almanac' },
+  { title: 'TED Talks', href: 'https://www.ted.com', alt: 'tedtalks' },
+  { title: 'AllRecipes', href: 'https://www.allrecipes.com/', alt: 'allrecipes' },
+  { title: 'Life Hacker', href: 'https://lifehacker.com/', alt: 'lifehacker' },
+  { title: 'Khan Academy', href: 'https://www.khanacademy.org/', alt: 'khanacademy' },
+  { title: 'Font Awesome', href: 'https://fontawesome.com/', alt: 'fontawesome' },
+  { title: 'Periodic Table', href: 'https://www.ptable.com/', alt: 'ptable' },
+  { title: 'Dictionary', href: 'http://dictionary.reference.com/', alt: 'dictionarycom' },
+  { title: 'Duolingo', href: 'https://www.duolingo.com', alt: 'duolingo' },
+  { title: 'Kurzgesagt', href: 'https://www.youtube.com/user/Kurzgesagt', alt: 'Kurz_Gesagt' },
+  { title: 'Crash Course', href: 'https://www.youtube.com/user/crashcourse', alt: 'thecrashcourse' }
+];
+
+BookmarkBuilder.renderBookmarks(referenceBookmarks);

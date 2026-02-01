@@ -1,14 +1,19 @@
 
-let socialBookmarks
-    = "<a title='Facebook'          target='_parent'href='http://facebook.com/'         ><img id='bookmark' alt='facebook'          ></a>"
-    + "<a title='Twitter'           target='_parent'href='http://twitter.com/'          ><img id='bookmark' alt='twitter'           ></a>"
-    + "<a title='Instagram'         target='_parent'href='https://www.instagram.com/'   ><img id='bookmark' alt='instagram'         ></a>"
-    + "<a title='Pinterest'         target='_parent'href='http://pinterest.com/'        ><img id='bookmark' alt='pinterest'         ></a>"
-    + "<a title='Skype'             target='_parent'href='https://www.skype.com/en/'    ><img id='bookmark' alt='skype'             ></a>"
-    + "<a title='Linked In'         target='_parent'href='http://www.linkedin.com/'     ><img id='bookmark' alt='linkedin'          ></a>"
-    + "<a title='Mix/Stumble Upon'  target='_parent'href='https://mix.com/'             ><img id='bookmark' alt='getmixapp'         ></a>"
-    + "<a title='Digg'              target='_parent'href='http://digg.com/'             ><img id='bookmark' alt='digg'              ></a>"
-    + "<a title='Reddit'            target='_parent'href='http://www.reddit.com/'       ><img id='bookmark' alt='reddit'            ></a>"
-    + "<a title='Wordpress'         target='_parent'href='http://wordpress.org/'        ><img id='bookmark' alt='wordpress'         ></a>"
-    + "<a title='Text Free Pinger'  target='_parent'href='https://textfree.us/'         ><img id='bookmark' alt='textfreeapp'       ></a>";
-document.body.innerHTML += socialBookmarks;
+/**
+ * Social media and community bookmarks
+ */
+const socialBookmarks = [
+  { title: 'Facebook', href: 'http://facebook.com/', alt: 'facebook' },
+  { title: 'Twitter', href: 'http://twitter.com/', alt: 'twitter' },
+  { title: 'Instagram', href: 'https://www.instagram.com/', alt: 'instagram' },
+  { title: 'Pinterest', href: 'http://pinterest.com/', alt: 'pinterest' },
+  { title: 'Skype', href: 'https://www.skype.com/en/', alt: 'skype' },
+  { title: 'LinkedIn', href: 'http://www.linkedin.com/', alt: 'linkedin' },
+  { title: 'Mix', href: 'https://mix.com/', alt: 'getmixapp' },
+  { title: 'Digg', href: 'http://digg.com/', alt: 'digg' },
+  { title: 'Reddit', href: 'http://www.reddit.com/', alt: 'reddit' },
+  { title: 'WordPress', href: 'http://wordpress.org/', alt: 'wordpress' },
+  { title: 'Text Free', href: 'https://textfree.us/', alt: 'textfreeapp' }
+];
+
+BookmarkBuilder.renderBookmarks(socialBookmarks);

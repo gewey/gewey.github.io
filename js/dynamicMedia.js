@@ -1,24 +1,29 @@
-let mediaBookmarks
-    = "<a title='Media'    target='contentframe'href='./media/index.html'                    ><img id='bookmark' alt='media'></a>"
-    + "<a title='Spotify'           target='_parent'href='http://www.spotify.com/'                      ><img id='bookmark' alt='spotify'           ></a>"
-    + "<a title='stats fm'           target='_parent'href='https://stats.fm/'                      ><img id='bookmark' alt='statsfm'           ></a>"
-    + "<a title='radio.garden'      target='_parent'href='http://radio.garden/'                         ><img id='bookmark' alt='radiogarden'       ></a>"
-    + "<a title='Youtube'           target='_parent'href='https://www.youtube.com/feed/subscriptions'   ><img id='bookmark' alt='youtube'           ></a>"
-    + "<a title='netflix'           target='_parent'href='http://www.netflix.com/'                      ><img id='bookmark' alt='netflix'           ></a>"
-    + "<a title='Hulu'              target='_parent'href='http://www.hulu.com/'                         ><img id='bookmark' alt='hulu'              ></a>"
-    + "<a title='Prime Video'       target='_parent'href='https://www.amazon.com/gp/video/storefront'   ><img id='bookmark' alt='primevideo'        ></a>"
-    + "<a title='HBOmax'            target='_parent'href='https://play.hbomax.com/profileSelect'        ><img id='bookmark' alt='hbomax'            ></a>"
-    + "<a title='The Roku Channel'  target='_parent'href='https://therokuchannel.roku.com/'             ><img id='bookmark' alt='RokuChannels'      ></a>"
-    + "<a title='Pluto TV'          target='_parent'href='https://pluto.tv/'                           ><img id='bookmark' alt='PlutoTV'           ></a>"
-    + "<a title='lookmovie'          target='_parent'href='https://www.lookmovie2.to/'                           ><img id='bookmark' alt='lookmovie'           ></a>"
-    + "<a title='Nebula'    target='_parent'href='https://nebula.tv/'                 ><img id='bookmark' alt='nebula'    ></a>"
-    + "<a title='Deviant Art'       target='_parent'href='http://www.deviantart.com/'                   ><img id='bookmark' alt='deviantart'        ></a>"
-    + "<a title='imgflip'           target='_parent'href='https://imgflip.com/'                         ><img id='bookmark' alt='imgflip'           ></a>"
-    + "<a title='Audible'           target='_parent'href='https://amzn.to/2D4mwBB'                      ><img id='bookmark' alt='audible_com'       ></a>"
-    + "<a title='Tumblr'            target='_parent'href='https://www.tumblr.com/dashboard'             ><img id='bookmark' alt='tumblr'            ></a>"
-    + "<a title='Gravit'            target='_parent'href='https://designer.io/'                         ><img id='bookmark' alt='gravitdesigner'    ></a>"
-    + "<a title='ShutterStock'      target='_parent'href='http://www.shutterstock.com/?rid=224491653'   ><img id='bookmark' alt='shutterstock'      ></a>"
-    + "<a title='HazbinHotel'      target='_parent'href='https://x.com/HazbinHotel'   ><img id='bookmark' alt='HazbinHotel'      ></a>"
-    + "<a title='HelluvaBoss'      target='_parent'href='https://www.stylishoccult.com/'   ><img id='bookmark' alt='HelluvaBoss'      ></a>"
-    + "<a title='Blogger'           target='_parent'href='https://www.blogger.com/'                     ><img id='bookmark' alt='blogger'           ></a>";
-document.body.innerHTML += mediaBookmarks;
+/**
+ * Media and entertainment bookmarks
+ */
+const mediaBookmarks = [
+  { title: 'Media', href: './media/index.html', target: 'contentframe', alt: 'media' },
+  { title: 'Spotify', href: 'http://www.spotify.com/', alt: 'spotify' },
+  { title: 'Stats.fm', href: 'https://stats.fm/', alt: 'statsfm' },
+  { title: 'Radio Garden', href: 'http://radio.garden/', alt: 'radiogarden' },
+  { title: 'YouTube', href: 'https://www.youtube.com/feed/subscriptions', alt: 'youtube' },
+  { title: 'Netflix', href: 'http://www.netflix.com/', alt: 'netflix' },
+  { title: 'Hulu', href: 'http://www.hulu.com/', alt: 'hulu' },
+  { title: 'Prime Video', href: 'https://www.amazon.com/gp/video/storefront', alt: 'primevideo' },
+  { title: 'HBO Max', href: 'https://play.hbomax.com/profileSelect', alt: 'hbomax' },
+  { title: 'The Roku Channel', href: 'https://therokuchannel.roku.com/', alt: 'RokuChannels' },
+  { title: 'Pluto TV', href: 'https://pluto.tv/', alt: 'PlutoTV' },
+  { title: 'LookMovie', href: 'https://www.lookmovie2.to/', alt: 'lookmovie' },
+  { title: 'Nebula', href: 'https://nebula.tv/', alt: 'nebula' },
+  { title: 'DeviantArt', href: 'http://www.deviantart.com/', alt: 'deviantart' },
+  { title: 'imgflip', href: 'https://imgflip.com/', alt: 'imgflip' },
+  { title: 'Audible', href: 'https://amzn.to/2D4mwBB', alt: 'audible_com' },
+  { title: 'Tumblr', href: 'https://www.tumblr.com/dashboard', alt: 'tumblr' },
+  { title: 'Gravit Designer', href: 'https://designer.io/', alt: 'gravitdesigner' },
+  { title: 'Shutterstock', href: 'http://www.shutterstock.com/?rid=224491653', alt: 'shutterstock' },
+  { title: 'Hazbin Hotel', href: 'https://x.com/HazbinHotel', alt: 'HazbinHotel' },
+  { title: 'Helluva Boss', href: 'https://www.stylishoccult.com/', alt: 'HelluvaBoss' },
+  { title: 'Blogger', href: 'https://www.blogger.com/', alt: 'blogger' }
+];
+
+BookmarkBuilder.renderBookmarks(mediaBookmarks);

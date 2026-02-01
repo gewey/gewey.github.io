@@ -1,20 +1,25 @@
-let webdevelopmentBookmarks
-    = "<a title='Web Development'       target='contentframe'   href='./reference/index.html'                   ><img id='bookmark' alt='webdevelopment'    ></a>"
-    + "<a title='zapier'                target='_parent'        href='https://www.zapier.com/'                  ><img id='bookmark' alt='zapier'            ></a>"
-    + "<a title='Bleeping Computer'     target='_parent'        href='https://www.bleepingcomputer.com/'        ><img id='bookmark' alt='BleepinComputer'   ></a>"
-    + "<a title='w3 schools'            target='_parent'        href='http://www.w3schools.com/'                ><img id='bookmark' alt='w3schoolsonline'   ></a>"
-    + "<a title='stack overflow'        target='_parent'        href='https://stackoverflow.com/'               ><img id='bookmark' alt='StackOverflow'     ></a>"
-    + "<a title='github'                target='_parent'        href='https://github.com/'                      ><img id='bookmark' alt='github'            ></a>"
-    + "<a title='codecademy'            target='_parent'        href='https://www.codecademy.com/'              ><img id='bookmark' alt='codecademy'        ></a>"
-    + "<a title='freecodecamp'          target='_parent'        href='https://learn.freecodecamp.org/'          ><img id='bookmark' alt='freeCodeCamp'      ></a>"
-    + "<a title='Tensorflow'            target='_parent'        href='https://js.tensorflow.org/'               ><img id='bookmark' alt='tensorflow'        ></a>"
-    + "<a title='CodePen.IO'            target='_parent'        href='https://codepen.io/'                      ><img id='bookmark' alt='codepen'           ></a>"
-    + "<a title='Material.IO'           target='_parent'        href='https://material.io/'                     ><img id='bookmark' alt='materialdesign'    ></a>"
-    + "<a title='Open Culture'          target='_parent'        href='http://www.openculture.com'               ><img id='bookmark' alt='openculture'       ></a>"
-    + "<a title='Fontvilla'             target='_parent'        href='https://fontvilla.com/'                   ><img id='bookmark' alt='Fontvillacs'       ></a>"
-    + "<a title='airbrush'             target='_parent'        href='https://airbrush.com/'                   ><img id='bookmark' alt='airbrush'       ></a>"
-    + "<a title='facyai'             target='_parent'        href='https://facy.ai/swap-face-ai/photo'                   ><img id='bookmark' alt='facyai'       ></a>"
-    + "<a title='tutorialspoint'             target='_parent'        href='https://www.tutorialspoint.com/index.htm'                   ><img id='bookmark' alt='tutorialspoint'       ></a>"
-    + "<a title=blizzardpress             target='_parent'        href='https://blizzard.gamespress.com/World-of-Warcraft'                   ><img id='bookmark' alt='blizzardpress'       ></a>"
-    + "<a title='MIT APP INVENTOR'      target='_parent'        href='http://ai2.appinventor.mit.edu/'          ><img id='bookmark' alt='mitappinventor'    ></a>";
-document.body.innerHTML += webdevelopmentBookmarks;
+/**
+ * Web development and coding resources bookmarks
+ */
+const webdevelopmentBookmarks = [
+  { title: 'Web Development', href: './reference/index.html', target: 'contentframe', alt: 'webdevelopment' },
+  { title: 'Zapier', href: 'https://www.zapier.com/', alt: 'zapier' },
+  { title: 'Bleeping Computer', href: 'https://www.bleepingcomputer.com/', alt: 'BleepinComputer' },
+  { title: 'W3Schools', href: 'http://www.w3schools.com/', alt: 'w3schoolsonline' },
+  { title: 'Stack Overflow', href: 'https://stackoverflow.com/', alt: 'StackOverflow' },
+  { title: 'GitHub', href: 'https://github.com/', alt: 'github' },
+  { title: 'Codecademy', href: 'https://www.codecademy.com/', alt: 'codecademy' },
+  { title: 'FreeCodeCamp', href: 'https://learn.freecodecamp.org/', alt: 'freeCodeCamp' },
+  { title: 'TensorFlow.js', href: 'https://js.tensorflow.org/', alt: 'tensorflow' },
+  { title: 'CodePen', href: 'https://codepen.io/', alt: 'codepen' },
+  { title: 'Material Design', href: 'https://material.io/', alt: 'materialdesign' },
+  { title: 'Open Culture', href: 'http://www.openculture.com', alt: 'openculture' },
+  { title: 'Fontvilla', href: 'https://fontvilla.com/', alt: 'Fontvillacs' },
+  { title: 'Airbrush', href: 'https://airbrush.com/', alt: 'airbrush' },
+  { title: 'FacyAI', href: 'https://facy.ai/swap-face-ai/photo', alt: 'facyai' },
+  { title: 'TutorialsPoint', href: 'https://www.tutorialspoint.com/index.htm', alt: 'tutorialspoint' },
+  { title: 'Blizzard Press', href: 'https://blizzard.gamespress.com/World-of-Warcraft', alt: 'blizzardpress' },
+  { title: 'MIT App Inventor', href: 'http://ai2.appinventor.mit.edu/', alt: 'mitappinventor' }
+];
+
+BookmarkBuilder.renderBookmarks(webdevelopmentBookmarks);

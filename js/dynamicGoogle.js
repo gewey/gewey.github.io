@@ -1,15 +1,16 @@
-let googleBookmarks
-    = "<a title='Google' target='_parent'href='http://www.google.com/' ><img id='bookmark' alt='google'></a>"
-    + "<a title='Google Drive' target='_parent'href='https://drive.google.com/'><img id='bookmark' alt='googledrive'></a>"
-    + "<a title='Google Docs'target='_parent'href='https://docs.google.com'><img id='bookmark' alt='googledocs'></a>"
-    + "<a title='Google Chrome'target='_parent'href='https://www.google.com/chrome/' ><img id='bookmark' alt='googlechrome'></a>"
-    + "<a title='Gmail'target='_parent'href='https://mail.google.com/' ><img id='bookmark' alt='gmail'></a>"
-    + "<a title='Google Photos'     target='_parent'href='https://photos.google.com/'                   ><img id='bookmark' alt='googlephotos'      ></a>"
+/**
+ * Google services bookmarks
+ */
+const googleBookmarks = [
+  { title: 'Google', href: 'http://www.google.com/', alt: 'google' },
+  { title: 'Google Drive', href: 'https://drive.google.com/', alt: 'googledrive' },
+  { title: 'Google Docs', href: 'https://docs.google.com', alt: 'googledocs' },
+  { title: 'Google Chrome', href: 'https://www.google.com/chrome/', alt: 'googlechrome' },
+  { title: 'Gmail', href: 'https://mail.google.com/', alt: 'gmail' },
+  { title: 'Google Photos', href: 'https://photos.google.com/', alt: 'googlephotos' },
+  { title: 'Google Translate', href: 'https://translate.google.com/', alt: 'googletranslate' },
+  { title: 'Google Maps', href: 'https://www.google.com/maps/', alt: 'GMapsPlatform' }
+];
 
-    + "<a title='Google Translate' target='_parent'href='https://translate.google.com/'><img id='bookmark' alt='googletranslate'></a>"
-
-
-
-    + "<a title='Google Maps'target='_parent'href='https://www.google.com/maps/' ><img id='bookmark' alt='GMapsPlatform'></a>";
-document.body.innerHTML += googleBookmarks;
+BookmarkBuilder.renderBookmarks(googleBookmarks);
 

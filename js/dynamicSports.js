@@ -1,6 +1,9 @@
 
-let sportsBookmarks
-    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
-    + ""
-    + "";
-document.body.innerHTML += sportsBookmarks;
+/**
+ * Sports and recreation bookmarks
+ */
+const sportsBookmarks = [
+  { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'blank' }
+];
+
+BookmarkBuilder.renderBookmarks(sportsBookmarks);
