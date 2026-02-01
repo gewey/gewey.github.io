@@ -2,7 +2,7 @@
  * Minecraft gaming resources bookmarks
  */
 const gamesminecraftBookmarks = [
-  { title: 'Minecraft', href: 'https://minecraft.net/', alt: 'minecraft' },
+  { title: 'Minecraft', href: 'https://minecraft.net/', alt: 'Minecraft' },
   { title: 'Minecraft Launcher', href: 'https://launcher.mojang.com/', alt: 'mojang' },
   { title: 'Minecraft Wiki', href: 'https://minecraft.gamepedia.com/Minecraft_Wiki', alt: 'minecraftwiki' },
   { title: 'Minecraft Server List', href: 'https://mcsrvstat.us/', alt: 'mcsrvstat' },
