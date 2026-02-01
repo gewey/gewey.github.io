@@ -1,26 +1,22 @@
-let gameswarcraftBookmarks
-    = "<a title='Gewey Referral'    target='contentframe'href='./shopping/referral.html'                    ><img id='bookmark' alt='blank'></a>"
-    + "<a title='Gewey Warcraft'    target='contentframe'href='./games/warcraft/index.html'                 ><img id='bookmark' alt='geweywarcraft'></a>"
-    + "<a title='Blizzard' target='_parent'href='https://www.blizzard.com/'><img id='bookmark' alt='blizzardcs'></a>"
-    + "<a title='BlizzardResearch' target='_parent'https://research.blizzard.com/Portal/home'><img id='bookmark' alt='BlizzardResearch'></a>"
-    + "<a title='World of Warcraft'target='_parent'href='http://www.worldofwarcraft.com/'><img id='bookmark' alt='warcraft'></a>"
-    + "<a title='Raidbots' target='_parent'href='https://www.raidbots.com/simbot'><img id='bookmark' alt='raidbots'></a>"
-    + "<a title='Warcraft Logs'target='_parent'href='https://www.warcraftlogs.com' ><img id='bookmark' alt='warcraftlogs'></a>"
-    + "<a title='Raider IO'target='_parent'href='https://raider.io/' ><img id='bookmark' alt='raiderio_wow'></a>"
-    + "<a title='WoW Progress'      target='_parent'href='https://www.wowprogress.com/'                               ><img id='bookmark' alt='wowprogress'></a>"
-    + "<a title='Archon'      target='_parent'https://www.archon.gg/'                               ><img id='bookmark' alt='archon'></a>"
-    + "<a title='arenamaster'      target='_parent'https://arenamaster.io/'                               ><img id='bookmark' alt='arenamaster'></a>"
-    + "<a title='dataforazeroth'      target='_parent'https://www.dataforazeroth.com/characters/US/Hyjal/tandumonium'><img id='bookmark' alt='dataforazeroth'></a>"
-    + "<a title='raidplan'      target='_parent'https://raidplan.io/'><img id='bookmark' alt='raidplan'></a>"
-    + "<a title='TradeSkillMaster' target='_parent'href='https://www.tradeskillmaster.com' ><img id='bookmark' alt='tsmaddon'></a>"
-    + "<a title='Petopia'target='_parent'href='http://www.wow-petopia.com' ><img id='bookmark' alt='wowpetopia'></a>"
-    + "<a title='Icy Veins'target='_parent'href='https://www.icy-veins.com'><img id='bookmark' alt='icyveins'></a>"
-    + "<a title='noxxic'target='_parent'href='https://www.noxxic.com/wow/'><img id='bookmark' alt='noxxic'></a>"
-    + "<a title='WowHead'target='_parent'href='https://www.wowhead.com'><img id='bookmark' alt='wowhead'></a>"
-    + "<a title='bloodmallet'target='_parent'href='https://www.bloodmallet.com'><img id='bookmark' alt='bloodmallet'></a>"
-    + "<a title='Wago.IO'target='_parent'href='https://wago.io/'><img id='bookmark' alt='wago_io'></a>"
-    + "<a title='Simple Armory'target='_parent'href='https://simplearmory.com/#/us/thrall/tandu'><img id='bookmark' alt='simplearmory'></a>"
-    + "<a title='wowrealmpopulation'target='_parent'https://www.wowrealmpopulation.com/'><img id='bookmark' alt='wowrealmpopulation'></a>"
-    + "<a title='Warcraft Secrets'target='_parent'href='https://warcraft-secrets.com/'><img id='bookmark' alt='WarcraftSecrets'></a>";
-document.body.innerHTML += gameswarcraftBookmarks;
+/**
+ * World of Warcraft resources and tools bookmarks
+ */
+const gameswarcraftBookmarks = [
+  { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'blank' },
+  { title: 'Gewey Warcraft', href: './games/warcraft/index.html', target: 'contentframe', alt: 'geweywarcraft' },
+  { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'warcraft' },
+  { title: 'Blizzard', href: 'https://www.blizzard.com/', alt: 'blizzardcs' },
+  { title: 'Wowhead', href: 'https://www.wowhead.com/', alt: 'wowhead' },
+  { title: 'Icy Veins', href: 'https://www.icy-veins.com/', alt: 'icyveins' },
+  { title: 'WoW Progress', href: 'https://www.wowprogress.com/', alt: 'wowprogress' },
+  { title: 'Raider IO', href: 'https://raider.io/', alt: 'raiderio_wow' },
+  { title: 'Warcraft Logs', href: 'https://www.warcraftlogs.com/', alt: 'warcraftlogs' },
+  { title: 'Raidbots', href: 'https://www.raidbots.com/simbot', alt: 'raidbots' },
+  { title: 'TradeSkillMaster', href: 'https://www.tradeskillmaster.com/', alt: 'tsmaddon' },
+  { title: 'Petopia', href: 'https://www.wow-petopia.com/', alt: 'wowpetopia' },
+  { title: 'Wago.IO', href: 'https://wago.io/', alt: 'wago_io' },
+  { title: 'Simple Armory', href: 'https://simplearmory.com/', alt: 'simplearmory' },
+  { title: 'Bloodmallet', href: 'https://www.bloodmallet.com/', alt: 'bloodmallet' },
+  { title: 'Archon', href: 'https://www.archon.gg/', alt: 'archon' },
+  { title: 'ArenaTeam', href: 'https://www.arenateam.net/', alt: 'arenateam' },\n  { title: 'Data for Azeroth', href: 'https://www.dataforazeroth.com/', alt: 'dataforazeroth' },\n  { title: 'RaidPlan', href: 'https://raidplan.io/', alt: 'raidplan' },\n  { title: 'Warcraft Secrets', href: 'https://warcraft-secrets.com/', alt: 'WarcraftSecrets' }\n];\n\nBookmarkBuilder.renderBookmarks(gameswarcraftBookmarks);
 
