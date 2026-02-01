@@ -12,9 +12,10 @@ const BookmarkBuilder = (() => {
    */
   const renderBookmarks = (bookmarks) => {
     const html = bookmarks
-      .map(({ title, href, target = '_parent', alt }) => 
-        `<a title="${title}" target="${target}" href="${href}"><img id="bookmark" alt="${alt}"></a>`
-      )
+      .map(({ title, href, target = '_parent', alt }) => {
+        const imgSrc = alt ? `../img/bookmark/${alt}.png` : '';
+        return `<a title="${title}" target="${target}" href="${href}"><img id="bookmark" alt="${alt}" src="${imgSrc}"></a>`;
+      })
       .join('');
     
     document.body.innerHTML += html;
