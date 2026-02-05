@@ -20,15 +20,18 @@ const BookmarkBuilder = (() => {
         const oscillator = audioContext.createOscillator();
         const gain = audioContext.createGain();
 
-        oscillator.type = 'square';
-        oscillator.frequency.value = 800;
-        gain.gain.value = 0.08;
+        const now = audioContext.currentTime;
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(1200, now);
+
+        gain.gain.setValueAtTime(0.06, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
 
         oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.05);
+        oscillator.start(now);
+        oscillator.stop(now + 0.03);
       } catch (error) {
         // Ignore audio errors (e.g., unsupported browser)
       }
