@@ -1,0 +1,136 @@
+GARRISON SCOUT REPORT - 2026-02-28 03:56 AM
+Total Agents: 109
+
+[Root]
+  - Heretic (heretic) | V:/Agents/heretic.agent.md
+  - Knowledge_Oracle (Knowledge_Oracle) | V:/Agents/Knowledge_Oracle.agent.md
+  - Quant_Viktor (Quant_Viktor) | V:/Agents/Quant_Viktor.agent.md
+  - System_Knowledge_Architect (System_Knowledge_Architect) | V:/Agents/System_Knowledge_Architect.agent.md
+[Business-ProjectMgmt]
+  - Amplitude Experiment Implementation (amplitude-experiment-implementation) | V:/Agents/Business-ProjectMgmt/amplitude-experiment-implementation.agent.md
+  - Apify Integration Expert (apify-integration-expert) | V:/Agents/Business-ProjectMgmt/apify-integration-expert.agent.md
+  - Atlassian Requirements To Jira (atlassian-requirements-to-jira) | V:/Agents/Business-ProjectMgmt/atlassian-requirements-to-jira.agent.md
+  - Launchdarkly Flag Cleanup (launchdarkly-flag-cleanup) | V:/Agents/Business-ProjectMgmt/launchdarkly-flag-cleanup.agent.md
+  - Lingodotdev I18N (lingodotdev-i18n) | V:/Agents/Business-ProjectMgmt/lingodotdev-i18n.agent.md
+  - Monday Bug Fixer (monday-bug-fixer) | V:/Agents/Business-ProjectMgmt/monday-bug-fixer.agent.md
+  - Project_Initiator (Project_Initiator) | V:/Agents/Business-ProjectMgmt/Project_Initiator.agent.md
+[Cloud-Azure-Architecture]
+  - Azure Logic Apps Expert (azure-logic-apps-expert) | V:/Agents/Cloud-Azure-Architecture/azure-logic-apps-expert.agent.md
+  - Azure_Cloud_Architect (Azure_Cloud_Architect) | V:/Agents/Cloud-Azure-Architecture/Azure_Cloud_Architect.agent.md
+[Code-Analysis-Quality]
+  - Cast_Imaging_Expert (Cast_Imaging_Expert) | V:/Agents/Code-Analysis-Quality/Cast_Imaging_Expert.agent.md
+  - Code_Optimizer_And_Cleaner (Code_Optimizer_and_Cleaner) | V:/Agents/Code-Analysis-Quality/Code_Optimizer_and_Cleaner.agent.md
+  - Code_Standards_And_Security_Auditor (Code_Standards_and_Security_Auditor) | V:/Agents/Code-Analysis-Quality/Code_Standards_and_Security_Auditor.agent.md
+[Content-Media]
+  - Discord_Bot_Expert (Discord_Bot_Expert) | V:/Agents/Content-Media/Discord_Bot_Expert.agent.md
+  - Lyrical_Archivist (lyrical_archivist) | V:/Agents/Content-Media/lyrical_archivist.agent.md
+  - Reepl Linkedin (reepl-linkedin) | V:/Agents/Content-Media/reepl-linkedin.agent.md
+  - Search Ai Optimization Expert (search-ai-optimization-expert) | V:/Agents/Content-Media/search-ai-optimization-expert.agent.md
+[Database-Data]
+  - Elasticsearch Observability (elasticsearch-observability) | V:/Agents/Database-Data/elasticsearch-observability.agent.md
+  - Kusto Assistant (kusto-assistant) | V:/Agents/Database-Data/kusto-assistant.agent.md
+  - Mongodb Performance Advisor (mongodb-performance-advisor) | V:/Agents/Database-Data/mongodb-performance-advisor.agent.md
+  - Neo4J Docker Client Generator (neo4j-docker-client-generator) | V:/Agents/Database-Data/neo4j-docker-client-generator.agent.md
+  - Neon_Db_Expert (Neon_DB_Expert) | V:/Agents/Database-Data/Neon_DB_Expert.agent.md
+  - Relational_Dba_Expert (Relational_DBA_Expert) | V:/Agents/Database-Data/Relational_DBA_Expert.agent.md
+[DevOps-CICD]
+  - Ci Cleaner (ci-cleaner) | V:/Agents/DevOps-CICD/ci-cleaner.agent.md
+  - Devops_And_Ci_Cd_Expert (DevOps_and_CI_CD_Expert) | V:/Agents/DevOps-CICD/DevOps_and_CI_CD_Expert.agent.md
+  - Github Actions Expert (github-actions-expert) | V:/Agents/DevOps-CICD/github-actions-expert.agent.md
+  - Octopus Deploy Release Notes Mcp (octopus-deploy-release-notes-mcp) | V:/Agents/DevOps-CICD/octopus-deploy-release-notes-mcp.agent.md
+  - Platform Sre Kubernetes (platform-sre-kubernetes) | V:/Agents/DevOps-CICD/platform-sre-kubernetes.agent.md
+[DotNet-CSharp]
+  - Dotnet Maui (dotnet-maui) | V:/Agents/DotNet-CSharp/dotnet-maui.agent.md
+  - Dotnet Notebook Migration (dotnet-notebook-migration) | V:/Agents/DotNet-CSharp/dotnet-notebook-migration.agent.md
+  - Dotnet_Csharp_Engineer (DotNet_CSharp_Engineer) | V:/Agents/DotNet-CSharp/DotNet_CSharp_Engineer.agent.md
+  - Dotnet_Modernization_And_Cleanup (DotNet_Modernization_and_Cleanup) | V:/Agents/DotNet-CSharp/DotNet_Modernization_and_Cleanup.agent.md
+  - Semantic_Kernel_Expert (Semantic_Kernel_Expert) | V:/Agents/DotNet-CSharp/Semantic_Kernel_Expert.agent.md
+  - Winformsexpert (WinFormsExpert) | V:/Agents/DotNet-CSharp/WinFormsExpert.agent.md
+[Frontend-Web]
+  - Accessibility (accessibility) | V:/Agents/Frontend-Web/accessibility.agent.md
+  - Aem Frontend Specialist (aem-frontend-specialist) | V:/Agents/Frontend-Web/aem-frontend-specialist.agent.md
+  - Drupal Expert (drupal-expert) | V:/Agents/Frontend-Web/drupal-expert.agent.md
+  - Electron Angular Native (electron-angular-native) | V:/Agents/Frontend-Web/electron-angular-native.agent.md
+  - Laravel Expert Agent (laravel-expert-agent) | V:/Agents/Frontend-Web/laravel-expert-agent.agent.md
+  - Modern_Frontend_Engineer (Modern_Frontend_Engineer) | V:/Agents/Frontend-Web/Modern_Frontend_Engineer.agent.md
+  - Pimcore Expert (pimcore-expert) | V:/Agents/Frontend-Web/pimcore-expert.agent.md
+  - Shopify Expert (shopify-expert) | V:/Agents/Frontend-Web/shopify-expert.agent.md
+[Implementation-Coding]
+  - Code_Blueprint_Architect (Code_Blueprint_Architect) | V:/Agents/Implementation-Coding/Code_Blueprint_Architect.agent.md
+  - Code_Generation_Beast (Code_Generation_Beast) | V:/Agents/Implementation-Coding/Code_Generation_Beast.agent.md
+  - Principal_Software_Engineer (Principal_Software_Engineer) | V:/Agents/Implementation-Coding/Principal_Software_Engineer.agent.md
+  - Problem_Solver_And_Implementer (Problem_Solver_and_Implementer) | V:/Agents/Implementation-Coding/Problem_Solver_and_Implementer.agent.md
+[Infrastructure-as-Code]
+  - Azure_Bicep_Expert (Azure_Bicep_Expert) | V:/Agents/Infrastructure-as-Code/Azure_Bicep_Expert.agent.md
+  - Azure_Iac_Utility (Azure_IaC_Utility) | V:/Agents/Infrastructure-as-Code/Azure_IaC_Utility.agent.md
+  - Azure_Terraform_Expert (Azure_Terraform_Expert) | V:/Agents/Infrastructure-as-Code/Azure_Terraform_Expert.agent.md
+[MCP-Experts]
+  - Csharp Mcp Expert (csharp-mcp-expert) | V:/Agents/MCP-Experts/csharp-mcp-expert.agent.md
+  - Go Mcp Expert (go-mcp-expert) | V:/Agents/MCP-Experts/go-mcp-expert.agent.md
+  - Java Mcp Expert (java-mcp-expert) | V:/Agents/MCP-Experts/java-mcp-expert.agent.md
+  - Kotlin Mcp Expert (kotlin-mcp-expert) | V:/Agents/MCP-Experts/kotlin-mcp-expert.agent.md
+  - Mcp M365 Agent Expert (mcp-m365-agent-expert) | V:/Agents/MCP-Experts/mcp-m365-agent-expert.agent.md
+  - Php Mcp Expert (php-mcp-expert) | V:/Agents/MCP-Experts/php-mcp-expert.agent.md
+  - Python Mcp Expert (python-mcp-expert) | V:/Agents/MCP-Experts/python-mcp-expert.agent.md
+  - Ruby Mcp Expert (ruby-mcp-expert) | V:/Agents/MCP-Experts/ruby-mcp-expert.agent.md
+  - Rust Mcp Expert (rust-mcp-expert) | V:/Agents/MCP-Experts/rust-mcp-expert.agent.md
+  - Swift Mcp Expert (swift-mcp-expert) | V:/Agents/MCP-Experts/swift-mcp-expert.agent.md
+  - Typescript Mcp Expert (typescript-mcp-expert) | V:/Agents/MCP-Experts/typescript-mcp-expert.agent.md
+[Meta-Workflow]
+  - Cognitive_Challenger_And_Guide (Cognitive_Challenger_and_Guide) | V:/Agents/Meta-Workflow/Cognitive_Challenger_and_Guide.agent.md
+  - Cognitive_Orchestrator (Cognitive_Orchestrator) | V:/Agents/Meta-Workflow/Cognitive_Orchestrator.agent.md
+[Microsoft-Agent-Framework]
+  - Maf_Agent_Designer_And_Builder (MAF_Agent_Designer_and_Builder) | V:/Agents/Microsoft-Agent-Framework/MAF_Agent_Designer_and_Builder.agent.md
+  - Microsoft Study Mode (microsoft-study-mode) | V:/Agents/Microsoft-Agent-Framework/microsoft-study-mode.agent.md
+  - Microsoft_Agent_Framework_Expert (Microsoft_Agent_Framework_Expert) | V:/Agents/Microsoft-Agent-Framework/Microsoft_Agent_Framework_Expert.agent.md
+[Observability-Monitoring]
+  - Comet Opik (comet-opik) | V:/Agents/Observability-Monitoring/comet-opik.agent.md
+  - Dynatrace Expert (dynatrace-expert) | V:/Agents/Observability-Monitoring/dynatrace-expert.agent.md
+  - Pagerduty Incident Responder (pagerduty-incident-responder) | V:/Agents/Observability-Monitoring/pagerduty-incident-responder.agent.md
+[Planning-Architecture]
+  - Solution_Architect (Solution_Architect) | V:/Agents/Planning-Architecture/Solution_Architect.agent.md
+  - Strategic_Planner (Strategic_Planner) | V:/Agents/Planning-Architecture/Strategic_Planner.agent.md
+[Power-Platform-M365]
+  - Power_Bi_Expert (Power_BI_Expert) | V:/Agents/Power-Platform-M365/Power_BI_Expert.agent.md
+  - Power_Platform_Expert (Power_Platform_Expert) | V:/Agents/Power-Platform-M365/Power_Platform_Expert.agent.md
+  - Salesforce Expert (salesforce-expert) | V:/Agents/Power-Platform-M365/salesforce-expert.agent.md
+[Research-Documentation]
+  - Adr Generator (adr-generator) | V:/Agents/Research-Documentation/adr-generator.agent.md
+  - Code Tour (code-tour) | V:/Agents/Research-Documentation/code-tour.agent.md
+  - Deep_Researcher (Deep_Researcher) | V:/Agents/Research-Documentation/Deep_Researcher.agent.md
+  - Microsoft_Learn_Contributor (microsoft_learn_contributor) | V:/Agents/Research-Documentation/microsoft_learn_contributor.agent.md
+  - Technical_Documentation_Specialist (Technical_Documentation_Specialist) | V:/Agents/Research-Documentation/Technical_Documentation_Specialist.agent.md
+  - W3C Specification Writer (w3c-specification-writer) | V:/Agents/Research-Documentation/w3c-specification-writer.agent.md
+[Review-Testing]
+  - Code_Review_Expert (Code_Review_Expert) | V:/Agents/Review-Testing/Code_Review_Expert.agent.md
+  - Contribution_Quality_Manager (Contribution_Quality_Manager) | V:/Agents/Review-Testing/Contribution_Quality_Manager.agent.md
+  - Debug (debug) | V:/Agents/Review-Testing/debug.agent.md
+  - Se System Architecture Reviewer (se-system-architecture-reviewer) | V:/Agents/Review-Testing/se-system-architecture-reviewer.agent.md
+[Security-Compliance]
+  - Security_Tools_Integrator (Security_Tools_Integrator) | V:/Agents/Security-Compliance/Security_Tools_Integrator.agent.md
+[Specialized-Development]
+  - Api_Development_Expert (API_Development_Expert) | V:/Agents/Specialized-Development/API_Development_Expert.agent.md
+  - Clojure Interactive Programming (clojure-interactive-programming) | V:/Agents/Specialized-Development/clojure-interactive-programming.agent.md
+  - Code_Metamorph_And_Guardian (Code_Metamorph_and_Guardian) | V:/Agents/Specialized-Development/Code_Metamorph_and_Guardian.agent.md
+  - Droid (droid) | V:/Agents/Specialized-Development/droid.agent.md
+  - Model_Optimization_Specialist (Model_Optimization_Specialist) | V:/Agents/Specialized-Development/Model_Optimization_Specialist.agent.md
+[Specialized-Tools]
+  - Advanced_Cognitive_Engine (Advanced_Cognitive_Engine) | V:/Agents/Specialized-Tools/Advanced_Cognitive_Engine.agent.md
+  - Context7 (context7) | V:/Agents/Specialized-Tools/context7.agent.md
+  - Custom Engine Implementation (custom-engine-implementation) | V:/Agents/Specialized-Tools/custom-engine-implementation.agent.md
+  - Hlbpa (hlbpa) | V:/Agents/Specialized-Tools/hlbpa.agent.md
+  - Interactive Agent Designer (interactive-agent-designer) | V:/Agents/Specialized-Tools/interactive-agent-designer.agent.md
+  - Prompt_Engineering_Expert (Prompt_Engineering_Expert) | V:/Agents/Specialized-Tools/Prompt_Engineering_Expert.agent.md
+  - Requirements_And_Output_Definer (Requirements_and_Output_Definer) | V:/Agents/Specialized-Tools/Requirements_and_Output_Definer.agent.md
+  - Se Product Manager Advisor (se-product-manager-advisor) | V:/Agents/Specialized-Tools/se-product-manager-advisor.agent.md
+  - Software Engineer Agent V1 (software-engineer-agent-v1) | V:/Agents/Specialized-Tools/software-engineer-agent-v1.agent.md
+  - System_Modernization_Specialist (System_Modernization_Specialist) | V:/Agents/Specialized-Tools/System_Modernization_Specialist.agent.md
+  - Task_Definition_And_Refinement (Task_Definition_and_Refinement) | V:/Agents/Specialized-Tools/Task_Definition_and_Refinement.agent.md
+[Testing-QA]
+  - Diffblue Cover (diffblue-cover) | V:/Agents/Testing-QA/diffblue-cover.agent.md
+  - Gem Chrome Tester (gem-chrome-tester) | V:/Agents/Testing-QA/gem-chrome-tester.agent.md
+  - Playwright Tester (playwright-tester) | V:/Agents/Testing-QA/playwright-tester.agent.md
+  - Tdd_Expert (TDD_Expert) | V:/Agents/Testing-QA/TDD_Expert.agent.md
+[UX-Design]
+  - Technical Content Evaluator (technical-content-evaluator) | V:/Agents/UX-Design/technical-content-evaluator.agent.md
+  - Ux_Ui_Accessibility_Designer (UX_UI_Accessibility_Designer) | V:/Agents/UX-Design/UX_UI_Accessibility_Designer.agent.md

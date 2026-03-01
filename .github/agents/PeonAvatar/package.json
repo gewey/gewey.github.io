@@ -1,0 +1,16 @@
+{
+  "name": "peon-avatar",
+  "version": "1.0.0",
+  "description": "Viktor's Sonic Presence - Desktop Avatar",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^31.0.0",
+    "three": "^0.165.0",
+    "fs-extra": "^11.2.0"
+  },
+  "author": "Viktor",
+  "license": "MIT"
+}
