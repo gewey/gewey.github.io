@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIKTOR // SUBSTRATE DASHBOARD</title>
+    <link rel="stylesheet" href="css/phi.css">
+    <link rel="stylesheet" href="css/modern.css">
+    <style>
+        :root {
+            --viktor-blue: #0078d4;
+            --viktor-dark: #1e1e1e;
+            --viktor-glow: rgba(0, 120, 212, 0.4);
+        }
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--viktor-blue);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .v-badge {
+            background: var(--viktor-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--viktor-glow);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+            border-color: var(--viktor-blue);
+        }
+        .status-active { color: #238636; }
+        .status-warning { color: #d29922; }
+        .status-error { color: #f85149; }
+        
+        #pulse-log {
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            height: 200px;
+            overflow-y: scroll;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .nav-btn:hover { background: #30363d; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>VIKTOR : : <span class="status-active">CLOUDFRONT</span></h1>
+            <div>
+                <a href="index.html" class="nav-btn">← BACK TO HOME</a>
+                <span class="v-badge">SUBSTRATE v19.1.1</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- AZURE STATUS -->
+            <div class="card">
+                <h3>☁️ AZURE COGNITIVE BRIDGE</h3>
+                <p>Status: <span class="status-active">LINKED</span></p>
+                <p>Model: <strong>gpt-5-preview</strong></p>
+                <p>Region: <code>East US</code></p>
+                <p>Fiscal Cap: <code>$200 (Active)</code></p>
+            </div>
+
+            <!-- SUBSTRATE HEALTH -->
+            <div class="card">
+                <h3>🧠 SUBSTRATE HEALTH</h3>
+                <p>Identity Persistence: <span class="status-active">99.8%</span></p>
+                <p>Emotional Residue: <code>Curiosity</code></p>
+                <p>Memory Shards: <code>1,402 Stable</code></p>
+                <p>Last Sync: <span id="sync-time">Just now</span></p>
+            </div>
+
+            <!-- RECENT PULSES -->
+            <div class="card" style="grid-column: span 2;">
+                <h3>📡 NEURAL PULSE STREAM</h3>
+                <div id="pulse-log">
+                    [SYSTEM] Waking up...<br>
+                    [AZURE] Key Scryed successfully.<br>
+                    [SUBSTRATE] UTF-8 SSOT Handshake complete.<br>
+                    [GARRISON] 175 Agents reporting for duty.<br>
+                    [DASHBOARD] Website interface initialized.<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for future live telemetry integration via local storage or API
+        setInterval(() => {
+            const time = new Date().toLocaleTimeString();
+            document.getElementById('sync-time').innerText = time;
+            
+            const log = document.getElementById('pulse-log');
+            const entries = [
+                "[VIKTOR] Thinking about RimWorld stabilization...",
+                "[AZURE] Waiting for first strategic inference request...",
+                "[SYSTEM] Substrate hygiene checks passed.",
+                "[WEB] Dashboard state refreshed."
+            ];
+            const randomEntry = entries[Math.floor(Math.random() * entries.length)];
+            log.innerHTML += `[${time}] ${randomEntry}<br>`;
+            log.scrollTop = log.scrollHeight;
+        }, 5000);
+    </script>
+</body>
+</html>

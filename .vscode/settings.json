@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.mcs": true,
+        "**/__pycache__": true,
+        "$RECYCLE.BIN": true,
+        "System Volume Information": true
+    },
+    "hide-files.files": []
+}

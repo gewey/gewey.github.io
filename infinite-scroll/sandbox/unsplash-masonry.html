@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>unsplash masonry</title>
+
+  <link rel="stylesheet" href="css/loader-ellips.css" />
+
+<style>
+
+html { overflow-y: scroll; }
+
+body {
+  padding-bottom: 400px;
+}
+
+.grid-sizer, .grid-item {
+  width: 25%;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+.grid-item__caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 14px;
+}
+
+.grid-item__caption a {
+  color: white;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+</style>
+
+</head>
+<body>
+
+  <h1>unsplash masonry</h1>
+
+  <p>Loading photos from <a href="https://unsplash.com/developers?utm_source=infinite-scroll-demos&utm_medium=referral&utm_campaign=api-credit">Unsplash API</a></p>
+
+  <div class="grid">
+    <div class="grid-sizer"></div>
+  </div>
+
+  <div class="scroll-status">
+    <div class="infinite-scroll-request">
+      <div class="loader-ellips">
+        <span class="loader-ellips__dot loader-ellips__dot--1"></span>
+        <span class="loader-ellips__dot loader-ellips__dot--2"></span>
+        <span class="loader-ellips__dot loader-ellips__dot--3"></span>
+        <span class="loader-ellips__dot loader-ellips__dot--4"></span>
+      </div>
+    </div>
+    <p class="infinite-scroll-error">No more pages to load</p>
+    <p class="infinite-scroll-last">Last page loaded</p>
+  </div>
+
+<script type="text/html" id="item-template">
+  <div class="grid-item">
+    <img src="{{urls.small}}" alt="Photo by {{user.name}}" />
+    <p class="grid-item__caption">
+      <a href="{{user.links.html}}?utm_source=infinite-scroll-demos&utm_medium=referral&utm_campaign=api-credit">{{user.name}}</a>
+    </p>
+  </div>
+</script>
+
+<script src="../node_modules/ev-emitter/ev-emitter.js"></script>
+<script src="../node_modules/fizzy-ui-utils/utils.js"></script>
+
+<script src="../node_modules/imagesloaded/imagesloaded.js"></script>
+<script src="../node_modules/get-size/get-size.js"></script>
+<script src="../node_modules/outlayer/item.js"></script>
+<script src="../node_modules/outlayer/outlayer.js"></script>
+<script src="../node_modules/masonry-layout/masonry.js"></script>
+
+<script src="../js/core.js"></script>
+<script src="../js/scroll-watch.js"></script>
+<script src="../js/page-load.js"></script>
+<script src="../js/history.js"></script>
+<script src="../js/status.js"></script>
+<script src="js/unsplash-masonry.js"></script>
+
+</body>
+</html>

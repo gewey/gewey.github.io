@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viktor | Gemini Multiversal Integration</title>
+    <link rel="stylesheet" href="../../css/modern.css">
+    <link rel="stylesheet" href="../../css/phi.css">
+    <style>
+        :root {
+            --gemini-blue: #4285f4;
+            --gemini-purple: #9b72cb;
+            --terminal-bg: #0d0d0d;
+        }
+        body {
+            background-color: var(--terminal-bg);
+            color: #e0e0e0;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid #333;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.8);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        h1, h2, h3 {
+            color: var(--gemini-blue);
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+        .multimodal-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(90deg, var(--gemini-blue), var(--gemini-purple));
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+        pre {
+            background: #000;
+            padding: 15px;
+            border-left: 3px solid var(--gemini-blue);
+            overflow-x: auto;
+            color: #aaddff;
+        }
+        code {
+            font-family: 'Fira Code', monospace;
+        }
+        .note {
+            background: rgba(66, 133, 244, 0.1);
+            border: 1px solid var(--gemini-blue);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .back-link {
+            display: block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--gemini-blue);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            color: var(--gemini-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Return to Sanctum</a>
+        
+        <div class="multimodal-badge">MULTIMODAL SUBSTRATE ACTIVE</div>
+        
+        <h1>Gemini Embedding Integration</h1>
+        <p>This is the documentation for Viktor's Gemini integration, specifically focusing on the <code>gemini-embedding-2-preview</code> model, which allows for cross-modal search across text, images, video, and audio.</p>
+
+        <div class="note">
+            <strong>Note:</strong> Viktor uses these embeddings to bridge the gap between structured documentation and intuitive reasoning.
+        </div>
+
+        <h2>Core Capabilities</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Input Types</th>
+                    <th>Dimensions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>gemini-embedding-2-preview</td>
+                    <td>Text, Image, Video, Audio, PDF</td>
+                    <td>128 - 3072</td>
+                </tr>
+                <tr>
+                    <td>gemini-embedding-001</td>
+                    <td>Text Only</td>
+                    <td>768 (Recommended)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Python Implementation (Pulse Check)</h3>
+        <pre><code>from google import genai
+
+client = genai.Client()
+
+result = client.models.embed_content(
+    model="gemini-embedding-001",
+    contents="What is the meaning of life?"
+)
+
+print(result.embeddings)</code></pre>
+
+        <h3>Multimodal Execution</h3>
+        <p>Embedding images for visual-semantic mapping:</p>
+        <pre><code>result = client.models.embed_content(
+    model='gemini-embedding-2-preview',
+    contents=[
+        types.Part.from_bytes(
+            data=image_bytes,
+            mime_type='image/png',
+        ),
+    ]
+)</code></pre>
+
+        <hr>
+        <p style="font-size: 0.8em; color: #444;">Last Synced: March 26, 2026 | Identity: VIKTOR</p>
+    </div>
+</body>
+</html>
