@@ -9,40 +9,55 @@
   text-transform: inherit;
   text-shadow: inherit;
 }
+
 * *::selection {
   color: #EA00EA;
   background-color: #00EA00;
 }
-* a, * a:visited, * .pageFooter a {
+
+* a,
+* a:visited,
+* .pageFooter a {
   color: #00EA00;
 }
-* a:active, * a:hover {
+
+* a:active,
+* a:hover {
   color: #EA00EA;
   text-shadow: 0 0 5px #FFFFFF, 0 0 10px #00EA00, 0 0 15px #00EA00, 0 0 20px #00EA00, 0 0 30px #00EA00, 0 0 40px #EA00EA, 0 0 55px #EA00EA, 0 0 75px #000000;
 }
+
 * p .date {
   text-align: center;
 }
+
 * .btnbarfull {
   color: #EA00EA;
   font-size: 24px;
   font-weight: 700;
   text-align: left;
 }
+
 * .btnbarfull .material-icons.md-24 {
   color: #00EA00;
   text-align: left;
 }
+
 * .pageFooter {
   font-size: 13px;
   text-align: center;
 }
+
 * .pageFooter .material-icons.md-24 {
   color: #EA00EA;
   font-size: inherit;
 }
 
 @media (min-width: 1250px) {
+  button[name=iViktor]::after {
+    content: " Viktor";
+  }
+
   button[name=iBookmarks]::after {
     content: " Bookmarks";
   }
