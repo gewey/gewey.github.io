@@ -1,0 +1,33 @@
+<!DOCTYPEhtml>
+<html>
+<head>
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <script type="text/javascript" src="../js/infinite-scroll.pkgd.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Logs</h1>
+        <div id="log-container">
+            <!-- Log entries will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Initialize infinite scroll for the log container
+        var logContainer = document.getElementById('log-container');
+        var infScroll = new InfiniteScroll(logContainer, {
+            path: 'path/to/next/page', // Replace with the actual path to the next page of logs
+            append: '.log-entry', // Replace with the actual class or selector for log entries
+            history: false,
+        });
+    </script>
+
+
+
+<div class="container"
+  data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
+
+
+</body>
+</html>
