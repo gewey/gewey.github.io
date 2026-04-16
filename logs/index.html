@@ -9,12 +9,11 @@
     <script type="text/javascript" src="../js/infinite-scroll.pkgd.js"></script>
     <style>
         :root {
-            --bg: #f3f4f6;
-            --card: #ffffff;
+            --bg: transparent;
+            --card: transparent;
             --ink: #1f2937;
-            --muted: #6b7280;
-            --accent: #0f766e;
-            --line: #e5e7eb;
+            --accent: #00ee00;
+            --line: transparent;
         }
 
         * {
@@ -24,13 +23,12 @@
         body {
             margin: 0;
             padding: 24px;
-            background: radial-gradient(circle at top left, #e0f2fe 0%, var(--bg) 40%);
             color: var(--ink);
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
         #content {
-            max-width: 980px;
+            max-width: 100%;
             margin: 0 auto;
             background: var(--card);
             border: 1px solid var(--line);
@@ -59,7 +57,7 @@
             border-left: 6px solid var(--accent);
             border-radius: 10px;
             padding: 16px;
-            background: #fcfcfd;
+            background: transparent;
         }
 
         .log-entry h2,
@@ -93,26 +91,6 @@
             border-radius: 4px;
         }
 
-        .infinite-scroll-status {
-            margin-top: 18px;
-            text-align: center;
-            color: var(--muted);
-        }
-
-        .pagination__next {
-            display: inline-block;
-            text-decoration: none;
-            color: white;
-            background: var(--accent);
-            border-radius: 999px;
-            padding: 10px 16px;
-            font-weight: 600;
-        }
-
-        .pagination__next:hover {
-            filter: brightness(0.95);
-        }
-
         @media (max-width: 640px) {
             body {
                 padding: 12px;
@@ -133,18 +111,13 @@
         </p>
 
         <div id="log-container" class="log-grid"></div>
-
-        <div class="infinite-scroll-status" id="pager">
-            <a href="?page=2" class="pagination__next" id="next-link">Load next entry</a>
-        </div>
+        <div class="infinite-scroll-status" id="infinite-scroll-status"></div>
     </div>
 
     <script type="text/javascript">
-        function getPageNumber() {
-            var params = new URLSearchParams(window.location.search);
-            var page = parseInt(params.get('page') || '1', 10);
-            return Number.isFinite(page) && page > 0 ? page : 1;
-        }
+        var allFiles = [];
+        var currentPageIndex = 1; // 0 = launch pad, 1+ = file index
+        var isLoading = false; // Prevent concurrent loads
 
         function parseFileDate(filename) {
             var m = filename.match(/^(\d{2})(\d{2})(\d{2})_/);
@@ -243,84 +216,89 @@
             });
         }
 
-        async function renderCurrentPage() {
-            var pageNum = getPageNumber();
+        async function renderLaunchPad() {
             var container = document.getElementById('log-container');
-            var nextLink = document.getElementById('next-link');
-            var pager = document.getElementById('pager');
+            var intro = document.createElement('article');
+            intro.className = 'log-entry';
+            intro.innerHTML =
+                '<h2>Session Logs Launch Pad</h2>' +
+                '<p class="subtext">Scroll down to load logs. Pages load automatically as you scroll.</p>' +
+                '<p>Date-driven pagination from <code>logs/md</code> filenames using <code>MMDDYY_Name.md</code>.</p>' +
+                '<p>Current files discovered: <strong>' + allFiles.length + '</strong>.</p>';
+            container.appendChild(intro);
+        }
+
+        async function renderNextPage() {
+            if (isLoading || currentPageIndex > allFiles.length) {
+                return false; // Already loading or no more pages
+            }
+
+            isLoading = true;
+            var container = document.getElementById('log-container');
+            var file = allFiles[currentPageIndex - 1];
 
             try {
-                var files = sortByFilenameDateAsc(await getMarkdownFiles());
-                var totalPages = files.length + 1; // page 1 = launch pad
-                var nextPage = pageNum + 1;
-
-                if (pageNum === 1) {
-                    container.innerHTML = '';
-                    var intro = document.createElement('article');
-                    intro.className = 'log-entry';
-                    intro.innerHTML =
-                        '<h2>Launch Pad</h2>' +
-                        '<div class="log-meta">Page 1 of ' + totalPages + '</div>' +
-                        '<p>Scroll to begin chronological logs. Page 2 is always the earliest dated markdown in <code>logs/md</code>.</p>' +
-                        '<p>Current files discovered: <strong>' + files.length + '</strong>.</p>';
-                    container.appendChild(intro);
-                } else {
-                    var fileIndex = pageNum - 2;
-                    var file = files[fileIndex];
-
-                    if (!file) {
-                        container.innerHTML = '<article class="log-entry"><h2>No log for this page</h2><p>This page is out of range.</p></article>';
-                        pager.style.display = 'none';
-                        return;
-                    }
-
-                    var mdRes = await fetch(file.path);
-                    if (!mdRes.ok) {
-                        throw new Error('Unable to load markdown: ' + file.name);
-                    }
-                    var mdText = await mdRes.text();
-                    var html = (window.marked && window.marked.parse)
-                        ? window.marked.parse(mdText)
-                        : basicMarkdownToHtml(mdText);
-
-                    container.innerHTML = '';
-                    var article = document.createElement('article');
-                    article.className = 'log-entry';
-                    article.innerHTML =
-                        '<h2>' + escapeHtml(file.name.replace(/\.md$/i, '')) + '</h2>' +
-                        '<div class="log-meta">Page ' + pageNum + ' of ' + totalPages + ' | ' + formatDateFromFilename(file.name) + '</div>' +
-                        '<div class="md-body">' + html + '</div>';
-                    container.appendChild(article);
+                var mdRes = await fetch(file.path);
+                if (!mdRes.ok) {
+                    throw new Error('Unable to load markdown: ' + file.name);
                 }
+                var mdText = await mdRes.text();
+                var html = (window.marked && window.marked.parse)
+                    ? window.marked.parse(mdText)
+                    : basicMarkdownToHtml(mdText);
 
-                if (nextPage <= totalPages) {
-                    nextLink.href = '?page=' + nextPage;
-                    pager.style.display = '';
-                } else {
-                    pager.style.display = 'none';
-                }
+                var article = document.createElement('article');
+                article.className = 'log-entry';
+                article.innerHTML =
+                    '<h2>' + escapeHtml(file.name.replace(/\.md$/i, '')) + '</h2>' +
+                    '<div class="log-meta">' + formatDateFromFilename(file.name) + '</div>' +
+                    '<div class="md-body">' + html + '</div>';
+                container.appendChild(article);
 
-                if (pageNum === 1) {
-                    var infScroll = new InfiniteScroll('#log-container', {
-                        path: '.pagination__next',
-                        append: '.log-entry',
-                        hideNav: '.infinite-scroll-status',
-                        history: false,
-                        scrollThreshold: 300
-                    });
-
-                    infScroll.on('append', function (response, path, items) {
-                        console.log('Appended items:', items.length, 'from', path);
-                    });
-                }
+                currentPageIndex++;
+                isLoading = false;
+                return true;
             } catch (error) {
+                console.error(error);
+                isLoading = false;
+                return false;
+            }
+        }
+
+        async function initInfiniteScroll() {
+            try {
+                allFiles = sortByFilenameDateAsc(await getMarkdownFiles());
+                var container = document.getElementById('log-container');
+
+                console.log('Loaded ' + allFiles.length + ' markdown files');
+
+                // Render launch pad
+                await renderLaunchPad();
+
+                // Auto-load first page to make content scrollable
+                await renderNextPage();
+
+                // Set up scroll listener to load more pages as user scrolls
+                window.addEventListener('scroll', function () {
+                    // Check if user is near bottom of page
+                    var scrollPos = window.innerHeight + window.scrollY;
+                    var pageHeight = document.documentElement.scrollHeight;
+                    var distToBottom = pageHeight - scrollPos;
+
+                    // Load next page if user is within 300px of bottom and not already loading
+                    if (distToBottom < 300 && !isLoading && currentPageIndex <= allFiles.length) {
+                        console.log('Loading page, scroll position: ' + scrollPos + ', page height: ' + pageHeight);
+                        renderNextPage();
+                    }
+                });
+            } catch (error) {
+                var container = document.getElementById('log-container');
                 container.innerHTML = '<article class="log-entry"><h2>Failed to load logs</h2><p>' + escapeHtml(String(error.message || error)) + '</p></article>';
-                document.getElementById('pager').style.display = 'none';
                 console.error(error);
             }
         }
 
-        renderCurrentPage();
+        document.addEventListener('DOMContentLoaded', initInfiniteScroll);
     </script>
 </body>
 
