@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Session Logs</title>
     <script type="text/javascript" src="../js/dynamichead.js"></script>
-    <script type="text/javascript" src="../js/infinite-scroll.pkgd.js"></script>
     <style>
         :root {
             --bg: transparent;
             --card: transparent;
             --ink: #1f2937;
+            --muted: #6b7280;
             --accent: #00ee00;
             --line: transparent;
         }
@@ -90,6 +90,12 @@
             border-radius: 4px;
         }
 
+        .infinite-scroll-status {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
         @media (max-width: 640px) {
             body {
                 padding: 12px;
@@ -117,6 +123,7 @@
         var allFiles = [];
         var currentPageIndex = 1; // 0 = launch pad, 1+ = file index
         var isLoading = false; // Prevent concurrent loads
+        var observer = null;
         var isFileProtocol = window.location.protocol === 'file:';
 
         function parseFileDate(filename) {
@@ -239,18 +246,6 @@
             }
         }
 
-        async function preloadUntilScrollable() {
-            while (
-                currentPageIndex <= allFiles.length &&
-                document.documentElement.scrollHeight <= (window.innerHeight + 40)
-            ) {
-                var loaded = await renderNextPage();
-                if (!loaded) {
-                    break;
-                }
-            }
-        }
-
         async function renderNextPage() {
             if (isLoading || currentPageIndex > allFiles.length) {
                 return false; // Already loading or no more pages
@@ -288,36 +283,63 @@
             }
         }
 
+        async function loadMoreIfAvailable() {
+            if (isLoading || currentPageIndex > allFiles.length) {
+                var status = document.getElementById('infinite-scroll-status');
+                if (status && currentPageIndex > allFiles.length) {
+                    status.textContent = 'End of logs.';
+                }
+                return;
+            }
+
+            var loaded = await renderNextPage();
+            var status = document.getElementById('infinite-scroll-status');
+            if (status) {
+                status.textContent = loaded ? 'Loading more as you scroll...' : 'Unable to load next page.';
+            }
+        }
+
+        function setupObserver() {
+            var sentinel = document.getElementById('infinite-scroll-status');
+            if (!sentinel) {
+                return;
+            }
+
+            if (observer) {
+                observer.disconnect();
+            }
+
+            observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        loadMoreIfAvailable();
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px 300px 0px',
+                threshold: 0
+            });
+
+            observer.observe(sentinel);
+        }
+
         async function initInfiniteScroll() {
             try {
                 allFiles = sortByFilenameDateAsc(await getMarkdownFiles());
-
                 console.log('Loaded ' + allFiles.length + ' markdown files');
 
-                // Render launch pad
+                // Render page 1 and pre-load page 2.
                 await renderLaunchPad();
-
-                // Auto-load page 2 baseline
                 await renderNextPage();
 
-                // Ensure enough content exists to trigger scrolling.
-                await preloadUntilScrollable();
+                // Sentinel-based infinite loading (robust in iframes and local file mode).
+                setupObserver();
 
-                var maybeLoadMore = function () {
-                    var scrollPos = window.innerHeight + window.scrollY;
-                    var pageHeight = document.documentElement.scrollHeight;
-                    var distToBottom = pageHeight - scrollPos;
-
-                    // Load next page if user is near bottom and not already loading
-                    if (distToBottom < 300 && !isLoading && currentPageIndex <= allFiles.length) {
-                        console.log('Loading page, scroll position: ' + scrollPos + ', page height: ' + pageHeight);
-                        renderNextPage().then(preloadUntilScrollable);
-                    }
-                };
-
-                // Set up scroll listener to load more pages as user scrolls
-                window.addEventListener('scroll', maybeLoadMore);
-                window.addEventListener('resize', maybeLoadMore);
+                // If page 2 is too short to scroll, one more load ensures progress.
+                if (document.documentElement.scrollHeight <= (window.innerHeight + 40)) {
+                    await loadMoreIfAvailable();
+                }
             } catch (error) {
                 var container = document.getElementById('log-container');
                 container.innerHTML = '<article class="log-entry"><h2>Failed to load logs</h2><p>' + escapeHtml(String(error.message || error)) + '</p></article>';
