@@ -58,6 +58,14 @@
     content: " Viktor";
   }
 
+  button[name=iLogs]::after {
+    content: " Logs";
+  }
+
+  button[name=iGemini]::after {
+    content: " Gemini";
+  }
+
   button[name=iBookmarks]::after {
     content: " Bookmarks";
   }
