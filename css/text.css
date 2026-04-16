@@ -33,7 +33,7 @@
 
 * .btnbarfull {
   color: #EA00EA;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   text-align: left;
 }
@@ -64,6 +64,10 @@
 
   button[name=iGemini]::after {
     content: " Gemini";
+  }
+
+  button[name=iRimWorld]::after {
+    content: " RimWorld";
   }
 
   button[name=iBookmarks]::after {
@@ -126,5 +130,3 @@
     content: " Share";
   }
 }
-
-/*# sourceMappingURL=text.css.map */
