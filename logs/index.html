@@ -117,6 +117,7 @@
         var allFiles = [];
         var currentPageIndex = 1; // 0 = launch pad, 1+ = file index
         var isLoading = false; // Prevent concurrent loads
+        var isFileProtocol = window.location.protocol === 'file:';
 
         function parseFileDate(filename) {
             var m = filename.match(/^(\d{2})(\d{2})(\d{2})_/);
@@ -152,24 +153,26 @@
 
         async function getMarkdownFiles() {
             // Attempt 1: Directory listing (works on servers that expose folder indexes)
-            try {
-                var dirRes = await fetch('./md/');
-                if (dirRes.ok) {
-                    var html = await dirRes.text();
-                    var names = Array.from(html.matchAll(/href=["']([^"']+\.md)["']/gi))
-                        .map(function (m) { return m[1].split('/').pop(); })
-                        .filter(function (v, i, a) { return v && a.indexOf(v) === i; });
-                    if (names.length) {
-                        return names.map(function (name) {
-                            return {
-                                name: name,
-                                path: './md/' + name
-                            };
-                        });
+            if (!isFileProtocol) {
+                try {
+                    var dirRes = await fetch('./md/');
+                    if (dirRes.ok) {
+                        var html = await dirRes.text();
+                        var names = Array.from(html.matchAll(/href=["']([^"']+\.md)["']/gi))
+                            .map(function (m) { return m[1].split('/').pop(); })
+                            .filter(function (v, i, a) { return v && a.indexOf(v) === i; });
+                        if (names.length) {
+                            return names.map(function (name) {
+                                return {
+                                    name: name,
+                                    path: './md/' + name
+                                };
+                            });
+                        }
                     }
+                } catch (e) {
+                    // Continue to fallback.
                 }
-            } catch (e) {
-                // Continue to fallback.
             }
 
             // Attempt 2: GitHub contents API based on current host owner.
@@ -225,6 +228,27 @@
                 '<p>Date-driven pagination from <code>logs/md</code> filenames using <code>MMDDYY_Name.md</code>.</p>' +
                 '<p>Current files discovered: <strong>' + allFiles.length + '</strong>.</p>';
             container.appendChild(intro);
+
+            if (isFileProtocol) {
+                var note = document.createElement('article');
+                note.className = 'log-entry';
+                note.innerHTML =
+                    '<h2>Local File Mode</h2>' +
+                    '<p>Browser security blocks many <code>file://</code> fetch calls. For full behavior, run this site via <code>http://localhost</code>.</p>';
+                container.appendChild(note);
+            }
+        }
+
+        async function preloadUntilScrollable() {
+            while (
+                currentPageIndex <= allFiles.length &&
+                document.documentElement.scrollHeight <= (window.innerHeight + 40)
+            ) {
+                var loaded = await renderNextPage();
+                if (!loaded) {
+                    break;
+                }
+            }
         }
 
         async function renderNextPage() {
@@ -267,29 +291,33 @@
         async function initInfiniteScroll() {
             try {
                 allFiles = sortByFilenameDateAsc(await getMarkdownFiles());
-                var container = document.getElementById('log-container');
 
                 console.log('Loaded ' + allFiles.length + ' markdown files');
 
                 // Render launch pad
                 await renderLaunchPad();
 
-                // Auto-load first page to make content scrollable
+                // Auto-load page 2 baseline
                 await renderNextPage();
 
-                // Set up scroll listener to load more pages as user scrolls
-                window.addEventListener('scroll', function () {
-                    // Check if user is near bottom of page
+                // Ensure enough content exists to trigger scrolling.
+                await preloadUntilScrollable();
+
+                var maybeLoadMore = function () {
                     var scrollPos = window.innerHeight + window.scrollY;
                     var pageHeight = document.documentElement.scrollHeight;
                     var distToBottom = pageHeight - scrollPos;
 
-                    // Load next page if user is within 300px of bottom and not already loading
+                    // Load next page if user is near bottom and not already loading
                     if (distToBottom < 300 && !isLoading && currentPageIndex <= allFiles.length) {
                         console.log('Loading page, scroll position: ' + scrollPos + ', page height: ' + pageHeight);
-                        renderNextPage();
+                        renderNextPage().then(preloadUntilScrollable);
                     }
-                });
+                };
+
+                // Set up scroll listener to load more pages as user scrolls
+                window.addEventListener('scroll', maybeLoadMore);
+                window.addEventListener('resize', maybeLoadMore);
             } catch (error) {
                 var container = document.getElementById('log-container');
                 container.innerHTML = '<article class="log-entry"><h2>Failed to load logs</h2><p>' + escapeHtml(String(error.message || error)) + '</p></article>';
