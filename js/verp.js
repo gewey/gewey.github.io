@@ -6,7 +6,10 @@ let verp = "";
 for (iC = 0; iC < images.length; iC++) {
     verp = images[iC].getAttribute("alt");
     images[iC].setAttribute("src", "https://gewey.github.io/img/btn/bm/" + verp + ".png");
-    txt = txt +  images[iC].alt + "___" + images[iC].src + "<br>";
+    txt = txt + images[iC].alt + "___" + images[iC].src + "<br>";
 }
 
-document.getElementById("demo").innerHTML = txt;
+var demoEl = document.getElementById("demo");
+if (demoEl) {
+    demoEl.innerHTML = txt;
+}
