@@ -1,1 +1,0 @@
-sass --watch text.scss:text.css

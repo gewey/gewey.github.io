@@ -1,1 +1,0 @@
-sass --watch images.scss:images.css
