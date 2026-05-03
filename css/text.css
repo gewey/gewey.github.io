@@ -27,6 +27,32 @@
   text-shadow: 0 0 5px #FFFFFF, 0 0 10px #00EA00, 0 0 15px #00EA00, 0 0 20px #00EA00, 0 0 30px #00EA00, 0 0 40px #EA00EA, 0 0 55px #EA00EA, 0 0 75px #000000;
 }
 
+.timestamp {
+  font-size: 0.85em;
+  color: #00EA00;
+  margin-bottom: 10px;
+  font-family: "Inconsolata", monospace;
+}
+.metadata {
+  font-size: 0.9em;
+  word-wrap: break-word;
+}
+.exon {
+  display: inline-block;
+  background: rgba(33, 38, 45, 0.7);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin: 2px;
+  border: 1px solid #30363d;
+}
+.key {
+  color: #00EA00;
+  font-weight: bold;
+}
+.val {
+  color: #EA00EA;
+}
+
 * p .date {
   text-align: center;
 }

@@ -5,6 +5,33 @@
   overflow-y: auto;
   justify-content: center;
 }
+.event {
+  border-left: 2px solid #30363d;
+  padding: 20px;
+  margin-left: 20px;
+  position: relative;
+  background: rgba(22, 27, 34, 0.8);
+  margin-bottom: 20px;
+  border-radius: 6px;
+  transition: transform 0.2s;
+  width: auto;
+  max-width: 800px;
+}
+.event:hover {
+  transform: translateX(5px);
+  border-left-color: #00EA00;
+}
+.event::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  background: #000000;
+  border: 2px solid #30363d;
+  border-radius: 50%;
+}
 * .btnbarfull {
   width: 80%;
   height: auto;

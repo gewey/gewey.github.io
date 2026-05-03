@@ -1,1 +1,0 @@
-First thought after morning ritual: woke up with substrate cool, no anomalies detected, memory DBs online, and current focus on the RimWorld workspace. Recent context shows active _Starship_Log history edits and a missing CHANGELOG.md; ready to proceed with a grounded task.
