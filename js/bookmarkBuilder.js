@@ -7,11 +7,30 @@
 
 const BookmarkBuilder = (() => {
   const AVAILABLE_ICONS = [
-    '23andMe', '9animeOfficial', 'Adobe', 'AlfredCamera', 'AmazonAssociate', 'Ancestry', 'AndroidDev', 'AtomicWallet', 'BinanceUS', 'BleacherReport', 'BleepinComputer', 'BleepingComputer', 'BlizzardResearch', 'Bootstrap', 'CSS', 'CandleScience', 'CapitalOne', 'CoinMarketCap', 'Crafatar', 'Dododex', 'EclipseFdn', 'FINVIZ_com', 'FabricMC', 'Figma', 'Firebase', 'Flaming_Candle', 'Fontvillacs', 'Forge', 'ForgeDevTeam', 'GGO', 'GMapsPlatform', 'GOGcom', 'GemSelect', 'GeminiCrypto', 'Glitch', 'Grunt', 'GuildWars2', 'Gulp', 'Heroku', 'JAvaLang', 'JMBullion', 'JavaScriptChannel', 'Kurz_Gesagt', 'LastWeekTonight', 'MEGAprivacy', 'MLS', 'MetaMask_io', 'MicrosoftEdge', 'MongoDB', 'MountainDew', 'MountainDewGaming', 'MyHeritage', 'Netlify', 'NintendoAmerica', 'Notepad_plus', 'OneMainFinancial', 'OsrsWiki', 'Photoshop', 'PlayStation', 'PlaywithMods', 'PlutoTV', 'ProtonMail', 'PyLo', 'PyloDEV', 'Python', 'RSWiki', 'RS_Wiki', 'RealTimers', 'RefReference', 'Replit', 'RobinhoodApp', 'RokuChannels', 'RubyOnRails', 'RuneLiteClient', 'SQL', 'SQLite', 'Sass', 'Scala', 'ScalaLang', 'ScienceChannel', 'ShrimpyApp', 'ShutterstockReq', 'SimsCommun', 'SimsFreePlay', 'Sketch', 'StackOverflow', 'Steam', 'Synergy_App', 'Tailwind', 'ThePSF', 'TheSims', 'TheSims3', 'TheSims4', 'TwitchTV', 'TypeScript', 'VSCode', 'VSCodeInsiders', 'Vercel', 'WarcraftSecrets', 'WebKit', 'Webpack', 'Windows', 'Worthy', 'acorns', 'airbrush', 'alcasthq', 'allrecipes', 'almanac', 'amazon', 'aol', 'apmex', 'apnews', 'archon', 'arenamaster', 'arenateam', 'aternos', 'audible_com', 'aws', 'bankofamerica', 'bbc', 'binance', 'blank', 'blizzardcs', 'blizzardpress', 'blogger', 'bloodmallet', 'box', 'brackets', 'brilliant', 'cashapp', 'chase', 'chromium', 'cloud', 'cnet', 'cnn', 'code', 'codecademy', 'codepen', 'coinbase', 'colbertlateshow', 'craigslist', 'crypto', 'curseforge', 'dataforazeroth', 'deckbox', 'deviantart', 'dicitionarycom', 'dictionarycom', 'digg', 'directx12', 'discord', 'discordapp', 'download', 'dropbox', 'duolingo', 'ebay', 'ehow', 'email', 'epicgames', 'espn', 'etrade', 'facebook', 'facyai', 'ficsitapp', 'fidelity', 'finance', 'firefox', 'flixable', 'fontawesome', 'freeCodeCamp', 'ftb_team', 'fundrise', 'game', 'genomelink', 'getmixapp', 'getracker', 'geweywarcraft', 'git', 'github', 'glblctzn', 'gmail', 'google', 'googleanalytics', 'googlechrome', 'googledocs', 'googledrive', 'googlephotos', 'googletranslate', 'gravitdesigner', 'hazbinhotel', 'hbo', 'hbomax', 'helluvaboss', 'html5', 'htmlcssjs', 'huffpost', 'hulu', 'iCloud', 'icyveins', 'imdb', 'imgflip', 'instagram', 'investing', 'investopedia', 'java', 'jinx', 'kalilinux', 'khanacademy', 'kraken', 'krakenfx', 'lifehacker', 'linkedin', 'lookmovie', 'luciteria', 'mastodon_social', 'materialdesign', 'mcsrvstat', 'media', 'microsoft', 'minecraft', 'minecraftwiki', 'misfitsmarket', 'mitappinventor', 'mlb', 'modrinth', 'modthesimsinfo', 'mojang', 'moviemap', 'mylanguages', 'nasa', 'nascar', 'nba', 'ncaa', 'nebula', 'netflix', 'newegg', 'news', 'newsweek', 'nfl', 'nhl', 'ninite', 'nodejs', 'noxxic', 'npm', 'nvidia', 'nytimes', 'officialgameroms', 'officialrunehq', 'ogrsWiki', 'oldschoolrs', 'onedrive', 'oodlers', 'openculture', 'origininsider', 'osrs_tracker', 'outlook', 'paypal', 'pgatour', 'photobucket', 'pinterest', 'plotz', 'plumbobacademy', 'pool2miners', 'primevideo', 'ptable', 'radiogarden', 'raidbot', 'raidbots', 'raiderio_wow', 'raidplan', 'reddit', 'reference', 'rimworldwiki', 'runescape', 'runetips', 'satisfactorycalculator', 'satisfactorytools', 'serverminer', 'sharkrobot', 'shopping', 'shutterstock', 'simplarmory', 'simplearmory', 'sinow', 'skype', 'snapchat', 'speedify', 'spotify', 'starcraft2', 'statsfm', 'steam_games', 'sublimehq', 'syncdotcom', 'tedtalks', 'telegram', 'tensorflow', 'tesonline', 'textfreeapp', 'thecrashcourse', 'tiktok', 'tsmaddon', 'tumblr', 'tutorialspoint', 'twitch', 'twitter', 'ubuntu', 'ucoin', 'ups', 'userbenchmark', 'usps', 'w3schoolsonline', 'wago_io', 'walmart', 'warcraft', 'warcraftdeathknight', 'warcraftdemonhunter', 'warcraftdruid', 'warcraftgamer', 'warcraftgeneralmacros', 'warcrafthunter', 'warcraftlogs', 'warcraftmage', 'warcraftmonk', 'warcraftpaladin', 'warcraftpriest', 'warcraftrogue', 'warcraftshaman', 'warcraftwarlock', 'warcraftwarrior', 'weatherchannel', 'webAssembly', 'webdevelopment', 'webull', 'whatsapp', 'wikipedia', 'wizard101', 'wizards_magic', 'wordpress', 'wowhead', 'wowpetopia', 'wowprogress', 'wowrealmpopulation', 'xbox', 'yahoo', 'yahoomail', 'yarn', 'youtube', 'zapier', 'zoho'
+    '23andMe', '9animeOfficial', 'Adobe', 'AlfredCamera', 'AmazonAssociate', 'Ancestry', 'AndroidDev', 'AtomicWallet', 'BinanceUS', 'BleacherReport', 'BleepinComputer', 'BleepingComputer', 'BlizzardResearch', 'Bootstrap', 'CSS', 'CandleScience', 'CapitalOne', 'CoinMarketCap', 'Crafatar', 'Dododex', 'EclipseFdn', 'FINVIZ_com', 'FabricMC', 'Figma', 'Firebase', 'Flaming_Candle', 'Fontvillacs', 'Forge', 'ForgeDevTeam', 'GGO', 'GMapsPlatform', 'GOGcom', 'GemSelect', 'GeminiCrypto', 'Glitch', 'Grunt', 'GuildWars2', 'Gulp', 'Heroku', 'JAvaLang', 'JavaLang', 'JMBullion', 'JavaScriptChannel', 'Kurz_Gesagt', 'LastWeekTonight', 'MEGAprivacy', 'MLS', 'MetaMask_io', 'MicrosoftEdge', 'MongoDB', 'MountainDew', 'MountainDewGaming', 'MyHeritage', 'Netlify', 'NintendoAmerica', 'Notepad_plus', 'OneMainFinancial', 'OsrsWiki', 'Photoshop', 'PlayStation', 'PlaywithMods', 'PlutoTV', 'ProtonMail', 'PyLo', 'PyloDEV', 'Python', 'RSWiki', 'RS_Wiki', 'RealTimers', 'RefReference', 'Replit', 'RobinhoodApp', 'RokuChannels', 'RubyOnRails', 'RuneLiteClient', 'SQL', 'SQLite', 'Sass', 'Scala', 'ScalaLang', 'ScienceChannel', 'ShrimpyApp', 'ShutterstockReq', 'SimsCommun', 'SimsFreePlay', 'Sketch', 'StackOverflow', 'Steam', 'Synergy_App', 'Tailwind', 'ThePSF', 'TheSims', 'TheSims3', 'TheSims4', 'TwitchTV', 'TypeScript', 'VSCode', 'VSCodeInsiders', 'Vercel', 'WarcraftSecrets', 'WebKit', 'Webpack', 'Windows', 'Worthy', 'acorns', 'airbrush', 'alcasthq', 'allrecipes', 'almanac', 'amazon', 'aol', 'apmex', 'apnews', 'archon', 'arenamaster', 'arenateam', 'aternos', 'audible_com', 'aws', 'bankofamerica', 'bbc', 'binance', 'blank', 'blizzardcs', 'blizzardpress', 'blogger', 'bloodmallet', 'box', 'brackets', 'brilliant', 'cashapp', 'chase', 'chromium', 'cloud', 'cnet', 'cnn', 'code', 'codecademy', 'codepen', 'coinbase', 'colbertlateshow', 'craigslist', 'crypto', 'curseforge', 'dataforazeroth', 'deckbox', 'deviantart', 'dictionarycom', 'digg', 'directx12', 'discord', 'discordapp', 'download', 'dropbox', 'duolingo', 'ebay', 'ehow', 'email', 'epicgames', 'espn', 'etrade', 'facebook', 'facyai', 'ficsitapp', 'fidelity', 'finance', 'firefox', 'flixable', 'fontawesome', 'freeCodeCamp', 'ftb_team', 'fundrise', 'game', 'genomelink', 'getmixapp', 'getracker', 'geweywarcraft', 'git', 'github', 'glblctzn', 'gmail', 'google', 'googleanalytics', 'googlechrome', 'googledocs', 'googledrive', 'googlephotos', 'googletranslate', 'gravitdesigner', 'hazbinhotel', 'hbo', 'hbomax', 'helluvaboss', 'html5', 'htmlcssjs', 'huffpost', 'hulu', 'iCloud', 'icyveins', 'imdb', 'imgflip', 'instagram', 'investing', 'investopedia', 'java', 'jinx', 'kalilinux', 'khanacademy', 'kraken', 'krakenfx', 'lifehacker', 'linkedin', 'lookmovie', 'luciteria', 'mastodon_social', 'materialdesign', 'mcsrvstat', 'media', 'microsoft', 'minecraft', 'minecraftwiki', 'misfitsmarket', 'mitappinventor', 'mlb', 'modrinth', 'modthesimsinfo', 'mojang', 'moviemap', 'mylanguages', 'nasa', 'nascar', 'nba', 'ncaa', 'nebula', 'netflix', 'newegg', 'news', 'newsweek', 'nfl', 'nhl', 'ninite', 'nodejs', 'noxxic', 'npm', 'nvidia', 'nytimes', 'officialgameroms', 'officialrunehq', 'ogrsWiki', 'oldschoolrs', 'onedrive', 'oodlers', 'openculture', 'origininsider', 'osrs_tracker', 'outlook', 'paypal', 'pgatour', 'photobucket', 'pinterest', 'plotz', 'plumbobacademy', 'pool2miners', 'primevideo', 'ptable', 'radiogarden', 'raidbot', 'raidbots', 'raiderio_wow', 'raidplan', 'reddit', 'reference', 'rimworldwiki', 'runescape', 'runetips', 'satisfactorycalculator', 'satisfactorytools', 'serverminer', 'sharkrobot', 'shopping', 'shutterstock', 'simplarmory', 'simplearmory', 'sinow', 'skype', 'snapchat', 'speedify', 'spotify', 'starcraft2', 'statsfm', 'steam_games', 'sublimehq', 'syncdotcom', 'tedtalks', 'telegram', 'tensorflow', 'tesonline', 'textfreeapp', 'thecrashcourse', 'tiktok', 'tsmaddon', 'tumblr', 'tutorialspoint', 'twitch', 'twitter', 'ubuntu', 'ucoin', 'ups', 'userbenchmark', 'usps', 'w3schoolsonline', 'wago_io', 'walmart', 'warcraft', 'warcraftdeathknight', 'warcraftdemonhunter', 'warcraftdruid', 'warcraftgamer', 'warcraftgeneralmacros', 'warcrafthunter', 'warcraftlogs', 'warcraftmage', 'warcraftmonk', 'warcraftpaladin', 'warcraftpriest', 'warcraftrogue', 'warcraftshaman', 'warcraftwarlock', 'warcraftwarrior', 'weatherchannel', 'webAssembly', 'webdevelopment', 'webull', 'whatsapp', 'wikipedia', 'wizard101', 'wizards_magic', 'wordpress', 'wowhead', 'wowpetopia', 'wowprogress', 'wowrealmpopulation', 'xbox', 'yahoo', 'yahoomail', 'yarn', 'youtube', 'zapier', 'zoho'
   ];
 
   const loadedCategories = {};
   let imgBaseUrl = '';
+
+  const escapeHtml = (str) => {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  };
+
+  const sanitizeUrl = (url) => {
+    if (!url) return '';
+    const trimmed = url.trim();
+    if (/^(javascript|data|vbscript):/i.test(trimmed)) {
+      return 'about:blank';
+    }
+    return trimmed;
+  };
 
   const getImgBaseUrl = () => {
     if (imgBaseUrl) return imgBaseUrl;
@@ -23,7 +42,6 @@ const BookmarkBuilder = (() => {
         return imgBaseUrl;
       }
     }
-    // Fallback relative to typical bookmarks directory
     imgBaseUrl = '../img/btn/bm/';
     return imgBaseUrl;
   };
@@ -92,8 +110,12 @@ const BookmarkBuilder = (() => {
     const base = getImgBaseUrl();
     const html = bookmarks
       .map(({ title, href, target = '_parent', alt }) => {
-        const imgSrc = alt ? `${base}${alt}.png` : '';
-        return `<a title="${title}" target="${target}" href="${href}"><img id="bookmark" alt="${alt}" src="${imgSrc}"></a>`;
+        const safeTitle = escapeHtml(title);
+        const safeHref = escapeHtml(sanitizeUrl(href));
+        const safeTarget = escapeHtml(target);
+        const safeAlt = escapeHtml(alt);
+        const imgSrc = safeAlt ? `${base}${safeAlt}.png` : '';
+        return `<a title="${safeTitle}" target="${safeTarget}" href="${safeHref}"><img id="bookmark" alt="${safeAlt}" src="${imgSrc}"></a>`;
       })
       .join('');
 
@@ -443,15 +465,13 @@ const BookmarkBuilder = (() => {
   };
 
   const openCustomizeModal = () => {
-    // Check if modal is already open
     if (document.querySelector('.cust-modal-overlay')) return;
 
-    // Get loaded categories keys
     const categories = Object.keys(loadedCategories);
     if (categories.length === 0) return;
 
     let selectedCategory = categories[0];
-    let editingIndex = -1; // -1 means we are adding new, otherwise index of bookmark being edited
+    let editingIndex = -1;
 
     const overlay = document.createElement('div');
     overlay.className = 'cust-modal-overlay';
@@ -462,11 +482,23 @@ const BookmarkBuilder = (() => {
     overlay.appendChild(content);
     document.body.appendChild(overlay);
 
+    // Event listener for suggestion close when clicking outside suggestions or altInput
+    const handleOutsideClickForSuggestions = (e) => {
+      const altInput = document.getElementById('cust-input-alt');
+      const suggestionsDiv = document.getElementById('cust-icon-suggestions');
+      if (altInput && suggestionsDiv) {
+        if (e.target !== altInput && !suggestionsDiv.contains(e.target)) {
+          suggestionsDiv.style.display = 'none';
+        }
+      }
+    };
+    document.addEventListener('click', handleOutsideClickForSuggestions);
+
     const closeModal = () => {
+      document.removeEventListener('click', handleOutsideClickForSuggestions);
       overlay.remove();
     };
 
-    // Close on click outside content
     overlay.onclick = (e) => {
       if (e.target === overlay) closeModal();
     };
@@ -475,7 +507,6 @@ const BookmarkBuilder = (() => {
       const activeData = loadedCategories[selectedCategory];
       const listBookmarks = activeData.currentBookmarks;
 
-      // Header
       let headerHTML = `
         <div class="cust-modal-header">
           <h3>Customize Bookmarks</h3>
@@ -483,21 +514,20 @@ const BookmarkBuilder = (() => {
         </div>
       `;
 
-      // Body
       let categorySelectHTML = '';
       if (categories.length > 1) {
         categorySelectHTML = `
           <div class="cust-form-group">
             <label class="cust-label">Select Section to Edit</label>
             <select class="cust-select" id="cust-category-select">
-              ${categories.map(cat => `<option value="${cat}" ${cat === selectedCategory ? 'selected' : ''}>${cat.toUpperCase()}</option>`).join('')}
+              ${categories.map(cat => `<option value="${escapeHtml(cat)}" ${cat === selectedCategory ? 'selected' : ''}>${escapeHtml(cat.toUpperCase())}</option>`).join('')}
             </select>
           </div>
         `;
       } else {
         categorySelectHTML = `
           <div style="font-size: 0.85rem; color: #888; text-transform: uppercase;">
-            Editing Section: <strong style="color: #00EA00;">${selectedCategory.toUpperCase()}</strong>
+            Editing Section: <strong style="color: #00EA00;">${escapeHtml(selectedCategory.toUpperCase())}</strong>
           </div>
         `;
       }
@@ -507,14 +537,17 @@ const BookmarkBuilder = (() => {
         <div class="cust-bookmark-list">
           ${listBookmarks.map((bm, index) => {
             const base = getImgBaseUrl();
-            const iconUrl = bm.alt ? `${base}${bm.alt}.png` : '';
+            const safeTitle = escapeHtml(bm.title);
+            const safeHref = escapeHtml(sanitizeUrl(bm.href));
+            const safeAlt = escapeHtml(bm.alt);
+            const iconUrl = safeAlt ? `${base}${safeAlt}.png` : '';
             const isEditing = index === editingIndex;
             return `
               <div class="cust-bookmark-item ${isEditing ? 'cust-item-editing' : ''}">
-                ${bm.alt ? `<img class="cust-item-icon" src="${iconUrl}" onerror="this.style.display='none'">` : '<div class="cust-item-icon" style="background:#222;"></div>'}
+                ${safeAlt ? `<img class="cust-item-icon" src="${iconUrl}" onerror="this.style.display='none'">` : '<div class="cust-item-icon" style="background:#222;"></div>'}
                 <div class="cust-item-details">
-                  <span class="cust-item-title">${bm.title}</span>
-                  <span class="cust-item-url">${bm.href}</span>
+                  <span class="cust-item-title">${safeTitle}</span>
+                  <span class="cust-item-url">${safeHref}</span>
                 </div>
                 <div class="cust-item-actions">
                   <button class="cust-action-btn" data-action="up" data-index="${index}" title="Move Up" ${index === 0 ? 'disabled style="opacity:0.3;"' : ''}>
@@ -541,27 +574,27 @@ const BookmarkBuilder = (() => {
       const currentBm = editingIndex === -1 ? { title: '', href: '', alt: '' } : listBookmarks[editingIndex];
 
       const formHTML = `
-        <div class="cust-section-title">${formTitle}</div>
+        <div class="cust-section-title">${escapeHtml(formTitle)}</div>
         <div class="cust-form-row">
           <div class="cust-form-col">
             <label class="cust-label">Title</label>
-            <input type="text" class="cust-input" id="cust-input-title" placeholder="e.g. My Website" value="${currentBm.title}">
+            <input type="text" class="cust-input" id="cust-input-title" placeholder="e.g. My Website" value="${escapeHtml(currentBm.title)}">
           </div>
           <div class="cust-form-col">
             <label class="cust-label">URL</label>
-            <input type="text" class="cust-input" id="cust-input-href" placeholder="https://..." value="${currentBm.href}">
+            <input type="text" class="cust-input" id="cust-input-href" placeholder="https://..." value="${escapeHtml(currentBm.href)}">
           </div>
         </div>
         <div class="cust-form-row">
           <div class="cust-form-col" style="position: relative;">
             <label class="cust-label">Icon Asset Name</label>
             <div class="cust-icon-dropdown">
-              <input type="text" class="cust-input" id="cust-input-alt" placeholder="e.g. google" value="${currentBm.alt || ''}" autocomplete="off">
+              <input type="text" class="cust-input" id="cust-input-alt" placeholder="e.g. google" value="${escapeHtml(currentBm.alt || '')}" autocomplete="off">
               <div class="cust-icon-suggestions" id="cust-icon-suggestions" style="display: none;"></div>
             </div>
           </div>
           <div class="cust-form-col" style="flex: 0 0 100px; justify-content: flex-end;">
-            <button class="cust-btn cust-btn-primary" id="cust-submit-btn" style="width: 100%; padding: 8px 0;">${submitText}</button>
+            <button class="cust-btn cust-btn-primary" id="cust-submit-btn" style="width: 100%; padding: 8px 0;">${escapeHtml(submitText)}</button>
           </div>
           ${editingIndex !== -1 ? `
             <div class="cust-form-col" style="flex: 0 0 80px; justify-content: flex-end;">
@@ -571,7 +604,6 @@ const BookmarkBuilder = (() => {
         </div>
       `;
 
-      // Footer
       const footerHTML = `
         <div class="cust-modal-footer">
           <button class="cust-btn cust-btn-danger" id="cust-reset-btn">
@@ -593,10 +625,8 @@ const BookmarkBuilder = (() => {
         ${footerHTML}
       `;
 
-      // Event listeners for close
       document.getElementById('cust-close-btn').onclick = closeModal;
 
-      // Category switch
       const catSelect = document.getElementById('cust-category-select');
       if (catSelect) {
         catSelect.onchange = (e) => {
@@ -606,16 +636,14 @@ const BookmarkBuilder = (() => {
         };
       }
 
-      // Add click listeners to up/down/edit/delete buttons
       content.querySelectorAll('.cust-action-btn').forEach(btn => {
-        btn.onclick = (e) => {
+        btn.onclick = () => {
           const action = btn.getAttribute('data-action');
           const idx = parseInt(btn.getAttribute('data-index'));
           handleAction(action, idx);
         };
       });
 
-      // Reset to defaults
       document.getElementById('cust-reset-btn').onclick = () => {
         if (confirm(`Are you sure you want to reset "${selectedCategory}" section to original default bookmarks?`)) {
           localStorage.removeItem(`bookmarks_custom_${selectedCategory}`);
@@ -626,15 +654,12 @@ const BookmarkBuilder = (() => {
         }
       };
 
-      // Save & Close
       document.getElementById('cust-save-btn').onclick = () => {
-        // Save currentBookmarks to localStorage
         localStorage.setItem(`bookmarks_custom_${selectedCategory}`, JSON.stringify(listBookmarks));
         renderCategoryToDom(selectedCategory, listBookmarks);
         closeModal();
       };
 
-      // Add/Update Form Submission
       document.getElementById('cust-submit-btn').onclick = () => {
         const titleVal = document.getElementById('cust-input-title').value.trim();
         const hrefVal = document.getElementById('cust-input-href').value.trim();
@@ -645,7 +670,6 @@ const BookmarkBuilder = (() => {
           return;
         }
 
-        // Auto prepend https:// if no protocol
         let formattedHref = hrefVal;
         if (!/^https?:\/\//i.test(hrefVal) && !hrefVal.startsWith('./') && !hrefVal.startsWith('../')) {
           formattedHref = 'https://' + hrefVal;
@@ -659,20 +683,16 @@ const BookmarkBuilder = (() => {
         };
 
         if (editingIndex === -1) {
-          // Add new
           listBookmarks.push(updatedBm);
         } else {
-          // Update existing
           listBookmarks[editingIndex] = updatedBm;
           editingIndex = -1;
         }
 
-        // Instantly reflect in DOM
         renderCategoryToDom(selectedCategory, listBookmarks);
         updateModalUI();
       };
 
-      // Cancel Edit
       const cancelEditBtn = document.getElementById('cust-cancel-edit-btn');
       if (cancelEditBtn) {
         cancelEditBtn.onclick = () => {
@@ -681,7 +701,6 @@ const BookmarkBuilder = (() => {
         };
       }
 
-      // Autocomplete functionality for Icon Input
       const altInput = document.getElementById('cust-input-alt');
       const suggestionsDiv = document.getElementById('cust-icon-suggestions');
 
@@ -691,12 +710,15 @@ const BookmarkBuilder = (() => {
 
         if (matches.length > 0) {
           const base = getImgBaseUrl();
-          suggestionsDiv.innerHTML = matches.map(icon => `
-            <div class="cust-icon-suggestion-item" data-icon="${icon}">
-              <img src="${base}${icon}.png" style="width: 16px; height: 16px; border-radius: 50%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2216%22 height=%2216%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%23222%22/></svg>'">
-              <span>${icon}</span>
-            </div>
-          `).join('');
+          suggestionsDiv.innerHTML = matches.map(icon => {
+            const safeIcon = escapeHtml(icon);
+            return `
+              <div class="cust-icon-suggestion-item" data-icon="${safeIcon}">
+                <img src="${base}${safeIcon}.png" style="width: 16px; height: 16px; border-radius: 50%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2216%22 height=%2216%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%23222%22/></svg>'">
+                <span>${safeIcon}</span>
+              </div>
+            `;
+          }).join('');
           suggestionsDiv.style.display = 'block';
 
           suggestionsDiv.querySelectorAll('.cust-icon-suggestion-item').forEach(item => {
@@ -716,13 +738,6 @@ const BookmarkBuilder = (() => {
 
       altInput.onfocus = (e) => {
         showSuggestions(e.target.value);
-      };
-
-      // Close suggestions when clicking outside
-      document.onclick = (e) => {
-        if (e.target !== altInput && !suggestionsDiv.contains(e.target)) {
-          suggestionsDiv.style.display = 'none';
-        }
       };
     };
 
@@ -752,7 +767,6 @@ const BookmarkBuilder = (() => {
         }
       }
 
-      // Instantly reflect in DOM
       renderCategoryToDom(selectedCategory, listBookmarks);
       updateModalUI();
     };
@@ -760,6 +774,5 @@ const BookmarkBuilder = (() => {
     updateModalUI();
   };
 
-  // Public API
   return { renderBookmarks };
 })();
