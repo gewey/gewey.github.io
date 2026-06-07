@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="../../js/dynamichead.js"></script>
+</head>
+<body>
+    <div class="agentProfileContainer">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="../../index.html" class="breadcrumbLink">Home</a>
+            <span class="breadcrumbSeparator">/</span>
+            <a href="../index.html" class="breadcrumbLink">Agent Profiles</a>
+            <span class="breadcrumbSeparator">/</span>
+            <span class="breadcrumbCurrent" id="agentNameBreadcrumb">Agent</span>
+        </div>
+
+        <!-- Agent Header with Profile Picture -->
+        <div class="agentHeader">
+            <img id="agentProfilePic" class="agentProfilePicture" src="../../img/404_input.png" alt="Agent Profile">
+            <div class="agentHeaderContent">
+                <h1 id="agentName">Agent Name</h1>
+                <p id="agentDescription" class="agentDescription">Agent description goes here</p>
+            </div>
+        </div>
+
+        <!-- Agent Details -->
+        <div class="agentDetailsContainer">
+            <!-- Sources Section -->
+            <section class="agentSection">
+                <h2>Sources & Documentation</h2>
+                <div id="agentSources" class="agentSourcesList">
+                    <!-- Populated by agent profile loader -->
+                </div>
+            </section>
+
+            <!-- Related Links Section -->
+            <section class="agentSection">
+                <h2>Related Resources</h2>
+                <div id="agentRelated" class="agentRelatedLinks">
+                    <!-- Populated by agent profile loader -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Navigation -->
+        <div class="agentNavigation">
+            <a href="../index.html" class="agentNavLink">← Back to Agents</a>
+        </div>
+    </div>
+
+    <script src="../../js/agentProfileBuilder.js"></script>
+    <script src="../../js/agentViewTracker.js"></script>
+</body>
+</html>

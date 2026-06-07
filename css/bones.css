@@ -115,4 +115,533 @@
   }
 }
 
+/* ===== AGENT PROFILES LAYOUT ===== */
+
+.breadcrumb {
+  font-size: 0.9em;
+  color: #888;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumbLink {
+  text-decoration: none;
+  color: #00EA00;
+  transition: all 0.3s;
+}
+
+.breadcrumbLink:hover {
+  text-shadow: 0 0 5px #00EA00;
+}
+
+.breadcrumbSeparator {
+  color: #444;
+}
+
+.breadcrumbCurrent {
+  color: #00EA00;
+  font-weight: bold;
+}
+
+.agentSearchBox {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.searchInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 15px;
+  color: #00EA00;
+  pointer-events: none;
+}
+
+.agentSearchInput {
+  width: 100%;
+  padding: 12px 40px 12px 45px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-family: Inconsolata, monospace;
+  font-size: 1em;
+  transition: all 0.3s;
+}
+
+.agentSearchInput:focus {
+  outline: none;
+  border-color: #00EA00;
+  box-shadow: 0 0 15px rgba(0, 234, 0, 0.2);
+}
+
+.agentSearchInput::placeholder {
+  color: #666;
+}
+
+.clearSearch {
+  position: absolute;
+  right: 15px;
+  color: #888;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: all 0.3s;
+  line-height: 1;
+}
+
+.clearSearch:hover {
+  color: #00EA00;
+}
+
+.searchStats {
+  text-align: center;
+  font-size: 0.9em;
+  color: #888;
+}
+
+.statsText {
+  display: inline-block;
+  padding: 5px 15px;
+  background: rgba(0, 234, 0, 0.1);
+  border-left: 2px solid #00EA00;
+  border-radius: 3px;
+}
+
+.agentProfilesContainer {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.agentProfilesHeader {
+  text-align: center;
+  margin-bottom: 60px;
+  border-bottom: 2px solid #00EA00;
+  padding-bottom: 20px;
+}
+
+.agentProfilesHeader h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #00EA00;
+}
+
+.agentProfilesHeader p {
+  font-size: 1.1em;
+  color: #888;
+}
+
+.agentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.agentCard {
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.agentCard:hover {
+  border-color: #00EA00;
+  box-shadow: 0 0 20px rgba(0, 234, 0, 0.3);
+  transform: translateY(-8px);
+}
+
+.agentCardImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agentCardProfilePic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.agentCard:hover .agentCardProfilePic {
+  transform: scale(1.05);
+}
+
+.agentCardContent {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.agentCardName {
+  font-size: 1.3em;
+  margin-bottom: 8px;
+  color: #00EA00;
+  transition: all 0.3s;
+}
+
+.agentCard:hover .agentCardName {
+  text-shadow: 0 0 8px #00EA00;
+}
+
+.agentCardFolder {
+  font-size: 0.9em;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.agentCardViews {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85em;
+  color: #00EA00;
+  padding-top: 10px;
+  border-top: 1px solid #333;
+  margin-top: 10px;
+}
+
+.agentCardViews i {
+  font-size: 1em;
+}
+
+.agentCardLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.sharedResourcesSection {
+  margin-top: 60px;
+  border-top: 2px solid #00EA00;
+  padding-top: 40px;
+}
+
+.sharedResourcesSection h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #00EA00;
+}
+
+.sharedResourcesContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.sharedResourceItem {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+  animation: slideUp 0.4s ease-out;
+}
+
+.sharedResourceItem:hover {
+  border-color: #00EA00;
+  box-shadow: 0 0 20px rgba(0, 234, 0, 0.2);
+}
+
+.resourceIcon {
+  flex-shrink: 0;
+  font-size: 2em;
+  color: #00EA00;
+}
+
+.resourceContent h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.resourceContent p {
+  color: #888;
+  margin-bottom: 15px;
+  font-size: 0.95em;
+}
+
+.resourceLink {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid #00EA00;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.resourceLink:hover {
+  background: rgba(0, 234, 0, 0.1);
+  text-shadow: 0 0 10px #00EA00;
+}
+
+/* ===== INDIVIDUAL AGENT PROFILE ===== */
+
+.agentProfileContainer {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.agentHeader {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #00EA00;
+  align-items: flex-start;
+  position: relative;
+}
+
+.agentViewCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 234, 0, 0.1);
+  border: 1px solid #00EA00;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #00EA00;
+}
+
+.agentViewCount i {
+  font-size: 1.1em;
+}
+
+.agentProfilePicture {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #00EA00;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0, 234, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.agentHeader:hover .agentProfilePicture {
+  box-shadow: 0 0 30px rgba(0, 234, 0, 0.4);
+  transform: scale(1.02);
+}
+
+.agentHeaderContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.agentHeaderContent h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: #00EA00;
+  text-shadow: 0 0 10px #00EA00;
+}
+
+.agentDescription {
+  font-size: 1.1em;
+  color: #888;
+  line-height: 1.6;
+}
+
+.agentDetailsContainer {
+  display: grid;
+  gap: 50px;
+}
+
+.agentSection {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  animation: slideUp 0.4s ease-out;
+}
+
+.agentSection:hover {
+  border-color: #00EA00;
+  box-shadow: 0 0 15px rgba(0, 234, 0, 0.1);
+}
+
+.agentSection h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #00EA00;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.agentSourcesList,
+.agentRelatedLinks {
+  list-style: none;
+}
+
+.sourceItem,
+.relatedLinkItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: rgba(10, 10, 10, 0.5);
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.sourceItem:hover,
+.relatedLinkItem:hover {
+  border-left-color: #00EA00;
+  background: rgba(0, 234, 0, 0.05);
+}
+
+.sourceItem i,
+.relatedLinkItem i {
+  color: #00EA00;
+  font-size: 1.3em;
+}
+
+.sourceLink,
+.relatedLink {
+  text-decoration: none;
+  color: #00EA00;
+  transition: all 0.3s;
+  word-break: break-word;
+}
+
+.sourceLink:hover,
+.relatedLink:hover {
+  text-shadow: 0 0 10px #00EA00;
+}
+
+.viewAllSourcesLink {
+  display: block;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #333;
+  text-decoration: none;
+  color: #00EA00;
+  transition: all 0.3s;
+  font-size: 0.95em;
+}
+
+.viewAllSourcesLink:hover {
+  text-shadow: 0 0 10px #00EA00;
+  margin-left: 5px;
+}
+
+.noContent {
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+}
+
+.agentNavigation {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+.agentNavLink {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid #00EA00;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #00EA00;
+  transition: all 0.3s;
+  font-size: 1em;
+}
+
+.agentNavLink:hover {
+  background: rgba(0, 234, 0, 0.1);
+  text-shadow: 0 0 10px #00EA00;
+  box-shadow: 0 0 15px rgba(0, 234, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .breadcrumb {
+    flex-wrap: wrap;
+  }
+
+  .agentHeader {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+  }
+
+  .agentViewCount {
+    position: static;
+    margin-bottom: 15px;
+  }
+
+  .agentProfilePicture {
+    width: 150px;
+    height: 150px;
+  }
+
+  .agentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .agentHeaderContent h1 {
+    font-size: 1.8em;
+  }
+
+  .agentProfilesHeader h1 {
+    font-size: 1.8em;
+  }
+
+  .searchInputWrapper {
+    max-width: 100%;
+  }
+
+  .agentSearchInput {
+    font-size: 16px;
+  }
+}
+
 /*# sourceMappingURL=bones.css.map */

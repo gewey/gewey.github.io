@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+</head>
+<body>
+    <div class="agentProfilesContainer">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="../index.html" class="breadcrumbLink">Home</a>
+            <span class="breadcrumbSeparator">/</span>
+            <span class="breadcrumbCurrent">Agent Profiles</span>
+        </div>
+
+        <div class="agentProfilesHeader">
+            <h1>Agent Profiles</h1>
+            <p>A directory of all agents and their resources</p>
+        </div>
+
+        <!-- Agent Profiles Grid -->
+        <div class="agentGrid" id="agentGrid">
+            <!-- Populated by agentProfilesLoader.js -->
+        </div>
+
+        <!-- Shared Resources Section -->
+        <div class="sharedResourcesSection">
+            <h2>Shared Resources</h2>
+            <div class="sharedResourcesContent" id="sharedResources">
+                <!-- Populated by agentProfilesLoader.js -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agentProfilesLoader.js"></script>
+    <script src="../js/agentSearch.js"></script>
+    <script src="../js/agentViewTracker.js"></script>
+</body>
+</html>
