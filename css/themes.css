@@ -1,0 +1,205 @@
+/**
+ * Dynamic Theme Support - CSS Variables for multi-theme system
+ * Initialize with Dark theme defaults, override via ThemeManager.js
+ */
+
+:root {
+  --color-bg: #000000;
+  --color-text: #FFFFFF;
+  --color-primary: #00EA00;
+  --color-accent: #EA00EA;
+  --color-border: #333333;
+  
+  --transition-speed: 0.3s;
+}
+
+/* Global Theme Application */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+a, .breadcrumbLink {
+  color: var(--color-primary);
+}
+
+a:hover, .breadcrumbLink:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px var(--color-accent);
+}
+
+input, textarea, select {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+input:focus, textarea:focus, select:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(var(--color-primary), 0.3);
+}
+
+button {
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  transition: all var(--transition-speed);
+}
+
+button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.event, .agentCard, .agentSection, .sharedResourceItem {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-color: var(--color-border);
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.event:hover, .agentCard:hover, .agentSection:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(var(--color-primary), 0.2);
+}
+
+.breadcrumb {
+  color: var(--color-text);
+}
+
+.breadcrumbSeparator {
+  color: var(--color-border);
+}
+
+.breadcrumbCurrent {
+  color: var(--color-primary);
+}
+
+/* Theme Switcher Styling */
+.theme-switcher-container {
+  position: relative;
+  width: 100%;
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  width: 80%;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  z-index: 1000;
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.theme-option {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  transition: all var(--transition-speed);
+}
+
+.theme-option:last-child {
+  border-bottom: none;
+}
+
+.theme-option:hover {
+  background-color: rgba(var(--color-primary), 0.1);
+  color: var(--color-accent);
+  padding-left: 25px;
+}
+
+.theme-option.active {
+  background-color: rgba(var(--color-primary), 0.2);
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.theme-option.active::before {
+  content: "✓ ";
+  margin-right: 5px;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-text: #000000;
+  --color-primary: #0066CC;
+  --color-accent: #FF6600;
+  --color-border: #CCCCCC;
+}
+
+/* Sepia Theme Overrides */
+[data-theme="sepia"] {
+  --color-bg: #F4EAD5;
+  --color-text: #3E2723;
+  --color-primary: #8B4513;
+  --color-accent: #D2691E;
+  --color-border: #A1887F;
+}
+
+/* Cyberpunk Theme Overrides */
+[data-theme="cyberpunk"] {
+  --color-bg: #0A0E27;
+  --color-text: #00FF41;
+  --color-primary: #FF006E;
+  --color-accent: #00F5FF;
+  --color-border: #FF006E;
+}
+
+/* Matrix Theme Overrides */
+[data-theme="matrix"] {
+  --color-bg: #000000;
+  --color-text: #00CC00;
+  --color-primary: #00FF00;
+  --color-accent: #CCFF00;
+  --color-border: #003300;
+}
+
+/* Solarized Theme Overrides */
+[data-theme="solarized"] {
+  --color-bg: #FDF6E3;
+  --color-text: #657B83;
+  --color-primary: #268BD2;
+  --color-accent: #D33682;
+  --color-border: #EEE8D5;
+}
+
+/* Shortcuts Help Styling */
+.shortcuts-help {
+  padding: 20px;
+  color: var(--color-text);
+}
+
+.shortcuts-help h2 {
+  margin-bottom: 15px;
+  color: var(--color-primary);
+}
+
+.shortcuts-help table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shortcuts-help th, .shortcuts-help td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.shortcuts-help th {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.shortcuts-help code {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-primary);
+  font-size: 12px;
+}
