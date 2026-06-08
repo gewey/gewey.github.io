@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - Gewey's Homepage</title>
+    <script src="../../js/dynamichead.js"></script>
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+    <div class="breadcrumb animate__animated animate__slideInDown">
+        <a href="../../index.html" class="breadcrumbLink">Home</a>
+        <span class="breadcrumbSeparator">/</span>
+        <span class="breadcrumbCurrent">Statistics</span>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header animate__animated animate__fadeInDown animate__delay-1s">
+            <h1>📊 Statistics & Analytics</h1>
+            <p>Your browsing patterns and site usage at a glance</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="stat-icon">📑</div>
+                <div class="stat-content">
+                    <div class="stat-label">Total Bookmarks</div>
+                    <div class="stat-value" id="totalBookmarks">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-content">
+                    <div class="stat-label">Categories</div>
+                    <div class="stat-value" id="totalCategories">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-content">
+                    <div class="stat-label">Total Clicks</div>
+                    <div class="stat-value" id="totalClicks">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="stat-icon">🤖</div>
+                <div class="stat-content">
+                    <div class="stat-label">Agent Profiles</div>
+                    <div class="stat-value" id="totalAgents">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Most Viewed -->
+        <div class="section animate__animated animate__fadeInUp animate__delay-2s">
+            <h2>⭐ Most Viewed Agents</h2>
+            <div class="agent-rankings" id="agentRankings">
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <!-- Category Breakdown -->
+        <div class="section animate__animated animate__fadeInUp animate__delay-2s">
+            <h2>📚 Bookmark Categories</h2>
+            <div class="category-list" id="categoryList">
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <!-- Top Bookmarks -->
+        <div class="section animate__animated animate__fadeInUp animate__delay-3s">
+            <h2>🔥 Most Clicked Bookmarks</h2>
+            <div class="bookmark-rankings" id="bookmarkRankings">
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <!-- System Info -->
+        <div class="section animate__animated animate__fadeInUp animate__delay-3s">
+            <h2>⚙️ System Information</h2>
+            <div class="system-info">
+                <div class="info-row">
+                    <span class="info-label">Theme:</span>
+                    <span class="info-value" id="currentTheme">Dark</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Storage Used:</span>
+                    <span class="info-value" id="storageUsed">0 KB</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Updated:</span>
+                    <span class="info-value" id="lastUpdated">Never</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">PWA Ready:</span>
+                    <span class="info-value" id="pwaReady">✓ Yes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="section animate__animated animate__fadeInUp animate__delay-4s">
+            <h2>⚡ Actions</h2>
+            <div class="action-buttons">
+                <button onclick="Dashboard.exportStats()" class="action-btn">
+                    <i class="material-icons">download</i> Export Stats
+                </button>
+                <button onclick="Dashboard.clearStats()" class="action-btn danger">
+                    <i class="material-icons">delete</i> Clear History
+                </button>
+                <button onclick="Dashboard.refreshStats()" class="action-btn">
+                    <i class="material-icons">refresh</i> Refresh
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/bookmarkBuilder.js"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/verp.js"></script>
+</body>
+</html>

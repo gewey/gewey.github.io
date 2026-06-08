@@ -1,0 +1,234 @@
+/**
+ * Mobile & Off-Canvas Sidebar
+ * Responsive design for screens < 768px
+ */
+
+@media (max-width: 768px) {
+  /* Hide traditional menu, show hamburger */
+  .pageLeftMenu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 70%;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 40, 0.98) 100%);
+    border-right: 2px solid var(--color-primary);
+    z-index: 999;
+    overflow-y: auto;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 60px;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .pageLeftMenu.offcanvas-open {
+    left: 0;
+  }
+
+  .pageContent {
+    width: 100% !important;
+  }
+
+  .viewArea .pageHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 60px !important;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid var(--color-primary);
+    padding: 0;
+  }
+
+  marquee {
+    height: 60px;
+    line-height: 60px;
+    font-size: 12px;
+  }
+
+  .viewArea .pageContent {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+  }
+
+  /* Hamburger Menu Button */
+  .hamburger-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+
+  .hamburger-btn:hover {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 0 15px rgba(0, 234, 0, 0.3);
+  }
+
+  .hamburger-btn.open {
+    transform: rotate(90deg);
+  }
+
+  /* Close Overlay Backdrop */
+  .offcanvas-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+    backdrop-filter: blur(2px);
+  }
+
+  .offcanvas-backdrop.active {
+    display: block;
+  }
+
+  /* Menu Items on Mobile */
+  .pageLeftMenu .geweyMenuButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btnbarfull {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    padding: 12px 15px !important;
+    font-size: 14px;
+    border-radius: 4px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btnbarfull i {
+    margin-right: 10px;
+  }
+
+  /* Logo on Mobile */
+  .geweyLogo {
+    display: none;
+  }
+
+  /* Header on Mobile */
+  .pageLeftMenu h2 {
+    padding: 15px;
+    color: var(--color-primary);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 10px;
+  }
+
+  /* Agent Grid on Mobile */
+  .agentGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    gap: 15px !important;
+  }
+
+  .agentCard {
+    padding: 10px !important;
+  }
+
+  /* Breadcrumb on Mobile */
+  .breadcrumb {
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumbLink, .breadcrumbCurrent {
+    margin: 5px 0;
+  }
+
+  /* Search Box on Mobile */
+  #agentSearchInput {
+    width: 90% !important;
+    max-width: 400px !important;
+  }
+
+  /* Sections on Mobile */
+  .agentProfilesHeader,
+  .sharedResourcesSection,
+  .agentSection {
+    margin: 15px !important;
+  }
+
+  .agentProfilesHeader h1 {
+    font-size: 18px;
+  }
+
+  .agentProfilesHeader p {
+    font-size: 12px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  .pageLeftMenu {
+    width: 100%;
+  }
+
+  .agentGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .modal {
+    width: 95vw !important;
+  }
+
+  .btnbarfull {
+    font-size: 12px !important;
+    padding: 10px 12px !important;
+  }
+
+  marquee {
+    font-size: 10px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .hamburger-btn,
+  .pageLeftMenu,
+  .pageHeader,
+  .breadcrumb {
+    display: none;
+  }
+
+  .pageContent {
+    width: 100% !important;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button, a, .btnbarfull {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btnbarfull {
+    padding: 12px 15px;
+  }
+}
