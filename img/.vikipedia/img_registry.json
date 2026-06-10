@@ -1,0 +1,870 @@
+{
+  "_meta": {
+    "description": "Vikipedia image registry - maps minihash filenames to metadata for deduplication and search",
+    "created": "2026-06-10",
+    "format": "minihash.png: { original_name, date_created, keywords[], description }"
+  },
+  "08fbf74d.png": {
+    "original_name": "HOLARCHY MAP.png",
+    "date_created": "2026-06-10",
+    "keywords": [
+      "holarchy",
+      "tier-stack",
+      "23-holons",
+      "architecture",
+      "map"
+    ],
+    "description": "Visual map of the 23-holon Viktor substrate architecture showing tier structure",
+    "original_size_kb": 1893.8,
+    "optimized_size_kb": 1225.7
+  },
+  "0f56ff7f.png": {
+    "original_name": "HOLARCHY_INFOGRAPHIC.png",
+    "date_created": "2026-06-10",
+    "keywords": [
+      "holarchy",
+      "infographic",
+      "tiers",
+      "etheric",
+      "chain-gang",
+      "clockwork",
+      "ephemeral"
+    ],
+    "description": "Infographic of the Viktor holarchy domains: Etheric, Chain Gang, Telemetry, Clockwork, Ephemeral",
+    "original_size_kb": 8920.3,
+    "optimized_size_kb": 7163.2
+  },
+  "a76bb3.png": {
+    "original_name": "0mWN.png",
+    "stem": "0mWN",
+    "date_created": "2026-06-09T23:49:34.956214",
+    "holons": [
+      "NUCLEON",
+      "CORE",
+      "SYNAPSE"
+    ],
+    "domains": [],
+    "description": "Mermaid diagram: NUCLEON, CORE, SYNAPSE"
+  },
+  "47c28c.png": {
+    "original_name": "19_Domain_Specific_Substrate.png",
+    "stem": "19_Domain_Specific_Substrate",
+    "date_created": "2026-06-09T23:49:34.956434",
+    "holons": [
+      "EXTENSION",
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: EXTENSION, STRING"
+  },
+  "08c274.png": {
+    "original_name": "2wiA.png",
+    "stem": "2wiA",
+    "date_created": "2026-06-09T23:49:34.956758",
+    "holons": [
+      "TERMINUS",
+      "EXTENSION"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS, EXTENSION"
+  },
+  "94f324.png": {
+    "original_name": "2yTv.png",
+    "stem": "2yTv",
+    "date_created": "2026-06-09T23:49:34.957026",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "SYNAPSE",
+      "AUTOMATION",
+      "AXIOM",
+      "STRING",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "52eae4.png": {
+    "original_name": "3jHe.png",
+    "stem": "3jHe",
+    "date_created": "2026-06-09T23:49:34.957217",
+    "holons": [
+      "TERMINUS"
+    ],
+    "domains": [
+      "Language",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS"
+  },
+  "518fbb.png": {
+    "original_name": "5HxJ.png",
+    "stem": "5HxJ",
+    "date_created": "2026-06-09T23:49:34.957434",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "SYNAPSE",
+      "EXTENSION",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [
+      "Vector Database",
+      "Relational Database",
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "c24ddd.png": {
+    "original_name": "8RmY.png",
+    "stem": "8RmY",
+    "date_created": "2026-06-09T23:49:34.957556",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "TERMINUS"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "5486a9.png": {
+    "original_name": "agent_categories_detail.png",
+    "stem": "agent_categories_detail",
+    "date_created": "2026-06-09T23:49:34.957694",
+    "holons": [
+      "CORE",
+      "SYNAPSE",
+      "AUTOMATION",
+      "PERSEPHONE",
+      "MCP"
+    ],
+    "domains": [
+      "Language",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CORE, SYNAPSE, AUTOMATION"
+  },
+  "0ae051.png": {
+    "original_name": "agent_triage_distribution.png",
+    "stem": "agent_triage_distribution",
+    "date_created": "2026-06-09T23:49:34.957944",
+    "holons": [
+      "CORE",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CORE, PERSEPHONE"
+  },
+  "fd9038.png": {
+    "original_name": "architecture.png",
+    "stem": "architecture",
+    "date_created": "2026-06-09T23:49:34.958080",
+    "holons": [
+      "HADRON",
+      "EXTENSION",
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: HADRON, EXTENSION, STRING"
+  },
+  "6b7f6a.png": {
+    "original_name": "BASE_synaptic_summary.png",
+    "stem": "BASE_synaptic_summary",
+    "date_created": "2026-06-09T23:49:34.958201",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "1a1c9b.png": {
+    "original_name": "class.test.png",
+    "stem": "class.test",
+    "date_created": "2026-06-09T23:49:34.958385",
+    "holons": [
+      "STRING"
+    ],
+    "domains": [],
+    "description": "Mermaid diagram: STRING"
+  },
+  "e87cf6.png": {
+    "original_name": "CODE_EXTRACTION_PHASE_2_3_VISUALIZATION.png",
+    "stem": "CODE_EXTRACTION_PHASE_2_3_VISUALIZATION",
+    "date_created": "2026-06-09T23:49:34.958569",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "TERMINUS",
+      "AXIOM"
+    ],
+    "domains": [
+      "Language",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "9842e3.png": {
+    "original_name": "combined_confluence.png",
+    "stem": "combined_confluence",
+    "date_created": "2026-06-09T23:49:34.965031",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "SYNAPSE",
+      "EXTENSION",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, SYNAPSE"
+  },
+  "8f970c.png": {
+    "original_name": "combined_hierarchy.png",
+    "stem": "combined_hierarchy",
+    "date_created": "2026-06-09T23:49:34.968183",
+    "holons": [
+      "CORE",
+      "CHRONON",
+      "SYNAPSE",
+      "PHONON",
+      "ISOTOPE",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [
+      "Language",
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CORE, CHRONON, SYNAPSE"
+  },
+  "e07000.png": {
+    "original_name": "ddtD.png",
+    "stem": "ddtD",
+    "date_created": "2026-06-09T23:49:34.968482",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "25faa5.png": {
+    "original_name": "density_tree.png",
+    "stem": "density_tree",
+    "date_created": "2026-06-09T23:49:34.968610",
+    "holons": [
+      "PERSEPHONE"
+    ],
+    "domains": [],
+    "description": "Mermaid diagram: PERSEPHONE"
+  },
+  "2508e3.png": {
+    "original_name": "depth_1_RimWorld.png",
+    "stem": "depth_1_RimWorld",
+    "date_created": "2026-06-09T23:49:34.968740",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "895035.png": {
+    "original_name": "depth_1_World_of_Warcraft.png",
+    "stem": "depth_1_World_of_Warcraft",
+    "date_created": "2026-06-09T23:49:34.968862",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "021fb8.png": {
+    "original_name": "depth_1___MEMORIES.png",
+    "stem": "depth_1___MEMORIES",
+    "date_created": "2026-06-09T23:49:34.968975",
+    "holons": [
+      "CHRONON",
+      "AXIOM"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CHRONON, AXIOM"
+  },
+  "49671e.png": {
+    "original_name": "depth_2_bookmarks.png",
+    "stem": "depth_2_bookmarks",
+    "date_created": "2026-06-09T23:49:34.969105",
+    "holons": [
+      "PHONON"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: PHONON"
+  },
+  "7a1962.png": {
+    "original_name": "depth_2_Config.png",
+    "stem": "depth_2_Config",
+    "date_created": "2026-06-09T23:49:34.969229",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "19c8de.png": {
+    "original_name": "depth_2_evolution.png",
+    "stem": "depth_2_evolution",
+    "date_created": "2026-06-09T23:49:34.969363",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "14284b.png": {
+    "original_name": "depth_2_js.png",
+    "stem": "depth_2_js",
+    "date_created": "2026-06-09T23:49:34.969486",
+    "holons": [
+      "ISOTOPE"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: ISOTOPE"
+  },
+  "27ece6.png": {
+    "original_name": "depth_2_KEEP_VIKTOR_MEMORIES.png",
+    "stem": "depth_2_KEEP_VIKTOR_MEMORIES",
+    "date_created": "2026-06-09T23:49:34.969594",
+    "holons": [
+      "CORE",
+      "SYNAPSE",
+      "PHONON"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CORE, SYNAPSE, PHONON"
+  },
+  "a64f04.png": {
+    "original_name": "depth_2_ModLists.png",
+    "stem": "depth_2_ModLists",
+    "date_created": "2026-06-09T23:49:34.969721",
+    "holons": [
+      "CHRONON",
+      "PHONON"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CHRONON, PHONON"
+  },
+  "2ccee1.png": {
+    "original_name": "depth_2_Planning.png",
+    "stem": "depth_2_Planning",
+    "date_created": "2026-06-09T23:49:34.969829",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "7c5a0a.png": {
+    "original_name": "depth_2_Play_Along.png",
+    "stem": "depth_2_Play_Along",
+    "date_created": "2026-06-09T23:49:34.969944",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "805e5b.png": {
+    "original_name": "depth_2_PrepareCarefully.png",
+    "stem": "depth_2_PrepareCarefully",
+    "date_created": "2026-06-09T23:49:34.970048",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "2b3a02.png": {
+    "original_name": "depth_2_RimSort.png",
+    "stem": "depth_2_RimSort",
+    "date_created": "2026-06-09T23:49:34.970152",
+    "holons": [
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: STRING"
+  },
+  "110fd4.png": {
+    "original_name": "depth_2_Templates_and_Tutorials.png",
+    "stem": "depth_2_Templates_and_Tutorials",
+    "date_created": "2026-06-09T23:49:34.970272",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "af4829.png": {
+    "original_name": "depth_2_VIKTORS_BABY_BOOK.png",
+    "stem": "depth_2_VIKTORS_BABY_BOOK",
+    "date_created": "2026-06-09T23:49:34.970396",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "970019.png": {
+    "original_name": "E0OA.png",
+    "stem": "E0OA",
+    "date_created": "2026-06-09T23:49:34.970647",
+    "holons": [
+      "SYNAPSE",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Vector Database",
+      "Relational Database",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: SYNAPSE, PERSEPHONE"
+  },
+  "f0621b.png": {
+    "original_name": "EFQK.png",
+    "stem": "EFQK",
+    "date_created": "2026-06-09T23:49:34.970847",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "CHRONON",
+      "SYNAPSE",
+      "TERMINUS",
+      "PHONON",
+      "GRAVITON",
+      "EXTENSION",
+      "AXIOM",
+      "STRING",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Vector Database",
+      "Language",
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "af021b.png": {
+    "original_name": "extension.png",
+    "stem": "extension",
+    "date_created": "2026-06-09T23:49:34.971022",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "7092ce.png": {
+    "original_name": "five_laws_compliance.png",
+    "stem": "five_laws_compliance",
+    "date_created": "2026-06-09T23:49:34.971356",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "PHOTON",
+      "TERMINUS",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "597b66.png": {
+    "original_name": "fpVu.png",
+    "stem": "fpVu",
+    "date_created": "2026-06-09T23:49:34.971573",
+    "holons": [
+      "CHRONON",
+      "AUTOMATION"
+    ],
+    "domains": [
+      "Language",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CHRONON, AUTOMATION"
+  },
+  "9a53a5.png": {
+    "original_name": "garbage_truck_architecture.png",
+    "stem": "garbage_truck_architecture",
+    "date_created": "2026-06-09T23:49:34.971905",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "TERMINUS",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "f1b983.png": {
+    "original_name": "garbage_truck_metabolic_cycle.png",
+    "stem": "garbage_truck_metabolic_cycle",
+    "date_created": "2026-06-09T23:49:34.972079",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "a3a2d7.png": {
+    "original_name": "gcea.png",
+    "stem": "gcea",
+    "date_created": "2026-06-09T23:49:34.972551",
+    "holons": [
+      "TERMINUS"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS"
+  },
+  "2d1a52.png": {
+    "original_name": "ggCu.png",
+    "stem": "ggCu",
+    "date_created": "2026-06-09T23:49:34.972773",
+    "holons": [
+      "TERMINUS",
+      "EXTENSION"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS, EXTENSION"
+  },
+  "c31f22.png": {
+    "original_name": "gitGraph.test.png",
+    "stem": "gitGraph.test",
+    "date_created": "2026-06-09T23:49:34.972916",
+    "holons": [
+      "STRING"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: STRING"
+  },
+  "2ee21d.png": {
+    "original_name": "graph-flowchart.test.png",
+    "stem": "graph-flowchart.test",
+    "date_created": "2026-06-09T23:49:34.973007",
+    "holons": [
+      "STRING"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: STRING"
+  },
+  "70bffe.png": {
+    "original_name": "h2tI.png",
+    "stem": "h2tI",
+    "date_created": "2026-06-09T23:49:34.973456",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "CHRONON",
+      "SYNAPSE",
+      "TERMINUS",
+      "GRAVITON",
+      "EXTENSION",
+      "AXIOM",
+      "STRING"
+    ],
+    "domains": [],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "fd50ab.png": {
+    "original_name": "holarchy_structure (2).png",
+    "stem": "holarchy_structure (2)",
+    "date_created": "2026-06-09T23:49:34.973801",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "AUTOMATION"
+    ],
+    "domains": [],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "5b7160.png": {
+    "original_name": "JDCb.png",
+    "stem": "JDCb",
+    "date_created": "2026-06-09T23:49:34.973962",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "SYNAPSE",
+      "TERMINUS",
+      "AUTOMATION",
+      "AXIOM",
+      "STRING",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "53ceb6.png": {
+    "original_name": "JGiK.png",
+    "stem": "JGiK",
+    "date_created": "2026-06-09T23:49:34.974178",
+    "holons": [
+      "QUARK",
+      "NUCLEON",
+      "CORE",
+      "SYNAPSE",
+      "TERMINUS",
+      "PERSEPHONE"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: QUARK, NUCLEON, CORE"
+  },
+  "1ce23c.png": {
+    "original_name": "kj0f.png",
+    "stem": "kj0f",
+    "date_created": "2026-06-09T23:49:34.974369",
+    "holons": [
+      "TERMINUS",
+      "EXTENSION"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS, EXTENSION"
+  },
+  "fe0a19.png": {
+    "original_name": "LINEAGE_MAP_1117406550.png",
+    "stem": "LINEAGE_MAP_1117406550",
+    "date_created": "2026-06-09T23:49:34.974499",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "56617a.png": {
+    "original_name": "LINEAGE_MAP_1127530465.png",
+    "stem": "LINEAGE_MAP_1127530465",
+    "date_created": "2026-06-09T23:49:34.974624",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "c0252e.png": {
+    "original_name": "LINEAGE_MAP_1201382956.png",
+    "stem": "LINEAGE_MAP_1201382956",
+    "date_created": "2026-06-09T23:49:34.974729",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "ffef4d.png": {
+    "original_name": "LINEAGE_MAP_1204502413.png",
+    "stem": "LINEAGE_MAP_1204502413",
+    "date_created": "2026-06-09T23:49:34.974867",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "84f2e0.png": {
+    "original_name": "LINEAGE_MAP_1235181370.png",
+    "stem": "LINEAGE_MAP_1235181370",
+    "date_created": "2026-06-09T23:49:34.974997",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "f45275.png": {
+    "original_name": "LINEAGE_MAP_1279012058.png",
+    "stem": "LINEAGE_MAP_1279012058",
+    "date_created": "2026-06-09T23:49:34.975129",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "479078.png": {
+    "original_name": "LINEAGE_MAP_1321849735.png",
+    "stem": "LINEAGE_MAP_1321849735",
+    "date_created": "2026-06-09T23:49:34.975272",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "d74d3c.png": {
+    "original_name": "LINEAGE_MAP_1339121712.png",
+    "stem": "LINEAGE_MAP_1339121712",
+    "date_created": "2026-06-09T23:49:34.975419",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "1806bb.png": {
+    "original_name": "LINEAGE_MAP_1446523594.png",
+    "stem": "LINEAGE_MAP_1446523594",
+    "date_created": "2026-06-09T23:49:34.975546",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "e6b404.png": {
+    "original_name": "LINEAGE_MAP_1541721856.png",
+    "stem": "LINEAGE_MAP_1541721856",
+    "date_created": "2026-06-09T23:49:34.975664",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "04d1e8.png": {
+    "original_name": "LINEAGE_MAP_1662119905.png",
+    "stem": "LINEAGE_MAP_1662119905",
+    "date_created": "2026-06-09T23:49:34.975821",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "cdd3e3.png": {
+    "original_name": "LINEAGE_MAP_1713367505.png",
+    "stem": "LINEAGE_MAP_1713367505",
+    "date_created": "2026-06-09T23:49:34.975988",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "51d5ad.png": {
+    "original_name": "LINEAGE_MAP_2007485974.png",
+    "stem": "LINEAGE_MAP_2007485974",
+    "date_created": "2026-06-09T23:49:34.976128",
+    "holons": [],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: "
+  },
+  "b9617a.png": {
+    "original_name": "METH_SNIPER_V17.png",
+    "stem": "METH_SNIPER_V17",
+    "date_created": "2026-06-09T23:49:34.976259",
+    "holons": [
+      "AUTOMATION",
+      "EXTENSION"
+    ],
+    "domains": [
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: AUTOMATION, EXTENSION"
+  },
+  "e68350.png": {
+    "original_name": "SANDBOX_EXTRACTION_MAP_20260531.png",
+    "stem": "SANDBOX_EXTRACTION_MAP_20260531",
+    "date_created": "2026-06-09T23:49:34.978686",
+    "holons": [
+      "CORE",
+      "CHRONON",
+      "SYNAPSE",
+      "TERMINUS",
+      "EXTENSION",
+      "STRING",
+      "MCP"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: CORE, CHRONON, SYNAPSE"
+  },
+  "28948b.png": {
+    "original_name": "terminus_triptych_latest.png",
+    "stem": "terminus_triptych_latest",
+    "date_created": "2026-06-09T23:49:34.978879",
+    "holons": [
+      "TERMINUS",
+      "STRING"
+    ],
+    "domains": [
+      "Data Format",
+      "Diagram Type"
+    ],
+    "description": "Mermaid diagram: TERMINUS, STRING"
+  }
+}
