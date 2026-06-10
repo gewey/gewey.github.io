@@ -1,7 +1,14 @@
 /**
  * Dynamic head meta tags and stylesheets
  * Note: Changes are cached by GitHub until after a push
+ * Auto-detects local (file://) vs online (https://gewey.github.io) environment
+ * Handles both root (index.html) and subdirectory (.vikipedia/__frame.html) paths
  */
+
+// Detect environment: local file:// vs online https://gewey.github.io
+const isLocal = window.location.protocol === 'file:';
+const isSubdir = window.location.pathname.includes('/.vikipedia/');
+const baseURL = isLocal ? (isSubdir ? '..' : '.') : 'https://gewey.github.io';
 
 const headMetaTags = [
   { tag: 'meta', attrs: { charset: 'utf-8' } },
@@ -23,22 +30,22 @@ const headHTML = `
   <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
   <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'/>
-  <link rel='shortcut icon' href='https://gewey.github.io/favicon.ico'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/bones.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/text.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/images.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/themes.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/modals.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/mobile.css' type='text/css'>
-  <link rel='stylesheet' href='https://gewey.github.io/css/search.css' type='text/css'>
+  <link rel='shortcut icon' href='${baseURL}/favicon.ico'>
+  <link rel='stylesheet' href='${baseURL}/css/bones.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/text.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/images.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/themes.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/modals.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/mobile.css' type='text/css'>
+  <link rel='stylesheet' href='${baseURL}/css/search.css' type='text/css'>
   <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popmotion@11.0.5/dist/popmotion.global.min.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/google_analytics.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/themeManager.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/keyboardShortcuts.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/modalSystem.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/mobileMenu.js'></script>
-  <script type='text/javascript' src='https://gewey.github.io/js/advancedSearch.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/google_analytics.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/themeManager.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/keyboardShortcuts.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/modalSystem.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/mobileMenu.js'></script>
+  <script type='text/javascript' src='${baseURL}/js/advancedSearch.js'></script>
 `;
 
 document.getElementsByTagName("head")[0].innerHTML += headHTML;
