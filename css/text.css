@@ -155,4 +155,69 @@
   button[name=iShare]::after {
     content: " Share";
   }
+
+  button[name=iVikipedia]::after {
+    content: " Vikipedia";
+  }
+
+  button[name=iAgentProfiles]::after {
+    content: " Agents";
+  }
+
+  button[name=iNotebookLM]::after {
+    content: " NotebookLM";
+  }
+
+  /* Wiki button labels */
+  button[name=iHome]::after {
+    content: " Home";
+  }
+
+  button[name=iHolarchy]::after {
+    content: " Holarchy";
+  }
+
+  button[name=iCORE]::after {
+    content: " CORE";
+  }
+
+  button[name=iNUCLEON]::after {
+    content: " NUCLEON";
+  }
+
+  button[name=iQUARK]::after {
+    content: " QUARK";
+  }
+
+  button[name=iCHRONON]::after {
+    content: " CHRONON";
+  }
+
+  button[name=iSYNAPSE]::after {
+    content: " SYNAPSE";
+  }
+
+  button[name=iPHOTON]::after {
+    content: " PHOTON";
+  }
+
+  button[name=iGRAVITON]::after {
+    content: " GRAVITON";
+  }
+
+  button[name=iPHONON]::after {
+    content: " PHONON";
+  }
+
+  button[name=iTERMINUS]::after {
+    content: " TERMINUS";
+  }
+
+  button[name=iLaws]::after {
+    content: " Laws";
+  }
+
+  button[name=iBookdrop]::after {
+    content: " Bookdrop";
+  }
 }
