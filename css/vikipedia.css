@@ -1,0 +1,299 @@
+/* .vikipedia Style Sheet - Clean Wikipedia-like aesthetic */
+:root {
+  --primary: #0B7285;
+  --primary-dark: #085a6b;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --bg: #ffffff;
+  --bg-alt: #f8f9fa;
+  --border: #dee2e6;
+  --link: #0B7285;
+  --link-hover: #085a6b;
+  --infobox-bg: #f8f9fa;
+  --infobox-border: #adb5bd;
+  --code-bg: #f1f3f5;
+  --code-text: #212529;
+  --header-border: #dee2e6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+header {
+  border-bottom: 2px solid var(--header-border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+#master-index-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+#master-index-link:hover {
+  background: var(--primary-dark);
+}
+
+article h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--header-border);
+}
+
+article h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--primary);
+}
+
+article h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+article p {
+  margin: 1rem 0;
+}
+
+article ul, article ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+article li {
+  margin: 0.5rem 0;
+}
+
+article a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+article code {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.9em;
+}
+
+article pre {
+  background: var(--code-bg);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+article pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.infobox {
+  float: right;
+  width: 300px;
+  max-width: 100%;
+  margin: 0 0 1rem 1.5rem;
+  background: var(--infobox-bg);
+  border: 1px solid var(--infobox-border);
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.infobox th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  width: 40%;
+}
+
+.infobox td {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.infobox tr:last-child th,
+.infobox tr:last-child td {
+  border-bottom: none;
+}
+
+.summary {
+  margin: 1.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.summary strong {
+  color: var(--primary);
+}
+
+section {
+  margin: 2rem 0;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--header-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+footer a {
+  color: var(--text-muted);
+}
+
+footer a:hover {
+  color: var(--primary);
+}
+
+/* Mermaid diagram container */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Wiki button labels - show at wide screen sizes */
+@media (min-width: 1250px) {
+  button[name=iHome]::after {
+    content: " Home";
+  }
+
+  button[name=iHolarchy]::after {
+    content: " Holarchy";
+  }
+
+  button[name=iCORE]::after {
+    content: " CORE";
+  }
+
+  button[name=iNUCLEON]::after {
+    content: " NUCLEON";
+  }
+
+  button[name=iQUARK]::after {
+    content: " QUARK";
+  }
+
+  button[name=iCHRONON]::after {
+    content: " CHRONON";
+  }
+
+  button[name=iSYNAPSE]::after {
+    content: " SYNAPSE";
+  }
+
+  button[name=iPHOTON]::after {
+    content: " PHOTON";
+  }
+
+  button[name=iTERMINUS]::after {
+    content: " TERMINUS";
+  }
+
+  button[name=iLaws]::after {
+    content: " Laws";
+  }
+
+  button[name=iBookdrop]::after {
+    content: " Bookdrop";
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .infobox {
+    float: none;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  
+  body {
+    padding: 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  #master-index-link,
+  footer {
+    display: none;
+  }
+  
+  .infobox {
+    float: none;
+    width: 100%;
+    page-break-inside: avoid;
+  }
+  
+  body {
+    max-width: none;
+    padding: 0;
+  }
+}

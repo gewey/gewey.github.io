@@ -1,14 +1,11 @@
 /**
  * Dynamic head meta tags and stylesheets
- * Note: Changes are cached by GitHub until after a push
- * Auto-detects local (file://) vs online (https://gewey.github.io) environment
- * Handles both root (index.html) and subdirectory (.vikipedia/__frame.html) paths
+ * Auto-detects baseURL based on script location
  */
 
-// Detect environment: local file:// vs online https://gewey.github.io
-const isLocal = window.location.protocol === 'file:';
-const isSubdir = window.location.pathname.includes('/.vikipedia/');
-const baseURL = isLocal ? (isSubdir ? '..' : '.') : 'https://gewey.github.io';
+// Calculate baseURL dynamically based on where this script is located
+const scriptSrc = document.currentScript.src;
+const baseURL = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));
 
 const headMetaTags = [
   { tag: 'meta', attrs: { charset: 'utf-8' } },
@@ -48,7 +45,17 @@ const headHTML = `
   <script type='text/javascript' src='${baseURL}/js/advancedSearch.js'></script>
 `;
 
-document.getElementsByTagName("head")[0].innerHTML += headHTML;
+// Add wiki-specific assets if in the .vikipedia directory
+let wikiAssets = '';
+if (window.location.pathname.includes('/.vikipedia/')) {
+  wikiAssets = `
+    <link rel='stylesheet' href='${baseURL}/css/vikipedia.css' type='text/css'>
+    <script type='text/javascript' src='${baseURL}/js/vikipedia_head.js'></script>
+    <script type='text/javascript' src='${baseURL}/js/mermaid-render.js'></script>
+  `;
+}
+
+document.getElementsByTagName("head")[0].innerHTML += headHTML + wikiAssets;
 
         
         
