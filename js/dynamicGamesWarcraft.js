@@ -4,7 +4,7 @@
 const gameswarcraftBookmarks = [
   { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'blank' },
   { title: 'Gewey Warcraft', href: './games/warcraft/index.html', target: 'contentframe', alt: 'geweywarcraft' },
-  { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'Warcraft' },
+  { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'warcraft' },
   { title: 'Blizzard', href: 'https://www.blizzard.com/', alt: 'blizzardcs' },
   { title: 'Wowhead', href: 'https://www.wowhead.com/', alt: 'wowhead' },
   { title: 'Icy Veins', href: 'https://www.icy-veins.com/', alt: 'icyveins' },

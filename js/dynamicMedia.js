@@ -21,8 +21,8 @@ const mediaBookmarks = [
   { title: 'Tumblr', href: 'https://www.tumblr.com/dashboard', alt: 'tumblr' },
   { title: 'Gravit Designer', href: 'https://designer.io/', alt: 'gravitdesigner' },
   { title: 'Shutterstock', href: 'http://www.shutterstock.com/?rid=224491653', alt: 'shutterstock' },
-  { title: 'Hazbin Hotel', href: 'https://x.com/HazbinHotel', alt: 'HazbinHotel' },
-  { title: 'Helluva Boss', href: 'https://www.stylishoccult.com/', alt: 'HelluvaBoss' },
+  { title: 'Hazbin Hotel', href: 'https://x.com/HazbinHotel', alt: 'hazbinhotel' },
+  { title: 'Helluva Boss', href: 'https://www.stylishoccult.com/', alt: 'helluvaboss' },
   { title: 'Blogger', href: 'https://www.blogger.com/', alt: 'blogger' }
 ];
 
