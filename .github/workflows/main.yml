@@ -337,87 +337,96 @@ jobs:
           path: artifacts
       - name: Build consolidated HTML report
         run: |
-          cat > report.html << 'REPORTEOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gewey.github.io — CI Report</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; }
-  h1 { color: #00ea00; font-family: 'Courier New', monospace; margin-bottom: 4px; }
-  .meta { color: #888; font-size: 13px; margin-bottom: 20px; }
-  h2 { color: #00ea00; font-family: 'Courier New', monospace; margin: 24px 0 8px; padding-bottom: 4px; border-bottom: 1px solid #333; }
-  .job { background: #111; border: 1px solid #222; border-radius: 8px; margin: 10px 0; overflow: hidden; }
-  .job-pass { border-left: 4px solid #00ea00; }
-  .job-fail { border-left: 4px solid #ea0000; }
-  .job-warn { border-left: 4px solid #eaea00; }
-  .job-body { padding: 12px 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; background: #0d0d0d; max-height: 600px; overflow-y: auto; }
-  .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 16px 0; }
-  .stat-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 14px; text-align: center; }
-  .stat-value { font-size: 24px; font-weight: bold; font-family: 'Courier New', monospace; }
-  .stat-label { font-size: 11px; color: #888; margin-top: 2px; }
-  .green { color: #00ea00; }
-  .red { color: #ea0000; }
-  .yellow { color: #eaea00; }
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #0d0d0d; }
-  ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-</style>
-</head>
-<body>
-<h1>⚙️ gewey.github.io — CI Report</h1>
-REPORTEOF
-          echo "<p class=\"meta\">Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC') | Commit: ${{ github.sha }} | Branch: ${{ github.ref_name }}</p>" >> report.html
+          TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          COMMIT="${{ github.sha }}"
+          BRANCH="${{ github.ref_name }}"
 
-          # Summary stats
-          echo '<div class="summary-grid">' >> report.html
+          # Count job artifacts
           JOBS=0
           for d in artifacts/report-*/; do
             [ -d "$d" ] && JOBS=$((JOBS + 1))
           done
-          echo "<div class=\"stat-card\"><div class=\"stat-value green\">$JOBS</div><div class=\"stat-label\">Jobs</div></div>" >> report.html
-          echo '<div class="stat-card"><div class="stat-value green">✓</div><div class="stat-label">Auto-generated</div></div>' >> report.html
-          echo '</div>' >> report.html
+
+          # Start building report
+          {
+            echo "<!DOCTYPE html>"
+            echo "<html lang=\"en\">"
+            echo "<head>"
+            echo "<meta charset=\"UTF-8\">"
+            echo "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
+            echo "<title>gewey.github.io - CI Report</title>"
+            echo "<style>"
+            echo "  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; margin: 0; }"
+            echo "  h1 { color: #00ea00; font-family: 'Courier New', monospace; margin-bottom: 4px; }"
+            echo "  .meta { color: #888; font-size: 13px; margin-bottom: 20px; }"
+            echo "  h2 { color: #00ea00; font-family: 'Courier New', monospace; margin: 24px 0 8px; padding-bottom: 4px; border-bottom: 1px solid #333; }"
+            echo "  .job { background: #111; border: 1px solid #222; border-radius: 8px; margin: 10px 0; overflow: hidden; }"
+            echo "  .job-pass { border-left: 4px solid #00ea00; }"
+            echo "  .job-fail { border-left: 4px solid #ea0000; }"
+            echo "  .job-warn { border-left: 4px solid #eaea00; }"
+            echo "  .job-body { padding: 12px 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; background: #0d0d0d; max-height: 600px; overflow-y: auto; }"
+            echo "  .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 16px 0; }"
+            echo "  .stat-card { background: #111; border: 1px solid #222; border-radius: 8px; padding: 14px; text-align: center; }"
+            echo "  .stat-value { font-size: 24px; font-weight: bold; font-family: 'Courier New', monospace; }"
+            echo "  .stat-label { font-size: 11px; color: #888; margin-top: 2px; }"
+            echo "  .green { color: #00ea00; }"
+            echo "  .red { color: #ea0000; }"
+            echo "  .yellow { color: #eaea00; }"
+            echo "  ::-webkit-scrollbar { width: 8px; }"
+            echo "  ::-webkit-scrollbar-track { background: #0d0d0d; }"
+            echo "  ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }"
+            echo "</style>"
+            echo "</head>"
+            echo "<body>"
+            echo "<h1>gewey.github.io - CI Report</h1>"
+            echo "<p class=\"meta\">Generated: $TIMESTAMP | Commit: $COMMIT | Branch: $BRANCH</p>"
+            echo '<div class="summary-grid">'
+            echo "<div class=\"stat-card\"><div class=\"stat-value green\">$JOBS</div><div class=\"stat-label\">Jobs</div></div>"
+            echo '<div class="stat-card"><div class="stat-value green\">OK</div><div class="stat-label">Auto-generated</div></div>'
+            echo '</div>'
+          } > report.html
 
           # Each job report
           for report_file in artifacts/report-*/report-*.md artifacts/**/report-*.md artifacts/report-*/*.md; do
             [ -f "$report_file" ] || continue
-            # Derive job name from filename
             fname=$(basename "$report_file" .md)
             fname=${fname#report-}
-            job_name=$(echo "$fname" | tr '-' ' ' | sed 's/\b\(.\)/\u\1/g')
-            echo "<h2>📋 $job_name</h2>" >> report.html
-            echo '<div class="job job-warn"><div class="job-body">' >> report.html
-            cat "$report_file" >> report.html
-            echo '</div></div>' >> report.html
+            job_name=$(echo "$fname" | tr '-' ' ')
+            {
+              echo "<h2>$job_name</h2>"
+              echo '<div class="job job-warn"><div class="job-body">'
+              cat "$report_file"
+              echo '</div></div>'
+            } >> report.html
           done
 
-          # Also grab bookmark link report directly
+          # Bookmark link details
           for f in artifacts/*/linkcheck.md artifacts/**/linkcheck.md; do
             [ -f "$f" ] || continue
-            echo "<h2>🔗 Bookmark Link Details</h2>" >> report.html
-            echo '<div class="job job-warn"><div class="job-body">' >> report.html
-            cat "$f" >> report.html
-            echo '</div></div>' >> report.html
+            {
+              echo "<h2>Bookmark Link Details</h2>"
+              echo '<div class="job job-warn"><div class="job-body">'
+              cat "$f"
+              echo '</div></div>'
+            } >> report.html
           done 2>/dev/null || true
 
           # Lighthouse reports
           for lh_file in artifacts/lighthouse-check/*.html; do
             [ -f "$lh_file" ] || continue
-            echo "<h2>📊 Lighthouse Report</h2>" >> report.html
-            echo '<div class="job job-pass"><div class="job-body">' >> report.html
-            echo "<a href=\"$(basename "$lh_file")\" target=\"_blank\">Open full Lighthouse report: $(basename "$lh_file")</a>" >> report.html
-            echo '</div></div>' >> report.html
+            {
+              echo "<h2>Lighthouse Report</h2>"
+              echo '<div class="job job-pass"><div class="job-body">'
+              echo "<a href=\"$(basename "$lh_file")\" target=\"_blank\">Open full Lighthouse report: $(basename "$lh_file")</a>"
+              echo '</div></div>'
+            } >> report.html
           done 2>/dev/null || true
 
-          cat >> report.html << 'REPORTEOF2'
-<p style="margin-top:40px; color:#555; font-size:12px;">Report auto-generated by gewey.github.io CI workflow.</p>
-</body>
-</html>
-REPORTEOF2
+          # Footer
+          echo '<p style="margin-top:40px; color:#555; font-size:12px;">Report auto-generated by gewey.github.io CI workflow.</p>' >> report.html
+          echo '</body>' >> report.html
+          echo '</html>' >> report.html
+
           echo "Report built: $(wc -c < report.html) bytes"
           mkdir -p ci-report
           cp report.html ci-report/
