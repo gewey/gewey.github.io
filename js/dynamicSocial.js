@@ -1,4 +1,3 @@
-
 /**
  * Social media and community bookmarks
  */
@@ -11,7 +10,7 @@ const socialBookmarks = [
   { title: 'Pinterest', href: 'http://pinterest.com/', alt: 'pinterest' },
   { title: 'Skype', href: 'https://www.skype.com/en/', alt: 'skype' },
   { title: 'LinkedIn', href: 'http://www.linkedin.com/', alt: 'linkedin' },
-  { title: 'WhatsApp', href: 'https://www.whatsapp.com/', alt: 'WhatsApp' },
+  { title: 'WhatsApp', href: 'https://www.whatsapp.com/', alt: 'whatsapp' },
   { title: 'Telegram', href: 'https://web.telegram.org/', alt: 'telegram' },
   { title: 'Mix', href: 'https://mix.com/', alt: 'getmixapp' },
   { title: 'Digg', href: 'http://digg.com/', alt: 'digg' },
