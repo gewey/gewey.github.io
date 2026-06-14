@@ -1,1 +1,197 @@
+# ============================================================================
+# gewey.github.io — GitHub Actions CI
+# ============================================================================
+# Repository: https://github.com/gewey/gewey.github.io
+# Deploy:     GitHub Pages (static files served as-is)
+#
+# This workflow runs quality assurance on the static site.
+# Since the site is pure HTML/CSS/JS with NO build step, these checks
+# focus on link integrity, image consistency, markup validity, and
+# performance rather than compilation.
+# ============================================================================
 
+name: gewey.github.io CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    # Weekly check of external bookmark links (Sundays at midnight)
+    - cron: '0 0 * * 0'
+  workflow_dispatch:        # Allow manual trigger from Actions tab
+
+jobs:
+
+  # ────────────────────────────────────────────────────────────────────────
+  # HTML Validation — Validate every .html file against W3C standards
+  # ────────────────────────────────────────────────────────────────────────
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate all HTML files
+        uses: Cyb3r-Jak/html-validator-action@v2
+        with:
+          files: |
+            index.html
+            agents/index.html
+            bookmarks/**/index.html
+            Viktor/index.html
+            RimWorld/index.html
+            hobos/index.html
+            logs/index.html
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Dead Bookmark Link Checker — Validates every external URL in bookmark
+  # data files returns HTTP 200/301/302
+  # ────────────────────────────────────────────────────────────────────────
+  check-bookmark-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract & check bookmark URLs
+        run: |
+          echo "Extracting URLs from dynamic*.js files..."
+          grep -rohP 'href:\s*'\''[^'\'']+'\''' js/dynamic*.js \
+            | sed "s/href: '//" | sed "s/'//" \
+            > bookmark-urls.txt
+          echo "Found $(wc -l < bookmark-urls.txt) bookmark URLs to check"
+          FAILED=false
+          while IFS= read -r url; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$url" 2>/dev/null || echo "FAIL")
+            if [ "$status" != "200" ] && [ "$status" != "301" ] && [ "$status" != "302" ]; then
+              echo "::warning::DEAD LINK ($status): $url"
+              FAILED=true
+            fi
+          done < bookmark-urls.txt
+          if [ "$FAILED" = true ]; then
+            echo "Some bookmark links are unreachable. Check warnings above."
+          else
+            echo "All bookmark links are reachable!"
+          fi
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Image Optimization — Auto-compress PNG/JPG assets
+  # ────────────────────────────────────────────────────────────────────────
+  optimize-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Optimize PNG and JPEG images
+        uses: calibreapp/image-actions@main
+        with:
+          compressOnly: true
+          jpegQuality: '80'
+          pngQuality: '80'
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Service Worker Cache Manifest Integrity — Ensure every PNG in
+  # img/btn/bm/ is listed in manifest.json for PWA pre-caching
+  # ────────────────────────────────────────────────────────────────────────
+  validate-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check manifest.json covers all button icons
+        run: |
+          MISSING=false
+          for png in img/btn/bm/*.png; do
+            filename=$(basename "$png")
+            if ! grep -q "$filename" img/btn/bm/manifest.json; then
+              echo "::error::Missing from manifest.json: $filename"
+              MISSING=true
+            fi
+          done
+          if [ "$MISSING" = true ]; then
+            echo "Some icons are not pre-cached! Update manifest.json."
+            exit 1
+          else
+            echo "All button icons are listed in manifest.json"
+          fi
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Bookmark vs Icon Consistency — Verify every bookmark alt attribute
+  # has a matching PNG in img/btn/bm/
+  # ────────────────────────────────────────────────────────────────────────
+  check-bookmark-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify every bookmark alt has a corresponding PNG
+        run: |
+          MISSING=false
+          grep -rohP 'alt:\s*'\''[^'\'']+'\''' js/dynamic*.js \
+            | sed "s/alt: '//" | sed "s/'//" \
+            | sort -u \
+            | while IFS= read -r alt; do
+                if [ ! -f "img/btn/bm/${alt}.png" ]; then
+                  echo "::error::Missing icon: img/btn/bm/${alt}.png (used as alt='${alt}')"
+                  MISSING=true
+                fi
+              done
+          if [ "$MISSING" = true ]; then
+            echo "Some bookmark icons are missing! Add the missing PNGs or fix alt values."
+            exit 1
+          fi
+          echo "All bookmark alts have matching PNGs"
+
+  # ────────────────────────────────────────────────────────────────────────
+  # CDN Freshness Check — Alerts when CDN libraries have newer versions
+  # ────────────────────────────────────────────────────────────────────────
+  check-cdn-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check jQuery CDN version
+        run: |
+          CURRENT=$(grep -oP 'jquery-[0-9.]+\.min\.js' js/dynamichead.js \
+                    | sed 's/jquery-//' | sed 's/\.min\.js//')
+          echo "Current jQuery: $CURRENT"
+          LATEST=$(curl -s https://api.github.com/repos/jquery/jquery/releases/latest \
+                    | grep '"tag_name"' | sed 's/.*"tag_name": "\(.*\)".*/\1/' | sed 's/^3\.//')
+          echo "Latest jQuery: 3.$LATEST"
+          echo "Note: This is informational only. Update js/dynamichead.js if behind."
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Agent Profile Integrity — Verify every agent folder has required files
+  # ────────────────────────────────────────────────────────────────────────
+  check-agent-profiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate agent profile structure
+        run: |
+          FAILED=false
+          for dir in agents/*/; do
+            name=$(basename "$dir")
+            [ "$name" = "_Template" ] || [ "$name" = "Shared" ] && continue
+            if [ ! -f "${dir}index.html" ]; then
+              echo "::error::Missing: ${dir}index.html"
+              FAILED=true
+            fi
+            if [ ! -f "${dir}sources/${name}.agent.md" ]; then
+              echo "::error::Missing: ${dir}sources/${name}.agent.md"
+              FAILED=true
+            fi
+            echo "  ✅ $name"
+          done
+          if [ "$FAILED" = true ]; then exit 1; fi
+          echo "All agent profiles are valid."
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Lighthouse / Performance Budget — Run Lighthouse CI on the live site
+  # ────────────────────────────────────────────────────────────────────────
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://gewey.github.io/
+            https://gewey.github.io/agents/index.html
+          uploadArtifacts: true
