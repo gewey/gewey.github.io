@@ -232,14 +232,14 @@ jobs:
             echo "## CDN Version Check"
             echo ""
             CURRENT=$(grep -oP 'jquery-[0-9.]+\.min\.js' js/dynamichead.js \
-                      | sed 's/jquery-//' | sed 's/\.min\.js//')
+                      | sed 's/jquery-//' | sed 's/\.min\.js//' | head -1)
             echo "**jQuery:** current=$CURRENT"
             LATEST=$(curl -s https://api.github.com/repos/jquery/jquery/releases/latest \
-                      | grep '"tag_name"' | sed 's/.*"tag_name": "\(.*\)".*/\1/' | sed 's/^3\.//')
-            echo "**jQuery:** latest=3.$LATEST"
+                      | grep '"tag_name"' | sed 's/.*"tag_name": "//' | sed 's/".*//')
+            echo "**jQuery:** latest=$LATEST"
             echo ""
-            if [ "$CURRENT" != "3.$LATEST" ]; then
-              echo "⚠️  Update available: jQuery $CURRENT → 3.$LATEST"
+            if [ "$CURRENT" != "$LATEST" ]; then
+              echo "⚠️  Update available: jQuery $CURRENT → $LATEST"
             else
               echo "✅  jQuery is up to date"
             fi
@@ -264,13 +264,13 @@ jobs:
       - name: Validate agent profile structure
         run: |
           mkdir -p ci-output
+          failed=false
           {
             echo "## Agent Profile Check"
             echo ""
-            failed=false
             for dir in AGENTS/*/; do
-              name=$(basename "$dir")
-              [ "$name" = "_Template" ] || [ "$name" = "Shared" ] && continue
+              name="$(basename "$dir")"
+              case "$name" in _Template|Shared) continue;; esac
               issues=""
               if [ ! -f "${dir}index.html" ]; then
                 issues="$issues ❌ Missing index.html"
@@ -285,7 +285,7 @@ jobs:
               if [ -z "$issues" ]; then
                 echo "✅ $name"
               else
-                echo "⚠️  $name$issues"
+                echo "⚠️  $name:$issues"
               fi
             done
             echo ""
@@ -316,6 +316,343 @@ jobs:
           uploadArtifacts: true
 
   # ─────────────────────────────────────────────────────────────────────
+  # JavaScript Syntax Check
+  # ─────────────────────────────────────────────────────────────────────
+  js-syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax-check all JS files
+        run: |
+          mkdir -p ci-output
+          {
+            echo "## JavaScript Syntax Check"
+            echo ""
+            errors=0
+            total=0
+            for f in js/*.js; do
+              [ -f "$f" ] || continue
+              total=$((total + 1))
+              if ! node --check "$f" 2>&1; then
+                echo "❌ SYNTAX ERROR: $f"
+                errors=$((errors + 1))
+              else
+                echo "✅ $f"
+              fi
+            done
+            echo ""
+            echo "**Summary:** $total files checked, $errors syntax errors"
+            echo "**Status:** $([ $errors -eq 0 ] && echo 'PASS' || echo 'FAIL')"
+          } | tee ci-output/js-syntax.md
+          [ $errors -eq 0 ] || exit 1
+        continue-on-error: true
+      - name: Upload JS syntax report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-js-syntax-check
+          path: ci-output/js-syntax.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # CSS Lint (stylelint)
+  # ─────────────────────────────────────────────────────────────────────
+  css-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run stylelint on CSS files
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          npm install --no-save stylelint stylelint-config-standard 2>&1 | tail -1
+          {
+            echo "## CSS Lint"
+            echo ""
+            npx stylelint "css/*.css" --formatter string 2>&1 || true
+            echo ""
+            echo "**Status:** completed"
+          } | tee ci-output/css-lint.md
+      - name: Upload CSS lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-css-lint
+          path: ci-output/css-lint.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Markdown Lint
+  # ─────────────────────────────────────────────────────────────────────
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Lint all Markdown files
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          {
+            echo "## Markdown Lint"
+            echo ""
+            npx markdownlint-cli@0.43.0 \
+              "*.md" \
+              "AGENTS/**/*.md" \
+              "Viktor/**/*.md" \
+              "RimWorld/**/*.md" \
+              "logs/**/*.md" \
+              2>&1 || true
+            echo ""
+            echo "**Status:** completed"
+          } | tee ci-output/markdown-lint.md
+      - name: Upload markdown lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-markdown-lint
+          path: ci-output/markdown-lint.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Internal Link Checker
+  # ─────────────────────────────────────────────────────────────────────
+  check-internal-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify internal links resolve
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          {
+            echo "## Internal Link Check"
+            echo ""
+            broken=0
+            ok=0
+            # Extract href values from HTML files
+            for html_file in $(find . -name "*.html" -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null); do
+              while IFS= read -r href; do
+                # Skip empty, external, anchor-only, and javascript links
+                [ -z "$href" ] && continue
+                echo "$href" | grep -qE '^https?://' && continue
+                echo "$href" | grep -qE '^#' && continue
+                echo "$href" | grep -qE '^javascript:' && continue
+                echo "$href" | grep -qE '^mailto:' && continue
+                # Strip anchors for file check
+                clean=$(echo "$href" | sed 's/#.*//' | sed 's/?.*//')
+                [ -z "$clean" ] && continue
+                # Resolve relative to the file's directory
+                dir=$(dirname "$html_file")
+                target="$dir/$clean"
+                if [ -f "$target" ] || [ -d "$target" ]; then
+                  ok=$((ok + 1))
+                else
+                  echo "❌ BROKEN in $html_file → $href"
+                  broken=$((broken + 1))
+                fi
+              done < <(grep -ohrP 'href="[^"]*"' "$html_file" 2>/dev/null | sed 's/href="//;s/"//')
+            done
+            echo ""
+            echo "**Summary:** $ok OK, $broken broken"
+            echo "**Status:** $([ $broken -eq 0 ] && echo 'PASS' || echo 'FAIL - fix broken internal links')"
+          } | tee ci-output/internal-links.md
+          [ $broken -eq 0 ] || exit 1
+      - name: Upload internal links report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-check-internal-links
+          path: ci-output/internal-links.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Accessibility Audit (pa11y)
+  # ─────────────────────────────────────────────────────────────────────
+  a11y-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run pa11y accessibility checks
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          npm install --no-save pa11y 2>&1 | tail -1
+          {
+            echo "## Accessibility Audit (pa11y)"
+            echo ""
+            pages=(
+              "index.html"
+              "agents/index.html"
+              "bookmarks/all.html"
+              "bookmarks/index.html"
+              "logs/index.html"
+            )
+            total_issues=0
+            for page in "${pages[@]}"; do
+              if [ -f "$page" ]; then
+                echo "### $page"
+                result=$(npx pa11y "$page" 2>&1) || true
+                count=$(echo "$result" | grep -c "error" || true)
+                total_issues=$((total_issues + count))
+                if [ -n "$result" ]; then
+                  echo "$result"
+                else
+                  echo "✅ No issues"
+                fi
+                echo ""
+              fi
+            done
+            echo "**Total issues:** $total_issues"
+            echo "**Status:** $([ $total_issues -eq 0 ] && echo 'PASS' || echo 'WARN - review accessibility issues')"
+          } | tee ci-output/a11y.md
+      - name: Upload a11y report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-a11y-audit
+          path: ci-output/a11y.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Asset Budget Check
+  # ─────────────────────────────────────────────────────────────────────
+  asset-budget:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check asset sizes against budget
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          {
+            echo "## Asset Budget Check"
+            echo ""
+            echo "| Asset | Size | Status |"
+            echo "|-------|------|--------|"
+            exceeded=0
+
+            # Check HTML files — warn if > 100KB
+            for f in $(find . -name "*.html" -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null); do
+              size=$(stat -c%s "$f" 2>/dev/null || echo 0)
+              kb=$((size / 1024))
+              if [ "$size" -gt 102400 ]; then
+                echo "| $f | ${kb}KB | ⚠️ Over 100KB |"
+                exceeded=$((exceeded + 1))
+              fi
+            done
+
+            # Check JS files — warn if > 50KB
+            for f in js/*.js; do
+              [ -f "$f" ] || continue
+              size=$(stat -c%s "$f" 2>/dev/null || echo 0)
+              kb=$((size / 1024))
+              if [ "$size" -gt 51200 ]; then
+                echo "| $f | ${kb}KB | ⚠️ Over 50KB |"
+                exceeded=$((exceeded + 1))
+              fi
+            done
+
+            # Check CSS files — warn if > 30KB
+            for f in css/*.css; do
+              [ -f "$f" ] || continue
+              size=$(stat -c%s "$f" 2>/dev/null || echo 0)
+              kb=$((size / 1024))
+              if [ "$size" -gt 30720 ]; then
+                echo "| $f | ${kb}KB | ⚠️ Over 30KB |"
+                exceeded=$((exceeded + 1))
+              fi
+            done
+
+            # Check images — warn if > 500KB
+            for f in $(find img -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" \) 2>/dev/null); do
+              size=$(stat -c%s "$f" 2>/dev/null || echo 0)
+              kb=$((size / 1024))
+              if [ "$size" -gt 512000 ]; then
+                echo "| $f | ${kb}KB | ⚠️ Over 500KB |"
+                exceeded=$((exceeded + 1))
+              fi
+            done
+
+            echo ""
+            echo "**Assets over budget:** $exceeded"
+            echo "**Status:** $([ $exceeded -eq 0 ] && echo 'PASS' || echo 'WARN - review asset sizes')"
+          } | tee ci-output/asset-budget.md
+      - name: Upload asset budget report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-asset-budget
+          path: ci-output/asset-budget.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Service Worker Validation
+  # ─────────────────────────────────────────────────────────────────────
+  validate-sw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate service worker and cache URLs
+        continue-on-error: true
+        run: |
+          mkdir -p ci-output
+          {
+            echo "## Service Worker Validation"
+            echo ""
+            if [ ! -f "js/sw.js" ]; then
+              echo "❌ No service worker found at js/sw.js"
+            else
+              echo "✅ Service worker found at js/sw.js"
+              echo ""
+              # Extract cached URLs from the service worker
+              echo "### Cached Resources"
+              cached_urls=$(grep -oP "(?<=')[^']+(?=')" js/sw.js 2>/dev/null \
+                | grep -E '\.(html|js|css|png|jpg|json)$' || true)
+              missing=0
+              found=0
+              while IFS= read -r url; do
+                [ -z "$url" ] && continue
+                # Strip leading ./ or /
+                clean=$(echo "$url" | sed 's|^\.\/||' | sed 's|^/||')
+                if [ -f "$clean" ]; then
+                  found=$((found + 1))
+                else
+                  echo "❌ Cached but missing: $url"
+                  missing=$((missing + 1))
+                fi
+              done <<< "$cached_urls"
+              echo ""
+              echo "**Summary:** $found found, $missing missing from cache list"
+              echo "**Status:** $([ $missing -eq 0 ] && echo 'PASS' || echo 'FAIL - update sw.js cache list')"
+            fi
+          } | tee ci-output/sw-check.md
+      - name: Upload service worker report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-validate-sw
+          path: ci-output/sw-check.md
+          compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
   # Generate Consolidated HTML Report
   # ─────────────────────────────────────────────────────────────────────
   generate-report:
@@ -329,6 +666,13 @@ jobs:
       - check-cdn-versions
       - check-agent-profiles
       - lighthouse-check
+      - js-syntax-check
+      - css-lint
+      - markdown-lint
+      - check-internal-links
+      - a11y-audit
+      - asset-budget
+      - validate-sw
     if: always()
     steps:
       - uses: actions/download-artifact@v4
@@ -386,10 +730,16 @@ jobs:
             echo '</div>'
           } > report.html
 
-          # Each job report
-          for report_file in artifacts/report-*/report-*.md artifacts/**/report-*.md artifacts/report-*/*.md; do
+          # Each job report — deduplicate by tracking seen filenames
+          SEEN=""
+          for report_file in artifacts/report-*/*.md; do
             [ -f "$report_file" ] || continue
-            fname=$(basename "$report_file" .md)
+            base=$(basename "$report_file")
+            # Skip if already processed
+            echo "$SEEN" | grep -qxF "$base" 2>/dev/null && continue
+            SEEN="$SEEN
+$base"
+            fname=${base%.md}
             fname=${fname#report-}
             job_name=$(echo "$fname" | tr '-' ' ')
             {
@@ -399,17 +749,6 @@ jobs:
               echo '</div></div>'
             } >> report.html
           done
-
-          # Bookmark link details
-          for f in artifacts/*/linkcheck.md artifacts/**/linkcheck.md; do
-            [ -f "$f" ] || continue
-            {
-              echo "<h2>Bookmark Link Details</h2>"
-              echo '<div class="job job-warn"><div class="job-body">'
-              cat "$f"
-              echo '</div></div>'
-            } >> report.html
-          done 2>/dev/null || true
 
           # Lighthouse reports
           for lh_file in artifacts/lighthouse-check/*.html; do
@@ -436,3 +775,183 @@ jobs:
           name: ci-report
           path: ci-report/
           compression-level: 0
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Stage 3: Post-Report Actions
+  # ─────────────────────────────────────────────────────────────────────
+
+  # ──── PR Comment with Report Summary ──────────────────────────────────
+  pr-comment-report:
+    runs-on: ubuntu-latest
+    needs: [generate-report]
+    if: always() && github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download CI report artifact
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: ci-report
+          path: ci-report
+      - name: Post summary comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const sha = context.sha.slice(0, 7);
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            // Read the HTML report to extract pass/fail counts
+            let body = `## 🤖 CI Report — \`${sha}\`\n\n`;
+            body += `| | |\n|---|---|\n`;
+            body += `| **Workflow** | [View full run](${runUrl}) |\n`;
+            body += `| **Branch** | \`${context.payload.pull_request.head.ref}\` |\n`;
+            body += `| **Commit** | \`${context.sha}\` |\n\n`;
+
+            // Try to read the HTML report for job count
+            try {
+              const html = fs.readFileSync('ci-report/report.html', 'utf8');
+              const jobMatch = html.match(/stat-value[^>]*>(\d+)<\/div><div class="stat-label">Jobs/);
+              if (jobMatch) {
+                body += `**${jobMatch[1]}** checks completed. See the [full report artifact](${runUrl}) for details.\n\n`;
+              }
+            } catch (e) {
+              body += `Report generated. See the [full report artifact](${runUrl}) for details.\n\n`;
+            }
+
+            body += `---\n*Generated by gewey.github.io CI*`;
+
+            // Find and update existing comment, or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('CI Report —')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body,
+              });
+            }
+
+  # ──── Create GitHub Issue on Critical Failure ─────────────────────────
+  create-failure-issue:
+    runs-on: ubuntu-latest
+    needs: [generate-report]
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      issues: write
+    steps:
+      - name: Download CI report
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: ci-report
+          path: ci-report
+      - name: Check for failures and create issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let createIssue = false;
+            let failures = [];
+
+            try {
+              const html = fs.readFileSync('ci-report/report.html', 'utf8');
+              // Check if any sections have FAIL status indicators
+              const failPattern = /FAIL|❌|SYNTAX ERROR|BROKEN/g;
+              const matches = html.match(failPattern);
+              if (matches && matches.length > 0) {
+                createIssue = true;
+                failures = matches.slice(0, 5); // cap at 5 for body
+              }
+            } catch (e) {
+              console.log('Could not read report, skipping issue creation');
+              return;
+            }
+
+            if (!createIssue) {
+              console.log('No failures detected, skipping issue creation');
+              return;
+            }
+
+            // Check for duplicate open issues
+            const { data: existingIssues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'ci-failure',
+              per_page: 5,
+            });
+
+            const today = new Date().toISOString().split('T')[0];
+            const dup = existingIssues.find(i => i.title.includes(today));
+            if (dup) {
+              console.log(`Duplicate issue already exists: #${dup.number}`);
+              return;
+            }
+
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const sha = context.sha.slice(0, 7);
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 CI Failures on ${today} (${sha})`,
+              labels: ['ci-failure'],
+              body: [
+                `## CI Pipeline Failures`,
+                ``,
+                `| | |`,
+                `|---|---|`,
+                `| **Commit** | \`${context.sha}\` |`,
+                `| **Branch** | \`${context.ref_name}\` |`,
+                `| **Run** | [View logs](${runUrl}) |`,
+                `| **Date** | ${today} |`,
+                ``,
+                `### Detected Failures`,
+                ``,
+                failures.map(f => `- ${f}`).join('\n'),
+                ``,
+                `---`,
+                `*Auto-created by gewey.github.io CI workflow. Close this issue once resolved.*`,
+              ].join('\n'),
+            });
+            console.log('Created failure issue');
+
+  # ──── Deploy to GitHub Pages ──────────────────────────────────────────
+  deploy-pages:
+    runs-on: ubuntu-latest
+    needs: [generate-report]
+    if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
