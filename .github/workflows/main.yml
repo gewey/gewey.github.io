@@ -48,8 +48,12 @@ jobs:
           # so new pages can't silently escape validation. (The old inline
           # `bookmarks/**/index.html` glob also needed `globstar`, which is off
           # by default in non-interactive bash — find is correct and explicit.)
+          # Exclude archival snapshots (evolution/ and img/evo/ hold preserved
+          # 2008/2012 homepages) — holding decade-old HTML to modern validation
+          # is noise, not signal.
           mapfile -t HTML_FILES < <(find . -name '*.html' \
-            -not -path './.git/*' -not -path './node_modules/*' | sort)
+            -not -path './.git/*' -not -path './node_modules/*' \
+            -not -path './evolution/*' -not -path './img/evo/*' | sort)
           echo "Validating ${#HTML_FILES[@]} HTML files"
           # Keep stderr (npx/install noise) OUT of the JSON file so the report
           # step can reliably JSON.parse it for an error count.
