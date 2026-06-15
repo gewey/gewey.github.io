@@ -737,8 +737,7 @@ jobs:
             base=$(basename "$report_file")
             # Skip if already processed
             echo "$SEEN" | grep -qxF "$base" 2>/dev/null && continue
-            SEEN="$SEEN
-$base"
+            SEEN=$(printf '%s\n%s' "$SEEN" "$base")
             fname=${base%.md}
             fname=${fname#report-}
             job_name=$(echo "$fname" | tr '-' ' ')
