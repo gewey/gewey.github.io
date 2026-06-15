@@ -12,6 +12,18 @@ on:
     - cron: '0 0 * * 0'
   workflow_dispatch:
 
+# Cancel an in-progress run when a newer commit lands on the same ref.
+# Saves Actions minutes on rapid pushes; the latest commit is the only one
+# whose report matters.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Least privilege by default. Individual jobs that write (PR comments, issues)
+# re-declare exactly the scope they need below.
+permissions:
+  contents: read
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -22,6 +34,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   html-validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,30 +44,46 @@ jobs:
         continue-on-error: true
         id: validate
         run: |
-          npx html-validate@8 --formatter json \
-            index.html \
-            agents/index.html \
-            bookmarks/**/index.html \
-            Viktor/index.html \
-            RimWorld/index.html \
-            hobos/index.html \
-            logs/index.html \
-            AGENTS/index.html \
-            AGENTS/_Template/index.html \
-            AGENTS/agent1/index.html \
-            AGENTS/agent2/index.html \
-            AGENTS/agent3/index.html \
-            AGENTS/VIKTOR/index.html \
-            2>&1 | tee html-validate-results.json || true
+          # Discover every HTML file rather than maintaining a hand-written list,
+          # so new pages can't silently escape validation. (The old inline
+          # `bookmarks/**/index.html` glob also needed `globstar`, which is off
+          # by default in non-interactive bash — find is correct and explicit.)
+          mapfile -t HTML_FILES < <(find . -name '*.html' \
+            -not -path './.git/*' -not -path './node_modules/*' | sort)
+          echo "Validating ${#HTML_FILES[@]} HTML files"
+          # Keep stderr (npx/install noise) OUT of the JSON file so the report
+          # step can reliably JSON.parse it for an error count.
+          npx html-validate@8 --formatter json "${HTML_FILES[@]}" \
+            1> html-validate-results.json 2> html-validate-stderr.log || true
+          echo "Captured $(wc -c < html-validate-results.json) bytes of JSON"
       - name: Build html-validate report
         if: always()
         run: |
-          echo "## HTML Validation" > report-html-validate.md
-          echo "**Status:** completed" >> report-html-validate.md
-          echo "" >> report-html-validate.md
-          echo '```json' >> report-html-validate.md
-          cat html-validate-results.json 2>/dev/null || echo "(no output)" >> report-html-validate.md
-          echo '```' >> report-html-validate.md
+          {
+            echo "## HTML Validation"
+            # Parse the JSON for an actual error count so the consolidated report
+            # can colour this section and the failure detector can see it.
+            # Guarded: any parse failure falls back to "completed".
+            summary=$(node -e '
+              try {
+                const d = JSON.parse(require("fs").readFileSync("html-validate-results.json","utf8"));
+                const errs = d.reduce((n,r)=>n+(r.errorCount||0),0);
+                const warns = d.reduce((n,r)=>n+(r.warningCount||0),0);
+                console.log(`errors=${errs} warnings=${warns}`);
+              } catch (e) { console.log("unparseable"); }
+            ' 2>/dev/null || echo "unparseable")
+            if echo "$summary" | grep -q '^errors=0 '; then
+              echo "**Status:** PASS ($summary)"
+            elif echo "$summary" | grep -q '^errors='; then
+              echo "**Status:** FAIL ($summary)"
+            else
+              echo "**Status:** completed"
+            fi
+            echo ""
+            echo '```json'
+            cat html-validate-results.json 2>/dev/null || echo "(no output)"
+            echo '```'
+          } > report-html-validate.md
       - name: Upload html-validate report
         if: always()
         uses: actions/upload-artifact@v4
@@ -68,6 +97,11 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   check-bookmark-links:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # External-facing check: only run on the weekly schedule or a manual
+    # dispatch. There's no value in hitting hundreds of third-party servers on
+    # every push/PR, and link rot is unrelated to the change under review.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
       - name: Extract & check bookmark URLs
@@ -75,29 +109,42 @@ jobs:
         id: linkcheck
         run: |
           mkdir -p ci-output
-          exec 5>&1  # Save stdout
+          grep -rohP 'href:\s*'\''[^'\'']+'\''' js/dynamic*.js \
+            | sed "s/href: '//" | sed "s/'//" \
+            | grep -v '^\./' | grep -v '^http://localhost' \
+            | sort -u > bookmark-urls.txt || true
+          total=$(wc -l < bookmark-urls.txt)
+
+          # Check links 10-at-a-time instead of serially. The old while-loop
+          # could take many minutes and hang on a single slow host; with
+          # `xargs -P` the wall time is bounded by the slowest 1/10th.
+          check_one() {
+            local url="$1" status
+            status=$(curl -s -o /dev/null -w "%{http_code}" \
+              --max-time 10 --connect-timeout 5 "$url" 2>/dev/null || echo "FAIL")
+            case "$status" in
+              200|301|302|303|307|308) ;;
+              *) echo "⚠️  DEAD LINK ($status): $url" ;;
+            esac
+          }
+          export -f check_one
+          xargs -P 10 -I{} bash -c 'check_one "$@"' _ {} \
+            < bookmark-urls.txt > dead-links.txt || true
+
+          dead_count=$(grep -c 'DEAD LINK' dead-links.txt || true)
+          ok_count=$((total - dead_count))
           {
-            echo "Extracting URLs from dynamic*.js files..."
-            grep -rohP 'href:\s*'\''[^'\'']+'\''' js/dynamic*.js \
-              | sed "s/href: '//" | sed "s/'//" \
-              | grep -v '^\./' | grep -v '^http://localhost' \
-              > bookmark-urls.txt || true
-            total=$(wc -l < bookmark-urls.txt)
+            echo "## Dead Bookmark Link Check"
+            echo ""
             echo "Found $total external bookmark URLs to check"
             echo ""
-            failed_count=0
-            ok_count=0
-            while IFS= read -r url; do
-              status=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 --connect-timeout 5 "$url" 2>/dev/null || echo "FAIL")
-              if [ "$status" != "200" ] && [ "$status" != "301" ] && [ "$status" != "302" ]; then
-                echo "⚠️  DEAD LINK ($status): $url"
-                failed_count=$((failed_count + 1))
-              else
-                ok_count=$((ok_count + 1))
-              fi
-            done < bookmark-urls.txt
+            cat dead-links.txt
             echo ""
-            echo "--- Result: $ok_count OK, $failed_count dead ---"
+            echo "--- Result: $ok_count OK, $dead_count dead ---"
+            # WARN (not FAIL): external outages shouldn't be flagged as a
+            # repo failure. This also runs schedule-only, so it never feeds
+            # the push-triggered failure-issue job.
+            echo "**Status:** $([ "$dead_count" -eq 0 ] && echo 'PASS' || echo 'WARN - dead links found')"
           } | tee ci-output/linkcheck.md
       - name: Upload link check report
         if: always()
@@ -112,6 +159,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   optimize-images:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Optimize PNG and JPEG images
@@ -145,6 +193,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   validate-manifest:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Check manifest.json covers all button icons
@@ -183,6 +232,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   check-bookmark-icons:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
@@ -222,6 +272,10 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   check-cdn-versions:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Informational, external-facing (queries the GitHub releases API) and
+    # unrelated to any individual change — scheduled/manual only.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
       - name: Check CDN library versions
@@ -259,6 +313,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   check-agent-profiles:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Validate agent profile structure
@@ -305,14 +360,18 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   lighthouse-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse CI (against the checked-out build)
         uses: treosh/lighthouse-ci-action@v12
         with:
-          urls: |
-            https://gewey.github.io/
-            https://gewey.github.io/agents/index.html
+          # Audit the files in THIS commit, not the live site. The config sets
+          # `staticDistDir: "."`, so LHCI serves the repo on its own local
+          # server and visits the paths below — no manual/backgrounded server
+          # to race against. (Previously this pointed at https://gewey.github.io,
+          # which on a PR measures the already-deployed site, never the change.)
+          configPath: ./.lighthouserc.json
           uploadArtifacts: true
 
   # ─────────────────────────────────────────────────────────────────────
@@ -320,6 +379,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   js-syntax-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -362,6 +422,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   css-lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -371,7 +432,9 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p ci-output
-          npm install --no-save stylelint stylelint-config-standard 2>&1 | tail -1
+          # Pin versions so a stylelint major bump can't change CI output
+          # out from under you — matches how html-validate/markdownlint are pinned.
+          npm install --no-save stylelint@16 stylelint-config-standard@36 2>&1 | tail -1
           {
             echo "## CSS Lint"
             echo ""
@@ -392,6 +455,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   markdown-lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -427,6 +491,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   check-internal-links:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -482,6 +547,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   a11y-audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -491,7 +557,10 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p ci-output
-          npm install --no-save pa11y 2>&1 | tail -1
+          # Pinned for reproducibility. pa11y launches headless Chrome per page,
+          # so this is intentionally kept to a curated set of entry pages rather
+          # than all 53 HTML files (that would be slow and mostly redundant).
+          npm install --no-save pa11y@8 2>&1 | tail -1
           {
             echo "## Accessibility Audit (pa11y)"
             echo ""
@@ -533,6 +602,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   asset-budget:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Check asset sizes against budget
@@ -578,8 +648,10 @@ jobs:
               fi
             done
 
-            # Check images — warn if > 500KB
-            for f in $(find img -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" \) 2>/dev/null); do
+            # Check images — warn if > 500KB. Scan from the repo root (not just
+            # img/) so large stray images committed at the top level — which are
+            # served by Pages all the same — are actually counted.
+            for f in $(find . -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" \) -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null); do
               size=$(stat -c%s "$f" 2>/dev/null || echo 0)
               kb=$((size / 1024))
               if [ "$size" -gt 512000 ]; then
@@ -605,6 +677,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   validate-sw:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -657,6 +730,12 @@ jobs:
   # ─────────────────────────────────────────────────────────────────────
   generate-report:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # download-artifact@v4 lists artifacts via the Actions API, so under the
+    # restricted top-level permissions it needs actions:read explicitly.
+    permissions:
+      contents: read
+      actions: read
     needs:
       - html-validate
       - check-bookmark-links
@@ -685,11 +764,37 @@ jobs:
           COMMIT="${{ github.sha }}"
           BRANCH="${{ github.ref_name }}"
 
-          # Count job artifacts
-          JOBS=0
-          for d in artifacts/report-*/; do
-            [ -d "$d" ] && JOBS=$((JOBS + 1))
+          # ---- First pass: classify each job report by its real status ------
+          # Derived from the markdown each job uploaded:
+          #   fail → contains FAIL / ❌ / SYNTAX ERROR / BROKEN
+          #   warn → otherwise contains WARN / ⚠
+          #   pass → otherwise
+          # Tracking ordered arrays keeps the summary counts (head) and the
+          # coloured sections (body) in agreement, and lets us hand a precise
+          # list of failing checks to the issue creator instead of re-grepping
+          # the rendered HTML.
+          declare -a R_FILE R_NAME R_CLASS
+          pass=0; warn=0; fail=0
+          : > failures.txt
+          SEEN=""
+          for report_file in artifacts/report-*/*.md; do
+            [ -f "$report_file" ] || continue
+            base=$(basename "$report_file")
+            echo "$SEEN" | grep -qxF "$base" 2>/dev/null && continue
+            SEEN=$(printf '%s\n%s' "$SEEN" "$base")
+            fname=${base%.md}; fname=${fname#report-}
+            job_name=$(echo "$fname" | tr '-' ' ')
+            content=$(cat "$report_file")
+            if echo "$content" | grep -qE 'FAIL|❌|SYNTAX ERROR|BROKEN'; then
+              cls="job-fail"; fail=$((fail + 1)); echo "$job_name" >> failures.txt
+            elif echo "$content" | grep -qE 'WARN|⚠'; then
+              cls="job-warn"; warn=$((warn + 1))
+            else
+              cls="job-pass"; pass=$((pass + 1))
+            fi
+            R_FILE+=("$report_file"); R_NAME+=("$job_name"); R_CLASS+=("$cls")
           done
+          JOBS=${#R_FILE[@]}
 
           # Start building report
           {
@@ -725,32 +830,27 @@ jobs:
             echo "<h1>gewey.github.io - CI Report</h1>"
             echo "<p class=\"meta\">Generated: $TIMESTAMP | Commit: $COMMIT | Branch: $BRANCH</p>"
             echo '<div class="summary-grid">'
-            echo "<div class=\"stat-card\"><div class=\"stat-value green\">$JOBS</div><div class=\"stat-label\">Jobs</div></div>"
-            echo '<div class="stat-card"><div class="stat-value green\">OK</div><div class="stat-label">Auto-generated</div></div>'
+            echo "<div class=\"stat-card\"><div class=\"stat-value\">$JOBS</div><div class=\"stat-label\">Checks</div></div>"
+            echo "<div class=\"stat-card\"><div class=\"stat-value green\">$pass</div><div class=\"stat-label\">Pass</div></div>"
+            echo "<div class=\"stat-card\"><div class=\"stat-value yellow\">$warn</div><div class=\"stat-label\">Warn</div></div>"
+            echo "<div class=\"stat-card\"><div class=\"stat-value red\">$fail</div><div class=\"stat-label\">Fail</div></div>"
             echo '</div>'
           } > report.html
 
-          # Each job report — deduplicate by tracking seen filenames
-          SEEN=""
-          for report_file in artifacts/report-*/*.md; do
-            [ -f "$report_file" ] || continue
-            base=$(basename "$report_file")
-            # Skip if already processed
-            echo "$SEEN" | grep -qxF "$base" 2>/dev/null && continue
-            SEEN=$(printf '%s\n%s' "$SEEN" "$base")
-            fname=${base%.md}
-            fname=${fname#report-}
-            job_name=$(echo "$fname" | tr '-' ' ')
+          # Each job section, coloured by the status classified in the first pass
+          for i in "${!R_FILE[@]}"; do
             {
-              echo "<h2>$job_name</h2>"
-              echo '<div class="job job-warn"><div class="job-body">'
-              cat "$report_file"
+              echo "<h2>${R_NAME[$i]}</h2>"
+              echo "<div class=\"job ${R_CLASS[$i]}\"><div class=\"job-body\">"
+              cat "${R_FILE[$i]}"
               echo '</div></div>'
             } >> report.html
           done
 
-          # Lighthouse reports
-          for lh_file in artifacts/lighthouse-check/*.html; do
+          # Lighthouse reports. Glob the prefix loosely — the treosh action
+          # uploads its artifact as "lighthouse-results", not the job name, so
+          # the old `lighthouse-check` path matched nothing.
+          for lh_file in artifacts/lighthouse*/*.html; do
             [ -f "$lh_file" ] || continue
             {
               echo "<h2>Lighthouse Report</h2>"
@@ -768,6 +868,11 @@ jobs:
           echo "Report built: $(wc -c < report.html) bytes"
           mkdir -p ci-report
           cp report.html ci-report/
+          # Machine-readable companions so the PR-comment and failure-issue jobs
+          # consume real counts/names instead of regex-scraping the HTML.
+          echo "JOBS=$JOBS PASS=$pass WARN=$warn FAIL=$fail" > ci-report/summary.txt
+          cp failures.txt ci-report/failures.txt
+          echo "Summary: JOBS=$JOBS PASS=$pass WARN=$warn FAIL=$fail"
       - name: Upload CI Report
         uses: actions/upload-artifact@v4
         with:
@@ -782,9 +887,12 @@ jobs:
   # ──── PR Comment with Report Summary ──────────────────────────────────
   pr-comment-report:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: [generate-report]
     if: always() && github.event_name == 'pull_request'
     permissions:
+      contents: read
+      actions: read
       pull-requests: write
     steps:
       - name: Download CI report artifact
@@ -801,24 +909,33 @@ jobs:
             const sha = context.sha.slice(0, 7);
             const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
 
-            // Read the HTML report to extract pass/fail counts
+            // Read the machine-readable summary written by generate-report,
+            // rather than scraping counts out of the rendered HTML.
+            const counts = { JOBS: '?', PASS: '?', WARN: '?', FAIL: '?' };
+            let failures = [];
+            try {
+              const s = fs.readFileSync('ci-report/summary.txt', 'utf8').trim();
+              for (const kv of s.split(/\s+/)) {
+                const [k, v] = kv.split('=');
+                if (k in counts) counts[k] = v;
+              }
+            } catch (e) { /* leave defaults */ }
+            try {
+              failures = fs.readFileSync('ci-report/failures.txt', 'utf8')
+                .split('\n').map(x => x.trim()).filter(Boolean);
+            } catch (e) { /* none */ }
+
             let body = `## 🤖 CI Report — \`${sha}\`\n\n`;
             body += `| | |\n|---|---|\n`;
             body += `| **Workflow** | [View full run](${runUrl}) |\n`;
             body += `| **Branch** | \`${context.payload.pull_request.head.ref}\` |\n`;
             body += `| **Commit** | \`${context.sha}\` |\n\n`;
-
-            // Try to read the HTML report for job count
-            try {
-              const html = fs.readFileSync('ci-report/report.html', 'utf8');
-              const jobMatch = html.match(/stat-value[^>]*>(\d+)<\/div><div class="stat-label">Jobs/);
-              if (jobMatch) {
-                body += `**${jobMatch[1]}** checks completed. See the [full report artifact](${runUrl}) for details.\n\n`;
-              }
-            } catch (e) {
-              body += `Report generated. See the [full report artifact](${runUrl}) for details.\n\n`;
+            body += `✅ **${counts.PASS}** pass · ⚠️ **${counts.WARN}** warn · ❌ **${counts.FAIL}** fail  (of ${counts.JOBS} checks)\n\n`;
+            if (failures.length) {
+              body += `**Checks needing attention:**\n`;
+              body += failures.map(f => `- ${f}`).join('\n') + `\n\n`;
             }
-
+            body += `See the [full report artifact](${runUrl}) for details.\n\n`;
             body += `---\n*Generated by gewey.github.io CI*`;
 
             // Find and update existing comment, or create new one
@@ -850,9 +967,12 @@ jobs:
   # ──── Create GitHub Issue on Critical Failure ─────────────────────────
   create-failure-issue:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: [generate-report]
     if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
+      contents: read
+      actions: read
       issues: write
     steps:
       - name: Download CI report
@@ -866,27 +986,25 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            let createIssue = false;
-            let failures = [];
 
+            // Read the explicit list of failing checks written by
+            // generate-report. The old approach regex-scraped the rendered HTML
+            // for the word "FAIL", which both over-matched (any incidental
+            // occurrence) and could miss real failures.
+            let failures = [];
             try {
-              const html = fs.readFileSync('ci-report/report.html', 'utf8');
-              // Check if any sections have FAIL status indicators
-              const failPattern = /FAIL|❌|SYNTAX ERROR|BROKEN/g;
-              const matches = html.match(failPattern);
-              if (matches && matches.length > 0) {
-                createIssue = true;
-                failures = matches.slice(0, 5); // cap at 5 for body
-              }
+              failures = fs.readFileSync('ci-report/failures.txt', 'utf8')
+                .split('\n').map(x => x.trim()).filter(Boolean);
             } catch (e) {
-              console.log('Could not read report, skipping issue creation');
+              console.log('No failures.txt found, skipping issue creation');
               return;
             }
 
-            if (!createIssue) {
+            if (failures.length === 0) {
               console.log('No failures detected, skipping issue creation');
               return;
             }
+            failures = failures.slice(0, 10); // cap for issue body
 
             // Check for duplicate open issues
             const { data: existingIssues } = await github.rest.issues.listForRepo({
