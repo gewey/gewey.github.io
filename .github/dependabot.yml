@@ -1,0 +1,13 @@
+# Keeps the GitHub Actions used in workflows up to date. Dependabot opens a PR
+# when a newer version of an action is released, so pins don't silently rot —
+# and is the maintainable path to commit-SHA pinning if you later adopt it.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
