@@ -120,11 +120,16 @@ jobs:
           # `xargs -P` the wall time is bounded by the slowest 1/10th.
           check_one() {
             local url="$1" status
+            # NB: curl prints the http_code even on failure (000) AND exits
+            # non-zero, so a `|| echo FAIL` fallback would CONCATENATE onto the
+            # code (e.g. "000FAIL"/"200FAIL"). Use `|| true` and trust the code.
+            # -L follows redirects and a browser UA avoids naive bot 403s.
             status=$(curl -s -o /dev/null -w "%{http_code}" \
-              --max-time 10 --connect-timeout 5 "$url" 2>/dev/null || echo "FAIL")
+              -A "Mozilla/5.0 (gewey.github.io CI link check)" \
+              -L --max-time 15 --connect-timeout 5 "$url" 2>/dev/null || true)
             case "$status" in
-              200|301|302|303|307|308) ;;
-              *) echo "⚠️  DEAD LINK ($status): $url" ;;
+              2[0-9][0-9]|3[0-9][0-9]) ;;   # any 2xx/3xx = reachable
+              *) echo "⚠️  DEAD LINK (${status:-000}): $url" ;;
             esac
           }
           export -f check_one
@@ -324,6 +329,10 @@ jobs:
             echo "## Agent Profile Check"
             echo ""
             for dir in AGENTS/*/; do
+              # If the glob matched nothing it stays literal ("AGENTS/*/") — skip
+              # rather than report a bogus agent named "*". (The dir is case-
+              # sensitive on the Linux runner; see note in the summary.)
+              [ -d "$dir" ] || continue
               name="$(basename "$dir")"
               case "$name" in _Template|Shared) continue;; esac
               issues=""
@@ -703,6 +712,8 @@ jobs:
               found=0
               while IFS= read -r url; do
                 [ -z "$url" ] && continue
+                # External (CDN) URLs aren't local files — don't flag them missing.
+                case "$url" in http*) continue;; esac
                 # Strip leading ./ or /
                 clean=$(echo "$url" | sed 's|^\.\/||' | sed 's|^/||')
                 if [ -f "$clean" ]; then
@@ -785,7 +796,9 @@ jobs:
             fname=${base%.md}; fname=${fname#report-}
             job_name=$(echo "$fname" | tr '-' ' ')
             content=$(cat "$report_file")
-            if echo "$content" | grep -qE 'FAIL|❌|SYNTAX ERROR|BROKEN'; then
+            # Anchor FAIL to explicit markers — matching a bare "FAIL" anywhere
+            # would (e.g.) escalate the WARN-level dead-link report by accident.
+            if echo "$content" | grep -qE '❌|SYNTAX ERROR|BROKEN|\*\*Status:\*\* FAIL'; then
               cls="job-fail"; fail=$((fail + 1)); echo "$job_name" >> failures.txt
             elif echo "$content" | grep -qE 'WARN|⚠'; then
               cls="job-warn"; warn=$((warn + 1))
