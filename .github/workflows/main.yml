@@ -765,7 +765,7 @@ jobs:
       - validate-sw
     if: always()
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           path: artifacts
@@ -909,7 +909,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Download CI report artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           name: ci-report
@@ -989,7 +989,7 @@ jobs:
       issues: write
     steps:
       - name: Download CI report
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           name: ci-report
