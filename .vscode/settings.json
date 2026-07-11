@@ -742,5 +742,29 @@
     "screencastMode.fontSize": 56,
     "Comment#C0h9": "｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ﾟ☆｡･:*:･ﾟ★,｡･:*:･ GEMINI INLINE",
     "Comment#C0h8": "｡",
-    "Comment#C048": "｡"
+    "Comment#C048": "｡",
+    "files.exclude": {
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_001.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_002.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_003.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_004.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_005.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_006.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_007.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_008.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_009.md": true,
+        ".holarchy/SINGULARITY/test/memory_chunk_A_chunk_010.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_001.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_002.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_003.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_004.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_005.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_006.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_007.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_008.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_009.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_010.md": true,
+        ".holarchy/SINGULARITY/test/test_chunk_011.md": true,
+        "**/.tmp.driveupload": true
+    }
 }
