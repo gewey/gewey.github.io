@@ -1081,7 +1081,7 @@ jobs:
           name: ci-report
           path: ci-report
       - name: Push report to ci-reports
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.CI_REPORTS_TOKEN }}
           script: |
