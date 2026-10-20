@@ -1,2 +1,131 @@
-<!-- im not entirely sure if i want to have a blog yet. but if i do, this is where itll be ill prolly use notion to publish it to one of their nonsense urls and embed it in this html file which will be embedded in the content frame of my homepage.-->
- <iframe src="https://lopsided-seahorse-d13.notion.site/ebd//4e6e2d32580f8248a6ac81084b2d3f15" width="100%" height="600" frameborder="0" allowfullscreen />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Gewey Portfolio</title>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+            color: #FFFFFF;
+        }
+
+        .portfolio-nav {
+            height: 52px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--color-primary, #00EA00);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            position: relative;
+        }
+
+        .portfolio-brand {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid #30363d;
+            color: #AAA;
+            padding: 4px 10px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: var(--color-primary, #00EA00);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .notion-wrapper {
+            width: 100vw;
+            height: calc(100vh - 52px);
+            background: #000000;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notion-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            flex: 1;
+            background: #000000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="portfolio-nav">
+        <a href="index.html" class="portfolio-brand">
+            <i class="material-icons" style="font-size: 18px;">work_outline</i>
+            Gewey Portfolio
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-tab">Overview</a>
+            <a href="youtube.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">smart_display</i> YouTube</a>
+            <a href="vscode.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">code</i> VS Code</a>
+            <a href="github.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">terminal</i> GitHub</a>
+            <a href="credentials.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">verified</i> Credentials</a>
+            <a href="blog.html" class="nav-tab active"><i class="material-icons" style="font-size: 14px;">edit_note</i> Blog</a>
+        </nav>
+    </header>
+
+    <div class="notion-wrapper">
+        <!-- Notion Embed: Meat-Brain Blog -->
+        <iframe 
+            class="notion-frame" 
+            src="https://lopsided-seahorse-d13.notion.site/ebd//4e6e2d32580f8248a6ac81084b2d3f15" 
+            allowfullscreen 
+            loading="lazy">
+        </iframe>
+    </div>
+</body>
+
+</html>

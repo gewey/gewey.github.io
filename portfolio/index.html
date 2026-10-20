@@ -4,19 +4,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gewey's Amazing Portfolio of Half Finished Meat Brained Ideas</title>
+    <title>Gewey's Portfolio of Half-Finished Meat-Brained Ideas</title>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* TOP NAVIGATION STRIP */
+        .portfolio-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--color-primary, #00EA00);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .portfolio-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .portfolio-brand {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.15em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid #30363d;
+            color: #AAA;
+            padding: 5px 12px;
+            font-size: 0.82em;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: var(--color-primary, #00EA00);
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* CONTAINER */
+        .portfolio-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px 80px 24px;
+            box-sizing: border-box;
+        }
+
+        /* HERO HEADER */
+        .hero-banner {
+            text-align: center;
+            padding: 30px 20px 40px 20px;
+            border-bottom: 1px dashed #30363d;
+            margin-bottom: 40px;
+            background: radial-gradient(circle at center, rgba(234, 0, 234, 0.08) 0%, transparent 70%);
+        }
+
+        .hero-banner h1 {
+            color: var(--color-primary, #00EA00);
+            font-size: 2.1em;
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 234, 0, 0.3);
+        }
+
+        .hero-banner p {
+            color: #AAA;
+            font-size: 1.05em;
+            max-width: 700px;
+            margin: 0 auto 15px auto;
+            line-height: 1.6;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.85em;
+            border: 1px solid rgba(234, 0, 234, 0.3);
+            background: rgba(234, 0, 234, 0.08);
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* GRID OF SECTIONS */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 24px;
+        }
+
+        .portfolio-card {
+            background: rgba(14, 17, 23, 0.9);
+            border: 1px solid #30363d;
+            border-top: 3px solid var(--color-primary, #00EA00);
+            border-radius: 6px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            border-color: #484f58;
+            border-top-color: var(--color-accent, #EA00EA);
+            box-shadow: 0 8px 24px rgba(234, 0, 234, 0.2);
+        }
+
+        .card-top {
+            margin-bottom: 20px;
+        }
+
+        .card-icon-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            color: var(--color-primary, #00EA00);
+            transition: color 0.25s;
+        }
+
+        .portfolio-card:hover .card-icon {
+            color: var(--color-accent, #EA00EA);
+        }
+
+        .card-badge {
+            font-size: 0.72em;
+            color: #8b949e;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #30363d;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-title {
+            color: #FFFFFF;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .card-desc {
+            color: #8b949e;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .card-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            font-weight: bold;
+            border-top: 1px dashed #21262d;
+            padding-top: 12px;
+            transition: color 0.2s;
+        }
+
+        .portfolio-card:hover .card-action {
+            color: var(--color-accent, #EA00EA);
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Gewey's Amazing Portfolio of Half Finished Meat Brained Ideas</h1>
-    
-links to:
-gewey.github.io\portfolio\blog.html
-gewey.github.io\portfolio\credentials.html
-gewey.github.io\portfolio\github.html
-gewey.github.io\portfolio\vscode.html
-gewey.github.io\portfolio\youtube.html
+    <!-- TOP NAVIGATION -->
+    <header class="portfolio-nav">
+        <div class="portfolio-title-group">
+            <a href="index.html" class="portfolio-brand">
+                <i class="material-icons" style="font-size: 20px;">work_outline</i>
+                Gewey Portfolio
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-tab active">Overview</a>
+            <a href="youtube.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">smart_display</i> YouTube</a>
+            <a href="vscode.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">code</i> VS Code</a>
+            <a href="github.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">terminal</i> GitHub</a>
+            <a href="credentials.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">verified</i> Credentials</a>
+            <a href="blog.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">edit_note</i> Blog</a>
+        </nav>
+    </header>
 
+    <!-- CONTENT -->
+    <main class="portfolio-container">
+        <div class="hero-banner">
+            <h1>Gewey's Amazing Portfolio</h1>
+            <p>A curated cabinet of half-finished meat-brained ideas, midnight coding epiphanies, custom extensions, and YouTube-certified credentials.</p>
+            <span class="hero-tagline">⚡ Status: Living Substrate In Progress</span>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- 1. YOUTUBE -->
+            <a href="youtube.html" class="portfolio-card">
+                <div class="card-top">
+                    <div class="card-icon-strip">
+                        <i class="material-icons card-icon">smart_display</i>
+                        <span class="card-badge">Media & Retrospectives</span>
+                    </div>
+                    <div class="card-title">YouTube Videos</div>
+                    <p class="card-desc">Public releases, unlisted brainstorms, retrospectives, and drafts. The foundational fuel behind every credential on this site.</p>
+                </div>
+                <div class="card-action">
+                    <span>Explore Video Vault</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- 2. VS CODE -->
+            <a href="vscode.html" class="portfolio-card">
+                <div class="card-top">
+                    <div class="card-icon-strip">
+                        <i class="material-icons card-icon">code</i>
+                        <span class="card-badge">Tooling & Preserves</span>
+                    </div>
+                    <div class="card-title">VS Code Projects</div>
+                    <p class="card-desc">The PEZ extension launcher, path embellishment palettes, read-only sanctuary locks, and custom workspace workflows.</p>
+                </div>
+                <div class="card-action">
+                    <span>Inspect Projects</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- 3. GITHUB -->
+            <a href="github.html" class="portfolio-card">
+                <div class="card-top">
+                    <div class="card-icon-strip">
+                        <i class="material-icons card-icon">terminal</i>
+                        <span class="card-badge">Ego & Alter Hubs</span>
+                    </div>
+                    <div class="card-title">GitHub Repositories</div>
+                    <p class="card-desc">Public releases and private sanctuaries: gewey.github.io, tesseract-docs, tesseract-wiki, IRIS-MCP, and Terminus Substrate.</p>
+                </div>
+                <div class="card-action">
+                    <span>Browse Repos</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- 4. CREDENTIALS -->
+            <a href="credentials.html" class="portfolio-card">
+                <div class="card-top">
+                    <div class="card-icon-strip">
+                        <i class="material-icons card-icon">verified</i>
+                        <span class="card-badge">Academic Parody</span>
+                    </div>
+                    <div class="card-title">Credentials & Badges</div>
+                    <p class="card-desc">Certified Meat-Brained Scholar. Because watching thousands of hours of high-octane technical YouTube videos has to count for something.</p>
+                </div>
+                <div class="card-action">
+                    <span>View Honors</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- 5. BLOG -->
+            <a href="blog.html" class="portfolio-card">
+                <div class="card-top">
+                    <div class="card-icon-strip">
+                        <i class="material-icons card-icon">edit_note</i>
+                        <span class="card-badge">Notion Live Stream</span>
+                    </div>
+                    <div class="card-title">Meat-Brain Blog</div>
+                    <p class="card-desc">Raw notes, system thoughts, and design journals published live through Notion directly into the application shell.</p>
+                </div>
+                <div class="card-action">
+                    <span>Open Blog Embed</span>
+                    <span>➔</span>
+                </div>
+            </a>
+        </div>
+    </main>
 </body>
 
 </html>
