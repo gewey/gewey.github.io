@@ -1,0 +1,8 @@
+[submodule "tesseract_city/docs"]
+	path = tesseract_city/docs
+	url = https://github.com/gewey/tesseract-docs.git
+	branch = main
+[submodule "tesseract_city/wiki"]
+	path = tesseract_city/wiki
+	url = https://github.com/gewey/tesseract-wiki.git
+	branch = main
