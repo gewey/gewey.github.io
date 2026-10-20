@@ -1,0 +1,455 @@
+{
+    "$comment": "Hook Configuration - Copilot format (single-string command) - Paths updated for .github/hooks/ location",
+    "hooks": {
+        "ConfigChange": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.ConfigChange.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "CwdChanged": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.CwdChanged.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "DirectoryAdded": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.DirectoryAdded.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "Elicitation": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.Elicitation.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "ElicitationResult": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.ElicitationResult.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "FileChanged": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.FileChanged.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "InstructionsLoaded": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.InstructionsLoaded.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "MessageDisplay": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.MessageDisplay.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "Notification": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.Notification.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PermissionDenied": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.PermissionDenied.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PermissionRequest": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.PermissionRequest.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PostCompact": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.PostCompact.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PostToolBatch": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.PostToolBatch.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PostToolUse": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!PostToolUse.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PostToolUseFailure": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.PostToolUseFailure.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PreCompact": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!PreCompact.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "PreToolUse": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!PreToolUse.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "SessionEnd": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.SessionEnd.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "Setup": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.Setup.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "Stop": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!Stop.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "StopFailure": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.StopFailure.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "SubagentStart": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!SubagentStart.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "SubagentStop": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!SubagentStop.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "TaskCompleted": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.TaskCompleted.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "TaskCreated": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.TaskCreated.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "TeammateIdle": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.TeammateIdle.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "UserPromptExpansion": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.UserPromptExpansion.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "UserPromptSubmit": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\!UserPromptSubmit.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "WorktreeCreate": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.WorktreeCreate.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ],
+        "WorktreeRemove": [
+            {
+                "type": "command",
+                "description": "",
+                "command": "powershell.exe -ExecutionPolicy Bypass -File V:\\.github\\hooks\\.WorktreeRemove.ps1",
+                "matcher": "",
+                "cwd": "V:\\",
+                "env": {},
+                "timeout": 30000,
+                "stdio": "json-rpc",
+                "failOpen": true,
+                "windows": null,
+                "linux": null
+            }
+        ]
+    }
+}

@@ -31,14 +31,14 @@ The project doubles as a personal playground — it includes an evolution archiv
 
 ## Live Site
 
-- **URL:** https://gewey.github.io
+- **URL:** <https://gewey.github.io>
 - **Hosting:** GitHub Pages (served directly from this repository's default branch)
 - **No build step:** files are served as‑is; what you commit is what ships.
 
 ## Key Technologies
 
 | Area | Technology |
-|------|-----------|
+| ------ | ----------- |
 | Markup | Hand‑written **HTML5** |
 | Styling | Plain **CSS3** split into three concern‑based files (layout, text, images), monospace `Inconsolata` font, **Material Icons** |
 | Scripting | **Vanilla JavaScript** (ES6+), with **jQuery 3.5.1** loaded from a CDN for a couple of legacy helpers |
@@ -111,6 +111,7 @@ In short: **data lives in small JS arrays, one shared renderer turns it into HTM
 The bookmark mechanism is the heart of the site and is deliberately **data‑driven to avoid HTML duplication**:
 
 - **Data** — Each category has a `js/dynamic<Category>.js` file exporting an array of objects:
+
   ```js
   const gamesBookmarks = [
     { title: 'Steam', href: 'https://store.steampowered.com/', alt: 'steam_games' },
@@ -119,6 +120,7 @@ The bookmark mechanism is the heart of the site and is deliberately **data‑dri
   ];
   BookmarkBuilder.renderBookmarks(gamesBookmarks);
   ```
+
 - **Rendering** — [`bookmarkBuilder.js`](js/bookmarkBuilder.js) exposes a single `renderBookmarks()` function (an IIFE module) that maps each object to an `<a><img id="bookmark"></a>` tile and appends it to the page. It also wires up a subtle Web Audio "click" sound on tile clicks.
 - **Icons by convention** — A tile's image source is derived from its `alt` value: `img/btn/bm/<alt>.png`. To add a new bookmark you add one array entry and drop a matching PNG into `img/btn/bm/`.
 - **Manifest** — [`img/btn/bm/manifest.json`](img/btn/bm/manifest.json) lists every button image so the Service Worker can pre‑cache them for offline use.
@@ -127,7 +129,7 @@ The bookmark mechanism is the heart of the site and is deliberately **data‑dri
 ## JavaScript Modules
 
 | File | Responsibility |
-|------|----------------|
+| ------ | ---------------- |
 | `dynamichead.js` | Injects the shared `<head>` (meta, fonts, stylesheets, analytics, title) into every page from one place. |
 | `bookmarkBuilder.js` | Central renderer that converts bookmark data arrays into image‑tile HTML; adds a click sound. |
 | `bookmarkLoader.js` | Maps a category name to its `dynamic*.js` script and resolves relative paths by directory depth. |
