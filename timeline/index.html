@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        /* APP SHELL & TIMELINE LAYOUT */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+        }
+
+        .viewArea {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .pageHeader {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        marquee {
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .mainArea {
+            display: flex;
+            height: 94vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* LEFT SIDEBAR: TIMELINE CONTROLS & FILTER */
+        .pageLeftMenu {
+            width: 320px;
+            min-width: 300px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-right: 2px solid var(--color-primary, #00EA00);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .timeline-ctrl-box {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--color-accent, #EA00EA);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 12px rgba(234, 0, 234, 0.2);
+        }
+
+        .timeline-ctrl-title {
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 4px;
+        }
+
+        .ctrl-btn {
+            display: block;
+            width: 100%;
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid #333;
+            color: #AAA;
+            padding: 7px 10px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover,
+        .ctrl-btn.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.15);
+        }
+
+        .status-badge {
+            font-size: 0.75em;
+            color: var(--color-primary, #00EA00);
+            background: rgba(0, 234, 0, 0.1);
+            border: 1px solid var(--color-primary, #00EA00);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* RIGHT CONTENT: VERTICAL TIMELINE STAGE */
+        .pageContent {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(5, 5, 8, 0.95);
+            padding: 30px 40px;
+            box-sizing: border-box;
+        }
+
+        .timeline-wrapper {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+            padding-left: 30px;
+        }
+
+        /* VERTICAL TIMELINE SPINE */
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary, #00EA00) 0%, var(--color-accent, #EA00EA) 100%);
+            box-shadow: 0 0 10px rgba(0, 234, 0, 0.5);
+        }
+
+        /* TIMELINE ITEM BLOCK */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* GLOWING NODE MARKER ON SPINE */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-primary, #00EA00);
+            border: 2px solid #000;
+            box-shadow: 0 0 10px var(--color-primary, #00EA00);
+            z-index: 2;
+        }
+
+        /* EVENT CARD */
+        .timeline-card {
+            background: rgba(10, 10, 15, 0.85);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--color-primary, #00EA00);
+            transform: translateX(4px);
+        }
+
+        .timeline-date-badge {
+            display: inline-block;
+            background: rgba(234, 0, 234, 0.15);
+            border: 1px solid var(--color-accent, #EA00EA);
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-card h1,
+        .timeline-card h2,
+        .timeline-card h3 {
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+            border-bottom: 1px dashed #222;
+            padding-bottom: 6px;
+        }
+
+        .timeline-card p {
+            color: #DDD;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .timeline-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #CCC;
+            font-size: 0.88em;
+        }
+
+        .timeline-card pre {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #30363d;
+            padding: 12px;
+            border-radius: 4px;
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        .pageFooter {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            text-align: center;
+            font-size: 0.75em;
+            line-height: 3vh;
+            color: #AAA;
+            border-top: 1px solid #30363d;
+        }
+
+        .pageFooter a {
+            color: var(--color-primary, #00EA00);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="viewArea">
+        <div class="pageHeader">
+            <marquee>⏳ GEWEY AUTOMATED TIMELINE — AUTO-DISCOVERING MARKDOWN EVENTS IN ./EVENTS/</marquee>
+        </div>
+
+        <div class="mainArea">
+            <!-- LEFT MENU -->
+            <div class="pageLeftMenu">
+                <div class="timeline-ctrl-box">
+                    <div class="timeline-ctrl-title">⚙️ Timeline Controls</div>
+                    <button class="ctrl-btn active" id="btn-newest" onclick="setSortOrder('desc')">▼ Newest
+                        First</button>
+                    <button class="ctrl-btn" id="btn-oldest" onclick="setSortOrder('asc')">▲ Oldest First</button>
+                    <div class="status-badge" id="status-display">Scanning ./events/...</div>
+                </div>
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="pageContent">
+                <div class="timeline-wrapper" id="timelineContainer">
+                    <!-- Event cards auto-render here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="pageFooter">
+            <span>Copyright © 2008–2026 Hobos Inc. | <a href="../index.html">Return to Homepage</a></span>
+        </div>
+    </div>
+
+    <script>
+        let eventCache = [];
+        let currentSort = 'desc';
+
+        // SIMPLE MARKDOWN PARSER FOR .MD CONTENT
+        function parseMarkdown(mdText) {
+            let html = mdText
+                .replace(/^### (.*\$)/gim, '<h3>\$1</h3>')
+                .replace(/^## (.*\$)/gim, '<h2>\$1</h2>')
+                .replace(/^# (.*\$)/gim, '<h1>\$1</h1>')
+                .replace(/\*\*(.*)\*\*/gim, '<strong>\$1</strong>')
+                .replace(/\*(.*)\*/gim, '<em>\$1</em>')
+                .replace(/```([\s\S]*?)```/gim, '<pre><code>\$1</code></pre>')
+                .replace(/`([^`]+)`/gim, '<code>\$1</code>')
+                .replace(/^\- (.*\$)/gim, '<li>\$1</li>')
+                .replace(/\n\n/gim, '</p><p>');
+
+            return '<p>' + html + '</p>';
+        }
+
+        // FETCH & AUTO-DISCOVER EVENTS
+        async function discoverAndRenderEvents() {
+            const statusEl = document.getElementById('status-display');
+            let fileList = [];
+
+            // 1. ATTEMPT AUTO-SCAN VIA GITHUB CONTENTS API
+            try {
+                const apiRes = await fetch('[suspicious link removed]');
+                if (apiRes.ok) {
+                    const files = await apiRes.json();
+                    fileList = files
+                        .map(f => [suspicious link removed])
+                        .filter(name => /^\d{4}-\d{2}-\d{2}.*\.md\$/i.test(name));
+                }
+            } catch (err) {
+                console.warn('[Timeline] GitHub API fetch failed or rate limited:', err);
+            }
+
+            // 2. LOCAL MANIFEST FALLBACK (FOR LOCAL / OFFLINE DEV)
+            if (!fileList.length) {
+                try {
+                    const manifestRes = await fetch('./events/manifest.json');
+                    if (manifestRes.ok) {
+                        fileList = await manifestRes.json();
+                    }
+                } catch (e) {
+                    // Default fallback check for known test files
+                    fileList = ['2026-02-10-Birth_of_Viktor.md', '2026-02-09.md'];
+                }
+            }
+
+            statusEl.textContent = `Found ${fileList.length} Event File(s)`;
+
+            // 3. FETCH CONTENT FOR EACH DATED .MD FILE
+            const eventPromises = [suspicious link removed](async (filename) => {
+                // Extract YYYY-MM-DD from filename prefix
+                const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+                const dateStr = dateMatch ? dateMatch[1] : 'Undated';
+
+                try {
+                    const contentRes = await fetch(`./events/${filename}`);
+                    if (contentRes.ok) {
+                        const rawMd = await contentRes.text();
+                        return {
+                            date: dateStr,
+                            filename: filename,
+                            htmlContent: parseMarkdown(rawMd)
+                        };
+                    }
+                } catch (err) {
+                    console.error(`[Timeline] Could not load ./events/${filename}`, err);
+                }
+                return null;
+            });
+
+            const results = await Promise.all(eventPromises);
+            eventCache = results.filter(item => item !== null);
+
+            renderTimeline();
+        }
+
+        // RENDER SORTED CARDS
+        function renderTimeline() {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+
+            // Sort chronologically
+            eventCache.sort((a, b) => {
+                if (currentSort === 'desc') {
+                    return [suspicious link removed].localeCompare([suspicious link removed]);
+                } else {
+                    return [suspicious link removed].localeCompare([suspicious link removed]);
+                }
+            });
+
+            if (eventCache.length === 0) {
+                container.innerHTML = '<div style="color:#AAA; text-align:center; padding:40px;">No .md event files found in ./events/</div>';
+                return;
+            }
+
+            eventCache.forEach(evt => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'timeline-item';
+
+                itemDiv.innerHTML = `
+                    <div class="timeline-card">
+                        <div class="timeline-date-badge">📅 ${[suspicious link removed]}</div>
+                        <div class="timeline-body">${evt.htmlContent}</div>
+                    </div>
+                `;
+
+                container.appendChild(itemDiv);
+            });
+        }
+
+        function setSortOrder(order) {
+            currentSort = order;
+            document.getElementById('btn-newest').classList.toggle('active', order === 'desc');
+            document.getElementById('btn-oldest').classList.toggle('active', order === 'asc');
+            renderTimeline();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', discoverAndRenderEvents);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../../js/dynamichead.js"></script>
+    <style>
+        /* APP SHELL & CITIZENRY LAYOUT */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+        }
+
+        .viewArea {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .pageHeader {
+            height: 3vh;
+            background-image: url("../../img/bg/bricks.png");
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        marquee {
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .mainArea {
+            display: flex;
+            height: 94vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* LEFT MENU: CITIZEN ROSTER */
+        .pageLeftMenu {
+            width: 320px;
+            min-width: 300px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-right: 2px solid var(--color-primary, #00EA00);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .citizen-list-title {
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 4px;
+        }
+
+        .citizen-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 15, 20, 0.6);
+            border: 1px solid #222;
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .citizen-nav-item:hover, .citizen-nav-item.active {
+            border-color: var(--color-primary, #00EA00);
+            background: rgba(0, 234, 0, 0.12);
+        }
+
+        .citizen-avatar-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--color-primary, #00EA00);
+            background: #111;
+        }
+
+        .citizen-name-display {
+            color: #FFF;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .citizen-status-sub {
+            font-size: 0.7em;
+            color: #888;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+            background: var(--color-primary, #00EA00);
+            box-shadow: 0 0 6px var(--color-primary, #00EA00);
+        }
+
+        .roster-count-badge {
+            font-size: 0.72em;
+            color: var(--color-accent, #EA00EA);
+            background: rgba(234, 0, 234, 0.1);
+            border: 1px solid var(--color-accent, #EA00EA);
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* RIGHT CONTENT: CITIZEN STAGE */
+        .pageContent {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(5, 5, 8, 0.95);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .profile-container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .pageFooter {
+            height: 3vh;
+            background-image: url("../../img/bg/bricks.png");
+            text-align: center;
+            font-size: 0.75em;
+            line-height: 3vh;
+            color: #AAA;
+            border-top: 1px solid #30363d;
+        }
+
+        .pageFooter a {
+            color: var(--color-primary, #00EA00);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewArea">
+        <div class="pageHeader">
+            <marquee>🏙️ TESSERACT CITY CITIZENRY REGISTRY — CITIZEN PROFILES & CHARACTER DOSSIERS</marquee>
+        </div>
+
+        <div class="mainArea">
+            <!-- LEFT MENU: AUTO-DISCOVERED ROSTER -->
+            <div class="pageLeftMenu">
+                <div class="citizen-list-title">Citizen Roster</div>
+                <div id="citizenRosterList">
+                    <!-- Dynamic Citizen items populate here -->
+                </div>
+                <div class="roster-count-badge" id="rosterStatusBadge">Scanning ./profiles/...</div>
+            </div>
+
+            <!-- RIGHT CONTENT: ACTIVE PROFILE STAGE -->
+            <div class="pageContent">
+                <div class="profile-container" id="profileStage">
+                    <div style="color:#888; text-align:center; padding-top:50px;">Loading Citizen Dossier...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pageFooter">
+            <span>Copyright © 2008–2026 Hobos Inc. | <a href="../index.html">Return to Tesseract Hub</a></span>
+        </div>
+    </div>
+
+    <script>
+        let discoveredProfiles = [];
+
+        // CONVERT FILENAME TO FORMATTED NAME
+        // Crash_Test.html -> "Crash Test" | Viktor.html -> "Viktor"
+        function formatCitizenName(filename) {
+            const rawName = filename.replace(/\.html\$/i, '');
+            return rawName.replace(/_/g, ' ');
+        }
+
+        // AUTO-DISCOVER CITIZEN PROFILES
+        async function discoverCitizens() {
+            let fileList = [];
+            const badgeEl = document.getElementById('rosterStatusBadge');
+
+            // 1. GITHUB API SCAN
+            try {
+                const apiRes = await fetch('[suspicious link removed]');
+                if (apiRes.ok) {
+                    const files = await apiRes.json();
+                    fileList = files
+                        .map(f => [suspicious link removed])
+                        .filter(name => name.endsWith('.html'));
+                }
+            } catch (e) {
+                console.warn('[Citizenry] GitHub API scan skipped:', e);
+            }
+
+            // 2. LOCAL MANIFEST FALLBACK
+            if (!fileList.length) {
+                try {
+                    const manifestRes = await fetch('./profiles/manifest.json');
+                    if (manifestRes.ok) {
+                        fileList = await manifestRes.json();
+                    }
+                } catch (e) {
+                    // Default local fallback list
+                    fileList = ['Agent_Name.html'];
+                }
+            }
+
+            // 3. FILTER REAL CITIZENS VS TEMPLATE FALLBACK
+            const realCitizens = fileList.filter(f => f.toLowerCase() !== 'agent_name.html');
+
+            if (realCitizens.length > 0) {
+                // We have actual citizens! Exclude Agent_Name.html
+                discoveredProfiles = realCitizens;
+                badgeEl.textContent = `Registered Citizens: ${realCitizens.length}`;
+            } else {
+                // Fallback to template agent
+                discoveredProfiles = ['Agent_Name.html'];
+                badgeEl.textContent = `Registered Citizens: 1 (Template)`;
+            }
+
+            renderRosterMenu();
+
+            // Auto-load first citizen
+            if (discoveredProfiles.length > 0) {
+                loadProfile(discoveredProfiles[0]);
+            }
+        }
+
+        // RENDER SIDEBAR MENU
+        function renderRosterMenu() {
+            const listContainer = document.getElementById('citizenRosterList');
+            listContainer.innerHTML = '';
+
+            discoveredProfiles.forEach((filename, idx) => {
+                const displayName = formatCitizenName(filename);
+                const navItem = document.createElement('div');
+                navItem.className = `citizen-nav-item ${idx === 0 ? 'active' : ''}`;
+                navItem.setAttribute('data-file', filename);
+                navItem.onclick = () => {
+                    document.querySelectorAll('.citizen-nav-item').forEach(el => el.classList.remove('active'));
+                    navItem.classList.add('active');
+                    loadProfile(filename);
+                };
+
+                navItem.innerHTML = `
+                    <img src="../../img/logo/gewey/geweyLogo.png" alt="${displayName}" class="citizen-avatar-icon" />
+                    <div>
+                        <div class="citizen-name-display">${displayName}</div>
+                        <div class="citizen-status-sub"><span class="status-dot"></span> Active Citizen</div>
+                    </div>
+                `;
+
+                listContainer.appendChild(navItem);
+            });
+        }
+
+        // FETCH AND INJECT CITIZEN PROFILE CONTENT
+        async function loadProfile(filename) {
+            const stage = document.getElementById('profileStage');
+            try {
+                const res = await fetch(`./profiles/${filename}`);
+                if (res.ok) {
+                    const htmlText = await res.text();
+                    
+                    // Extract inner body content if full HTML, or inject directly
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, 'text/html');
+                    const bodyContent = doc.body ? doc.body.innerHTML : htmlText;
+                    
+                    stage.innerHTML = bodyContent;
+                } else {
+                    stage.innerHTML = `<div style="color:#FF5555;">Error: Could not load ./profiles/${filename}</div>`;
+                }
+            } catch (err) {
+                stage.innerHTML = `<div style="color:#FF5555;">Error fetching profile: ${err.message}</div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', discoverCitizens);
+    </script>
+</body>
+</html>

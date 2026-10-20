@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: Inconsolata, monospace;
+        }
+
+        .viewArea {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .pageHeader {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        marquee {
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .mainArea {
+            display: flex;
+            height: 94vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .pageLeftMenu {
+            width: 320px;
+            min-width: 300px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-right: 2px solid var(--color-primary, #00EA00);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .gdd-nav-title {
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.78em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 15px 0 8px 0;
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 4px;
+        }
+
+        .gdd-nav-btn {
+            display: block;
+            background: rgba(15, 15, 20, 0.6);
+            border: 1px solid #222;
+            color: #AAA;
+            padding: 7px 10px;
+            font-size: 0.82em;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .gdd-nav-btn:hover,
+        .gdd-nav-btn.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.12);
+        }
+
+        .pageContent {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(5, 5, 8, 0.95);
+            padding: 30px 40px;
+            box-sizing: border-box;
+        }
+
+        .gdd-section {
+            display: none;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .gdd-section.active {
+            display: block;
+        }
+
+        .gdd-h1 {
+            color: #FFF;
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.85em;
+        }
+
+        .spec-table th {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 2px solid #30363d;
+            color: var(--color-accent, #EA00EA);
+        }
+
+        .spec-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #222;
+            color: #DDD;
+        }
+
+        /* ROADMAP PROGRESS BAR */
+        .progress-box {
+            margin: 15px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #AAA;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--color-primary, #00EA00);
+            box-shadow: 0 0 8px rgba(0, 234, 0, 0.5);
+        }
+
+        .pageFooter {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            text-align: center;
+            font-size: 0.75em;
+            line-height: 3vh;
+            color: #AAA;
+            border-top: 1px solid #30363d;
+        }
+
+        .pageFooter a {
+            color: var(--color-primary, #00EA00);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="viewArea">
+        <div class="pageHeader">
+            <marquee>🎮 GAME DESIGN PLAN (GDD) — PROJECT TESSERACT: BLUEPRINT & MECHANICS SPECS</marquee>
+        </div>
+
+        <div class="mainArea">
+            <div class="pageLeftMenu">
+                <div class="gdd-nav-title">Design Blueprint</div>
+                <a class="gdd-nav-btn active" onclick="loadGDD('gdd-overview')">1. Executive Overview</a>
+                <a class="gdd-nav-btn" onclick="loadGDD('gdd-mechanics')">2. Core Loop & Mechanics</a>
+                <a class="gdd-nav-btn" onclick="loadGDD('gdd-tech')">3. Engine & Tech Stack</a>
+
+                <div class="gdd-nav-title">Production Track</div>
+                <a class="gdd-nav-btn" onclick="loadGDD('gdd-roadmap')">4. Milestone Roadmap</a>
+            </div>
+
+            <div class="pageContent">
+                <!-- SECTION 1: OVERVIEW -->
+                <div id="gdd-overview" class="gdd-section active">
+                    <h1 class="gdd-h1">Project Tesseract: Executive Summary</h1>
+                    <p style="color:#DDD; line-height:1.6; font-size:0.9em;">
+                        <strong>Project Tesseract</strong> is an action-RPG set inside a cybernetic grid matrix. Players
+                        control rogue AI agents navigating procedurally reconfiguring sector towers.
+                    </p>
+
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Spec Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Genre</td>
+                                <td>Isometric Cyberpunk Action-RPG</td>
+                            </tr>
+                            <tr>
+                                <td>Target Engine</td>
+                                <td>Three.js WebGL / Custom C++ Engine</td>
+                            </tr>
+                            <tr>
+                                <td>Target Platform</td>
+                                <td>Web Browser (PWA) / Steam Desktop</td>
+                            </tr>
+                            <tr>
+                                <td>Target Framerate</td>
+                                <td>60 FPS @ 1080p (Web), 144 FPS (Desktop)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECTION 2: MECHANICS -->
+                <div id="gdd-mechanics" class="gdd-section">
+                    <h1 class="gdd-h1">Core Gameplay Loop & Systems</h1>
+                    <p style="color:#DDD; line-height:1.6; font-size:0.9em;">
+                        Players infiltrate sectors, extract memory cores, upgrade agent neural chips, and defend against
+                        rogue security subroutines.
+
+                    <table id="8a8e2d32-580f-8275-8ba7-018e3b7b6034" class="simple-table" dir="ltr">
+                        <thead class="simple-table-header">
+                            <tr id="43fe2d32-580f-8224-97f9-0166d0f0318b" dir="ltr">
+                                <th id="~rTj" class="simple-table-header-color simple-table-header"
+                                    style="width:294.75px">Step</th>
+                                <th id="IL?M" class="simple-table-header-color simple-table-header"
+                                    style="width:294.75px">Section</th>
+                                <th id="L?iC" class="simple-table-header-color simple-table-header"
+                                    style="width:294.75px">Est Time</th>
+                                <th id="&gt;UDe" class="simple-table-header-color simple-table-header"
+                                    style="width:294.75px">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="a92e2d32-580f-8224-a12d-8197aea7b05e" dir="ltr">
+                                <td id="~rTj" class="" style="width:294.75px">1</td>
+                                <td id="IL?M" class="" style="width:294.75px">Foundation (World Overview)</td>
+                                <td id="L?iC" class="" style="width:294.75px">15 - 20 minutes</td>
+                                <td id="&gt;UDe" class="" style="width:294.75px">A one-sentence concept, tone, genre,
+                                    and what makes this
+                                    world different</td>
+                            </tr>
+                            <tr id="3dae2d32-580f-82cf-b8e0-8121c34657d9" dir="ltr">
+                                <td id="~rTj" class="" style="width:294.75px">2</td>
+                                <td id="IL?M" class="" style="width:294.75px">Locations</td>
+                                <td id="L?iC" class="" style="width:294.75px">20 - 30 minutes</td>
+                                <td id="&gt;UDe" class="" style="width:294.75px">3-5 key places your story visits</td>
+                            </tr>
+                            <tr id="3e7e2d32-580f-822f-8426-81b9df8e961e" dir="ltr">
+                                <td id="~rTj" class="" style="width:294.75px">3</td>
+                                <td id="IL?M" class="" style="width:294.75px">Magic / Power System</td>
+                                <td id="L?iC" class="" style="width:294.75px">15 - 25 minutes</td>
+                                <td id="&gt;UDe" class="" style="width:294.75px">The rules of what’s possible in your
+                                    world</td>
+                            </tr>
+                            <tr id="c75e2d32-580f-83cc-bda5-81300f678377" dir="ltr">
+                                <td id="~rTj" class="" style="width:294.75px">4</td>
+                                <td id="IL?M" class="" style="width:294.75px">Culture &amp; Factions</td>
+                                <td id="L?iC" class="" style="width:294.75px">25 - 35 minutes</td>
+                                <td id="&gt;UDe" class="" style="width:294.75px">Who you world’s people are, and who
+                                    holds power over them
+                                </td>
+                            </tr>
+                            <tr id="3f7e2d32-580f-8292-af68-81e38251171f" dir="ltr">
+                                <td id="~rTj" class="" style="width:294.75px">5</td>
+                                <td id="IL?M" class="" style="width:294.75px">Plot Connections</td>
+                                <td id="L?iC" class="" style="width:294.75px">10 - 15 minutes</td>
+                                <td id="&gt;UDe" class="" style="width:294.75px">How this world specifically challenges
+                                    and shapes your
+                                    protagonist/characters</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <aside class="block-color-blue_background callout" data-notion-callout=""
+                        data-notion-callout-icon="🕰️" data-notion-callout-background="blue_background"
+                        style="white-space:pre-wrap;display:flex" id="6ebe2d32-580f-82e6-ae65-814c5031321e" dir="ltr">
+                        <div style="font-size:1.5em"><span class="icon" data-emoji="🕰️"></span></div>
+                        <div style="width:100%">
+                            <p id="5b0e2d32-580f-8273-a847-812791b453b3" class="" dir="auto">Total time : 85 - 125
+                                minutes (about 2 hrs)</p>
+                        </div>
+                    </aside>
+                    <hr id="716e2d32-580f-8315-bb94-81c8f4deb0fb" dir="auto" />
+                    <h1 id="f05e2d32-580f-826d-bd69-811077d3493c" class="" dir="auto">World Overview</h1>
+                    <div id="03be2d32-580f-838d-a8d1-0160c005090f" class="column-list" data-notion-column-list=""
+                        dir="auto">
+                        <div id="bb2e2d32-580f-82e3-a4a0-012c2fa3158d" style="width:50%" class="column"
+                            data-notion-column-ratio="0.5" dir="auto">
+                            <ul id="ac0e2d32-580f-8320-b9af-8112543db2c1" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ World Name ]</li>
+                            </ul>
+                            <ul id="02ae2d32-580f-8243-911c-818a433d45a4" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ One-Sentence Concept ]</li>
+                            </ul>
+                            <ul id="0e2e2d32-580f-8387-a32c-81015f9af249" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ Tone ]</li>
+                            </ul>
+                            <ul id="50ee2d32-580f-8268-baca-815374f25599" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ Genre ]</li>
+                            </ul>
+                            <ul id="03de2d32-580f-8346-a8fe-01e5df5e60fe" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ Tech Level ]</li>
+                            </ul>
+                            <ul id="8f6e2d32-580f-833b-929a-81714eb6cb75" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">[ Magic Presence ]</li>
+                            </ul>
+                            <p id="fdce2d32-580f-82a0-ac71-8116267c3073" class="" dir="auto">
+                            </p>
+                        </div>
+                        <div id="1c5e2d32-580f-836a-b129-01afb7062f35" style="width:50%" class="column"
+                            data-notion-column-ratio="0.5" dir="auto">
+                            <figure id="21ae2d32-580f-82bc-a91a-012ae60f5624" class="image"
+                                data-notion-image="IMG_3515.jpeg" dir="ltr"><a href="IMG_3515.jpeg"><img
+                                        style="width:400px" src="IMG_3515.jpeg" /></a></figure>
+                            <p id="a1fe2d32-580f-830c-a88b-01c20c6b0737" class="" dir="auto"> [ Moodboard placeholder ]
+                            </p>
+                        </div>
+                    </div>
+                    <h3 id="323e2d32-580f-82b3-ba3f-81a0a6aca7fb" class="" dir="auto">Elevator Pitch</h3>
+                    <blockquote id="fc7e2d32-580f-83c3-b344-01023a63868f" class="" dir="auto"><em>In one or two
+                            sentences, what makes this
+                            world different from others in your genre?</em></blockquote>
+                    <details id="1cfe2d32-580f-8270-8947-81799cf2f8d2" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="ca3e2d32-580f-82c4-9d7a-81937a24b388" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What’s one law or rule everyone in this world knows
+                                    without being told?
+                                </li>
+                            </ul>
+                            <ul id="d73e2d32-580f-838e-acf8-819fd877ca66" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What resource is scarce here, and who fights over it?
+                                </li>
+                            </ul>
+                            <ul id="a6ce2d32-580f-839d-b240-0158c2d748a9" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What would a visitor from our world find most
+                                    disorienting?</li>
+                            </ul>
+                            <ul id="bb8e2d32-580f-82b2-bcae-016e528064a4" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What’s normal here that would be shocking anywhere
+                                    else?</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <hr id="bdce2d32-580f-83cc-8b8d-01e730f61b77" dir="auto" />
+                    <h1 id="fc0e2d32-580f-83f5-8746-014bc9f192ee" class="" dir="auto">Locations</h1>
+                    <p id="be9e2d32-580f-83a3-a684-014c16d8f2c1" class="" dir="auto">Track the places your story
+                        actually visits</p>
+                    <details id="00ce2d32-580f-83a3-8e25-81e618483ccb" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="4e6e2d32-580f-8221-88bd-0102bab35353" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What’s the one place most of the story happens?</li>
+                            </ul>
+                            <ul id="266e2d32-580f-8321-81dc-019ba0d37a33" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What location does your protagonist fear or avoid?</li>
+                            </ul>
+                            <ul id="5dce2d32-580f-82f9-bb28-01048376d5b5" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">Is there a place that means something different to two
+                                    different
+                                    characters?</li>
+                            </ul>
+                            <p id="c92e2d32-580f-837a-ab65-81cff0d954f0" class="" dir="auto">
+                            </p>
+                        </div>
+                    </details>
+                    <div id="197e2d32-580f-8202-b17d-81c1e54cbc6f" class="collection-content" dir="ltr">
+                        <h4 class="collection-title">Locations</h4>
+                        <div class="collection-content-wrapper">
+                            <table class="collection-content">
+                                <colgroup>
+                                    <col style="width:21.568627450980394%" />
+                                    <col style="width:19.607843137254903%" />
+                                    <col style="width:19.607843137254903%" />
+                                    <col style="width:19.607843137254903%" />
+                                    <col style="width:19.60784313725489%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/font_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Location Name
+                                        </th>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/arrow-circle-down_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Type</th>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/description_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Key Feature
+                                        </th>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/description_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Relevance to
+                                            Story</th>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/description_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Connections
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="111e2d32-580f-83b9-9e9e-01166451a565">
+                                        <td class="cell-title"><a
+                                                href="Untitled%20111e2d32580f83b99e9e01166451a565.html"
+                                                data-notion-page-id="111e2d32-580f-83b9-9e9e-01166451a565"
+                                                data-notion-space-id="77ae2d32-580f-8110-b698-000372c35a17">Untitled</a>
+                                        </td>
+                                        <td class="cell-XR\n"><span
+                                                class="selected-value select-value-color-default">Other</span></td>
+                                        <td class="cell-MHBz"></td>
+                                        <td class="cell-Cu?S"></td>
+                                        <td class="cell-RJWi"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br /><br />
+                    </div>
+                    <hr id="1fbe2d32-580f-8381-ae9f-815b897cc579" dir="auto" />
+                    <h1 id="c7be2d32-580f-839e-a2db-81d87a53dd73" class="" dir="auto">Cultures &amp; Peoples</h1>
+                    <details id="0d3e2d32-580f-8378-80e8-8142785804c5" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="516e2d32-580f-82fc-9eeb-01894dc99765" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What does this culture value most?</li>
+                            </ul>
+                            <ul id="8a4e2d32-580f-83c7-8884-810d90fe6537" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What’s considered rude or taboo?</li>
+                            </ul>
+                            <ul id="157e2d32-580f-8331-8e8c-0143a9d3e3f4" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What do people here call outsiders?</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <table id="704e2d32-580f-8352-9b1d-818149085374" class="simple-table" dir="ltr">
+                        <thead class="simple-table-header">
+                            <tr id="e9de2d32-580f-835a-ac37-81058ce018ed" dir="ltr">
+                                <th id="GLfL" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Culture/People
+                                    Name</th>
+                                <th id="zyyx" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Core Beliefs &amp;
+                                    Values</th>
+                                <th id="RjC`" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Social Heirarchy
+                                </th>
+                                <th id="G`yM" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Taboos</th>
+                                <th id="Eqm_" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Naming Style</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="ed9e2d32-580f-8269-8668-81e4af81d687" dir="ltr">
+                                <td id="GLfL" class="" style="width:235.8px"></td>
+                                <td id="zyyx" class="" style="width:235.8px"></td>
+                                <td id="RjC`" class="" style="width:235.8px"></td>
+                                <td id="G`yM" class="" style="width:235.8px"></td>
+                                <td id="Eqm_" class="" style="width:235.8px"></td>
+                            </tr>
+                            <tr id="e44e2d32-580f-821c-b553-01baf06ec6dd" dir="ltr">
+                                <td id="GLfL" class="" style="width:235.8px"></td>
+                                <td id="zyyx" class="" style="width:235.8px"></td>
+                                <td id="RjC`" class="" style="width:235.8px"></td>
+                                <td id="G`yM" class="" style="width:235.8px"></td>
+                                <td id="Eqm_" class="" style="width:235.8px"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <aside class="block-color-gray_background callout" data-notion-callout=""
+                        data-notion-callout-icon="🔗" data-notion-callout-background="gray_background"
+                        style="white-space:pre-wrap;display:flex" id="e76e2d32-580f-821c-9bdb-011195a4a14c" dir="ltr">
+                        <div style="font-size:1.5em"><span class="icon" data-emoji="🔗"></span></div>
+                        <div style="width:100%">
+                            <p id="b7ee2d32-580f-83fe-89c3-01a270af0328" class="" dir="auto">Connect to Related
+                                Locations.</p>
+                        </div>
+                    </aside>
+                    <hr id="f08e2d32-580f-8348-a28e-8149a9592413" dir="auto" />
+                    <h1 id="e3de2d32-580f-8361-aac0-013982d742ad" class="" dir="auto">Magic/Power System</h1>
+                    <aside class="block-color-gray_background callout" data-notion-callout=""
+                        data-notion-callout-icon="🔎" data-notion-callout-background="gray_background"
+                        style="white-space:pre-wrap;display:flex" id="8d6e2d32-580f-82c1-8544-8187c7d36095" dir="ltr">
+                        <div style="font-size:1.5em"><span class="icon" data-emoji="🔎"></span></div>
+                        <div style="width:100%">
+                            <p id="4dbe2d32-580f-82ed-8027-8190494fe5e8" class="" dir="auto">Skip this if it doesn’t
+                                apply, or repurpose it
+                                for whatever governs in your world.</p>
+                        </div>
+                    </aside>
+                    <details id="7d1e2d32-580f-830c-bbe6-8199dd9a12d6" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="409e2d32-580f-82c6-8e9f-813cb04ec422" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">Who can use this power, and who can’t?</li>
+                            </ul>
+                            <ul id="94be2d32-580f-833f-8072-01aa2ff447ac" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What does it cost the user?</li>
+                            </ul>
+                            <ul id="78ee2d32-580f-8253-89ba-81bcc37de94a" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What can it never do, no matter how strong someone is?
+                                </li>
+                            </ul>
+                            <ul id="c53e2d32-580f-82a2-8b45-81f00aa9aa25" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What are the sources of power?</li>
+                            </ul>
+                            <ul id="80de2d32-580f-8246-a148-0101da77c817" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">Is there someone or something that controls the power?
+                                    <h3 id="c9de2d32-580f-830a-b7a1-01ea3f11abb0" class="" dir="auto">Social Impact</h3>
+                                    <ul id="0a3e2d32-580f-82c0-ba15-01b5372e1992" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:circle">How does power shape the law?<ul
+                                                id="7d7e2d32-580f-837c-bc4b-81f202fe2170" class="bulleted-list"
+                                                dir="auto">
+                                                <li style="list-style-type:square">How does power shape war?</li>
+                                            </ul>
+                                            <ul id="3a8e2d32-580f-82c1-8a3e-81c1d3eedeef" class="bulleted-list"
+                                                dir="auto">
+                                                <li style="list-style-type:square">How does power shape the economy?<ul
+                                                        id="c99e2d32-580f-83e6-a475-010cbf759bf2" class="bulleted-list"
+                                                        dir="auto">
+                                                        <li style="list-style-type:disc">How does power shape class?
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                    <hr id="fb7e2d32-580f-82f6-b371-01ff52e38bf0" dir="auto" />
+                    <h1 id="bb8e2d32-580f-82c4-95bc-81d89e653f70" class="" dir="auto">Factions</h1>
+                    <details id="30ae2d32-580f-83bf-8558-81a60a3221d8" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="d30e2d32-580f-836c-8f85-014701697f84" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">Who currently holds power in each facton, and who wants
+                                    to take it?</li>
+                            </ul>
+                            <ul id="54be2d32-580f-83fd-a072-8161f17f0273" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What would each major faction do if they won
+                                    completely?</li>
+                            </ul>
+                            <ul id="e86e2d32-580f-82e3-bd5e-0112bd682a09" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">Which two factions would never work together and why?
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                    <table id="cd7e2d32-580f-83d3-b07d-81f5db8110c9" class="simple-table" dir="ltr">
+                        <thead class="simple-table-header">
+                            <tr id="62de2d32-580f-831f-b481-01ffb102b285" dir="ltr">
+                                <th id="[&lt;Yi" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Faction Name
+                                </th>
+                                <th id="kjvu" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Type</th>
+                                <th id="zZw&gt;" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Goal</th>
+                                <th id="O\WQ" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Resources</th>
+                                <th id=";|Bk" class="simple-table-header-color simple-table-header"
+                                    style="width:235.8px">Key Figure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="227e2d32-580f-82dc-94b9-018690e2e7f1" dir="ltr">
+                                <td id="[&lt;Yi" class="" style="width:235.8px"></td>
+                                <td id="kjvu" class="" style="width:235.8px">Ruling</td>
+                                <td id="zZw&gt;" class="" style="width:235.8px"></td>
+                                <td id="O\WQ" class="" style="width:235.8px"></td>
+                                <td id=";|Bk" class="" style="width:235.8px"></td>
+                            </tr>
+                            <tr id="5d0e2d32-580f-82f1-b3ca-01eec9262f9a" dir="ltr">
+                                <td id="[&lt;Yi" class="" style="width:235.8px"></td>
+                                <td id="kjvu" class="" style="width:235.8px">Rebel</td>
+                                <td id="zZw&gt;" class="" style="width:235.8px"></td>
+                                <td id="O\WQ" class="" style="width:235.8px"></td>
+                                <td id=";|Bk" class="" style="width:235.8px"></td>
+                            </tr>
+                            <tr id="d8ee2d32-580f-8344-8b76-81b0c411cd29" dir="ltr">
+                                <td id="[&lt;Yi" class="" style="width:235.8px"></td>
+                                <td id="kjvu" class="" style="width:235.8px">Religious </td>
+                                <td id="zZw&gt;" class="" style="width:235.8px"></td>
+                                <td id="O\WQ" class="" style="width:235.8px"></td>
+                                <td id=";|Bk" class="" style="width:235.8px"></td>
+                            </tr>
+                            <tr id="20ee2d32-580f-8267-ad48-819ebe118b37" dir="ltr">
+                                <td id="[&lt;Yi" class="" style="width:235.8px"></td>
+                                <td id="kjvu" class="" style="width:235.8px">Guild</td>
+                                <td id="zZw&gt;" class="" style="width:235.8px"></td>
+                                <td id="O\WQ" class="" style="width:235.8px"></td>
+                                <td id=";|Bk" class="" style="width:235.8px"></td>
+                            </tr>
+                            <tr id="51fe2d32-580f-8334-9ac0-01644e7b6fde" dir="ltr">
+                                <td id="[&lt;Yi" class="" style="width:235.8px"></td>
+                                <td id="kjvu" class="" style="width:235.8px">Other</td>
+                                <td id="zZw&gt;" class="" style="width:235.8px"></td>
+                                <td id="O\WQ" class="" style="width:235.8px"></td>
+                                <td id=";|Bk" class="" style="width:235.8px"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <aside class="block-color-gray_background callout" data-notion-callout=""
+                        data-notion-callout-icon="🔗" data-notion-callout-background="gray_background"
+                        style="white-space:pre-wrap;display:flex" id="ed7e2d32-580f-8235-865b-01ba9b3be8d0" dir="ltr">
+                        <div style="font-size:1.5em"><span class="icon" data-emoji="🔗"></span></div>
+                        <div style="width:100%">
+                            <p id="c24e2d32-580f-83d4-9d1d-01e27c9ec36f" class="" dir="auto">Connect each faction to a
+                                Related Location or
+                                Event</p>
+                        </div>
+                    </aside>
+                    <hr id="0d1e2d32-580f-83de-b54a-8119f7fdb05f" dir="auto" />
+                    <h1 id="544e2d32-580f-83d7-8f0a-81746e902c76" class="" dir="auto">Timeline/History</h1>
+                    <details id="502e2d32-580f-82b6-a697-8180eb7bfc67" open="" class="toggle" dir="auto">
+                        <summary><strong><span style="border-bottom:0.05em solid">Starter Questions</span></strong>
+                        </summary>
+                        <div class="indented">
+                            <ul id="8b7e2d32-580f-8292-afc0-81e77bff2db3" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What single event, if reversed, would change
+                                    everything?</li>
+                            </ul>
+                            <ul id="3b2e2d32-580f-8296-b028-0135528752fc" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What does your world consider its ‘before and after’
+                                    moment?</li>
+                            </ul>
+                            <ul id="ac8e2d32-580f-83b7-9559-01103f25488a" class="bulleted-list" dir="auto">
+                                <li style="list-style-type:disc">What history is disputed or told differently by
+                                    different factions?</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <div id="849e2d32-580f-83ca-81bd-81882f2b4d82" class="collection-content" dir="ltr">
+                        <h4 class="collection-title"></h4>
+                        <div class="collection-content-wrapper">
+                            <table class="collection-content">
+                                <colgroup>
+                                    <col style="width:100%" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th><span class="icon property-icon"><img
+                                                    src="https://app.notion.com/icons/font_gray.svg"
+                                                    style="width:14px;height:14px;display:block" /></span>Event Name
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="b63e2d32-580f-83fc-872a-819d42155aa8">
+                                        <td class="cell-title"><a
+                                                href="Untitled%20b63e2d32580f83fc872a819d42155aa8.html"
+                                                data-notion-page-id="b63e2d32-580f-83fc-872a-819d42155aa8"
+                                                data-notion-space-id="77ae2d32-580f-8110-b698-000372c35a17">Untitled</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><br /><br />
+                    </div>
+                    <hr id="e01e2d32-580f-82b4-80b3-815802d07d86" dir="auto" />
+                    <h1 id="9a7e2d32-580f-8224-a5e0-01c4acc3eb5c" class="" dir="auto">Optional: Go Deeper</h1>
+                    <div id="e32e2d32-580f-82bc-b0fe-0157c553951c" class="column-list" data-notion-column-list=""
+                        dir="auto">
+                        <div id="b6be2d32-580f-82ca-b7a6-0173d974bfcc" style="width:25%" class="column"
+                            data-notion-column-ratio="0.25" dir="auto">
+                            <details open="" class="" dir="auto">
+                                <summary style="font-weight:600;font-size:1.125em;line-height:1.3;margin:0">
+                                    <h4 id="d5ae2d32-580f-83bc-8b54-016ba4c815fe" style="display:inline-block">
+                                        Government &amp; Laws</h4>
+                                </summary>
+                                <div class="indented">
+                                    <ul id="594e2d32-580f-83ed-9d8e-81c3c161cd99" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">Who makes the laws?</li>
+                                    </ul>
+                                    <ul id="ac5e2d32-580f-8235-9773-81322bab92a3" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">Who enforces them?</li>
+                                    </ul>
+                                    <ul id="799e2d32-580f-83b5-9d9c-81e082d35024" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What happens when they’re broken?</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <div id="7f2e2d32-580f-8237-b6a7-812b82e542ac" style="width:25%" class="column"
+                            data-notion-column-ratio="0.25" dir="auto">
+                            <details open="" class="" dir="auto">
+                                <summary style="font-weight:600;font-size:1.125em;line-height:1.3;margin:0">
+                                    <h4 id="80ee2d32-580f-83fa-9e84-012afa4d258e" style="display:inline-block">Economy
+                                        &amp; Resources</h4>
+                                </summary>
+                                <div class="indented">
+                                    <ul id="797e2d32-580f-82b9-8856-81d7747675df" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What does this world trade?</li>
+                                    </ul>
+                                    <ul id="3a8e2d32-580f-8392-8a08-013c3431ae41" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What’s the currency, if any?</li>
+                                    </ul>
+                                    <ul id="525e2d32-580f-839e-ac5a-0160709a16d3" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">Who controls the wealth?</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <div id="d07e2d32-580f-822b-a2d0-019f67ee36ee" style="width:25%" class="column"
+                            data-notion-column-ratio="0.25" dir="auto">
+                            <details open="" class="" dir="auto">
+                                <summary style="font-weight:600;font-size:1.125em;line-height:1.3;margin:0">
+                                    <h4 id="e72e2d32-580f-8273-88db-81239e979cdb" style="display:inline-block">Religion
+                                        &amp; Belief Systems
+                                    </h4>
+                                </summary>
+                                <div class="indented">
+                                    <ul id="5e3e2d32-580f-8334-aba2-01d599dba1ed" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What (if anything) do people worship or believe
+                                            governs their fate?
+                                        </li>
+                                    </ul>
+                                    <ul id="ecfe2d32-580f-837e-9423-01ec85da71ae" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">How does belief show up in daily rituals?</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <div id="5f8e2d32-580f-8337-8dba-016947f0a350" style="width:25%" class="column"
+                            data-notion-column-ratio="0.25" dir="auto">
+                            <details open="" class="" dir="auto">
+                                <summary style="font-weight:600;font-size:1.125em;line-height:1.3;margin:0">
+                                    <h4 id="988e2d32-580f-83d8-b90d-01218abdbd01" style="display:inline-block">
+                                        Technology &amp; Innovation
+                                    </h4>
+                                </summary>
+                                <div class="indented">
+                                    <ul id="a8ce2d32-580f-828e-801f-012c059284af" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What’s the most advanced thing available here?
+                                        </li>
+                                    </ul>
+                                    <ul id="ae5e2d32-580f-82e0-86ad-01c06712c016" class="bulleted-list" dir="auto">
+                                        <li style="list-style-type:disc">What’s still considered primitive, and why?
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                    <hr id="880e2d32-580f-83ca-ae3d-0114b56e87a9" dir="auto" />
+                    <header>
+                        <div class="page-header-icon undefined"><span class="icon" data-emoji="📸"></span></div>
+                        <h1 class="page-title" dir="auto">World Snapshot </h1>
+                        <p class="page-description" dir="auto"></p>
+                    </header>
+                    <div class="page-body">
+                        <aside class="block-color-gray_background callout" data-notion-callout=""
+                            data-notion-callout-icon="✏️" data-notion-callout-background="gray_background"
+                            style="white-space:pre-wrap;display:flex" id="159e2d32-580f-8298-967e-01dd92ca1679"
+                            dir="ltr">
+                            <div style="font-size:1.5em"><span class="icon" data-emoji="✏️"></span></div>
+                            <div style="width:100%">
+                                <p id="c42e2d32-580f-82d1-97a3-0121790fc355" class="" dir="auto">Fill in this page
+                                    manually from your work
+                                    on the Dashboard, it can be fully exported as an PDF for easy reference.</p>
+                            </div>
+                        </aside>
+                        <h1 id="83ce2d32-580f-82e0-a389-81223cba1a5f" class="" dir="auto">[ World Name ]</h1>
+                        <blockquote id="526e2d32-580f-82c9-9f92-8131e421bf39" class="" dir="auto">[ Elevator Pitch ]
+                        </blockquote>
+                        <hr id="f64e2d32-580f-82d6-bebd-0137c6aa1de0" dir="auto" />
+                        <h3 id="138e2d32-580f-82f9-9052-81168a74784e" class="" dir="auto">Key Locations </h3>
+                        <ul id="af1e2d32-580f-83ab-891c-814b3270d365" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ location 1 ]</li>
+                        </ul>
+                        <ul id="83de2d32-580f-8313-ac97-01445b401f4b" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ location 2 ]</li>
+                        </ul>
+                        <ul id="f7ce2d32-580f-828f-9855-811478de0431" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ location 3 ]</li>
+                        </ul>
+                        <p id="431e2d32-580f-8341-9569-01002c81fef9" class="" dir="auto"><em>Include name and one main
+                                feature</em></p>
+                        <p id="065e2d32-580f-83e7-a574-814e6a67026d" class="" dir="auto">
+                        </p>
+                        <h3 id="111e2d32-580f-8312-83c8-01b72e1563b8" class="" dir="auto">Cultures at a Glance </h3>
+                        <ul id="8ffe2d32-580f-83c2-88e9-814101f3d68d" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ culture 1 ]</li>
+                        </ul>
+                        <ul id="de3e2d32-580f-82c6-a9da-8196f5c5bd4e" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ culture 2 ]</li>
+                        </ul>
+                        <ul id="f06e2d32-580f-83be-a687-0112036d4940" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ culture 3 ]</li>
+                        </ul>
+                        <p id="38ae2d32-580f-839c-bbc2-012f7589581c" class="" dir="auto"><em>Include a one sentence
+                                summary per culture
+                            </em></p>
+                        <p id="c8ce2d32-580f-8268-9f49-815e703aa4c1" class="" dir="auto">
+                        </p>
+                        <h3 id="58ae2d32-580f-82ab-8b25-8165eb35042a" class="" dir="auto">Power Systems Rules</h3>
+                        <ul id="b8ae2d32-580f-82e8-b4aa-0171dd10f1a7" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ characteristic ]</li>
+                        </ul>
+                        <ul id="5cfe2d32-580f-8327-ae0b-0129cb726dca" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ characteristic ]</li>
+                        </ul>
+                        <ul id="d0be2d32-580f-83e3-a49b-8103243a738a" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ characteristic ]</li>
+                        </ul>
+                        <p id="1cce2d32-580f-83f3-b8df-81cdbf1ee6a8" class="" dir="auto">
+                        </p>
+                        <h3 id="d76e2d32-580f-8396-bf41-810a87e2a51a" class="" dir="auto">Timeline Highlights</h3>
+                        <ul id="253e2d32-580f-8223-b7ed-8175cdfcc57d" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ key event ]</li>
+                        </ul>
+                        <ul id="28de2d32-580f-83d1-8d31-811b0d220770" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ key event ]</li>
+                        </ul>
+                        <ul id="298e2d32-580f-8358-bece-01d4e0cf8c12" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ key event ]</li>
+                        </ul>
+                        <ul id="9a5e2d32-580f-83b0-a801-01bd269fafad" class="bulleted-list" dir="auto">
+                            <li style="list-style-type:disc">[ key event ]</li>
+                        </ul>
+                        <p id="90de2d32-580f-8247-9f41-012d9e153f72" class="" dir="auto"><em>List oldest to newest</em>
+                        </p>
+                        <p id="4eee2d32-580f-8357-9af0-8176ede252df" class="" dir="auto">
+                        </p>
+                        <h4 id="4f5e2d32-580f-829a-ab08-0185ba65a68a" class="" dir="auto">How This World Challenges Your
+                            Protagonist</h4>
+                        <blockquote id="2bde2d32-580f-83c0-9d6f-815b3f09f921" class="" dir="auto">[ answer here ]
+                        </blockquote>
+                        <p id="044e2d32-580f-8237-8b73-014bde0d327e" class="" dir="auto">
+                        </p>
+                        <h4 id="fd8e2d32-580f-83df-8105-81444d6ca1e3" class="" dir="auto">How This World Helps Your
+                            Protagonist</h4>
+                        <blockquote id="1ebe2d32-580f-82bd-a3b7-81de724a95d2" class="" dir="auto">[ answer here ]
+                        </blockquote>
+                        <p id="7c5e2d32-580f-8324-b726-81e4e805d15f" class="" dir="auto">
+                        </p>
+                        <h4 id="aede2d32-580f-82ad-907a-8140c6d29401" class="" dir="auto">What Setting Element Supports
+                            Your Theme</h4>
+                        <blockquote id="170e2d32-580f-82e6-9d00-01932ce0d452" class="" dir="auto">[ answer here ]
+                        </blockquote>
+                        <p id="ed9e2d32-580f-82b1-9e9e-810d4f576621" class="" dir="auto">
+                        </p>
+                    </div>
+                    </article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+</body>
+
+</html>
+</p>
+</div>
+
+<!-- SECTION 4: ROADMAP -->
+<div id="gdd-roadmap" class="gdd-section">
+    <h1 class="gdd-h1">Production Milestones</h1>
+
+    <div class="progress-box">
+        <div class="progress-label"><span>Phase 1: Engine Blockout & Movement</span><span>100%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <div class="progress-box">
+        <div class="progress-label"><span>Phase 2: Combat System & AI Agents</span><span>65%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 65%;"></div>
+        </div>
+    </div>
+
+    <div class="progress-box">
+        <div class="progress-label"><span>Phase 3: Procedural Level Generation</span><span>30%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 30%;"></div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="pageFooter">
+    <span>Copyright © 2008–2026 Hobos Inc. | <a href="index.html">Return to Tesseract Hub</a></span>
+</div>
+</div>
+
+<script>
+    function loadGDD(secId) {
+        document.querySelectorAll('.gdd-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.gdd-nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(secId).classList.add('active');
+        if (event && event.currentTarget) event.currentTarget.classList.add('active');
+    }
+</script>
+</body>
+
+</html>

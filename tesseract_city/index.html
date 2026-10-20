@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: Inconsolata, monospace;
+        }
+
+        .viewArea {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .pageHeader {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        marquee {
+            color: var(--color-primary, #00EA00);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .mainArea {
+            display: flex;
+            height: 94vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* LEFT MENU: DISTRICT MONITOR */
+        .pageLeftMenu {
+            width: 320px;
+            min-width: 300px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-right: 2px solid var(--color-primary, #00EA00);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .city-status-box {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--color-accent, #EA00EA);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 12px rgba(234, 0, 234, 0.2);
+        }
+
+        .city-status-title {
+            color: var(--color-accent, #EA00EA);
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 4px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78em;
+            margin-bottom: 6px;
+            color: #CCC;
+        }
+
+        .status-val {
+            color: var(--color-primary, #00EA00);
+            font-weight: bold;
+        }
+
+        .sector-link {
+            display: block;
+            background: rgba(15, 15, 20, 0.6);
+            border: 1px solid #222;
+            color: #AAA;
+            padding: 8px 12px;
+            font-size: 0.82em;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .sector-link:hover {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.12);
+        }
+
+        /* RIGHT CONTENT: SECTOR CARDS */
+        .pageContent {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(5, 5, 8, 0.95);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .hero-banner {
+            text-align: center;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-banner h1 {
+            color: var(--color-primary, #00EA00);
+            font-size: 2.2em;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-banner p {
+            color: #AAA;
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        .sector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sector-card {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sector-card:hover {
+            border-color: var(--color-primary, #00EA00);
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(0, 234, 0, 0.15);
+        }
+
+        .card-tag {
+            font-size: 0.7em;
+            color: var(--color-accent, #EA00EA);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            color: #FFF;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            color: #BBB;
+            font-size: 0.85em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-launch {
+            display: inline-block;
+            background: rgba(0, 234, 0, 0.12);
+            border: 1px solid var(--color-primary, #00EA00);
+            color: var(--color-primary, #00EA00);
+            padding: 8px 14px;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.82em;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-launch:hover {
+            background: var(--color-primary, #00EA00);
+            color: #000;
+        }
+
+        .pageFooter {
+            height: 3vh;
+            background-image: url("../img/bg/bricks.png");
+            text-align: center;
+            font-size: 0.75em;
+            line-height: 3vh;
+            color: #AAA;
+            border-top: 1px solid #30363d;
+        }
+
+        .pageFooter a {
+            color: var(--color-primary, #00EA00);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="viewArea">
+        <div class="pageHeader">
+            <marquee>🏙️ TESSERACT CITY DISTRICT HUB — GATEWAY TO THE KNOWLEDGE & AGENT SUITE</marquee>
+        </div>
+
+        <div class="mainArea">
+            <div class="pageLeftMenu">
+                <div class="city-status-box">
+                    <div class="city-status-title">⚡ Tesseract Node Status</div>
+                    <div class="status-row"><span>District Grid:</span><span class="status-val">ONLINE</span></div>
+                    <div class="status-row"><span>Core Power:</span><span class="status-val">99.8%</span></div>
+                    <div class="status-row"><span>Active Agents:</span><span class="status-val">4 Operational</span>
+                    </div>
+                    <div class="status-row"><span>Shield Level:</span><span class="status-val">OPTIMAL</span></div>
+                </div>
+
+                <div style="font-size: 0.75em; color: #888; text-transform: uppercase; margin-bottom: 8px;">Direct Jump
+                    Links:</div>
+                <a href="../wiki.html" class="sector-link">📚 System Wiki</a>
+                <a href="../docs.html" class="sector-link">⚙️ Developer API & Docs</a>
+                <a href="game_project.html" class="sector-link">🎮 Game Design Plan</a>
+                <a href="agents.html" class="sector-link">🤖 Agent Directory & Profiles</a>
+            </div>
+
+            <div class="pageContent">
+                <div class="hero-banner">
+                    <h1>Welcome to Tesseract City</h1>
+                    <p>Central nexus connecting system documentation, game blueprints, and agent intelligence</p>
+                </div>
+
+                <div class="sector-grid">
+                    <!-- CARD 1: WIKI & DOCS -->
+                    <div class="sector-card">
+                        <div>
+                            <div class="card-tag">District 01 • Knowledge Base</div>
+                            <div class="card-title">System Wiki & Developer Specs</div>
+                            <div class="card-desc">Comprehensive reference manuals covering the Service Worker PWA
+                                engine, dynamic theme injection, callout specs, and REST API endpoints.</div>
+                        </div>
+                        <a href="../wiki.html" class="btn-launch">Access Wiki & Specs ➔</a>
+                    </div>
+
+                    <!-- CARD 2: GAME DESIGN DOCUMENT -->
+                    <div class="sector-card">
+                        <div>
+                            <div class="card-tag">District 02 • Project Blueprint</div>
+                            <div class="card-title">Video Game Project Plan (GDD)</div>
+                            <div class="card-desc">Game Design Document detailing core mechanics, engine architecture,
+                                skill tree progression, loot systems, and milestone release timelines.</div>
+                        </div>
+                        <a href="game_project.html" class="btn-launch">Open Game Blueprint ➔</a>
+                    </div>
+
+                    <!-- CARD 3: AGENTS DIRECTORY -->
+                    <div class="sector-card">
+                        <div>
+                            <div class="card-tag">District 03 • Intelligence Suite</div>
+                            <div class="card-title">Agent Roster & Character Sheets</div>
+                            <div class="card-desc">Part employee directory, part Facebook feed, part RPG character
+                                sheet. Inspect active neural modules, status logs, stats, and alignment badges.</div>
+                        </div>
+                        <a href="agents.html" class="btn-launch">Inspect Agent Roster ➔</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pageFooter">
+            <span>Copyright © 2008–2026 Hobos Inc. | <a href="../index.html">Return to Homepage</a></span>
+        </div>
+    </div>
+</body>
+
+</html>
