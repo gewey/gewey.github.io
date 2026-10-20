@@ -1,1 +1,317 @@
-<!-- Here be links to all my repos whether they're private or not. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repositories — Gewey Portfolio</title>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .portfolio-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--color-primary, #00EA00);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .portfolio-brand {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.15em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid #30363d;
+            color: #AAA;
+            padding: 5px 12px;
+            font-size: 0.82em;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: var(--color-primary, #00EA00);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .portfolio-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px 24px 80px 24px;
+            box-sizing: border-box;
+        }
+
+        .hero-banner {
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+        }
+
+        .hero-banner h1 {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.8em;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quote-box {
+            background: rgba(22, 27, 34, 0.7);
+            border-left: 3px solid var(--color-accent, #EA00EA);
+            padding: 12px 18px;
+            border-radius: 4px;
+            color: #c9d1d9;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .section-title {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.15em;
+            margin: 30px 0 15px 0;
+            border-bottom: 1px dashed #21262d;
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .repo-card {
+            background: rgba(14, 17, 23, 0.9);
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .repo-card:hover {
+            border-color: var(--color-primary, #00EA00);
+            transform: translateY(-3px);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .repo-name {
+            color: #FFF;
+            font-size: 1.05em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .repo-tag {
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .tag-public {
+            color: #00EA00;
+            background: rgba(0, 234, 0, 0.12);
+            border: 1px solid #00EA00;
+        }
+
+        .tag-private {
+            color: #EA00EA;
+            background: rgba(234, 0, 234, 0.12);
+            border: 1px solid #EA00EA;
+        }
+
+        .repo-desc {
+            color: #8b949e;
+            font-size: 0.88em;
+            line-height: 1.5;
+            margin: 0 0 14px 0;
+        }
+
+        .repo-link {
+            color: var(--color-primary, #00EA00);
+            font-size: 0.82em;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .repo-link:hover {
+            color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="portfolio-nav">
+        <div class="portfolio-title-group">
+            <a href="index.html" class="portfolio-brand">
+                <i class="material-icons" style="font-size: 20px;">work_outline</i>
+                Gewey Portfolio
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-tab">Overview</a>
+            <a href="youtube.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">smart_display</i> YouTube</a>
+            <a href="vscode.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">code</i> VS Code</a>
+            <a href="github.html" class="nav-tab active"><i class="material-icons" style="font-size: 14px;">terminal</i> GitHub</a>
+            <a href="credentials.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">verified</i> Credentials</a>
+            <a href="blog.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">edit_note</i> Blog</a>
+        </nav>
+    </header>
+
+    <main class="portfolio-container">
+        <div class="hero-banner">
+            <h1><i class="material-icons" style="color: var(--color-primary, #00EA00); font-size: 28px;">terminal</i> GitHub Repositories</h1>
+            <div class="quote-box">
+                "Here be links to all my repos whether they're private or not — from public GitHub Pages hubs
+                to private substrate preserves in Conservatinus and Inuus."
+            </div>
+        </div>
+
+        <!-- PUBLIC SECTION -->
+        <h2 class="section-title"><i class="material-icons" style="font-size: 18px;">public</i> Public GitHub Hubs</h2>
+        <div class="repo-grid">
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">gewey.github.io</span>
+                        <span class="repo-tag tag-public">Public</span>
+                    </div>
+                    <p class="repo-desc">The flagship personal startpage, bookmark nexus, and Tesseract City host running on vanilla HTML/CSS/JS without build steps.</p>
+                </div>
+                <a href="https://github.com/gewey/gewey.github.io" target="_blank" class="repo-link">View on GitHub ➔</a>
+            </div>
+
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">tesseract-docs</span>
+                        <span class="repo-tag tag-public">Public</span>
+                    </div>
+                    <p class="repo-desc">Tesseract City developer documentation, architecture specifications, API contracts, and SDK references stitched into the portal.</p>
+                </div>
+                <a href="https://github.com/gewey/tesseract-docs" target="_blank" class="repo-link">View on GitHub ➔</a>
+            </div>
+
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">tesseract-wiki</span>
+                        <span class="repo-tag tag-public">Public</span>
+                    </div>
+                    <p class="repo-desc">Atlas of Tesseract City — Celestial knowledge repository, substrate laws, graph topology, and interactive wiki articles.</p>
+                </div>
+                <a href="https://github.com/gewey/tesseract-wiki" target="_blank" class="repo-link">View on GitHub ➔</a>
+            </div>
+        </div>
+
+        <!-- SANCTUARY SECTION -->
+        <h2 class="section-title"><i class="material-icons" style="font-size: 18px;">shield</i> Substrate Ego Preserves</h2>
+        <div class="repo-grid">
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">IRIS-MCP</span>
+                        <span class="repo-tag tag-private">Ego Hub</span>
+                    </div>
+                    <p class="repo-desc">Iris Model Context Protocol server enabling semantic intelligence and tool bridges across local agent architectures.</p>
+                </div>
+                <span class="repo-desc" style="color: #666; font-size: 0.8em;">Preserved in 01_ego</span>
+            </div>
+
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">EXTENSION_PEZ</span>
+                        <span class="repo-tag tag-private">Ego Hub</span>
+                    </div>
+                    <p class="repo-desc">Mechanical VS Code extension launcher that injects workspace-tailored tool bundles without bloating memory.</p>
+                </div>
+                <span class="repo-desc" style="color: #666; font-size: 0.8em;">Preserved in 01_ego</span>
+            </div>
+
+            <div class="repo-card">
+                <div>
+                    <div class="repo-header">
+                        <span class="repo-name">terminus-core</span>
+                        <span class="repo-tag tag-private">Ego Hub</span>
+                    </div>
+                    <p class="repo-desc">Root mycelium substrate coordinating all -inus hubs across drive trees and dynamically resolving global imports.</p>
+                </div>
+                <span class="repo-desc" style="color: #666; font-size: 0.8em;">Preserved in 01_ego</span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

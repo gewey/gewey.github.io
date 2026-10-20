@@ -1,1 +1,275 @@
-<!-- Here be links to all my vscode related projects-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code Projects — Gewey Portfolio</title>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .portfolio-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--color-primary, #00EA00);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .portfolio-brand {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.15em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid #30363d;
+            color: #AAA;
+            padding: 5px 12px;
+            font-size: 0.82em;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #FFF;
+            background: rgba(0, 234, 0, 0.15);
+        }
+
+        .nav-tab.active {
+            background: var(--color-primary, #00EA00);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .portfolio-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px 24px 80px 24px;
+            box-sizing: border-box;
+        }
+
+        .hero-banner {
+            border-bottom: 1px dashed #30363d;
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+        }
+
+        .hero-banner h1 {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.8em;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quote-box {
+            background: rgba(22, 27, 34, 0.7);
+            border-left: 3px solid var(--color-accent, #EA00EA);
+            padding: 12px 18px;
+            border-radius: 4px;
+            color: #c9d1d9;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: rgba(14, 17, 23, 0.9);
+            border: 1px solid #30363d;
+            border-left: 3px solid #007ACC;
+            border-radius: 6px;
+            padding: 22px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-primary, #00EA00);
+            transform: translateX(4px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-title {
+            color: #FFF;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-badge {
+            font-size: 0.75em;
+            color: #007ACC;
+            background: rgba(0, 122, 204, 0.12);
+            border: 1px solid #007ACC;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .project-desc {
+            color: #8b949e;
+            font-size: 0.92em;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            font-size: 0.75em;
+            background: rgba(255, 255, 255, 0.05);
+            color: #AAA;
+            border: 1px solid #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="portfolio-nav">
+        <div class="portfolio-title-group">
+            <a href="index.html" class="portfolio-brand">
+                <i class="material-icons" style="font-size: 20px;">work_outline</i>
+                Gewey Portfolio
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-tab">Overview</a>
+            <a href="youtube.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">smart_display</i> YouTube</a>
+            <a href="vscode.html" class="nav-tab active"><i class="material-icons" style="font-size: 14px;">code</i> VS Code</a>
+            <a href="github.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">terminal</i> GitHub</a>
+            <a href="credentials.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">verified</i> Credentials</a>
+            <a href="blog.html" class="nav-tab"><i class="material-icons" style="font-size: 14px;">edit_note</i> Blog</a>
+        </nav>
+    </header>
+
+    <main class="portfolio-container">
+        <div class="hero-banner">
+            <h1><i class="material-icons" style="color: #007ACC; font-size: 28px;">code</i> VS Code Projects & Extensions</h1>
+            <div class="quote-box">
+                "Here be links to all my VS Code related projects — from custom extension dispensers to sanctuary read-only locks,
+                path embellishment palettes, and workspace hyper-tuning."
+            </div>
+        </div>
+
+        <div class="project-list">
+            <!-- PROJECT 1: EXTENSION_PEZ -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">
+                        <i class="material-icons" style="color: var(--color-primary, #00EA00);">widgets</i>
+                        EXTENSION_PEZ (Extension Launcher)
+                    </div>
+                    <span class="project-badge">Active Engine</span>
+                </div>
+                <p class="project-desc">A mechanical dispenser for VS Code extensions. Enables loading lightweight, purpose-built extension bundles on demand rather than bogging down the editor with hundreds of standing background listeners.</p>
+                <div class="tech-tags">
+                    <span class="tech-pill">VS Code API</span>
+                    <span class="tech-pill">PowerShell</span>
+                    <span class="tech-pill">Substrate Ego</span>
+                </div>
+            </div>
+
+            <!-- PROJECT 2: Sanctuary Read-Only Lock -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">
+                        <i class="material-icons" style="color: var(--color-accent, #EA00EA);">lock</i>
+                        Sanctuary Read-Only Enforcer (_read_only.py)
+                    </div>
+                    <span class="project-badge">Conservatinus Core</span>
+                </div>
+                <p class="project-desc">Synchronizes <code>files.readonlyInclude</code> across all IDE profiles (Code, Insiders, Antigravity, PearAI) to lock upstream open-source preserves from accidental keystrokes, complete with reverse-purging upon repo deletion.</p>
+                <div class="tech-tags">
+                    <span class="tech-pill">Python 3</span>
+                    <span class="tech-pill">Multi-IDE Sync</span>
+                    <span class="tech-pill">JSON Settings</span>
+                </div>
+            </div>
+
+            <!-- PROJECT 3: Path Embellishment Palette -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">
+                        <i class="material-icons" style="color: #FFB347;">palette</i>
+                        Viktor Path Embellishment Engine
+                    </div>
+                    <span class="project-badge">Visual Telemetry</span>
+                </div>
+                <p class="project-desc">A custom 400+ slot color embellishment matrix injected directly into <code>workbench.colorCustomizations</code> to dynamically brand and highlight directory depths across multi-drive substrate trees.</p>
+                <div class="tech-tags">
+                    <span class="tech-pill">Theme Customization</span>
+                    <span class="tech-pill">Substrate UI</span>
+                    <span class="tech-pill">Color Theory</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

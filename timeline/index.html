@@ -2,276 +2,298 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substrate Timeline</title>
     <!-- Centrally injects CSS, fonts, and theme variables -->
     <script type="text/javascript" src="../js/dynamichead.js"></script>
     <style>
-        /* APP SHELL & TIMELINE LAYOUT */
         html,
         body {
             margin: 0;
             padding: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
+            width: 100%;
+            min-height: 100vh;
             background-color: #000000;
             font-family: Inconsolata, monospace;
-        }
-
-        .viewArea {
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        .pageHeader {
-            height: 3vh;
-            background-image: url("../img/bg/bricks.png");
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        marquee {
-            color: var(--color-primary, #00EA00);
-            font-size: 0.85em;
-            letter-spacing: 1px;
-        }
-
-        .mainArea {
-            display: flex;
-            height: 94vh;
-            width: 100vw;
-            overflow: hidden;
-        }
-
-        /* LEFT SIDEBAR: TIMELINE CONTROLS & FILTER */
-        .pageLeftMenu {
-            width: 320px;
-            min-width: 300px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            border-right: 2px solid var(--color-primary, #00EA00);
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            box-sizing: border-box;
+            color: #FFFFFF;
+            overflow-x: hidden;
             overflow-y: auto;
         }
 
-        .timeline-ctrl-box {
-            background: rgba(10, 10, 15, 0.9);
-            border: 1px solid var(--color-accent, #EA00EA);
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 12px rgba(234, 0, 234, 0.2);
+        /* STICKY TOP CONTROL STRIP */
+        .timeline-header-strip {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--color-primary, #00EA00);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
-        .timeline-ctrl-title {
-            color: var(--color-accent, #EA00EA);
-            font-size: 0.8em;
+        .timeline-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timeline-title {
+            color: var(--color-primary, #00EA00);
+            font-size: 1.25em;
             font-weight: bold;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-badge {
+            font-size: 0.75em;
+            color: var(--color-accent, #EA00EA);
+            background: rgba(234, 0, 234, 0.12);
+            border: 1px solid var(--color-accent, #EA00EA);
+            padding: 3px 10px;
+            border-radius: 12px;
             letter-spacing: 1px;
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #333;
-            padding-bottom: 4px;
+        }
+
+        .timeline-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .ctrl-btn {
-            display: block;
-            width: 100%;
-            background: rgba(15, 15, 20, 0.8);
+            background: rgba(15, 15, 20, 0.85);
             border: 1px solid #333;
             color: #AAA;
-            padding: 7px 10px;
-            font-size: 0.8em;
+            padding: 6px 14px;
+            font-size: 0.82em;
+            font-family: Inconsolata, monospace;
             border-radius: 4px;
-            margin-bottom: 6px;
             cursor: pointer;
-            text-align: left;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .ctrl-btn:hover,
-        .ctrl-btn.active {
+        .ctrl-btn:hover {
             border-color: var(--color-primary, #00EA00);
             color: #FFF;
             background: rgba(0, 234, 0, 0.15);
         }
 
-        .status-badge {
-            font-size: 0.75em;
-            color: var(--color-primary, #00EA00);
-            background: rgba(0, 234, 0, 0.1);
-            border: 1px solid var(--color-primary, #00EA00);
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: block;
-            text-align: center;
-            margin-top: 10px;
+        .ctrl-btn.active {
+            border-color: var(--color-primary, #00EA00);
+            color: #000;
+            background: var(--color-primary, #00EA00);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 234, 0, 0.4);
         }
 
-        /* RIGHT CONTENT: VERTICAL TIMELINE STAGE */
-        .pageContent {
-            flex: 1;
-            height: 100%;
-            overflow-y: auto;
-            background: rgba(5, 5, 8, 0.95);
-            padding: 30px 40px;
+        /* TIMELINE STAGE CONTAINER */
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px 24px;
             box-sizing: border-box;
         }
 
         .timeline-wrapper {
             position: relative;
-            max-width: 850px;
-            margin: 0 auto;
-            padding-left: 30px;
+            padding-left: 36px;
         }
 
-        /* VERTICAL TIMELINE SPINE */
+        /* VERTICAL SPINE */
         .timeline-wrapper::before {
             content: '';
             position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
+            left: 12px;
+            top: 10px;
+            bottom: 20px;
+            width: 3px;
             background: linear-gradient(180deg, var(--color-primary, #00EA00) 0%, var(--color-accent, #EA00EA) 100%);
-            box-shadow: 0 0 10px rgba(0, 234, 0, 0.5);
+            box-shadow: 0 0 12px rgba(0, 234, 0, 0.5);
+            border-radius: 2px;
         }
 
-        /* TIMELINE ITEM BLOCK */
+        /* TIMELINE ITEM */
         .timeline-item {
             position: relative;
             margin-bottom: 35px;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        /* GLOWING NODE MARKER ON SPINE */
+        /* TIMELINE NODE PIN */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -25px;
+            left: -30px;
             top: 18px;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: var(--color-primary, #00EA00);
-            border: 2px solid #000;
-            box-shadow: 0 0 10px var(--color-primary, #00EA00);
+            background: #000;
+            border: 2px solid var(--color-primary, #00EA00);
+            box-shadow: 0 0 8px var(--color-primary, #00EA00);
             z-index: 2;
+            transition: transform 0.2s, background-color 0.2s;
         }
 
-        /* EVENT CARD */
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+            background: var(--color-accent, #EA00EA);
+            border-color: #FFF;
+            box-shadow: 0 0 12px var(--color-accent, #EA00EA);
+        }
+
+        /* TIMELINE CARD */
         .timeline-card {
-            background: rgba(10, 10, 15, 0.85);
+            background: rgba(14, 17, 23, 0.9);
             border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            transition: border-color 0.3s, transform 0.2s;
+            border-left: 3px solid var(--color-primary, #00EA00);
+            border-radius: 6px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
 
         .timeline-card:hover {
-            border-color: var(--color-primary, #00EA00);
             transform: translateX(4px);
+            border-color: #484f58;
+            border-left-color: var(--color-accent, #EA00EA);
+            box-shadow: 0 6px 20px rgba(0, 234, 0, 0.15);
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #21262d;
         }
 
         .timeline-date-badge {
-            display: inline-block;
-            background: rgba(234, 0, 234, 0.15);
-            border: 1px solid var(--color-accent, #EA00EA);
-            color: var(--color-accent, #EA00EA);
-            font-size: 0.8em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
+            color: var(--color-primary, #00EA00);
             font-weight: bold;
+            background: rgba(0, 234, 0, 0.1);
+            border: 1px solid rgba(0, 234, 0, 0.3);
             padding: 3px 10px;
             border-radius: 4px;
-            margin-bottom: 12px;
             letter-spacing: 1px;
         }
 
-        .timeline-card h1,
-        .timeline-card h2,
-        .timeline-card h3 {
-            color: #FFFFFF;
-            margin: 0 0 10px 0;
-            font-size: 1.3em;
-            border-bottom: 1px dashed #222;
-            padding-bottom: 6px;
+        .timeline-filename {
+            font-size: 0.75em;
+            color: #6e7681;
+            font-family: Inconsolata, monospace;
         }
 
-        .timeline-card p {
-            color: #DDD;
-            font-size: 0.9em;
+        .timeline-body {
+            color: #c9d1d9;
+            font-size: 0.95em;
             line-height: 1.6;
-            margin: 0 0 10px 0;
         }
 
-        .timeline-card ul {
-            margin: 0;
+        .timeline-body h1,
+        .timeline-body h2,
+        .timeline-body h3 {
+            color: #FFF;
+            margin: 8px 0;
+        }
+
+        .timeline-body h1 {
+            font-size: 1.3em;
+            color: var(--color-primary, #00EA00);
+        }
+
+        .timeline-body h2 {
+            font-size: 1.15em;
+            color: var(--color-accent, #EA00EA);
+        }
+
+        .timeline-body h3 {
+            font-size: 1.05em;
+        }
+
+        .timeline-body p {
+            margin: 6px 0;
+        }
+
+        .timeline-body ul {
+            margin: 6px 0;
             padding-left: 20px;
-            color: #CCC;
+        }
+
+        .timeline-body li {
+            margin-bottom: 4px;
+        }
+
+        .timeline-body pre {
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 12px;
+            overflow-x: auto;
+            color: var(--color-primary, #00EA00);
             font-size: 0.88em;
         }
 
-        .timeline-card pre {
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #30363d;
-            padding: 12px;
-            border-radius: 4px;
-            color: var(--color-primary, #00EA00);
-            font-size: 0.85em;
-            overflow-x: auto;
+        .timeline-body code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #ff7b72;
+            font-size: 0.9em;
         }
 
-        .pageFooter {
-            height: 3vh;
-            background-image: url("../img/bg/bricks.png");
-            text-align: center;
-            font-size: 0.75em;
-            line-height: 3vh;
-            color: #AAA;
-            border-top: 1px solid #30363d;
-        }
-
-        .pageFooter a {
-            color: var(--color-primary, #00EA00);
-            text-decoration: none;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="viewArea">
-        <div class="pageHeader">
-            <marquee>⏳ GEWEY AUTOMATED TIMELINE — AUTO-DISCOVERING MARKDOWN EVENTS IN ./EVENTS/</marquee>
+    <!-- STICKY TOP CONTROL STRIP -->
+    <div class="timeline-header-strip">
+        <div class="timeline-title-group">
+            <h1 class="timeline-title">
+                <i class="material-icons" style="font-size: 22px; color: var(--color-primary, #00EA00);">timeline</i>
+                Substrate Timeline
+            </h1>
+            <span class="timeline-badge" id="status-display">Scanning ./events/...</span>
         </div>
-
-        <div class="mainArea">
-            <!-- LEFT MENU -->
-            <div class="pageLeftMenu">
-                <div class="timeline-ctrl-box">
-                    <div class="timeline-ctrl-title">⚙️ Timeline Controls</div>
-                    <button class="ctrl-btn active" id="btn-newest" onclick="setSortOrder('desc')">▼ Newest
-                        First</button>
-                    <button class="ctrl-btn" id="btn-oldest" onclick="setSortOrder('asc')">▲ Oldest First</button>
-                    <div class="status-badge" id="status-display">Scanning ./events/...</div>
-                </div>
-            </div>
-
-            <!-- RIGHT CONTENT -->
-            <div class="pageContent">
-                <div class="timeline-wrapper" id="timelineContainer">
-                    <!-- Event cards auto-render here -->
-                </div>
-            </div>
+        <div class="timeline-controls">
+            <button class="ctrl-btn active" id="btn-newest" onclick="setSortOrder('desc')">▼ Newest First</button>
+            <button class="ctrl-btn" id="btn-oldest" onclick="setSortOrder('asc')">▲ Oldest First</button>
         </div>
+    </div>
 
-        <div class="pageFooter">
-            <span>Copyright © 2008–2026 Hobos Inc. | <a href="../index.html">Return to Homepage</a></span>
+    <!-- MAIN TIMELINE STAGE -->
+    <div class="timeline-container">
+        <div class="timeline-wrapper" id="timelineContainer">
+            <!-- Event cards render dynamically -->
         </div>
     </div>
 
@@ -279,58 +301,46 @@
         let eventCache = [];
         let currentSort = 'desc';
 
-        // SIMPLE MARKDOWN PARSER FOR .MD CONTENT
+        // Lightweight Markdown parser
         function parseMarkdown(mdText) {
             let html = mdText
-                .replace(/^### (.*\$)/gim, '<h3>\$1</h3>')
-                .replace(/^## (.*\$)/gim, '<h2>\$1</h2>')
-                .replace(/^# (.*\$)/gim, '<h1>\$1</h1>')
-                .replace(/\*\*(.*)\*\*/gim, '<strong>\$1</strong>')
-                .replace(/\*(.*)\*/gim, '<em>\$1</em>')
-                .replace(/```([\s\S]*?)```/gim, '<pre><code>\$1</code></pre>')
-                .replace(/`([^`]+)`/gim, '<code>\$1</code>')
-                .replace(/^\- (.*\$)/gim, '<li>\$1</li>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                .replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>')
+                .replace(/`([^`]+)`/gim, '<code>$1</code>')
+                .replace(/^\- (.*$)/gim, '<li>$1</li>')
                 .replace(/\n\n/gim, '</p><p>');
 
             return '<p>' + html + '</p>';
         }
 
-        // FETCH & AUTO-DISCOVER EVENTS
+        // Fetch & discover events
         async function discoverAndRenderEvents() {
             const statusEl = document.getElementById('status-display');
             let fileList = [];
 
-            // 1. ATTEMPT AUTO-SCAN VIA GITHUB CONTENTS API
+            // 1. Load manifest.json
             try {
-                const apiRes = await fetch('[suspicious link removed]');
-                if (apiRes.ok) {
-                    const files = await apiRes.json();
-                    fileList = files
-                        .map(f => [suspicious link removed])
-                        .filter(name => /^\d{4}-\d{2}-\d{2}.*\.md\$/i.test(name));
+                const manifestRes = await fetch('./events/manifest.json');
+                if (manifestRes.ok) {
+                    fileList = await manifestRes.json();
                 }
             } catch (err) {
-                console.warn('[Timeline] GitHub API fetch failed or rate limited:', err);
+                console.warn('[Timeline] Local manifest fetch failed:', err);
             }
 
-            // 2. LOCAL MANIFEST FALLBACK (FOR LOCAL / OFFLINE DEV)
-            if (!fileList.length) {
-                try {
-                    const manifestRes = await fetch('./events/manifest.json');
-                    if (manifestRes.ok) {
-                        fileList = await manifestRes.json();
-                    }
-                } catch (e) {
-                    // Default fallback check for known test files
-                    fileList = ['2026-02-10-Birth_of_Viktor.md', '2026-02-09.md'];
-                }
+            // Fallback default list if manifest is missing
+            if (!fileList || !fileList.length) {
+                fileList = ['2026-02-10-Birth_of_Viktor.md', '2026-02-09.md'];
             }
 
-            statusEl.textContent = `Found ${fileList.length} Event File(s)`;
+            statusEl.textContent = `${fileList.length} Milestone${fileList.length === 1 ? '' : 's'}`;
 
-            // 3. FETCH CONTENT FOR EACH DATED .MD FILE
-            const eventPromises = [suspicious link removed](async (filename) => {
-                // Extract YYYY-MM-DD from filename prefix
+            // 2. Fetch content for each dated markdown file
+            const eventPromises = fileList.map(async (filename) => {
                 const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
                 const dateStr = dateMatch ? dateMatch[1] : 'Undated';
 
@@ -345,7 +355,7 @@
                         };
                     }
                 } catch (err) {
-                    console.error(`[Timeline] Could not load ./events/${filename}`, err);
+                    console.error(`[Timeline] Could not load ./events/${filename}:`, err);
                 }
                 return null;
             });
@@ -356,22 +366,21 @@
             renderTimeline();
         }
 
-        // RENDER SORTED CARDS
+        // Render sorted timeline cards
         function renderTimeline() {
             const container = document.getElementById('timelineContainer');
             container.innerHTML = '';
 
-            // Sort chronologically
             eventCache.sort((a, b) => {
                 if (currentSort === 'desc') {
-                    return [suspicious link removed].localeCompare([suspicious link removed]);
+                    return b.date.localeCompare(a.date);
                 } else {
-                    return [suspicious link removed].localeCompare([suspicious link removed]);
+                    return a.date.localeCompare(b.date);
                 }
             });
 
             if (eventCache.length === 0) {
-                container.innerHTML = '<div style="color:#AAA; text-align:center; padding:40px;">No .md event files found in ./events/</div>';
+                container.innerHTML = '<div style="color:#888; text-align:center; padding:40px;">No milestones found in ./events/</div>';
                 return;
             }
 
@@ -381,7 +390,10 @@
 
                 itemDiv.innerHTML = `
                     <div class="timeline-card">
-                        <div class="timeline-date-badge">📅 ${[suspicious link removed]}</div>
+                        <div class="card-header-row">
+                            <span class="timeline-date-badge">📅 ${evt.date}</span>
+                            <span class="timeline-filename">${evt.filename}</span>
+                        </div>
                         <div class="timeline-body">${evt.htmlContent}</div>
                     </div>
                 `;
@@ -397,7 +409,6 @@
             renderTimeline();
         }
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', discoverAndRenderEvents);
     </script>
 </body>

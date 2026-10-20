@@ -1,2 +1,56 @@
-<!-- Im picturing something like -->
- <iframe src="https://lopsided-seahorse-d13.notion.site/ebd//3ffe2d32580f809cbb34f1868e44b1a7" width="100%" height="600" frameborder="0" allowfullscreen />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textbookmarks — Deep Docs, APIs & Downloads</title>
+    <!-- Centrally injects CSS, fonts, and theme variables -->
+    <script type="text/javascript" src="../js/dynamichead.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+            font-family: Inconsolata, monospace;
+            color: #FFFFFF;
+        }
+
+        .textbookmarks-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #000000;
+        }
+
+        .notion-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            flex: 1;
+            background: #000000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="textbookmarks-container">
+        <!-- Notion Embed: Textbookmarks -->
+        <iframe 
+            class="notion-frame" 
+            src="https://lopsided-seahorse-d13.notion.site/ebd//3ffe2d32580f809cbb34f1868e44b1a7" 
+            allowfullscreen 
+            loading="lazy">
+        </iframe>
+    </div>
+</body>
+
+</html>
