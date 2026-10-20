@@ -4,6 +4,11 @@
 
 # ─── Editor / IDE ─────────────────────────────────────────────────────
 .vscode/
+AGENTS.md
+GEMINI.md
+.clinerules
+.copilotignore
+.github/hooks/*.*
 
 # ─── OS / shell noise ─────────────────────────────────────────────────
 .DS_Store
