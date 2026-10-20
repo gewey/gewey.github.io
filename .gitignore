@@ -1,2 +1,35 @@
+# ─── Temporary / scratch (local-only sync/cache tooling) ──────────────
 .tmp.driveupload/
-.vikipedia
+.tmp.drivedownload/
+
+# ─── Editor / IDE ─────────────────────────────────────────────────────
+# Selective ignore: track workspace-level VS Code config (extensions.json,
+# launch.json, tasks.json) but keep settings.json local so personal
+# prefs, formatter secrets, and machine paths never leak into commits.
+# NOTE: if settings.json is ALREADY tracked, run
+#   git rm --cached .vscode/settings.json
+# once — gitignore rules don't apply to files already in the index.
+.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ─── OS / shell noise ─────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+Icon?
+*.lnk
+
+# ─── Editor swap / backup files ───────────────────────────────────────
+*~
+*.swp
+*.swo
+*.bak
