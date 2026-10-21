@@ -108,6 +108,15 @@ test('BookmarkToggleRegistry disabled suppression', () => {
   assert.equal(BookmarkToggleRegistry.isBookmarkDisabled(bm1), false);
 });
 
+test('BookmarkToggleRegistry respects window.NOTION_DISABLED_BUTTONS', () => {
+  global.window.NOTION_DISABLED_BUTTONS = new Set(['CodePen', 'codepen.io', 'digg']);
+  const codepen = { title: 'CodePen', href: 'https://codepen.io/' };
+  const normal = { title: 'SafeSite', href: 'https://safe.com/' };
+
+  assert.equal(BookmarkToggleRegistry.isBookmarkDisabled(codepen), true);
+  assert.equal(BookmarkToggleRegistry.isBookmarkDisabled(normal), false);
+});
+
 test('BookmarkDom HTML generation', () => {
   const bm = { title: 'Test Bookmark', href: 'https://test.com', alt: 'testicon' };
   const html = BookmarkDom.createBookmarkLinkHtml(bm, '../img/btn/bm/');

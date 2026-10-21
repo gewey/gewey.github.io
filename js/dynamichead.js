@@ -42,6 +42,7 @@ const headHTML = `
   <link rel='stylesheet' href='${baseURL}/css/search.css' type='text/css'>
   <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popmotion@11.0.5/dist/popmotion.global.min.js'></script>
+  <script type='text/javascript' src='${baseURL}/data/notion_toggles.js'></script>
   <script type='text/javascript' src='${baseURL}/js/google_analytics.js'></script>
   <script type='text/javascript' src='${baseURL}/js/themeManager.js'></script>
   <script type='text/javascript' src='${baseURL}/js/keyboardShortcuts.js'></script>

@@ -1,0 +1,185 @@
+{
+  "disabled_buttons": [
+    {
+      "title": "Sports",
+      "url": "./sports/index.html",
+      "category": "Sports"
+    },
+    {
+      "title": "CodePen",
+      "url": "https://codepen.io/",
+      "category": "Web Development"
+    },
+    {
+      "title": "Digg",
+      "url": "http://digg.com/",
+      "category": "Social"
+    },
+    {
+      "title": "FacyAI",
+      "url": "https://facy.ai/swap-face-ai/photo",
+      "category": "Web Development"
+    },
+    {
+      "title": "FreeCodeCamp",
+      "url": "https://learn.freecodecamp.org/",
+      "category": "Web Development"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "MLB",
+      "url": "https://www.mlb.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Web Development",
+      "url": "./reference/index.html",
+      "category": "Web Development"
+    },
+    {
+      "title": "MIT App Inventor",
+      "url": "http://ai2.appinventor.mit.edu/",
+      "category": "Web Development"
+    },
+    {
+      "title": "NCAA",
+      "url": "https://www.ncaa.org/",
+      "category": "Sports"
+    },
+    {
+      "title": "TutorialsPoint",
+      "url": "https://www.tutorialspoint.com/index.htm",
+      "category": "Web Development"
+    },
+    {
+      "title": "Codecademy",
+      "url": "https://www.codecademy.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "TensorFlow.js",
+      "url": "https://js.tensorflow.org/",
+      "category": "Web Development"
+    },
+    {
+      "title": "WordPress",
+      "url": "http://wordpress.org/",
+      "category": "Social"
+    },
+    {
+      "title": "Mastodon",
+      "url": "https://mastodon.social/",
+      "category": "Social"
+    },
+    {
+      "title": "Bleeping Computer",
+      "url": "https://www.bleepingcomputer.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "Blizzard Press",
+      "url": "https://blizzard.gamespress.com/World-of-Warcraft",
+      "category": "Web Development"
+    },
+    {
+      "title": "Text Free",
+      "url": "https://textfree.us/",
+      "category": "Social"
+    },
+    {
+      "title": "NFL",
+      "url": "https://www.nfl.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "NBA",
+      "url": "https://www.nba.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Open Culture",
+      "url": "http://www.openculture.com",
+      "category": "Web Development"
+    },
+    {
+      "title": "Airbrush",
+      "url": "https://airbrush.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "W3Schools",
+      "url": "http://www.w3schools.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "Material Design",
+      "url": "https://material.io/",
+      "category": "Web Development"
+    },
+    {
+      "title": "ESPN",
+      "url": "https://www.espn.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Mix",
+      "url": "https://mix.com/",
+      "category": "Social"
+    },
+    {
+      "title": "Stack Overflow",
+      "url": "https://stackoverflow.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "PGA Tour",
+      "url": "https://www.pgatour.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Reddit",
+      "url": "http://www.reddit.com/",
+      "category": "Social"
+    },
+    {
+      "title": "Telegram",
+      "url": "https://web.telegram.org/",
+      "category": "Social"
+    },
+    {
+      "title": "Fontvilla",
+      "url": "https://fontvilla.com/",
+      "category": "Web Development"
+    },
+    {
+      "title": "Bleacher Report",
+      "url": "https://bleacherreport.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Soccer.com",
+      "url": "https://www.soccer.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "NASCAR",
+      "url": "https://www.nascar.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Sports Illustrated",
+      "url": "https://www.si.com/",
+      "category": "Sports"
+    },
+    {
+      "title": "Zapier",
+      "url": "https://www.zapier.com/",
+      "category": "Web Development"
+    }
+  ],
+  "count": 36
+}
