@@ -5,6 +5,24 @@
  * @version 2.5
  */
 
+// Synchronously load Notion toggles cache if in browser environment and not yet loaded
+if (typeof document !== 'undefined' && typeof document.write === 'function' && typeof window !== 'undefined' && !window.NOTION_DISABLED_BUTTONS) {
+  let togglesSrc = '../data/notion_toggles.js';
+  if (document.currentScript && document.currentScript.src) {
+    togglesSrc = document.currentScript.src.replace(/\/js\/bookmarkBuilder\.js.*$/, '/data/notion_toggles.js');
+  } else if (window.location && window.location.pathname) {
+    const depth = (window.location.pathname.match(/\//g) || []).length;
+    if (depth > 2) {
+      togglesSrc = '../../data/notion_toggles.js';
+    } else if (window.location.pathname.includes('/bookmarks/')) {
+      togglesSrc = '../data/notion_toggles.js';
+    } else {
+      togglesSrc = './data/notion_toggles.js';
+    }
+  }
+  document.write('<script type="text/javascript" src="' + togglesSrc + '"></' + 'script>');
+}
+
 // --- 1. Sound Synthesis Subsystem ---
 const BookmarkSound = (() => {
   let isInitialized = false;
@@ -110,6 +128,20 @@ const BookmarkToggleRegistry = {
     // Check explicit property
     if (bm.enabled === false || bm.Enabled === false || bm.Enabled === '__NO__') {
       return true;
+    }
+    // Check Notion Disabled Registry
+    if (typeof window !== 'undefined' && window.NOTION_DISABLED_BUTTONS && window.NOTION_DISABLED_BUTTONS.size > 0) {
+      const match = (val) => {
+        if (!val) return false;
+        const s = String(val).trim();
+        const norm = s.toLowerCase().replace(/https?:\/\//, '').replace(/\/$/, '');
+        return window.NOTION_DISABLED_BUTTONS.has(s) ||
+               window.NOTION_DISABLED_BUTTONS.has(s.toLowerCase()) ||
+               window.NOTION_DISABLED_BUTTONS.has(norm);
+      };
+      if (match(bm.title) || match(bm.href) || match(bm.alt) || match(bm.id)) {
+        return true;
+      }
     }
     const disabledSet = this.getDisabledSet();
     const id = bm.id || bm.title || bm.href;
