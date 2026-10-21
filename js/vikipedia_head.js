@@ -6,38 +6,37 @@
 (function() {
   'use strict';
 
-  // Add keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    // Alt + Left Arrow = Go back to index
-    if (e.altKey && e.key === 'ArrowLeft') {
-      const indexLink = document.querySelector('#master-index-link a');
-      if (indexLink) {
-        window.location.href = indexLink.href;
+  function bindKeyboardNav() {
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && e.key === 'ArrowLeft') {
+        const indexLink = document.querySelector('#master-index-link a');
+        if (indexLink) {
+          window.location.href = indexLink.href;
+        }
       }
-    }
-    
-    // Alt + H = Go to holarchy index
-    if (e.altKey && e.key === 'h') {
-      const holarchyLink = document.querySelector('a[href*="holarchy/index"]');
-      if (holarchyLink) {
-        window.location.href = holarchyLink.href;
+      
+      if (e.altKey && e.key === 'h') {
+        const holarchyLink = document.querySelector('a[href*="holarchy/index"]');
+        if (holarchyLink) {
+          window.location.href = holarchyLink.href;
+        }
       }
-    }
-  });
+    });
+  }
 
-  // Add smooth scrolling for anchor links
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href^="#"]');
-    if (link) {
+  function bindSmoothScroll() {
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Update URL without scrolling
         history.pushState(null, '', link.getAttribute('href'));
       }
-    }
-  });
+    });
+  }
 
   // Add copy code button to pre blocks
   function addCopyButtons() {
@@ -143,6 +142,9 @@
 
   // Initialize on DOM ready
   function init() {
+    bindKeyboardNav();
+    bindSmoothScroll();
+
     // Apply main website theme if available
     if (window.themeManager && typeof window.themeManager.applyTheme === 'function') {
       window.themeManager.applyTheme();

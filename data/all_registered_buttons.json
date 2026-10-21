@@ -1,0 +1,2387 @@
+[
+  {
+    "Question 1": "Cloud",
+    "\ud83d\udd17 URL?": "./cloud/index.html",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/cloud.png",
+    "Icon Alt": "cloud",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Drive",
+    "\ud83d\udd17 URL?": "https://drive.google.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googledrive.png",
+    "Icon Alt": "googledrive",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Dropbox",
+    "\ud83d\udd17 URL?": "https://www.dropbox.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/dropbox.png",
+    "Icon Alt": "dropbox",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Microsoft OneDrive",
+    "\ud83d\udd17 URL?": "https://onedrive.live.com/about/en-us/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/onedrive.png",
+    "Icon Alt": "onedrive",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Mega",
+    "\ud83d\udd17 URL?": "https://mega.nz",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/MEGAprivacy.png",
+    "Icon Alt": "MEGAprivacy",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Box",
+    "\ud83d\udd17 URL?": "https://www.box.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/box.png",
+    "Icon Alt": "box",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AWS S3",
+    "\ud83d\udd17 URL?": "https://s3.console.aws.amazon.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/aws.png",
+    "Icon Alt": "aws",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "iCloud",
+    "\ud83d\udd17 URL?": "https://www.icloud.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/iCloud.png",
+    "Icon Alt": "iCloud",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AlfredCamera",
+    "\ud83d\udd17 URL?": "https://alfred.camera/webapp/viewer/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/AlfredCamera.png",
+    "Icon Alt": "AlfredCamera",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Sync.com",
+    "\ud83d\udd17 URL?": "https://www.sync.com/",
+    "Category": "Cloud",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/syncdotcom.png",
+    "Icon Alt": "syncdotcom",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Crypto",
+    "\ud83d\udd17 URL?": "./crypto/index.html",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/crypto.png",
+    "Icon Alt": "crypto",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Coinbase",
+    "\ud83d\udd17 URL?": "https://www.coinbase.com/join/jgoulette_4hiaeA",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/coinbase.png",
+    "Icon Alt": "coinbase",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Kraken",
+    "\ud83d\udd17 URL?": "https://www.kraken.com/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/krakenfx.png",
+    "Icon Alt": "krakenfx",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Binance",
+    "\ud83d\udd17 URL?": "https://www.binance.com/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/binance.png",
+    "Icon Alt": "binance",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "CoinMarketCap",
+    "\ud83d\udd17 URL?": "https://coinmarketcap.com/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/CoinMarketCap.png",
+    "Icon Alt": "CoinMarketCap",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gemini",
+    "\ud83d\udd17 URL?": "https://www.gemini.com/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/GeminiCrypto.png",
+    "Icon Alt": "GeminiCrypto",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Atomic Wallet",
+    "\ud83d\udd17 URL?": "https://atomicwallet.io/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/AtomicWallet.png",
+    "Icon Alt": "AtomicWallet",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "MetaMask",
+    "\ud83d\udd17 URL?": "https://metamask.io/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/MetaMask_io.png",
+    "Icon Alt": "MetaMask_io",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "ShrimpyApp",
+    "\ud83d\udd17 URL?": "https://shrimpy.io/referral?r=9ZfJPAj__",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ShrimpyApp.png",
+    "Icon Alt": "ShrimpyApp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "2Miners",
+    "\ud83d\udd17 URL?": "https://2miners.com/",
+    "Category": "Crypto",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/pool2miners.png",
+    "Icon Alt": "pool2miners",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Download",
+    "\ud83d\udd17 URL?": "./download/index.html",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/download.png",
+    "Icon Alt": "download",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Microsoft",
+    "\ud83d\udd17 URL?": "https://www.microsoft.com/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/microsoft.png",
+    "Icon Alt": "microsoft",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Windows 11",
+    "\ud83d\udd17 URL?": "https://www.microsoft.com/software-download/windows11",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Windows.png",
+    "Icon Alt": "Windows",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Visual Studio Code",
+    "\ud83d\udd17 URL?": "https://code.visualstudio.com/download",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/code.png",
+    "Icon Alt": "code",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Direct X",
+    "\ud83d\udd17 URL?": "https://www.microsoft.com/en-us/download/details.aspx?id=35",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/directx12.png",
+    "Icon Alt": "directx12",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Firefox",
+    "\ud83d\udd17 URL?": "https://www.mozilla.org/en-US/firefox/new/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/firefox.png",
+    "Icon Alt": "firefox",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Chromium",
+    "\ud83d\udd17 URL?": "https://www.chromium.org/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/chromium.png",
+    "Icon Alt": "chromium",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Ubuntu",
+    "\ud83d\udd17 URL?": "https://www.ubuntu.com/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ubuntu.png",
+    "Icon Alt": "ubuntu",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Kali Linux",
+    "\ud83d\udd17 URL?": "https://www.kali.org/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/kalilinux.png",
+    "Icon Alt": "kalilinux",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Nvidia Drivers",
+    "\ud83d\udd17 URL?": "https://www.nvidia.com/Download/index.aspx",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nvidia.png",
+    "Icon Alt": "nvidia",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Java",
+    "\ud83d\udd17 URL?": "https://www.java.com/en/download/manual.jsp",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/java.png",
+    "Icon Alt": "java",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Python",
+    "\ud83d\udd17 URL?": "https://www.python.org/downloads/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ThePSF.png",
+    "Icon Alt": "ThePSF",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Node.js",
+    "\ud83d\udd17 URL?": "https://nodejs.org/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nodejs.png",
+    "Icon Alt": "nodejs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Git",
+    "\ud83d\udd17 URL?": "https://git-scm.com/download",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/git.png",
+    "Icon Alt": "git",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Notepad++",
+    "\ud83d\udd17 URL?": "https://notepad-plus-plus.org/downloads/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Notepad_plus.png",
+    "Icon Alt": "Notepad_plus",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Sublime Text",
+    "\ud83d\udd17 URL?": "https://www.sublimetext.com/download",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/sublimehq.png",
+    "Icon Alt": "sublimehq",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Brackets",
+    "\ud83d\udd17 URL?": "https://brackets.io/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/brackets.png",
+    "Icon Alt": "brackets",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Ninite",
+    "\ud83d\udd17 URL?": "https://ninite.com/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ninite.png",
+    "Icon Alt": "ninite",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Eclipse",
+    "\ud83d\udd17 URL?": "https://www.eclipse.org/downloads/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/EclipseFdn.png",
+    "Icon Alt": "EclipseFdn",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "UserBenchmark",
+    "\ud83d\udd17 URL?": "https://www.userbenchmark.com/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/userbenchmark.png",
+    "Icon Alt": "userbenchmark",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Speedify",
+    "\ud83d\udd17 URL?": "https://speedify.com/",
+    "Category": "Downloads",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/speedify.png",
+    "Icon Alt": "speedify",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Email",
+    "\ud83d\udd17 URL?": "./email/index.html",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/email.png",
+    "Icon Alt": "email",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gmail",
+    "\ud83d\udd17 URL?": "https://mail.google.com/",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/gmail.png",
+    "Icon Alt": "gmail",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Outlook",
+    "\ud83d\udd17 URL?": "https://outlook.live.com",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/outlook.png",
+    "Icon Alt": "outlook",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Yahoo Mail",
+    "\ud83d\udd17 URL?": "https://mail.yahoo.com/",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/yahoomail.png",
+    "Icon Alt": "yahoomail",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "ProtonMail",
+    "\ud83d\udd17 URL?": "https://mail.protonmail.com/",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ProtonMail.png",
+    "Icon Alt": "ProtonMail",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AOL Mail",
+    "\ud83d\udd17 URL?": "https://mail.aol.com/",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/aol.png",
+    "Icon Alt": "aol",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Zoho Mail",
+    "\ud83d\udd17 URL?": "https://mail.zoho.com/",
+    "Category": "Email",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/zoho.png",
+    "Icon Alt": "zoho",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Finance",
+    "\ud83d\udd17 URL?": "./finance/index.html",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/finance.png",
+    "Icon Alt": "finance",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Cash App",
+    "\ud83d\udd17 URL?": "https://cash.app/$josephgoulette",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/cashapp.png",
+    "Icon Alt": "cashapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Chase",
+    "\ud83d\udd17 URL?": "https://secure07c.chase.com/web/auth/dashboard?mRoute#/dashboard/overviewAccounts/overview/index",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/chase.png",
+    "Icon Alt": "chase",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Capital One",
+    "\ud83d\udd17 URL?": "https://verified.capitalone.com/auth/signin?Product=ENTERPRISE&goto_url=https:%2F%2Fmyaccounts.capitalone.com%2F%23%2FaccountSummary#/accountSummary",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/CapitalOne.png",
+    "Icon Alt": "CapitalOne",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "OneMain Financial",
+    "\ud83d\udd17 URL?": "https://www.onemainfinancial.com/prequalification?CSCALD=31269&utm_medium=CR&rfrcode=0qca50#referral",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/OneMainFinancial.png",
+    "Icon Alt": "OneMainFinancial",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "PayPal",
+    "\ud83d\udd17 URL?": "https://www.paypal.com/",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/paypal.png",
+    "Icon Alt": "paypal",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Shutterstock Affiliate",
+    "\ud83d\udd17 URL?": "https://submit.shutterstock.com/?ref=224491653",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ShutterstockReq.png",
+    "Icon Alt": "ShutterstockReq",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Amazon Associates",
+    "\ud83d\udd17 URL?": "https://affiliate-program.amazon.com/home",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/AmazonAssociate.png",
+    "Icon Alt": "AmazonAssociate",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Analytics",
+    "\ud83d\udd17 URL?": "https://analytics.google.com",
+    "Category": "Finance",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googleanalytics.png",
+    "Icon Alt": "googleanalytics",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Games",
+    "\ud83d\udd17 URL?": "./games/index.html",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/game.png",
+    "Icon Alt": "game",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Steam",
+    "\ud83d\udd17 URL?": "https://store.steampowered.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/steam_games.png",
+    "Icon Alt": "steam_games",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Epic Games Store",
+    "\ud83d\udd17 URL?": "https://www.epicgames.com/store/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/epicgames.png",
+    "Icon Alt": "epicgames",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Twitch",
+    "\ud83d\udd17 URL?": "https://www.twitch.tv/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/twitch.png",
+    "Icon Alt": "twitch",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Discord",
+    "\ud83d\udd17 URL?": "https://discord.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/discordapp.png",
+    "Icon Alt": "discordapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "YouTube Gaming",
+    "\ud83d\udd17 URL?": "https://www.youtube.com/gaming",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/youtube.png",
+    "Icon Alt": "youtube",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "XBOX",
+    "\ud83d\udd17 URL?": "https://www.xbox.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/xbox.png",
+    "Icon Alt": "xbox",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "PlayStation Network",
+    "\ud83d\udd17 URL?": "https://www.playstation.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/PlayStation.png",
+    "Icon Alt": "PlayStation",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Nintendo",
+    "\ud83d\udd17 URL?": "https://www.nintendo.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/NintendoAmerica.png",
+    "Icon Alt": "NintendoAmerica",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "GOG",
+    "\ud83d\udd17 URL?": "https://www.gog.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/GOGcom.png",
+    "Icon Alt": "GOGcom",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Guild Wars 2",
+    "\ud83d\udd17 URL?": "https://www.guildwars2.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/GuildWars2.png",
+    "Icon Alt": "GuildWars2",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Elder Scrolls Online",
+    "\ud83d\udd17 URL?": "https://www.elderscrollsonline.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tesonline.png",
+    "Icon Alt": "tesonline",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Wizard101",
+    "\ud83d\udd17 URL?": "https://www.wizard101.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wizard101.png",
+    "Icon Alt": "wizard101",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "StarCraft 2",
+    "\ud83d\udd17 URL?": "https://starcraft2.com/en-us/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/starcraft2.png",
+    "Icon Alt": "starcraft2",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Magic the Gathering",
+    "\ud83d\udd17 URL?": "https://magic.wizards.com/en",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wizards_magic.png",
+    "Icon Alt": "wizards_magic",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Deckbox",
+    "\ud83d\udd17 URL?": "https://deckbox.org/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/deckbox.png",
+    "Icon Alt": "deckbox",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Dododex",
+    "\ud83d\udd17 URL?": "https://www.dododex.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Dododex.png",
+    "Icon Alt": "Dododex",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RimWorld Wiki",
+    "\ud83d\udd17 URL?": "https://rimworldwiki.com/wiki/Main_Page/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/rimworldwiki.png",
+    "Icon Alt": "rimworldwiki",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Satisfactory Calculator",
+    "\ud83d\udd17 URL?": "https://satisfactory-calculator.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/satisfactorycalculator.png",
+    "Icon Alt": "satisfactorycalculator",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Mountain Dew Gaming",
+    "\ud83d\udd17 URL?": "https://www.mtndewgaming.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/MountainDewGaming.png",
+    "Icon Alt": "MountainDewGaming",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AlcastHQ",
+    "\ud83d\udd17 URL?": "https://alcasthq.com/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/alcasthq.png",
+    "Icon Alt": "alcasthq",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "FicsitApp",
+    "\ud83d\udd17 URL?": "https://ficsit.app/",
+    "Category": "Games",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ficsitapp.png",
+    "Icon Alt": "ficsitapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Minecraft",
+    "\ud83d\udd17 URL?": "https://minecraft.net/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/minecraft.png",
+    "Icon Alt": "minecraft",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Minecraft Launcher",
+    "\ud83d\udd17 URL?": "https://launcher.mojang.com/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/mojang.png",
+    "Icon Alt": "mojang",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Minecraft Wiki",
+    "\ud83d\udd17 URL?": "https://minecraft.gamepedia.com/Minecraft_Wiki",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/minecraftwiki.png",
+    "Icon Alt": "minecraftwiki",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Minecraft Server List",
+    "\ud83d\udd17 URL?": "https://mcsrvstat.us/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/mcsrvstat.png",
+    "Icon Alt": "mcsrvstat",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Forge",
+    "\ud83d\udd17 URL?": "https://files.minecraftforge.net/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ForgeDevTeam.png",
+    "Icon Alt": "ForgeDevTeam",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Fabric",
+    "\ud83d\udd17 URL?": "https://fabricmc.net/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/FabricMC.png",
+    "Icon Alt": "FabricMC",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "CurseForge",
+    "\ud83d\udd17 URL?": "https://www.curseforge.com/minecraft/mods",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/curseforge.png",
+    "Icon Alt": "curseforge",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Modrinth",
+    "\ud83d\udd17 URL?": "https://modrinth.com/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/modrinth.png",
+    "Icon Alt": "modrinth",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "FTB Wiki",
+    "\ud83d\udd17 URL?": "https://ftb.gamepedia.com/FTB_Wiki/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ftb_team.png",
+    "Icon Alt": "ftb_team",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "MCReator",
+    "\ud83d\udd17 URL?": "https://mcreator.net/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/PyloDEV.png",
+    "Icon Alt": "PyloDEV",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Crafatar",
+    "\ud83d\udd17 URL?": "https://crafatar.com/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Crafatar.png",
+    "Icon Alt": "Crafatar",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "ServerMiner",
+    "\ud83d\udd17 URL?": "https://serverminer.com/servers",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/serverminer.png",
+    "Icon Alt": "serverminer",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Aternos",
+    "\ud83d\udd17 URL?": "https://aternos.org/",
+    "Category": "Games Minecraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/aternos.png",
+    "Icon Alt": "aternos",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RuneScape",
+    "\ud83d\udd17 URL?": "https://www.runescape.com/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/runescape.png",
+    "Icon Alt": "runescape",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Old School RuneScape",
+    "\ud83d\udd17 URL?": "https://oldschool.runescape.com/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/oldschoolrs.png",
+    "Icon Alt": "oldschoolrs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RuneScape Wiki",
+    "\ud83d\udd17 URL?": "https://runescape.wiki/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/RSWiki.png",
+    "Icon Alt": "RSWiki",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "OSRS Wiki",
+    "\ud83d\udd17 URL?": "https://oldschool.runescape.wiki/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/OsrsWiki.png",
+    "Icon Alt": "OsrsWiki",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RuneHQ",
+    "\ud83d\udd17 URL?": "https://www.runehq.com/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/officialrunehq.png",
+    "Icon Alt": "officialrunehq",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RuneLite",
+    "\ud83d\udd17 URL?": "https://runelite.net/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/RuneLiteClient.png",
+    "Icon Alt": "RuneLiteClient",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "OSRS Tracker",
+    "\ud83d\udd17 URL?": "https://www.osrs-tracker.com/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/osrs_tracker.png",
+    "Icon Alt": "osrs_tracker",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Rune Tips",
+    "\ud83d\udd17 URL?": "https://www.tip.it/runescape/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/runetips.png",
+    "Icon Alt": "runetips",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "GE Tracker",
+    "\ud83d\udd17 URL?": "https://www.ge-tracker.com/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/getracker.png",
+    "Icon Alt": "getracker",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Oodle",
+    "\ud83d\udd17 URL?": "https://oodle.rs/",
+    "Category": "Games Runescape",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/oodlers.png",
+    "Icon Alt": "oodlers",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Sims",
+    "\ud83d\udd17 URL?": "https://www.ea.com/games/the-sims",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/TheSims.png",
+    "Icon Alt": "TheSims",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Sims 4",
+    "\ud83d\udd17 URL?": "https://www.thesims.com/",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/TheSims4.png",
+    "Icon Alt": "TheSims4",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Sims 3",
+    "\ud83d\udd17 URL?": "https://www.thesims3.com/home.html",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/TheSims3.png",
+    "Icon Alt": "TheSims3",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Sims FreePlay",
+    "\ud83d\udd17 URL?": "https://www.ea.com/games/the-sims/the-sims-freeplay",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/SimsFreePlay.png",
+    "Icon Alt": "SimsFreePlay",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Mod The Sims",
+    "\ud83d\udd17 URL?": "http://www.modthesims.info/",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/modthesimsinfo.png",
+    "Icon Alt": "modthesimsinfo",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Origin/EA App",
+    "\ud83d\udd17 URL?": "https://www.origin.com/",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/origininsider.png",
+    "Icon Alt": "origininsider",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "SimsCommunity",
+    "\ud83d\udd17 URL?": "https://simscommunity.info/",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/SimsCommun.png",
+    "Icon Alt": "SimsCommun",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Plumbob Academy",
+    "\ud83d\udd17 URL?": "https://www.youtube.com/c/PlumbobAcademy",
+    "Category": "Games Sims",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/plumbobacademy.png",
+    "Icon Alt": "plumbobacademy",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gewey Referral",
+    "\ud83d\udd17 URL?": "./shopping/referral.html",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/blank.png",
+    "Icon Alt": "blank",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gewey Warcraft",
+    "\ud83d\udd17 URL?": "./games/warcraft/index.html",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/geweywarcraft.png",
+    "Icon Alt": "geweywarcraft",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "World of Warcraft",
+    "\ud83d\udd17 URL?": "https://www.worldofwarcraft.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/warcraft.png",
+    "Icon Alt": "warcraft",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Blizzard",
+    "\ud83d\udd17 URL?": "https://www.blizzard.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/blizzardcs.png",
+    "Icon Alt": "blizzardcs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Wowhead",
+    "\ud83d\udd17 URL?": "https://www.wowhead.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wowhead.png",
+    "Icon Alt": "wowhead",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Icy Veins",
+    "\ud83d\udd17 URL?": "https://www.icy-veins.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/icyveins.png",
+    "Icon Alt": "icyveins",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "WoW Progress",
+    "\ud83d\udd17 URL?": "https://www.wowprogress.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wowprogress.png",
+    "Icon Alt": "wowprogress",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Raider IO",
+    "\ud83d\udd17 URL?": "https://raider.io/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/raiderio_wow.png",
+    "Icon Alt": "raiderio_wow",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Warcraft Logs",
+    "\ud83d\udd17 URL?": "https://www.warcraftlogs.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/warcraftlogs.png",
+    "Icon Alt": "warcraftlogs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Raidbots",
+    "\ud83d\udd17 URL?": "https://www.raidbots.com/simbot",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/raidbots.png",
+    "Icon Alt": "raidbots",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "TradeSkillMaster",
+    "\ud83d\udd17 URL?": "https://www.tradeskillmaster.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tsmaddon.png",
+    "Icon Alt": "tsmaddon",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Petopia",
+    "\ud83d\udd17 URL?": "https://www.wow-petopia.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wowpetopia.png",
+    "Icon Alt": "wowpetopia",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Wago.IO",
+    "\ud83d\udd17 URL?": "https://wago.io/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wago_io.png",
+    "Icon Alt": "wago_io",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Simple Armory",
+    "\ud83d\udd17 URL?": "https://simplearmory.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/simplearmory.png",
+    "Icon Alt": "simplearmory",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Bloodmallet",
+    "\ud83d\udd17 URL?": "https://www.bloodmallet.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/bloodmallet.png",
+    "Icon Alt": "bloodmallet",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Archon",
+    "\ud83d\udd17 URL?": "https://www.archon.gg/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/archon.png",
+    "Icon Alt": "archon",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "ArenaTeam",
+    "\ud83d\udd17 URL?": "https://www.arenateam.net/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/arenateam.png",
+    "Icon Alt": "arenateam",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Data for Azeroth",
+    "\ud83d\udd17 URL?": "https://www.dataforazeroth.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/dataforazeroth.png",
+    "Icon Alt": "dataforazeroth",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "RaidPlan",
+    "\ud83d\udd17 URL?": "https://raidplan.io/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/raidplan.png",
+    "Icon Alt": "raidplan",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Warcraft Secrets",
+    "\ud83d\udd17 URL?": "https://warcraft-secrets.com/",
+    "Category": "Games Warcraft",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/WarcraftSecrets.png",
+    "Icon Alt": "WarcraftSecrets",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google",
+    "\ud83d\udd17 URL?": "http://www.google.com/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/google.png",
+    "Icon Alt": "google",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Drive",
+    "\ud83d\udd17 URL?": "https://drive.google.com/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googledrive.png",
+    "Icon Alt": "googledrive",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Docs",
+    "\ud83d\udd17 URL?": "https://docs.google.com",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googledocs.png",
+    "Icon Alt": "googledocs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Chrome",
+    "\ud83d\udd17 URL?": "https://www.google.com/chrome/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googlechrome.png",
+    "Icon Alt": "googlechrome",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gmail",
+    "\ud83d\udd17 URL?": "https://mail.google.com/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/gmail.png",
+    "Icon Alt": "gmail",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Photos",
+    "\ud83d\udd17 URL?": "https://photos.google.com/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googlephotos.png",
+    "Icon Alt": "googlephotos",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Translate",
+    "\ud83d\udd17 URL?": "https://translate.google.com/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/googletranslate.png",
+    "Icon Alt": "googletranslate",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Google Maps",
+    "\ud83d\udd17 URL?": "https://www.google.com/maps/",
+    "Category": "Google",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/GMapsPlatform.png",
+    "Icon Alt": "GMapsPlatform",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Investing",
+    "\ud83d\udd17 URL?": "./investing/index.html",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/investing.png",
+    "Icon Alt": "investing",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "E*Trade",
+    "\ud83d\udd17 URL?": "https://us.etrade.com/home",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/etrade.png",
+    "Icon Alt": "etrade",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Fidelity",
+    "\ud83d\udd17 URL?": "https://oltx.fidelity.com/ftgw/fbc/oftop/portfolio#summary",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/fidelity.png",
+    "Icon Alt": "fidelity",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Robinhood",
+    "\ud83d\udd17 URL?": "https://join.robinhood.com/josephg4312",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/RobinhoodApp.png",
+    "Icon Alt": "RobinhoodApp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Acorns",
+    "\ud83d\udd17 URL?": "https://www.acorns.com/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/acorns.png",
+    "Icon Alt": "acorns",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Webull",
+    "\ud83d\udd17 URL?": "https://act.webull.com/iv/e5OOcG2gCh7s/71n/inviteUs/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/webull.png",
+    "Icon Alt": "webull",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Coinbase",
+    "\ud83d\udd17 URL?": "https://www.coinbase.com/join/jgoulette_4hiaeA",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/coinbase.png",
+    "Icon Alt": "coinbase",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Fundrise",
+    "\ud83d\udd17 URL?": "https://www.fundrise.com/r/pp1rp7",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/fundrise.png",
+    "Icon Alt": "fundrise",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Worthy Bonds",
+    "\ud83d\udd17 URL?": "https://worthybonds.com/?r=ikhfn",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Worthy.png",
+    "Icon Alt": "Worthy",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gem Select",
+    "\ud83d\udd17 URL?": "https://www.gemselect.com/index.php",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/GemSelect.png",
+    "Icon Alt": "GemSelect",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "APMEX",
+    "\ud83d\udd17 URL?": "https://www.apmex.com/account/portfolio",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/apmex.png",
+    "Icon Alt": "apmex",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "uCoin",
+    "\ud83d\udd17 URL?": "https://en.ucoin.net/?ref=ZvVW2bgHAaqB2UEt",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ucoin.png",
+    "Icon Alt": "ucoin",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "JM Bullion",
+    "\ud83d\udd17 URL?": "https://www.JMBullion.com/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/JMBullion.png",
+    "Icon Alt": "JMBullion",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Luciteria",
+    "\ud83d\udd17 URL?": "https://luciteria.com/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/luciteria.png",
+    "Icon Alt": "luciteria",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "FINVIZ",
+    "\ud83d\udd17 URL?": "https://finviz.com/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/FINVIZ_com.png",
+    "Icon Alt": "FINVIZ_com",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Investopedia",
+    "\ud83d\udd17 URL?": "https://www.investopedia.com/",
+    "Category": "Investing",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/investopedia.png",
+    "Icon Alt": "investopedia",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Media",
+    "\ud83d\udd17 URL?": "./media/index.html",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/media.png",
+    "Icon Alt": "media",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Spotify",
+    "\ud83d\udd17 URL?": "http://www.spotify.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/spotify.png",
+    "Icon Alt": "spotify",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Stats.fm",
+    "\ud83d\udd17 URL?": "https://stats.fm/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/statsfm.png",
+    "Icon Alt": "statsfm",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Radio Garden",
+    "\ud83d\udd17 URL?": "http://radio.garden/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/radiogarden.png",
+    "Icon Alt": "radiogarden",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "YouTube",
+    "\ud83d\udd17 URL?": "https://www.youtube.com/feed/subscriptions",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/youtube.png",
+    "Icon Alt": "youtube",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Netflix",
+    "\ud83d\udd17 URL?": "http://www.netflix.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/netflix.png",
+    "Icon Alt": "netflix",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Hulu",
+    "\ud83d\udd17 URL?": "http://www.hulu.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/hulu.png",
+    "Icon Alt": "hulu",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Prime Video",
+    "\ud83d\udd17 URL?": "https://www.amazon.com/gp/video/storefront",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/primevideo.png",
+    "Icon Alt": "primevideo",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "HBO Max",
+    "\ud83d\udd17 URL?": "https://play.hbomax.com/profileSelect",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/hbomax.png",
+    "Icon Alt": "hbomax",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Roku Channel",
+    "\ud83d\udd17 URL?": "https://therokuchannel.roku.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/RokuChannels.png",
+    "Icon Alt": "RokuChannels",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Pluto TV",
+    "\ud83d\udd17 URL?": "https://pluto.tv/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/PlutoTV.png",
+    "Icon Alt": "PlutoTV",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "LookMovie",
+    "\ud83d\udd17 URL?": "https://www.lookmovie2.to/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/lookmovie.png",
+    "Icon Alt": "lookmovie",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Nebula",
+    "\ud83d\udd17 URL?": "https://nebula.tv/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nebula.png",
+    "Icon Alt": "nebula",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "DeviantArt",
+    "\ud83d\udd17 URL?": "http://www.deviantart.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/deviantart.png",
+    "Icon Alt": "deviantart",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "imgflip",
+    "\ud83d\udd17 URL?": "https://imgflip.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/imgflip.png",
+    "Icon Alt": "imgflip",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Audible",
+    "\ud83d\udd17 URL?": "https://amzn.to/2D4mwBB",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/audible_com.png",
+    "Icon Alt": "audible_com",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Tumblr",
+    "\ud83d\udd17 URL?": "https://www.tumblr.com/dashboard",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tumblr.png",
+    "Icon Alt": "tumblr",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gravit Designer",
+    "\ud83d\udd17 URL?": "https://designer.io/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/gravitdesigner.png",
+    "Icon Alt": "gravitdesigner",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Shutterstock",
+    "\ud83d\udd17 URL?": "http://www.shutterstock.com/?rid=224491653",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/shutterstock.png",
+    "Icon Alt": "shutterstock",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Hazbin Hotel",
+    "\ud83d\udd17 URL?": "https://x.com/HazbinHotel",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/hazbinhotel.png",
+    "Icon Alt": "hazbinhotel",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Helluva Boss",
+    "\ud83d\udd17 URL?": "https://www.stylishoccult.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/helluvaboss.png",
+    "Icon Alt": "helluvaboss",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Blogger",
+    "\ud83d\udd17 URL?": "https://www.blogger.com/",
+    "Category": "Media",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/blogger.png",
+    "Icon Alt": "blogger",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "News",
+    "\ud83d\udd17 URL?": "./news/index.html",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/news.png",
+    "Icon Alt": "news",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AP News",
+    "\ud83d\udd17 URL?": "https://apnews.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/apnews.png",
+    "Icon Alt": "apnews",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "CNN",
+    "\ud83d\udd17 URL?": "http://www.cnn.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/cnn.png",
+    "Icon Alt": "cnn",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Huffington Post",
+    "\ud83d\udd17 URL?": "http://www.huffingtonpost.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/huffpost.png",
+    "Icon Alt": "huffpost",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "New York Times",
+    "\ud83d\udd17 URL?": "http://www.nytimes.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nytimes.png",
+    "Icon Alt": "nytimes",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Newsweek",
+    "\ud83d\udd17 URL?": "https://www.newsweek.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/newsweek.png",
+    "Icon Alt": "newsweek",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "BBC",
+    "\ud83d\udd17 URL?": "http://www.bbc.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/bbc.png",
+    "Icon Alt": "bbc",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Weather",
+    "\ud83d\udd17 URL?": "http://www.weather.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/weatherchannel.png",
+    "Icon Alt": "weatherchannel",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "NASA",
+    "\ud83d\udd17 URL?": "http://www.nasa.gov/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nasa.png",
+    "Icon Alt": "nasa",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Science Channel",
+    "\ud83d\udd17 URL?": "https://www.sciencechannel.com",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ScienceChannel.png",
+    "Icon Alt": "ScienceChannel",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "CNET",
+    "\ud83d\udd17 URL?": "http://www.cnet.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/cnet.png",
+    "Icon Alt": "cnet",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Yahoo",
+    "\ud83d\udd17 URL?": "https://www.yahoo.com/",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/yahoo.png",
+    "Icon Alt": "yahoo",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Global Citizen",
+    "\ud83d\udd17 URL?": "https://www.globalcitizen.org",
+    "Category": "News",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/glblctzn.png",
+    "Icon Alt": "glblctzn",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Reference",
+    "\ud83d\udd17 URL?": "./reference/index.html",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/reference.png",
+    "Icon Alt": "reference",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Brilliant",
+    "\ud83d\udd17 URL?": "https://brilliant.org/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/brilliant.png",
+    "Icon Alt": "brilliant",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Ancestry",
+    "\ud83d\udd17 URL?": "https://www.ancestry.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Ancestry.png",
+    "Icon Alt": "Ancestry",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "MyHeritage",
+    "\ud83d\udd17 URL?": "https://www.myheritage.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/MyHeritage.png",
+    "Icon Alt": "MyHeritage",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Genomelink",
+    "\ud83d\udd17 URL?": "https://genomelink.io/dashboard/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/genomelink.png",
+    "Icon Alt": "genomelink",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "23andMe",
+    "\ud83d\udd17 URL?": "https://www.23andme.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/23andMe.png",
+    "Icon Alt": "23andMe",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Wikipedia",
+    "\ud83d\udd17 URL?": "http://wikipedia.org/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wikipedia.png",
+    "Icon Alt": "wikipedia",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "IMDB",
+    "\ud83d\udd17 URL?": "http://www.imdb.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/imdb.png",
+    "Icon Alt": "imdb",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "eHow",
+    "\ud83d\udd17 URL?": "http://www.ehow.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ehow.png",
+    "Icon Alt": "ehow",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Almanac",
+    "\ud83d\udd17 URL?": "https://www.almanac.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/almanac.png",
+    "Icon Alt": "almanac",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "TED Talks",
+    "\ud83d\udd17 URL?": "https://www.ted.com",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tedtalks.png",
+    "Icon Alt": "tedtalks",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "AllRecipes",
+    "\ud83d\udd17 URL?": "https://www.allrecipes.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/allrecipes.png",
+    "Icon Alt": "allrecipes",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Life Hacker",
+    "\ud83d\udd17 URL?": "https://lifehacker.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/lifehacker.png",
+    "Icon Alt": "lifehacker",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Khan Academy",
+    "\ud83d\udd17 URL?": "https://www.khanacademy.org/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/khanacademy.png",
+    "Icon Alt": "khanacademy",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Font Awesome",
+    "\ud83d\udd17 URL?": "https://fontawesome.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/fontawesome.png",
+    "Icon Alt": "fontawesome",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Periodic Table",
+    "\ud83d\udd17 URL?": "https://www.ptable.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ptable.png",
+    "Icon Alt": "ptable",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Dictionary",
+    "\ud83d\udd17 URL?": "http://dictionary.reference.com/",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/dictionarycom.png",
+    "Icon Alt": "dictionarycom",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Duolingo",
+    "\ud83d\udd17 URL?": "https://www.duolingo.com",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/duolingo.png",
+    "Icon Alt": "duolingo",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Kurzgesagt",
+    "\ud83d\udd17 URL?": "https://www.youtube.com/user/Kurzgesagt",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Kurz_Gesagt.png",
+    "Icon Alt": "Kurz_Gesagt",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Crash Course",
+    "\ud83d\udd17 URL?": "https://www.youtube.com/user/crashcourse",
+    "Category": "Reference",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/thecrashcourse.png",
+    "Icon Alt": "thecrashcourse",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Gewey Referral",
+    "\ud83d\udd17 URL?": "./shopping/referral.html",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/shopping.png",
+    "Icon Alt": "shopping",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Amazon",
+    "\ud83d\udd17 URL?": "https://amzn.to/391VsnT",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/amazon.png",
+    "Icon Alt": "amazon",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Candle Science",
+    "\ud83d\udd17 URL?": "https://www.candlescience.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/CandleScience.png",
+    "Icon Alt": "CandleScience",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "The Flaming Candle",
+    "\ud83d\udd17 URL?": "https://www.theflamingcandle.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Flaming_Candle.png",
+    "Icon Alt": "Flaming_Candle",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "eBay",
+    "\ud83d\udd17 URL?": "http://www.ebay.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ebay.png",
+    "Icon Alt": "ebay",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Jinx",
+    "\ud83d\udd17 URL?": "http://www.jinx.com/member/336691?bid=49",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/jinx.png",
+    "Icon Alt": "jinx",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Newegg",
+    "\ud83d\udd17 URL?": "http://www.newegg.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/newegg.png",
+    "Icon Alt": "newegg",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Walmart",
+    "\ud83d\udd17 URL?": "http://www.walmart.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/walmart.png",
+    "Icon Alt": "walmart",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "SharkRobot",
+    "\ud83d\udd17 URL?": "https://sharkrobot.com/collections/vivziepop",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/sharkrobot.png",
+    "Icon Alt": "sharkrobot",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "UPS",
+    "\ud83d\udd17 URL?": "http://www.ups.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ups.png",
+    "Icon Alt": "ups",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "USPS",
+    "\ud83d\udd17 URL?": "https://www.usps.com/",
+    "Category": "Shopping",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/usps.png",
+    "Icon Alt": "usps",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Facebook",
+    "\ud83d\udd17 URL?": "http://facebook.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/facebook.png",
+    "Icon Alt": "facebook",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Twitter",
+    "\ud83d\udd17 URL?": "http://twitter.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/twitter.png",
+    "Icon Alt": "twitter",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Instagram",
+    "\ud83d\udd17 URL?": "https://www.instagram.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/instagram.png",
+    "Icon Alt": "instagram",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "TikTok",
+    "\ud83d\udd17 URL?": "https://www.tiktok.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tiktok.png",
+    "Icon Alt": "tiktok",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Snapchat",
+    "\ud83d\udd17 URL?": "https://www.snapchat.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/snapchat.png",
+    "Icon Alt": "snapchat",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Pinterest",
+    "\ud83d\udd17 URL?": "http://pinterest.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/pinterest.png",
+    "Icon Alt": "pinterest",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Skype",
+    "\ud83d\udd17 URL?": "https://www.skype.com/en/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/skype.png",
+    "Icon Alt": "skype",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "LinkedIn",
+    "\ud83d\udd17 URL?": "http://www.linkedin.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/linkedin.png",
+    "Icon Alt": "linkedin",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "WhatsApp",
+    "\ud83d\udd17 URL?": "https://www.whatsapp.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/whatsapp.png",
+    "Icon Alt": "whatsapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Telegram",
+    "\ud83d\udd17 URL?": "https://web.telegram.org/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/telegram.png",
+    "Icon Alt": "telegram",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Mix",
+    "\ud83d\udd17 URL?": "https://mix.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/getmixapp.png",
+    "Icon Alt": "getmixapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Digg",
+    "\ud83d\udd17 URL?": "http://digg.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/digg.png",
+    "Icon Alt": "digg",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Reddit",
+    "\ud83d\udd17 URL?": "http://www.reddit.com/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/reddit.png",
+    "Icon Alt": "reddit",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "WordPress",
+    "\ud83d\udd17 URL?": "http://wordpress.org/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/wordpress.png",
+    "Icon Alt": "wordpress",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Mastodon",
+    "\ud83d\udd17 URL?": "https://mastodon.social/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/mastodon_social.png",
+    "Icon Alt": "mastodon_social",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Text Free",
+    "\ud83d\udd17 URL?": "https://textfree.us/",
+    "Category": "Social",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/textfreeapp.png",
+    "Icon Alt": "textfreeapp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Sports",
+    "\ud83d\udd17 URL?": "./sports/index.html",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/sports.png",
+    "Icon Alt": "sports",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "ESPN",
+    "\ud83d\udd17 URL?": "https://www.espn.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/espn.png",
+    "Icon Alt": "espn",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Sports Illustrated",
+    "\ud83d\udd17 URL?": "https://www.si.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/sinow.png",
+    "Icon Alt": "sinow",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "NFL",
+    "\ud83d\udd17 URL?": "https://www.nfl.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nfl.png",
+    "Icon Alt": "nfl",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "NBA",
+    "\ud83d\udd17 URL?": "https://www.nba.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nba.png",
+    "Icon Alt": "nba",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "MLB",
+    "\ud83d\udd17 URL?": "https://www.mlb.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/mlb.png",
+    "Icon Alt": "mlb",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "NCAA",
+    "\ud83d\udd17 URL?": "https://www.ncaa.org/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/ncaa.png",
+    "Icon Alt": "ncaa",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Soccer.com",
+    "\ud83d\udd17 URL?": "https://www.soccer.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/MLS.png",
+    "Icon Alt": "MLS",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "NASCAR",
+    "\ud83d\udd17 URL?": "https://www.nascar.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/nascar.png",
+    "Icon Alt": "nascar",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "PGA Tour",
+    "\ud83d\udd17 URL?": "https://www.pgatour.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/pgatour.png",
+    "Icon Alt": "pgatour",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Bleacher Report",
+    "\ud83d\udd17 URL?": "https://bleacherreport.com/",
+    "Category": "Sports",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/BleacherReport.png",
+    "Icon Alt": "BleacherReport",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Web Development",
+    "\ud83d\udd17 URL?": "./reference/index.html",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/webdevelopment.png",
+    "Icon Alt": "webdevelopment",
+    "Target": "contentframe",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Zapier",
+    "\ud83d\udd17 URL?": "https://www.zapier.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/zapier.png",
+    "Icon Alt": "zapier",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Bleeping Computer",
+    "\ud83d\udd17 URL?": "https://www.bleepingcomputer.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/BleepinComputer.png",
+    "Icon Alt": "BleepinComputer",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "W3Schools",
+    "\ud83d\udd17 URL?": "http://www.w3schools.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/w3schoolsonline.png",
+    "Icon Alt": "w3schoolsonline",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Stack Overflow",
+    "\ud83d\udd17 URL?": "https://stackoverflow.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/StackOverflow.png",
+    "Icon Alt": "StackOverflow",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "GitHub",
+    "\ud83d\udd17 URL?": "https://github.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/github.png",
+    "Icon Alt": "github",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Codecademy",
+    "\ud83d\udd17 URL?": "https://www.codecademy.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/codecademy.png",
+    "Icon Alt": "codecademy",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "FreeCodeCamp",
+    "\ud83d\udd17 URL?": "https://learn.freecodecamp.org/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/freeCodeCamp.png",
+    "Icon Alt": "freeCodeCamp",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "TensorFlow.js",
+    "\ud83d\udd17 URL?": "https://js.tensorflow.org/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tensorflow.png",
+    "Icon Alt": "tensorflow",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "CodePen",
+    "\ud83d\udd17 URL?": "https://codepen.io/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/codepen.png",
+    "Icon Alt": "codepen",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Material Design",
+    "\ud83d\udd17 URL?": "https://material.io/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/materialdesign.png",
+    "Icon Alt": "materialdesign",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Open Culture",
+    "\ud83d\udd17 URL?": "http://www.openculture.com",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/openculture.png",
+    "Icon Alt": "openculture",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Fontvilla",
+    "\ud83d\udd17 URL?": "https://fontvilla.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/Fontvillacs.png",
+    "Icon Alt": "Fontvillacs",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Airbrush",
+    "\ud83d\udd17 URL?": "https://airbrush.com/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/airbrush.png",
+    "Icon Alt": "airbrush",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "FacyAI",
+    "\ud83d\udd17 URL?": "https://facy.ai/swap-face-ai/photo",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/facyai.png",
+    "Icon Alt": "facyai",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "TutorialsPoint",
+    "\ud83d\udd17 URL?": "https://www.tutorialspoint.com/index.htm",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/tutorialspoint.png",
+    "Icon Alt": "tutorialspoint",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "Blizzard Press",
+    "\ud83d\udd17 URL?": "https://blizzard.gamespress.com/World-of-Warcraft",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/blizzardpress.png",
+    "Icon Alt": "blizzardpress",
+    "Target": "_parent",
+    "Enabled": true
+  },
+  {
+    "Question 1": "MIT App Inventor",
+    "\ud83d\udd17 URL?": "http://ai2.appinventor.mit.edu/",
+    "Category": "Web Development",
+    "PNG URL": "https://gewey.github.io/img/btn/bm/mitappinventor.png",
+    "Icon Alt": "mitappinventor",
+    "Target": "_parent",
+    "Enabled": true
+  }
+]

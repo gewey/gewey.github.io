@@ -17,34 +17,39 @@ const Dashboard = {
     this.renderStats();
   },
 
-  loadStats() {
-    // Count total bookmarks and categories
+  loadCategoryStats() {
     const categoryFolders = ['social', 'email', 'cloud', 'shopping', 'finance', 'investing', 'crypto', 'news', 'sports', 'reference', 'downloads', 'media', 'games'];
     this.stats.totalCategories = categoryFolders.length;
+  },
 
-    // Get agent view stats
-    for (let key in localStorage) {
+  loadAgentViewStats() {
+    Object.keys(localStorage).forEach(key => {
       if (key.startsWith('agentView_')) {
         const agentName = key.replace('agentView_', '');
-        this.stats.agentViews[agentName] = parseInt(localStorage[key]) || 0;
+        this.stats.agentViews[agentName] = parseInt(localStorage.getItem(key), 10) || 0;
       }
-    }
+    });
+  },
 
-    // Get bookmark click stats
-    for (let key in localStorage) {
+  loadClickStats() {
+    let accumulatedClicks = 0;
+    Object.keys(localStorage).forEach(key => {
       if (key.startsWith('verpCount') || key.startsWith('bookmark_')) {
-        const count = parseInt(localStorage[key]) || 0;
+        const count = parseInt(localStorage.getItem(key), 10) || 0;
         if (count > 0) {
-          this.stats.totalClicks += count;
+          accumulatedClicks += count;
         }
       }
-    }
+    });
 
-    // Get global click counter
-    const globalClicks = parseInt(localStorage.verpCount) || 0;
-    if (globalClicks > this.stats.totalClicks) {
-      this.stats.totalClicks = globalClicks;
-    }
+    const globalClicks = parseInt(localStorage.getItem('verpCount'), 10) || 0;
+    this.stats.totalClicks = Math.max(accumulatedClicks, globalClicks);
+  },
+
+  loadStats() {
+    this.loadCategoryStats();
+    this.loadAgentViewStats();
+    this.loadClickStats();
   },
 
   renderStats() {

@@ -1,0 +1,1942 @@
+## Why it is the least healthy
+
+`js/bookmarkBuilder.js` scores **5.61/10**, the repository’s lowest file score. The main causes are concentrated in one anonymous module initializer/function at `js/bookmarkBuilder.js:8–778`:
+
+- **702 lines of code** in one function-like unit.
+- **Cyclomatic complexity of 68**, making behavior difficult to reason about and test.
+- Classified as a **brain method**, because it combines excessive size, branching, and a broad dependency surface.
+- Four same-level nested control-flow “bumps,” indicating several responsibilities interleaved rather than cleanly separated.
+- A **swallowed exception** at line 87, where an error is caught without handling or reporting it.
+- Imported by **16 bookmark pages**, so changes have a wide impact surface.
+- **No test file or coverage data** was found.
+- It has very high historical churn—98th percentile—and its current lines are concentrated under one primary author, with a **bus factor of 2**.
+
+It is not currently classified as a repository hotspot, and there are no reported security findings for this file. The low score is primarily a structural and testability problem, not a performance or dependency-vulnerability problem.
+
+## How to fix it
+
+### 1. Add characterization tests first
+
+Before restructuring, test the externally visible behavior used by the bookmark pages:
+
+- Initial bookmark rendering.
+- LocalStorage loading and customization.
+- Reordering.
+- Adding and deleting bookmarks.
+- Empty, malformed, or missing stored data.
+- DOM elements or configuration being absent.
+- Error paths currently handled by the catch at line 87.
+
+Because the file has 16 consumers and no coverage data, these tests are the safety net for the refactor.
+
+### 2. Split the large initializer into cohesive helpers
+
+Keep `BookmarkBuilder` as the compatibility-facing API, but extract focused functions such as:
+
+```js
+loadStoredBookmarks()
+normalizeBookmarks()
+renderBookmarkCollection()
+createBookmarkElement()
+bindBookmarkEvents()
+addBookmark()
+deleteBookmark()
+moveBookmark()
+saveBookmarks()
+readConfiguration()
+```
+
+The current body should become a short orchestration layer—for example:
+
+```js
+const BookmarkBuilder = (() => {
+  const bookmarks = loadStoredBookmarks();
+
+  return {
+    render: options => renderBookmarkCollection(bookmarks, options),
+    add: bookmark => addBookmark(bookmarks, bookmark),
+    remove: id => deleteBookmark(bookmarks, id),
+    move: (from, to) => moveBookmark(bookmarks, from, to)
+  };
+})();
+```
+
+The exact boundaries should follow the existing comment blocks and state transitions in the 702-line body.
+
+### 3. Reduce branching
+
+The complexity score of 68 suggests that the main function is making too many decisions. Replace repeated conditional paths with:
+
+- Early returns for invalid or missing inputs.
+- Small validation/normalization helpers.
+- Lookup tables for bookmark categories or action types.
+- Separate DOM-rendering logic from persistence logic.
+- Separate event binding from the operations those events invoke.
+
+Each extracted helper should have one responsibility and a small input/output contract.
+
+### 4. Fix the swallowed exception
+
+At line 87, do not silently ignore the caught exception. Depending on the intended behavior:
+
+```js
+catch (error) {
+  console.warn("Unable to load saved bookmarks", error);
+  return getDefaultBookmarks();
+}
+```
+
+Or, if the caller should decide how to recover, rethrow a meaningful error. Avoid exposing sensitive storage contents in logs.
+
+### 5. Preserve the public surface while migrating callers gradually
+
+Since 16 pages import the module, avoid changing the external API in the first refactor. Extract internals behind the existing `BookmarkBuilder` interface, then update callers only if a clearer API is needed. Run all bookmark pages and the new tests after each extraction.
+
+### 6. Improve ownership and documentation
+
+The file’s current implementation is highly concentrated under one author and has a bus factor of 2. Add:
+
+- A short module-level contract describing supported operations.
+- JSDoc for the public methods and data shape.
+- Tests that serve as executable documentation.
+- Separate files if the extracted helpers become substantial, such as `bookmarkStorage.js`, `bookmarkRenderer.js`, and `bookmarkActions.js`.
+
+A sensible sequence is: **characterization tests → error handling fix → extract storage → extract rendering → extract mutation/event logic → simplify the public builder → measure coverage and complexity again**.
+
+---
+
+▸
+Fix first
+6 items
+6 of 6 eligible items. Test files are included.
+
+Include tests
+4 excluded
+Next
+
+Break up <anonymous@8> (CCN 68, 702 lines)
+js/bookmarkBuilder.js:8
+Gain up to +1.0 health on this file
+
+First step Start with lines 763-767, where it nests 3 deep: return early or move it into a helper
+
+Later
+
+Reduce the branching in self.addEventListener callback
+js/sw.js:74
+Gain up to +1.2 health on this file
+
+Later
+
+Reduce the branching in <anonymous>
+js/vikipedia_head.js:6
+Gain up to +0.5 health on this file
+
+Later
+
+Reduce the branching in getSize
+js/isotope.pkgd.js:404
+Gain up to +0.2 health on this file
+
+Later
+
+Simplify the condition in <anonymous>
+js/agentProfileBuilder.js:20
+Gain up to +0.4 health on this file
+
+Later
+
+Simplify the condition in <anonymous>
+js/agentViewTracker.js:23
+Gain up to +0.4 health on this file
+
+---
+
+
+# gewey.github.io code health: hotspots, dead code, risk
+
+[![repowise](/repowise-logo-light.png)![](/repowise-logo.png)repowise](/)
+
+[Star7.9k](https://github.com/repowise-dev/repowise)
+
+![repowise](/repowise-logo-light.png)![](/repowise-logo.png)gewey/gewey.github.io
+
+Credit balance is under $1.00AI features that spend credits pause when it reaches zero.
+
+[Top up](/settings?tab=billing&topup=open)
+
+# Code Health
+
+Per-file health scores from complexity, duplication, coverage, churn, and ownership markers, ranked into a fix-next queue, with risk, security, and trend in one place.
+
+FilesAll code
+
+CountsEverything
+
+Indexed 10/21/2026, 5:24:33 AM · 2bafeccc · 1 snapshot
+
+Health scores changed in this release. Most files score higher: cohesion, duplication, hotspot and complexity findings that did not hold up are gone, and test code no longer counts against production files. Files in languages health cannot analyse used to count as 10.0; they now read "Not analysed" and leave the average, so a repository with many of them can read lower. A repository shows the new scores after its next index, and scores are not comparable to snapshots taken before it.
+
+OverviewFindingsPerformanceTestsDead codeDoc driftImpact
+
+### Fix next
+
+8 files · 31 findings
+
+DimensionAll dimensionsCode healthMaintainabilityPerformanceAdvisoryMarkerAll markersBrain methodBumpy roadComplex conditionalComplex methodError handlingLarge methodNested complexityLong parameter listMax effortAny effortSmall onlyMedium and underLarge and underExtra large and underSortLeverage (impact ÷ effort)Total impactWorst scoreFinding countGroupFlat listBy markerBy moduleBy effort
+
+SeverityCriticalHighMediumLow
+
+FileHotspotsUntestedBelow green
+
+### Impact and effort
+
+8 plotted of 8 files in this filter. Lines on a log scale, health points on a square-root scale.
+
+1101001,00010,0000125Lines to changeRecoverable health150 lines0.5124356
+
+Point at a file, or focus the plot and use the arrow keys. Click or press Enter to find it in the list.
+
+Quick wins
+
+1 · under 150 lines, at least 0.5 points
+
+Major projects
+
+4 · at least 150 lines, at least 0.5 points
+
+Minor cleanups
+
+3 · under 150 lines, under 0.5 points
+
+Time sinks
+
+0 · at least 150 lines, under 0.5 points
+
+-   Placed by its refactoring plan: lines it changes, health it recovers
+-   No plan recovers health: code lines, and what its findings deduct
+-   1A Fix-first item, numbered by its place in Fix first
+-   Selected
+
+MediumNested complexityjsM−2.58
+
+js/agentViewTracker.js :: <anonymous>
+
+<anonymous> nests 4 levels deep
+
+ActionFlatten the control flow. Pull early-return guards to the top, extract the deepest branch into a helper, and consider replacing nested conditionals with a strategy table or dispatch dict.
+
+Score 7.3/10· 88 NLOC· Medium effort· 4 findingsleverage 1.29
+
+AI fix prompt
+
+Hide all 4 findings
+
+-   MediumNested complexity<anonymous>line 40−0.94
+    
+    <anonymous> nests 4 levels deep
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 40−0.85
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowComplex conditional<anonymous>line 23−0.40
+    
+    if condition combines 3 boolean operators
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowComplex conditional<anonymous>line 47−0.40
+    
+    if condition combines 3 boolean operators
+    
+    AcknowledgeResolvedFalse positive
+    
+
+CriticalBrain methodjsXL−4.39
+
+js/bookmarkBuilder.js :: <anonymous@8>
+
+Brain Method: <anonymous@8> is 702 lines, CCN 68, in a file imported by 16 others
+
+ActionSplit this function. It carries high cyclomatic complexity and many dependents — extract cohesive responsibilities into helpers so each call site sees a smaller surface area.
+
+Score 5.6/10· 702 NLOC· Extra large effort· 6 findingsleverage 0.88
+
+AI fix prompt
+
+Hide all 6 findings
+
+-   HighFunction hotspot<anonymous@8>line 8−1.39
+    
+    <anonymous@8> has been modified across 5 commits (repo p80=5) and carries CCN=68 / nesting=3
+    
+    AcknowledgeResolvedFalse positive
+    
+-   CriticalBrain method<anonymous@8>line 8−1.00
+    
+    Brain Method: <anonymous@8> is 702 lines, CCN 68, in a file imported by 16 others
+    
+    AcknowledgeResolvedFalse positive
+    
+-   CriticalLarge method<anonymous@8>line 8−0.76
+    
+    <anonymous@8> is 702 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+-   CriticalComplex method<anonymous@8>line 8−0.74
+    
+    <anonymous@8> has cyclomatic complexity 68
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumBumpy road<anonymous@8>line 8−0.35
+    
+    <anonymous@8> has 4 nested blocks at the same level (bumpy road)
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowError handlingline 87−0.15
+    
+    caught exception is swallowed without any handling
+    
+    AcknowledgeResolvedFalse positive
+    
+
+HighLarge methodjsM−1.50
+
+js/vikipedia\_head.js :: <anonymous>
+
+<anonymous> is 125 lines long
+
+ActionShorten the function. Extract paragraphs (each comment block is usually a candidate) into named helpers; aim for a body that reads as a high-level outline of intent.
+
+Score 8.5/10· 126 NLOC· Medium effort· 2 findingsleverage 0.75
+
+AI fix prompt
+
+Hide all 2 findings
+
+-   HighLarge method<anonymous>line 6−0.96
+    
+    <anonymous> is 125 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 6−0.54
+    
+    <anonymous> has cyclomatic complexity 10
+    
+    AcknowledgeResolvedFalse positive
+    
+
+HighComplex methodjsL−1.90
+
+js/sw.js :: self.addEventListener callback
+
+self.addEventListener callback has cyclomatic complexity 15
+
+ActionReduce cyclomatic complexity. Decompose the function along its conditional axes; if it dispatches on a type tag, replace the if/elif ladder with polymorphism or a lookup table.
+
+Score 8.1/10· 169 NLOC· Large effort· 3 findingsleverage 0.63
+
+AI fix prompt
+
+Hide all 3 findings
+
+-   HighComplex methodself.addEventListener callbackline 74−1.19
+    
+    self.addEventListener callback has cyclomatic complexity 15
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowComplex conditionalself.addEventListener callbackline 83−0.40
+    
+    if condition combines 3 boolean operators
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowLarge methodself.addEventListener callbackline 74−0.31
+    
+    self.addEventListener callback is 64 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+
+CriticalLarge methodjsXL−1.65
+
+js/isotope.pkgd.js :: factory
+
+factory is 336 lines long
+
+ActionShorten the function. Extract paragraphs (each comment block is usually a candidate) into named helpers; aim for a body that reads as a high-level outline of intent.
+
+Score 8.3/10· 2185 NLOC· Extra large effort· 11 findingsleverage 0.33
+
+AI fix prompt
+
+Hide all 11 findings
+
+-   CriticalLarge methodfactoryline 802−0.53
+    
+    factory is 336 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 231−0.18
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex methodgetSizeline 404−0.18
+    
+    getSize has cyclomatic complexity 13
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 901−0.18
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 3176−0.18
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowBumpy roadgetSizeline 404−0.15
+    
+    getSize has 3 nested blocks at the same level (bumpy road)
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowLarge methodfactoryline 41−0.08
+    
+    factory is 71 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumLong parameter listfactoryline 3000−0.07
+    
+    long parameter list: factory takes 7 parameters
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowLong parameter listfactoryline 1369−0.03
+    
+    long parameter list: factory takes 5 parameters
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowLong parameter list<anonymous>line 1701−0.03
+    
+    long parameter list: <anonymous> takes 5 parameters
+    
+    AcknowledgeResolvedFalse positive
+    
+-   LowLong parameter list<anonymous>line 2969−0.03
+    
+    long parameter list: <anonymous> takes 6 parameters
+    
+    AcknowledgeResolvedFalse positive
+    
+
+CriticalLarge methodjsXL−1.50
+
+js/infinite-scroll.pkgd.js :: factory
+
+factory is 243 lines long
+
+ActionShorten the function. Extract paragraphs (each comment block is usually a candidate) into named helpers; aim for a body that reads as a high-level outline of intent.
+
+Score 8.3/10· 1280 NLOC· Extra large effort· 3 findingsleverage 0.30
+
+AI fix prompt
+
+Hide all 3 findings
+
+-   CriticalLarge methodfactoryline 438−0.89
+    
+    factory is 243 lines long
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 188−0.30
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+-   MediumComplex method<anonymous>line 974−0.30
+    
+    <anonymous> has cyclomatic complexity 9
+    
+    AcknowledgeResolvedFalse positive
+    
+
+MediumComplex methodjsL−0.85
+
+js/dashboard.js :: loadStats
+
+loadStats has cyclomatic complexity 11
+
+ActionReduce cyclomatic complexity. Decompose the function along its conditional axes; if it dispatches on a type tag, replace the if/elif ladder with polymorphism or a lookup table.
+
+Score 9.2/10· 154 NLOC· Large effort· 1 findingsleverage 0.28
+
+AI fix prompt
+
+Hide all 1 findings
+
+-   MediumComplex methodloadStatsline 20−0.85
+    
+    loadStats has cyclomatic complexity 11
+    
+    AcknowledgeResolvedFalse positive
+    
+
+LowComplex conditionaljsM−0.40
+
+js/agentProfileBuilder.js :: <anonymous>
+
+if condition combines 3 boolean operators
+
+ActionDecompose the boolean expression. Extract sub-clauses into named predicates that explain \*what\* each branch checks; compound conditions of three or more operators are usually two policies fighting for one line.
+
+Score 9.4/10· 115 NLOC· Medium effort· 1 findingsleverage 0.20
+
+AI fix prompt
+
+Hide all 1 findings
+
+-   LowComplex conditional<anonymous>line 20−0.40
+    
+    if condition combines 3 boolean operators
+    
+    AcknowledgeResolvedFalse positive
+    
+
+Showing 1–8 of 8 files
+
+PrevNext
+
+## Hot functions
+
+Top functions where churn, age, and complexity collide3 functions
+
+-   Low[<anonymous>](/repo/gewey/gewey.github.io/symbols/js%2FagentViewTracker.js%3A%3AAgentViewTracker "Open symbol page")js/agentViewTracker.js−0.80
+    
+    Complex conditional
+    
+-   Low[<anonymous>](/repo/gewey/gewey.github.io/symbols/js%2FagentProfileBuilder.js%3A%3AAgentProfileBuilder "Open symbol page")js/agentProfileBuilder.js−0.40
+    
+    Complex conditional
+    
+-   Lowself.addEventListener callbackjs/sw.js−0.40
+    
+    Complex conditional
+    
+
+## Code health for gewey/gewey.github.io
+
+Repowise scores gewey/gewey.github.io at 8.6 out of 10 for code health, which reads as excellent, alongside maintainability 7.1 and static performance 10.0 on the same scale. There are 62 open findings across the three pillars, and the lowest-scoring file is bookmarkBuilder.js at 5.6. Scores are computed from complexity, duplication, churn and git fix history, not from a linter.
+
+---
+
+# gewey.github.io code health: hotspots, dead code, risk
+
+[![repowise](/repowise-logo-light.png)![](/repowise-logo.png)repowise](/)
+
+[Star7.9k](https://github.com/repowise-dev/repowise)
+
+![repowise](/repowise-logo-light.png)![](/repowise-logo.png)gewey/gewey.github.io
+
+Credit balance is under $1.00AI features that spend credits pause when it reaches zero.
+
+[Top up](/settings?tab=billing&topup=open)
+
+# Code Health
+
+Per-file health scores from complexity, duplication, coverage, churn, and ownership markers, ranked into a fix-next queue, with risk, security, and trend in one place.
+
+Indexed 10/21/2026, 5:24:33 AM · 2bafeccc · 1 snapshot
+
+Health scores changed in this release. Most files score higher: cohesion, duplication, hotspot and complexity findings that did not hold up are gone, and test code no longer counts against production files. Files in languages health cannot analyse used to count as 10.0; they now read "Not analysed" and leave the average, so a repository with many of them can read lower. A repository shows the new scores after its next index, and scores are not comparable to snapshots taken before it.
+
+OverviewFindingsPerformanceTestsDead codeDoc driftImpact
+
+Deletion-ready
+
+0lines
+
+Nothing is deletion-ready right now. 27 findings across 8,454 lines are flagged for review. Analysed 48m ago.
+
+Re-analyzeDead-code analysis runs at index time. Re-index the repo from the sidebar to update its findings.
+
+## All findings
+
+OpenAcknowledgedResolvedFalse positive
+
+Resolve, acknowledge or mark a false positive. Every action can be undone for six seconds.
+
+Confidence
+
+AllHigh only
+
+Unreachable files27
+
+Dead code findings
+
+File / Symbol
+
+Confidence
+
+Owner
+
+Last touched
+
+Lines
+
+Actions
+
+[js/isotope.pkgd.js](/repo/gewey/gewey.github.io/files/js/isotope.pkgd.js "js/isotope.pkgd.js")File has no importers (in\_degree=0)
+
+40%
+
+Viktor
+
+6mo ago
+
+3,563
+
+Resolve
+
+[timeline/generate\_manifest.py](/repo/gewey/gewey.github.io/files/timeline/generate_manifest.py "timeline/generate_manifest.py")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+13h ago1 commit/90d
+
+31
+
+Resolve
+
+[js/themeManager.js](/repo/gewey/gewey.github.io/files/js/themeManager.js "js/themeManager.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+159
+
+Resolve
+
+[js/infinite-scroll.pkgd.js](/repo/gewey/gewey.github.io/files/js/infinite-scroll.pkgd.js "js/infinite-scroll.pkgd.js")File has no importers (in\_degree=0)
+
+40%
+
+Viktor
+
+6mo ago
+
+1,906
+
+Resolve
+
+[js/agentSearch.js](/repo/gewey/gewey.github.io/files/js/agentSearch.js "js/agentSearch.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+107
+
+Resolve
+
+[js/bookmarkLoader.js](/repo/gewey/gewey.github.io/files/js/bookmarkLoader.js "js/bookmarkLoader.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7mo ago
+
+59
+
+Resolve
+
+[js/date.js](/repo/gewey/gewey.github.io/files/js/date.js "js/date.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7y ago
+
+21
+
+Resolve
+
+[js/mermaid-render.js](/repo/gewey/gewey.github.io/files/js/mermaid-render.js "js/mermaid-render.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+153
+
+Resolve
+
+[js/generateText.js](/repo/gewey/gewey.github.io/files/js/generateText.js "js/generateText.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7y ago
+
+11
+
+Resolve
+
+[js/amplitude\_init.js](/repo/gewey/gewey.github.io/files/js/amplitude_init.js "js/amplitude_init.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7mo ago
+
+24
+
+Resolve
+
+[js/agentProfilesLoader.js](/repo/gewey/gewey.github.io/files/js/agentProfilesLoader.js "js/agentProfilesLoader.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+99
+
+Resolve
+
+[js/keyboardShortcuts.js](/repo/gewey/gewey.github.io/files/js/keyboardShortcuts.js "js/keyboardShortcuts.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+59
+
+Resolve
+
+[js/agentProfileBuilder.js](/repo/gewey/gewey.github.io/files/js/agentProfileBuilder.js "js/agentProfileBuilder.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+155
+
+Resolve
+
+[js/agentViewTracker.js](/repo/gewey/gewey.github.io/files/js/agentViewTracker.js "js/agentViewTracker.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+113
+
+Resolve
+
+[tesseract\_city/citizenry/generate\_manifest.py](/repo/gewey/gewey.github.io/files/tesseract_city/citizenry/generate_manifest.py "tesseract_city/citizenry/generate_manifest.py")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+13h ago1 commit/90d
+
+26
+
+Resolve
+
+[js/sortByClickCount.js](/repo/gewey/gewey.github.io/files/js/sortByClickCount.js "js/sortByClickCount.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7mo ago
+
+107
+
+Resolve
+
+[js/amazon\_aff.js](/repo/gewey/gewey.github.io/files/js/amazon_aff.js "js/amazon_aff.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+6y ago
+
+10
+
+Resolve
+
+[js/google\_analytics.js](/repo/gewey/gewey.github.io/files/js/google_analytics.js "js/google_analytics.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7y ago
+
+4
+
+Resolve
+
+[js/modernEnhancements.js](/repo/gewey/gewey.github.io/files/js/modernEnhancements.js "js/modernEnhancements.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+8mo ago
+
+329
+
+Resolve
+
+[js/top50Websites.js](/repo/gewey/gewey.github.io/files/js/top50Websites.js "js/top50Websites.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7mo ago
+
+468
+
+Resolve
+
+[js/bodysnatcher.js](/repo/gewey/gewey.github.io/files/js/bodysnatcher.js "js/bodysnatcher.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7y ago
+
+110
+
+Resolve
+
+[js/vikipedia\_head.js](/repo/gewey/gewey.github.io/files/js/vikipedia_head.js "js/vikipedia_head.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+161
+
+Resolve
+
+[js/sw.js](/repo/gewey/gewey.github.io/files/js/sw.js "js/sw.js")File has no importers (in\_degree=0)may load at runtime (runtime-loaded web asset)
+
+40%
+
+Joseph Goulette
+
+8mo ago
+
+212
+
+Resolve
+
+[js/mobileMenu.js](/repo/gewey/gewey.github.io/files/js/mobileMenu.js "js/mobileMenu.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+120
+
+Resolve
+
+[js/modified.js](/repo/gewey/gewey.github.io/files/js/modified.js "js/modified.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+7y ago
+
+1
+
+Resolve
+
+[js/modalSystem.js](/repo/gewey/gewey.github.io/files/js/modalSystem.js "js/modalSystem.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+176
+
+Resolve
+
+[js/advancedSearch.js](/repo/gewey/gewey.github.io/files/js/advancedSearch.js "js/advancedSearch.js")File has no importers (in\_degree=0)
+
+40%
+
+Joseph Goulette
+
+4mo ago
+
+270
+
+Resolve
+
+-   [js/isotope.pkgd.js](/repo/gewey/gewey.github.io/files/js/isotope.pkgd.js "js/isotope.pkgd.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Viktor
+    
+    Last touched
+    
+    6mo ago
+    
+    Lines
+    
+    3,563
+    
+    Actions
+    
+    Resolve
+    
+-   [timeline/generate\_manifest.py](/repo/gewey/gewey.github.io/files/timeline/generate_manifest.py "timeline/generate_manifest.py")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    13h ago1 commit/90d
+    
+    Lines
+    
+    31
+    
+    Actions
+    
+    Resolve
+    
+-   [js/themeManager.js](/repo/gewey/gewey.github.io/files/js/themeManager.js "js/themeManager.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    159
+    
+    Actions
+    
+    Resolve
+    
+-   [js/infinite-scroll.pkgd.js](/repo/gewey/gewey.github.io/files/js/infinite-scroll.pkgd.js "js/infinite-scroll.pkgd.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Viktor
+    
+    Last touched
+    
+    6mo ago
+    
+    Lines
+    
+    1,906
+    
+    Actions
+    
+    Resolve
+    
+-   [js/agentSearch.js](/repo/gewey/gewey.github.io/files/js/agentSearch.js "js/agentSearch.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    107
+    
+    Actions
+    
+    Resolve
+    
+-   [js/bookmarkLoader.js](/repo/gewey/gewey.github.io/files/js/bookmarkLoader.js "js/bookmarkLoader.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7mo ago
+    
+    Lines
+    
+    59
+    
+    Actions
+    
+    Resolve
+    
+-   [js/date.js](/repo/gewey/gewey.github.io/files/js/date.js "js/date.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7y ago
+    
+    Lines
+    
+    21
+    
+    Actions
+    
+    Resolve
+    
+-   [js/mermaid-render.js](/repo/gewey/gewey.github.io/files/js/mermaid-render.js "js/mermaid-render.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    153
+    
+    Actions
+    
+    Resolve
+    
+-   [js/generateText.js](/repo/gewey/gewey.github.io/files/js/generateText.js "js/generateText.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7y ago
+    
+    Lines
+    
+    11
+    
+    Actions
+    
+    Resolve
+    
+-   [js/amplitude\_init.js](/repo/gewey/gewey.github.io/files/js/amplitude_init.js "js/amplitude_init.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7mo ago
+    
+    Lines
+    
+    24
+    
+    Actions
+    
+    Resolve
+    
+-   [js/agentProfilesLoader.js](/repo/gewey/gewey.github.io/files/js/agentProfilesLoader.js "js/agentProfilesLoader.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    99
+    
+    Actions
+    
+    Resolve
+    
+-   [js/keyboardShortcuts.js](/repo/gewey/gewey.github.io/files/js/keyboardShortcuts.js "js/keyboardShortcuts.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    59
+    
+    Actions
+    
+    Resolve
+    
+-   [js/agentProfileBuilder.js](/repo/gewey/gewey.github.io/files/js/agentProfileBuilder.js "js/agentProfileBuilder.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    155
+    
+    Actions
+    
+    Resolve
+    
+-   [js/agentViewTracker.js](/repo/gewey/gewey.github.io/files/js/agentViewTracker.js "js/agentViewTracker.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    113
+    
+    Actions
+    
+    Resolve
+    
+-   [tesseract\_city/citizenry/generate\_manifest.py](/repo/gewey/gewey.github.io/files/tesseract_city/citizenry/generate_manifest.py "tesseract_city/citizenry/generate_manifest.py")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    13h ago1 commit/90d
+    
+    Lines
+    
+    26
+    
+    Actions
+    
+    Resolve
+    
+-   [js/sortByClickCount.js](/repo/gewey/gewey.github.io/files/js/sortByClickCount.js "js/sortByClickCount.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7mo ago
+    
+    Lines
+    
+    107
+    
+    Actions
+    
+    Resolve
+    
+-   [js/amazon\_aff.js](/repo/gewey/gewey.github.io/files/js/amazon_aff.js "js/amazon_aff.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    6y ago
+    
+    Lines
+    
+    10
+    
+    Actions
+    
+    Resolve
+    
+-   [js/google\_analytics.js](/repo/gewey/gewey.github.io/files/js/google_analytics.js "js/google_analytics.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7y ago
+    
+    Lines
+    
+    4
+    
+    Actions
+    
+    Resolve
+    
+-   [js/modernEnhancements.js](/repo/gewey/gewey.github.io/files/js/modernEnhancements.js "js/modernEnhancements.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    8mo ago
+    
+    Lines
+    
+    329
+    
+    Actions
+    
+    Resolve
+    
+-   [js/top50Websites.js](/repo/gewey/gewey.github.io/files/js/top50Websites.js "js/top50Websites.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7mo ago
+    
+    Lines
+    
+    468
+    
+    Actions
+    
+    Resolve
+    
+-   [js/bodysnatcher.js](/repo/gewey/gewey.github.io/files/js/bodysnatcher.js "js/bodysnatcher.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7y ago
+    
+    Lines
+    
+    110
+    
+    Actions
+    
+    Resolve
+    
+-   [js/vikipedia\_head.js](/repo/gewey/gewey.github.io/files/js/vikipedia_head.js "js/vikipedia_head.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    161
+    
+    Actions
+    
+    Resolve
+    
+-   [js/sw.js](/repo/gewey/gewey.github.io/files/js/sw.js "js/sw.js")File has no importers (in\_degree=0)may load at runtime (runtime-loaded web asset)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    8mo ago
+    
+    Lines
+    
+    212
+    
+    Actions
+    
+    Resolve
+    
+-   [js/mobileMenu.js](/repo/gewey/gewey.github.io/files/js/mobileMenu.js "js/mobileMenu.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    120
+    
+    Actions
+    
+    Resolve
+    
+-   [js/modified.js](/repo/gewey/gewey.github.io/files/js/modified.js "js/modified.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    7y ago
+    
+    Lines
+    
+    1
+    
+    Actions
+    
+    Resolve
+    
+-   [js/modalSystem.js](/repo/gewey/gewey.github.io/files/js/modalSystem.js "js/modalSystem.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    176
+    
+    Actions
+    
+    Resolve
+    
+-   [js/advancedSearch.js](/repo/gewey/gewey.github.io/files/js/advancedSearch.js "js/advancedSearch.js")File has no importers (in\_degree=0)
+    
+    Confidence
+    
+    40%
+    
+    Owner
+    
+    Joseph Goulette
+    
+    Last touched
+    
+    4mo ago
+    
+    Lines
+    
+    270
+    
+    Actions
+    
+    Resolve
+    
+
+## Code health for gewey/gewey.github.io
+
+Repowise scores gewey/gewey.github.io at 8.6 out of 10 for code health, which reads as excellent, alongside maintainability 7.1 and static performance 10.0 on the same scale. There are 62 open findings across the three pillars, and the lowest-scoring file is bookmarkBuilder.js at 5.6. Scores are computed from complexity, duplication, churn and git fix history, not from a linter.
+
+---
+
+Code Health
+Per-file health scores from complexity, duplication, coverage, churn, and ownership markers, ranked into a fix-next queue, with risk, security, and trend in one place.
+
+Indexed 10/21/2026, 5:24:33 AM · 2bafeccc · 1 snapshot
+
+Health scores changed in this release. Most files score higher: cohesion, duplication, hotspot and complexity findings that did not hold up are gone, and test code no longer counts against production files. Files in languages health cannot analyse used to count as 10.0; they now read "Not analysed" and leave the average, so a repository with many of them can read lower. A repository shows the new scores after its next index, and scores are not comparable to snapshots taken before it.
+
+
+Overview
+
+Findings
+
+Performance
+
+Tests
+
+Dead code
+
+Doc drift
+
+Impact
+Drifted
+
+1
+assertion
+near-certain
+1
+1 assertion across 1 document no longer hold — they are 1 heading link. Each one names the document to edit, not the file it points at.
+
+Covers only references this detector can resolve; uncheckable ones are neither counted nor reported. A finding names the document to edit, not the target it names, and is evidence to check rather than a proven defect.
+
+Confidence here is a statement about the evidence, not a hedge. A path with no candidate anywhere in the tree is near-certain; the same evidence inside a contributor guide is not, because a guide teaching you to add a file may name one that was never meant to exist.
+
+Findings
+1
+Documents
+1
+carry at least one
+Near-certain
+1
+confidence 0.7 or better
+Worth a look
+0
+check before editing
+Drifted assertions
+Fix 1 with an agent
+Minimum confidence
+All findings
+Each row names the document to edit and the line to edit it on. It does not claim the document describes the file it names, only that the file is no longer there.
+
+README.md
+1 finding
+Documentation assertions in README.md the repository no longer satisfies
+Line	Claims this exists	Reference	Confidence	
+line 20
+Link points at #sub-sites, which README.md no longer declares.
+README.md#sub-sites
+Heading link	Near-certain 0.95	
+Code health for gewey/gewey.github.io
+Repowise scores gewey/gewey.github.io at 8.6 out of 10 for code health, which reads as excellent, alongside maintainability 7.1 and static performance 10.0 on the same scale. There are 62 open findings across the three pillars, and the lowest-scoring file is bookmarkBuilder.js at 5.6. Scores are computed from complexity, duplication, churn and git fix history, not from a linter.
+
+---
+
+Security
+What in this repository is exposed, how likely it is to be exploited, and what to fix first.
+
+No open dependency advisories. 1 live secret at HEAD, all in shipped code. 0 code patterns in source, 0 high.
+
+Open advisories
+0
+Known exploited
+0
+Live secrets
+1
+1 in shipped code
+Dependencies
+1
+Code patterns in source
+0
+0 high
+Fix first
+Exploited or used advisories, live secrets in shipped code, then high patterns in source.
+
+AI prompt for the queue
+medium
+secret
+generic-api-keyevolution/Homepage 2008.html:39
+Live at HEAD. Rotate it before removing it.
+
+Scanned 50m ago. Advisories are re-checked nightly, so a new CVE appears without re-indexing. Tools: syft 1.45.1, gitleaks 8.30.1.
+
+Vulnerabilities
+Secrets
+Code findings
+Dependencies
+SBOM & VEX
+Compliance
+Audit
+1 live secret in the current working tree. Rotate it now. Removing a secret from the code does not revoke it.
+
+Live + historical
+
+All severities
+
+Open
+2 findings (full git history)
+Status	Severity	Rule	Location	Preview	First seen	Actions
+live	medium	generic-api-key
+Detected a Generic API Key, potentially exposing access to various services and sensitive operations.
+
+evolution/Homepage 2008.html:39
+connected
+941f…	7y ago	
+resolved
+acknowledge
+false positive
+historical	medium	generic-api-key
+Detected a Generic API Key, potentially exposing access to various services and sensitive operations.
+
+bookmarks/games/mtg/index.html:82
+e09f…	7y ago	
+resolved
+acknowledge
+false positive
+
+---
+
+You are Claude Code working in this repository, which is indexed by repowise and exposes its MCP tools. The findings below were detected by repowise's static analyzer. Treat each item as a lead, not ground truth. Before re-reading files by hand, pull the context repowise already computed: call `get_context([...])` for the file skeleton (every signature + the bodies of the most central symbols, ~37% of a full Read), `get_symbol("file::Name")` for the exact bytes of one function, `get_risk([...])` before editing to see blast radius, co-change partners, and test gaps, and `get_why(...)` for the decision behind the current shape. Fall back to Read / Grep / Glob only for what the index cannot serve, and flag any false positive. Use TodoWrite for non-trivial steps.
+## Extract Method in `js/dashboard.js`
+- Opportunity: `refop4_b540c6f55ee6cf718f66`
+- File: `js/dashboard.js`
+- Leading cause: complex method.
+- 1 step: 0 mechanical, 1 judgment.
+- Recovers ~0.39 of health score if applied.
+- Effort: S bucket. Detector confidence: high.
+- These steps address the file's dominant diagnosed problem.
+## The steps, in order
+1. **Extract Method** — `js/dashboard.js:20-48` — `loadStats`
+   - Step id: `refac4_b9ca5d04720705964c9c`
+   - Judgment — receiver unbound. Not established: governed by decision.
+   Extract lines 25–41 of `loadStats` into `extractedHelper`:
+
+   - **Parameters (in):** (none)
+   - **Returns (out):** (nothing)
+
+   Move exactly those lines into the new helper in the same scope, pass the parameters above, return the value(s) above, and replace the original lines with a single call to it. Preserve behavior exactly: change nothing outside the span and that one call site.
+   The helper's name is a placeholder: rename it for what it returns or does, in its header and its call.
+   Do not generate a script that rewrites the file. Make each edit directly in the file, one at a time, re-reading the span after each.
+## Verify
+
+No guarding tests found: add a test for `loadStats` before changing it.
+## Hard constraints
+- Preserve behavior exactly — this is a refactoring, not a feature change. No public API or observable behavior should shift.
+- Apply the steps in the order given. It is dependency-safe; reordering it is not.
+- A step marked Judgment has an unproven obligation. Read the real code and decide before applying it; do not treat it like a mechanical one.
+- Do not generate a script that rewrites the file. Make each edit directly in the file, one at a time, re-reading the span after each.
+- Run the project's tests (and type-checker/linter) after the change; the suite must stay green.
+- If, after reading the real code, a step looks wrong or unsafe, stop and explain why instead of forcing it — the detection is static and can be a false positive.
+## What I expect back
+1. The refactored code, with each step above applied in order.
+2. Per step: whether you applied it, and for anything you skipped, the reason.
+3. A short note on what you renamed or introduced and why.
+4. Confirmation the tests pass (or the exact failures if they don't).
+5. The opportunity id `refop4_b540c6f55ee6cf718f66`, so the work can be matched back to the record.
+## Pull this record yourself
+
+`get_health(opportunity_id="refop4_b540c6f55ee6cf718f66")`
+
+That returns this same opportunity from the index: every ordered step with its mechanical/judgment classification and reasons, the member plans' payloads, the validation profiles with runnable commands, the evidence, and structured next actions. Call it before you start — the steps below are a snapshot, and the index is the record.
+Start with `get_context(['js/dashboard.js'])` for the skeleton and `get_risk(['js/dashboard.js'])` for the blast radius, co-change partners, and test gaps, then `get_symbol` into the specific functions below. repowise already indexed this repo — lean on it before falling back to Read/Grep. Don't propose a fix until you've grounded each finding in the actual code.
+
+---
+
+You are Claude Code working in this repository, which is indexed by repowise and exposes its MCP tools. The findings below were detected by repowise's static analyzer. Treat each item as a lead, not ground truth. Before re-reading files by hand, pull the context repowise already computed: call `get_context([...])` for the file skeleton (every signature + the bodies of the most central symbols, ~37% of a full Read), `get_symbol("file::Name")` for the exact bytes of one function, `get_risk([...])` before editing to see blast radius, co-change partners, and test gaps, and `get_why(...)` for the decision behind the current shape. Fall back to Read / Grep / Glob only for what the index cannot serve, and flag any false positive. Use TodoWrite for non-trivial steps.
+## Extract Method in `js/agentViewTracker.js`
+- Opportunity: `refop4_5c237c9a121d67be694f`
+- File: `js/agentViewTracker.js`
+- Leading cause: nested complexity.
+- 1 step: 0 mechanical, 1 judgment.
+- Recovers ~0.19 of health score if applied.
+- Effort: S bucket. Detector confidence: high.
+- These steps do NOT address the file's dominant diagnosed problem — they are real work, but not the biggest cost in this file. Say so if you think something else should come first.
+## The steps, in order
+1. **Extract Method** — `js/agentViewTracker.js:40-62` — `<anonymous>`
+   - Step id: `refac4_cb35fb061587f1332472`
+   - Judgment — receiver unbound. Not established: governed by decision.
+   Extract lines 48–59 of `<anonymous>` into `extractedHelper`:
+
+   - **Parameters (in):** folder
+   - **Returns (out):** (nothing)
+
+   Move exactly those lines into the new helper in the same scope, pass the parameters above, return the value(s) above, and replace the original lines with a single call to it. Preserve behavior exactly: change nothing outside the span and that one call site.
+   The helper's name is a placeholder: rename it for what it returns or does, in its header and its call.
+   Do not generate a script that rewrites the file. Make each edit directly in the file, one at a time, re-reading the span after each.
+## Verify
+
+No guarding tests found: add a test for `<anonymous>` before changing it.
+## Hard constraints
+- Preserve behavior exactly — this is a refactoring, not a feature change. No public API or observable behavior should shift.
+- Apply the steps in the order given. It is dependency-safe; reordering it is not.
+- A step marked Judgment has an unproven obligation. Read the real code and decide before applying it; do not treat it like a mechanical one.
+- Do not generate a script that rewrites the file. Make each edit directly in the file, one at a time, re-reading the span after each.
+- Run the project's tests (and type-checker/linter) after the change; the suite must stay green.
+- If, after reading the real code, a step looks wrong or unsafe, stop and explain why instead of forcing it — the detection is static and can be a false positive.
+## What I expect back
+1. The refactored code, with each step above applied in order.
+2. Per step: whether you applied it, and for anything you skipped, the reason.
+3. A short note on what you renamed or introduced and why.
+4. Confirmation the tests pass (or the exact failures if they don't).
+5. The opportunity id `refop4_5c237c9a121d67be694f`, so the work can be matched back to the record.
+## Pull this record yourself
+
+`get_health(opportunity_id="refop4_5c237c9a121d67be694f")`
+
+That returns this same opportunity from the index: every ordered step with its mechanical/judgment classification and reasons, the member plans' payloads, the validation profiles with runnable commands, the evidence, and structured next actions. Call it before you start — the steps below are a snapshot, and the index is the record.
+Start with `get_context(['js/agentViewTracker.js'])` for the skeleton and `get_risk(['js/agentViewTracker.js'])` for the blast radius, co-change partners, and test gaps, then `get_symbol` into the specific functions below. repowise already indexed this repo — lean on it before falling back to Read/Grep. Don't propose a fix until you've grounded each finding in the actual code.
+
+---
+
+Architectural decisions
+Why the codebase is built the way it is: constraints, tradeoffs, and the alternatives that were rejected.
+
+Link Jira tickets
+Awaiting review
+
+2
+of 2 recorded
+2 of 2 records are candidates mined from commits, comments and docs that nobody has confirmed yet, against 0 your team stands behind. Until one is confirmed it is a guess about your codebase, not a rule for it, so this page is a queue before it is an archive.
+
+Confirming takes a click and changes no code. It records that your team stands behind the decision, and it now survives every push after it, which is what makes it worth quoting back to an agent later.
+
+Review
+Rules your team confirmed, separated from the candidates an extractor proposed. Confirm or dismiss a candidate to move it out of the queue; the decision stays reviewed across every push after it.
+
+Active
+0
+Candidates
+2
+Needs review
+0
+Uncheckable
+0
+History
+0
+Records the indexer inferred and nobody has accepted. They govern nothing and reach no agent. Read the evidence, then accept the ones that are real.
+
+
+All sources
+Harden logs loader and external scripts (local file mode, HTTPS, guards)
+Fuzzy match
+Use HTTPS for external Wowhead assets, guard dynamic behaviors when resources or globals are missing, and special-case local file protocol by detecting file://, skipping directory fetch attempts, and enabling a preload/scroll-based loading strategy with improved infinite-scroll concurrency and resize handling.
+
+“Use HTTPS for external Wowhead assets, guard dynamic behaviors when resources or globals are missing, and special-case local file protocol by detecting file://, skipping directory fetch attempts, and enabling a preload/scroll-based loading strategy with improved infinite-scroll concurrency and resize handling.”
+Git history
+Git history
+2 paths
+Dismiss
+Accept
+Add Agent Profiles system and assets
+Fuzzy match
+Introduce an Agent Profiles subsystem with new assets and JS utilities to load agent listings and individual profiles, plus UI updates to expose an "Agent Profiles" menu.
+
+“Introduce an Agent Profiles subsystem with new assets and JS utilities to load agent listings and individual profiles, plus UI updates to expose an "Agent Profiles" menu.”
+Git history
+Git history
+5 paths
+Dismiss
+Accept
+
+---
+
+What makes js/bookmarkBuilder.js the least healthy file here, and how would I fix it?
+
+
+
+
+Read 1 page · 1 search · 4 checks
+Why it is the least healthy
+js/bookmarkBuilder.js scores 5.61/10, the repository’s lowest file score. The main causes are concentrated in one anonymous module initializer/function at js/bookmarkBuilder.js:8–778:
+
+702 lines of code in one function-like unit.
+Cyclomatic complexity of 68, making behavior difficult to reason about and test.
+Classified as a brain method, because it combines excessive size, branching, and a broad dependency surface.
+Four same-level nested control-flow “bumps,” indicating several responsibilities interleaved rather than cleanly separated.
+A swallowed exception at line 87, where an error is caught without handling or reporting it.
+Imported by 16 bookmark pages, so changes have a wide impact surface.
+No test file or coverage data was found.
+It has very high historical churn—98th percentile—and its current lines are concentrated under one primary author, with a bus factor of 2.
+It is not currently classified as a repository hotspot, and there are no reported security findings for this file. The low score is primarily a structural and testability problem, not a performance or dependency-vulnerability problem.
+
+How to fix it
+1. Add characterization tests first
+Before restructuring, test the externally visible behavior used by the bookmark pages:
+
+Initial bookmark rendering.
+LocalStorage loading and customization.
+Reordering.
+Adding and deleting bookmarks.
+Empty, malformed, or missing stored data.
+DOM elements or configuration being absent.
+Error paths currently handled by the catch at line 87.
+Because the file has 16 consumers and no coverage data, these tests are the safety net for the refactor.
+
+2. Split the large initializer into cohesive helpers
+Keep BookmarkBuilder as the compatibility-facing API, but extract focused functions such as:
+
+js
+Copy
+loadStoredBookmarks()
+normalizeBookmarks()
+renderBookmarkCollection()
+createBookmarkElement()
+bindBookmarkEvents()
+addBookmark()
+deleteBookmark()
+moveBookmark()
+saveBookmarks()
+readConfiguration()
+The current body should become a short orchestration layer—for example:
+
+js
+Copy
+const BookmarkBuilder = (() => {
+  const bookmarks = loadStoredBookmarks();
+
+  return {
+    render: options => renderBookmarkCollection(bookmarks, options),
+    add: bookmark => addBookmark(bookmarks, bookmark),
+    remove: id => deleteBookmark(bookmarks, id),
+    move: (from, to) => moveBookmark(bookmarks, from, to)
+  };
+})();
+The exact boundaries should follow the existing comment blocks and state transitions in the 702-line body.
+
+3. Reduce branching
+The complexity score of 68 suggests that the main function is making too many decisions. Replace repeated conditional paths with:
+
+Early returns for invalid or missing inputs.
+Small validation/normalization helpers.
+Lookup tables for bookmark categories or action types.
+Separate DOM-rendering logic from persistence logic.
+Separate event binding from the operations those events invoke.
+Each extracted helper should have one responsibility and a small input/output contract.
+
+4. Fix the swallowed exception
+At line 87, do not silently ignore the caught exception. Depending on the intended behavior:
+
+js
+Copy
+catch (error) {
+  console.warn("Unable to load saved bookmarks", error);
+  return getDefaultBookmarks();
+}
+Or, if the caller should decide how to recover, rethrow a meaningful error. Avoid exposing sensitive storage contents in logs.
+
+5. Preserve the public surface while migrating callers gradually
+Since 16 pages import the module, avoid changing the external API in the first refactor. Extract internals behind the existing BookmarkBuilder interface, then update callers only if a clearer API is needed. Run all bookmark pages and the new tests after each extraction.
+
+6. Improve ownership and documentation
+The file’s current implementation is highly concentrated under one author and has a bus factor of 2. Add:
+
+A short module-level contract describing supported operations.
+JSDoc for the public methods and data shape.
+Tests that serve as executable documentation.
+Separate files if the extracted helpers become substantial, such as bookmarkStorage.js, bookmarkRenderer.js, and bookmarkActions.js.
+A sensible sequence is: characterization tests → error handling fix → extract storage → extract rendering → extract mutation/event logic → simplify the public builder → measure coverage and complexity again.
+
+---
+
+besides bookmarkbuilder.js what do you think about the recent overhaul?
+
+
+
+
+3 searches · 3 checks
+Besides bookmarkBuilder.js, the overhaul looks quite solid structurally, but it is still under-validated.
+
+What looks good
+Agent Profiles is coherently separated across agentProfilesLoader.js, agentProfileBuilder.js, agentSearch.js, and agentViewTracker.js, rather than being folded into one large script.
+advancedSearch.js, agentProfilesLoader.js, agentSearch.js, and bookmarkLoader.js all score very well on the repository’s health analysis—mostly 10/10, with low complexity.
+The security scan found no vulnerable imports, secrets, or pattern findings in those files.
+dashboard.js has a clear integration point into bookmarks/stats/index.html; its dependency surface appears limited rather than spreading broadly through the site.
+The overall JavaScript health is strong: 8.63/10 average, with no identified hotspots.
+Main concerns
+No automated test coverage Every reviewed file is marked as having a test gap, and the repository has no ingested coverage report. That makes the overhaul look cleaner than we can confidently prove it is.
+
+agentViewTracker.js is the weakest part It is the lowest-scoring file in this group at 7.27/10, with:
+
+25.77% duplication,
+a method with cyclomatic complexity 9,
+nesting four levels deep,
+several compound conditionals.
+I would simplify this before adding more tracking behavior.
+
+dashboard.js deserves a second pass Its score is still good at 9.15/10, but loadStats has complexity 11. Since it is connected to bookmarks/stats/index.html, failures there could affect a visible page even though the overall impact surface is small.
+
+The architecture is under-documented The repository records a decision for adding Agent Profiles, but there is no recorded rationale explaining the broader overhaul. That makes future maintenance harder, especially with a bus factor of one across nearly all of these files.
+
+Some conditionals are becoming opaque agentProfileBuilder.js has a compound conditional, and agentViewTracker.js has multiple ones. They are not currently severe problems, but named predicates or small helpers would make the behavior easier to review.
+
+Bottom line
+The overhaul appears to be a good modularization effort, and most of it is healthier than the bookmark-builder area. My priority would be:
+
+Add smoke tests for profile loading, searching, rendering, and tracking.
+Refactor agentViewTracker.js.
+Break dashboard.js::loadStats into smaller responsibilities.
+Document the intended data flow and failure behavior for Agent Profiles.
+The biggest risk is not obvious code quality—it is that the new behavior has no test evidence yet.
