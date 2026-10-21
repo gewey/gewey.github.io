@@ -1,6 +1,12 @@
-* .btnbarfull:hover, * .btnbarfull {
-  cursor: pointer;
-}
+/**
+ * INUUS SUBSTRATE 2.0 — SSOT BOOKMARK IMAGERY & MEDIA (PICTURES OF YOU)
+ * =============================================================================
+ * Chamber: 04_Pictures_of_You
+ * Master SSOT: __ssot_images.css
+ * Anchor Songs: "Pictures of You" by The Cure / "Photograph" by Nickelback
+ * Rationale: Bookmark imagery, thumbnails, picture frames, and media transforms.
+ * =============================================================================
+ */
 
 @keyframes bookmark-rotate {
   from {
@@ -11,90 +17,58 @@
   }
 }
 
-/*FULL SIZE*/
+/* DESKTOP BOOKMARK IMAGES */
 @media (min-width: 1250px) {
-  .geweyName {
-    content: url("../img/logo/gewey/geweyName.png");
-  }
-
-  .geweyLogo {
-    content: url("../img/logo/gewey/geweyLogo.png");
-  }
-
-  .hobosLogo {
-    content: url("../img/logo/hobos/hobosLogo.png");
-  }
-
-  #bookmark {
+  #bookmark, .bookmark-image {
     max-width: 10vw;
     max-height: 9vh;
     border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #bookmark:hover {
-    box-shadow: 2px 2px 5px 1px #00EA00;
+  #bookmark:hover, .bookmark-image:hover {
+    box-shadow: 0 0 12px var(--color-primary, #00EE00);
     filter: invert(1);
     animation: bookmark-rotate 0.6s linear;
   }
 }
-/*BITE SIZE*/
+
+/* MOBILE / COMPACT BOOKMARK IMAGES */
 @media (max-width: 1249px) {
-  .geweyName {
-    content: url("../img/logo/gewey/geweyG.png");
-  }
-
-  .geweyLogo {
-    content: url("../img/logo/gewey/geweyG.png");
-  }
-
-  .hobosLogo {
-    content: url("../img/logo/hobos/hobosLogo.png");
-  }
-
-  #bookmark {
-    max-width: 10vw;
+  #bookmark, .bookmark-image {
+    max-width: 12vw;
     max-height: 10vh;
     border-radius: 35%;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #bookmark:hover {
-    box-shadow: 2px 2px 5px 1px #00EA00;
+  #bookmark:hover, .bookmark-image:hover {
+    box-shadow: 0 0 10px var(--color-primary, #00EE00);
     filter: invert(1);
     animation: bookmark-rotate 0.6s linear;
   }
 }
-/*************************************************************************************************************/
-* .btnbarfull {
-  background-color: rgba(0, 0, 0, 0.25);
-}
-* .btnbarfull:hover {
-  background-color: rgba(0, 255, 0, 0.25);
-}
-* html li, * body li {
-  list-style-image: url("../img/ico/arrow_right.png");
-}
-* html .viewArea, * body .viewArea {
+
+/* BACKGROUND TEXTURES & SURFACES */
+.viewArea {
   background-image: url("../img/bg/skulls.png");
 }
-* html .pageHeader, * html .pageFooter, * body .pageHeader, * body .pageFooter {
+
+.pageHeader, .pageFooter {
   background-image: url("../img/bg/bricks.png");
 }
-* html .pageLeftMenu, * body .pageLeftMenu {
-  background-color: rgba(0, 0, 0, 0.75);
-  box-shadow: 5px 5px 15px 5px #000000;
-}
-* html .pageContent, * body .pageContent {
-  background-color: rgba(0, 0, 0, 0.25);
-}
-.event {
-  background-color: rgba(0, 0, 0, 0.75);
-  box-shadow: 5px 5px 15px 5px #000000;
-}
-* html .minecraft_container, * body .minecraft_container {
+
+.minecraft_container {
   background-image: url("../img/bg/dirt.png");
 }
-* html .copyrightContainer, * body .copyrightContainer {
+
+.copyrightContainer {
   background-image: url("../img/bg/PurpleBlackStripes.png");
 }
 
-/*# sourceMappingURL=images.css.map */
+/* LIST ICONS & MARKERS */
+li {
+  list-style-image: url("../img/ico/arrow_right.png");
+}
