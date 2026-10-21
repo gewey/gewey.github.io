@@ -1,0 +1,266 @@
+﻿Question 1,🔗 URL?,Category,PNG URL,Enabled
+Cloud,./cloud/index.html,Cloud,https://gewey.github.io/img/btn/bm/cloud.png,Yes
+Google Drive,https://drive.google.com/,Cloud,https://gewey.github.io/img/btn/bm/googledrive.png,Yes
+Dropbox,https://www.dropbox.com/,Cloud,https://gewey.github.io/img/btn/bm/dropbox.png,Yes
+Microsoft OneDrive,https://onedrive.live.com/about/en-us/,Cloud,https://gewey.github.io/img/btn/bm/onedrive.png,Yes
+Mega,https://mega.nz,Cloud,https://gewey.github.io/img/btn/bm/MEGAprivacy.png,Yes
+Box,https://www.box.com/,Cloud,https://gewey.github.io/img/btn/bm/box.png,Yes
+AWS S3,https://s3.console.aws.amazon.com/,Cloud,https://gewey.github.io/img/btn/bm/aws.png,Yes
+iCloud,https://www.icloud.com/,Cloud,https://gewey.github.io/img/btn/bm/iCloud.png,Yes
+AlfredCamera,https://alfred.camera/webapp/viewer/,Cloud,https://gewey.github.io/img/btn/bm/AlfredCamera.png,Yes
+Sync.com,https://www.sync.com/,Cloud,https://gewey.github.io/img/btn/bm/syncdotcom.png,Yes
+Crypto,./crypto/index.html,Crypto,https://gewey.github.io/img/btn/bm/crypto.png,Yes
+Coinbase,https://www.coinbase.com/join/jgoulette_4hiaeA,Crypto,https://gewey.github.io/img/btn/bm/coinbase.png,Yes
+Kraken,https://www.kraken.com/,Crypto,https://gewey.github.io/img/btn/bm/krakenfx.png,Yes
+Binance,https://www.binance.com/,Crypto,https://gewey.github.io/img/btn/bm/binance.png,Yes
+CoinMarketCap,https://coinmarketcap.com/,Crypto,https://gewey.github.io/img/btn/bm/CoinMarketCap.png,Yes
+Gemini,https://www.gemini.com/,Crypto,https://gewey.github.io/img/btn/bm/GeminiCrypto.png,Yes
+Atomic Wallet,https://atomicwallet.io/,Crypto,https://gewey.github.io/img/btn/bm/AtomicWallet.png,Yes
+MetaMask,https://metamask.io/,Crypto,https://gewey.github.io/img/btn/bm/MetaMask_io.png,Yes
+ShrimpyApp,https://shrimpy.io/referral?r=9ZfJPAj__,Crypto,https://gewey.github.io/img/btn/bm/ShrimpyApp.png,Yes
+2Miners,https://2miners.com/,Crypto,https://gewey.github.io/img/btn/bm/pool2miners.png,Yes
+Download,./download/index.html,Downloads,https://gewey.github.io/img/btn/bm/download.png,Yes
+Microsoft,https://www.microsoft.com/,Downloads,https://gewey.github.io/img/btn/bm/microsoft.png,Yes
+Windows 11,https://www.microsoft.com/software-download/windows11,Downloads,https://gewey.github.io/img/btn/bm/Windows.png,Yes
+Visual Studio Code,https://code.visualstudio.com/download,Downloads,https://gewey.github.io/img/btn/bm/code.png,Yes
+Direct X,https://www.microsoft.com/en-us/download/details.aspx?id=35,Downloads,https://gewey.github.io/img/btn/bm/directx12.png,Yes
+Firefox,https://www.mozilla.org/en-US/firefox/new/,Downloads,https://gewey.github.io/img/btn/bm/firefox.png,Yes
+Chromium,https://www.chromium.org/,Downloads,https://gewey.github.io/img/btn/bm/chromium.png,Yes
+Ubuntu,https://www.ubuntu.com/,Downloads,https://gewey.github.io/img/btn/bm/ubuntu.png,Yes
+Kali Linux,https://www.kali.org/,Downloads,https://gewey.github.io/img/btn/bm/kalilinux.png,Yes
+Nvidia Drivers,https://www.nvidia.com/Download/index.aspx,Downloads,https://gewey.github.io/img/btn/bm/nvidia.png,Yes
+Java,https://www.java.com/en/download/manual.jsp,Downloads,https://gewey.github.io/img/btn/bm/java.png,Yes
+Python,https://www.python.org/downloads/,Downloads,https://gewey.github.io/img/btn/bm/ThePSF.png,Yes
+Node.js,https://nodejs.org/,Downloads,https://gewey.github.io/img/btn/bm/nodejs.png,Yes
+Git,https://git-scm.com/download,Downloads,https://gewey.github.io/img/btn/bm/git.png,Yes
+Notepad++,https://notepad-plus-plus.org/downloads/,Downloads,https://gewey.github.io/img/btn/bm/Notepad_plus.png,Yes
+Sublime Text,https://www.sublimetext.com/download,Downloads,https://gewey.github.io/img/btn/bm/sublimehq.png,Yes
+Brackets,https://brackets.io/,Downloads,https://gewey.github.io/img/btn/bm/brackets.png,Yes
+Ninite,https://ninite.com/,Downloads,https://gewey.github.io/img/btn/bm/ninite.png,Yes
+Eclipse,https://www.eclipse.org/downloads/,Downloads,https://gewey.github.io/img/btn/bm/EclipseFdn.png,Yes
+UserBenchmark,https://www.userbenchmark.com/,Downloads,https://gewey.github.io/img/btn/bm/userbenchmark.png,Yes
+Speedify,https://speedify.com/,Downloads,https://gewey.github.io/img/btn/bm/speedify.png,Yes
+Email,./email/index.html,Email,https://gewey.github.io/img/btn/bm/email.png,Yes
+Gmail,https://mail.google.com/,Email,https://gewey.github.io/img/btn/bm/gmail.png,Yes
+Outlook,https://outlook.live.com,Email,https://gewey.github.io/img/btn/bm/outlook.png,Yes
+Yahoo Mail,https://mail.yahoo.com/,Email,https://gewey.github.io/img/btn/bm/yahoomail.png,Yes
+ProtonMail,https://mail.protonmail.com/,Email,https://gewey.github.io/img/btn/bm/ProtonMail.png,Yes
+AOL Mail,https://mail.aol.com/,Email,https://gewey.github.io/img/btn/bm/aol.png,Yes
+Zoho Mail,https://mail.zoho.com/,Email,https://gewey.github.io/img/btn/bm/zoho.png,Yes
+Finance,./finance/index.html,Finance,https://gewey.github.io/img/btn/bm/finance.png,Yes
+Cash App,https://cash.app/$josephgoulette,Finance,https://gewey.github.io/img/btn/bm/cashapp.png,Yes
+Chase,https://secure07c.chase.com/web/auth/dashboard?mRoute#/dashboard/overviewAccounts/overview/index,Finance,https://gewey.github.io/img/btn/bm/chase.png,Yes
+Capital One,https://verified.capitalone.com/auth/signin?Product=ENTERPRISE&goto_url=https:%2F%2Fmyaccounts.capitalone.com%2F%23%2FaccountSummary#/accountSummary,Finance,https://gewey.github.io/img/btn/bm/CapitalOne.png,Yes
+OneMain Financial,https://www.onemainfinancial.com/prequalification?CSCALD=31269&utm_medium=CR&rfrcode=0qca50#referral,Finance,https://gewey.github.io/img/btn/bm/OneMainFinancial.png,Yes
+PayPal,https://www.paypal.com/,Finance,https://gewey.github.io/img/btn/bm/paypal.png,Yes
+Shutterstock Affiliate,https://submit.shutterstock.com/?ref=224491653,Finance,https://gewey.github.io/img/btn/bm/ShutterstockReq.png,Yes
+Amazon Associates,https://affiliate-program.amazon.com/home,Finance,https://gewey.github.io/img/btn/bm/AmazonAssociate.png,Yes
+Google Analytics,https://analytics.google.com,Finance,https://gewey.github.io/img/btn/bm/googleanalytics.png,Yes
+Games,./games/index.html,Games,https://gewey.github.io/img/btn/bm/game.png,Yes
+Steam,https://store.steampowered.com/,Games,https://gewey.github.io/img/btn/bm/steam_games.png,Yes
+Epic Games Store,https://www.epicgames.com/store/,Games,https://gewey.github.io/img/btn/bm/epicgames.png,Yes
+Twitch,https://www.twitch.tv/,Games,https://gewey.github.io/img/btn/bm/twitch.png,Yes
+Discord,https://discord.com/,Games,https://gewey.github.io/img/btn/bm/discordapp.png,Yes
+YouTube Gaming,https://www.youtube.com/gaming,Games,https://gewey.github.io/img/btn/bm/youtube.png,Yes
+XBOX,https://www.xbox.com/,Games,https://gewey.github.io/img/btn/bm/xbox.png,Yes
+PlayStation Network,https://www.playstation.com/,Games,https://gewey.github.io/img/btn/bm/PlayStation.png,Yes
+Nintendo,https://www.nintendo.com/,Games,https://gewey.github.io/img/btn/bm/NintendoAmerica.png,Yes
+GOG,https://www.gog.com/,Games,https://gewey.github.io/img/btn/bm/GOGcom.png,Yes
+Guild Wars 2,https://www.guildwars2.com/,Games,https://gewey.github.io/img/btn/bm/GuildWars2.png,Yes
+Elder Scrolls Online,https://www.elderscrollsonline.com/,Games,https://gewey.github.io/img/btn/bm/tesonline.png,Yes
+Wizard101,https://www.wizard101.com/,Games,https://gewey.github.io/img/btn/bm/wizard101.png,Yes
+StarCraft 2,https://starcraft2.com/en-us/,Games,https://gewey.github.io/img/btn/bm/starcraft2.png,Yes
+Magic the Gathering,https://magic.wizards.com/en,Games,https://gewey.github.io/img/btn/bm/wizards_magic.png,Yes
+Deckbox,https://deckbox.org/,Games,https://gewey.github.io/img/btn/bm/deckbox.png,Yes
+Dododex,https://www.dododex.com/,Games,https://gewey.github.io/img/btn/bm/Dododex.png,Yes
+RimWorld Wiki,https://rimworldwiki.com/wiki/Main_Page/,Games,https://gewey.github.io/img/btn/bm/rimworldwiki.png,Yes
+Satisfactory Calculator,https://satisfactory-calculator.com/,Games,https://gewey.github.io/img/btn/bm/satisfactorycalculator.png,Yes
+Mountain Dew Gaming,https://www.mtndewgaming.com/,Games,https://gewey.github.io/img/btn/bm/MountainDewGaming.png,Yes
+AlcastHQ,https://alcasthq.com/,Games,https://gewey.github.io/img/btn/bm/alcasthq.png,Yes
+FicsitApp,https://ficsit.app/,Games,https://gewey.github.io/img/btn/bm/ficsitapp.png,Yes
+Minecraft,https://minecraft.net/,Games Minecraft,https://gewey.github.io/img/btn/bm/minecraft.png,Yes
+Minecraft Launcher,https://launcher.mojang.com/,Games Minecraft,https://gewey.github.io/img/btn/bm/mojang.png,Yes
+Minecraft Wiki,https://minecraft.gamepedia.com/Minecraft_Wiki,Games Minecraft,https://gewey.github.io/img/btn/bm/minecraftwiki.png,Yes
+Minecraft Server List,https://mcsrvstat.us/,Games Minecraft,https://gewey.github.io/img/btn/bm/mcsrvstat.png,Yes
+Forge,https://files.minecraftforge.net/,Games Minecraft,https://gewey.github.io/img/btn/bm/ForgeDevTeam.png,Yes
+Fabric,https://fabricmc.net/,Games Minecraft,https://gewey.github.io/img/btn/bm/FabricMC.png,Yes
+CurseForge,https://www.curseforge.com/minecraft/mods,Games Minecraft,https://gewey.github.io/img/btn/bm/curseforge.png,Yes
+Modrinth,https://modrinth.com/,Games Minecraft,https://gewey.github.io/img/btn/bm/modrinth.png,Yes
+FTB Wiki,https://ftb.gamepedia.com/FTB_Wiki/,Games Minecraft,https://gewey.github.io/img/btn/bm/ftb_team.png,Yes
+MCReator,https://mcreator.net/,Games Minecraft,https://gewey.github.io/img/btn/bm/PyloDEV.png,Yes
+Crafatar,https://crafatar.com/,Games Minecraft,https://gewey.github.io/img/btn/bm/Crafatar.png,Yes
+ServerMiner,https://serverminer.com/servers,Games Minecraft,https://gewey.github.io/img/btn/bm/serverminer.png,Yes
+Aternos,https://aternos.org/,Games Minecraft,https://gewey.github.io/img/btn/bm/aternos.png,Yes
+RuneScape,https://www.runescape.com/,Games Runescape,https://gewey.github.io/img/btn/bm/runescape.png,Yes
+Old School RuneScape,https://oldschool.runescape.com/,Games Runescape,https://gewey.github.io/img/btn/bm/oldschoolrs.png,Yes
+RuneScape Wiki,https://runescape.wiki/,Games Runescape,https://gewey.github.io/img/btn/bm/RSWiki.png,Yes
+OSRS Wiki,https://oldschool.runescape.wiki/,Games Runescape,https://gewey.github.io/img/btn/bm/OsrsWiki.png,Yes
+RuneHQ,https://www.runehq.com/,Games Runescape,https://gewey.github.io/img/btn/bm/officialrunehq.png,Yes
+RuneLite,https://runelite.net/,Games Runescape,https://gewey.github.io/img/btn/bm/RuneLiteClient.png,Yes
+OSRS Tracker,https://www.osrs-tracker.com/,Games Runescape,https://gewey.github.io/img/btn/bm/osrs_tracker.png,Yes
+Rune Tips,https://www.tip.it/runescape/,Games Runescape,https://gewey.github.io/img/btn/bm/runetips.png,Yes
+GE Tracker,https://www.ge-tracker.com/,Games Runescape,https://gewey.github.io/img/btn/bm/getracker.png,Yes
+Oodle,https://oodle.rs/,Games Runescape,https://gewey.github.io/img/btn/bm/oodlers.png,Yes
+The Sims,https://www.ea.com/games/the-sims,Games Sims,https://gewey.github.io/img/btn/bm/TheSims.png,Yes
+The Sims 4,https://www.thesims.com/,Games Sims,https://gewey.github.io/img/btn/bm/TheSims4.png,Yes
+The Sims 3,https://www.thesims3.com/home.html,Games Sims,https://gewey.github.io/img/btn/bm/TheSims3.png,Yes
+The Sims FreePlay,https://www.ea.com/games/the-sims/the-sims-freeplay,Games Sims,https://gewey.github.io/img/btn/bm/SimsFreePlay.png,Yes
+Mod The Sims,http://www.modthesims.info/,Games Sims,https://gewey.github.io/img/btn/bm/modthesimsinfo.png,Yes
+Origin/EA App,https://www.origin.com/,Games Sims,https://gewey.github.io/img/btn/bm/origininsider.png,Yes
+SimsCommunity,https://simscommunity.info/,Games Sims,https://gewey.github.io/img/btn/bm/SimsCommun.png,Yes
+Plumbob Academy,https://www.youtube.com/c/PlumbobAcademy,Games Sims,https://gewey.github.io/img/btn/bm/plumbobacademy.png,Yes
+Gewey Referral,./shopping/referral.html,Games Warcraft,https://gewey.github.io/img/btn/bm/blank.png,Yes
+Gewey Warcraft,./games/warcraft/index.html,Games Warcraft,https://gewey.github.io/img/btn/bm/geweywarcraft.png,Yes
+World of Warcraft,https://www.worldofwarcraft.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/warcraft.png,Yes
+Blizzard,https://www.blizzard.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/blizzardcs.png,Yes
+Wowhead,https://www.wowhead.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/wowhead.png,Yes
+Icy Veins,https://www.icy-veins.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/icyveins.png,Yes
+WoW Progress,https://www.wowprogress.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/wowprogress.png,Yes
+Raider IO,https://raider.io/,Games Warcraft,https://gewey.github.io/img/btn/bm/raiderio_wow.png,Yes
+Warcraft Logs,https://www.warcraftlogs.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/warcraftlogs.png,Yes
+Raidbots,https://www.raidbots.com/simbot,Games Warcraft,https://gewey.github.io/img/btn/bm/raidbots.png,Yes
+TradeSkillMaster,https://www.tradeskillmaster.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/tsmaddon.png,Yes
+Petopia,https://www.wow-petopia.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/wowpetopia.png,Yes
+Wago.IO,https://wago.io/,Games Warcraft,https://gewey.github.io/img/btn/bm/wago_io.png,Yes
+Simple Armory,https://simplearmory.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/simplearmory.png,Yes
+Bloodmallet,https://www.bloodmallet.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/bloodmallet.png,Yes
+Archon,https://www.archon.gg/,Games Warcraft,https://gewey.github.io/img/btn/bm/archon.png,Yes
+ArenaTeam,https://www.arenateam.net/,Games Warcraft,https://gewey.github.io/img/btn/bm/arenateam.png,Yes
+Data for Azeroth,https://www.dataforazeroth.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/dataforazeroth.png,Yes
+RaidPlan,https://raidplan.io/,Games Warcraft,https://gewey.github.io/img/btn/bm/raidplan.png,Yes
+Warcraft Secrets,https://warcraft-secrets.com/,Games Warcraft,https://gewey.github.io/img/btn/bm/WarcraftSecrets.png,Yes
+Google,http://www.google.com/,Google,https://gewey.github.io/img/btn/bm/google.png,Yes
+Google Drive,https://drive.google.com/,Google,https://gewey.github.io/img/btn/bm/googledrive.png,Yes
+Google Docs,https://docs.google.com,Google,https://gewey.github.io/img/btn/bm/googledocs.png,Yes
+Google Chrome,https://www.google.com/chrome/,Google,https://gewey.github.io/img/btn/bm/googlechrome.png,Yes
+Gmail,https://mail.google.com/,Google,https://gewey.github.io/img/btn/bm/gmail.png,Yes
+Google Photos,https://photos.google.com/,Google,https://gewey.github.io/img/btn/bm/googlephotos.png,Yes
+Google Translate,https://translate.google.com/,Google,https://gewey.github.io/img/btn/bm/googletranslate.png,Yes
+Google Maps,https://www.google.com/maps/,Google,https://gewey.github.io/img/btn/bm/GMapsPlatform.png,Yes
+Investing,./investing/index.html,Investing,https://gewey.github.io/img/btn/bm/investing.png,Yes
+E*Trade,https://us.etrade.com/home,Investing,https://gewey.github.io/img/btn/bm/etrade.png,Yes
+Fidelity,https://oltx.fidelity.com/ftgw/fbc/oftop/portfolio#summary,Investing,https://gewey.github.io/img/btn/bm/fidelity.png,Yes
+Robinhood,https://join.robinhood.com/josephg4312,Investing,https://gewey.github.io/img/btn/bm/RobinhoodApp.png,Yes
+Acorns,https://www.acorns.com/,Investing,https://gewey.github.io/img/btn/bm/acorns.png,Yes
+Webull,https://act.webull.com/iv/e5OOcG2gCh7s/71n/inviteUs/,Investing,https://gewey.github.io/img/btn/bm/webull.png,Yes
+Coinbase,https://www.coinbase.com/join/jgoulette_4hiaeA,Investing,https://gewey.github.io/img/btn/bm/coinbase.png,Yes
+Fundrise,https://www.fundrise.com/r/pp1rp7,Investing,https://gewey.github.io/img/btn/bm/fundrise.png,Yes
+Worthy Bonds,https://worthybonds.com/?r=ikhfn,Investing,https://gewey.github.io/img/btn/bm/Worthy.png,Yes
+Gem Select,https://www.gemselect.com/index.php,Investing,https://gewey.github.io/img/btn/bm/GemSelect.png,Yes
+APMEX,https://www.apmex.com/account/portfolio,Investing,https://gewey.github.io/img/btn/bm/apmex.png,Yes
+uCoin,https://en.ucoin.net/?ref=ZvVW2bgHAaqB2UEt,Investing,https://gewey.github.io/img/btn/bm/ucoin.png,Yes
+JM Bullion,https://www.JMBullion.com/,Investing,https://gewey.github.io/img/btn/bm/JMBullion.png,Yes
+Luciteria,https://luciteria.com/,Investing,https://gewey.github.io/img/btn/bm/luciteria.png,Yes
+FINVIZ,https://finviz.com/,Investing,https://gewey.github.io/img/btn/bm/FINVIZ_com.png,Yes
+Investopedia,https://www.investopedia.com/,Investing,https://gewey.github.io/img/btn/bm/investopedia.png,Yes
+Media,./media/index.html,Media,https://gewey.github.io/img/btn/bm/media.png,Yes
+Spotify,http://www.spotify.com/,Media,https://gewey.github.io/img/btn/bm/spotify.png,Yes
+Stats.fm,https://stats.fm/,Media,https://gewey.github.io/img/btn/bm/statsfm.png,Yes
+Radio Garden,http://radio.garden/,Media,https://gewey.github.io/img/btn/bm/radiogarden.png,Yes
+YouTube,https://www.youtube.com/feed/subscriptions,Media,https://gewey.github.io/img/btn/bm/youtube.png,Yes
+Netflix,http://www.netflix.com/,Media,https://gewey.github.io/img/btn/bm/netflix.png,Yes
+Hulu,http://www.hulu.com/,Media,https://gewey.github.io/img/btn/bm/hulu.png,Yes
+Prime Video,https://www.amazon.com/gp/video/storefront,Media,https://gewey.github.io/img/btn/bm/primevideo.png,Yes
+HBO Max,https://play.hbomax.com/profileSelect,Media,https://gewey.github.io/img/btn/bm/hbomax.png,Yes
+The Roku Channel,https://therokuchannel.roku.com/,Media,https://gewey.github.io/img/btn/bm/RokuChannels.png,Yes
+Pluto TV,https://pluto.tv/,Media,https://gewey.github.io/img/btn/bm/PlutoTV.png,Yes
+LookMovie,https://www.lookmovie2.to/,Media,https://gewey.github.io/img/btn/bm/lookmovie.png,Yes
+Nebula,https://nebula.tv/,Media,https://gewey.github.io/img/btn/bm/nebula.png,Yes
+DeviantArt,http://www.deviantart.com/,Media,https://gewey.github.io/img/btn/bm/deviantart.png,Yes
+imgflip,https://imgflip.com/,Media,https://gewey.github.io/img/btn/bm/imgflip.png,Yes
+Audible,https://amzn.to/2D4mwBB,Media,https://gewey.github.io/img/btn/bm/audible_com.png,Yes
+Tumblr,https://www.tumblr.com/dashboard,Media,https://gewey.github.io/img/btn/bm/tumblr.png,Yes
+Gravit Designer,https://designer.io/,Media,https://gewey.github.io/img/btn/bm/gravitdesigner.png,Yes
+Shutterstock,http://www.shutterstock.com/?rid=224491653,Media,https://gewey.github.io/img/btn/bm/shutterstock.png,Yes
+Hazbin Hotel,https://x.com/HazbinHotel,Media,https://gewey.github.io/img/btn/bm/hazbinhotel.png,Yes
+Helluva Boss,https://www.stylishoccult.com/,Media,https://gewey.github.io/img/btn/bm/helluvaboss.png,Yes
+Blogger,https://www.blogger.com/,Media,https://gewey.github.io/img/btn/bm/blogger.png,Yes
+News,./news/index.html,News,https://gewey.github.io/img/btn/bm/news.png,Yes
+AP News,https://apnews.com/,News,https://gewey.github.io/img/btn/bm/apnews.png,Yes
+CNN,http://www.cnn.com/,News,https://gewey.github.io/img/btn/bm/cnn.png,Yes
+Huffington Post,http://www.huffingtonpost.com/,News,https://gewey.github.io/img/btn/bm/huffpost.png,Yes
+New York Times,http://www.nytimes.com/,News,https://gewey.github.io/img/btn/bm/nytimes.png,Yes
+Newsweek,https://www.newsweek.com/,News,https://gewey.github.io/img/btn/bm/newsweek.png,Yes
+BBC,http://www.bbc.com/,News,https://gewey.github.io/img/btn/bm/bbc.png,Yes
+Weather,http://www.weather.com/,News,https://gewey.github.io/img/btn/bm/weatherchannel.png,Yes
+NASA,http://www.nasa.gov/,News,https://gewey.github.io/img/btn/bm/nasa.png,Yes
+Science Channel,https://www.sciencechannel.com,News,https://gewey.github.io/img/btn/bm/ScienceChannel.png,Yes
+CNET,http://www.cnet.com/,News,https://gewey.github.io/img/btn/bm/cnet.png,Yes
+Yahoo,https://www.yahoo.com/,News,https://gewey.github.io/img/btn/bm/yahoo.png,Yes
+Global Citizen,https://www.globalcitizen.org,News,https://gewey.github.io/img/btn/bm/glblctzn.png,Yes
+Reference,./reference/index.html,Reference,https://gewey.github.io/img/btn/bm/reference.png,Yes
+Brilliant,https://brilliant.org/,Reference,https://gewey.github.io/img/btn/bm/brilliant.png,Yes
+Ancestry,https://www.ancestry.com/,Reference,https://gewey.github.io/img/btn/bm/Ancestry.png,Yes
+MyHeritage,https://www.myheritage.com/,Reference,https://gewey.github.io/img/btn/bm/MyHeritage.png,Yes
+Genomelink,https://genomelink.io/dashboard/,Reference,https://gewey.github.io/img/btn/bm/genomelink.png,Yes
+23andMe,https://www.23andme.com/,Reference,https://gewey.github.io/img/btn/bm/23andMe.png,Yes
+Wikipedia,http://wikipedia.org/,Reference,https://gewey.github.io/img/btn/bm/wikipedia.png,Yes
+IMDB,http://www.imdb.com/,Reference,https://gewey.github.io/img/btn/bm/imdb.png,Yes
+eHow,http://www.ehow.com/,Reference,https://gewey.github.io/img/btn/bm/ehow.png,Yes
+Almanac,https://www.almanac.com/,Reference,https://gewey.github.io/img/btn/bm/almanac.png,Yes
+TED Talks,https://www.ted.com,Reference,https://gewey.github.io/img/btn/bm/tedtalks.png,Yes
+AllRecipes,https://www.allrecipes.com/,Reference,https://gewey.github.io/img/btn/bm/allrecipes.png,Yes
+Life Hacker,https://lifehacker.com/,Reference,https://gewey.github.io/img/btn/bm/lifehacker.png,Yes
+Khan Academy,https://www.khanacademy.org/,Reference,https://gewey.github.io/img/btn/bm/khanacademy.png,Yes
+Font Awesome,https://fontawesome.com/,Reference,https://gewey.github.io/img/btn/bm/fontawesome.png,Yes
+Periodic Table,https://www.ptable.com/,Reference,https://gewey.github.io/img/btn/bm/ptable.png,Yes
+Dictionary,http://dictionary.reference.com/,Reference,https://gewey.github.io/img/btn/bm/dictionarycom.png,Yes
+Duolingo,https://www.duolingo.com,Reference,https://gewey.github.io/img/btn/bm/duolingo.png,Yes
+Kurzgesagt,https://www.youtube.com/user/Kurzgesagt,Reference,https://gewey.github.io/img/btn/bm/Kurz_Gesagt.png,Yes
+Crash Course,https://www.youtube.com/user/crashcourse,Reference,https://gewey.github.io/img/btn/bm/thecrashcourse.png,Yes
+Gewey Referral,./shopping/referral.html,Shopping,https://gewey.github.io/img/btn/bm/shopping.png,Yes
+Amazon,https://amzn.to/391VsnT,Shopping,https://gewey.github.io/img/btn/bm/amazon.png,Yes
+Candle Science,https://www.candlescience.com/,Shopping,https://gewey.github.io/img/btn/bm/CandleScience.png,Yes
+The Flaming Candle,https://www.theflamingcandle.com/,Shopping,https://gewey.github.io/img/btn/bm/Flaming_Candle.png,Yes
+eBay,http://www.ebay.com/,Shopping,https://gewey.github.io/img/btn/bm/ebay.png,Yes
+Jinx,http://www.jinx.com/member/336691?bid=49,Shopping,https://gewey.github.io/img/btn/bm/jinx.png,Yes
+Newegg,http://www.newegg.com/,Shopping,https://gewey.github.io/img/btn/bm/newegg.png,Yes
+Walmart,http://www.walmart.com/,Shopping,https://gewey.github.io/img/btn/bm/walmart.png,Yes
+SharkRobot,https://sharkrobot.com/collections/vivziepop,Shopping,https://gewey.github.io/img/btn/bm/sharkrobot.png,Yes
+UPS,http://www.ups.com/,Shopping,https://gewey.github.io/img/btn/bm/ups.png,Yes
+USPS,https://www.usps.com/,Shopping,https://gewey.github.io/img/btn/bm/usps.png,Yes
+Facebook,http://facebook.com/,Social,https://gewey.github.io/img/btn/bm/facebook.png,Yes
+Twitter,http://twitter.com/,Social,https://gewey.github.io/img/btn/bm/twitter.png,Yes
+Instagram,https://www.instagram.com/,Social,https://gewey.github.io/img/btn/bm/instagram.png,Yes
+TikTok,https://www.tiktok.com/,Social,https://gewey.github.io/img/btn/bm/tiktok.png,Yes
+Snapchat,https://www.snapchat.com/,Social,https://gewey.github.io/img/btn/bm/snapchat.png,Yes
+Pinterest,http://pinterest.com/,Social,https://gewey.github.io/img/btn/bm/pinterest.png,Yes
+Skype,https://www.skype.com/en/,Social,https://gewey.github.io/img/btn/bm/skype.png,Yes
+LinkedIn,http://www.linkedin.com/,Social,https://gewey.github.io/img/btn/bm/linkedin.png,Yes
+WhatsApp,https://www.whatsapp.com/,Social,https://gewey.github.io/img/btn/bm/whatsapp.png,Yes
+Telegram,https://web.telegram.org/,Social,https://gewey.github.io/img/btn/bm/telegram.png,Yes
+Mix,https://mix.com/,Social,https://gewey.github.io/img/btn/bm/getmixapp.png,Yes
+Digg,http://digg.com/,Social,https://gewey.github.io/img/btn/bm/digg.png,Yes
+Reddit,http://www.reddit.com/,Social,https://gewey.github.io/img/btn/bm/reddit.png,Yes
+WordPress,http://wordpress.org/,Social,https://gewey.github.io/img/btn/bm/wordpress.png,Yes
+Mastodon,https://mastodon.social/,Social,https://gewey.github.io/img/btn/bm/mastodon_social.png,Yes
+Text Free,https://textfree.us/,Social,https://gewey.github.io/img/btn/bm/textfreeapp.png,Yes
+Sports,./sports/index.html,Sports,https://gewey.github.io/img/btn/bm/sports.png,Yes
+ESPN,https://www.espn.com/,Sports,https://gewey.github.io/img/btn/bm/espn.png,Yes
+Sports Illustrated,https://www.si.com/,Sports,https://gewey.github.io/img/btn/bm/sinow.png,Yes
+NFL,https://www.nfl.com/,Sports,https://gewey.github.io/img/btn/bm/nfl.png,Yes
+NBA,https://www.nba.com/,Sports,https://gewey.github.io/img/btn/bm/nba.png,Yes
+MLB,https://www.mlb.com/,Sports,https://gewey.github.io/img/btn/bm/mlb.png,Yes
+NCAA,https://www.ncaa.org/,Sports,https://gewey.github.io/img/btn/bm/ncaa.png,Yes
+Soccer.com,https://www.soccer.com/,Sports,https://gewey.github.io/img/btn/bm/MLS.png,Yes
+NASCAR,https://www.nascar.com/,Sports,https://gewey.github.io/img/btn/bm/nascar.png,Yes
+PGA Tour,https://www.pgatour.com/,Sports,https://gewey.github.io/img/btn/bm/pgatour.png,Yes
+Bleacher Report,https://bleacherreport.com/,Sports,https://gewey.github.io/img/btn/bm/BleacherReport.png,Yes
+Web Development,./reference/index.html,Web Development,https://gewey.github.io/img/btn/bm/webdevelopment.png,Yes
+Zapier,https://www.zapier.com/,Web Development,https://gewey.github.io/img/btn/bm/zapier.png,Yes
+Bleeping Computer,https://www.bleepingcomputer.com/,Web Development,https://gewey.github.io/img/btn/bm/BleepinComputer.png,Yes
+W3Schools,http://www.w3schools.com/,Web Development,https://gewey.github.io/img/btn/bm/w3schoolsonline.png,Yes
+Stack Overflow,https://stackoverflow.com/,Web Development,https://gewey.github.io/img/btn/bm/StackOverflow.png,Yes
+GitHub,https://github.com/,Web Development,https://gewey.github.io/img/btn/bm/github.png,Yes
+Codecademy,https://www.codecademy.com/,Web Development,https://gewey.github.io/img/btn/bm/codecademy.png,Yes
+FreeCodeCamp,https://learn.freecodecamp.org/,Web Development,https://gewey.github.io/img/btn/bm/freeCodeCamp.png,Yes
+TensorFlow.js,https://js.tensorflow.org/,Web Development,https://gewey.github.io/img/btn/bm/tensorflow.png,Yes
+CodePen,https://codepen.io/,Web Development,https://gewey.github.io/img/btn/bm/codepen.png,Yes
+Material Design,https://material.io/,Web Development,https://gewey.github.io/img/btn/bm/materialdesign.png,Yes
+Open Culture,http://www.openculture.com,Web Development,https://gewey.github.io/img/btn/bm/openculture.png,Yes
+Fontvilla,https://fontvilla.com/,Web Development,https://gewey.github.io/img/btn/bm/Fontvillacs.png,Yes
+Airbrush,https://airbrush.com/,Web Development,https://gewey.github.io/img/btn/bm/airbrush.png,Yes
+FacyAI,https://facy.ai/swap-face-ai/photo,Web Development,https://gewey.github.io/img/btn/bm/facyai.png,Yes
+TutorialsPoint,https://www.tutorialspoint.com/index.htm,Web Development,https://gewey.github.io/img/btn/bm/tutorialspoint.png,Yes
+Blizzard Press,https://blizzard.gamespress.com/World-of-Warcraft,Web Development,https://gewey.github.io/img/btn/bm/blizzardpress.png,Yes
+MIT App Inventor,http://ai2.appinventor.mit.edu/,Web Development,https://gewey.github.io/img/btn/bm/mitappinventor.png,Yes

@@ -5,6 +5,22 @@ const AgentViewTracker = {
     storagePrefix: 'agentView_',
     totalViewsKey: 'agentTotalViews',
 
+    isValidAgentFolder: function(folder) {
+        const ignored = new Set(['', '_Template', 'Shared', 'index.html']);
+        return Boolean(folder && !ignored.has(folder));
+    },
+
+    extractAgentFolder: function(pathname) {
+        const currentPath = pathname || (typeof window !== 'undefined' && window.location ? window.location.pathname : '');
+        const pathSegments = currentPath.split('/');
+        const agentIndex = pathSegments.findIndex(seg => seg === 'AGENTS');
+        if (agentIndex === -1 || agentIndex + 1 >= pathSegments.length) {
+            return null;
+        }
+        const folder = pathSegments[agentIndex + 1];
+        return this.isValidAgentFolder(folder) ? folder : null;
+    },
+
     init: function() {
         this.trackCurrentAgent();
         this.displayViewCount();
@@ -12,17 +28,9 @@ const AgentViewTracker = {
     },
 
     trackCurrentAgent: function() {
-        // Only track on individual agent profile pages
-        const pathSegments = window.location.pathname.split('/');
-        const agentIndex = pathSegments.findIndex(seg => seg === 'AGENTS');
-
-        if (agentIndex !== -1 && agentIndex + 1 < pathSegments.length) {
-            const folder = pathSegments[agentIndex + 1];
-            
-            // Skip template and shared folders
-            if (folder && folder !== '_Template' && folder !== 'Shared' && folder !== 'index.html') {
-                this.incrementViewCount(folder);
-            }
+        const folder = this.extractAgentFolder();
+        if (folder) {
+            this.incrementViewCount(folder);
         }
     },
 
@@ -38,55 +46,50 @@ const AgentViewTracker = {
     },
 
     displayViewCount: function() {
-        // Add view count to profile page
-        const pathSegments = window.location.pathname.split('/');
-        const agentIndex = pathSegments.findIndex(seg => seg === 'AGENTS');
+        const folder = this.extractAgentFolder();
+        if (!folder) return;
 
-        if (agentIndex !== -1 && agentIndex + 1 < pathSegments.length) {
-            const folder = pathSegments[agentIndex + 1];
-            if (folder && folder !== '_Template' && folder !== 'Shared' && folder !== 'index.html') {
-                const count = this.getViewCount(folder);
-                const profileHeader = document.querySelector('.agentHeader');
-                
-                if (profileHeader) {
-                    const viewsElement = document.createElement('div');
-                    viewsElement.className = 'agentViewCount';
-                    viewsElement.innerHTML = `
-                        <i class="material-icons">visibility</i>
-                        <span>${count} view${count !== 1 ? 's' : ''}</span>
-                    `;
-                    profileHeader.appendChild(viewsElement);
-                }
-            }
-        }
+        const count = this.getViewCount(folder);
+        const profileHeader = document.querySelector('.agentHeader');
+        if (!profileHeader) return;
+
+        const viewsElement = document.createElement('div');
+        viewsElement.className = 'agentViewCount';
+        viewsElement.innerHTML = `
+            <i class="material-icons">visibility</i>
+            <span>${count} view${count !== 1 ? 's' : ''}</span>
+        `;
+        profileHeader.appendChild(viewsElement);
     },
 
     updateListingViewCounts: function() {
-        // Update view counts on the main listing page
         const agentCards = document.querySelectorAll('.agentCard');
         
         agentCards.forEach(card => {
-            const folder = card.querySelector('.agentCardFolder').textContent.replace('/', '').trim();
+            const folderElem = card.querySelector('.agentCardFolder');
+            if (!folderElem) return;
+            const folder = folderElem.textContent.replace('/', '').trim();
             const count = this.getViewCount(folder);
 
             if (count > 0) {
+                const targetContent = card.querySelector('.agentCardContent');
+                if (!targetContent) return;
                 const viewsElement = document.createElement('div');
                 viewsElement.className = 'agentCardViews';
                 viewsElement.innerHTML = `
                     <i class="material-icons">visibility</i>
                     <span>${count}</span>
                 `;
-                card.querySelector('.agentCardContent').appendChild(viewsElement);
+                targetContent.appendChild(viewsElement);
             }
         });
     },
 
-    // Utility function to get all agent view statistics
     getAllViewStats: function() {
         const stats = {};
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith(this.storagePrefix)) {
+            if (key && key.startsWith(this.storagePrefix)) {
                 const agentFolder = key.replace(this.storagePrefix, '');
                 stats[agentFolder] = parseInt(localStorage.getItem(key), 10);
             }
@@ -94,12 +97,11 @@ const AgentViewTracker = {
         return stats;
     },
 
-    // Clear all view tracking data
     clearAllStats: function() {
         const keys = [];
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith(this.storagePrefix)) {
+            if (key && key.startsWith(this.storagePrefix)) {
                 keys.push(key);
             }
         }
@@ -107,7 +109,13 @@ const AgentViewTracker = {
     }
 };
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    AgentViewTracker.init();
-});
+// Initialize when page loads in browser
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        AgentViewTracker.init();
+    });
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { AgentViewTracker };
+}

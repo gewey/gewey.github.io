@@ -10,19 +10,25 @@ const AgentProfileBuilder = {
         this.loadAgentProfile();
     },
 
+    isAgentFolder: function(folder) {
+        const ignored = new Set(['', '_Template', 'Shared', 'index.html']);
+        return Boolean(folder && !ignored.has(folder));
+    },
+
     detectAgent: function() {
-        // Get agent name from the current folder path
         const pathSegments = window.location.pathname.split('/');
         const agentIndex = pathSegments.findIndex(seg => seg === 'AGENTS');
         
-        if (agentIndex !== -1 && agentIndex + 1 < pathSegments.length) {
-            const folder = pathSegments[agentIndex + 1];
-            if (folder && folder !== '_Template' && folder !== 'Shared' && folder !== 'index.html') {
-                this.currentAgent = {
-                    folder: folder,
-                    name: this.formatAgentName(folder)
-                };
-            }
+        if (agentIndex === -1 || agentIndex + 1 >= pathSegments.length) {
+            return;
+        }
+
+        const folder = pathSegments[agentIndex + 1];
+        if (this.isAgentFolder(folder)) {
+            this.currentAgent = {
+                folder: folder,
+                name: this.formatAgentName(folder)
+            };
         }
     },
 

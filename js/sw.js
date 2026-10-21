@@ -13,7 +13,6 @@ const CACHE_ASSETS = [
     '/css/images.css',
     '/css/modern.css',
     '/js/dynamichead.js',
-    '/js/modernEnhancements.js',
     '/js/sortByClickCount.js',
     '/js/verp.js',
     '/img/btn/bm/manifest.json',
@@ -70,88 +69,84 @@ self.addEventListener('activate', (event) => {
     self.clients.claim();
 });
 
+// Helper strategy: Image and Font cache-first
+function isStaticMediaRequest(request, requestUrl) {
+    const isMedia = request.destination === 'image' || request.destination === 'font';
+    const isGoogleFont = requestUrl.hostname === 'fonts.googleapis.com' || requestUrl.hostname === 'fonts.gstatic.com';
+    return isMedia || isGoogleFont;
+}
+
+function handleMediaFetch(request) {
+    return caches.match(request).then((cached) => {
+        if (cached) return cached;
+
+        return fetch(request).then((response) => {
+            if (!response) return response;
+
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+                cache.put(request, responseToCache);
+            });
+
+            return response;
+        });
+    });
+}
+
+function handleApiFetch(request) {
+    return fetch(request)
+        .then((response) => {
+            if (response.status === 200) {
+                const cache = caches.open(CACHE_VERSION);
+                cache.then((c) => c.put(request, response.clone()));
+            }
+            return response;
+        })
+        .catch(() => caches.match(request));
+}
+
+function handleStaticAssetFetch(request) {
+    return caches.match(request).then((cachedResponse) => {
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+
+        return fetch(request).then((response) => {
+            if (!response || response.status === 206) {
+                return response;
+            }
+
+            if (response.ok || response.type === 'opaque') {
+                const responseToCache = response.clone();
+                caches.open(CACHE_VERSION).then((cache) => {
+                    cache.put(request, responseToCache);
+                });
+            }
+
+            return response;
+        }).catch(() => caches.match('/index.html'));
+    });
+}
+
 // Fetch event - implement caching strategy
 self.addEventListener('fetch', (event) => {
-    // Only handle GET requests
     if (event.request.method !== 'GET') {
         return;
     }
 
     const requestUrl = new URL(event.request.url);
 
-    // Cache-first for images, fonts, and external font stylesheets
-    if (
-        event.request.destination === 'image' ||
-        event.request.destination === 'font' ||
-        requestUrl.hostname === 'fonts.googleapis.com' ||
-        requestUrl.hostname === 'fonts.gstatic.com'
-    ) {
-        event.respondWith(
-            caches.match(event.request).then((cached) => {
-                if (cached) return cached;
-
-                return fetch(event.request).then((response) => {
-                    if (!response) return response;
-
-                    const responseToCache = response.clone();
-                    caches.open(RUNTIME_CACHE).then((cache) => {
-                        cache.put(event.request, responseToCache);
-                    });
-
-                    return response;
-                });
-            })
-        );
+    if (isStaticMediaRequest(event.request, requestUrl)) {
+        event.respondWith(handleMediaFetch(event.request));
         return;
     }
 
-    // Network-first strategy for API calls
     if (event.request.url.includes('/api/')) {
-        event.respondWith(
-            fetch(event.request)
-                .then((response) => {
-                    // Cache successful responses
-                    if (response.status === 200) {
-                        const cache = caches.open(CACHE_VERSION);
-                        cache.then((c) => c.put(event.request, response.clone()));
-                    }
-                    return response;
-                })
-                .catch(() => {
-                    // Fall back to cache on error
-                    return caches.match(event.request);
-                })
-        );
+        event.respondWith(handleApiFetch(event.request));
         return;
     }
 
-    // Cache-first strategy for static assets
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
-
-            return fetch(event.request).then((response) => {
-                // Cache successful responses (including opaque for cross-origin assets)
-                if (!response || response.status === 206) {
-                    return response;
-                }
-
-                if (response.ok || response.type === 'opaque') {
-                    const responseToCache = response.clone();
-                    caches.open(CACHE_VERSION).then((cache) => {
-                        cache.put(event.request, responseToCache);
-                    });
-                }
-
-                return response;
-            }).catch(() => {
-                // Return offline page or cached version
-                return caches.match('/index.html');
-            });
-        })
-    );
+    event.respondWith(handleStaticAssetFetch(event.request));
 });
 
 // Background sync for future enhancements
