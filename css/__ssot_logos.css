@@ -1,0 +1,95 @@
+/**
+ * INUUS SUBSTRATE 2.0 — SSOT LOGOS & SOVEREIGN MASKS (VECTORS)
+ * =============================================================================
+ * Chamber: 03_Logovico
+ * Master SSOT: __ssot_logos.css
+ * Anchor Song: "Logos" by Ludovico Einaudi
+ * Rationale: Master responsive brand marks, sovereign seals, and logo vectors.
+ * =============================================================================
+ */
+
+/* FULL DESKTOP DISPLAY */
+@media (min-width: 1250px) {
+  .geweyName {
+    content: url("../img/logo/gewey/geweyName.png");
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .geweyLogo {
+    content: url("../img/logo/gewey/geweyLogo.png");
+    width: 85%;
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 12px auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .geweyLogo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px var(--color-primary, #00EE00));
+  }
+
+  .hobosLogo {
+    content: url("../img/logo/hobos/hobosLogo.png");
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .tesseractCityLogo {
+    content: url("../img/logo/tesseract_city/FaceNameLogoTrans.png");
+    width: 85%;
+    max-width: 180px;
+    height: auto;
+    margin: 0 auto 12px auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .tesseractCityLogo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px #00EEEE);
+  }
+}
+
+/* BITE SIZE / MOBILE DISPLAY */
+@media (max-width: 1249px) {
+  .geweyName {
+    content: url("../img/logo/gewey/geweyG.png");
+    height: 32px;
+    width: auto;
+  }
+
+  .geweyLogo {
+    content: url("../img/logo/gewey/geweyG.png");
+    height: 36px;
+    width: auto;
+  }
+
+  .hobosLogo {
+    content: url("../img/logo/hobos/hobosLogo.png");
+    height: 32px;
+    width: auto;
+  }
+}
+
+/* SOVEREIGN SEAL & MASKS */
+.sovereignSeal {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary, #00EE00);
+  box-shadow: 0 0 15px rgba(0, 238, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.sovereignSeal:hover {
+  border-color: var(--color-accent, #EE00EE);
+  box-shadow: 0 0 20px rgba(238, 0, 238, 0.4);
+  transform: rotate(15deg);
+}

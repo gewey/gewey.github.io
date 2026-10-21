@@ -1,0 +1,46 @@
+/**
+ * INUUS SUBSTRATE 2.0 — MASTER BRAND IDENTITY (COMATOSE BUT AUDIBLE)
+ * =============================================================================
+ * Chamber: 00_Brand_Whore
+ * Master SSOT: __ssot_comatose_but_audible.css
+ * Anchor Song: "Good to Know That If I Ever Need Attention All I Have to Do Is Die"
+ *              by Brand New ("We're comatose but audible")
+ * =============================================================================
+ * The Unified Single Source of Truth for the Viktor Substrate Visual Identity.
+ * Assembles Chroma (01), Typography (02), Vectors (03), Pictures (04),
+ * Videos (05), and Element Structure / Bones (06).
+ * =============================================================================
+ */
+
+@import url("./__ssot_color_pallet.css");
+@import url("./__ssot_fonts_icons.css");
+@import url("./__ssot_element_structure.css");
+@import url("./__ssot_logos.css");
+@import url("./__ssot_images.css");
+@import url("./__ssot_videos.css");
+
+/* =============================================================================
+ * MASTER BRAND OVERLAY & CANONICAL SIGNATURE
+ * ============================================================================= */
+:root {
+  --brand-author: "Gewey";
+  --brand-realm: "Tesseract City";
+  --brand-ssot: "Inuus Substrate 2.0";
+  --brand-version: "2.0.0";
+}
+
+/* Master Brand Whore Signature Watermark */
+.brand-whore-watermark {
+  font-family: var(--font-display-accent, "Audiowide", sans-serif);
+  font-size: 0.75em;
+  color: var(--color-accent, #EE00EE);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.brand-whore-watermark:hover {
+  opacity: 1;
+  text-shadow: 0 0 8px var(--color-accent, #EE00EE);
+}

@@ -1,0 +1,144 @@
+/**
+ * INUUS SUBSTRATE 2.0 — SSOT COLOR PALETTE (CHROMA)
+ * =============================================================================
+ * Chamber: 01_Colors_Collide
+ * Master SSOT: __ssot_color_pallet.css
+ * Anchor Song: "Colors Collide" by Blue October
+ * Standard: The Viktor Substrate 2.0 Canonical 16-Color Palette
+ * =============================================================================
+ */
+
+:root {
+  /* --- 1. PRIMARY NEONS --- */
+  --magenta: #EE00EE;
+  --green: #00EE00;
+
+  /* Aliases for semantic theme compatibility */
+  --color-primary: var(--green);
+  --color-accent: var(--magenta);
+  --color-bg: #000000;
+  --color-text: #FFFFFF;
+  --color-border: #30363D;
+
+  /* --- 2. DIMMED NEONS --- */
+  --magenta-dim: #880088;
+  --green-dim: #008800;
+
+  /* --- 3. PERSONAL / LORE --- */
+  --jake-red: #B53F3F;
+  --edgelord-purple: #420666;
+  --vampire-red: #880808;
+
+  /* --- 4. FACTION / SUBSYSTEM --- */
+  --viktor-cyan: #00C8FF;
+  --electric-purple: #7F00FF;
+  --gold-ember: #FFCC00;
+
+  /* --- 5. HIGHLIGHTS / GLOW FALLOFF --- */
+  --lavender-mist: #F0E6FA;
+  --pale-yellow: #EDEA99;
+  --ghost-yellow: #FFFFF0;
+
+  /* --- 6. NEUTRALS --- */
+  --void: #000000;
+  --panel: #0A0A0F;
+  --border-gray: #30363D;
+  --vapor-gray: #B0B0B0;
+
+  /* --- 7. SURFACES & ELEVATION --- */
+  --surface-void: #000000;
+  --surface-panel: #0A0A0F;
+  --surface-elevated: rgba(10, 10, 15, 0.95);
+  --surface-card: rgba(22, 27, 34, 0.75);
+
+  /* --- 8. GLOW CONSTANTS (INNER / OUTER / FALLOFF) --- */
+  --glow-green-sm: 0 0 8px rgba(0, 238, 0, 0.4);
+  --glow-green-md: 0 0 16px rgba(0, 238, 0, 0.6), 0 0 32px rgba(0, 238, 0, 0.2);
+  --glow-magenta-sm: 0 0 8px rgba(238, 0, 238, 0.4);
+  --glow-magenta-md: 0 0 16px rgba(238, 0, 238, 0.6), 0 0 32px rgba(238, 0, 238, 0.2);
+  --glow-cyan-md: 0 0 16px rgba(0, 200, 255, 0.6);
+  --glow-gold-md: 0 0 16px rgba(255, 204, 0, 0.6);
+
+  --transition-speed: 0.3s;
+}
+
+/* =============================================================================
+ * THEME CLASSES & PRESETS
+ * ============================================================================= */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* CYBER / DEFAULT THEME */
+[data-theme="cyber"], :root {
+  --color-primary: #00EE00;
+  --color-accent: #EE00EE;
+  --color-bg: #000000;
+  --color-border: #30363D;
+}
+
+/* MATRIX THEME (PHOSPHOR GREEN HEAVY) */
+[data-theme="matrix"] {
+  --color-primary: #00EE00;
+  --color-accent: #008800;
+  --color-bg: #020802;
+  --color-border: #003300;
+}
+
+/* SYNTHWAVE THEME (MAGENTA & CYAN HEAVY) */
+[data-theme="synthwave"] {
+  --color-primary: #EE00EE;
+  --color-accent: #00C8FF;
+  --color-bg: #0A0410;
+  --color-border: #420666;
+}
+
+/* EDGELORD THEME (PURPLE & VAMPIRE RED) */
+[data-theme="edgelord"] {
+  --color-primary: #7F00FF;
+  --color-accent: #880808;
+  --color-bg: #080208;
+  --color-border: #420666;
+}
+
+/* LIGHT THEME (INVERTED HIGH CONTRAST) */
+[data-theme="light"] {
+  --color-primary: #008800;
+  --color-accent: #880088;
+  --color-bg: #FFFFFF;
+  --color-text: #0A0A0F;
+  --color-border: #E0E0E0;
+  --surface-panel: #F8F9FA;
+  --surface-card: #FFFFFF;
+}
+
+/* =============================================================================
+ * GLOW & ACCENT UTILITIES
+ * ============================================================================= */
+.glow-primary {
+  box-shadow: var(--glow-green-md);
+}
+
+.glow-accent {
+  box-shadow: var(--glow-magenta-md);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 10px var(--color-primary);
+}
+
+.text-glow-accent {
+  text-shadow: 0 0 10px var(--color-accent);
+}
+
+.border-glow-primary {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 12px rgba(0, 238, 0, 0.3);
+}
+
+.border-glow-accent {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 12px rgba(238, 0, 238, 0.3);
+}

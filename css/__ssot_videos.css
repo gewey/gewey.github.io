@@ -1,0 +1,78 @@
+/**
+ * INUUS SUBSTRATE 2.0 — SSOT VIDEO EMBEDS & MEDIA FRAMES
+ * =============================================================================
+ * Chamber: 05_Straight_to_Video
+ * Master SSOT: __ssot_videos.css
+ * Anchor Song: "Video Killed the Radio Star" (Empire Records Version) by The Buggles
+ * Rationale: Responsive 16:9 iframe wrappers, video cards, and media players.
+ * =============================================================================
+ */
+
+.video-responsive-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md, 8px);
+  background: var(--surface-panel, #0A0A0F);
+  border: 1px solid var(--color-border, #30363D);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.video-responsive-wrapper:hover {
+  border-color: var(--color-primary, #00EE00);
+  box-shadow: 0 0 15px rgba(0, 238, 0, 0.25);
+}
+
+.video-responsive-wrapper iframe,
+.video-responsive-wrapper object,
+.video-responsive-wrapper embed,
+.video-responsive-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  margin: 30px 0;
+}
+
+.video-card {
+  background: var(--surface-card, rgba(22, 27, 34, 0.7));
+  border: 1px solid var(--color-border, #30363D);
+  border-radius: var(--radius-md, 8px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.video-card:hover {
+  border-color: var(--color-accent, #EE00EE);
+  box-shadow: 0 0 15px rgba(238, 0, 238, 0.2);
+  transform: translateY(-4px);
+}
+
+.video-title {
+  font-family: var(--font-display-secondary, "Orbitron", sans-serif);
+  font-size: 1.1em;
+  color: var(--color-text, #FFFFFF);
+  margin-top: 6px;
+}
+
+.video-meta {
+  font-family: var(--font-ui-tactical, "Quantico", sans-serif);
+  font-size: 0.8em;
+  color: #888888;
+  display: flex;
+  justify-content: space-between;
+}
