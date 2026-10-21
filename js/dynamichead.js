@@ -1,22 +1,65 @@
 /**
- * Dynamic head meta tags and stylesheets
- * Auto-detects baseURL based on script location
+ * Dynamic head meta tags and stylesheets.
+ * Auto-detects baseURL based on script location.
+ *
+ * LOCAL FALLBACK
+ * --------------
+ * When a page is opened straight off the disk (file://), the site may or may
+ * not exist at the derived base. One probe answers it for every asset:
+ * try to load <base>/js/falling_up_steps.js.
+ *
+ *   request succeeds -> local mirror present -> keep file:// paths
+ *   request fails    -> no mirror here       -> use https://gewey.github.io
+ *
+ * Online pages never probe and behave exactly as before. The probe is
+ * deliberately part of this file, so every page still needs only one script.
  */
 
-// Calculate baseURL dynamically based on where this script is located
-const scriptSrc = document.currentScript.src;
-const baseURL = scriptSrc.substring(0, scriptSrc.lastIndexOf('/js/'));
+(function () {
+  'use strict';
 
-const headMetaTags = [
-  { tag: 'meta', attrs: { charset: 'utf-8' } },
-  { tag: 'meta', attrs: { name: 'generator' } },
-  { tag: 'meta', attrs: { name: 'dcterms.created', content: 'Mon, 14 Jan 2019 21:47:16 GMT' } },
-  { tag: 'meta', attrs: { name: 'description', content: 'Like your phone, but for chrome.' } },
-  { tag: 'meta', attrs: { name: 'keywords', content: 'gewey&#039;s homepage' } },
-  { tag: 'meta', attrs: { name: 'viewport', content: 'width=device-width, height=device-height, initial-scale=1.0' } }
-];
+  var ONLINE = 'https://gewey.github.io';
+  var scriptSrc = (document.currentScript && document.currentScript.src) || '';
+  var jsIndex = scriptSrc.lastIndexOf('/js/');
+  var derivedBase = jsIndex >= 0 ? scriptSrc.substring(0, jsIndex) : ONLINE;
+  var isLocalFile = derivedBase.indexOf('file:') === 0;
 
-const headHTML = `
+  function resolveBase() {
+    if (!isLocalFile) {
+      return Promise.resolve(derivedBase);
+    }
+
+    return new Promise(function (resolve) {
+      var settled = false;
+      var probe = document.createElement('script');
+
+      function finish(mode) {
+        if (settled) return;
+        settled = true;
+        if (probe.parentNode) {
+          probe.parentNode.removeChild(probe);
+        }
+        resolve(mode === 'local' ? derivedBase : ONLINE);
+      }
+
+      // falling_up_steps.js resolves explicitly if it runs; onload is the
+      // primary signal and onerror is the fallback.
+      window.__INUUS_RESOLVE_BASE__ = function (result) {
+        finish(result && result.mode);
+      };
+
+      // Last resort: if the probe never answers, trust the local file.
+      setTimeout(function () { finish('local'); }, 1500);
+
+      probe.src = derivedBase + '/js/falling_up_steps.js';
+      probe.onload = function () { finish('local'); };
+      probe.onerror = function () { finish('online'); };
+      (document.head || document.getElementsByTagName('head')[0]).appendChild(probe);
+    });
+  }
+
+  resolveBase().then(function (baseURL) {
+    var headHTML = `
   <meta charset='utf-8'>
   <meta name='generator'>
   <meta name='dcterms.created' content='Mon, 14 Jan 2019 21:47:16 GMT'>
@@ -51,26 +94,16 @@ const headHTML = `
   <script type='text/javascript' src='${baseURL}/js/advancedSearch.js'></script>
 `;
 
-// Add wiki-specific assets if in the .vikipedia directory
-let wikiAssets = '';
-if (window.location.pathname.includes('/.vikipedia/')) {
-  wikiAssets = `
+    // Wiki-specific assets when inside .vikipedia.
+    var wikiAssets = '';
+    if (window.location.pathname.indexOf('/.vikipedia/') !== -1) {
+      wikiAssets = `
     <link rel='stylesheet' href='${baseURL}/css/vikipedia.css' type='text/css'>
     <script type='text/javascript' src='${baseURL}/js/vikipedia_head.js'></script>
     <script type='text/javascript' src='${baseURL}/js/mermaid-render.js'></script>
   `;
-}
+    }
 
-document.getElementsByTagName("head")[0].innerHTML += headHTML + wikiAssets;
-
-        
-        
-        
-        
-       
-        
-//MIGHT BE USEFUL LATER NOT CURRENTLY NEEDED:     
-//<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        
-        
-        
+    document.getElementsByTagName('head')[0].innerHTML += headHTML + wikiAssets;
+  });
+})();
