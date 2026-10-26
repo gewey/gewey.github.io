@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started: The Agent Modder's Starter Kit — Gewey's GUI Guide</title>
+    <!-- Centrally injects CSS, fonts, and theme variables with online fallback -->
+    <script>
+        (function () {
+            var local = document.createElement("script");
+            local.src = "../../js/dynamichead.js";
+            local.onerror = function () {
+                var remote = document.createElement("script");
+                remote.src = "https://gewey.github.io/js/dynamichead.js";
+                document.head.appendChild(remote);
+            };
+            document.head.appendChild(local);
+        })();
+    </script>
+    <style>
+        :root {
+            --guide-bg: #090B10;
+            --guide-surface: #101520;
+            --guide-surface-elevated: #161D2B;
+            --guide-surface-hover: #1C2538;
+            --guide-border: #222D42;
+            --guide-border-highlight: #354766;
+            --guide-primary: #00EE00;
+            --guide-accent: #EA00EA;
+            --guide-cyan: #00E5FF;
+            --guide-amber: #FFB300;
+            --guide-text-bright: #F8FAFC;
+            --guide-text-dim: #94A3B8;
+            --guide-text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--guide-bg);
+            color: var(--guide-text-bright);
+            font-family: var(--font-body, "Exo 2", -apple-system, sans-serif);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- TOP TELEMETRY STRIP --- */
+        .hud-strip {
+            background: rgba(14, 19, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--guide-border);
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .hud-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hud-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: rgba(0, 238, 0, 0.12);
+            border: 1px solid rgba(0, 238, 0, 0.35);
+            color: var(--guide-primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--guide-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--guide-primary);
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .hud-breadcrumbs {
+            color: var(--guide-text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hud-breadcrumbs a {
+            color: var(--guide-text-bright);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .hud-breadcrumbs a:hover {
+            color: var(--guide-cyan);
+        }
+
+        .hud-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hud-link {
+            color: var(--guide-text-dim);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .hud-link:hover {
+            color: var(--guide-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- ARTICLE LAYOUT --- */
+        .article-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px 100px 24px;
+        }
+
+        /* --- ARTICLE HEADER --- */
+        .article-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--guide-border);
+            padding-bottom: 30px;
+        }
+
+        .article-tag {
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--guide-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-title {
+            font-family: var(--font-display-secondary, "Orbitron", sans-serif);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .article-subtitle {
+            font-size: 1.15rem;
+            color: var(--guide-accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .article-meta-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 13px;
+            color: var(--guide-text-muted);
+            flex-wrap: wrap;
+        }
+
+        .article-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- TABLE OF CONTENTS (QUICK JUMP) --- */
+        .toc-box {
+            background: var(--guide-surface);
+            border: 1px solid var(--guide-border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--guide-cyan);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 10px;
+            list-style: none;
+        }
+
+        .toc-grid li a {
+            color: var(--guide-text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .toc-grid li a:hover {
+            color: var(--guide-primary);
+        }
+
+        /* --- ARTICLE CONTENT STYLES --- */
+        .guide-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 80px;
+        }
+
+        .guide-section h2 {
+            font-family: var(--font-display-secondary, "Orbitron", sans-serif);
+            font-size: 1.6rem;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--guide-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guide-section h2 span.section-num {
+            color: var(--guide-cyan);
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 1.2rem;
+        }
+
+        .guide-section h3 {
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 1.25rem;
+            color: #FFFFFF;
+            margin: 24px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-section p {
+            margin-bottom: 16px;
+            color: #CBD5E1;
+            font-size: 1.05rem;
+        }
+
+        .guide-section ul, .guide-section ol {
+            margin: 12px 0 20px 24px;
+            color: #CBD5E1;
+        }
+
+        .guide-section li {
+            margin-bottom: 8px;
+        }
+
+        /* --- CALLOUTS --- */
+        .callout {
+            background: rgba(16, 21, 32, 0.9);
+            border: 1px solid var(--guide-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .callout-cyan {
+            border-left: 4px solid var(--guide-cyan);
+        }
+
+        .callout-green {
+            border-left: 4px solid var(--guide-primary);
+        }
+
+        .callout-magenta {
+            border-left: 4px solid var(--guide-accent);
+        }
+
+        .callout-amber {
+            border-left: 4px solid var(--guide-amber);
+        }
+
+        .callout-title {
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout-cyan .callout-title { color: var(--guide-cyan); }
+        .callout-green .callout-title { color: var(--guide-primary); }
+        .callout-magenta .callout-title { color: var(--guide-accent); }
+        .callout-amber .callout-title { color: var(--guide-amber); }
+
+        /* --- CROSS-GUIDE HYPERLINKS (DEEP DIVE CARDS) --- */
+        .hyperlink-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            color: var(--guide-cyan);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .hyperlink-chip:hover {
+            background: var(--guide-cyan);
+            color: #050B14;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
+        }
+
+        .deep-dive-card {
+            background: var(--guide-surface-elevated);
+            border: 1px solid var(--guide-border-highlight);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .deep-dive-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .deep-dive-icon {
+            font-size: 24px;
+            color: var(--guide-cyan);
+        }
+
+        .deep-dive-text strong {
+            display: block;
+            color: #FFFFFF;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .deep-dive-text span {
+            font-size: 0.88rem;
+            color: var(--guide-text-dim);
+        }
+
+        .deep-dive-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--guide-border-highlight);
+            color: #FFFFFF;
+            font-family: var(--font-ui-tech, "Oxanium", monospace);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .deep-dive-btn:hover {
+            background: var(--guide-primary);
+            border-color: var(--guide-primary);
+            color: #000000;
+        }
+
+        /* --- CODE / SPEC BOXES --- */
+        pre {
+            background: #06080C;
+            border: 1px solid #1E293B;
+            border-radius: 6px;
+            padding: 16px;
+            font-family: var(--font-mono, "Oxanium", monospace);
+            font-size: 0.92rem;
+            color: var(--guide-primary);
+            overflow-x: auto;
+            margin: 16px 0;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: var(--font-mono, "Oxanium", monospace);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--guide-cyan);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* --- FOOTER STRIP --- */
+        .guide-footer {
+            border-top: 1px solid var(--guide-border);
+            padding-top: 28px;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--guide-text-muted);
+            font-size: 0.88rem;
+        }
+
+        .guide-footer-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .guide-footer-links a {
+            color: var(--guide-text-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .guide-footer-links a:hover {
+            color: var(--guide-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TOP TELEMETRY HUD -->
+    <header class="hud-strip">
+        <div class="hud-left">
+            <span class="hud-badge"><span class="hud-pulse"></span> SUBSTRATE ONLINE</span>
+            <div class="hud-breadcrumbs">
+                <a href="../../index.html" target="_top">Gewey's Substrate</a>
+                <span>/</span>
+                <a href="../index.html" target="_top">Tesseract City</a>
+                <span>/</span>
+                <a href="index.html">Guides</a>
+                <span>/</span>
+                <span style="color: var(--guide-cyan);">Getting Started</span>
+            </div>
+        </div>
+        <div class="hud-right">
+            <a href="index.html" class="hud-link" title="Guides Hub">
+                <i class="material-icons" style="font-size: 16px;">menu_book</i> Guides Hub
+            </a>
+            <a href="../index.html" target="_top" class="hud-link" title="Return to District Hub">
+                <i class="material-icons" style="font-size: 16px;">location_city</i> Tesseract City
+            </a>
+            <a href="../../index.html" target="_top" class="hud-link" title="Main Homepage">
+                <i class="material-icons" style="font-size: 16px;">home</i> Hub
+            </a>
+        </div>
+    </header>
+
+    <main class="article-layout">
+        <!-- HEADER -->
+        <header class="article-header">
+            <div class="article-tag">
+                <i class="material-icons" style="font-size: 16px;">rocket_launch</i> FOUNDATIONAL BLUEPRINT // GUIDE #01
+            </div>
+            <h1 class="article-title">The Agent Modder's Starter Kit</h1>
+            <div class="article-subtitle">
+                How to set up your local workbench, choose your tools, defeat AI amnesia, and build sovereign software.
+            </div>
+            <div class="article-meta-bar">
+                <span class="article-meta-item"><i class="material-icons" style="font-size: 15px;">person</i> Written by Gewey (Joey)</span>
+                <span class="article-meta-item"><i class="material-icons" style="font-size: 15px;">schedule</i> 10 min read</span>
+                <span class="article-meta-item"><i class="material-icons" style="font-size: 15px;">verified</i> Tested in Substrate 2.0</span>
+            </div>
+        </header>
+
+        <!-- TABLE OF CONTENTS (QUICK JUMP) -->
+        <nav class="toc-box">
+            <div class="toc-title">
+                <i class="material-icons" style="font-size: 18px;">toc</i> Quick Navigation
+            </div>
+            <ul class="toc-grid">
+                <li><a href="#mindset">01. The Mindset: Studio Director</a></li>
+                <li><a href="#workbench">02. The Hardware & Drive Partition</a></li>
+                <li><a href="#ide-selection">03. Picking Your IDE & BYOK</a></li>
+                <li><a href="#extensions">04. IDE Extensions & Local Models</a></li>
+                <li><a href="#amnesia">05. Defeating AI Amnesia</a></li>
+                <li><a href="#coop">06. Co-Op Dev & Git Hygiene</a></li>
+                <li><a href="#hosting">07. Free Hosting & Web Presence</a></li>
+                <li><a href="#dimmadab">08. The Case Study: Custom Agents</a></li>
+            </ul>
+        </nav>
+
+        <!-- 01. THE MINDSET -->
+        <section class="guide-section" id="mindset">
+            <h2><span class="section-num">01.</span> The Mindset: You're Not A Coder, You're A Studio Director</h2>
+            <p>
+                When a friend asks <em>"Do you use an agent?"</em>, they usually imagine opening a web chatbot, pasting a question, and copying whatever code comes back. That is consumer autocomplete. 
+            </p>
+            <p>
+                <strong>An agent is an LLM + Tools + Persistent Memory + Local Filesystem Access.</strong> The Large Language Model (Gemini, Claude, DeepSeek) is simply the electricity in the brain. The agent is the entire autonomous entity you construct around that electricity.
+            </p>
+            <div class="callout callout-cyan">
+                <div class="callout-title"><i class="material-icons" style="font-size: 16px;">lightbulb</i> You are the Studio Lead</div>
+                <p style="margin: 0;">
+                    Never look down on "vibe coding." If you have big ideas and can articulate design, mechanics, and lore clearly, you are essentially the creative director of an indie studio. The models in your IDE and your lore vaults are your technical team. Your job is architecture, direction, and taste.
+                </p>
+            </div>
+            <p>
+                <strong>The Golden Rule of Model Sycophancy:</strong> Always cross-examine your architecture across multiple model families. Most frontier models are pathologically polite — like the Adoring Fan from Oblivion: <em>"By Azura, by Azura, it's the Grand Champion!"</em> Anthropic's Claude is the rare exception (he will roast your flawed logic to your face). Don't be the guy who thinks he invented new math because a single agreeable chatbot wouldn't tell him his formula was nonsense.
+            </p>
+        </section>
+
+        <!-- 02. HARDWARE & WORKBENCH -->
+        <section class="guide-section" id="workbench">
+            <h2><span class="section-num">02.</span> The Hardware & File Foundation: Keep It Local</h2>
+            <p>
+                The number one mistake beginners make is building their whole game or project inside some proprietary web interface that only that company's bot can see. 
+            </p>
+            <p>
+                <strong>Keep your work local on your machine.</strong> If the cloud goes down, your code, your assets, and your project history must remain 100% yours.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">storage</i>
+                    <div class="deep-dive-text">
+                        <strong>The Dedicated Drive Partition (e.g. V:/)</strong>
+                        <span>Separate your agentic workspace from your Windows OS drive to contain fires.</span>
+                    </div>
+                </div>
+                <a href="ide.html#partition" class="deep-dive-btn">Read Partition Guide ➔</a>
+            </div>
+
+            <p>
+                Create a dedicated 50GB–200GB partition (I use a 200GB <code>V:/</code> drive). Why? Because Windows operating system folders like <code>$RECYCLE.BIN</code> and <code>System Volume Information</code> will pollute git root syncs. By giving your projects their own drive letter, your workspace remains surgical, modular, and safe.
+            </p>
+
+            <h3>The Two File Formats You Must Devote Yourself To:</h3>
+            <ul>
+                <li>
+                    <strong>Markdown (<code>.md</code>):</strong> The lovechild of <code>.txt</code> and <code>.html</code>. It is the universal language of AI instructions (<a href="chrome_extension.html#markdown-docs" class="hyperlink-chip">See Markdown Scrapers</a>). Your instruction files (like <code>AGENTS.md</code>, <code>GEMINI.md</code>, or <code>.clinerules</code>) should live in Markdown.
+                </li>
+                <li>
+                    <strong>JSON (<code>.json</code>):</strong> How AI actually organizes structured thoughts. Think of JSON as a relational database printed on clean paper. Agents read and write it natively.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 03. PICKING YOUR IDE -->
+        <section class="guide-section" id="ide-selection">
+            <h2><span class="section-num">03.</span> Picking Your IDE & The BYOK Philosophy</h2>
+            <p>
+                An IDE (Integrated Development Environment) is basically Notepad on steroids for code. This is where your autonomous agents live, edit files, run tests, and manage your repositories.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">terminal</i>
+                    <div class="deep-dive-text">
+                        <strong>IDE Deep Dive: VS Code vs. Google Antigravity</strong>
+                        <span>Detailed comparison of setup, agent configurations, and workspace layouts.</span>
+                    </div>
+                </div>
+                <a href="ide.html#vscode" class="deep-dive-btn">Explore IDE Guide ➔</a>
+            </div>
+
+            <p>
+                We primarily operate between two powerhouses:
+            </p>
+            <ul>
+                <li>
+                    <strong><a href="ide.html#vscode" class="hyperlink-chip">VS Code (Visual Studio Code)</a>:</strong> The indestructible industry standard. Paired with GitHub Copilot Chat or extensions like Cline, it gives you a clean canvas where you can swap models on the fly.
+                </li>
+                <li>
+                    <strong><a href="ide.html#antigravity" class="hyperlink-chip">Google Antigravity IDE</a>:</strong> Designed specifically for multi-agent parallel workflows. Orchestrates multiple autonomous subagents running tasks across projects without losing context.
+                </li>
+            </ul>
+
+            <div class="callout callout-green">
+                <div class="callout-title"><i class="material-icons" style="font-size: 16px;">key</i> BYOK: Bring Your Own Key</div>
+                <p style="margin: 0;">
+                    Instead of being locked into a single subscription vendor, look for tools that support BYOK. You generate an API key from Google AI Studio, Anthropic, or OpenAI, plug it directly into your IDE extension, and only pay for the raw electricity you consume.
+                </p>
+            </div>
+        </section>
+
+        <!-- 04. EXTENSIONS & LOCAL MODELS -->
+        <section class="guide-section" id="extensions">
+            <h2><span class="section-num">04.</span> IDE Extensions & Local Models (Bang For Your Buck)</h2>
+            <p>
+                How do you get maximum horsepower without going bankrupt on frontier token rates? You balance frontier models with local engines.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">extension</i>
+                    <div class="deep-dive-text">
+                        <strong>Extensions Guide: Cline, Copilot & Antigravity</strong>
+                        <span>Configuring your agent wings, system instructions, and tool registries.</span>
+                    </div>
+                </div>
+                <a href="ide_extension.html#cline" class="deep-dive-btn">View Extension Specs ➔</a>
+            </div>
+
+            <h3>The Top Subscriptions & Runtimes:</h3>
+            <ul>
+                <li>
+                    <strong>Google AI Pro ($20/mo):</strong> The absolute highest bang-for-your-buck package. Gives you access to Gemini Advanced, Google AI Studio limits, NotebookLM, and Antigravity IDE — essentially five separate usage pools on a single account.
+                </li>
+                <li>
+                    <strong><a href="ide_extension.html#ollama" class="hyperlink-chip">Ollama (Free Local Models)</a>:</strong> Runs open-source weights locally on your own GPU/CPU. When doing repetitive, cheap code transforms or formatting where frontier tokens are overkill, run <strong>DeepSeek 4.1 Flash</strong> or Llama locally for $0.
+                </li>
+                <li>
+                    <strong><a href="ide_extension.html#cline" class="hyperlink-chip">Cline & Clinepass ($10/mo)</a>:</strong> An autonomous coding extension (and now standalone IDE) with built-in task trees, terminal execution, and mid-tier model routing.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 05. DEFEATING AI AMNESIA -->
+        <section class="guide-section" id="amnesia">
+            <h2><span class="section-num">05.</span> Defeating AI Amnesia: The Lore Team & Shared Memory</h2>
+            <p>
+                Every episode of <em>The Simpsons</em> ends, and the next episode resets to the status quo like nothing happened. AI models suffer from the exact same amnesia. If you don't build persistent memory, you will waste hours explaining your codebase from scratch every morning.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">chrome_reader_mode</i>
+                    <div class="deep-dive-text">
+                        <strong>Chrome Extensions: Markdown Scrapers & Transcript Exporters</strong>
+                        <span>Snapshotting live /docs and feeding fresh SDK references into your prompts.</span>
+                    </div>
+                </div>
+                <a href="chrome_extension.html#ai-exporter" class="deep-dive-btn">See Chrome Tools ➔</a>
+            </div>
+
+            <h3>The 3 Weapons to Win Against Amnesia:</h3>
+            <ol>
+                <li>
+                    <strong>NotebookLM as your Lore Vault:</strong> Export every brainstorming chat transcript as a <code>.md</code> file using a <a href="chrome_extension.html#ai-exporter" class="hyperlink-chip">Chat Exporter Extension</a>. Dump those transcripts into a single Google Notebook. NotebookLM becomes your dedicated lore team, changelog, and design historian.
+                </li>
+                <li>
+                    <strong>Snapshot Live Docs to Markdown:</strong> Models are trained on cutoff dates from last year. Never let an agent guess modern syntax. Use a browser extension to take Markdown snapshots of live SDK/API reference pages, then feed them directly into your agent's prompt.
+                </li>
+                <li>
+                    <strong>Persistent Memory Vectors (Mem0 & MCP):</strong> Hook your agents into Model Context Protocol (MCP) servers and memory layers so all your IDE extensions draw from the same continuous knowledge pool.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 06. CO-OP DEV -->
+        <section class="guide-section" id="coop">
+            <h2><span class="section-num">06.</span> Co-Op Dev & Git Hygiene: Press X to Party Up</h2>
+            <p>
+                Stop emailing <code>.zip</code> files over Discord. If you are serious about game dev or software creation, Git is your safety rope and co-op bridge.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">group_work</i>
+                    <div class="deep-dive-text">
+                        <strong>Co-Op Guide: Branching, Collabs & Remote Sync</strong>
+                        <span>How to party up with fellow developers and keep your code indestructible.</span>
+                    </div>
+                </div>
+                <a href="coop.html#github-party-up" class="deep-dive-btn">Party Up Guide ➔</a>
+            </div>
+
+            <p>
+                Keep private repositories on GitHub. When you make a mistake, Git allows you to revert single files or entire builds back to any savepoint in history. And when a buddy wants to jump in and help, you simply add them as a repository collaborator — you both pull, branch, and push without ever corrupting each other's work.
+            </p>
+        </section>
+
+        <!-- 07. FREE HOSTING -->
+        <section class="guide-section" id="hosting">
+            <h2><span class="section-num">07.</span> Free Websites & Cloud Hosting</h2>
+            <p>
+                You don't need expensive server bills to put your product in front of real humans. Take advantage of zero-cost developer tiers:
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">language</i>
+                    <div class="deep-dive-text">
+                        <strong>Hosting & Web Guide: GitHub Pages & AI Studio</strong>
+                        <span>Turn a simple repository into a high-speed public web page for free.</span>
+                    </div>
+                </div>
+                <a href="website.html#github-pages" class="deep-dive-btn">Website Guide ➔</a>
+            </div>
+
+            <ul>
+                <li>
+                    <strong><a href="website.html#github-pages" class="hyperlink-chip">GitHub Pages</a>:</strong> Turn any public or private repository into a live static website for $0. That's exactly how this site (<code>gewey.github.io</code>) is hosted.
+                </li>
+                <li>
+                    <strong><a href="hosting.html#ai-studio" class="hyperlink-chip">Google AI Studio Web Apps</a>:</strong> Prototype and deploy interactive AI applications hosted directly by Google's cloud infrastructure.
+                </li>
+                <li>
+                    <strong>Google Cloud $300 Credits:</strong> Google offers $300 in free cloud credits to new accounts. Hold onto this credit until your game backend or custom agent clusters actually need dedicated servers.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 08. CASE STUDY: DOUG DIMMADAB -->
+        <section class="guide-section" id="dimmadab">
+            <h2><span class="section-num">08.</span> The Case Study: Custom Agent Personas</h2>
+            <p>
+                When Doug Dimmadab decided to build a hybrid game mixing <strong>RuneScape and Diablo</strong>, he didn't just ask a default assistant to code it.
+            </p>
+
+            <div class="deep-dive-card">
+                <div class="deep-dive-info">
+                    <i class="material-icons deep-dive-icon">sports_esports</i>
+                    <div class="deep-dive-text">
+                        <strong>Case Study: Building the Doug Dimmadab Agent Persona</strong>
+                        <span>Crafting custom agent instructions (<code style="color:var(--guide-cyan);">doug_dimmadab.agent.md</code>) for game design.</span>
+                    </div>
+                </div>
+                <a href="dimmadab.html#case-study" class="deep-dive-btn">Read Case Study ➔</a>
+            </div>
+
+            <p>
+                The secret is creating a custom agent persona (e.g. <code>doug_dimmadab.agent.md</code>) loaded with the exact rules, loot tables, and mechanical lore of your game. A dedicated agent will be hyper-passionate about your game systems in ways that a stock chatbot will never replicate.
+            </p>
+            <div class="callout callout-magenta">
+                <div class="callout-title"><i class="material-icons" style="font-size: 16px;">flag</i> Next Steps</div>
+                <p style="margin: 0;">
+                    Ready to set up your tools? Head to the <a href="ide.html" class="hyperlink-chip">Workbench Guide (ide.html)</a> to partition your drive and install your agent wings!
+                </p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="guide-footer">
+            <div>
+                <span>© 2008–2026 <strong>Gewey's Substrate</strong> // Tesseract City District 04</span>
+            </div>
+            <div class="guide-footer-links">
+                <a href="index.html">Guides Hub</a>
+                <a href="ide.html">IDE Guide</a>
+                <a href="chrome_extension.html">Chrome Tools</a>
+                <a href="coop.html">Co-Op Dev</a>
+                <a href="../../index.html" target="_top">Main Hub</a>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
