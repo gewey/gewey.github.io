@@ -151,6 +151,7 @@ a:hover, a:active {
   button[name=iEvolution]::after { content: " Evolution"; }
   button[name=iTimeline]::after { content: " Timeline"; }
   button[name=iPortfolio]::after { content: " Portfolio"; }
+  button[name=iGuiGuide]::after { content: " GUI Guide"; }
   button[name=iTextbookmarks]::after { content: " Textbookmarks"; }
   button[name=iViktor]::after { content: " Viktor"; }
   button[name=iLogs]::after { content: " Logs"; }
