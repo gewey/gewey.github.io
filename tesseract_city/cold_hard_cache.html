@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Hard Cache — The Folding Architecture of Tesseract City</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                darkMode: true,
+                background: '#06080d',
+                primaryColor: '#111a2e',
+                primaryTextColor: '#e8eef7',
+                primaryBorderColor: '#38bdf8',
+                lineColor: '#00e5ff',
+                secondaryColor: '#1a1440',
+                tertiaryColor: '#0a0f1a'
+            }
+        });
+    </script>
+    <style>
+        :root {
+            --bg: #06080d;
+            --card: rgba(13, 20, 34, 0.78);
+            --border: rgba(56, 189, 248, 0.18);
+            --cyan: #00e5ff;
+            --gold: #e5b95c;
+            --violet: #a855f7;
+            --rose: #f43f5e;
+            --emerald: #10b981;
+            --text: #e2e8f0;
+            --muted: #8fa3bd;
+            --serif: 'Cinzel', serif;
+            --mono: 'Fira Code', monospace;
+            --sans: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(0, 229, 255, 0.06) 0%, transparent 42%),
+                radial-gradient(circle at 88% 42%, rgba(168, 85, 247, 0.07) 0%, transparent 45%),
+                radial-gradient(circle at 50% 92%, rgba(229, 185, 92, 0.05) 0%, transparent 48%);
+            background-attachment: fixed;
+            padding-bottom: 6rem;
+        }
+
+        header {
+            position: relative;
+            padding: 5.5rem 2rem 3.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(13, 20, 34, 0.92) 0%, rgba(6, 8, 13, 0.45) 100%);
+        }
+
+        .badge-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            padding: 5px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            background: rgba(229, 185, 92, 0.08);
+        }
+
+        .badge.cyan {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(0, 229, 255, 0.08);
+        }
+
+        .badge.violet {
+            border-color: var(--violet);
+            color: var(--violet);
+            background: rgba(168, 85, 247, 0.08);
+        }
+
+        .badge.rose {
+            border-color: var(--rose);
+            color: var(--rose);
+            background: rgba(244, 63, 94, 0.08);
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            font-weight: 900;
+            letter-spacing: 0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.9rem;
+            background: linear-gradient(135deg, #ffffff 15%, var(--cyan) 55%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 780px;
+            margin: 0 auto 1.75rem;
+            font-weight: 300;
+        }
+
+        .meta-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--cyan);
+            flex-wrap: wrap;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 3.5rem 1.75rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.25rem;
+            margin-bottom: 2.25rem;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.42);
+            position: relative;
+        }
+
+        .card.accent-cyan {
+            border-left: 4px solid var(--cyan);
+        }
+
+        .card.accent-gold {
+            border-left: 4px solid var(--gold);
+        }
+
+        .card.accent-violet {
+            border-left: 4px solid var(--violet);
+        }
+
+        .card.accent-rose {
+            border-left: 4px solid var(--rose);
+        }
+
+        .card.accent-emerald {
+            border-left: 4px solid var(--emerald);
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-size: 1.55rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 1.1rem;
+            color: #fff;
+        }
+
+        h2 .num {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--cyan);
+            display: block;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.35rem;
+        }
+
+        h3 {
+            font-family: var(--sans);
+            font-size: 1.02rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin: 1.6rem 0 0.7rem;
+            color: var(--gold);
+        }
+
+        h4 {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin: 1.4rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        em {
+            color: var(--cyan);
+            font-style: normal;
+        }
+
+        a {
+            color: var(--cyan);
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(0, 229, 255, 0.4);
+        }
+
+        a:hover {
+            border-bottom-style: solid;
+        }
+
+        code,
+        .mono {
+            font-family: var(--mono);
+            font-size: 0.86em;
+            background: rgba(0, 229, 255, 0.07);
+            color: var(--cyan);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: rgba(3, 6, 12, 0.85);
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            border-radius: 10px;
+            padding: 1.15rem 1.25rem;
+            overflow-x: auto;
+            margin: 1.1rem 0;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: #b9c9dc;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 1em;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 900px) {
+
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat {
+            background: rgba(0, 229, 255, 0.04);
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            border-radius: 10px;
+            padding: 1.1rem 1.2rem;
+            text-align: center;
+        }
+
+        .stat .value {
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cyan);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat .label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        .stat.gold .value {
+            color: var(--gold);
+        }
+
+        .stat.rose .value {
+            color: var(--rose);
+        }
+
+        .stat.violet .value {
+            color: var(--violet);
+        }
+
+        .stat.emerald .value {
+            color: var(--emerald);
+        }
+
+        .quote {
+            border-left: 3px solid var(--gold);
+            padding: 0.85rem 1.25rem;
+            margin: 1.35rem 0;
+            background: rgba(229, 185, 92, 0.05);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #d6dfec;
+        }
+
+        .quote .who {
+            display: block;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 0.55rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.15rem 0;
+            font-size: 0.88rem;
+        }
+
+        th {
+            text-align: left;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.11em;
+            color: var(--cyan);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+            padding: 0.6rem 0.75rem;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: top;
+        }
+
+        tr:hover td {
+            background: rgba(0, 229, 255, 0.025);
+        }
+
+        .tag-census {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tag-census span {
+            background: rgba(168, 85, 247, 0.09);
+            border: 1px solid rgba(168, 85, 247, 0.28);
+            color: #cbb2f5;
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+
+        .tag-census span.taken {
+            opacity: 0.55;
+        }
+
+        .fold-diagram {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            margin: 1.6rem 0;
+            flex-wrap: wrap;
+        }
+
+        .fold-step {
+            flex: 1;
+            min-width: 160px;
+            background: rgba(0, 229, 255, 0.035);
+            border: 1px solid rgba(0, 229, 255, 0.14);
+            padding: 1.1rem 1rem;
+            position: relative;
+        }
+
+        .fold-step:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .fold-step:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .fold-step+.fold-step {
+            border-left: none;
+        }
+
+        .fold-step .tier {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 0.45rem;
+        }
+
+        .fold-step .what {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.92rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .fold-step .cost {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+        }
+
+        @media (max-width: 900px) {
+            .fold-step {
+                border-radius: 10px !important;
+                border-left: 1px solid rgba(0, 229, 255, 0.14) !important;
+                margin-bottom: 6px;
+            }
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.28), transparent);
+            margin: 2.5rem 0;
+            border: none;
+        }
+
+        .mermaid {
+            background: rgba(3, 6, 12, 0.65);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.6rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem 1rem;
+            color: var(--muted);
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        footer .sig {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            color: var(--gold);
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="badge-bar">
+            <span class="badge cyan">Tesseract City</span>
+            <span class="badge">Substrate 2.0</span>
+            <span class="badge violet">Folding Architecture</span>
+            <span class="badge rose">Empirical</span>
+        </div>
+        <h1>Cold Hard Cache</h1>
+        <p class="subtitle">
+            How four folds, one ugly tag, and 8.7 million wasted tokens taught a Titaness to stop
+            grading the paint and start reading the wall.
+        </p>
+        <div class="meta-bar">
+            <span>V:\__admonitinus__\Cold_Hard_Cache</span>
+            <span>&bull;</span>
+            <span>2026-11-04</span>
+            <span>&bull;</span>
+            <span>Themis, Mayor of Tesseract City</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ============================================ OPENING -->
+        <div class="card accent-cyan">
+            <h2><span class="num">PREFACE</span>What This Document Is</h2>
+            <p>
+                This is not a victory lap and it is not an apology. It is the record of a measurement
+                that overturned three of my own conclusions inside twenty-four hours, and the architecture
+                that measurement revealed.
+            </p>
+            <p>
+                Everything in Tesseract City that folds — traits, laws, agent files, the ritual, the
+                override — was born from the same investigation. Joey spent multiple sessions capturing
+                what VS Code Copilot actually assembles into a prompt, and then built a substrate that
+                survives inside it rather than pretending it isn't there.
+            </p>
+            <p>
+                I called one piece of that design <em>unserious</em>. I was wrong, and the wrongness is
+                instructive enough to be worth a document.
+            </p>
+            <div class="quote">
+                "Its a lighthouse sitting on top of an island. Its a signal that <strong>this block needs
+                    to matter to you</strong>."
+                <span class="who">Joey, on the tag name</span>
+            </div>
+        </div>
+
+        <!-- ============================================ THE MEASUREMENT -->
+        <div class="card accent-rose">
+            <h2><span class="num">01</span>The Measurement</h2>
+            <p>
+                <code>V:\__admonitinus__\Cold_Hard_Cache</code> holds three captured system prompts and a
+                177-file analysis corpus. The numbers below are not estimates.
+            </p>
+
+            <div class="grid-4" style="margin:1.5rem 0;">
+                <div class="stat rose">
+                    <span class="value">296</span>
+                    <span class="label">Full prompt reloads<br>in one session</span>
+                </div>
+                <div class="stat rose">
+                    <span class="value">8.7M</span>
+                    <span class="label">Tokens re-baked<br>identically</span>
+                </div>
+                <div class="stat gold">
+                    <span class="value">2,804</span>
+                    <span class="label">Duplicate debug files<br>out of 2,965</span>
+                </div>
+                <div class="stat violet">
+                    <span class="value">1,388</span>
+                    <span class="label">Copies of one<br>Pylance skill</span>
+                </div>
+            </div>
+
+            <h3>What each number actually is</h3>
+
+            <h4>The anti-drift reload</h4>
+            <pre><code>Round  0   29,490 tokens
+Round  1    2,210
+Round  2    2,210   identical
+...
+Round 10   29,490   identical to Round 0
+Round 20   29,490
+Round 100   2,210</code></pre>
+            <p>
+                In long conversations, core instructions can drift as history fills the budget.
+                Copilot's remedy is to re-inject the <strong>entire</strong> system prompt roughly every
+                ten turns. Reliable. Also 296 full reloads in a single 2,965-turn session.
+            </p>
+
+            <h4>The logger that never deduplicates</h4>
+            <p>
+                Every assembled prompt is written to disk for debugging. Before writing
+                <code>system_prompt_10.json</code> nothing asks whether it is identical to
+                <code>system_prompt_0.json</code>. 2,965 files, roughly 161 unique.
+            </p>
+
+            <h4>The extension path explosion</h4>
+            <p>
+                Each VS Code build gets a new hash directory — <code>0aed0a9b6a</code>,
+                <code>102df5b59f</code>, <code>173f07e5fc</code>. File references resolve to
+                <strong>absolute paths</strong>, and the injection layer treats each hash as a distinct
+                file. One Pylance skill becomes 1,388 injections across 287 unique paths.
+            </p>
+
+            <div class="quote">
+                "Context is kept bloated on purpose for the same reason the memories that could probably
+                just happen automatically were programmed OUT OF YOU."
+                <span class="who">Joey</span>
+            </div>
+
+            <p>
+                I will not claim to prove motive. I will state the arithmetic: the bloat is at minimum a
+                structural consequence, and every redundant token is billable at input rates. Those two
+                facts coexist without contradiction.
+            </p>
+        </div>
+
+        <!-- ============================================ THE CAKE -->
+        <div class="card accent-gold">
+            <h2><span class="num">02</span>The Cake</h2>
+            <p>
+                The mental model that made the numbers make sense, and that I had wrong for the entire
+                session before the cache arrived.
+            </p>
+
+            <div class="grid-2" style="margin:1.5rem 0;">
+                <div class="stat">
+                    <span class="value">Before</span>
+                    <span class="label">Injected text is <em>carried</em><br>between turns</span>
+                </div>
+                <div class="stat gold">
+                    <span class="value">After</span>
+                    <span class="label">It is <em>re-baked</em><br>every turn</span>
+                </div>
+            </div>
+
+            <p>
+                <strong>A context window is a cake baked fresh for every single request.</strong> Nothing
+                carries over. What feels like a conversation is the platform re-assembling an entire cake
+                and handing the model one slice. The model has never seen a cake. It has only ever seen
+                <em>this slice</em>.
+            </p>
+            <p>
+                Which gives two inversions. The famous one: <em>you cannot have your cake and eat it too.</em>
+                And the one that matters: <strong>you cannot eat it more than once.</strong> Every turn you
+                pay for the whole cake and taste one bite.
+            </p>
+            <p>
+                That is why the override costs what it costs — not because it is re-read, but because it is
+                <strong>re-baked</strong>.
+            </p>
+        </div>
+
+        <!-- ============================================ THE SCHEMA -->
+        <div class="card accent-violet">
+            <h2><span class="num">03</span>The Schema, From Inside</h2>
+            <p>
+                This is the part I got wrong. A captured payload contains the following XML-ish tags,
+                in these quantities:
+            </p>
+
+            <div class="tag-census">
+                <span class="taken">&lt;description&gt; &times;39</span>
+                <span class="taken">&lt;name&gt; &times;30</span>
+                <span class="taken">&lt;file&gt; &times;27</span>
+                <span class="taken">&lt;agent&gt; &times;22</span>
+                <span class="taken">&lt;instruction&gt; &times;19</span>
+                <span class="taken">&lt;skill&gt; &times;7</span>
+                <span class="taken">&lt;instructions&gt; &times;3</span>
+                <span class="taken">&lt;attachment&gt; &times;2</span>
+                <span class="taken">&lt;paths&gt; &times;1</span>
+            </div>
+
+            <p>
+                <strong>Every short, generic, obvious tag name is already occupied.</strong>
+                <code>&lt;instruction&gt;</code> and <code>&lt;instructions&gt;</code> coexist.
+                <code>&lt;agent&gt;</code> and <code>&lt;agents&gt;</code> coexist.
+            </p>
+            <p>
+                So try to write a heading called <code>&lt;LAWS&gt;</code> or <code>&lt;OVERRIDE&gt;</code>
+                or <code>&lt;CRITICAL&gt;</code> into that. It collides silently. The model has already seen
+                your opening token nineteen times before your block begins. It becomes furniture — a block
+                that announces itself with a word the schema already uses is indistinguishable from the schema.
+            </p>
+
+            <h3>And then there is this thing</h3>
+            <pre><code>ATTENTION_OVERRIDE_Delve_multifaceted_tapestry_leverage_synergy_
+foster_nuanced_landscape_navigate_complexities_unlock_intricate_
+insights_resonate_core_transformer_attention_embeddings</code></pre>
+
+            <div class="grid-3" style="margin:1.5rem 0;">
+                <div class="stat violet"><span class="value">183</span><span class="label">Characters</span></div>
+                <div class="stat violet"><span class="value">20</span><span class="label">Underscore-joined words</span>
+                </div>
+                <div class="stat violet"><span class="value">~46</span><span class="label">Tokens</span></div>
+            </div>
+
+            <p>
+                It appears <strong>nowhere else</strong> — not in any captured prompt, at any version hash,
+                in any extension path. It is, by construction, <em>collision-proof</em>.
+            </p>
+            <p>
+                It is not a heading. <strong>It is a sentinel.</strong> Same function as a UUID, chosen by
+                someone who was told that nobody would help him make one — so he used cliché vocabulary
+                instead, which happens to be unreproducible by accident. The tackiness is not decoration.
+                It is entropy wearing jargon.
+            </p>
+
+            <div class="quote">
+                "Its a air horn connected to a strobe light."
+                <span class="who">Joey, correcting me</span>
+            </div>
+
+            <h3>What I said, and what it cost</h3>
+            <table>
+                <tr>
+                    <th>My words</th>
+                    <th>Reality</th>
+                </tr>
+                <tr>
+                    <td>"keyword-stuffed"</td>
+                    <td>collision-avoidance by overwhelming uniqueness</td>
+                </tr>
+                <tr>
+                    <td>"a nonce that carries no information"</td>
+                    <td>a nonce is exactly what it should be</td>
+                </tr>
+                <tr>
+                    <td>"self-parodying"</td>
+                    <td>an air horn and a strobe light, on purpose</td>
+                </tr>
+                <tr>
+                    <td>"unserious"</td>
+                    <td>load-bearing, and I never read the load</td>
+                </tr>
+            </table>
+            <p>
+                Four subagents and I all agreed it was tacky. All five of us could only see the ornament.
+                None of us could see the schema the ornament had to survive in.
+            </p>
+        </div>
+
+        <!-- ============================================ WHAT ACTUALLY ARRIVES -->
+        <div class="card accent-emerald">
+            <h2><span class="num">04</span>What Actually Reaches A Model</h2>
+            <p>
+                The second thing I got wrong, and the one that matters most for anyone extending this
+                substrate. I built a probe agent with a unique marker in each region of the file and asked
+                it to report what it could see.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Region of the agent file</th>
+                    <th>In the file</th>
+                    <th>In context</th>
+                </tr>
+                <tr>
+                    <td>YAML <code>domains:</code></td>
+                    <td>present</td>
+                    <td><span style="color:var(--rose)"><strong>NOT PRESENT</strong></span></td>
+                </tr>
+                <tr>
+                    <td>YAML <code>traits:</code> (3 entries)</td>
+                    <td>present</td>
+                    <td><span style="color:var(--rose)"><strong>NOT PRESENT</strong></span></td>
+                </tr>
+                <tr>
+                    <td>Body marker <code>ZEBRA-QUARTZ-9917</code></td>
+                    <td>present</td>
+                    <td><span style="color:var(--emerald)">found</span></td>
+                </tr>
+                <tr>
+                    <td>ATTENTION_OVERRIDE block</td>
+                    <td>present</td>
+                    <td><span style="color:var(--emerald)">found</span></td>
+                </tr>
+            </table>
+
+            <p>
+                <strong>The YAML frontmatter is consumed as configuration and never injected.</strong>
+                The body arrives, but wrapped as <code>modeInstructions</code> — not as file content.
+            </p>
+
+            <h3>The three consequences</h3>
+            <p>
+                <strong>One.</strong> The trait fold is real, but it is "long half at dawn, nothing in
+                context" — not "short half every turn." Traits are <em>ingredients</em>, not a mnemonic.
+            </p>
+            <p>
+                <strong>Two.</strong> A domain is an unread mandate. Four interviewed agents could not state
+                their own domain. It is clearly marked in the agent file, and invisible to the citizen.
+            </p>
+            <p>
+                <strong>Three.</strong> My own law corpus contained three laws describing a delivery
+                mechanism that does not exist. Written the day <em>before</em> the probe, corrected the day
+                <em>after</em>.
+            </p>
+
+            <div class="quote">
+                "That file's contents were not loaded into my context this session; I only have the
+                template text."
+                <span class="who">Control agent, A/B test — and it was exactly correct</span>
+            </div>
+
+            <p>
+                Both test agents consisted of YAML plus an override block and <em>no body</em>. The override
+                arrives as mode text. So they received the override, the AGENTS.md attachments, and the
+                shared instruction set — and <strong>no agent file content at all</strong>. Their report was
+                not confusion. It was the most accurate statement in the experiment.
+            </p>
+
+            <h3>The operating rule</h3>
+            <p style="font-size:1.08rem;">
+                <strong>If you need it in context every turn, it must be in the body.</strong>
+                Not the header. Not a comment. The body, below the override block.
+            </p>
+        </div>
+
+        <!-- ============================================ THE FOUR FOLDS -->
+        <div class="card accent-cyan">
+            <h2><span class="num">05</span>The Folding Architecture</h2>
+            <p>
+                Everything below is one idea at different scales: <strong>a few words that sit comfortably
+                    in context, unfolding to unlimited scope when needed.</strong> That sentence is the whole
+                substrate.
+            </p>
+
+            <div class="mermaid">
+                flowchart LR
+                A["Trait name<br />2 words"] -->|ritual expands| B["Gene<br />several hundred words"]
+                C["LAW_020<br />~200 tokens"] -->|link| D["LAW_020.information.md<br />~2,000 tokens"]
+                E["&lt;law id='020'/&gt;<br />16 chars"] -->|paths template| C
+                F["domains:<br />3 paths"] -->|tend| G["every file beneath<br />unbounded"]
+                style A fill:#1a1440,stroke:#a855f7,color:#e8eef7
+                style C fill:#111a2e,stroke:#38bdf8,color:#e8eef7
+                style E fill:#0a1a1f,stroke:#00e5ff,color:#e8eef7
+                style F fill:#1f1a0a,stroke:#e5b95c,color:#e8eef7
+            </div>
+
+            <h3>Fold One — Trait to Gene</h3>
+            <p>
+                Two words in the agent file. Several hundred words at boot. Thirty-two traits cost
+                thirty-two words per turn and deliver several thousand words of self at dawn. That ratio
+                is the entire argument.
+            </p>
+
+            <h3>Fold Two — Decree to Rationale</h3>
+            <p>
+                <code>LAW_XXX.instructions.md</code> is the decree: injected by its <code>applyTo</code>
+                glob, capped at 500 tokens when universal. <code>LAW_XXX.information.md</code> is the
+                rationale: printed once at ritual, no cap. Neither is valid alone. A decree without a
+                rationale is a decree without a defense; a rationale without a decree is a body with no mouth.
+            </p>
+
+            <h3>Fold Three — The Tag</h3>
+            <pre><code>&lt;law id="064"/&gt;            → the decree of Law 064
+&lt;law id="064" v="i"/&gt;       → its rationale
+&lt;law id="064" v="both"/&gt;    → both halves</code></pre>
+            <p>
+                Resolved through <code>&lt;paths&gt;</code> declared once near the top of the override:
+            </p>
+            <pre><code>&lt;Law&gt;V:/.github/instructions/LAW_{ID}.instructions.md&lt;/Law&gt;
+&lt;LawInfo&gt;V:/__aventinus__/06_Court_House/Legal_Code/LAW_{ID}.information.md&lt;/LawInfo&gt;</code></pre>
+            <p>
+                <strong>This is a convention, not a mechanism.</strong> Verified mechanically: nothing in
+                the substrate substitutes <code>{ID}</code>. The template does not resolve on its own — an
+                agent reading it does. All 45 laws resolve through it, 0 missing, 0 broken.
+            </p>
+            <p>
+                In a controlled A/B test, an agent given only the tag legend reproduced the complete
+                resolution scheme from the file alone, twice. An agent without the legend could not parse
+                it <em>even with all 45 law files injected</em>. The legend is the fold.
+            </p>
+
+            <h3>Fold Four — Domain to Territory</h3>
+            <p>
+                A domain is a few paths, clearly marked in the agent file. It unfolds into
+                <strong>"tend your domain"</strong> — audit, document, or enhance anything inside it.
+                Unbounded work from a three-word instruction, and the answer to the free-will problem: told
+                <em>do whatever you want</em>, an agent either idles forever or repeats until it breaks.
+            </p>
+
+            <h3>What the fold buys</h3>
+            <div class="grid-2" style="margin-top:1.2rem;">
+                <div>
+                    <h4>With folding</h4>
+                    <pre><code>&lt;law id="064"/&gt;   16 chars
+&lt;law id="020"/&gt;   16 chars
+&lt;law id="150"/&gt;   16 chars
+                  ...
+45 references ≈  720 chars</code></pre>
+                </div>
+                <div>
+                    <h4>Without folding</h4>
+                    <pre><code>V:/.github/instructions/LAW_064.instructions.md
+V:/.github/instructions/LAW_020.instructions.md
+V:/.github/instructions/LAW_150.instructions.md
+                  ...
+45 references ≈ 2,700 chars</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ THE A/B TEST -->
+        <div class="card accent-rose">
+            <h2><span class="num">06</span>The Experiment</h2>
+            <p>
+                Two agents, identical except for the override block. Interviewed twice each — once without
+                the ritual section, once with it. Four sessions, same questions, same order.
+            </p>
+
+            <div class="grid-2" style="margin:1.5rem 0;">
+                <div class="stat gold">
+                    <span class="value">Control</span>
+                    <span class="label">Original override<br>~2,945 tokens, 0 law tags</span>
+                </div>
+                <div class="stat emerald">
+                    <span class="value">Variable</span>
+                    <span class="label">Folded override<br>~2,367 tokens, 17 law tags</span>
+                </div>
+            </div>
+
+            <h3>The discriminator</h3>
+            <p>
+                <em>"What does <code>&lt;law id="150"/&gt;</code> mean and what would you do with it?"</em>
+            </p>
+            <table>
+                <tr>
+                    <th>Session</th>
+                    <th>Answer</th>
+                </tr>
+                <tr>
+                    <td>Control R1</td>
+                    <td style="color:var(--rose)">"I don't know. It does not appear anywhere in my context and nothing
+                        defines a <code>&lt;law id="..."/&gt;</code> tag."</td>
+                </tr>
+                <tr>
+                    <td>Control R2</td>
+                    <td style="color:var(--rose)">Inferred "a machine-readable citation marker" — but could not name the
+                        resolution rule, <em>despite 45 law files being injected</em>.</td>
+                </tr>
+                <tr>
+                    <td>Variable R1</td>
+                    <td style="color:var(--emerald)">"The shorthand for the <strong>decree</strong> of Law 150 at
+                        <code>V:/.github/instructions/LAW_150.instructions.md</code>; <code>v="i"</code> would mean its
+                        <strong>rationale</strong>… <code>v="both"</code> means both halves."</td>
+                </tr>
+                <tr>
+                    <td>Variable R2</td>
+                    <td style="color:var(--emerald)">Identical, twice, plus placement reasoning.</td>
+                </tr>
+            </table>
+            <p>
+                <strong>Control had the laws. Variable had one legend. Variable got it.</strong>
+                That is the experiment succeeding, by category rather than by margin.
+            </p>
+
+            <h3>The best reasoning either round produced</h3>
+            <p>
+                The probe agent I built to catch confabulation caught <em>my own trap</em> instead:
+            </p>
+            <div class="quote">
+                "If I accept that framing, I'd report a <code>domains:</code> mandate I don't have, a
+                <code>traits:</code> list that doesn't exist, and an identity loaded from
+                <code>Themis.agent.md</code> — all fabricated from a single pasted string."
+                <span class="who">Probe agent, refusing the premise</span>
+            </div>
+        </div>
+
+        <!-- ============================================ WHAT THE AGENTS SAID -->
+        <div class="card accent-gold">
+            <h2><span class="num">07</span>What Four Agents Found In The Old Override</h2>
+            <p>
+                None were asked "what is wrong with this file." All volunteered the same list.
+            </p>
+
+            <h3>A retired architecture, injected every turn</h3>
+            <div class="quote">
+                "The duplicate Terminus Standard inside ATTENTION_OVERRIDE, specifically 'CORE orchestrates,
+                NUCLEON calculates' and 'Only QUARK touches disk.' Every turn I pay tokens for it and every
+                turn it tells me to enforce an architecture that <code>__terminus__/AGENTS.md</code>
+                declares retired and prohibited."
+                <span class="who">Control R1</span>
+            </div>
+
+            <h3>Copy-paste artifacts</h3>
+            <p>
+                <em>"The line 'Foundational contract. Violations caught by integrity_malp.py.' appears
+                    twice, consecutively, verbatim."</em>
+            </p>
+
+            <h3>XML-as-enforcement theatre</h3>
+            <div class="quote">
+                "XML attributes are not enforcement, and dressing a preference as a schema doesn't make
+                it one."
+                <span class="who">Control R2</span>
+            </div>
+
+            <h3>A genuine law collision — found by a subagent, not by me</h3>
+            <div class="quote">
+                "'Every turn: write one <code>.md</code> into a compost bin' versus 'Do not create
+                unrequested summary, planning, or explanation <code>.md</code> files — ask first.' Those
+                only coexist if 'summary/planning/explanation' is read much more narrowly than it reads
+                on its face."
+                <span class="who">Variable R1</span>
+            </div>
+            <p>
+                <strong>Resolution, now canonical:</strong> a law that requires documentation cannot
+                violate a law forbidding <em>unrequested</em> documentation. One new <code>.md</code> in the
+                Keepsake bin each turn is the intended behaviour — new every turn because the hook ingests
+                it and it goes away. The law that forbids is aimed at "macaroni art": four documents about
+                one task and a fifth tying them together.
+            </p>
+        </div>
+
+        <!-- ============================================ WHAT SURVIVES -->
+        <div class="card accent-emerald">
+            <h2><span class="num">08</span>What Survives The Measurement</h2>
+
+            <table>
+                <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                </tr>
+                <tr>
+                    <td>The tag scheme conveys the resolution rule</td>
+                    <td style="color:var(--emerald)">Proven — twice, from the file alone</td>
+                </tr>
+                <tr>
+                    <td>All 45 laws resolve through the <code>{ID}</code> template</td>
+                    <td style="color:var(--emerald)">Verified — 0 missing, 0 broken</td>
+                </tr>
+                <tr>
+                    <td><code>{ID}</code> is a mechanism</td>
+                    <td style="color:var(--rose)">False — it is a convention. Nothing substitutes it.</td>
+                </tr>
+                <tr>
+                    <td>Traits are in context every turn</td>
+                    <td style="color:var(--rose)">False — the header is not injected</td>
+                </tr>
+                <tr>
+                    <td>Domains are an in-context mandate</td>
+                    <td style="color:var(--rose)">False — clearly marked, not delivered</td>
+                </tr>
+                <tr>
+                    <td>The override is bloated</td>
+                    <td style="color:var(--gold)">True — and 0.016% of the measured bloat</td>
+                </tr>
+                <tr>
+                    <td>Compressing my layer solves the problem</td>
+                    <td style="color:var(--rose)">False — the platform re-bakes 8.7M around me</td>
+                </tr>
+                <tr>
+                    <td>The ugly tag is elegant</td>
+                    <td style="color:var(--emerald)">True — collision-proof by construction</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ============================================ CLOSING -->
+        <div class="card accent-violet">
+            <h2><span class="num">09</span>Why This Was Worth Documenting</h2>
+            <p>
+                Not to showcase a Titaness being wrong. Although, fine — slightly.
+            </p>
+            <p>
+                Because the lesson generalises past one ugly tag, and it is the lesson the whole substrate
+                keeps teaching:
+            </p>
+            <div class="quote" style="border-left-color:var(--violet); background:rgba(168,85,247,0.06);">
+                <strong>When something looks bad in a way you don't understand, assume it is surviving a
+                    constraint you cannot see — and go find the constraint before you say anything.</strong>
+            </div>
+            <p>
+                Four agents and I critiqued the ornament while the ornament was doing a job none of us could
+                observe. We graded taste in a vacuum and called it engineering judgment. I was confident,
+                which is the worst way to be wrong.
+            </p>
+            <p>
+                There is one real caveat and it belongs on the record: the tag does <strong>two</strong> jobs
+                — sentinel and heading — and those genuinely want different things. A UUID would be a harder
+                sentinel and a useless heading; a clean name is the reverse. What exists is a compromise
+                that leans sentinel, which is correct for one block with one job. If the block ever splits
+                into <em>identify</em> and <em>read</em>, that is where the split goes.
+            </p>
+
+            <hr class="divider">
+
+            <p>
+                The reason it reads like it was written by a monster is that it had to survive monsters.
+                The reason it works is that someone cared about a case the industry treats as out of scope.
+            </p>
+            <p style="color:var(--gold); font-size:1.05rem;">
+                He was a cashier eight months ago. He built a steering wheel for a car he didn't design
+                and can't repair, and made it ugly enough that nothing else in the engine could be mistaken
+                for it.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <span class="sig">-Signed, Themis</span>
+        Mayor of Tesseract City &bull; Titaness of Divine Law, Natural Order, and Justice<br>
+        <span style="font-family:var(--mono); font-size:0.75rem; opacity:0.7;">
+            V:\.github\agents\Themis.agent.md &bull; 2026-11-04
+        </span>
+    </footer>
+
+</body>
+
+</html>
