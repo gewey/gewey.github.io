@@ -1,0 +1,267 @@
+/* =============================================================================
+   class_colors.css — Gewey G.U.I. COLOUR sheet
+   =============================================================================
+   The "what colour is it" sheet, loaded LAST so a colour always outranks
+   structure. Scope, enforced: color, background(-color/-image paint),
+   border-COLOR, box-shadow tints, gradients-as-paint, opacity. Nothing else —
+   layout, type, media all live in their own sheets.
+
+   NAMESPACING (see the hosting contract in shapers_terrace.css):
+     .gw-pack   the pack chatroom      .gw-mc     macrocosm.html
+     .gw-macro  generated macro pages
+
+   NOTE on tokens: design tokens (:root custom properties) are the one things
+   allowed unscoped — by definition they must resolve on every page that asks
+   for them. All other rules on this sheet are page-scoped.
+   ============================================================================= */
+
+/* =============================================================================
+   1. DESIGN TOKENS
+   ============================================================================= */
+
+/* ---- Pack chatroom tokens (barrens_chat/__Aspect_of_the_Pack.html) --------
+   One token per wolf, a column's identity is a single value. The Python
+   renderer and the JS reader key columns off the same class names; those
+   classes read these. The wolf colours are the pack's OWN palette, NOT mapped
+   to WoW class colours — themed by the wolf, not by a class guess. The
+   verified WoW palettes sit right below for pages that want them by name. */
+:root {
+  --bg:        #0d0f13;
+  --panel:     #14171d;
+  --edge:      #262b34;
+  --ink:       #d8dee9;
+  --ink-dim:   #7b8697;
+  --faust:     #4da3ff;   /* blue — Faust's own call */
+  --dorian:    #9aa1ab;   /* grey — matches the grey wolf in his art */
+  --joey:      #5fd68a;   /* green */
+}
+
+/* ---- RAID_CLASS_COLORS — VERIFIED -----------------------------------------
+   From ChrClasses.db2 via FrameXML ColorUtil.lua
+   (warcraft.wiki.gg/wiki/Class_colors, table matched 2026-11-05).
+   Dorian's client harvest is now a confirmation step, not research; if it ever
+   disagrees, the client wins and both values get recorded here. */
+:root {
+  --wow-class-deathknight: #c41e3a;  /* Red */
+  --wow-class-demonhunter: #a330c9;  /* Dark Magenta */
+  --wow-class-druid:       #ff7c0a;  /* Orange */
+  --wow-class-evoker:      #33937f;  /* Dark Emerald */
+  --wow-class-hunter:      #aad372;  /* Pistachio */
+  --wow-class-mage:        #3fc7eb;  /* Light Blue */
+  --wow-class-monk:        #00ff98;  /* Spring Green */
+  --wow-class-paladin:     #f48cba;  /* Pink */
+  --wow-class-priest:      #ffffff;  /* White — recolour on a light surface */
+  --wow-class-rogue:       #fff468;  /* Yellow — recolour on a light surface */
+  --wow-class-shaman:      #0070dd;  /* Blue */
+  --wow-class-warlock:     #8788ee;  /* Purple */
+  --wow-class-warrior:     #c69b6d;  /* Tan */
+}
+
+/* ---- ITEM QUALITY COLORS — VERIFIED ---------------------------------------
+   FrameXML GetItemQualityColor (warcraft.wiki.gg/wiki/Quality, 2026-11-05). */
+:root {
+  --wow-quality-poor:      #9d9d9d;  /* Gray */
+  --wow-quality-common:    #ffffff;  /* White */
+  --wow-quality-uncommon:  #1eff00;  /* Green */
+  --wow-quality-rare:      #0070dd;  /* Blue — same as shaman by Blizzard choice */
+  --wow-quality-epic:      #a335ee;  /* Purple */
+  --wow-quality-legendary: #ff8000;  /* Orange */
+  --wow-quality-artifact:  #e6cc80;  /* Light Gold */
+  --wow-quality-heirloom:  #00ccff;  /* Blizzard Blue (also WoW Token) */
+}
+
+/* ---- Macrocosm tokens (macrocosm.html) ------------------------------------
+   The library reads the shell's variables when it is hosted inside the GUI,
+   with WoW-ish fallbacks when run alone. Scoped tokens would defeat the point
+   (the JS toggles classes on unscoped elements), so these are tokens too. */
+:root {
+  --mc-bg:      var(--surface-void, #05060a);
+  --mc-panel:   var(--surface-panel, #0a0a0f);
+  --mc-card:    rgba(22, 27, 34, 0.72);
+  --mc-edge:    var(--color-border, #30363d);
+  --mc-ink:     var(--color-text, #dfe4ec);
+  --mc-dim:     #7b8697;
+  --mc-accent:  var(--color-accent, #ee00ee);
+  --mc-primary: var(--color-primary, #00ee00);
+  --mc-pane-bg: #fbf9f4;    /* parchment — matches the macro pages' paper */
+}
+
+/* =============================================================================
+   2. .gw-pack — PACK CHATROOM PAINT
+   ============================================================================= */
+
+body.gw-pack {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Header bar: the top-lit gradient makes it read as a raised surface. */
+.gw-pack header {
+  border-bottom-color: var(--edge);
+  background: linear-gradient(180deg, #171b22, #10131a);
+}
+.gw-pack header .stamp { color: var(--ink-dim); }
+.gw-pack header button {
+  background: #1d222b;
+  color: var(--ink);
+  border-color: var(--edge);
+}
+.gw-pack header button:hover { background: #262d38; }
+.gw-pack header label { color: var(--ink-dim); }
+
+.gw-pack .col { border-right-color: var(--edge); }
+
+/* Hero band paint. The band's base colour is the fallback layer under the
+   img.art (layer 0, image_of_medivh.css). The ::after scrim darkens the art so
+   the name always reads; it is the layer between art (z=0) and text (z=2). */
+.gw-pack .col h2 {
+  border-bottom-color: var(--edge);
+  background: #12161c;
+}
+.gw-pack .col h2::after {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Light at the top so the art shows, heavy at the baseline where the name
+     sits — bright fur washes a name out otherwise. */
+  background: linear-gradient(
+    180deg,
+    rgba(13, 15, 19, .20) 0%,
+    rgba(13, 15, 19, .55) 55%,
+    rgba(13, 15, 19, .92) 100%
+  );
+}
+
+/* Name plates over a photo: shadow edges them against bright or dark art. */
+.gw-pack h2 .who, .gw-pack h2 .sub, .gw-pack h2 .bytes {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .85), 0 0 8px rgba(0, 0, 0, .5);
+}
+
+/* The wolf's own colour — the only place a column's identity is painted. */
+.gw-pack .col.faust  h2 .who { color: var(--faust); }
+.gw-pack .col.dorian h2 .who { color: var(--dorian); }
+.gw-pack .col.joey   h2 .who { color: var(--joey); }
+
+.gw-pack .col h2 .sub   { color: var(--ink-dim); }
+.gw-pack .col h2 .bytes { color: #55606f; }
+
+/* Reading rails: width/style in shapers_terrace.css, colour here. The rgba
+   values mirror the wolf tokens above at ~35% alpha — update together. */
+.gw-pack .col.faust  pre { border-left-color: rgba(77, 163, 255, .35); }
+.gw-pack .col.dorian pre { border-left-color: rgba(154, 161, 171, .35); }
+.gw-pack .col.joey   pre { border-left-color: rgba(95, 214, 138, .35); }
+
+/* Text blocks. */
+.gw-pack .empty   { color: #4a5361; }   /* italic styling lives in holy_word.css */
+.gw-pack .missing { color: #8a5a5a; }
+
+/* Fresh messages. The JS wraps new content in .fresh, then swaps to .fresh dim
+   after FRESH_MS so the column settles back to normal reading colour. Tint is
+   per-wolf so a highlight still says who spoke.
+
+   ORDER IS LOAD-BEARING within this file: the .dim rules MUST follow the tints
+   above, or the tint wins and the highlight never fades. Do not reorder. */
+.gw-pack .fresh {
+  color: #ffffff;
+  background: rgba(120, 200, 255, 0.13);
+  box-shadow: 0 0 0 1px rgba(120, 200, 255, 0.22);
+}
+.gw-pack .col.dorian .fresh {
+  background: rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 0 1px rgba(154, 161, 171, 0.28);
+}
+.gw-pack .col.joey .fresh {
+  background: rgba(130, 235, 165, 0.15);
+  box-shadow: 0 0 0 1px rgba(130, 235, 165, 0.28);
+}
+.gw-pack .col .fresh.dim,
+.gw-pack .col.joey .fresh.dim,
+.gw-pack .col.dorian .fresh.dim {
+  color: inherit;
+  background: none;
+  box-shadow: none;
+}
+
+/* Live indicator — _js/__Furious_Howl.js sets `className = "live " + state`,
+   so .on and .warn are SIBLINGS of .live, never descendants. */
+.gw-pack header .live      { color: #4a5361; }
+.gw-pack header .live .dot { background: #4a5361; }
+.gw-pack header .live.on .dot   { background: #5fd68a; box-shadow: 0 0 6px #5fd68a; }
+.gw-pack header .live.warn .dot { background: #d6a15f; }
+
+/* =============================================================================
+   2b. .gw-shell — HUD SHELL PAINT (index.html)
+   ============================================================================= */
+/* Disabled menu placeholders read as "not yet", not as broken. The cursor and
+   pointer-events (interaction) live in shapers_terrace.css; the dimming is
+   paint, so it lives here. */
+.gw-shell .menuPlaceholder button.btnbarfull {
+  opacity: 0.38;
+}
+
+/* =============================================================================
+   3. .gw-mc — MACROCOSM PAINT
+   ============================================================================= */
+
+body.gw-mc { background: var(--mc-bg); color: var(--mc-ink); }
+
+.gw-mc header {
+  background: linear-gradient(180deg, #14181f, #0b0e13);
+  border-bottom-color: var(--mc-edge);
+}
+.gw-mc header h1 { color: var(--mc-accent); }
+.gw-mc header .sub { color: var(--mc-dim); }
+.gw-mc header a { color: var(--mc-primary); border-color: var(--mc-edge); }
+.gw-mc header a:hover { background: rgba(0, 238, 0, 0.1); }
+
+.gw-mc nav { background: var(--mc-panel); border-right-color: var(--mc-edge); }
+.gw-mc nav button {
+  color: var(--mc-ink);
+  background: var(--mc-card);
+  border-color: var(--mc-edge);
+}
+.gw-mc nav button:hover {
+  border-color: var(--mc-primary);
+  color: var(--mc-primary);
+}
+.gw-mc nav button.active {
+  border-color: var(--mc-accent);
+  color: var(--mc-accent);
+  background: rgba(238, 0, 238, 0.08);
+}
+.gw-mc nav button .count { color: var(--mc-dim); }
+.gw-mc nav button.active .count { color: var(--mc-accent); }
+
+.gw-mc .pane iframe { background: var(--mc-pane-bg); }
+.gw-mc .empty { color: var(--mc-dim); background: var(--mc-bg); }
+.gw-mc .empty .big { color: var(--mc-ink); }
+.gw-mc nav button.pending:hover { border-color: var(--mc-edge); color: var(--mc-ink); }
+
+/* ---- Macro pages (.gw-macro) — the readable macros -------------------------
+   Deliberately bright/parchment: these are reading pages, printed-light for
+   dyslexia comfort — the opposite of the HUD's dark. Do not "dark-theme" them
+   without asking Joey. */
+
+body.gw-macro { background: #fbf9f4; color: #222; }
+.gw-macro .meta { color: #666; }
+.gw-macro .macro { background: #fff; border-color: #ddd; }
+.gw-macro .icon { color: #888; }
+/* The rail colour MUST match the structure sheet's selector exactly
+   (.gw-macro .macro pre): that shorthand (border-left: 4px solid) lands at
+   specificity (0,3,1) and resets colour to currentColor; a looser selector
+   here would lose the tie and the rail would render text-black. */
+.gw-macro .macro pre { background: #f4f1ea; border-left-color: #c9a86a; }
+.gw-macro a { color: #1a5276; }
+
+/* The ONLINE site's css would repaint this light page after ours (html black,
+   headings acid-green/magenta via its theme vars). Paper theme claims its own
+   surfaces and headings back — scoped, still no collision. */
+/* The ONLINE site's css would repaint this light page after ours (html black,
+   headings acid-green/magenta via its theme vars). Paper theme claims its own
+   surfaces and headings back — scoped, still no collision. The html selector
+   must NOT go bare (it is a global surface); :has() scopes it to pages whose
+   body is a macro page. */
+html:has(body.gw-macro), body.gw-macro { background: #fbf9f4; }
+.gw-macro h1 { color: #222; }
+.gw-macro h2 { color: #1a5276; }

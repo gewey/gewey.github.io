@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+		<script type="text/javascript" src="https://wow.zamimg.com/widgets/newsfeed.js"></script>
+		<!-- dynamichead.js is the ONLINE version (Joey's sitewide contract,
+		     2026-11-05): when the four sheets below are worth hosting, they get
+		     added to dynamichead.js and every sitemap page inherits them at once.
+		     Until then these local links are the source. -->
+		<script type="text/javascript" src="https://gewey.github.io/js/dynamichead.js"></script>
+		<!-- HUD sheets. Order is load-bearing: structure -> text -> media -> colour. -->
+		<link rel="stylesheet" href="_css/shapers_terrace.css" type="text/css" />
+		<link rel="stylesheet" href="_css/holy_word.css" type="text/css" />
+		<link rel="stylesheet" href="_css/image_of_medivh.css" type="text/css" />
+		<link rel="stylesheet" href="_css/class_colors.css" type="text/css" />
+	</head>
+
+	<body class="gw-shell">
+		<div class="viewArea">
+			<!--head--->
+			<div class="pageHeader">
+				<marquee>
+					<p id="demo">
+						Lok'Tar Ogar! &mdash; Gewey G.U.I.
+						<script>
+							document.write(Date());
+						</script>
+					</p>
+				</marquee>
+			</div>
+			<!--menu=-->
+			<div class="pageLeftMenu">
+				<br />
+				<!--LOGO--->
+				<div name="Logo">
+					<h2>
+						<a target="_top" href="./index.html">
+							<img
+								class="geweyLogo"
+								width="100%"
+								alt="Gewey"
+								src="V:\__inuus__\gewey.github.io\img\logo\gewey\geweyLogo.png"
+							/>
+						</a>
+
+						<br />
+					</h2>
+				</div>
+				<div class="geweyMenuButtons">
+					<!-- ============== LIVE PANES ============== -->
+
+					<a href="_fuhevva_evva.html" target="contentframe">
+						<button name="iHome" class="btnbarfull" title="Home">
+							<!--HOME------------><i class="material-icons md-24">home</i>
+						</button></a
+					>
+
+					<a href="barrens_chat/__Aspect_of_the_Pack.html" target="contentframe">
+						<button name="iAspectOfThePack" class="btnbarfull" title="Aspect of the Pack - the pack's live chatroom">
+							<!--THE PACK--><i class="material-icons md-24">pets</i>
+						</button></a
+					>
+
+					<a href="macrocosm.html" target="contentframe">
+						<button name="iMacrocosm" class="btnbarfull" title="Macrocosm - macro library">
+							<!--MACROCOSM-------><i class="material-icons md-24">code</i>
+						</button></a
+					>
+
+					<!-- ======== PLACEHOLDERS (no pane yet) ========
+               `name` kept so a future script can wire them by name
+               without re-editing this file. -->
+					<a class="menuPlaceholder" title="Not built yet">
+						<button name="iCharacter" class="btnbarfull" disabled>
+							<!--CHARACTER-------><i class="material-icons md-24">person</i>
+						</button></a
+					>
+
+					<a class="menuPlaceholder" title="Not built yet">
+						<button name="iGear" class="btnbarfull" disabled>
+							<!--GEAR------------><i class="material-icons md-24">shield</i>
+						</button></a
+					>
+
+					<a class="menuPlaceholder" title="Not built yet">
+						<button name="iTalents" class="btnbarfull" disabled>
+							<!--TALENTS---------><i class="material-icons md-24">star</i>
+						</button></a
+					>
+
+					<a href="Timeline.html" target="contentframe">
+						<button name="iLogWatch" class="btnbarfull" title="Timeline — station telemetry (hourly audit dashboard)">
+							<!--LOG WATCH-------><i class="material-icons md-24">description</i>
+						</button></a
+					>
+
+					<a href="Delve.html" target="contentframe">
+						<button name="iDelve" class="btnbarfull" title="The Delve — game-log residue, visualized">
+							<!--DELVE---------><i class="material-icons md-24">travel_explore</i>
+						</button></a
+					>
+
+					<a class="menuPlaceholder" title="Not built yet">
+						<button name="iResearch" class="btnbarfull" disabled>
+							<!--RESEARCH--------><i class="material-icons md-24">science</i>
+						</button></a
+					>
+
+					<a class="menuPlaceholder" title="Not built yet">
+						<button name="iSettings" class="btnbarfull" disabled>
+							<!--SETTINGS--------><i class="material-icons md-24">settings</i>
+						</button></a
+					>
+
+					<!--WOWHEAD---------->
+					<!--WOWHEAD---------->
+					<!--WOWHEAD---------->
+					<center>
+						<script type="text/javascript" src="https://wow.zamimg.com/widgets/searchbox.js"></script>
+					</center>
+					<!--WOWHEAD---------->
+					<!--WOWHEAD---------->
+				</div>
+			</div>
+			<!--main-->
+			<div class="pageContent">
+				<!-- Default pane: the homepage. _fuhevva_evva.html is currently empty,
+             so this frame renders blank until Joey fills it. -->
+				<iframe
+					id="contentframe"
+					name="contentframe"
+					frameborder="0"
+					width="100%"
+					height="100%"
+					align="right"
+					src="_fuhevva_evva.html"
+				></iframe>
+			</div>
+
+			<!--foot-->
+			<div class="pageFooter">
+				<p>
+					<!--Email--------------><a href="mailto:webmaster.gewey@gmail.com?subject=Gewey%20GUI">
+						<i class="material-icons md-24">alternate_email</i>
+					</a>
+
+					<!--Logs---------------><a href="https://github.com/gewey/gewey.github.io/commits/master" target="_blank">
+						<i class="material-icons md-24">change_history</i>
+					</a>
+
+					<!--Copyright----------><a href="./index.html" target="_top">
+						<i class="material-icons md-24">copyright</i>
+						Gewey G.U.I.
+					</a>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

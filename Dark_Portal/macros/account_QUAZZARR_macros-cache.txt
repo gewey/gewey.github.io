@@ -1,0 +1,489 @@
+VER 3 00000000000001AA "!!!!" "132156"
+/run local x=not SHOW_MULTI_ACTIONBAR_1 SHOW_MULTI_ACTIONBAR_1=x SHOW_MULTI_ACTIONBAR_2=x SHOW_MULTI_ACTIONBAR_3=x SHOW_MULTI_ACTIONBAR_4=x UIOptionsFrame:Show() UIOptionsFrame:Hide() ToggleGameMenu();
+END
+VER 3 00000000000001A9 "!!!!!" "132155"
+/console groundEffectDensity 256
+/console groundEffectDist 170
+/console detailDoodadAlpha 100
+/console farclip 777
+/console horizonfarclip 6226
+/console smallcull 0
+/console maxLOD 3
+/console SkyCloudLOD 3
+/console characterAmbient 1
+END
+VER 3 0000000000000186 "!!!!!!" "134400"
+/tar boss1
+/targetenemy
+/focus
+/tar player
+/tar focus
+/tar boss1
+/targetlasttarget
+/castsequence [harm,nodead] Counter shot, Tranquilizing Shot
+/tar boss1
+END
+VER 3 00000000000001B2 "!!Abandon Quests" "876476"
+/run for i=1,C_QuestLog.GetNumQuestLogEntries() do C_QuestLog.SetSelectedQuest(C_QuestLog.GetInfo(i).questID); C_QuestLog.SetAbandonQuest(); C_QuestLog.AbandonQuest() end;
+END
+VER 3 0000000000000002 "!!Melee template" "132418"
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Crusader Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 000000000000014D "!/btwl" "1506461"
+/btwl
+/m
+/mm
+/sm
+/mh
+/btwloadouts activate actionbars 11
+/ww setrate 99
+/ww report
+/console autoLootDefault 1
+/console autoQuestWatch 1
+/console autoQuestProgress 1
+/run EditModeManagerFrame:SelectLayout(3)
+END
+VER 3 000000000000000B "!1" "4636861"
+/run SetSpecialization(1)
+END
+VER 3 000000000000000C "!2222" "3717312"
+/run SetSpecialization(2)
+END
+VER 3 000000000000000D "!3333" "3717304"
+/run SetSpecialization(3)
+END
+VER 3 000000000000000E "!4444" "3717267"
+/run SetSpecialization(4)
+END
+VER 3 0000000000000184 "!DR2" "134400"
+#showtooltip 
+/select [harm]Kill Command, Rune Strike; Surge Forward
+/click [btn:2]S011M;S011A X 1
+END
+VER 3 00000000000000FD "!SND" "133014"
+/run local x=tonumber(GetCVar("Sound_OutputDriverIndex"))if x==1 then SetCVar("Sound_OutputDriverIndex", "2")else SetCVar("Sound_OutputDriverIndex", "1")end AudioOptionsFrame_AudioRestart()
+END
+VER 3 0000000000000100 "!STOP" "135996"
+/petpassive
+/stopattack
+/stopcasting
+/use Follow(Pet Command)
+/cancelaura Feign Death
+/use wake up
+/cancelaura Aspect of Moonfang
+/cancelaura Goren Disguise
+/cancelaura Tithe Collector
+/cancelaura The Necronom-i-nom
+/CANCELAURA TRANSMORPHED
+END
+VER 3 0000000000000166 "#Cv-E" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cqs
+/click MultiBarLeftButton1
+/run local G=GetSpellInfo SetMacroSpell(GetRunningMacro(), G"Resonating Arrow" or G"Flayed Shot" or G"Death Chakram"or G"Wild Spirits")
+END
+VER 3 0000000000000167 "#CvA-H2" "INV_MISC_QUESTIONMARK"
+/use Flayed Shot
+/use Death Chakram
+/use Wild Spirits
+/use Resonating Arrow
+END
+VER 3 0000000000000168 "#CvA-M2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast Radiant Spark
+/cast Mirrors of Torment
+/cast Deathborne
+/cast Shifting Power
+/run local G=GetSpellInfo SetMacroSpell(GetRunningMacro(), G"Radiant Spark" or G"Mirrors of Torment" or G"Deathborne"or G"Shifting Power")
+END
+VER 3 0000000000000163 "#CvS" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cqs
+/click MultiBarLeftButton2
+/run local G=GetSpellInfo SetMacroSpell(GetRunningMacro(), G"Door of Shadows" or G"Soulshape" or G"Fleshcraft"or G"Summon Steward")
+END
+VER 3 0000000000000165 "#CvS2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [@cursor]Door of Shadows
+/use Soulshape
+/use [nochanneling]Fleshcraft
+/use Summon Steward
+/click MultiBarLeftButton3
+END
+VER 3 0000000000000177 "#CvS3 " "INV_Misc_QuestionMark"
+/use phial of serenity
+END
+VER 3 00000000000001AF "#N* - ALL - IMUN" "134400"
+#showtooltip
+/cqs
+/select [mod] Feign Death;  Aspect of the Turtle, Divine Shield
+/click [btn:2]S020M;S020A X 1
+/use  15
+/use  Tar Trap
+/use  Foul Belly
+/use  Pileus Delight
+END
+VER 3 00000000000001B0 "#N+ - ALL - HALP" "134400"
+#showtooltip
+/select [mod,pet:Spirit Beast,@player]Spirit Mend(exotic ability);Exhilaration, Word of Glory
+/click [btn:2]S021M;S021A X 1
+END
+VER 3 00000000000001B1 "#N- - Boogy" "134400"
+#showtooltip
+/use [nomod,mounted] Aerial Halt(skyriding)
+/select [mod,@player]Command Pet;[nomod][mod]Disengage,Divine Protection 
+/use [@player]Implosive Trap
+/use [@player]Roar of Sacrifice
+/use Makaris's Satchel of Mines
+/click [btn:2]S022M;S022A X 1
+END
+VER 3 00000000000001AE "#N3 template" "INV_MISC_QUESTIONMARK"
+/click [nomod] LM_B1
+/use [mod] switch flight style
+END
+VER 3 000000000000018D "#s???" "134400"
+/select Blingtron 5000, Blingtron 7000
+/click [btn:2]S024M;S024A X 1
+END
+VER 3 0000000000000130 "#sArm" "INV_MISC_QUESTIONMARK"
+/use Heavy Desolate Armor Kit
+/use 5
+END
+VER 3 00000000000001AD "#sBff" "134400"
+/select Hunter's Mark, Arcane Intellect, Battle Shout, path of frost, Instant Poison, mark of the wild, power word: fortitude
+/click [btn:2]S026M;S026A X 1
+END
+VER 3 000000000000016B "#sBun" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [known:Conjure Refreshment,btn:2]Conjure Refreshment;[btn:2],[btn:1] item:113509
+END
+VER 3 000000000000018F "#sDed" "134400"
+/select [@mouseover] Cremating Torch, Drust Ritual Knife, Shaded Judgment Stone, Warbeast Kraal Dinner Bell
+/click [btn:2]S028M;S028A X 1
+END
+VER 3 000000000000018C "#sDum" "134400"
+/select Ancient Construct, Turnip Punching Bag, The Golden Banana, Zandalari Effigy Amulet
+/click [btn:2]S029M;S029A X 1
+END
+VER 3 000000000000012C "#sFire" "134400"
+#showtooltip
+/select [@player]163211,Leylight Brazier, Ever-Abundant Hearth, Maruuk Cooking Pot
+/click [btn:2]S030M;S030A X 1
+END
+VER 3 00000000000001AC "#sFrm" "134400"
+/select Visage
+/cancelform
+/click [btn:2]S031M;S031A X 1
+END
+VER 3 000000000000018B "#sFsk" "134400"
+/select Flask of Alchemical Chaos
+/click [btn:2]S032M;S032A X 1
+END
+VER 3 0000000000000138 "#sFst" "134400"
+#showtooltip
+/select Feast of the Midnight Masquerade, The Sushi Special
+/use World Shrinker
+/use Eternal Palace Dining Set
+/use Leather Love Seat
+/use Taivan's Trumpet
+/click [btn:2]S033M;S033A X 1
+END
+VER 3 0000000000000147 "#sFud" "134400"
+/select Hearty Deepfin Patty, Deepfin Patty
+/use Jiro Circle of Song
+/click [btn:2]S034M;S034A X 1
+END
+VER 3 0000000000000191 "#sGme" "134400"
+/select JewelCraft, Blingtron's Circuit Design Tutorial
+/click [btn:2]S035M;S035A X 1
+END
+VER 3 000000000000017E "#sHlSt" "134400"
+#showtooltip
+/select [btn:1,combat]item:5512;[@mouseover,dead,help,nocombat][mod]Ultimate Gnomish Army Knife; Rechargeable Reaves Battery
+/click [btn:2]S036M;S036A X 1
+END
+VER 3 00000000000001A8 "#sHrth" "134400"
+#showtooltip
+/select Hearthstone,Dalaran Hearthstone,Garrison Hearthstone,Venthyr Sinstone
+/use Black Ice
+/use Coldflame Ring
+/use Inky Black Potion
+/click [btn:2]S037M;S037A X 1
+END
+VER 3 000000000000014A "#sHth" "134400"
+/select Cavedweller's Delight, Algari Healing Potion
+/click [btn:2]S038M;S038A X 1
+END
+VER 3 0000000000000189 "#sLst" "134400"
+#showtooltip
+/select primal rage, Time Warp
+/click [btn:2]S039M;S039A X 1
+/use 13
+/use 14
+/use Words of Akunda
+/use Meerah's Jukebox
+END
+VER 3 000000000000017F "#sMail" "134400"
+/select Katy's Stampwhistle, MOLL-E, Cantrips(Racial)
+/click [btn:2]S040M;S040A X 1
+/use Firim's Specimen Container
+END
+VER 3 00000000000001A2 "#sOil" "134400"
+/select Algari Mana Oil
+/click [btn:2]S041M;S041A X 1
+END
+VER 3 000000000000016E "#sOrg" "134400"
+/select Cloak of Coordination, shroud of cooperation, Pugilist's Powerful Punching Ring, Teleport: Stormwind
+/click [btn:2]S042M;S042A X 1
+END
+VER 3 000000000000019F "#sPot" "134400"
+/select Tempered Potion
+/click [btn:2]S043M;S043A X 1
+END
+VER 3 0000000000000156 "#sPrfn" "134400"
+/select spell:20222, 4036, 13262, 7411, 2550, 271990, 131474, 80451, 278910
+/click [btn:2]S044M;S044A X 1
+END
+VER 3 0000000000000180 "#sRacial" "134400"
+/select Will of the Forsaken(Racial), Arcane Torrent(racial),Pterrordax Swoop(Racial),Wing Buffet(Racial),Visage(Racial), Bag of Tricks(Racial), Rummage Your Bag(Racial), Make Camp(Racial), Return to Camp(Racial)
+/click [btn:2]S045M;S045A X 1
+END
+VER 3 00000000000001A1 "#sRne" "134400"
+/select Battle-Scarred Augment Rune, Veiled Augment Rune, Crystallized Augment Rune
+/click [btn:2]S046M;S046A X 1
+END
+VER 3 000000000000019E "#sRpr" "134400"
+/select Traveler's Tundra Mammoth, Jeeves, Rechargeable Reaves Battery, Warband Bank Distance Inhibitor, Pack Hobgoblin(Racial)
+/click [btn:2]S047M;S047A X 1
+END
+VER 3 0000000000000197 "#sTrvl" "134400"
+/select Teleport: Oribos, Portal: Oribos, Wormhole Generator: Shadowlands, Fractured Necrolyte Skull
+/click [btn:2]S048M;S048A X 1
+END
+VER 3 0000000000000196 "#sWrmhl" "134400"
+/select Wormhole Generator: Northrend, Wormhole Generator: Pandaria, Wormhole Centrifuge, Wormhole Generator: Argus, Wormhole Generator: Zandalar, Wormhole Generator: Kul Tiras, Wormhole Generator: Shadowlands
+/click [btn:2]S049M;S049A X 1
+END
+VER 3 00000000000001AB "#sXmg" "134400"
+/select Infiltrator's Shroud, Ethereal Transmogrifier, Transmorpher Beacon, Deployable Attire Rearranger, Atomic Recalibrator, Silver-Plated Turkey Shooter
+/click [btn:2]S050M;S050A X 1 
+END
+VER 3 00000000000000FA "#Whistle" "134400"
+#showtooltip Flight Master's Whistle
+/use Tear of the Green Aspect
+/select Flight Master's Whistle, Death Gate
+/click [btn:2]S051M;S051A X 1
+END
+VER 3 000000000000006B "$Dstry" "134400"
+/run local f=DeM or CreateFrame("Button","DeM",nil,"SecureActionButtonTemplate") f:SetAttribute("type","click") f:SetAttribute("clickbutton",GetMouseFocus())
+/select Disenchant,Milling,Pick Lock
+/click [btn:2]S052M;S052A X 1
+/click DeM
+END
+VER 3 0000000000000067 "$Farm" "1029718"
+/target Deepcoral Bud
+/target tainted sq
+/startattack
+/castsequence Cobra Shot, Fetch
+/run SetRaidTarget("target", 8)
+END
+VER 3 000000000000019D "$Fish" "134400"
+#showtooltip
+/select [nocombat,nomod]Fishing, Survey, Abyss Caller Horn
+/use Bat Visage Bobber
+/click [btn:2]S054M;S054A X 1
+END
+VER 3 0000000000000114 "$JUNK" "1325312"
+/run for bag=0,4,1 do for slot=1,GetContainerNumSlots(bag),1 do local name=GetContainerItemLink(bag,slot)if name and name:find("ff9d9d9d")then print("-Selling "..name)UseContainerItem(bag,slot)end end end
+END
+VER 3 0000000000000132 "$Loot" "INV_MISC_QUESTIONMARK"
+/castsequence reset=2 loot-a-rang, fetch
+END
+VER 3 0000000000000075 "$Run" "132296"
+/run if not MovePadFrame then UIParentLoadAddOn"Blizzard_MovePad"MovePadFrame:Hide()end
+/click MovePadForward
+/run if IsMouselooking() then MouselookStop() else MouselookStart() end
+END
+VER 3 0000000000000123 "$Targeting" "1380366"
+/target [nodead] Echo of Sin; [dead] Sire Denathrius
+/target Domination Core
+/target explosives 
+/targetlasttarget [dead]
+END
+VER 3 000000000000013E "/13" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use 13
+END
+VER 3 000000000000013F "/14" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use 14
+END
+VER 3 00000000000000C2 "/15" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use 15
+END
+VER 3 00000000000000C3 "/6" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use Whirring Wristwraps
+/castrandom Goren Garb, Path of Elothir, Golden Dragon Goblet, Infiltrator's Shroud, Haw'li's Hot & Spicy Chili, Vindicator's Armor Polish Kit, Cave Spelunker's Torch, General's Expertise
+END
+VER 3 00000000000001B3 "/addonprofiler" "6310500"
+/addonprofiler
+END
+VER 3 0000000000000159 "/findYourself 0" "3897751"
+/console findYourselfAnywhere 0
+END
+VER 3 000000000000015A "/findYourself 1" "3897759"
+/console findYourselfAnywhere 1
+END
+VER 3 0000000000000134 "/follow" "1616893"
+/target [@mouseover]
+/follow
+/targetlasttarget
+END
+VER 3 000000000000018E "/fstk" "1305156"
+/fstack
+END
+VER 3 000000000000016A "/hnnew" "134269"
+/hnnew
+END
+VER 3 000000000000016F "/litemout" "136103"
+/litemount
+END
+VER 3 00000000000001A4 "/note" "1506451"
+/notepad
+/task show
+END
+VER 3 0000000000000187 "/SUF" "136122"
+/suf
+END
+VER 3 0000000000000106 "/tar @mouse" "236199"
+/focus [@mouseover]
+END
+VER 3 0000000000000085 "/TSM" "134063"
+/tsm
+END
+VER 3 00000000000000FF "/WQA" "132093"
+/wqa
+END
+VER 3 0000000000000122 "@Banker" "134571"
+/acp addset 25
+/reload ui
+END
+VER 3 000000000000011F "@NO RAID" "135490"
+/acp addset 2
+/acp addset 2
+/acp addset 2
+/acp addset 2
+/reload ui
+END
+VER 3 000000000000014E "@PvP" "462674"
+/btwl a PvP
+/run SetTracking(10, true)
+/run SetTracking(10, false)
+/forthehorde
+END
+VER 3 0000000000000120 "@Raid" "1380676"
+/btwl a Raid
+/acp disableall
+/acp disableall
+/acp disableall
+/reload ui [btn:2]
+END
+VER 3 000000000000014F "@World" "136017"
+/btwl a Tandu
+/run SetTracking(10, true)
+/run SetTracking(10, false)
+END
+VER 3 00000000000001B5 "AutoBandage" "INV_Misc_QuestionMark"
+#showtooltip
+END
+VER 3 00000000000001A5 "AutoPotion" "INV_Misc_QuestionMark"
+#showtooltip 
+/castsequence [@player] reset=combat Exhilaration, item:258138, item:212244
+END
+VER 3 000000000000017B "BM" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [button:1] BM LeftButton t; [button:2] BM RightButton t; [button:3] BM MiddleButton t; [button:4] BM Button4 t; [button:5] BM Button5 t; BM
+END
+VER 3 0000000000000161 "crybaby" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/equipslot 13 Elegy of the Eternals
+/equipslot 14 Elegy of the Eternals
+END
+VER 3 00000000000001B4 "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('No spell available')
+END
+VER 3 0000000000000181 "EA_BMH_AOE" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [button:1] EA_BMH_AOE LeftButton t; [button:2] EA_BMH_AOE RightButton t; [button:3] EA_BMH_AOE MiddleButton t; [button:4] EA_BMH_AOE Button4 t; [button:5] EA_BMH_AOE Button5 t; EA_BMH_AOE
+END
+VER 3 0000000000000182 "EA_BMH_ST" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [button:1] EA_BMH_ST LeftButton t; [button:2] EA_BMH_ST RightButton t; [button:3] EA_BMH_ST MiddleButton t; [button:4] EA_BMH_ST Button4 t; [button:5] EA_BMH_ST Button5 t; EA_BMH_ST
+END
+VER 3 000000000000014B "focus" "INV_MISC_QUESTIONMARK"
+/focus [@mouseover,exists][]
+END
+VER 3 0000000000000175 "Human" "134166"
+/run for i=1,GetNumTrackingTypes() do local x,_,y=GetTrackingInfo(i) if x==GetSpellInfo(19883) then SetTracking(i, not y) z='OFF' r=0 g=1 if not y then z='ON' r=1 g=0 end DEFAULT_CHAT_FRAME:AddMessage("|| Track Humanoids ||---> "..z,r,g,0) end end
+END
+VER 3 0000000000000183 "PD_TEST_4_SET" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [button:1] PD_TEST_4_SET LeftButton t; [button:2] PD_TEST_4_SET RightButton t; [button:3] PD_TEST_4_SET MiddleButton t; [button:4] PD_TEST_4_SET Button4 t; [button:5] PD_TEST_4_SET Button5 t; PD_TEST_4_SET
+END
+VER 3 000000000000015E "Rachel Ray" "INV_MISC_QUESTIONMARK"
+#showtooltip wailing arrow
+/use aspect of the wild
+/use 13
+/use 14
+/use wailing arrow
+/use [@player] Sack of Spectral Spiders
+END
+VER 3 0000000000000185 "RXPTargeting" "Ability_eyeoftheowl"
+//RestedXP Guides - current step has no configured targets
+END
+VER 3 00000000000001A3 "s-G" "134400"
+/use item:188152
+END
+VER 3 0000000000000190 "Soarp" "134400"
+/use Soar
+/use Faded Wizard Hat
+/use Coin of Many Faces
+/use Glimmerflies on Strings
+/use Winning Hand
+/use Words of Akunda
+/use World Shrinker
+/use Stylish Black Parasol
+/use Stone Breaker
+/use Azerite Firework Launcher
+END
+VER 3 0000000000000150 "Tracking" "132092"
+/run SetTracking(10, true)
+/run SetTracking(10, false)
+END
+VER 3 00000000000000F7 "WAYDUMP" "236179"
+/way 64.80 33,71 1
+/way 63.21 26,00 2
+/way 61.39 17.61 3
+/way 60.90 37,82 4
+/way 64.80 33.61 5
+END
+VER 3 0000000000000008 "~!umod" "327916"
+/targetlasttarget [@target,dead]
+END
+VER 3 00000000000000EF "~skull" "237272"
+/run SetRaidTarget("target", 8)
+-------------
+/worldmarker 1
+END
+VER 3 0000000000000115 "~~clk qst dlg" "INV_MISC_QUESTIONMARK"
+/script C_GossipInfo.SelectAvailableQuest(2)
+/script CompleteQuest()
+/script GetQuestReward()
+END

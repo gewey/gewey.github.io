@@ -1,0 +1,163 @@
+/* =============================================================================
+   holy_word.css — Gewey G.U.I. TEXT / CONTENT sheet
+   =============================================================================
+   The "what does it say" sheet: fonts, sizes, weights, line-height,
+   letter-spacing, text-transform, italics, wrapping, and ::after label text.
+
+     colours  -> class_colors.css      box layout -> shapers_terrace.css
+     media    -> image_of_medivh.css
+
+   NAMESPACING (see the hosting contract in shapers_terrace.css):
+     .gw-pack   the pack chatroom      .gw-mc     macrocosm.html
+     .gw-macro  generated macro pages  .gw-shell  index.html
+
+   ============================================================================= */
+
+/* =============================================================================
+   0. @FONT-FACE — the Warcraft wordmark font
+   ============================================================================= */
+/* LifeCraft (Eliot Truelove, donationware on dafont) is the fan-recreated
+   "Warcraft" logotype. Family name verified via GDI+ PrivateFontCollection:
+   "LifeCraft". File lives in _fonts/ next to this sheet.
+
+   USE: display/headline duties ONLY — page <h1> and the wolves' .who plates.
+   Never body text: it is caps-only by design (no lowercase glyphs) and reads
+   as SHOUTING in prose. */
+@font-face {
+  font-family: "LifeCraft";
+  src: url("../_fonts/LifeCraft_Font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base type is SCOPED PER PAGE, not global. dynamichead.js injects the site's
+   own stylesheet AFTER these links, so a bare `html, body { font }` here would
+   lose the tie-break to the site's text.css once hosted. A namespaced rule
+   (body.gw-pack etc) out-specifies any bare element rule the site has.
+   Each page declares its own reading voice: */
+
+/* .gw-pack — the chat is monospace; the character cell is the layout unit. */
+body.gw-pack {
+  font-family: "Cascadia Mono", "Consolas", ui-monospace, monospace;
+  line-height: 1.55;
+}
+
+/* .gw-mc — macrocosm reads the shell's body font when hosted inside it. */
+body.gw-mc {
+  margin: 0;
+  font-family: var(--font-body, "Exo 2", sans-serif);
+  line-height: 1.55;
+}
+
+/* .gw-macro — dyslexia-friendly Verdana scale, per the converter's charter. */
+body.gw-macro {
+  font-family: Verdana, Tahoma, sans-serif;
+}
+
+/* =============================================================================
+   1. .gw-pack — the pack chatroom
+   ============================================================================= */
+
+/* ---- Hero column headers ---------------------------------------------------
+   The .who is the wolf's name plate and earns the wordmark font. Size lives in
+   shapers_terrace.css next to the band height; the family and text shaping
+   live here. */
+.gw-pack .col h2 .who {
+  font-family: "LifeCraft", "Cascadia Mono", monospace;
+  font-size: 30px;
+  text-transform: none;          /* glyphs are caps-only; transform would fake it */
+  letter-spacing: .04em;         /* the wordmark already tracks wide */
+}
+
+.gw-pack .col h2 .sub,
+.gw-pack .col h2 .bytes { font-size: 11px; }
+
+/* Column text. pre-wrap + break-word keeps an unbroken post (URLs, hex, log
+   lines) inside a 1/3-width column instead of forcing a horizontal scrollbar. */
+.gw-pack .col pre {
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Header bar. */
+.gw-pack header h1 {
+  font-family: "LifeCraft", "Cascadia Mono", monospace;
+  font-size: 20px;
+  letter-spacing: .05em;
+  text-transform: none;
+}
+.gw-pack header .stamp   { font-size: 12px; }
+.gw-pack header button   { font: inherit; font-size: 12px; }
+.gw-pack header label    { font-size: 12px; }
+.gw-pack header .live    { font-size: 11px; }
+
+/* Text blocks: the placeholders are set apart by voice, not colour alone. */
+.gw-pack .empty { font-style: italic; }
+
+/* =============================================================================
+   2. .gw-mc — macrocosm.html
+   ============================================================================= */
+
+.gw-mc header h1 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+.gw-mc nav button { font-size: 12px; }
+.gw-mc nav button .count { font-size: 10px; }
+.gw-mc .empty          { font-size: 12px; }
+.gw-mc .empty .big     { font-size: 15px; }
+
+/* =============================================================================
+   3. .gw-macro — the readable macro pages (dyslexia-friendly scale)
+   ============================================================================= */
+
+body.gw-macro { font-size: 18px; line-height: 1.6; }
+.gw-macro h1 { font-size: 1.6rem; }
+.gw-macro h2 { font-size: 1.15rem; }
+.gw-macro .meta { font-size: .85rem; }
+.gw-macro .icon { font-size: .8rem; }
+.gw-macro .macro pre   { font-size: 16px; line-height: 1.5; }
+.gw-macro .macro pre code  { font-family: Consolas, "Courier New", monospace; }
+.gw-macro .toc  { font-size: .95rem; }
+
+/* =============================================================================
+   4. .gw-shell — index.html menu label rules
+   =============================================================================
+   HUD menu button labels are NOT in the HTML. They come from `::after` content
+   rules (the original site defines them in its SSOT sheet). A button without a
+   label rule here shows an icon and nothing else — that is why a "new button
+   doesn't work": the markup was fine, the label was never defined.
+
+   These are content/text rules, so they live in the text sheet, not the colour
+   sheet. `content` is words.
+
+   Pick ONE way to label per button:
+     a) an ::after rule like these  <- icon stays, label appended
+     b) text inside the <button>    <- then DO NOT also add an ::after, or the
+                                       label appears twice.
+   ============================================================================= */
+
+/* ---- Live menu buttons — scoped to the shell ------------------------------
+   The site itself defines ::after labels for ITS buttons; scoping under
+   .gw-shell keeps the HUD's labels from fighting the site's own. */
+.gw-shell button[name="iHome"]::after            { content: " Home"; }
+.gw-shell button[name="iAspectOfThePack"]::after { content: " The Pack"; }
+.gw-shell button[name="iMacrocosm"]::after       { content: " Macrocosm"; }
+.gw-shell button[name="iLogWatch"]::after        { content: " Timeline"; }
+.gw-shell button[name="iDelve"]::after           { content: " Delve"; }
+
+/* ---- Placeholders — labelled, not built yet ------------------------------- */
+.gw-shell button[name="iCharacter"]::after { content: " Character"; }
+.gw-shell button[name="iGear"]::after      { content: " Gear"; }
+.gw-shell button[name="iTalents"]::after   { content: " Talents"; }
+.gw-shell button[name="iResearch"]::after  { content: " Research"; }
+.gw-shell button[name="iSettings"]::after  { content: " Settings"; }
+
+/* Long labels on a 15vw sidebar: "Aspect of the Pack" does not fit one line
+   next to a 20px icon, so let labels wrap instead of clipping. Text flow, not
+   box layout — hence this sheet. Scoped to the shell: the site's own .btnbarfull
+   (it uses the class too) must not inherit HUD overrides. */
+.gw-shell .btnbarfull {
+  white-space: normal;
+  text-align: left;
+  line-height: 1.25;
+}

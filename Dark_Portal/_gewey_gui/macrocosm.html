@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Macrocosm &mdash; Gewey G.U.I.</title>
+		<!-- Style lives in the four sheets, scoped under .gw-mc (macrocosm's own
+         namespace). The old inline <style> was sorted there 2026-11-05:
+         type -> holy_word.css, structure -> shapers_terrace.css,
+         paint -> class_colors.css. The --mc-* tokens sit in class_colors.css.
+         dynamichead.js is the ONLINE version per Joey's sitewide contract. -->
+		<link rel="stylesheet" href="_css/shapers_terrace.css" />
+		<link rel="stylesheet" href="_css/holy_word.css" />
+		<link rel="stylesheet" href="_css/image_of_medivh.css" />
+		<link rel="stylesheet" href="_css/class_colors.css" />
+		<script>
+			const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+		<link type="text/css" href="https://wow.zamimg.com/css/universal.css?19" rel="stylesheet" />
+		<script type="text/javascript" src="http://wow.zamimg.com/widgets/newsfeed.js"></script>
+
+		<script src="https://gewey.github.io/js/dynamichead.js" defer></script>
+	</head>
+
+	<body class="gw-mc">
+		<header>
+			<h1>Macrocosm</h1>
+			<span class="sub" id="meta">macro library</span>
+			<span class="spacer"></span>
+			<a href="../macros/README.md" target="_blank">README</a>
+		</header>
+
+		<main>
+			<nav id="sources"></nav>
+			<div class="pane">
+				<iframe id="view" name="view" title="macro source"></iframe>
+				<div class="empty" id="empty">
+					<div class="big">Pick a source</div>
+					<div class="small">Each list is a <code>macros-cache.txt</code> rendered by the Dark_Portal converter.</div>
+				</div>
+			</div>
+		</main>
+
+		<script>
+			// Sources are declared here rather than discovered, because a browser
+			// cannot list a directory over file://. Add an entry when a new cache is
+			// converted. `count` is read from the generated page's meta line at load
+			// time, so the numbers stay honest without hand-editing.
+			//
+			// Scope is deliberately narrow: Joey's own two accounts only.
+			//   retail  -> QUAZZARR (account-wide) + Tandumonium-Ebbeson
+			//   forever -> QUAZZARR (account-wide) + Tandumonium-Hyjal
+			// Alt characters (Tandu, Tangents, Tandora, Reticent) are out of scope;
+			// their renderings are archived in .history/.
+			var SOURCES = [
+				{
+					id: "retail-account",
+					label: "QUAZZARR &mdash; account (retail)",
+					file: "account_QUAZZARR_macros-cache.html",
+				},
+				{
+					id: "retail-hyjal",
+					label: "Tandumonium &mdash; Hyjal (retail)",
+					file: "Tandumonium-Hyjal_macros-cache.html",
+				},
+				{
+					id: "forever-account",
+					label: "QUAZZARR &mdash; account (forever)",
+					file: "account_QUAZZARR_forever_macros-cache.html",
+					pending: "waiting on a Forever macros-cache (currently 0 B)",
+				},
+				{
+					id: "forever-ebbeson",
+					label: "Tandumonium &mdash; Ebbeson (forever)",
+					file: "Tandumonium-Ebbeson_macros-cache.html",
+					pending: "waiting on a Forever macros-cache (currently 0 B)",
+				},
+			];
+
+			var nav = document.getElementById("sources");
+			var view = document.getElementById("view");
+			var empty = document.getElementById("empty");
+			var meta = document.getElementById("meta");
+
+			function select(btn, src) {
+				Array.prototype.forEach.call(nav.children, function (b) {
+					b.classList.remove("active");
+				});
+				btn.classList.add("active");
+				meta.textContent = src.label.replace(/&mdash;/g, "\u2014");
+
+				if (src.pending) {
+					// No generated page yet. Say so in the pane instead of showing a
+					// blank iframe that looks like a bug.
+					view.removeAttribute("src");
+					empty.style.display = "flex";
+					empty.querySelector(".big").textContent = "Not converted yet";
+					empty.querySelector(".small").textContent = src.pending;
+					try {
+						location.hash = src.id;
+					} catch (e) {}
+					return;
+				}
+
+				empty.style.display = "none";
+				view.src = src.file;
+				try {
+					location.hash = src.id;
+				} catch (e) {}
+			}
+
+			SOURCES.forEach(function (src) {
+				// Probe each generated page for its own macro count, so a stale number
+				// never appears here. Missing files just show no count.
+				var btn = document.createElement("button");
+				btn.innerHTML = src.label;
+				var count = document.createElement("span");
+				count.className = "count";
+				btn.appendChild(count);
+				btn.addEventListener("click", function () {
+					select(btn, src);
+				});
+				nav.appendChild(btn);
+
+				if (src.pending) {
+					btn.classList.add("pending");
+					btn.title = src.pending;
+					count.textContent = "\u2014";
+					return;
+				}
+
+				fetch(src.file)
+					.then(function (r) {
+						return r.text();
+					})
+					.then(function (t) {
+						var m = t.match(/(\d+)\s+macros/);
+						if (m) count.textContent = m[1];
+					})
+					.catch(function () {
+						count.textContent = "—";
+					});
+			});
+
+			// Restore the last selection across reloads, else open the first source
+			// that actually has a converted page. Only fall back to a pending source
+			// if it is the one explicitly asked for by the hash.
+			var want = location.hash.replace("#", "");
+			var pickedIndex = -1;
+
+			SOURCES.forEach(function (s, i) {
+				if (!s.pending && pickedIndex === -1) pickedIndex = i;
+				if (want && s.id === want) pickedIndex = i;
+			});
+			if (pickedIndex === -1) pickedIndex = 0;
+
+			select(nav.children[pickedIndex], SOURCES[pickedIndex]);
+		</script>
+	</body>
+</html>

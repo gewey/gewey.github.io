@@ -1,0 +1,168 @@
+VER 3 0100000000000009 "#N*" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cqs
+/use [mod] Feign Death;  Aspect of the Turtle
+/use  15
+/use  Tar Trap
+/use  Foul Belly
+/use  Pileus Delight
+END
+VER 3 0100000000000008 "#N+" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cqs
+/use [mod,pet:Spirit Beast,@player]Spirit Mend(exotic ability);Exhilaration
+END
+VER 3 0100000000000007 "#N-" "134400"
+#showtooltip
+/use [nomod,mounted] Aerial Halt(skyriding)
+/use [mod,@player]Command Pet;[nomod][mod]Disengage
+/use [@player]Implosive Trap
+/use [@player]Roar of Sacrifice
+/use 20th Anniversary Balloon Chest
+/click PetActionButton1
+END
+VER 3 010000000000000C "#N1" "INV_Misc_QuestionMark"
+#showtooltip
+/use [spec:3,nomod]Muzzle;[mod,@mouseover,harm]Tranquilizing Shot;[mod]Tranquilizing Shot;[@mouseover,harm]Counter Shot;Counter Shot
+END
+VER 3 010000000000000B "#N2" "INV_Misc_QuestionMark"
+#showtooltip
+/use [@cursor] binding shot
+END
+VER 3 010000000000000F "#N5" "134400"
+#showtooltip
+/use [@cursor] freezing trap
+/use Stolen Breath
+END
+VER 3 0100000000000037 "#N6" "134400"
+#showtooltip 
+/cast [@cursor] Tar Trap
+END
+VER 3 0100000000000038 "#N8" "134400"
+#showtooltip 
+/cast Survival of the Fittest
+END
+VER 3 0100000000000039 "#N9" "134400"
+#showtooltip 
+/cast Fortitude of the Bear(Command Pet Ability)
+END
+VER 3 0100000000000005 "1" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cqs
+/click [vehicleui]ActionButton1
+/use [nopet,spec:1]Call Pet 1;[pet,spec:1]Bestial Wrath
+/use [nopet,spec:3]Call Pet 3;[pet,spec:3]Coordinated Assault
+/use [pet]Aspect of the Wild
+/use [combat]14
+/use [combat]16
+END
+VER 3 010000000000000E "2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [vehicleui]ActionButton2
+/petattack
+/castsequence [spec:1]reset=1.5 Kill Command, kill command
+/use [spec:2]2
+/use [spec:3]Kill Command
+/click PetActionButton2
+END
+VER 3 0100000000000020 "3" "134400"
+#showtooltip
+/click [vehicleui]ActionButton3
+/click MultiBarLeftButton12 
+/use [spec:1]Cobra Shot
+/use [spec:2]Steady Shot
+/use [spec:3]Raptor Strike
+/click PetActionButton2
+/click PetActionButton9
+END
+VER 3 010000000000001E "4" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/click [vehicleui]ActionButton4
+/use [known: multi-shot ]Multi-Shot; [known: bloodshed] bloodshed;Wing Buffet(Racial)
+/click PetActionButton7
+END
+VER 3 0100000000000023 "5" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use call of the wild
+END
+VER 3 0100000000000011 "6 - Intimidation" "INV_MISC_QUESTIONMARK"
+#showtooltip intimidation
+/tar spirit of xuen
+/petpassive
+/petassist
+/petattack
+/click PetActionButton1
+/use [@mouseover,harm][]Intimidation
+END
+VER 3 010000000000001B "=" "132293"
+#showtooltip
+/use Orophea's Lyre
+/use Feign Death
+/use play dead
+/use Archmage Vargoth's Spare Staff
+END
+VER 3 0100000000000021 "`" "INV_Misc_QuestionMark"
+#showtooltip
+/cqs
+/click MultiBarLeftButton11
+/use [mod]Hunter's Mark; kill shot
+/use Makaris's Satchel of Mines
+END
+VER 3 0100000000000024 "aQ" "134400"
+#showtooltip 
+/use  Call of the Wild
+/use Croak Crock
+/use Desert Flute
+/use Arachnoserum
+/use [@player] item:128794
+END
+VER 3 0100000000000034 "E" "134400"
+#showtooltip 
+/cast Dire Beast
+/use Echoes of Rezan
+END
+VER 3 010000000000003B "Eagle Eye (Ground)" "INV_MISC_QUESTIONMARK"
+#showtooltip Eagle Eye
+/cast [@cursor] Eagle Eye
+END
+VER 3 0100000000000036 "F" "134400"
+#showtooltip 
+/cast Camouflage
+/use Personal Hologram
+/use [@player]Pocket Fel Spreader
+/use Mirror of Envious Dreams
+/use Ring of Duplicity
+/use Mystical Frosh Hat
+/use Scroll of Aeons
+END
+VER 3 010000000000003C "Flare (Ground)" "INV_MISC_QUESTIONMARK"
+#showtooltip Flare
+/cast [@cursor] Flare
+END
+VER 3 010000000000000D "G" "134400"
+#showtooltip
+/cast [@focus,help][@focustarget,help][@target,help][@targettarget,help][@pet,nodead,exists] Misdirection
+/cast [@focus,help][@focustarget,help][@target,help][@targettarget,help][@pet,nodead,exists] Spirit Mend
+/use [@focus] aqir egg cluster
+END
+VER 3 010000000000003E "Implosive Trap (Ground)" "INV_MISC_QUESTIONMARK"
+#showtooltip Implosive Trap
+/cast [@cursor] Implosive Trap
+END
+VER 3 0100000000000010 "Q" "INV_MISC_QUESTIONMARK"
+#showtooltip Barbed Shot
+/cqs
+/use Barbed Shot
+END
+VER 3 0100000000000025 "R" "134400"
+#showtooltip 
+/use Bursting shot
+END
+VER 3 0100000000000035 "T" "134400"
+#showtooltip 
+/cast [@cursor] Implosive Trap
+END
+VER 3 0100000000000033 "Z" "134400"
+#showtooltip 
+/cast [@pet,dead][mod]Revive Pet; Mend Pet
+END

@@ -1,0 +1,232 @@
+/* =============================================================================
+   shapers_terrace.css — Gewey G.U.I. STRUCTURE sheet
+   =============================================================================
+   The "where is it" sheet: layout, box model, flex, borders' width/style,
+   overflow, positioning, cursors. NO paint (class_colors.css), NO type
+   (holy_word.css), NO media (image_of_medivh.css).
+
+   HOSTING CONTRACT
+   ----------------
+   These four sheets are destined for gewey.github.io via dynamichead.js. The
+   moment they are injected sitewide, every selector collides with every other
+   page in the sitemap. So the namespace is the page, and it is load-bearing:
+
+     .gw          anything that applies to EVERY Gewey page (rare, deliberate)
+     .gw-pack     barrens_chat/__Aspect_of_the_Pack.html  (the pack chatroom)
+     .gw-mc       macrocosm.html                          (the macro library)
+     .gw-macro    _macro_to_html.ps1 generated pages      (readable macros)
+
+   RULE: a page's rules are scoped under its page class. Never emit a bare
+   `h2 { }` or bare `.col { }` from a hosted sheet — some other page in the
+   sitemap owns that element differently. Bare element selectors here are ONLY
+   the four hosts' shared base (box-sizing, body flex) and they are deliberately
+   minimal.
+
+   LOAD ORDER: shapers_terrace -> holy_word -> image_of_medivh -> class_colors
+   (colour last, so it always outranks structure).
+
+   Pages link these sheets AND load the online dynamichead.js; until the sheets
+   are added to dynamichead.js, the local links are the only source.
+   ============================================================================= */
+
+/* =============================================================================
+   HOST BASE — deliberately tiny, shared by every Gewey page
+   ============================================================================= */
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+/* =============================================================================
+   .gw-pack — barrens_chat/__Aspect_of_the_Pack.html (the pack chatroom)
+   ============================================================================= */
+
+body.gw-pack { display: flex; flex-direction: column; }
+
+/* ---- Header bar ---------------------------------------------------------- */
+.gw-pack header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 16px; border-bottom: 1px solid var(--edge);
+  flex: 0 0 auto;
+}
+.gw-pack header h1 { margin: 0; }
+.gw-pack header .spacer { margin-left: auto; }
+.gw-pack header button {
+  border: 1px solid var(--edge);
+  border-radius: 5px; padding: 4px 10px; cursor: pointer;
+}
+.gw-pack header label { cursor: pointer; }
+
+/* ---- Three-column chat body — 3 x 1/3 width, each with its own scroller --- */
+.gw-pack main { flex: 1 1 auto; display: flex; min-height: 0; }
+
+.gw-pack .col {
+  flex: 0 0 33.3333%; max-width: 33.3333%;
+  display: flex; flex-direction: column; min-width: 0;
+  border-right: 1px solid var(--edge);
+}
+.gw-pack .col:last-child { border-right: 0; }
+
+/* ---- Hero column bands ----------------------------------------------------
+   Each column opens with a tall band: a landscape art banner with the wolf's
+   name over it. The band is the positioning context for the art stack:
+     img.art z=0 (image_of_medivh.css)
+     ::after z=1 (scrim, class_colors.css)
+     text    z=2 (below)
+   DO NOT FLATTEN the z order — at equal z the scrim paints over the text.
+   Height is a token so art crop and band stay in register. */
+:root { --hero-band-h: 168px; }
+
+.gw-pack .col h2 {
+  position: relative;
+  height: var(--hero-band-h);
+  margin: 0; padding: 10px 16px;
+  border-bottom: 1px solid var(--edge);
+  display: flex; align-items: flex-end; gap: 10px;  /* name sits low, over art */
+  overflow: hidden;
+}
+.gw-pack .col h2 .who   { font-size: 30px; margin: 0; z-index: 2; }
+.gw-pack .col h2 .sub   { z-index: 2; }
+.gw-pack .col h2 .bytes { margin-left: auto; z-index: 2; }
+
+.gw-pack .col pre {
+  flex: 1 1 auto; overflow: auto; margin: 0; padding: 14px 16px;
+}
+
+/* Per-wolf reading rail: width/style here, the colour as border-left-color in
+   class_colors.css. The colourless shorthand falls back to currentColor. */
+.gw-pack .col.faust  pre { border-left: 2px solid; }
+.gw-pack .col.dorian pre { border-left: 2px solid; }
+.gw-pack .col.joey   pre { border-left: 2px solid; }
+
+/* Fresh-message pill: shape only. Tint/decay order lives in class_colors.css. */
+.gw-pack .fresh { border-radius: 3px; }
+
+/* Live indicator — _js/__Furious_Howl.js sets `className = "live " + state`,
+   so .on/.warn are SIBLINGS of .live, never descendants. */
+.gw-pack header .live {
+  display: inline-flex;
+  align-items: center; gap: 6px;
+}
+.gw-pack header .live .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+}
+
+/* =============================================================================
+   .gw-mc — macrocosm.html (the macro library pane)
+   ============================================================================= */
+
+body.gw-mc { display: flex; flex-direction: column; overflow: hidden; }
+
+/* ---- Header bar ---------------------------------------------------------- */
+.gw-mc header {
+  flex: 0 0 auto;
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--mc-edge);
+}
+.gw-mc header h1 { margin: 0; }
+.gw-mc header .sub { font-size: 11px; }
+.gw-mc header .spacer { margin-left: auto; }
+.gw-mc header a {
+  font-size: 11px; text-decoration: none;
+  border: 1px solid var(--mc-edge); border-radius: 4px;
+  padding: 3px 8px;
+}
+
+/* ---- Main split: rail + pane --------------------------------------------- */
+.gw-mc main { flex: 1 1 auto; display: flex; min-height: 0; }
+
+.gw-mc nav {
+  flex: 0 0 200px;
+  overflow-y: auto;
+  padding: 10px;
+  border-right: 1px solid var(--mc-edge);
+  display: flex; flex-direction: column; gap: 5px;
+}
+
+.gw-mc nav button {
+  width: 100%; text-align: left;
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 7px 9px;
+  font-family: inherit;
+  font-size: 12px;
+  border: 1px solid var(--mc-edge);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.gw-mc nav button .count { margin-left: auto; font-size: 10px; }
+
+/* Source pane: the iframe that shows a converted cache. */
+.gw-mc .pane { flex: 1 1 auto; min-width: 0; position: relative; }
+.gw-mc .pane iframe {
+  width: 100%; height: 100%;
+  border: 0; display: block;
+}
+
+/* Empty-state overlay. display:flex toggled by macrocosm's inline JS; the
+   rule keeps the flex shape here so the toggle never fights layout. */
+.gw-mc .empty {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  font-size: 12px; text-align: center;
+}
+.gw-mc .empty .big { font-size: 15px; }
+.gw-mc .empty .small { max-width: 34ch; line-height: 1.5; }
+
+/* A source with no generated page yet: clickable (pane explains itself) but
+   visibly "not ready" rather than broken. */
+.gw-mc nav button.pending { opacity: .55; border-style: dashed; cursor: help; }
+.gw-mc nav button.pending:hover { transform: none; border-color: var(--mc-edge); }
+
+/* =============================================================================
+   .gw-macro — _macro_to_html.ps1 generated pages (the readable macros)
+   The converter emits: body > h1, p.meta, div.toc, div.macro > h2 + pre > code
+   ============================================================================= */
+
+body.gw-macro { max-width: 900px; margin: 2rem auto; padding: 0 1.2rem; }
+
+.gw-macro .meta { margin-bottom: 1rem; }
+.gw-macro .macro {
+  padding: 0.8rem 1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  margin: 0.9rem 0;
+}
+.gw-macro .macro h2 { margin: 0 0 0.3rem; }
+.gw-macro .macro pre {
+  padding: 0.7rem 0.9rem;
+  border-left: 4px solid;
+  overflow-x: auto;
+  margin: 0.4rem 0;
+}
+.gw-macro .toc { columns: 2; }
+
+/* =============================================================================
+   HUD SHELL (.gw-shell) — index.html
+   The shell lives inside the hosted site's layout system, so most of its
+   geometry comes from the injected site CSS. Only the piece that lived inline
+   is claimed here, re-scoped.
+   ============================================================================= */
+
+.gw-shell .menuPlaceholder button.btnbarfull {
+  cursor: default;       /* disabled reads as "not yet", not as broken */
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------------------
+   SHEET CONTRACT — keep the split
+   -----------------------------------------------------------------------------
+   Four files divide by QUESTION, not by component:
+
+     shapers_terrace.css   where is it       layout, box model, flex, overflow
+     holy_word.css         what does it say  font, size, tracking, wrap, labels
+     image_of_medivh.css   what does it show img/video, backgrounds-as-imagery
+     class_colors.css      what colour is it paint only, always loaded last
+
+   A mixed rule is TWO partial rules in two sheets — never dumped whole into
+   one. A new page gets a new namespace class before its first rule is written.
+   Never add a <style> block to a page: inline is where rules hide.
+   -------------------------------------------------------------------------- */

@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Delve — WoW: Forever log residue, visualized</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#010308;--panel:rgba(8,14,26,.82);--line:rgba(64,255,180,.16);
+ --ink:#e8fff4;--mut:#6f8f86;--green:#00ff9d;--mag:#ff3ec8;--cyan:#37e6ff;
+ --amber:#ffc46b;--red:#ff5470;
+ --glow:0 0 12px rgba(0,255,157,.55);--glowm:0 0 12px rgba(255,62,200,.5)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden;
+ background:linear-gradient(180deg,#010308 0%,#020812 55%,#04101e 100%)}
+.sky::before{content:'';position:absolute;inset:0;opacity:.8;background-image:
+ radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 34% 9%,rgba(255,255,255,.6) 0,transparent 100%),
+ radial-gradient(1px 1px at 58% 22%,rgba(255,255,255,.9) 0,transparent 100%),
+ radial-gradient(1px 1px at 77% 7%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 91% 16%,rgba(255,255,255,.5) 0,transparent 100%),
+ radial-gradient(1px 1px at 66% 12%,rgba(255,255,255,.8) 0,transparent 100%);
+ animation:tw 4.5s ease-in-out infinite}
+.band{position:fixed;bottom:8vh;width:70vw;height:46vh;z-index:0;
+ filter:blur(60px);mix-blend-mode:screen;border-radius:50%;opacity:.5;
+ transform-origin:bottom center}
+.b1{left:-18vw;background:linear-gradient(0deg,transparent 0%,
+ rgba(0,220,120,.16) 22%,rgba(0,255,160,.4) 48%,rgba(0,230,130,.18) 66%,
+ transparent 100%);animation:au1 11s ease-in-out infinite}
+.b2{right:-22vw;background:linear-gradient(0deg,transparent 0%,
+ rgba(150,0,220,.13) 18%,rgba(255,62,200,.3) 44%,rgba(120,80,255,.16) 62%,
+ transparent 100%);animation:au2 14s ease-in-out infinite}
+.b3{left:26vw;bottom:2vh;width:46vw;height:36vh;background:linear-gradient(
+ 0deg,transparent 0%,rgba(55,230,255,.12) 30%,rgba(55,230,255,.26) 52%,
+ transparent 100%);animation:au3 17s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes au1{0%,100%{transform:rotate(-4deg) translateY(3vh)}
+ 50%{transform:rotate(5deg) translateY(-3vh)}}
+@keyframes au2{0%,100%{transform:rotate(6deg) translateY(2vh)}
+ 50%{transform:rotate(-5deg) translateY(-4vh)}}
+@keyframes au3{0%,100%{transform:translateX(-4vw)}50%{transform:translateX(5vw)}}
+@media (prefers-reduced-motion:reduce){.band,.sky::before{animation:none}}
+
+.wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;
+ padding:26px 18px 60px}
+header.hero h1{font-size:2rem;letter-spacing:.08em;color:var(--green);
+ text-shadow:var(--glow)}
+header.hero .sub{color:var(--mut);margin-top:6px;line-height:1.6}
+header.hero .sub b{color:var(--ink)}
+nav.crumb{margin-top:10px;font-size:.85rem}
+nav.crumb a{color:var(--cyan);text-decoration:none;border:1px solid
+ rgba(55,230,255,.3);border-radius:8px;padding:4px 12px;margin:0 8px 6px 0;
+ display:inline-block}
+nav.crumb a:hover{background:rgba(55,230,255,.1)}
+h2.sec{margin:34px 0 12px;font-size:1.05rem;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);
+ padding-bottom:6px}
+h2.sec small{color:var(--mut);text-transform:none;letter-spacing:0;
+ font-weight:400;margin-left:8px}
+.grid{display:grid;gap:10px}
+.vrow{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+ padding:12px 14px;backdrop-filter:blur(4px)}
+.card .k{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut)}
+.card .v{font-size:1.25rem;font-weight:800;margin-top:4px}
+.card .s{font-size:.75rem;color:var(--mut);margin-top:2px;line-height:1.5}
+.card.g .v{color:var(--green);text-shadow:var(--glow)}
+.card.m .v{color:var(--mag);text-shadow:var(--glowm)}
+.card.c .v{color:var(--cyan)}
+.card.a .v{color:var(--amber)}
+.card.r .v{color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px dashed
+ rgba(64,255,180,.1)}
+th{color:var(--mut);font-weight:600;font-size:.7rem;text-transform:uppercase;
+ letter-spacing:.1em}
+td.num{text-align:right;font-family:Consolas,ui-monospace,monospace}
+tbody tr:hover{background:rgba(0,255,157,.04)}
+.donut{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.legend{display:flex;gap:14px;margin-top:10px;font-size:.75rem;color:var(--mut);
+ flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;
+ margin-right:5px}
+.bars{display:flex;gap:8px;align-items:flex-end;height:150px;padding:8px;
+ background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.bars .b{flex:1;background:linear-gradient(180deg,var(--green),
+ rgba(0,255,157,.25));border-radius:4px 4px 0 0;position:relative;min-height:2px}
+.bars .b span{position:absolute;bottom:-18px;left:0;right:0;text-align:center;
+ font-size:.62rem;color:var(--mut)}
+.bars .b em{position:absolute;top:-16px;left:0;right:0;text-align:center;
+ font-size:.62rem;color:var(--green);font-style:normal}
+.barswrap{padding-bottom:22px}
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ color:var(--cyan)}
+.mile .t{font-weight:700;margin:3px 0 4px}
+.mile .d{color:var(--mut);font-size:.78rem;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.72rem;color:var(--ink);background:rgba(232,255,244,.05);
+ border:1px solid var(--line);border-radius:8px;padding:4px 10px;
+ font-family:Consolas,ui-monospace,monospace}
+.chip b{color:var(--mag)}
+.frac{border-left:3px solid var(--red)}
+.find{border-left:3px solid var(--cyan)}
+.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+footer{margin-top:44px;color:var(--mut);font-size:.75rem;line-height:1.8;
+ border-top:1px solid var(--line);padding-top:14px}
+footer a{color:var(--cyan);text-decoration:none}
+.hl{color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="band b1"></div><div class="band b2"></div>
+<div class="band b3"></div>
+<div class="wrap">
+<header class="hero">
+ <h1>THE DELVE</h1>
+ <div class="sub">Everything the <b>wow:forever</b> logs remember — sessions,
+ hotfixes, world loads, caches, fractures and <b class="hl">milestones</b>,
+ distilled from <span id="d-files">—</span> log files and the Timeline
+ engine's ledger. Built read-only. Law 7: nothing deleted, everything archived.</div>
+ <nav class="crumb">
+  <a href="index.html">← Gewey G.U.I. shell</a>
+  <a href="Timeline.html">⏱ Timeline telemetry</a>
+  <a href="#sessions">sessions</a><a href="#hotfix">hotfixes</a>
+  <a href="#milestones">milestones</a><a href="#atlas">log atlas</a>
+  <a href="#residue">wtf residue</a><a href="#findings">findings</a>
+ </nav>
+</header>
+
+<h2 class="sec" id="vitals">Station Vitals <small>gx.log · cpu.log · Connection.log</small></h2>
+<div class="grid vrow" id="vitals"></div>
+
+<h2 class="sec" id="sessions">Play Sessions <small>Movie.log — every open→shutdown pair</small></h2>
+<div class="barswrap"><div class="bars" id="sbars"></div></div>
+<div class="legend" id="slegend"></div>
+<div class="card" style="margin-top:14px;overflow:auto"><table>
+ <thead><tr><th>start</th><th>end</th><th>minutes</th></tr></thead>
+ <tbody id="srows"></tbody></table></div>
+
+<h2 class="sec" id="hotfix">Hotfix Firehose <small>Hotfix.log — the server's data stream vs the client's validator</small></h2>
+<div class="grid vrow" id="hfvitals"></div>
+<div class="card" style="margin-top:10px"><div class="donut">
+ <svg id="hfdonut" width="150" height="150" viewBox="0 0 150 150"></svg>
+ <div class="legend" id="hflegend" style="flex-direction:column;gap:6px"></div>
+</div>
+<div class="k" style="margin-top:12px">most-rejected tables (INVALID hits, whole file)</div>
+<div class="chips" id="hftables" style="margin-top:8px"></div>
+<div class="k" style="margin-top:12px">tail of the stream</div>
+<pre id="hftail" style="margin-top:6px;font-size:.7rem;color:var(--mut);
+ white-space:pre-wrap;word-break:break-all"></pre></div>
+
+<h2 class="sec" id="loads">World Loads <small>Client.log — bytes streamed into map 2991</small></h2>
+<div class="card" style="overflow:auto"><table>
+ <thead><tr><th>when</th><th>files read</th><th>bytes</th><th>elapsed</th><th>throughput</th></tr></thead>
+ <tbody id="lrows"></tbody></table></div>
+
+<h2 class="sec" id="milestones">Milestones <small>in-game micro accomplishments, from the Timeline ledger</small></h2>
+<div class="grid miles" id="miles"></div>
+
+<h2 class="sec" id="census">Event Census <small>Timeline data\events.jsonl — all-time</small></h2>
+<div class="grid two">
+ <div class="card"><div class="k">kinds on record</div>
+  <div class="chips" id="kinds" style="margin-top:8px"></div></div>
+ <div class="card"><div class="k">events per day</div>
+  <div class="bars" id="dbars" style="height:110px"></div></div>
+</div>
+
+<h2 class="sec" id="atlas">Log Atlas <small>every file under Logs\ — size, lifespan, purpose</small></h2>
+<div class="card" style="overflow:auto"><table>
+ <thead><tr><th>file</th><th>bytes</th><th>first line</th><th>last line</th><th>purpose</th></tr></thead>
+ <tbody id="atlas"></tbody></table></div>
+
+<h2 class="sec" id="residue">WTF Residue <small>the residue of playing: caches, SVDs, screenshots, config story</small></h2>
+<div class="grid two" id="residue"></div>
+
+<h2 class="sec" id="findings">Findings & Fractures <small>what the delve learned</small></h2>
+<div class="grid two" id="findings"></div>
+
+<footer id="foot"></footer>
+</div>
+<script>window.DELVE_DATA={"version": "1.0.0", "generated": "2026-11-06 17:18:14", "facts": {"gpu": "NVIDIA GeForce RTX 4060 Ti 16GB", "driver": "617.42 (r617_07)", "d3d12_ms": "581.0", "cpu": "AMD Ryzen 5 3600 6-Core Processor", "ram": "31.9 GB", "board": "PRIME X470-PRO (ASUSTeK COMPUTER INC.)", "displays": ["V277U 2560x1440", "V246HL 1920x1080", "32PFL6452/F7 1920x1080"], "gpu_reports": [["1.5", "15.0", "10.1", "2.60", "52"], ["2.8", "15.0", "18.5", "2.79", "72"], ["2.8", "15.0", "18.6", "1.20", "55"]], "loads": [{"ts": "11-06 16:47:38", "files": 998, "bytes": 764712343, "ms": 2092, "mbps": 348.607}, {"ts": "11-06 16:53:43", "files": 1735, "bytes": 455395308, "ms": 2150, "mbps": 201.999}, {"ts": "11-06 16:47:40", "files": 138, "bytes": 215603684, "ms": 2227, "mbps": 92.329}, {"ts": "11-06 16:47:44", "files": 2228, "bytes": 236391253, "ms": 3974, "mbps": 56.729}, {"ts": "11-06 16:53:45", "files": 143, "bytes": 76177650, "ms": 1318, "mbps": 55.12}, {"ts": "11-06 16:47:47", "files": 93, "bytes": 24525660, "ms": 3455, "mbps": 6.77}], "player_guid": "Player-6921-002BA20F", "map_id": "2991", "realm": "CAMWOW US1 Realm 3 PvE", "realm_build": "1.60.1.70399", "bnet_account": "QUAZZARR"}, "sessions": [{"start": "2026-10-31 01:57", "end": "2026-10-31 04:01", "minutes": 124}, {"start": "2026-11-05 01:39", "end": "2026-11-05 02:05", "minutes": 26}, {"start": "2026-11-05 02:05", "end": "2026-11-05 05:39", "minutes": 214}, {"start": "2026-11-05 08:16", "end": "2026-11-05 08:29", "minutes": 13}, {"start": "2026-11-06 14:42", "end": "2026-11-06 15:46", "minutes": 64}, {"start": "2026-11-06 15:46", "end": "2026-11-06 16:05", "minutes": 19}, {"start": "2026-11-06 16:09", "end": "2026-11-06 16:44", "minutes": 35}, {"start": "2026-11-06 16:46", "end": "2026-11-06 16:58", "minutes": 13}], "minutes_total": 508, "hotfix": {"valid": 26750, "invalid": 17785, "deleted": 11915, "lines": 56450, "top_tables": [{"table": "TransmogHoliday", "count": 4534}, {"table": "ModifiedCraftingItem", "count": 4534}, {"table": "TradeSkillItem", "count": 4391}, {"table": "CreatureDifficulty", "count": 963}, {"table": "ItemSearchName", "count": 856}, {"table": "QuestV2CliTask", "count": 532}, {"table": "Creature", "count": 319}, {"table": "SpellScript", "count": 262}, {"table": "QuestPOIPoint", "count": 246}, {"table": "ItemSparse", "count": 241}, {"table": "Item", "count": 234}, {"table": "GameObjects", "count": 139}], "tail": ["11/6 16:49:53.296  \t17063862 Table ItemSearchName RecID 286646 VALIDATION_RESULT_INVALID", "11/6 16:49:53.296  \t17063862 Table Item RecID 286646 VALIDATION_RESULT_VALID", "11/6 16:53:46.194  \tDBReply Table ItemSparse RecID 244465 VALIDATION_RESULT_DELETE", "11/6 16:58:48.156  ---- Shutdown ----"]}, "milestones": [{"ts": "2026-10-31 01:57:18", "src": "Logs/Movie.log", "kind": "milestone", "sev": "good", "t": "First Light - wow:forever's maiden boot", "d": "Opening cinematic queued (movie ID 1098) and played at 1080P with subtitles - Movie.log's very first line."}, {"ts": "2026-10-31 02:01:26", "src": "Logs/AccountData.log", "kind": "milestone", "sev": "good", "t": "Account data initialized - QUAZZARR baseline", "d": "AccountData_Initialize: Account Wide - the account-wide cache's first sync on this install."}, {"ts": "2026-10-31 02:06:53", "src": "Screenshots", "kind": "milestone", "sev": "good", "t": "First screenshot taken", "d": "WoWScrnShot_103126_020653.jpg (603.6 KB) - still the only screenshot on record."}, {"ts": "2026-10-31 04:01:13", "src": "Logs/Movie.log", "kind": "milestone", "sev": "good", "t": "Maiden session closed", "d": "2h 04m from first boot to MoviePlayer shutdown - the first play session ever logged on wow:forever."}, {"ts": "2026-11-05 01:39:19", "src": "Logs/Movie.log", "kind": "milestone", "sev": "good", "t": "November play begins", "d": "Movie.log re-opened for append - first session of the 11/05 play day."}, {"ts": "2026-11-05 02:25:27", "src": "Logs/EditMode.log", "kind": "milestone", "sev": "info", "t": "Fresh slate - Edit Mode empty", "d": "Character and Account Edit Mode data loaded at buffSize = 0 - no layout had ever been saved here."}, {"ts": "2026-11-05 02:31:07", "src": "Logs/EditMode.log", "kind": "milestone", "sev": "good", "t": "Layout 'GEWEY!' saved in-game", "d": "Account Edit Mode Data Saving (2771 B) carrying layout name GEWEY! - Joey's initials forged into the HUD. Re-saved at every clean exit since."}, {"ts": "2026-11-05 05:39:27", "src": "Logs/Movie.log", "kind": "milestone", "sev": "good", "t": "Longest session on record", "d": "02:05:17 to 05:39:27 - 3h 34m in one sitting."}, {"ts": "2026-11-05 08:29:31", "src": "WTF", "kind": "milestone", "sev": "info", "t": "First cache rotation", "d": "chat-cache.txt and config-cache.wtf rolled to .old on a clean exit - GEWEY! layout persisted at logout."}, {"ts": "2026-11-06 14:42:48", "src": "Logs/Movie.log", "kind": "milestone", "sev": "good", "t": "Triple-session day", "d": "63m + 19m + 35m across 14:42-16:44 - the busiest play day so far."}, {"ts": "2026-11-06 16:44:55", "src": "WTF/Config.wtf", "kind": "milestone", "sev": "good", "t": "RAID tier cranked: 6 to 9", "d": "RAIDgraphicsQuality 6 to 9; RAIDfarclip 7000 to 10000, groundEffectDensity 48 to 256, raidGraphicsParticleDensity 3 to 4, vsync off (vs the 11/05 02:30 snapshot; world graphicsQuality was already 9)."}, {"ts": "2026-11-06 16:46:06", "src": "Logs/gx.log", "kind": "milestone", "sev": "good", "t": "Clean reboot - D3D12/SM6 device in 581 ms", "d": "Wow.exe back up on the RTX 4060 Ti 16 GB (driver 617.42) - zero device errors across every session on record."}, {"ts": "2026-11-06 16:47:38", "src": "Logs/Client.log", "kind": "milestone", "sev": "good", "t": "Fastest world load on record", "d": "764,712,343 bytes streamed in 2,092 ms - 348.6 MB/s - into map 2991."}, {"ts": "2026-11-06 16:47:47", "src": "Logs/Client.log", "kind": "milestone", "sev": "good", "t": "Tandumonium-Ebbeson entered the world", "d": "Active Player Created - Player-6921-002BA20F on realm 91, CAMWOW US1 Realm 3 PvE."}, {"ts": "2026-11-06 16:53:41", "src": "WTF", "kind": "milestone", "sev": "info", "t": "Addon suite: 13 add-ons committed", "d": "Baganator, DialogueUI, EUIStandaloneForeverEssentials, ForeverQuestTint, RaiderIO, the Spoken family, Syndicator, WhatsTraining - account SVDs saved mid-session."}, {"ts": "2026-11-06 16:53:41", "src": "Logs/Client.log", "kind": "milestone", "sev": "info", "t": "Second world load - 202 MB/s", "d": "455,395,308 bytes in 2,150 ms back into map 2991."}, {"ts": "2026-11-06 16:56:09", "src": "Logs/EditMode.log", "kind": "milestone", "sev": "good", "t": "GEWEY! persisted at clean logout", "d": "Fourth Edit Mode save; character list synced and voice proxy shut down clean."}, {"ts": "2026-11-06 16:58:27", "src": "Logs/Connection.log", "kind": "milestone", "sev": "good", "t": "Realm re-auth OK - CAMWOW US1 Realm 3 PvE", "d": "Realm authentication completed (ERROR_OK) from the character-select screen; realm build 1.60.1.70399 vs client 1.60.1.70790."}], "census": {"total": 598, "kinds": {"session": 25, "milestone": 18, "account": 200, "screenshot": 1, "editmode": 14, "voice": 6, "addon_error": 1, "quest": 2, "system": 6, "perf": 1, "hotfix": 13, "tree": 4, "config": 4, "client": 303}, "per_day": {"2026-10-31": 25, "2026-11-05": 118, "2026-11-06": 455}, "first": "2026-10-31 01:57:18", "last": "2026-11-06 17:18:14"}, "atlas": [{"file": "AccountData.log", "bytes": 70886, "mtime": "2026-11-06 16:58", "first": "2026-10-31 02:01", "last": "2026-11-06 16:58", "purpose": "account/character data sync ledger"}, {"file": "Aurora.log", "bytes": 158, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:56", "purpose": "Battle.net session lifecycle"}, {"file": "Client.log", "bytes": 3051, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "client boot, world loads, active-player lifecycle"}, {"file": "ComponentRequests.log", "bytes": 82, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "component request channel"}, {"file": "Connection.log", "bytes": 40340, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:45", "last": "2026-11-06 16:58", "purpose": "Battle.net login + realm connections"}, {"file": "cpu.log", "bytes": 324, "mtime": "2026-11-06 16:45", "first": "2026-11-06 16:45", "last": "2026-11-06 16:45", "purpose": "CPU identity snapshot"}, {"file": "DeveloperLog.log", "bytes": 80, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "developer channel"}, {"file": "EditMode.log", "bytes": 18682, "mtime": "2026-11-06 16:56", "first": "2026-11-05 02:25", "last": "2026-11-06 16:56", "purpose": "Edit Mode layout save/load (the GEWEY! ledger)"}, {"file": "FrameXML.log", "bytes": 145, "mtime": "2026-11-06 16:53", "first": "2026-11-06 16:53", "last": "2026-11-06 16:53", "purpose": "Lua frame errors (addon fractures surface here)"}, {"file": "General.log", "bytes": 53935, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:45", "last": "2026-11-06 16:58", "purpose": "general client chatter incl. Lua resource limits"}, {"file": "gx.log", "bytes": 3850, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "GPU/graphics device identity + periodic VRAM/temp reports"}, {"file": "Hotfix.log", "bytes": 4886892, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "the server hotfix validation firehose"}, {"file": "Housing.log", "bytes": 0, "mtime": "2026-11-06 16:45", "first": "", "last": "", "purpose": "engine scaffolding — housing is NOT live in wowf"}, {"file": "Model.log", "bytes": 144, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "M2 model system lifecycle"}, {"file": "Movie.log", "bytes": 2988, "mtime": "2026-11-06 16:58", "first": "2026-10-31 01:57", "last": "2026-11-06 16:58", "purpose": "movie player — also the play-session ledger"}, {"file": "Professions.log", "bytes": 0, "mtime": "2026-11-06 16:45", "first": "", "last": "", "purpose": "profession channel (idle so far)"}, {"file": "QuestCache.log", "bytes": 2533, "mtime": "2026-11-06 16:56", "first": "", "last": "2026-11-06 16:56", "purpose": "quest cache loads/denies/checkpoints"}, {"file": "Sound.log", "bytes": 8149, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:46", "last": "2026-11-06 16:58", "purpose": "audio device + user sound settings report"}, {"file": "Tact.log", "bytes": 14469, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:45", "last": "2026-11-06 16:58", "purpose": "CASC archive compaction ledger"}, {"file": "TestSuite.log", "bytes": 0, "mtime": "2026-11-06 16:45", "first": "", "last": "", "purpose": "test suite channel (idle so far)"}, {"file": "threadpool.log", "bytes": 2002, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:45", "last": "2026-11-06 16:58", "purpose": "worker thread pool lifecycle"}, {"file": "Voice.log", "bytes": 687, "mtime": "2026-11-06 16:56", "first": "2026-11-06 16:47", "last": "2026-11-06 16:56", "purpose": "voice chat proxy lifecycle"}, {"file": "WowConnection.log", "bytes": 1000, "mtime": "2026-11-06 16:58", "first": "2026-11-06 16:45", "last": "2026-11-06 16:58", "purpose": "low-level network transport"}], "residue": {"cfg": {"current_count": 126, "snapshot_count": 107, "changed": 28, "added": 24, "removed": 5, "focus": [["RAIDgraphicsQuality", "6", "9"], ["RAIDfarclip", "7000", "10000"], ["groundEffectDensity", "48", "256"], ["raidGraphicsSSAO", "3", "4"], ["raidGraphicsShadowQuality", "4", "5"], ["raidGraphicsComputeEffects", "3", "4"]], "headline": "RAID tier 6 → 9", "cur_quality": "9", "snapshot_quality": "9"}, "addons": ["Baganator", "DialogueUI", "EUIStandaloneForeverEssentials", "ForeverQuestTint", "RaiderIO", "Spoken", "SpokenContributions", "Spoken_Bosses", "Spoken_Places", "Spoken_Quests", "Spoken_Readables", "Syndicator", "WhatsTraining"], "svds": [{"name": "Baganator.lua", "bytes": 5301, "mtime": "2026-11-06 16:56"}, {"name": "Blizzard_CombatLog.lua", "bytes": 9543, "mtime": "2026-11-06 16:56"}, {"name": "Blizzard_GamepadSmartNavigation.lua", "bytes": 37, "mtime": "2026-11-06 16:58"}, {"name": "Blizzard_SavedSets.lua", "bytes": 34, "mtime": "2026-11-06 16:58"}, {"name": "Blizzard_SettingsDefinitions_Shared.lua", "bytes": 26, "mtime": "2026-11-06 16:58"}, {"name": "Blizzard_SharedMapDataProviders.lua", "bytes": 39, "mtime": "2026-11-06 16:56"}, {"name": "DialogueUI.lua", "bytes": 2545, "mtime": "2026-11-06 16:56"}, {"name": "EUIStandaloneForeverEssentials.lua", "bytes": 1519, "mtime": "2026-11-06 16:56"}, {"name": "ForeverQuestTint.lua", "bytes": 614, "mtime": "2026-11-06 16:56"}, {"name": "RaiderIO.lua", "bytes": 2205, "mtime": "2026-11-06 16:56"}, {"name": "Spoken.lua", "bytes": 1870, "mtime": "2026-11-06 16:56"}, {"name": "Spoken_Bosses.lua", "bytes": 124, "mtime": "2026-11-06 16:56"}, {"name": "Spoken_Places.lua", "bytes": 540, "mtime": "2026-11-06 16:56"}, {"name": "Spoken_Quests.lua", "bytes": 341, "mtime": "2026-11-06 16:56"}, {"name": "Spoken_Readables.lua", "bytes": 453, "mtime": "2026-11-06 16:56"}, {"name": "SpokenContributions.lua", "bytes": 71, "mtime": "2026-11-06 16:56"}, {"name": "Syndicator.lua", "bytes": 5569, "mtime": "2026-11-06 16:56"}, {"name": "WhatsTraining.lua", "bytes": 236, "mtime": "2026-11-06 16:56"}], "char_files": [{"name": "AddOns.txt", "bytes": 185}, {"name": "cache.md5", "bytes": 240}, {"name": "chat-cache.old", "bytes": 4525}, {"name": "chat-cache.txt", "bytes": 4525}, {"name": "click-bindings-cache.txt", "bytes": 4}, {"name": "config-cache.old", "bytes": 661}, {"name": "config-cache.wtf", "bytes": 656}, {"name": "edit-mode-cache-character.txt", "bytes": 27}, {"name": "flagged-cache-character.txt", "bytes": 2}, {"name": "layout-local.txt", "bytes": 11}, {"name": "tts-cache-character.txt", "bytes": 48}], "chat": {"channels": ["1", "2", "22", "42", "46"], "windows": [{"n": "1", "name": "General", "shown": true}, {"n": "2", "name": "Combat Log", "shown": false}, {"n": "3", "name": "Voice", "shown": false}, {"n": "4", "name": "", "shown": false}, {"n": "5", "name": "", "shown": false}, {"n": "6", "name": "", "shown": false}, {"n": "7", "name": "", "shown": false}, {"n": "8", "name": "", "shown": false}, {"n": "9", "name": "", "shown": false}, {"n": "10", "name": "", "shown": false}], "shown": 1}, "editmode": {"saves": [{"ts": "2026-11-05 02:31:07", "kind": "account", "bytes": 2771}, {"ts": "2026-11-05 02:31:07", "kind": "character", "bytes": 27}, {"ts": "2026-11-05 02:44:45", "kind": "account", "bytes": 2771}, {"ts": "2026-11-05 02:44:45", "kind": "character", "bytes": 27}, {"ts": "2026-11-05 08:29:31", "kind": "account", "bytes": 2771}, {"ts": "2026-11-05 08:29:31", "kind": "character", "bytes": 27}, {"ts": "2026-11-06 16:56:09", "kind": "account", "bytes": 2771}, {"ts": "2026-11-06 16:56:09", "kind": "character", "bytes": 27}], "layout": "GEWEY!", "account_saves": 4}, "screenshots": [{"name": "WoWScrnShot_103126_020653.jpg", "bytes": 618054, "mtime": "2026-10-31 02:06:53"}]}, "total_events": 598};</script>
+<script>
+(function(){
+"use strict";
+var D=window.DELVE_DATA||{};
+function el(id){return document.getElementById(id)}
+function esc(s){return String(s==null?"":s).replace(/[&<>\"']/g,function(c){
+ var A=String.fromCharCode(38);var m={};m["&"]=A+"amp;";m["<"]=A+"lt;";
+ m[">"]=A+"gt;";m['"']=A+"quot;";m["'"]=A+"#39;";return m[c]})}
+function num(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+function v(k,t,cls,sub){return '<div class="card '+cls+'"><div class="k">'+
+ esc(t)+'</div><div class="v">'+esc(k)+'</div>'+(sub?'<div class="s">'+
+ esc(sub)+'</div>':"")+'</div>'}
+/* header count */
+el("d-files").textContent=(D.atlas||[]).length;
+/* vitals */
+var F=D.facts||{};
+(function(){
+ var rows=[];
+ rows.push(v("1.60.1.70790","client build","g","flavor wowf · codename Camelot"));
+ rows.push(v(F.realm||"—","realm","c","realm build "+(F.realm_build||"?")+
+   " · PvE · region 91"));
+ rows.push(v(F.bnet_account||"QUAZZARR","battle.net game account","","4 game accounts seen"));
+ rows.push(v(F.cpu||"—","cpu","","6C/12T · Ryzen 5 3600"));
+ rows.push(v(F.gpu||"—","gpu","g",(F.d3d12_ms?
+   "D3D12/SM6 device in "+F.d3d12_ms+" ms":"")+" · driver "+(F.driver||"?")));
+ rows.push(v(F.ram||"—","memory","","motherboard "+(F.board||"?")));
+ rows.push(v((F.displays||[]).join(" · ")||"—","displays","c","3 monitors, 60 Hz"));
+ rows.push(v((D.sessions||[]).length+"","sessions on record","m",
+   num(D.minutes_total||0)+" min total play"));
+ el("vitals").innerHTML=rows.join("");
+})();
+/* sessions */
+(function(){
+ var s=D.sessions||[];
+ var mx=Math.max.apply(null,s.map(function(x){return x.minutes}).concat([1]));
+ el("sbars").innerHTML=s.map(function(x,i){
+  var h=Math.max(3,Math.round(x.minutes/mx*120));
+  return '<div class="b" style="height:'+h+'px" title="'+esc(x.start+" → "+
+   x.end+" ("+x.minutes+" min)")+'"><em>'+x.minutes+'m</em><span>'+
+   esc(x.start.slice(5,10))+'</span></div>'}).join("");
+ el("slegend").innerHTML='<span><i style="background:var(--green)"></i>'+
+   s.length+' sessions · '+num(D.minutes_total||0)+' minutes total · '+
+   'longest '+(s.length?Math.max.apply(null,s.map(function(x){return x.minutes})):0)+' min</span>';
+ el("srows").innerHTML=s.slice().reverse().map(function(x){
+  return '<tr><td>'+esc(x.start)+'</td><td>'+esc(x.end)+'</td><td class="num">'+
+   x.minutes+'</td></tr>'}).join("")||'<tr><td colspan="3">no sessions parsed</td></tr>';
+})();
+/* hotfix */
+(function(){
+ var H=D.hotfix||{};
+ el("hfvitals").innerHTML=
+  v(num(H.lines||0),"hotfix lines parsed","m","whole-file census")+
+  v(num(H.valid||0),"VALID","g","client accepted")+
+  v(num(H.invalid||0),"INVALID","r","client rejected")+
+  v(num(H.deleted||0),"DELETE","c","records removed");
+ var t=H.valid+H.invalid+H.deleted||1,acc=-Math.PI/2,r=56,cx=75,cy=75;
+ function seg(frac,color,label){
+  var a0=acc;acc+=frac*2*Math.PI;
+  var x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),
+      x1=cx+r*Math.cos(acc),y1=cy+r*Math.sin(acc);
+  return '<path d="M'+cx+','+cy+' L'+x0.toFixed(2)+','+y0.toFixed(2)+
+   ' A'+r+','+r+' 0 '+(frac>.5?1:0)+',1 '+x1.toFixed(2)+','+y1.toFixed(2)+
+   ' Z" fill="'+color+'" opacity=".85"/>'}
+ var html="";
+ if(t>0){html+=seg((H.valid||0)/t,"#00ff9d");html+=seg((H.invalid||0)/t,"#ff3ec8");
+  html+=seg((H.deleted||0)/t,"#37e6ff")}
+ el("hfdonut").innerHTML=html+'<circle cx="75" cy="75" r="34" fill="#010308"/>'+
+  '<text x="75" y="79" text-anchor="middle" fill="#e8fff4" font-size="13" '+
+  'font-family="Consolas,monospace">'+num(t)+'</text>';
+ el("hflegend").innerHTML=
+  '<span><i style="background:#00ff9d"></i>VALID '+((H.valid||0)/t*100).toFixed(1)+'%</span>'+
+  '<span><i style="background:#ff3ec8"></i>INVALID '+((H.invalid||0)/t*100).toFixed(1)+'%</span>'+
+  '<span><i style="background:#37e6ff"></i>DELETE '+((H.deleted||0)/t*100).toFixed(1)+'%</span>';
+ el("hftables").innerHTML=(H.top_tables||[]).map(function(x){
+  return '<span class="chip">'+esc(x.table)+' <b>×'+num(x.count)+'</b></span>'}).join("");
+ el("hftail").textContent=(H.tail||[]).join("\n")||"—";
+})();
+
+/* world loads */
+(function(){
+ var L=(D.facts&&D.facts.loads)||[];
+ el("lrows").innerHTML=L.map(function(x){
+  return '<tr><td>'+esc(x.ts)+'</td><td class="num">'+num(x.files)+
+   '</td><td class="num">'+num(x.bytes)+'</td><td class="num">'+num(x.ms)+
+   ' ms</td><td class="num" style="color:var(--green)">'+x.mbps+
+   ' MB/s</td></tr>'}).join("")||
+  '<tr><td colspan="5">no world loads parsed</td></tr>';
+})();
+/* milestones */
+(function(){
+ var m=D.milestones||[];
+ el("miles").innerHTML=m.map(function(e){
+  return '<div class="mile"><time>★ '+esc(e.ts)+'</time><div class="t">'+
+   esc(e.t)+'</div>'+(e.d?'<div class="d">'+esc(e.d)+'</div>':"")+
+   '</div>'}).join("")||'<div class="card">no milestones on record yet</div>';
+})();
+/* census */
+(function(){
+ var K=(D.census&&D.census.kinds)||{};
+ el("kinds").innerHTML=Object.keys(K).sort().map(function(k){
+  return '<span class="chip">'+esc(k)+' <b>×'+K[k]+'</b></span>'}).join("")||
+  '<span class="chip">none</span>';
+ var pd=(D.census&&D.census.per_day)||{},days=Object.keys(pd).sort();
+ var mx=Math.max.apply(null,days.map(function(d){return pd[d]}).concat([1]));
+ el("dbars").innerHTML=days.map(function(d){
+  var h=Math.max(3,Math.round(pd[d]/mx*86));
+  return '<div class="b" style="height:'+h+'px" title="'+esc(d+": "+pd[d])+
+   ' events"><em>'+pd[d]+'</em><span>'+esc(d.slice(5))+'</span></div>'}).join("");
+})();
+
+/* atlas */
+(function(){
+ var A=D.atlas||[];
+ el("atlas").innerHTML=A.map(function(x){
+  return '<tr><td style="color:var(--cyan)">'+esc(x.file)+'</td>'+
+   '<td class="num">'+num(x.bytes)+'</td><td>'+esc(x.first||"—")+'</td>'+
+   '<td>'+esc(x.last||"—")+'</td><td style="color:var(--mut)">'+
+   esc(x.purpose)+'</td></tr>'}).join("");
+})();
+/* residue */
+(function(){
+ var R=D.residue||{},cells=[];
+ cells.push('<div class="card"><div class="k">config story — WTF\\Config.wtf '+
+  'vs the 11/05 02:30 snapshot</div><div class="s" style="margin:6px 0">'+
+  '<b class="hl">'+esc((R.cfg&&R.cfg.headline)||"—")+'</b> · '+
+  (R.cfg?R.cfg.changed+' changed, '+R.cfg.added+' added, '+
+   R.cfg.removed+' removed of '+R.cfg.current_count+' cvars':'—')+'</div>'+
+  '<table><tbody>'+((R.cfg&&R.cfg.focus)||[]).map(function(f){
+   return '<tr><td>'+esc(f[0])+'</td><td class="num" style="color:var(--mut)">'+
+    esc(f[1])+' →</td><td class="num" style="color:var(--green)">'+
+    esc(f[2])+'</td></tr>'}).join("")+'</tbody></table></div>');
+ cells.push('<div class="card"><div class="k">addon suite — '+
+  ((R.addons&&R.addons.length)||0)+' add-ons loaded</div><div class="chips" '+
+  'style="margin-top:8px">'+((R.addons)||[]).map(function(a){
+   return '<span class="chip">'+esc(a)+'</span>'}).join("")+'</div>'+
+  '<div class="k" style="margin-top:12px">edit mode layout: <span class="hl">'+
+  esc((R.editmode&&R.editmode.layout)||"?")+'</span> · '+
+  ((R.editmode&&R.editmode.account_saves)||0)+' save events</div>'+
+  '<div class="s">'+((R.editmode&&R.editmode.saves)||[]).map(function(s){
+   return s.ts+" "+s.kind+" "+s.bytes+"B"}).join(" · ")+'</div></div>');
+ el("residue").innerHTML=cells.join("");
+})();
+
+/* residue part 2 */
+(function(){
+ var R=D.residue||{},cells=[];
+ cells.push('<div class="card"><div class="k">saved variables — account ' +
+  'QUAZZARR</div><table><tbody>'+((R.svds)||[]).map(function(s){
+   return '<tr><td>'+esc(s.name)+'</td><td class="num">'+num(s.bytes)+
+    ' B</td><td class="num" style="color:var(--mut)">'+esc(s.mtime)+
+    '</td></tr>'}).join("")+'</tbody></table></div>');
+ cells.push('<div class="card"><div class="k">character residue — '+
+  'Tandumonium-Ebbeson @ realm 91</div><table><tbody>'+
+  ((R.char_files)||[]).map(function(f){
+   return '<tr><td>'+esc(f.name)+'</td><td class="num">'+num(f.bytes)+
+    ' B</td></tr>'}).join("")+'</tbody></table>'+
+  '<div class="k" style="margin-top:10px">chat: '+
+  ((R.chat&&R.chat.channels.length)||0)+' channels · '+
+  ((R.chat&&R.chat.windows.length)||0)+' windows ('+
+  ((R.chat&&R.chat.shown)||0)+' shown)</div>'+
+  '<div class="k" style="margin-top:10px">screenshots: '+
+  ((R.screenshots&&R.screenshots.length)||0)+
+  '</div><div class="s">'+((R.screenshots)||[]).map(function(s){
+   return esc(s.name)+" ("+num(s.bytes)+" B, "+esc(s.mtime)+")"}).join(" · ")+
+  '</div></div>');
+ var node=el("residue");node.innerHTML+=cells.join("");
+})();
+/* findings */
+(function(){
+ var F=[
+  ['find','The realm is <b>CAMWOW US1 Realm 3 PvE</b> (cfgRealmsID 6921, '+
+   'address 91-1-3). The realm advertises build 1.60.1.70399 while the client '+
+   'runs 1.60.1.70790 — the client is ahead of the realm banner, and '+
+   'authentication completes clean anyway.'],
+  ['find','The hotfix firehose is the loudest thing in Logs\\ — every ~40s '+
+   'the server pushes records the client mostly accepts, but three tables '+
+   '(TransmogHoliday, ModifiedCraftingItem, TradeSkillItem) recur as INVALID '+
+   'in huge blocks. The pattern reads as empty-table boilerplate: benign but '+
+   'dominant.'],
+  ['frac','RaiderIO_Camelot.toc:21 throws <b>Error loading Interface/'+
+   'AddOns/RaiderIO/db/db_client_recent_characters.lua</b> on every world '+
+   'load — the Camelot TOC wants a character DB that does not exist until '+
+   'first sync. Benign, recurring, documented in the log-watch ledger.'],
+  ['find','No log carries level/XP. QuestCache.log shows quest traffic and '+
+   'Client.log shows world loads, but level progress is unverifiable from '+
+   'logs alone — an in-game scribe addon would close that gap (offered, '+
+   'not built).'],
+  ['find','Housing.log exists but stays 0 B — engine scaffolding, not a live '+
+   'feature. Player housing is NOT in wow:forever at launch; raids open '+
+   'December 9, 2026.'],
+  ['frac','Voice.log shows the voice proxy on 127.0.0.1:6724 accepting the '+
+   'client and ending with "connection disconnected unexpectedly" at logout — '+
+   'that is the normal shutdown path, not an error.'],
+ ];
+ el("findings").innerHTML=F.map(function(f){
+  return '<div class="card '+f[0]+'"><div class="s" style="line-height:1.7">'+
+   f[1]+'</div></div>'}).join("");
+})();
+/* footer */
+el("foot").innerHTML="delve_extract.py v"+esc(D.version||"?")+" · built "+
+ esc(D.generated||"")+" · "+esc(D.total_events||0)+" events on record · "+
+ "read-only on the game install<br>wing of <a href='index.html'>Gewey G.U.I.</a>"+
+ " · sibling page <a href='Timeline.html'>Timeline.html</a> · "+
+ "Dark_Portal — WOW: Forever research vault";
+})();
+</script>
+</body>
+</html>
