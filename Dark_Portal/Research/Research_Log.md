@@ -4,6 +4,32 @@
 **Rule:** findings come from files read and behavior observed — never inferred from log categories alone (per the 02:05 EST ledger correction). NEW ENTRIES AT TOP.
 
 ---
+## 2026-11-06 ~20:55 EST â€” Entry 005: Three-install addon survey (forever/classic_era/retail) â€” engineering patterns learned, telemetry cross-reference, scribe evidence
+
+Read-only survey of `Interface\AddOns` across `_forever_` (13 addons), `_classic_era_` (4), `_retail_` (38), cross-referenced against station telemetry needs. Nothing cloned, nothing edited.
+
+**Client facts confirmed from source (not inference):**
+1. **Camelot gate pattern (EUIStandaloneForeverEssentials_ClientGate.lua, lines 23-37):** forever = "the 12.1 engine with vanilla content, reporting a 1.60+ toc (16001)". Canon gate: `iface >= 16000 and iface < 20000` â† `IS_FOREVER`; classic-era reports 115xx, retail 12xxxx â€” "the ranges never meet". Any future Tandumonium addon for forever should copy this failsafe shape (fail-open on unreadable interface number; inert flag on line 1 of every suite file).
+2. **`[AllowLoadGameType camelot]` conditional TOC lines** (WhatsTraining) + `## AllowLoadGameType: camelot` (EUI) are the loader-side twin of that gate. WhatsTraining ships a camelot branch (`Forever\Forever.xml` theme/layout/widgets + camelot weapon-skills + Crafting tabs) alongside its classic-era branch.
+3. **Client tolerates out-of-date addons:** RaiderIO.toc targets only 120100/120105 yet loads in-world (SVD written +2 KB this session, 17:785â†’26,565 hotfix census notwithstanding). Its known benign FrameXML error (`db_client_recent_characters.lua` missing pre-sync) persists.
+
+**Engineering patterns worth keeping (observed, not copied):**
+- **EUI virtual sub-addons:** one folder registers `EUICoreStandaloneForeverEssentialsBags`/`...DataBars` programmatically as separate AddOns-list entries; per-character AddOns.txt disables them individually. Bags currently `disabled` â†’ Baganator owns bags with zero collision (`bagsAutoDisabled = true` in SVD).
+- **EUI GoldLedger data model (GoldLedger.lua):** GUID-keyed (`rename keeps the name`), copper ints, logout-timestamped balances, account-level (excluded from profile exports), one money-event hub other modules subscribe to, lazy build, migration absorbing 3 legacy stores. **Currently dormant:** ledger builds only when Bags or DataBars registers â€” both off â† `goldLedger` key absent from SVD. Enabling EUI Bags gold-tracking = zero-code gold telemetry.
+- **ForeverQuestTint:** binary search over sorted vanilla-quest ranges (no per-ID table); lua5.1 stubbed-frame test harness (`tests/harness.lua`); dev TOCs for retail/TBC cross-testing; integration adapters for 6 quest UIs; GPL-3 with Questie-derived vanilla ID list.
+- **Spoken:** single SoundQueue/narrator over all modules; DialogueUI theming + EllesmereUI skinning hooks; community `Contribute` voice-data pipeline; Ace3 embeds; own API.lua + Developer.lua.
+
+**Ecosystem referenced by installed addons but NOT installed:** Questie, ClassicUIForever, EllesmereUI (full), EllesmereUIQuestTracker, ClassTrainerPlusForever, TomTom, Immersion, Storyline, Lorewalker. None are telemetry-relevant; Questie's Forever quest coverage is admittedly partial (per ForeverQuestTint README).
+
+**Telemetry cross-reference (the question behind the survey):**
+- **CombatLog.txt STILL has not fired** â€” `SET advancedCombatLogging "1"` confirmed in `WTF\Config.wtf`, four sessions today, Logs\ re-listed at 20:47: no CombatLog*.txt anywhere under the station root (recursive search). Either the camelot build never emits the file or it needs actual combat encounters, not just exploration. Watch; if it never fires, fights/deaths need the scribe addon to subscribe to COMBAT_LOG_EVENT_UNFILTERED instead.
+- **Level/xp/zone/gold: still no data source** (gap from Entry 004 stands). What the survey adds: (a) gold is *free* via dormant EUI GoldLedger if Joey enables its Bags/DataBars module; (b) the scribe addon's SVD (not arbitrary file writes â€” the Lua sandbox has no file I/O, only SavedVariables flushed at logout/reload) is the correct channel, and hourly_audit already watches the SVD tree deltas â€” it needs one new SVD-lua parser, not a new transport. Tandumonium_UI on retail proves the in-house addon folder pattern works.
+- **RaiderIO** will contribute dungeon/raid/lockout history inside its SVD once populated â€” parseable telemetry for free if Joey keeps it loaded.
+
+-Scryed, Tandumonium
+
+---
+---
 ## 2026-11-06 ~16:48 EST — Entry 004: Spoken voiceover suite, EUIStandalone port, RaiderIO Camelot TOC, and fresh hotfix tables
 
 Durable machine-usable telemetry from Joey's three in-world sessions on 2026-11-06 (14:42–15:46, 15:46–16:05, 16:09–16:44 EST):

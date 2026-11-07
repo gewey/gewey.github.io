@@ -1,5 +1,26 @@
 # WoW: Forever — Client Log Watch Ledger
 
+## 2026-11-06 ~21:10 EST — The Deep Delve: Character Ledger + 11 new milestones (29 total)
+
+- **Second pass over the same residue (Joey's standing delve request):** mined the strata the 17:18 delve didn't itemize — `General.log` (whole-file), `Connection.log` identity census, `QuestCache.log`, `Sound.log`, `Tact.log`, `FrameXML.log`. Nothing deleted; everything appended.
+- **The /played story (the delve's headline):** General.log carries TWO `Console Time played` readings this session — **33m 40s** @ 16:47:48 and **39m 37s** @ 16:53:45, Total = Level in both (no level-up ever burned into the counter). Delta = **exactly 5m 57s of in-world play**. Against Movie.log's 508 client-minutes, in-world play is under a twelfth of client time — glue/queue/charselect is not play.
+- **Human residue caught:** a **logout abort** at 16:53:45 (button said logout, player said one more lap of map 2991 — UI reloaded, account data refetched initCounter 3, re-zoned at 202 MB/s, real exit 16:56:08); a **mid-session audio swap** at 16:53:14 (32PFL6452/F7 NVIDIA HDMI → Speakers (Razer Leviathan V2 X), Config.wtf still "System Default" — hot swap, never saved).
+- **New facts locked:** identity census — Battle.net **4 game accounts** (WoW2 / **QUAZZARR** active / BIASEDGOD / WoW6), region-wide character list **count=1**; server **last-played memory** = 1793885409 epoch = **2026-11-05 13:30:09 UTC (08:30:09 Eastern)**, thirty seconds after that session's shutdown (first draft of this fact said 08:30 UTC — timezone slip caught by verification and fixed via the batch's FIXES pass); **quest 92460** joins the cache trail (GetLevel 11/5 08:18 → QuestLog 16:47) beside the recurring DialogueUI trio 28981/29031/11580 (18 denies all-time); **proficiency masks** cycle at login (armor 0x21→0x27, weapons 0x4000→0xc184); GPU thermal peak **72 °C @ 2.79 GHz** 16:51:07 (52 °C boot / 55 °C shutdown bookends); **TACT/CASC shutdown physical: 142 archives, 53 MiB free, 0 recoverable, 0 compacted** — storage healthy; **RaiderIO_Camelot.toc:21 fracture now ×3** (16:03:32 engine catch + 16:47:47 + 16:53:45, logged in both General.log and FrameXML.log).
+- **Built:** `Timeline\delve_extract.py` **v1.1.0** — new `character_ledger()` extractor + a **Character Ledger** section in `Delve.html` (47.0 KB; nav crumb "character ledger"), + 3 findings. `Timeline\milestone_batch_20261106.py` NEW — idempotent milestone scrivener (dedupe ts+title, FIXES pass) that appended the **11 new `kind:"milestone"` events → 29 on the ledger, 609→611 events total**; Timeline.html + Delve.html both re-rendered from the ledger (29 gold cards in Timeline; Delve re-reads the census).
+- **Verification caught 3 of my own bugs before they shipped** (verify script asserts): TACT archive regex undercounted 142→132 (space-padded indices `Archive[  0]:` — regex now `Archive\[\s*\d+\]:`); identity "bnet" field mislabeled slot name WoW2 as an account (replaced by `active: QUAZZARR` derived from `WTF\Account\`); the UTC timezone slip above. `Timeline\.history\verify_delve_20261106.py` kept as the standing check.
+- **Docs touched this entry:** station `AGENTS.md` (Timeline bullet), `_gewey_gui\AGENTS.md` + `CHANGELOG.md`, `README_BODY.md` Timeline row, cubby `Dorian_Decision_Log.md`, compost `Sessions\2026-11-06_forever_deep_delve.md`.
+
+
+## 2026-11-06 ~20:55 EST — Three-install addon survey + CombatLog non-fire observation
+
+- **Survey (read-only):** `Interface\AddOns` across `_forever_` (13), `_classic_era_` (4), `_retail_` (38). Full findings + engineering-pattern notes in `Research\Research_Log.md` Entry 005. Nothing cloned, nothing edited.
+- **New telemetry observation:** `Logs\CombatLog.txt` still absent after 4 in-world sessions today, despite `SET advancedCombatLogging "1"` in `WTF\Config.wtf` (verified). Recursive station-wide search: zero CombatLog* files. The audit's "starting gun" may never fire on the camelot build — if confirmed, fights/deaths telemetry needs the scribe addon to subscribe to COMBAT_LOG events itself.
+- **GoldLedger dormancy:** EUI's gold ledger only builds when its Bags/DataBars modules register; both currently disabled (AddOns.txt) → no `goldLedger` key in SVD. Enabling EUI Bags gold-tracking is a zero-code route to gold history; the scribe addon remains the route for level/xp/zone.
+- **Client facts locked in from source:** camelot gate = `iface >= 16000 and iface < 20000`; `[AllowLoadGameType camelot]` TOC conditionals; client loads out-of-date addons (RaiderIO runs with no 16001 target); EUI registers Bags/DataBars as virtual sub-addons from one folder.
+- **WTF SVD commit at 16:56 for all 13 addons** (Baganator/DialogueUI/EUI/ForeverQuestTint/RaiderIO/Spoken×5/Syndicator/WhatsTraining); tts-cache refreshed 16:56. AddOns.txt unchanged since 16:05.
+- **Docs:** Research_Log.md Entry 005 (same findings, machine-usable); cubby TODO scribe-offer entry updated with today's evidence; compost `Sessions\2026-11-06_forever_addon_survey.md`.
+
+
 ## 2026-11-06 ~17:18 EST — The Delve: full log residue dig → Delve.html wing + 18 milestones into Timeline.html
 
 - **Task (Joey):** delve all game logs + play residue, build a .html wing in Dark_Portal visualizing it, keep filling Timeline.html with in-game micro accomplishments. Nothing deleted.
