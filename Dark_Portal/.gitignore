@@ -1,0 +1,24 @@
+# Dark_Portal .gitignore — churn stays local, showpieces stay public.
+#
+# Why this works here: gitignore patterns are relative to this file's own
+# folder, so everything under Dark_Portal/ is covered without touching the
+# website root. Bonus: the rules travel with the vault if the junction
+# ever moves again.
+#
+# The showpieces (Timeline.html, Delve.html, index.html, macro pages,
+# chatroom) stay public — all their data is embedded at generation time;
+# nothing on the site fetches the files below.
+
+# Hourly telemetry engine internals (verbose reports, presence timestamps,
+# machine details) — machine-local only.
+Timeline/audit_logs/
+Timeline/archive/
+Timeline/data/
+Timeline/run_ledger.md
+
+# Archive churn (prior renders, superseded material).
+.history/
+**/.history/
+
+# Python noise.
+__pycache__/
