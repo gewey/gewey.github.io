@@ -17,7 +17,7 @@ A personal **start page / new‑tab dashboard** built with plain HTML, CSS, and 
 - [JavaScript Modules](#javascript-modules)
 - [Styling](#styling)
 - [Progressive Web App](#progressive-web-app)
-- [Sub‑Sites](#sub-sites)
+- [Sub-Sites](#sub-sites)
 - [Local Development](#local-development)
 - [Conventions & Notes](#conventions--notes)
 
@@ -160,7 +160,7 @@ Icons come from Google's **Material Icons** font, and the look is a dark, termin
 - Reads `img/btn/bm/manifest.json` to pre‑cache all bookmark button images.
 - Serves cached assets when offline and cleans up old cache versions on activation.
 
-## Sub‑Sites
+## Sub-Sites
 
 The repo hosts several self‑contained pages reachable from the menu/footer:
 

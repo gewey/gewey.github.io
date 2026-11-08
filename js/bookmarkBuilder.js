@@ -81,10 +81,10 @@ const BookmarkSanitizer = {
   escapeHtml(str) {
     if (!str) return '';
     return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
+      .replace(/&/g, '&')
+      .replace(/</g, '<')
+      .replace(/>/g, '>')
+      .replace(/"/g, '"')
       .replace(/'/g, '&#039;');
   },
 
@@ -244,16 +244,16 @@ const BookmarkDom = (() => {
     if (logo) {
       imgSrc = BookmarkSanitizer.escapeHtml(BookmarkSanitizer.sanitizeUrl(logo));
     } else if (safeAlt) {
-      imgSrc = `${base}${safeAlt}.png`;
+      imgSrc = base + safeAlt + '.png';
     }
 
-    return `<a title="${safeTitle}" target="${safeTarget}" href="${safeHref}"><img id="bookmark" alt="${safeAlt}" src="${imgSrc}"></a>`;
+    return '<a title="' + safeTitle + '" target="' + safeTarget + '" href="' + safeHref + '"><img id="bookmark" alt="' + safeAlt + '" src="' + imgSrc + '"></a>';
   };
 
   const renderCategoryToDom = (category, bookmarks) => {
     if (typeof document === 'undefined') return;
 
-    let container = document.querySelector(`.bookmark-category[data-category="${category}"]`);
+    let container = document.querySelector('.bookmark-category[data-category="' + category + '"]');
     if (!container) {
       container = document.createElement('span');
       container.className = 'bookmark-category';
@@ -291,300 +291,7 @@ const BookmarkModal = (() => {
 
     const style = document.createElement('style');
     style.id = styleId;
-    style.textContent = `
-      .cust-btn-float {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: rgba(0, 0, 0, 0.8);
-        border: 1px solid #00EA00;
-        color: #00EA00;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0, 234, 0, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: all 0.3s ease;
-      }
-      .cust-btn-float:hover {
-        background-color: #00EA00;
-        color: #000;
-        box-shadow: 0 0 25px #00EA00;
-        transform: rotate(45deg);
-      }
-      .cust-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        font-family: 'Inconsolata', 'Courier New', monospace;
-        color: #fff;
-      }
-      .cust-modal-content {
-        background: #111;
-        border: 1.5px solid #00EA00;
-        border-radius: 8px;
-        width: 95%;
-        max-width: 600px;
-        max-height: 85vh;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 0 30px rgba(0, 234, 0, 0.25);
-        box-sizing: border-box;
-      }
-      .cust-modal-header {
-        padding: 15px 20px;
-        border-bottom: 1px solid #222;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-      }
-      .cust-modal-header h3 {
-        color: #00EA00;
-        margin: 0;
-        font-size: 1.15rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .cust-close-btn {
-        background: none;
-        border: none;
-        color: #888;
-        cursor: pointer;
-        font-size: 1.5rem;
-        line-height: 1;
-        padding: 0;
-      }
-      .cust-close-btn:hover {
-        color: #ff3b30;
-      }
-      .cust-modal-body {
-        padding: 20px;
-        overflow-y: auto;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        box-sizing: border-box;
-      }
-      .cust-section-title {
-        color: #00EA00;
-        font-size: 0.9rem;
-        margin: 5px 0 8px 0;
-        border-bottom: 1px dashed #333;
-        padding-bottom: 5px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      .cust-form-row {
-        display: flex;
-        gap: 10px;
-        box-sizing: border-box;
-      }
-      .cust-form-col {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        flex: 1;
-      }
-      .cust-label {
-        font-size: 0.8rem;
-        color: #aaa;
-        text-transform: uppercase;
-      }
-      .cust-input {
-        background: #000;
-        border: 1px solid #333;
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-family: inherit;
-        font-size: 0.85rem;
-        box-sizing: border-box;
-        width: 100%;
-      }
-      .cust-input:focus {
-        border-color: #00EA00;
-        outline: none;
-      }
-      .cust-select {
-        background: #000;
-        border: 1px solid #333;
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-family: inherit;
-        font-size: 0.85rem;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      .cust-select:focus {
-        border-color: #00EA00;
-        outline: none;
-      }
-      .cust-btn {
-        background: #222;
-        border: 1px solid #333;
-        color: #fff;
-        padding: 8px 14px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 0.85rem;
-        transition: all 0.2s;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        box-sizing: border-box;
-      }
-      .cust-btn-primary {
-        background: rgba(0, 234, 0, 0.1);
-        border-color: #00EA00;
-        color: #00EA00;
-      }
-      .cust-btn-primary:hover {
-        background: #00EA00;
-        color: #000;
-        box-shadow: 0 0 10px rgba(0, 234, 0, 0.4);
-      }
-      .cust-btn-danger {
-        background: rgba(255, 59, 48, 0.1);
-        border-color: #ff3b30;
-        color: #ff3b30;
-      }
-      .cust-btn-danger:hover {
-        background: #ff3b30;
-        color: #fff;
-      }
-      .cust-bookmark-list {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        max-height: 220px;
-        overflow-y: auto;
-        border: 1px solid #222;
-        padding: 8px;
-        border-radius: 4px;
-        background: #050505;
-        box-sizing: border-box;
-      }
-      .cust-bookmark-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #111;
-        padding: 6px 10px;
-        border: 1px solid #222;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      .cust-bookmark-item.cust-item-editing {
-        border-color: #ffd700;
-        background: rgba(255, 215, 0, 0.05);
-      }
-      .cust-item-icon {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        object-fit: cover;
-        background: #222;
-        flex-shrink: 0;
-      }
-      .cust-item-details {
-        flex: 1;
-        font-size: 0.8rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .cust-item-title {
-        font-weight: bold;
-        color: #fff;
-      }
-      .cust-item-url {
-        color: #666;
-        font-size: 0.7rem;
-        margin-left: 6px;
-      }
-      .cust-item-actions {
-        display: flex;
-        gap: 4px;
-        flex-shrink: 0;
-      }
-      .cust-action-btn {
-        background: none;
-        border: none;
-        color: #888;
-        cursor: pointer;
-        padding: 4px;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-      }
-      .cust-action-btn:hover {
-        color: #00EA00;
-        background: rgba(0, 234, 0, 0.1);
-      }
-      .cust-action-btn-delete:hover {
-        color: #ff3b30;
-        background: rgba(255, 59, 48, 0.1);
-      }
-      .cust-modal-footer {
-        padding: 15px 20px;
-        border-top: 1px solid #222;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        box-sizing: border-box;
-      }
-      .cust-icon-dropdown {
-        position: relative;
-        box-sizing: border-box;
-      }
-      .cust-icon-suggestions {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #0a0a0a;
-        border: 1px solid #333;
-        border-top: none;
-        max-height: 120px;
-        overflow-y: auto;
-        z-index: 100001;
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        box-sizing: border-box;
-      }
-      .cust-icon-suggestion-item {
-        padding: 6px 10px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8rem;
-        box-sizing: border-box;
-      }
-      .cust-icon-suggestion-item:hover {
-        background: rgba(0, 234, 0, 0.15);
-        color: #00EA00;
-      }
-    `;
+    style.textContent = '.cust-btn-float {position: fixed;bottom: 20px;right: 20px;background-color: rgba(0, 0, 0, 0.8);border: 1px solid #00EA00;color: #00EA00;border-radius: 50%;width: 50px;height: 50px;cursor: pointer;box-shadow: 0 0 15px rgba(0, 234, 0, 0.4);display: flex;align-items: center;justify-content: center;z-index: 9999;transition: all 0.3s ease;}.cust-btn-float:hover {background-color: #00EA00;color: #000;box-shadow: 0 0 25px #00EA00;transform: rotate(45deg);}.cust-modal-overlay {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.85);display: flex;align-items: center;justify-content: center;z-index: 10000;font-family: Inconsolata, Courier New, monospace;color: #fff;}.cust-modal-content {background: #111;border: 1.5px solid #00EA00;border-radius: 8px;width: 95%;max-width: 600px;max-height: 85vh;display: flex;flex-direction: column;box-shadow: 0 0 30px rgba(0, 234, 0, 0.25);box-sizing: border-box;}.cust-modal-header {padding: 15px 20px;border-bottom: 1px solid #222;display: flex;justify-content: space-between;align-items: center;box-sizing: border-box;}.cust-modal-header h3 {color: #00EA00;margin: 0;font-size: 1.15rem;text-transform: uppercase;letter-spacing: 1px;}.cust-close-btn {background: none;border: none;color: #888;cursor: pointer;font-size: 1.5rem;line-height: 1;padding: 0;}.cust-close-btn:hover {color: #ff3b30;}.cust-modal-body {padding: 20px;overflow-y: auto;flex: 1;display: flex;flex-direction: column;gap: 15px;box-sizing: border-box;}.cust-section-title {color: #00EA00;font-size: 0.9rem;margin: 5px 0 8px 0;border-bottom: 1px dashed #333;padding-bottom: 5px;text-transform: uppercase;letter-spacing: 0.5px;}.cust-form-row {display: flex;gap: 10px;box-sizing: border-box;}.cust-form-col {display: flex;flex-direction: column;gap: 5px;flex: 1;}.cust-label {font-size: 0.8rem;color: #aaa;text-transform: uppercase;}.cust-input {background: #000;border: 1px solid #333;color: #fff;padding: 8px 12px;border-radius: 4px;font-family: inherit;font-size: 0.85rem;box-sizing: border-box;width: 100;}.cust-input:focus {border-color: #00EA00;outline: none;}.cust-select {background: #000;border: 1px solid #333;color: #fff;padding: 8px 12px;border-radius: 4px;font-family: inherit;font-size: 0.85rem;width: 100;box-sizing: border-box;}.cust-select:focus {border-color: #00EA00;outline: none;}.cust-btn {background: #222;border: 1px solid #333;color: #fff;padding: 8px 14px;border-radius: 4px;cursor: pointer;font-family: inherit;font-size: 0.85rem;transition: all 0.2s;display: inline-flex;align-items: center;justify-content: center;gap: 5px;box-sizing: border-box;}.cust-btn-primary {background: rgba(0, 234, 0, 0.1);border-color: #00EA00;color: #00EA00;}.cust-btn-primary:hover {background: #00EA00;color: #000;box-shadow: 0 0 10px rgba(0, 234, 0, 0.4);}.cust-btn-danger {background: rgba(255, 59, 48, 0.1);border-color: #ff3b30;color: #ff3b30;}.cust-btn-danger:hover {background: #ff3b30;color: #fff;}.cust-bookmark-list {display: flex;flex-direction: column;gap: 6px;max-height: 220px;overflow-y: auto;border: 1px solid #222;padding: 8px;border-radius: 4px;background: #050505;}.cust-bookmark-item {display: flex;align-items: center;gap: 10px;background: #111;padding: 6px 10px;border: 1px solid #222;border-radius: 4px;box-sizing: border-box;}.cust-bookmark-item.cust-item-editing {border-color: #ffd700;background: rgba(255, 215, 0, 0.05);}.cust-item-icon {width: 22px;height: 22px;border-radius: 50%;object-fit: cover;background: #222;flex-shrink: 0;}.cust-item-details {flex: 1;font-size: 0.8rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}.cust-item-title {font-weight: bold;color: #fff;}.cust-item-url {color: #666;font-size: 0.7rem;margin-left: 6px;}.cust-item-actions {display: flex;gap: 4px;flex-shrink: 0;}.cust-action-btn {background: none;border: none;color: #888;cursor: pointer;padding: 4px;border-radius: 4px;display: flex;align-items: center;justify-content: center;transition: all 0.2s;}.cust-action-btn:hover {color: #00EA00;background: rgba(0, 234, 0, 0.1);}.cust-action-btn-delete:hover {color: #ff3b30;background: rgba(255, 59, 48, 0.1);}.cust-modal-footer {padding: 15px 20px;border-top: 1px solid #222;display: flex;justify-content: space-between;align-items: center;gap: 10px;box-sizing: border-box;}.cust-icon-dropdown {position: relative;box-sizing: border-box;}.cust-icon-suggestions {position: absolute;top: 100%;left: 0;right: 0;background: #0a0a0a;border: 1px solid #333;border-top: none;max-height: 120px;overflow-y: auto;z-index: 100001;border-radius: 0 0 4px 4px;box-shadow: 0 5px 15px rgba(0,0,0,0.5);box-sizing: border-box;}.cust-icon-suggestion-item {padding: 6px 10px;cursor: pointer;display: flex;align-items: center;gap: 8px;font-size: 0.8rem;box-sizing: border-box;}.cust-icon-suggestion-item:hover {background: rgba(0, 234, 0, 0.15);color: #00EA00;}';
     document.head.appendChild(style);
   };
 
@@ -601,7 +308,7 @@ const BookmarkModal = (() => {
   const deleteBookmark = (list, index) => {
     if (index < 0 || index >= list.length) return false;
     const title = list[index].title || 'this bookmark';
-    if (!confirm(`Delete bookmark "${title}"?`)) return false;
+    if (!confirm('Delete bookmark "' + title + '"?')) return false;
     list.splice(index, 1);
     return true;
   };
@@ -618,18 +325,13 @@ const BookmarkModal = (() => {
     const base = BookmarkDom.getImgBaseUrl();
     container.innerHTML = matches.map(icon => {
       const safeIcon = BookmarkSanitizer.escapeHtml(icon);
-      return `
-        <div class="cust-icon-suggestion-item" data-icon="${safeIcon}">
-          <img src="${base}${safeIcon}.png" style="width: 16px; height: 16px; border-radius: 50%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 width=%2216%22 height=%2216%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22%23222%22/></svg>'">
-          <span>${safeIcon}</span>
-        </div>
-      `;
+      return '<div class="cust-icon-suggestion-item" data-icon="' + safeIcon + '"><img src="' + base + safeIcon + '.png" style="width: 16px; height: 16px; border-radius: 50%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'><circle cx='12' cy='12' r='10' fill='%23222%22/></svg>"><span>' + safeIcon + '</span></div>';
     }).join('');
     container.style.display = 'block';
 
-    container.querySelectorAll('.cust-icon-suggestion-item').forEach(item => {
-      item.onclick = () => {
-        const icon = item.getAttribute('data-icon');
+    container.querySelectorAll('.cust-icon-suggestion-item').forEach(function(item) {
+      item.onclick = function() {
+        var icon = item.getAttribute('data-icon');
         onSelect(icon);
         container.style.display = 'none';
       };
@@ -653,7 +355,7 @@ const BookmarkModal = (() => {
     overlay.appendChild(content);
     document.body.appendChild(overlay);
 
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = function(e) {
       const altInput = document.getElementById('cust-input-alt');
       const suggestions = document.getElementById('cust-icon-suggestions');
       if (altInput && suggestions && e.target !== altInput && !suggestions.contains(e.target)) {
@@ -662,158 +364,69 @@ const BookmarkModal = (() => {
     };
     document.addEventListener('click', handleOutsideClick);
 
-    const closeModal = () => {
+    const closeModal = function() {
       document.removeEventListener('click', handleOutsideClick);
       overlay.remove();
     };
 
-    overlay.onclick = (e) => {
+    overlay.onclick = function(e) {
       if (e.target === overlay) closeModal();
     };
 
-    const updateUI = () => {
+    const updateUI = function() {
       const activeData = loadedCategories[selectedCategory];
       const listBookmarks = activeData.currentBookmarks;
 
-      const headerHTML = `
-        <div class="cust-modal-header">
-          <h3>Customize Bookmarks</h3>
-          <button class="cust-close-btn" id="cust-close-btn">&times;</button>
-        </div>
-      `;
+      const headerHTML = '<div class="cust-modal-header"><h3>Customize Bookmarks</h3><button class="cust-close-btn" id="cust-close-btn">&times.</button></div>';
 
       let categorySelectHTML = '';
       if (categories.length > 1) {
-        categorySelectHTML = `
-          <div class="cust-form-group">
-            <label class="cust-label">Select Section to Edit</label>
-            <select class="cust-select" id="cust-category-select">
-              ${categories.map(cat => `<option value="${BookmarkSanitizer.escapeHtml(cat)}" ${cat === selectedCategory ? 'selected' : ''}>${BookmarkSanitizer.escapeHtml(cat.toUpperCase())}</option>`).join('')}
-            </select>
-          </div>
-        `;
+        categorySelectHTML = '<div class="cust-form-group"><label class="cust-label">Select Section to Edit</label><select class="cust-select" id="cust-category-select">' + categories.map(function(cat) { return '<option value="' + BookmarkSanitizer.escapeHtml(cat) + '" ' + (cat === selectedCategory ? 'selected' : '') + '>' + BookmarkSanitizer.escapeHtml(cat.toUpperCase()) + '</option>'; }).join('') + '</select></div>';
       } else {
-        categorySelectHTML = `
-          <div style="font-size: 0.85rem; color: #888; text-transform: uppercase;">
-            Editing Section: <strong style="color: #00EA00;">${BookmarkSanitizer.escapeHtml(selectedCategory.toUpperCase())}</strong>
-          </div>
-        `;
+        categorySelectHTML = '<div style="font-size: 0.85rem; color: #888; text-transform: uppercase;">Editing Section: <strong style="color: #00EA00;">' + BookmarkSanitizer.escapeHtml(selectedCategory.toUpperCase()) + '</strong></div>';
       }
 
-      const listHTML = `
-        <div class="cust-section-title">Current Bookmarks (${listBookmarks.length})</div>
-        <div class="cust-bookmark-list">
-          ${listBookmarks.map((bm, index) => {
-            const base = BookmarkDom.getImgBaseUrl();
-            const safeTitle = BookmarkSanitizer.escapeHtml(bm.title);
-            const safeHref = BookmarkSanitizer.escapeHtml(BookmarkSanitizer.sanitizeUrl(bm.href));
-            const safeAlt = BookmarkSanitizer.escapeHtml(bm.alt);
-            const iconUrl = safeAlt ? `${base}${safeAlt}.png` : '';
-            const isEditing = index === editingIndex;
-            return `
-              <div class="cust-bookmark-item ${isEditing ? 'cust-item-editing' : ''}">
-                ${safeAlt ? `<img class="cust-item-icon" src="${iconUrl}" onerror="this.style.display='none'">` : '<div class="cust-item-icon" style="background:#222;"></div>'}
-                <div class="cust-item-details">
-                  <span class="cust-item-title">${safeTitle}</span>
-                  <span class="cust-item-url">${safeHref}</span>
-                </div>
-                <div class="cust-item-actions">
-                  <button class="cust-action-btn" data-action="up" data-index="${index}" title="Move Up" ${index === 0 ? 'disabled style="opacity:0.3;"' : ''}>
-                    <i class="material-icons" style="font-size: 16px;">arrow_upward</i>
-                  </button>
-                  <button class="cust-action-btn" data-action="down" data-index="${index}" title="Move Down" ${index === listBookmarks.length - 1 ? 'disabled style="opacity:0.3;"' : ''}>
-                    <i class="material-icons" style="font-size: 16px;">arrow_downward</i>
-                  </button>
-                  <button class="cust-action-btn" data-action="edit" data-index="${index}" title="Edit Detail">
-                    <i class="material-icons" style="font-size: 16px; ${isEditing ? 'color:#ffd700;' : ''}">edit</i>
-                  </button>
-                  <button class="cust-action-btn cust-action-btn-delete" data-action="delete" data-index="${index}" title="Delete">
-                    <i class="material-icons" style="font-size: 16px;">delete</i>
-                  </button>
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      `;
+      const listHTML = '<div class="cust-section-title">Current Bookmarks (' + listBookmarks.length + ')</div><div class="cust-bookmark-list">' + listBookmarks.map(function(bm, index) {
+        const base = BookmarkDom.getImgBaseUrl();
+        const safeTitle = BookmarkSanitizer.escapeHtml(bm.title);
+        const safeHref = BookmarkSanitizer.escapeHtml(BookmarkSanitizer.sanitizeUrl(bm.href));
+        const safeAlt = BookmarkSanitizer.escapeHtml(bm.alt);
+        const iconUrl = safeAlt ? base + safeAlt + '.png' : '';
+        const isEditing = index === editingIndex;
+        return '<div class="cust-bookmark-item ' + (isEditing ? 'cust-item-editing' : '') + '">' + (safeAlt ? '<img class="cust-item-icon" src="' + iconUrl + '" onerror="this.style.display='none'">' : '<div class="cust-item-icon" style="background:#222;"></div>') + '<div class="cust-item-details"><span class="cust-item-title">' + safeTitle + '</span><span class="cust-item-url">' + safeHref + '</span></div><div class="cust-item-actions"><button class="cust-action-btn" data-action="up" data-index="' + index + '" title="Move Up" ' + (index === 0 ? 'disabled style="opacity:0.3;"' : '') + '><i class="material-icons" style="font-size: 16px;">arrow_upward</i></button><button class="cust-action-btn" data-action="down" data-index="' + index + '" title="Move Down" ' + (index === listBookmarks.length - 1 ? 'disabled style="opacity:0.3;"' : '') + '><i class="material-icons" style="font-size: 16px;">arrow_downward</i></button><button class="cust-action-btn" data-action="edit" data-index="' + index + '" title="Edit Detail"><i class="material-icons" style="font-size: 16px; ' + (isEditing ? 'color:#ffd700;' : '') + '">edit</i></button><button class="cust-action-btn cust-action-btn-delete" data-action="delete" data-index="' + index + '" title="Delete"><i class="material-icons" style="font-size: 16px;">delete</i></button></div></div>';
+      }).join('') + '</div>';
 
       const formTitle = editingIndex === -1 ? 'Add New Bookmark' : 'Edit Selected Bookmark';
       const submitText = editingIndex === -1 ? 'Add Bookmark' : 'Update Bookmark';
       const currentBm = editingIndex === -1 ? { title: '', href: '', alt: '' } : listBookmarks[editingIndex];
 
-      const formHTML = `
-        <div class="cust-section-title">${BookmarkSanitizer.escapeHtml(formTitle)}</div>
-        <div class="cust-form-row">
-          <div class="cust-form-col">
-            <label class="cust-label">Title</label>
-            <input type="text" class="cust-input" id="cust-input-title" placeholder="e.g. My Website" value="${BookmarkSanitizer.escapeHtml(currentBm.title)}">
-          </div>
-          <div class="cust-form-col">
-            <label class="cust-label">URL</label>
-            <input type="text" class="cust-input" id="cust-input-href" placeholder="https://..." value="${BookmarkSanitizer.escapeHtml(currentBm.href)}">
-          </div>
-        </div>
-        <div class="cust-form-row">
-          <div class="cust-form-col" style="position: relative;">
-            <label class="cust-label">Icon Asset Name</label>
-            <div class="cust-icon-dropdown">
-              <input type="text" class="cust-input" id="cust-input-alt" placeholder="e.g. google" value="${BookmarkSanitizer.escapeHtml(currentBm.alt || '')}" autocomplete="off">
-              <div class="cust-icon-suggestions" id="cust-icon-suggestions" style="display: none;"></div>
-            </div>
-          </div>
-          <div class="cust-form-col" style="flex: 0 0 100px; justify-content: flex-end;">
-            <button class="cust-btn cust-btn-primary" id="cust-submit-btn" style="width: 100%; padding: 8px 0;">${BookmarkSanitizer.escapeHtml(submitText)}</button>
-          </div>
-          ${editingIndex !== -1 ? `
-            <div class="cust-form-col" style="flex: 0 0 80px; justify-content: flex-end;">
-              <button class="cust-btn" id="cust-cancel-edit-btn" style="width: 100%; padding: 8px 0;">Cancel</button>
-            </div>
-          ` : ''}
-        </div>
-      `;
+      const formHTML = '<div class="cust-section-title">' + BookmarkSanitizer.escapeHtml(formTitle) + '</div><div class="cust-form-row"><div class="cust-form-col"><label class="cust-label">Title</label><input type="text" class="cust-input" id="cust-input-title" placeholder="e.g. My Website" value="' + BookmarkSanitizer.escapeHtml(currentBm.title) + '"></div><div class="cust-form-col"><label class="cust-label">URL</label><input type="text" class="cust-input" id="cust-input-href" placeholder="https://..." value="' + BookmarkSanitizer.escapeHtml(currentBm.href) + '"></div></div><div class="cust-form-row"><div class="cust-form-col" style="position: relative;"><label class="cust-label">Icon Asset Name</label><div class="cust-icon-dropdown"><input type="text" class="cust-input" id="cust-input-alt" placeholder="e.g. google" value="' + BookmarkSanitizer.escapeHtml(currentBm.alt || '') + '" autocomplete="off"><div class="cust-icon-suggestions" id="cust-icon-suggestions" style="display: none;"></div></div><div class="cust-form-col" style="flex: 0 0 100px; justify-content: flex-end;"><button class="cust-btn cust-btn-primary" id="cust-submit-btn" style="width: 100%; padding: 8px 0;">' + BookmarkSanitizer.escapeHtml(submitText) + '</button></div>' + (editingIndex !== -1 ? '<div class="cust-form-col" style="flex: 0 0 80px; justify-content: flex-end;"><button class="cust-btn" id="cust-cancel-edit-btn" style="width: 100%; padding: 8px 0;">Cancel</button></div>' : '') + '</div>';
 
-      const footerHTML = `
-        <div class="cust-modal-footer">
-          <button class="cust-btn cust-btn-danger" id="cust-reset-btn">
-            <i class="material-icons" style="font-size: 16px;">settings_backup_restore</i> Reset defaults
-          </button>
-          <button class="cust-btn cust-btn-primary" id="cust-save-btn">
-            <i class="material-icons" style="font-size: 16px;">save</i> Save & Close
-          </button>
-        </div>
-      `;
+      const footerHTML = '<div class="cust-modal-footer"><button class="cust-btn cust-btn-danger" id="cust-reset-btn"><i class="material-icons" style="font-size: 16px;">settings_backup_restore</i> Reset defaults</button><button class="cust-btn cust-btn-primary" id="cust-save-btn"><i class="material-icons" style="font-size: 16px;">save</i> Save & Close</button></div>';
 
-      content.innerHTML = `
-        ${headerHTML}
-        <div class="cust-modal-body">
-          ${categorySelectHTML}
-          ${listHTML}
-          ${formHTML}
-        </div>
-        ${footerHTML}
-      `;
+      content.innerHTML = '<div class="cust-modal-header"><h3>Customize Bookmarks</h3><button class="cust-close-btn" id="cust-close-btn">&times.</button></div><div class="cust-modal-body">' + categorySelectHTML + listHTML + formHTML + '</div>' + footerHTML;
 
       document.getElementById('cust-close-btn').onclick = closeModal;
 
       const catSelect = document.getElementById('cust-category-select');
       if (catSelect) {
-        catSelect.onchange = (e) => {
+        catSelect.onchange = function(e) {
           selectedCategory = e.target.value;
           editingIndex = -1;
           updateUI();
         };
       }
 
-      content.querySelectorAll('.cust-action-btn').forEach(btn => {
-        btn.onclick = () => {
-          const action = btn.getAttribute('data-action');
-          const idx = parseInt(btn.getAttribute('data-index'), 10);
+      content.querySelectorAll('.cust-action-btn').forEach(function(btn) {
+        btn.onclick = function() {
+          var action = btn.getAttribute('data-action');
+          var idx = parseInt(btn.getAttribute('data-index'), 10);
           dispatchAction(action, idx);
         };
       });
 
-      document.getElementById('cust-reset-btn').onclick = () => {
-        if (confirm(`Reset "${selectedCategory}" section to original default bookmarks?`)) {
+      document.getElementById('cust-reset-btn').onclick = function() {
+        if (confirm('Reset "' + selectedCategory + '" section to original default bookmarks?')) {
           BookmarkStorage.resetCategoryBookmarks(selectedCategory);
           loadedCategories[selectedCategory].currentBookmarks = [...loadedCategories[selectedCategory].defaultBookmarks];
           editingIndex = -1;
@@ -822,14 +435,14 @@ const BookmarkModal = (() => {
         }
       };
 
-      document.getElementById('cust-save-btn').onclick = () => {
+      document.getElementById('cust-save-btn').onclick = function() {
         BookmarkStorage.saveCategoryBookmarks(selectedCategory, listBookmarks);
         BookmarkDom.renderCategoryToDom(selectedCategory, listBookmarks);
         if (onSave) onSave(selectedCategory, listBookmarks);
         closeModal();
       };
 
-      document.getElementById('cust-submit-btn').onclick = () => {
+      document.getElementById('cust-submit-btn').onclick = function() {
         const titleVal = document.getElementById('cust-input-title').value.trim();
         const hrefVal = document.getElementById('cust-input-href').value.trim();
         const altVal = document.getElementById('cust-input-alt').value.trim();
@@ -860,7 +473,7 @@ const BookmarkModal = (() => {
 
       const cancelEditBtn = document.getElementById('cust-cancel-edit-btn');
       if (cancelEditBtn) {
-        cancelEditBtn.onclick = () => {
+        cancelEditBtn.onclick = function() {
           editingIndex = -1;
           updateUI();
         };
@@ -869,20 +482,22 @@ const BookmarkModal = (() => {
       const altInput = document.getElementById('cust-input-alt');
       const suggestionsDiv = document.getElementById('cust-icon-suggestions');
       if (altInput && suggestionsDiv) {
-        altInput.oninput = (e) => {
-          renderIconSuggestions(e.target.value, suggestionsDiv, (icon) => {
+        altInput.oninput = function(e) {
+          renderIconSuggestions(e.target.value, suggestionsDiv, function(icon) {
             altInput.value = icon;
           });
         };
-        altInput.onfocus = (e) => {
-          renderIconSuggestions(e.target.value, suggestionsDiv, (icon) => {
+        altInput.onfocus = function(e) {
+          renderIconSuggestions(e.target.value, suggestionsDiv, function(icon) {
             altInput.value = icon;
           });
         };
       }
+
+      updateUI();
     };
 
-    const dispatchAction = (action, index) => {
+    const dispatchAction = function(action, index) {
       const activeData = loadedCategories[selectedCategory];
       const listBookmarks = activeData.currentBookmarks;
 
@@ -921,7 +536,7 @@ const BookmarkModal = (() => {
     btn.className = 'cust-btn-float';
     btn.title = 'Customize Bookmarks';
     btn.innerHTML = '<i class="material-icons">settings</i>';
-    btn.onclick = () => openModal(loadedCategories);
+    btn.onclick = function() { openModal(loadedCategories); };
     document.body.appendChild(btn);
   };
 
@@ -949,16 +564,16 @@ const BookmarkBuilder = (() => {
 
   const toggleBookmark = (identifier, enabled) => {
     BookmarkToggleRegistry.setBookmarkDisabled(identifier, !enabled);
-    Object.keys(loadedCategories).forEach(cat => {
+    Object.keys(loadedCategories).forEach(function(cat) {
       BookmarkDom.renderCategoryToDom(cat, loadedCategories[cat].currentBookmarks);
     });
   };
 
   return {
-    renderBookmarks,
+    renderBookmarks:
     toggleBookmark,
-    isBookmarkDisabled: (bm) => BookmarkToggleRegistry.isBookmarkDisabled(bm),
-    getLoadedCategories: () => loadedCategories
+    isBookmarkDisabled: function(bm) { return BookmarkToggleRegistry.isBookmarkDisabled(bm); },
+    getLoadedCategories: function() { return loadedCategories }
   };
 })();
 
