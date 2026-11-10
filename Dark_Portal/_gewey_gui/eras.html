@@ -1,0 +1,334 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eras &mdash; the fossil record, 2008 &rarr; 2026 | Gewey G.U.I.</title>
+<!--
+  ERAS.html - built 2026-11-10 by Tandumonium.
+  Purpose: a stratum map. Legacy.html lists WHAT the character has been;
+  raidlogs.html lists what the internet still holds; this page lists the
+  EVIDENCE BY LAYER - which expansion left which fingerprint on the disk,
+  what each artifact can and cannot prove, and where the record goes dark.
+
+  Honest framing: the retail client was reinstalled in 2026 (oldest file on the
+  tree = 2026-06-06 GeweyGUI.tga), so NO file predates 2026. Every pre-2026
+  claim here rests on (a) macro TEXT copied forward, (b) addon names that no
+  longer exist as folders, (c) account-wide caches, (d) archived internet.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.16),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+.era{border-left:3px solid var(--line);padding-left:.95rem;margin:1.1rem 0}
+.era.e1{border-left-color:var(--crimson)}
+.era.e2{border-left-color:var(--grey)}
+.era.e3{border-left-color:var(--fel)}
+.era.e4{border-left-color:var(--gold)}
+.era.e5{border-left-color:var(--arcane)}
+.era h3{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap}
+.era .when{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.era ul{margin:.4rem 0 0 1.1rem;font-size:.86rem;color:var(--mut)}
+.era ul li{margin:.22rem 0}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-eras">
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Fossil Record &middot; account QUAZZARR &middot; 2008 &rarr; 2026</p>
+ <h1>The Eras <span class="thin">eighteen years, layer by layer</span></h1>
+ <p class="lede">Legacy is a <em>who</em>. Raid Logs is a <em>where to look</em>.
+ This page is a <em>when</em>: an honest stratum map of every expansion the
+ character has walked through, and the exact artifact on disk that proves each
+ layer existed &mdash; plus the ones that prove nothing, marked as such.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="roster.html">Roster</a>
+  <a href="eras.html" aria-current="page">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="gear.html">Gear</a>
+  <a href="Frontier.html">Frontier</a></nav>
+</header>
+
+<section id="method">
+ <h2>How You Date A Ghost</h2>
+ <div class="grid g3">
+  <div class="card">
+   <h3>Dead: file timestamps</h3>
+   <p class="mut">The oldest file on the whole retail tree is
+   <code>GeweyGUI.tga</code> at <span class="mono">2026-06-06</span>. A 2026
+   reinstall resets every mtime, and <code>AddOns.txt</code> on all 54 toons
+   shares one bulk-copy stamp (<span class="mono">2026-09-16 18:31:44</span>).
+   Timestamps prove copying, not playing.</p>
+  </div>
+  <div class="card">
+   <h3>Alive: macro text</h3>
+   <p class="mut">Nobody bulk-copies <code>macros-cache.txt</code> &mdash; it is
+   hand-typed, and a macro that references an item from 2016 only exists because
+   someone kept carrying it forward. Macro bodies are the real stratigraphy.</p>
+  </div>
+  <div class="card">
+   <h3>Alive: ghost addons</h3>
+   <p class="mut"><code>AddOns.txt</code> remembers addons whose folders are gone
+   &mdash; <code>WorldFlightMap</code> is still listed as
+   <span class="mono">disabled</span> on all three <code>Tandu</code> toons but
+   has no folder under <code>Interface\AddOns</code>. Ghost rows date the list.</p>
+  </div>
+ </div>
+ <p class="note warn"><strong>Where the record goes dark.</strong> Between the
+ 2008 start and the 2026 reinstall there is no continuous file history: retail
+ <code>WTF</code> lifetime is short, and the old armory snapshots that would have
+ caught each rename are either unarchived or rate-limited. Anything below tagged
+ <span class="tag t-x">weak</span> is inference from naming and lore, not proof.</p>
+</section>
+
+<section id="layers">
+ <h2>The Layers</h2>
+
+ <div class="era e1">
+  <h3>Layer I &mdash; The Blood Elf <span class="when">2008 &rarr; WotLK era</span>
+   <span class="tag t-r">Sin'dorei</span></h3>
+  <ul>
+   <li><strong>Realm identity <code>86-*</code>.</strong> The account's
+   <code>character-list-order.txt</code> carries three GUID families &mdash;
+   <code>86-</code> (12 toons), <code>3661-</code> (28, Hyjal), <code>3678-</code>
+   (13, Thrall). <code>86</code> is the lowest realm id on the account and maps to
+   <code>Shadowsong</code>: the oldest realm identity the account owns.</li>
+   <li><strong>The <code>Tandu</code> folder on Shadowsong still exists</strong> &mdash;
+   a 0&nbsp;B <code>macros-cache.txt</code>, <code>AddOns.txt</code> only. A name that
+   survived as a folder after its character data aged out.</li>
+   <li><strong>Guild:</strong> <code>&lt;Gehenna&gt;</code>, Borean Tundra /
+   Shadowsong cluster.</li>
+  </ul>
+ </div>
+
+ <div class="era e2">
+  <h3>Layer II &mdash; The Undead Stint <span class="when">Forsaken / Dark Ranger</span>
+   <span class="tag t-x">Undead</span></h3>
+  <ul>
+   <li>The only race detour in eighteen years &mdash; and per the standing rule the
+   character was <em>still a blood elf underneath</em>: a Sin'dorei wearing undeath,
+   not a different person. The Dark Ranger identity survives into the current agent
+   persona (Tinkerer Dark Ranger of Tesseract City).</li>
+   <li><span class="tag t-x">weak</span> No disk artifact names the race transition;
+   this layer is carried by the persona and the legacy ledger, not by a file.</li>
+  </ul>
+ </div>
+
+ <div class="era e3">
+  <h3>Layer III &mdash; Legion <span class="when">2016 &rarr; 2018</span>
+   <span class="tag t-f">fingerprints</span></h3>
+  <ul>
+   <li><code>Pocket Fel Spreader</code> &mdash; the Legion pre-patch toy, still
+   welded into the Camouflage macro.</li>
+   <li><code>Archmage Vargoth's Spare Staff</code> &mdash; order-hall furniture,
+   now a /use line next to <code>Feign Death</code>.</li>
+   <li>Order-hall era macros are the first layer where the cache reads like a
+   <em>player</em> instead of a name.</li>
+  </ul>
+ </div>
+
+ <div class="era e4">
+  <h3>Layer IV &mdash; Battle for Azeroth <span class="when">2018 &rarr; 2020</span>
+   <span class="tag t-g">&lt;Gehenna&gt; tenure</span></h3>
+  <ul>
+   <li><code>Mirror of Envious Dreams</code> (8.1.5) and
+   <code>Echoes of Rezan</code> (Zandalar) &mdash; two BfA souvenirs in one cache.</li>
+   <li>Warcraft Logs guild id <code>7287</code>, Uldir / Battle of Dazar'alor
+   window; the 2019 bookmark sheet ported into
+   <a class="ext" href="legacy.html">legacy.html</a>.</li>
+   <li>This is the <strong>only</strong> era where external raid evidence is even
+   theoretically his &mdash; see the tenure rule on
+   <a class="ext" href="raidlogs.html">Raid Logs</a>.</li>
+  </ul>
+ </div>
+
+ <div class="era e5">
+  <h3>Layer V &mdash; Shadowlands <span class="when">2020 &rarr; 2022</span>
+   <span class="tag t-f">proven by macro</span></h3>
+  <ul>
+   <li>The account-wide cache carries a covenant-detection macro:
+   <code>/run local G=GetSpellInfo SetMacroSpell(GetRunningMacro(), G"Resonating Arrow" or G"Flayed Shot" or G"Death Chakram" or G"Wild Spirits")</code>
+   &mdash; Kyrian / Necrolord / Venthyr / Night Fae in one line. Nothing else dates
+   a cache to Shadowlands this precisely.</li>
+   <li><code>Orophea's Lyre</code> (Korthia) sits in the /use stack beside
+   <code>Feign Death</code>.</li>
+   <li><code>/btwl a Tandu</code> &mdash; a BtWLoadouts set named after the old
+   handle, still bound to a key.</li>
+   <li><code>/console farclip 777</code>, <code>groundEffectDensity 256</code>,
+   <code>maxLOD 3</code>, <code>SkyCloudLOD 3</code> &mdash; the "make the world
+   look like a painting" utility block, written when the machine could not.</li>
+  </ul>
+ </div>
+
+ <div class="era e3">
+  <h3>Layer VI &mdash; Dragonflight <span class="when">2022 &rarr; 2024</span>
+   <span class="tag t-f">thumb on the scale</span></h3>
+  <ul>
+   <li><code>Aerial Halt(skyriding)</code> in the <code>#N-</code> macro &mdash;
+   dynamic flight, and the reason the current main is a Dracthyr at all.</li>
+   <li><code>Muzzle</code>, <code>Coordinated Assault</code>,
+   <code>Survival of the Fittest</code>, <code>Fortitude of the Bear</code> &mdash;
+   the Dragonflight talent vocabulary, rebuilt across the whole bar.</li>
+   <li>The macro book is written for <strong>three specs at once</strong>
+   (<code>[spec:1]</code> BM / <code>[spec:2]</code> MM / <code>[spec:3]</code> SV):
+   one button, three lives.</li>
+  </ul>
+ </div>
+
+ <div class="era e4">
+  <h3>Layer VII &mdash; The War Within <span class="when">2024 &rarr; 2026</span>
+   <span class="tag t-g">on disk</span></h3>
+  <ul>
+   <li><code>20th Anniversary Balloon Chest</code> &mdash; the 2024 anniversary, still
+   on a /use line because it was never worth deleting.</li>
+   <li>Own addons appear: <code>Tandumonium_UI</code> <span class="mono">v0.11.0</span>
+   (account-wide settings, Edit Mode layout <code>Gewey!!</code>),
+   <code>Tandumonium_Patches</code> (runtime patch framework, first patch = the
+   Plumber <code>frFR</code> seal), <code>Tandumonium_Macros</code>
+   <span class="mono">v0.1.0</span> (13-class macro library skeleton, new).</li>
+   <li>Two crash dumps, <span class="mono">2026-09-02 20:06 / 20:10</span> &mdash;
+   the client's own record of a bad night.</li>
+  </ul>
+ </div>
+
+ <div class="era e5">
+  <h3>Layer VIII &mdash; Midnight <span class="when">2026 &rarr; now</span>
+   <span class="tag t-f">Dracthyr</span></h3>
+  <ul>
+   <li>Engine patch <code>120100</code>; Dracthyr Beast Mastery Hunter, ilvl
+   <strong>263</strong>, achievement points <strong>21,685</strong>
+   (Raider.IO crawl <span class="mono">2026-11-05T12:46:46Z</span>).</li>
+   <li>Race choice rationale, on the record: <em>glide / slow fall</em>. Gravity
+   is the only boss that never wipes the raid but always wins the fall.</li>
+   <li>Config still reads like a hunter: <code>EJRaidDifficulty 15</code> (Mythic),
+   <code>EJLootSpec 253</code> (BM), <code>nameplateMaxDistance 60</code>,
+   <code>nameplateSelectedScale 1.2</code>.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="confidence">
+ <h2>Confidence Ledger</h2>
+ <div class="scroll">
+  <table>
+   <caption>What each layer can actually prove, strongest evidence first</caption>
+   <thead><tr><th>Layer</th><th>Artifact</th><th>Proves</th><th>Strength</th></tr></thead>
+   <tbody>
+    <tr><td>Shadowlands</td><td class="mono">covenant macro (4 abilities)</td><td>the cache was alive 2020&ndash;2022</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>BfA</td><td class="mono">Mirror of Envious Dreams</td><td>played at or after 8.1.5</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>Legion</td><td class="mono">Pocket Fel Spreader</td><td>played the 2016 pre-patch</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>Dragonflight</td><td class="mono">Aerial Halt(skyriding)</td><td>flew in the new flight model</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>The War Within</td><td class="mono">20th Anniversary Balloon Chest</td><td>present for the 2024 event</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>Midnight</td><td class="mono">Tandumonium_UI v0.11.0</td><td>authoring his own tooling, 2026</td><td><span class="tag t-f">hard</span></td></tr>
+    <tr><td>WotLK</td><td class="mono">86-* GUID family + Shadowsong</td><td>realm is the account's oldest</td><td><span class="tag t-g">strong</span></td></tr>
+    <tr><td>All eras</td><td class="mono">WorldFlightMap ghost row</td><td>the list predates the current addon set</td><td><span class="tag t-g">strong</span></td></tr>
+    <tr><td>Undead stint</td><td class="mono">(lore only)</td><td>a race detour happened, date unknown</td><td><span class="tag t-x">weak</span></td></tr>
+    <tr><td>2008&ndash;2015</td><td class="mono">(nothing on disk)</td><td>that he played &mdash; not what he played</td><td><span class="tag t-x">weak</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Rule of the house: a layer with no artifact gets a
+ <span class="tag t-x">weak</span> tag and an honest sentence, never a confident
+ number. An invented date is worse than a gap &mdash; it poisons every page that
+ cites it later.</p>
+</section>
+
+<section id="next">
+ <h2>Where The Next Layer Comes From</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>The one unopened door</h3>
+   <p class="mut">Warcraft Logs is the only site that would hold a
+   <em>per-pull</em> record of BfA raiding, and it sits behind a Cloudflare
+   challenge that does not clear under automation. A logged-in human opening guild
+   <code>7287</code> &rarr; Reports &rarr; 2018&ndash;2019 would give this page its
+   first real DPS row. Everything else has been swept &mdash;
+   <a class="ext" href="raidlogs.html">see the sweep log</a>.</p>
+  </div>
+  <div class="card">
+   <h3>What will not be found</h3>
+   <p class="mut">The pre-BfA armory pages. Checked 2026-11-10 with the Wayback
+   availability API: <code>us.battle.net/wow/en/character/&hellip;/tandu</code> on
+   Shadowsong, Thrall and Hyjal all return
+   <span class="mono">archived_snapshots: {}</span> &mdash; the Armory was never
+   crawled for these names. The guild page for
+   <code>/guild/borean-tundra/Gehenna/</code> <em>is</em> archived (2015-12-10),
+   but that snapshot predates the recorded tenure: guild history, not his.</p>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <p>Gewey G.U.I. &middot; eras wing &middot; artifacts read from
+ <span class="mono">_retail_\WTF\Account\QUAZZARR</span> on 2026-11-10 &middot;
+ <a class="ext" href="index.html" target="_top">back to the shell</a></p>
+</footer>
+</div>
+</body>
+</html>

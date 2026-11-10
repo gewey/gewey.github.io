@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roster &mdash; the census of every Tandu | Gewey G.U.I.</title>
+<!--
+  ROSTER.html &mdash; generated 2026-11-10 01:59 by Timeline/roster_extract.py
+
+  This page is MACHINE-GENERATED. Do not hand-edit the tables: re-run the
+  extractor instead, which re-counts the retail install and archives the
+  previous render to _gewey_gui\.history\.
+
+  What it proves: 54 character folders exist on disk, but only
+  9 contain a character anybody actually played. The rest are
+  one-file shells stamped 2026-09-16.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 14% -6%,rgba(255,196,107,.16),transparent 62%),
+  radial-gradient(820px 480px at 86% 4%,rgba(125,255,92,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(55,230,255,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:middle}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.82em}
+a{color:var(--arcane)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{color:var(--mut);font-size:.85rem}
+.bar{display:inline-block;width:54px;height:5px;border-radius:3px;
+ background:rgba(255,255,255,.09);vertical-align:middle;margin-left:.4rem;overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:3px}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+.chip{font-size:.76rem;font-family:'Cascadia Mono',Consolas,monospace;
+ border:1px solid rgba(255,255,255,.12);border-radius:2px;
+ padding:.15rem .45rem;color:var(--grey);background:rgba(255,255,255,.02)}
+.crown{color:var(--gold);font-weight:700}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;
+ color:var(--mut);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Gewey G.U.I. &mdash; Roster Wing &mdash; generated 2026-11-10 01:59</p>
+ <h1>The Roster <span class="thin">every Tandu that still exists on disk</span></h1>
+ <p class="lede">Retail keeps <strong>54</strong> character folders under
+ <code>WTF\Account\QUAZZARR</code>, spread across three realms. Only
+ <strong>9</strong> of them contain a character that was genuinely
+ played &mdash; macros, addon lists, saved variables, dozens of files. The other
+ <strong>45</strong> are single-file shells, all stamped the same day,
+ and they are the fossil record of every name that was reserved and then
+ abandoned. This is the count that separates the main from the ghosts.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="roster.html" aria-current="page">Roster</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Links</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="totals">
+ <h2>The Count</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">54<small>character folders on disk</small></div></div>
+  <div class="card"><div class="stat">9<small>actually-built characters</small></div></div>
+  <div class="card"><div class="stat">45<small>single-file ghost shells</small></div></div>
+  <div class="card"><div class="stat">232<small>files across every toon</small></div></div>
+  <div class="card"><div class="stat">105<small>macros still cached</small></div></div>
+  <div class="card"><div class="stat">87<small>saved-variable files</small></div></div>
+ </div>
+ <p class="note">Counted 2026-11-10 01:59 straight out of the retail install with
+ <code>Timeline/roster_extract.py</code>. Nothing was opened in-game and nothing
+ was written to the game tree &mdash; this is a read-only walk of the WTF folder.</p>
+</section>
+
+<section id="ladder">
+ <h2>The Evidence Ladder</h2>
+ <div class="card">
+  <p>The characters that carry real weight, ranked by how much of themselves
+  they left on disk. File count is the bluntest and most honest signal: a character
+  you actually log into accumulates addon preferences, saved variables and cache
+  files, while a name reservation never writes a second file.</p>
+ </div>
+ <div style="overflow-x:auto">
+ <table>
+  <caption>Built characters &mdash; 9 of 54, sorted by file count</caption>
+  <thead><tr>
+   <th>Character</th><th>Realm</th><th class="num">Files</th><th class="num">Macros</th>
+   <th class="num">Addons</th><th class="num">SVDs</th><th>Oldest</th><th>Newest</th>
+  </tr></thead>
+  <tbody>
+   <tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td class="num">34 <span class="bar"><span class="fill" style="width:100%;background:#ffc46b"></span></span></td><td class="num">28 <span class="bar"><span class="fill" style="width:93%;background:#37e6ff"></span></span></td><td class="num">22</td><td class="num">20</td><td class="mono">2026-08-14</td><td class="mono">2026-11-05</td></tr><tr><td><strong>Reticent</strong></td><td class="mono">Shadowsong</td><td class="num">24 <span class="bar"><span class="fill" style="width:71%;background:#ffc46b"></span></span></td><td class="num">22 <span class="bar"><span class="fill" style="width:73%;background:#37e6ff"></span></span></td><td class="num">21</td><td class="num">11</td><td class="mono">2026-08-26</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Tandora</strong></td><td class="mono">Hyjal</td><td class="num">23 <span class="bar"><span class="fill" style="width:68%;background:#ffc46b"></span></span></td><td class="num">1 <span class="bar"><span class="fill" style="width:3%;background:#37e6ff"></span></span></td><td class="num">21</td><td class="num">11</td><td class="mono">2026-08-18</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Tandulari</strong></td><td class="mono">Hyjal</td><td class="num">22 <span class="bar"><span class="fill" style="width:65%;background:#ffc46b"></span></span></td><td class="num">0 <span class="bar"><span class="fill" style="width:2%;background:#37e6ff"></span></span></td><td class="num">20</td><td class="num">12</td><td class="mono">2026-08-26</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Fauxylauxy</strong></td><td class="mono">Hyjal</td><td class="num">21 <span class="bar"><span class="fill" style="width:62%;background:#ffc46b"></span></span></td><td class="num">0 <span class="bar"><span class="fill" style="width:2%;background:#37e6ff"></span></span></td><td class="num">21</td><td class="num">10</td><td class="mono">2026-08-14</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Tangents</strong></td><td class="mono">Hyjal</td><td class="num">20 <span class="bar"><span class="fill" style="width:59%;background:#ffc46b"></span></span></td><td class="num">30 <span class="bar"><span class="fill" style="width:100%;background:#37e6ff"></span></span></td><td class="num">21</td><td class="num">6</td><td class="mono">2026-08-26</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Testytester</strong></td><td class="mono">Hyjal</td><td class="num">20 <span class="bar"><span class="fill" style="width:59%;background:#ffc46b"></span></span></td><td class="num">0 <span class="bar"><span class="fill" style="width:2%;background:#37e6ff"></span></span></td><td class="num">20</td><td class="num">10</td><td class="mono">2026-08-26</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Tandu</strong></td><td class="mono">Hyjal</td><td class="num">18 <span class="bar"><span class="fill" style="width:53%;background:#ffc46b"></span></span></td><td class="num">24 <span class="bar"><span class="fill" style="width:80%;background:#37e6ff"></span></span></td><td class="num">21</td><td class="num">6</td><td class="mono">2026-08-26</td><td class="mono">2026-09-16</td></tr><tr><td><strong>Radaradas</strong></td><td class="mono">Hyjal</td><td class="num">5 <span class="bar"><span class="fill" style="width:15%;background:#ffc46b"></span></span></td><td class="num">0 <span class="bar"><span class="fill" style="width:2%;background:#37e6ff"></span></span></td><td class="num">18</td><td class="num">1</td><td class="mono">2026-08-18</td><td class="mono">2026-08-26</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+<p class="note"><span class="crown">&#9650; Tandumonium</span> is the apex: 34 files, 28 macros, 20 saved-variable files. No other toon on the account comes close, on any realm.</p>
+<section id="realms">
+ <h2>Realm Census</h2>
+ <div style="overflow-x:auto">
+ <table>
+  <caption>Distribution across the three retail realms still holding folders</caption>
+  <thead><tr><th>Realm</th><th class="num">Folders</th><th class="num">Built</th>
+   <th class="num">Ghosts</th><th class="num">Macros</th><th class="num">SVDs</th>
+   <th>Cluster</th></tr></thead>
+  <tbody>
+   <tr><td class="mono"><strong>Hyjal</strong></td><td class="num">29</td><td class="num">8</td><td class="num">21</td><td class="num">83</td><td class="num">76</td><td class="note">Hyjal</td></tr><tr><td class="mono"><strong>Shadowsong</strong></td><td class="num">12</td><td class="num">1</td><td class="num">11</td><td class="num">22</td><td class="num">11</td><td class="note">Shadowsong / Borean Tundra (connected)</td></tr><tr><td class="mono"><strong>Thrall</strong></td><td class="num">13</td><td class="num">0</td><td class="num">13</td><td class="num">0</td><td class="num">0</td><td class="note">Thrall</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Four realms appear in the written history &mdash; Shadowsong,
+ Borean Tundra, Thrall, Hyjal &mdash; but only three hold character folders on disk.
+ <strong>Borean Tundra has none</strong>, because it is a connected realm of
+ Shadowsong and shares its roster. Borean Tundra survives in this story only as the
+ guild page the 2019 archive happened to capture.</p>
+</section>
+
+<section id="ghosts">
+ <h2>The Ghost Shells</h2>
+ <div class="card">
+  <p>45 folders contain exactly one file &mdash; an
+  <code>AddOns.txt</code> and nothing else. Every one is stamped
+  <strong>2026-09-16</strong>. These are the names claimed and never grown into:
+  the <code>Tan*</code> family, the puns, the alts that existed for a single
+  character-creation screen and never saw the world.</p>
+  <div class="chips">
+   <span class="chip" title="Hyjal &middot; 2026-09-16">Ackrenserath</span><span class="chip" title="Hyjal &middot; 2026-09-16">Arbora</span><span class="chip" title="Hyjal &middot; 2026-09-16">Beefysatan</span><span class="chip" title="Hyjal &middot; 2026-09-16">Buffing</span><span class="chip" title="Hyjal &middot; 2026-09-16">Christar</span><span class="chip" title="Hyjal &middot; 2026-09-16">Ermergerd</span><span class="chip" title="Hyjal &middot; 2026-09-16">Flaire</span><span class="chip" title="Hyjal &middot; 2026-09-16">Jacobebbeson</span><span class="chip" title="Hyjal &middot; 2026-09-16">Karkol</span><span class="chip" title="Hyjal &middot; 2026-09-16">Krystalbeth</span><span class="chip" title="Hyjal &middot; 2026-09-16">Legere</span><span class="chip" title="Hyjal &middot; 2026-09-16">Outvander</span><span class="chip" title="Hyjal &middot; 2026-09-16">Quazzarr</span><span class="chip" title="Hyjal &middot; 2026-09-16">Sidian</span><span class="chip" title="Hyjal &middot; 2026-09-16">Suicidality</span><span class="chip" title="Hyjal &middot; 2026-09-16">Tandaria</span><span class="chip" title="Hyjal &middot; 2026-09-16">Tankadu</span><span class="chip" title="Hyjal &middot; 2026-09-16">Tankard</span><span class="chip" title="Hyjal &middot; 2026-09-16">Tantalous</span><span class="chip" title="Hyjal &middot; 2026-09-16">Tantrums</span><span class="chip" title="Hyjal &middot; 2026-09-16">Wolfertinger</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Bipolarbear</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Christar</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Flabberghast</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Kaleida</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Ohmm</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Quazzarr</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Rawdarawda</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Rensull</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Stephanie</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Tandu</span><span class="chip" title="Shadowsong &middot; 2026-09-16">Viktorfive</span><span class="chip" title="Thrall &middot; 2026-09-16">Beefysatan</span><span class="chip" title="Thrall &middot; 2026-09-16">Christar</span><span class="chip" title="Thrall &middot; 2026-09-16">Eleryla</span><span class="chip" title="Thrall &middot; 2026-09-16">Goulette</span><span class="chip" title="Thrall &middot; 2026-09-16">Jozeph</span><span class="chip" title="Thrall &middot; 2026-09-16">Krystalmeth</span><span class="chip" title="Thrall &middot; 2026-09-16">Mortesque</span><span class="chip" title="Thrall &middot; 2026-09-16">Nahko</span><span class="chip" title="Thrall &middot; 2026-09-16">Obsequy</span><span class="chip" title="Thrall &middot; 2026-09-16">Phizzle</span><span class="chip" title="Thrall &middot; 2026-09-16">Quazzarr</span><span class="chip" title="Thrall &middot; 2026-09-16">Tandu</span><span class="chip" title="Thrall &middot; 2026-09-16">Tezzerrette</span>
+  </div>
+ </div>
+ <p class="note">A ghost is not a deletion. Nobody tidied these away &mdash; they are
+ still there, still named, still holding their slot. That is why the account reads
+ as 54 characters when the lived history is only 9. The same
+ pattern repeats the <code>Tandu</code> name on three realms: Hyjal's
+ <code>Tandu</code> is one of the built nine, while Shadowsong's and Thrall's are
+ one-file shells. The name travelled; only one of the stops was lived in.</p>
+</section>
+
+<section id="method">
+ <h2>Method &amp; Limits</h2>
+ <div class="card">
+  <ul style="margin:.4rem 0 0 1.1rem">
+   <li><strong>Source:</strong> <code>Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\&lt;Realm&gt;\&lt;Character&gt;\</code> &mdash; read-only, never modified.</li>
+   <li><strong>Files:</strong> every regular file in the character folder, recursive, including <code>SavedVariables\</code>.</li>
+   <li><strong>Macros:</strong> counted from <code>^VER 3 &lt;id&gt; "&lt;name&gt;"</code> records in <code>macros-cache.txt</code>.</li>
+   <li><strong>Addons:</strong> non-comment lines in <code>AddOns.txt</code>, enabled and disabled alike.</li>
+   <li><strong>Dates:</strong> filesystem mtime &mdash; when a file was last <em>touched</em>, not when the character was created. A client reinstall resets them all at once, which is exactly why 45 shells share one date.</li>
+   <li><strong>What this cannot tell you:</strong> playtime, <code>/played</code>, item level, or anything the client keeps server-side. Those live in the Armory and Raider.IO, not in WTF &mdash; see <a href="character.html">Character</a> and <a href="gear.html">Gear</a>.</li>
+  </ul>
+ </div>
+</section>
+
+<footer>
+ <p>Generated 2026-11-10 01:59 by <code>Timeline/roster_extract.py</code> from the retail
+ install. Re-run the script to refresh the counts &mdash; never hand-edit the tables,
+ and never hand-edit this file at all. Prior render archived to
+ <code>_gewey_gui\.history\</code>.</p>
+</footer>
+</div>
+</body>
+</html>

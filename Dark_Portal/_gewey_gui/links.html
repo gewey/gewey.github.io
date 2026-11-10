@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Link Vault &mdash; every door that might still open | Gewey G.U.I.</title>
+<!--
+  LINKS.html - built 2026-11-10 by Tandumonium.
+  Why this page exists: the agent index (Tandumonium.agent-index.md) is the
+  private registry; this is its public mirror, so a human can open the same
+  doors without reading an agent file first.
+
+  Status vocabulary used below (kept honest, verified 2026-11-10):
+    VERIFIED  - responded 200 to an unauthenticated GET this pass
+    WALLED    - Cloudflare / CAPTCHA challenge that does not clear headless
+    DEAD      - gone or repurposed (the domain no longer serves that data)
+    BUILDER   - a query URL, not a document: paste it and read the JSON
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.16),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.82em;color:var(--arcane);
+ word-break:break-all}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.badge{display:inline-block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.05rem .4rem;border-radius:2px;line-height:1.7;
+ white-space:nowrap}
+.b-ok{color:var(--fel)}
+.b-wall{color:var(--gold)}
+.b-dead{color:var(--crimson)}
+.b-build{color:var(--arcane)}
+ul.links{margin:.2rem 0 0 1.1rem;font-size:.88rem;color:var(--mut)}
+ul.links li{margin:.3rem 0}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+sup.ref{color:var(--gold)}
+ol.foot{font-size:.78rem;color:var(--mut);margin:.4rem 0 0 1.2rem}
+ol.foot li{margin:.25rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+</style>
+</head>
+<body class="gw-links">
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Link Vault &middot; the registry, mirrored for humans</p>
+ <h1>Every Door <span class="thin">and which ones still open</span></h1>
+ <p class="lede">The private registry lives in
+ <code>Tandumonium.agent-index.md</code> &sect;6. This is its public mirror: the
+ same character sheets, guild pages, archive query builders and sweep verdicts,
+ so anyone can re-run the hunt without reading an agent file first. Statuses
+ were verified on <span class="mono">2026-11-10</span> and are meant to be
+ re-checked, not trusted forever.<sup class="ref"><a class="ext" href="#f1">1</a></sup></p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="roster.html">Roster</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html" aria-current="page">Link Vault</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="gear.html">Gear</a>
+  <a href="Frontier.html">Frontier</a></nav>
+</header>
+
+<section id="characters">
+ <h2>Character Sheets</h2>
+ <div class="scroll">
+  <table>
+   <caption>Four handles &times; three retail realms. Status = unauthenticated GET, 2026-11-10.</caption>
+   <thead><tr><th>Handle</th><th>Realm</th><th>Armory</th><th>Warcraft Logs</th><th>Raider.IO</th></tr></thead>
+   <tbody>
+    <tr>
+     <td class="mono">Tandumonium</td><td>Hyjal</td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium">armory</a> <span class="badge b-ok">200</span></td>
+     <td><a class="ext" href="https://www.warcraftlogs.com/character/us/hyjal/tandumonium">wcl</a> <span class="badge b-wall">walled</span></td>
+     <td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium">rio</a> <span class="badge b-ok">verified</span></td>
+    </tr>
+    <tr>
+     <td class="mono">Tandu</td><td>Shadowsong</td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/shadowsong/tandu">armory</a> <span class="badge b-ok">200</span></td>
+     <td><a class="ext" href="https://www.warcraftlogs.com/character/us/shadowsong/tandu">wcl</a> <span class="badge b-wall">walled</span></td>
+     <td><a class="ext" href="https://raider.io/characters/us/shadowsong/Tandu">rio</a> <span class="badge b-dead">delisted</span></td>
+    </tr>
+    <tr>
+     <td class="mono">Tandu</td><td>Thrall</td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/thrall/tandu">armory</a> <span class="badge b-ok">200</span></td>
+     <td><a class="ext" href="https://www.warcraftlogs.com/character/us/thrall/tandu">wcl</a> <span class="badge b-wall">walled</span></td>
+     <td><a class="ext" href="https://raider.io/characters/us/thrall/Tandu">rio</a> <span class="badge b-dead">delisted</span></td>
+    </tr>
+    <tr>
+     <td class="mono">Tandu</td><td>Hyjal</td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandu">armory</a> <span class="badge b-ok">200</span></td>
+     <td><a class="ext" href="https://www.warcraftlogs.com/character/us/hyjal/tandu">wcl</a> <span class="badge b-wall">walled</span></td>
+     <td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandu">rio</a> <span class="badge b-dead">delisted</span></td>
+    </tr>
+    <tr>
+     <td class="mono">Tandieu</td><td>Hyjal</td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandieu">armory</a> <span class="badge b-ok">200</span></td>
+     <td><a class="ext" href="https://www.warcraftlogs.com/search?term=Tandieu">wcl search</a> <span class="badge b-wall">walled</span></td>
+     <td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandieu">rio</a> <span class="badge b-dead">delisted</span></td>
+    </tr>
+    <tr>
+     <td class="mono">Tandumonium-Ebbeson</td><td>Ebbeson <span class="badge b-build">forever</span></td>
+     <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium">armory (retail)</a> <span class="badge b-wall">n/a</span></td>
+     <td><span class="mono">Player-6921-002BA20F</span></td>
+     <td><span class="mut">&mdash;</span></td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note"><strong>Read the &ldquo;delisted&rdquo; tag carefully.</strong> Raider.IO's
+ public search returns 50 hits for <code>Tandu</code>, and the only
+ <code>Tandumonium</code> in the index is the Hyjal hunter (id
+ <span class="mono">230240816</span>). Our <code>Tandu</code> / <code>Tandieu</code>
+ folders exist on disk but those characters are not in any public index &mdash;
+ renamed, transferred, or simply retired. Absence from an index is not absence
+ from 2008.</p>
+</section>
+
+<section id="guilds">
+ <h2>Guild Pages</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>&lt;Gehenna&gt; &mdash; Shadowsong / Borean Tundra</h3>
+   <ul class="links">
+    <li><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287">Warcraft Logs guild 7287</a>
+     <span class="badge b-wall">walled</span> &mdash; the BfA tenure window</li>
+    <li><a class="ext" href="https://www.warcraftlogs.com/guild/us/shadowsong/gehenna">WCL by realm</a>
+     <span class="badge b-wall">walled</span></li>
+    <li><a class="ext" href="https://www.wipefest.net/guild/gehenna/Borean-Tundra/US">Wipefest</a>
+     <span class="badge b-dead">no reports</span></li>
+    <li><a class="ext" href="https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">WoWProgress</a>
+     <span class="badge b-wall">403</span></li>
+    <li><a class="ext" href="https://web.archive.org/web/20091016202417/http://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2009-10-16</a>
+     <span class="badge b-build">archive</span></li>
+    <li><a class="ext" href="https://web.archive.org/web/20100325140929/http://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2010-03-25</a>
+     <span class="badge b-build">archive</span></li>
+    <li><a class="ext" href="http://web.archive.org/web/20151210012514/http://us.battle.net/wow/en/guild/borean-tundra/Gehenna/">Battle.net armory 2015-12-10</a>
+     <span class="badge b-build">new find</span></li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>&lt;Theorycrafters&gt; &mdash; Thrall / Hyjal</h3>
+   <ul class="links">
+    <li><a class="ext" href="https://raider.io/guilds/us/hyjal/Theorycrafters">Raider.IO Hyjal</a>
+     <span class="badge b-ok">verified</span></li>
+    <li><a class="ext" href="https://www.warcraftlogs.com/guild/us/hyjal/theorycrafters">WCL Hyjal</a>
+     <span class="badge b-wall">walled</span></li>
+    <li><a class="ext" href="https://www.wowprogress.com/guild/us/thrall/Theorycrafters">WoWProgress Thrall</a>
+     <span class="badge b-wall">403</span></li>
+   </ul>
+   <p class="note">The 2015 armory snapshot is the <em>pre-tenure</em> guild page
+   &mdash; guild history, never indexed as his. See the tenure rule on
+   <a class="ext" href="raidlogs.html">Raid Logs</a>.</p>
+  </div>
+ </div>
+</section>
+
+<section id="builders">
+ <h2>Query Builders &mdash; Paste, Read JSON</h2>
+ <p>These are not documents; they are <em>questions</em>. Each returns raw JSON from
+ the Internet Archive's CDX index, which is the only place a deleted 2010 character
+ page could still be hiding. Open one in a tab and look for a non-empty array.</p>
+ <ul class="links">
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=www.wowprogress.com/character/us/shadowsong/tand*&output=json&limit=40">wowprogress &middot; shadowsong &middot; tand*</a></li>
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=www.wowprogress.com/character/us/thrall/tand*&output=json&limit=40">wowprogress &middot; thrall &middot; tand*</a></li>
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=www.wowprogress.com/character/us/hyjal/tand*&output=json&limit=40">wowprogress &middot; hyjal &middot; tand*</a></li>
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=www.warcraftlogs.com/character/us/borean-tundra/tand*&output=json&limit=40">warcraftlogs &middot; borean-tundra &middot; tand*</a></li>
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=www.warcraftlogs.com/guild/id/7287*&output=json&limit=40">warcraftlogs &middot; guild 7287</a></li>
+  <li><span class="badge b-build">builder</span>
+   <a class="ext" href="https://web.archive.org/cdx/search/cdx?url=us.battle.net/wow/en/character/shadowsong/tand*&output=json&limit=60">battle.net armory &middot; shadowsong &middot; tand*</a>
+   <span class="mut">&mdash; never swept before 2026-11-10</span></li>
+ </ul>
+ <p class="note">Prefer the lighter endpoint when CDX is flapping:
+ <code>http://archive.org/wayback/available?url=&lt;url&gt;</code> answers in one
+ second and tells you whether <em>any</em> snapshot exists. That is how the 2015
+ Battle.net guild capture was found on 2026-11-10.</p>
+</section>
+
+<section id="sweep">
+ <h2>The 2026-11-10 Sweep Verdicts</h2>
+ <div class="scroll">
+  <table>
+   <caption>Every surface probed this pass, and exactly what it said back</caption>
+   <thead><tr><th>Surface</th><th>Probe</th><th>Answer</th><th>Verdict</th></tr></thead>
+   <tbody>
+    <tr><td>Raider.IO</td><td class="mono">/api/search?term=Tandumonium</td><td>1 match &mdash; Hyjal hunter, id 230240816</td><td><span class="badge b-ok">clean</span></td></tr>
+    <tr><td>Raider.IO</td><td class="mono">/api/search?term=Tandu</td><td>50 matches, none on our three realms</td><td><span class="badge b-ok">clean</span></td></tr>
+    <tr><td>Raider.IO</td><td class="mono">/api/v1/characters/profile?realm=hyjal</td><td>200 &mdash; 0/9 current tier, no M+ seasons</td><td><span class="badge b-ok">clean</span></td></tr>
+    <tr><td>Wayback availability</td><td class="mono">us.battle.net/.../character/.../tandu</td><td><span class="mono">archived_snapshots: {}</span> on all three realms</td><td><span class="badge b-dead">empty</span></td></tr>
+    <tr><td>Wayback availability</td><td class="mono">us.battle.net/.../guild/borean-tundra/Gehenna/</td><td>snapshot 2015-12-10 (direct fetch rate-limited, 429)</td><td><span class="badge b-build">hit</span></td></tr>
+    <tr><td>Blizzard forums</td><td class="mono">us.forums.blizzard.com/en/wow/search.json?q=Tandumonium</td><td><span class="mono">posts: [] , users: []</span></td><td><span class="badge b-dead">empty</span></td></tr>
+    <tr><td>GitHub API</td><td class="mono">/search/users + /search/repositories</td><td><span class="mono">total_count: 0</span></td><td><span class="badge b-dead">empty</span></td></tr>
+    <tr><td>YouTube</td><td class="mono">results?search_query=Tandumonium</td><td>only generic &ldquo;WoW Forever&rdquo; guides, none ours</td><td><span class="badge b-dead">empty</span></td></tr>
+    <tr><td>Warcraft Logs</td><td class="mono">character pages + guild 7287</td><td>Cloudflare interstitials, no challenge clearance</td><td><span class="badge b-wall">walled</span></td></tr>
+    <tr><td>WoWProgress</td><td class="mono">/character/us/hyjal/Tandumonium</td><td>HTTP 403 to every unauthenticated GET</td><td><span class="badge b-wall">walled</span></td></tr>
+    <tr><td>Wowhead</td><td class="mono">/user=Tandumonium</td><td>HTTP 403</td><td><span class="badge b-wall">walled</span></td></tr>
+    <tr><td>DuckDuckGo</td><td class="mono">lite + html endpoints</td><td>&ldquo;select all squares containing a duck&rdquo;</td><td><span class="badge b-wall">walled</span></td></tr>
+    <tr><td>Bing</td><td class="mono">search?q=...&amp;format=rss</td><td>RSS opens, but homonym junk (a nausea drug, a drift event)</td><td><span class="badge b-dead">noise</span></td></tr>
+    <tr><td>Reddit</td><td class="mono">search.json</td><td>HTTP 403 (OAuth required)</td><td><span class="badge b-wall">walled</span></td></tr>
+    <tr><td>Warcraft Realms</td><td class="mono">characters.php?name=Tandu</td><td>domain repurposed into a Midnight item DB &mdash; census gone</td><td><span class="badge b-dead">dead</span></td></tr>
+    <tr><td>Wipefest</td><td class="mono">/guild/gehenna/Borean-Tundra/US</td><td>&ldquo;No reports could be found&rdquo;</td><td><span class="badge b-dead">empty</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Nothing above is a failure of the character &mdash; it is the shape
+ of the modern web. Pre-2016 WoW tools (WoWProgress, Warcraft Realms, the old
+ Armory) have either died or turned hostile to machines, and the one archive that
+ still holds everything was never crawled for these names. The sweep stays in the
+ record so the next pass does not repeat it.</p>
+</section>
+
+<section id="footnotes">
+ <h2>Footnotes</h2>
+ <ol class="foot">
+  <li id="f1"><strong>Why statuses expire.</strong> Cloudflare walls fall when a
+  browser holds a real session; rate limits reset; archives come back online. A
+  &ldquo;walled&rdquo; verdict means <em>walled to headless automation on
+  2026-11-10</em>, never &ldquo;gone&rdquo;. Re-probe before quoting.</li>
+  <li id="f2"><strong>Why the registry lives twice.</strong>
+  <code>Tandumonium.agent-index.md</code> &sect;6 is the machine copy (footnote-style
+  reference links so the file stays link-dense without prose); this page is the
+  human copy. Edit one, mirror the other.</li>
+  <li id="f3"><strong>Tenure rule.</strong> Only guild artifacts inside the recorded
+  <code>&lt;Gehenna&gt;</code> window (BfA, WCL guild
+  <span class="mono">7287</span>) may be presented as his; earlier captures are
+  guild history. The rule lives on <a class="ext" href="raidlogs.html">Raid Logs</a>
+  and in the expanded agent file &sect;5.</li>
+ </ol>
+</section>
+
+<footer>
+ <p>Gewey G.U.I. &middot; link vault &middot; statuses verified 2026-11-10 &middot;
+ private twin: <span class="mono">Tandumonium.agent-index.md</span> &sect;6 &middot;
+ <a class="ext" href="index.html" target="_top">back to the shell</a></p>
+</footer>
+</div>
+</body>
+</html>
