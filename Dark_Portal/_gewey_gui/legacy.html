@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Legacy — Tandu, 2008 &rarr; Present | Gewey G.U.I.</title>
+<!--
+  LEGACY.html — built 2026-11-10 by Tandumonium.
+  Purpose: the 2008-2026 paper trail. Every other wing of this HUD is about
+  "now" (Timeline = telemetry, Delve = log residue, macrocosm = macros).
+  This wing is about THEN: three names, two guilds, three races, eighteen years,
+  and the archived internet that still remembers.
+
+  Sources (all verified this run):
+    * Raider.IO public API  (character + guild profiles, crawl 2026-11-05)
+    * V:\__inuus__\gewey.github.io\bookmarks\games\warcraft\
+      (ported 2019-era <Gehenna> guild link sheet: WCL guild id 7287, Wipefest,
+       WoWProgress, 21 lookup portals, 11 class macro caches, 818-line AddOns.txt)
+    * Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\  (on-disk relics)
+
+  Self-contained on purpose (same rule as Timeline.html / Delve.html): every
+  number below is embedded at build time, plus live Wowhead mouseover tooltips.
+-->
+<script>
+const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.16),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.82em}
+td.mono,code{color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.race{border-left:3px solid var(--crimson);padding-left:.9rem}
+.race.r2{border-left-color:var(--grey)}
+.race.r3{border-left-color:var(--fel)}
+.race ol{margin:.4rem 0 0 1rem;color:var(--mut);font-size:.85rem}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-legacy">
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Legacy Ledger &middot; account QUAZZARR</p>
+ <h1>Tandu <span class="thin">2008 &rarr; Present</span></h1>
+ <p class="lede">Every other wing of this HUD watches <em>now</em>. This wing watches
+ <em>then</em>. Three names, two guilds, three races, eighteen years &mdash; and the
+ archived internet that still remembers a blood elf who refused to stop.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html" aria-current="page">Legacy</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="handles">
+ <h2>The Four Handles</h2>
+ <div class="scroll">
+  <table>
+   <caption>One hunter, four spellings. Retail and Forever are separate client trees.</caption>
+   <thead><tr><th>Handle</th><th>Flavor</th><th>Era</th><th>Realms</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Tandu</strong></td><td><span class="tag t-r">Retail</span></td>
+        <td>2008&ndash;present &middot; the OG handle</td>
+        <td class="mono">Shadowsong &middot; Thrall &middot; Hyjal</td></tr>
+    <tr><td><strong>Tandieu</strong></td><td><span class="tag t-r">Retail</span></td>
+        <td>phonetic / French-inflected variant (<code>-dieu</code>), used when the
+            name collided across transfers</td>
+        <td class="mono">Shadowsong &middot; Thrall &middot; Hyjal</td></tr>
+    <tr><td><strong>Tandumonium</strong></td><td><span class="tag t-r">Retail</span></td>
+        <td>current retail main &middot; Mythic BM Hunter, Dracthyr</td>
+        <td class="mono">Hyjal-US</td></tr>
+    <tr><td><strong>Tandumonium Ebbeson</strong></td><td><span class="tag t-f">Forever</span></td>
+        <td>WoW: Forever main &middot; <code>Player-6921-002BA20F</code></td>
+        <td class="mono">Ebbeson</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The surname <code>Ebbeson</code> is not decoration &mdash; retail keeps
+ <code>Jacobebbeson</code> on Hyjal. Same bloodline, different client.</p>
+</section>
+
+<section id="realms">
+ <h2>Realm &amp; Guild Matrix</h2>
+ <div class="scroll">
+  <table>
+   <caption>WTF\Account\QUAZZARR character folders on disk, 2026-11-10</caption>
+   <thead><tr><th>Realm (US)</th><th>Guild</th><th>Cluster</th><th>Toons on disk</th><th>Role in the arc</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">Shadowsong</td><td><strong>&lt;Gehenna&gt;</strong></td>
+        <td>Shadowsong / Borean Tundra</td><td>12</td>
+        <td>Origin cluster. Where the 2008 record starts.</td></tr>
+    <tr><td class="mono">Borean Tundra</td><td><strong>&lt;Gehenna&gt;</strong></td>
+        <td>Shadowsong / Borean Tundra</td><td>0</td>
+        <td>Connected realm; the guild page the archive actually captured.</td></tr>
+    <tr><td class="mono">Thrall</td><td><strong>&lt;Theorycrafters&gt;</strong></td>
+        <td>Thrall</td><td>13</td>
+        <td>First Horde powerhouse transfer hub.</td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>&lt;Theorycrafters&gt;</strong></td>
+        <td>Hyjal</td><td>27</td>
+        <td>Current retail home. 27 toons including the <code>Tan*</code> family.</td></tr>
+    <tr><td class="mono">Ebbeson</td><td><em>none</em></td>
+        <td>CAMWOW US1 Realm 3 PvE (realmID 6921, subRegion 91)</td><td>1</td>
+        <td>WoW: Forever launch realm, level cap 60.</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">51 toons are still on disk across three retail realms. Nothing was
+ deleted to make this page &mdash; the old caches (<code>character-list-order.old</code>,
+ <code>bindings-cache.old</code>, <code>config-cache.old</code>,
+ <code>chat-cache.old</code>) are the fossils.</p>
+</section>
+<section id="races">
+ <h2>Race Lineage</h2>
+ <div class="grid g3">
+  <div class="card race">
+   <h3>Blood Elf <span class="mono">(Sin'dorei)</span></h3>
+   <p>The original and eternal baseline. <strong>Always</strong> a blood elf &mdash;
+   through every race change, and even inside Dracthyr Visage form.</p>
+   <ol><li>Order 1 of 3</li><li>True form, all eras</li></ol>
+  </div>
+  <div class="card race r2">
+   <h3>Undead <span class="mono">(Forsaken)</span></h3>
+   <p>The Dark Ranger stint in undeath. This is where the voice was forged:
+   <em>Sylvanas did nothing wrong. We don't leave our people behind.</em></p>
+   <ol><li>Order 2 of 3</li><li>Still a blood elf underneath</li></ol>
+  </div>
+  <div class="card race r3">
+   <h3>Dracthyr <span class="mono">(Horde)</span></h3>
+   <p>Chosen <strong>100% for Glide</strong>. Not for the fantasy, not for the
+   scales &mdash; for slow fall, because <strong>gravity</strong> is the deadliest
+   boss in Mythic raiding.</p>
+    <ol><li>Order 3 of 3</li><li>Current retail form</li></ol>
+  </div>
+ </div>
+</section>
+
+<section id="live">
+ <h2>Live Telemetry &mdash; verified this build</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">263<small>item level equipped</small></div></div>
+  <div class="card"><div class="stat">21,685<small>achievement points</small></div></div>
+  <div class="card"><div class="stat">BM<small>Beast Mastery &middot; Hunter</small></div></div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>Raider.IO public API &mdash; Tandumonium / Hyjal-US / us, crawl 2026-11-05T12:46:46Z</caption>
+   <thead><tr><th>Field</th><th>Value</th></tr></thead>
+   <tbody>
+    <tr><td>Race / Class / Spec</td><td class="mono">Dracthyr / Hunter / Beast Mastery (DPS)</td></tr>
+    <tr><td>Faction</td><td class="mono">horde</td></tr>
+    <tr><td>Guild at crawl</td><td class="mono">null &mdash; unguilded</td></tr>
+    <tr><td>Mythic+ score (<code>season-mn-2</code>)</td><td class="mono">0 &mdash; no runs logged</td></tr>
+    <tr><td>Tier raid progression</td><td class="mono">0 / 9 (tier-mn-1)</td></tr>
+    <tr><td>Profile</td><td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium" target="_blank" rel="noopener">raider.io/characters/us/hyjal/Tandumonium</a></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Unguilded and unlogged is not the same as idle. The gear is current
+ (263), the points are real (21,685), and this page exists because the older record
+ deserves the same care as the new one.</p>
+</section>
+<section id="archive">
+ <h2>The Paper Trail &mdash; what the internet still has</h2>
+ <p class="lede">The old raid logs were never stored locally. They live on sites that
+ predate this machine. These are the entry points that still resolve, recorded here so
+ the trail never has to be rediscovered from scratch.</p>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>Primary sources &mdash; guild &lt;Gehenna&gt;, Shadowsong / Borean Tundra-US</caption>
+   <thead><tr><th>Source</th><th>What it holds</th><th>Link</th></tr></thead>
+   <tbody>
+    <tr><td>Warcraft Logs</td>
+        <td>Guild ID <code>7287</code> &mdash; the original upload target from the
+            2019-era guild link sheet. Old reports, old kills, old wipes.</td>
+        <td><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">warcraftlogs.com/guild/id/7287</a></td></tr>
+    <tr><td>Wipefest</td>
+        <td>Per-pull failure analysis for the Gehenna raid team.</td>
+        <td><a class="ext" href="https://www.wipefest.net/guild/gehenna/Borean-Tundra/US" target="_blank" rel="noopener">wipefest.net/guild/gehenna/Borean-Tundra/US</a></td></tr>
+    <tr><td>WoWProgress</td>
+        <td>Guild ranking history + roster snapshots for <code>&lt;Gehenna&gt;</code>
+            and <code>&lt;Theorycrafters&gt;</code> during Joey's actual tenure.</td>
+        <td><a class="ext" href="https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">wowprogress &middot; Gehenna</a><br>
+            <a class="ext" href="https://www.wowprogress.com/guild/us/thrall/Theorycrafters" target="_blank" rel="noopener">wowprogress &middot; Theorycrafters (Thrall)</a><br>
+            <a class="ext" href="https://www.wowprogress.com/guild/us/hyjal/Theorycrafters" target="_blank" rel="noopener">wowprogress &middot; Theorycrafters (Hyjal)</a></td></tr>
+    <tr><td>Raider.IO (guild)</td>
+        <td>Modern M+ / raid progression for both guild homes.</td>
+        <td><a class="ext" href="https://raider.io/guilds/us/borean-tundra/Gehenna" target="_blank" rel="noopener">raider.io &middot; Gehenna</a><br>
+            <a class="ext" href="https://raider.io/guilds/us/hyjal/Theorycrafters" target="_blank" rel="noopener">raider.io &middot; Theorycrafters</a></td></tr>
+    <tr><td>Blizzard Armory</td>
+        <td>Current canonical character record.</td>
+        <td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium" target="_blank" rel="noopener">armory &middot; tandumonium/hyjal</a></td></tr>
+    <tr><td>Realm population</td>
+        <td>Historical realm health for both origin realms.</td>
+        <td><a class="ext" href="https://www.wowrealmpopulation.com/wow-us-realm-statistics.php?realm=borean-tundra" target="_blank" rel="noopener">borean-tundra</a> &middot;
+            <a class="ext" href="https://www.wowrealmpopulation.com/wow-us-realm-statistics.php?realm=shadowsong" target="_blank" rel="noopener">shadowsong</a></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note"><strong>Guild Tenure Rule:</strong> Only guild records from eras when Joey
+ was actually in those guilds (such as 2018&ndash;2019 Battle for Azeroth in
+ <code>&lt;Gehenna&gt;</code> via WCL Guild ID <code>7287</code> &amp; Wipefest, and
+ <code>&lt;Theorycrafters&gt;</code> on Thrall / Hyjal) are indexed here.</p>
+</section>
+<section id="warcraft-bookmarks">
+ <h2>Ported Warcraft Arsenal &mdash; Character Lookup, Theorycrafting &amp; 2019 Guild Sheet</h2>
+ <p class="lede">Ported in full from <code>bookmarks\games\warcraft\</code> and
+ <code>js\dynamicGamesWarcraft.js</code>. Every portal below has deep character-lookup,
+ simming, log-analysis, or collection-tracking powers &mdash; plus live
+ <strong>Wowhead mouseover tooltips</strong> wired across the entire Dark Portal HUD.</p>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>21 Warcraft Character Lookup, Simming &amp; Analytics Portals</caption>
+   <thead><tr><th>Portal</th><th>Character &amp; Game Lookup Capabilities</th><th>Link</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Wowhead</strong></td>
+        <td>Full database of items, spells, quests, NPCs, talent calc, BiS guides, Profiler character lookup, and the <code>power.js</code> mouseover tooltip engine running on this page.</td>
+        <td><a class="ext" href="https://www.wowhead.com/" target="_blank" rel="noopener">wowhead.com</a></td></tr>
+    <tr><td><strong>Raider.IO</strong></td>
+        <td>Mythic+ score, dungeon run history, raid progression, gear/talent snapshots, and live character embeds.</td>
+        <td><a class="ext" href="https://raider.io/" target="_blank" rel="noopener">raider.io</a></td></tr>
+    <tr><td><strong>Warcraft Logs</strong></td>
+        <td>Combat log parser, parse rankings, replay timelines, and Guild ID <code>7287</code> (<code>&lt;Gehenna&gt;</code>) raid archive.</td>
+        <td><a class="ext" href="https://www.warcraftlogs.com/" target="_blank" rel="noopener">warcraftlogs.com</a></td></tr>
+    <tr><td><strong>Wipefest</strong></td>
+        <td>Automated per-pull mechanical analysis of Warcraft Logs reports (standing in fire, missed interrupts, defensive usage).</td>
+        <td><a class="ext" href="https://www.wipefest.net/guild/gehenna/Borean-Tundra/US" target="_blank" rel="noopener">wipefest.net &middot; Gehenna</a></td></tr>
+    <tr><td><strong>WoWAnalyzer</strong></td>
+        <td>Spec-specific cooldown, rotation, and resource efficiency analyzer built on top of Warcraft Logs reports.</td>
+        <td><a class="ext" href="https://wowanalyzer.com/" target="_blank" rel="noopener">wowanalyzer.com</a></td></tr>
+    <tr><td><strong>Raidbots</strong></td>
+        <td>Cloud SimulationCraft engine: <strong>Top Gear</strong>, <strong>Droptimizer</strong>, <strong>Gear Compare</strong>, <strong>Stat Weights</strong> (Pawn strings), and <strong>Quick Sim</strong>.</td>
+        <td><a class="ext" href="https://www.raidbots.com/simbot" target="_blank" rel="noopener">raidbots.com/simbot</a></td></tr>
+    <tr><td><strong>Bloodmallet</strong></td>
+        <td>Automated SimulationCraft rankings for trinkets, races, talents, and embellishments across every spec.</td>
+        <td><a class="ext" href="https://www.bloodmallet.com/" target="_blank" rel="noopener">bloodmallet.com</a></td></tr>
+    <tr><td><strong>Archon (Subcreation)</strong></td>
+        <td>Statistical meta aggregation from top Mythic+ and Mythic Raid logs (talent builds, tier sets, trinkets, enchants, stat priorities).</td>
+        <td><a class="ext" href="https://www.archon.gg/" target="_blank" rel="noopener">archon.gg</a></td></tr>
+    <tr><td><strong>Simple Armory</strong></td>
+        <td>Visual character collection lookup: mounts (with interactive farm planner route), companions, battle pets, toys, achievements, and reputations.</td>
+        <td><a class="ext" href="https://simplearmory.com/" target="_blank" rel="noopener">simplearmory.com</a></td></tr>
+    <tr><td><strong>Data for Azeroth</strong></td>
+        <td>Account-wide completionist leaderboards, rarity percentages across all players, and character lookup for mounts, pets, titles, transmog, and recipes.</td>
+        <td><a class="ext" href="https://www.dataforazeroth.com/" target="_blank" rel="noopener">dataforazeroth.com</a></td></tr>
+    <tr><td><strong>Petopia</strong></td>
+        <td>The definitive Hunter pet database: every tameable beast family, model, color variant, exotic ability, and spawn location.</td>
+        <td><a class="ext" href="https://www.wow-petopia.com/" target="_blank" rel="noopener">wow-petopia.com</a></td></tr>
+    <tr><td><strong>Wago.IO</strong></td>
+        <td>Repository for WeakAuras, Plater profiles, ElvUI strings, Details! scripts, and MDT dungeon routes.</td>
+        <td><a class="ext" href="https://wago.io/" target="_blank" rel="noopener">wago.io</a></td></tr>
+    <tr><td><strong>Icy Veins</strong></td>
+        <td>Class rotation, talent, gearing, stat priority, and boss strategy guides.</td>
+        <td><a class="ext" href="https://www.icy-veins.com/wow/" target="_blank" rel="noopener">icy-veins.com/wow</a></td></tr>
+    <tr><td><strong>WoW Progress</strong></td>
+        <td>Guild raid progression rankings, character M+/gear scores, and realm leaderboards.</td>
+        <td><a class="ext" href="https://www.wowprogress.com/" target="_blank" rel="noopener">wowprogress.com</a></td></tr>
+    <tr><td><strong>TradeSkillMaster</strong></td>
+        <td>Auction House market value lookup, realm price data, crafting profit calculators, and sniper strings.</td>
+        <td><a class="ext" href="https://www.tradeskillmaster.com/" target="_blank" rel="noopener">tradeskillmaster.com</a></td></tr>
+    <tr><td><strong>RaidPlan.io</strong></td>
+        <td>Interactive visual boss positioning and raid cooldown assignment planner.</td>
+        <td><a class="ext" href="https://raidplan.io/" target="_blank" rel="noopener">raidplan.io</a></td></tr>
+    <tr><td><strong>Warcraft Secrets</strong></td>
+        <td>Step-by-step guides for hidden mounts, secret pets, riddles, and puzzle chains (Lucid Nightmare, Hivemind, Baa'l, Jenafur).</td>
+        <td><a class="ext" href="https://warcraft-secrets.com/" target="_blank" rel="noopener">warcraft-secrets.com</a></td></tr>
+    <tr><td><strong>ArenaTeam &amp; AskMrRobot</strong></td>
+        <td>PvP ladder analytics and gear/BiS optimizer.</td>
+        <td><a class="ext" href="https://www.arenateam.net/" target="_blank" rel="noopener">arenateam.net</a> &middot; <a class="ext" href="https://www.askmrrobot.com/" target="_blank" rel="noopener">askmrrobot.com</a></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="grid g2" style="margin-top:1.1rem">
+  <div class="card">
+   <h3>2019 <code>&lt;Gehenna&gt;</code> Raid &amp; Addon Sheet (Ported from <code>warcraft/index.html</code>)</h3>
+   <ul style="margin:.4rem 0 0 1.1rem;color:var(--mut);font-size:.85rem">
+    <li><strong>Guild Required Addons:</strong> <a class="ext" href="https://www.curseforge.com/wow/addons/deadly-boss-mods" target="_blank" rel="noopener">DBM</a> / <a class="ext" href="https://www.curseforge.com/wow/addons/big-wigs" target="_blank" rel="noopener">BigWigs</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/gtfo" target="_blank" rel="noopener">GTFO</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/angry-assignments" target="_blank" rel="noopener">Angry Assignments</a>.</li>
+    <li><strong>QoL &amp; UI Stack:</strong> <a class="ext" href="https://www.curseforge.com/wow/addons/details" target="_blank" rel="noopener">Details!</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/weakauras-2" target="_blank" rel="noopener">WeakAuras 2</a>, <a class="ext" href="https://www.tukui.org/download.php?ui=elvui" target="_blank" rel="noopener">ElvUI</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/bartender4" target="_blank" rel="noopener">Bartender4</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/worldflightmap" target="_blank" rel="noopener">WorldFlightMap</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/handynotes" target="_blank" rel="noopener">HandyNotes</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/premade-groups-filter" target="_blank" rel="noopener">Premade Groups Filter</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/simulationcraft" target="_blank" rel="noopener">SimulationCraft</a>, <a class="ext" href="https://www.curseforge.com/wow/addons/pawn" target="_blank" rel="noopener">Pawn</a>.</li>
+    <li><strong>2019 Raid Tiers (<code>&lt;Gehenna&gt;</code> Era):</strong> <a class="ext" href="https://www.wowhead.com/uldir-raid-strategy-guides" target="_blank" rel="noopener">Uldir</a> &amp; <a class="ext" href="https://www.wowhead.com/guides/battle-of-dazaralor-raid-overview" target="_blank" rel="noopener">Battle of Dazar'alor</a> (<a class="ext" href="https://www.youtube.com/user/Hazelnuttygames" target="_blank" rel="noopener">Hazelnuttygames</a>, <a class="ext" href="https://www.youtube.com/user/BellularGaming" target="_blank" rel="noopener">Bellular</a>, <a class="ext" href="https://www.youtube.com/channel/UCiHdR2hAyFEXWCbNQgbu_Dg" target="_blank" rel="noopener">Taliesin &amp; Evitel</a>).</li>
+    <li><strong>Ported Archives:</strong> <a class="ext" href="macrocosm.html#legacy-bookmarks">142 Ported General &amp; 11-Class Macros (Macrocosm)</a> &middot; <a class="ext" href="../Research/legacy_AddOns_2020.txt"><code>legacy_AddOns_2020.txt</code> (818-line addon state)</a>.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>Live Wowhead Mouseover Tooltips (Hover Any Link!)</h3>
+   <p style="font-size:.85rem;color:var(--mut)">Powered by <code>whTooltips</code> + <code>wow.zamimg.com/widgets/power.js</code> across the entire Dark Portal HUD:</p>
+   <ul style="margin:.4rem 0 0 1.1rem;color:var(--mut);font-size:.85rem">
+    <li><a href="https://www.wowhead.com/item=279232" data-wowhead="item=279232&amp;ilvl=263">Ancient Amani Longbow</a> (Tandumonium's 263 Main Hand)</li>
+    <li><a href="https://www.wowhead.com/item=250462" data-wowhead="item=250462&amp;ilvl=253">Forgotten Farstrider's Insignia</a> (Sin'dorei Legacy Trinket)</li>
+    <li><a href="https://www.wowhead.com/item=280377" data-wowhead="item=280377&amp;ilvl=263">Breath of Jan'alai</a> &amp; <a href="https://www.wowhead.com/item=275508" data-wowhead="item=275508&amp;ilvl=292">Preyhunter's Rugged Legguards</a></li>
+    <li><a href="https://www.wowhead.com/spell=19574" data-wowhead="spell=19574">Bestial Wrath</a> &middot; <a href="https://www.wowhead.com/spell=217200" data-wowhead="spell=217200">Barbed Shot</a> &middot; <a href="https://www.wowhead.com/spell=34026" data-wowhead="spell=34026">Kill Command</a> &middot; <a href="https://www.wowhead.com/spell=358733" data-wowhead="spell=358733">Glide (Dracthyr Slow Fall)</a></li>
+    <li><a href="https://www.wowhead.com/item=2828" data-wowhead="item=2828&amp;ench=2647&amp;gems=23121:23121:23121">Original Bookmark Tooltip Test Item (<code>item=2828</code>)</a></li>
+   </ul>
+  </div>
+ </div>
+</section>
+<section id="relics">
+ <h2>On-disk Relics</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>The fossils</h3>
+   <p>Files WoW itself wrote when it rotates a cache &mdash; each one is a snapshot of a
+   previous login session that was never meant to be read again.</p>
+   <ul style="margin:.4rem 0 0 1.1rem;color:var(--mut);font-size:.85rem">
+    <li><code>WTF\Account\QUAZZARR\character-list-order.old</code> &mdash; 53 toon GUIDs</li>
+    <li><code>bindings-cache.old</code> &middot; <code>config-cache.old</code></li>
+    <li><code>edit-mode-cache-account.old</code></li>
+    <li><code>Hyjal\Tandumonium\chat-cache.old</code></li>
+    <li><code>Logs\AccountData.log.old</code> &mdash; 1.1 MB, Aug 2026 rotation</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>The honest limits</h3>
+   <p>Retail is a <strong>reinstall</strong>, not a continuous 2008 install: the oldest
+   file on the tree is 2026-08-14. There is no local Wrath/Cata/MoP combat log to find.
+   The 2008&ndash;2016 record is <em>only</em> on the internet &mdash; which is exactly why
+   the Paper Trail section above is load-bearing.</p>
+   <p>Warcraft Logs and WoWProgress both sit behind Cloudflare and refuse scripted reads.
+   They have to be opened by a human in a browser. That is a wall, not a bug.</p>
+  </div>
+ </div>
+</section>
+
+<section id="next">
+ <h2>Where to dig next &mdash; status after the 2026-11-10 pass</h2>
+ <div class="card">
+  <ol style="margin-left:1.1rem;color:var(--mut);font-size:.9rem">
+   <li><strong>DONE 2026-11-10:</strong> all 23 Wayback captures walked &mdash; no
+       <code>Tandu</code> / <code>Tandieu</code> / <code>Tandumonium</code> in any roster
+       or event feed (score-gated lists; the sweep table and honest limits live in the
+       new <a href="raidlogs.html">Raid Logs</a> wing). WoWProgress character-page CDX
+       sweep per realm: also empty.</li>
+   <li><strong>Still human-only:</strong> open <a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">WCL guild 7287</a>
+       logged-in and harvest report codes into <code>agent-index.md</code> &sect;7 &mdash;
+       the Cloudflare wall held again this run (real Chrome, challenge never clears).</li>
+   <li><strong>Pending, IA outage:</strong> re-run the warcraftlogs CDX prefix queries
+       (shadowsong / thrall / hyjal character subtrees + guild pages) when the Internet
+       Archive is back online; borean-tundra already returned empty before the outage.</li>
+   <li><strong>Still open:</strong> <code>classic.warcraftlogs.com</code> for any 2019
+       Classic-era logs under the same handles; any screenshot, video, or forum post
+       containing <code>Tandu</code> / <code>Tandieu</code> / <code>Tandumonium</code>
+       gets a row in &sect;7 &mdash; link first, prose later.</li>
+  </ol>
+ </div>
+</section>
+
+<footer>
+ <p><strong>Legacy.html</strong> &mdash; built 2026-11-10 by Tandumonium.
+ Sources: Raider.IO public API (crawl 2026-11-05), Wayback CDX index,
+ <code>bookmarks\games\warcraft\index.html</code> (2019 guild link sheet), and the
+ retail <code>WTF</code> tree. All data embedded at build time; nothing fetches.</p>
+ <p style="margin-top:.5rem">Lok'tar Ogar. We don't leave our people behind.</p>
+</footer>
+
+
+
+
+
+</div>
+</body>
+</html>

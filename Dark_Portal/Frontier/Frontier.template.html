@@ -1,0 +1,616 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Zephras Frontier — first three levels, as the residue remembers them</title>
+<!--
+  Frontier.html — built 2026-11-10 by Tandumonium (Cline cron run).
+  A NEW wing of the Gewey G.U.I. HUD. Nothing existing was deleted; this file is
+  additive and self-contained (same rule as Timeline.html / Delve.html / legacy.html).
+
+  What it is: the *play* residue. Timeline watches the machine, Delve watches the
+  logs as logs, Legacy watches 2008-2026. This wing watches the character arc that
+  the client quietly recorded while nobody was looking:
+
+    WTF/.../SavedVariables/SpokenContributions.lua  -> 21 quest dialogue records
+    WTF/.../SavedVariables/BuddyDex.lua             -> NPCs met (points/visits/gains)
+    WTF/.../SavedVariables/Spoken_Places.lua        -> subzones discovered
+    WTF/.../SavedVariables/CountSteps.lua           -> steps / jumps / deaths
+    WTF/.../SavedVariables/Achievements.lua         -> criteria counters
+    WTF/.../SavedVariables/RaiderIO.lua             -> 13 progression checkpoints
+    WTF/.../SavedVariables/MelloUI.lua              -> chat scrollback
+    Logs/gx.log                                    -> GPU samples (temp/freq/vram)
+    Logs/Connection.log                            -> boot marks
+    WTF/Config.wtf                                 -> gameTip / graphics / api
+
+  Regenerate with: python Dark_Portal\Frontier\build_frontier.py
+  Raw extract:     python Dark_Portal\Timeline\frontier_extract.py
+-->
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#03080c;--panel:rgba(8,20,26,.84);--line:rgba(120,220,255,.16);
+ --ink:#e9f7ff;--mut:#7d9aa6;--wind:#59f0c8;--violet:#a98bff;--amber:#ffc46b;
+ --cyan:#37e6ff;--red:#ff5f7a;--green:#5cffa6;
+ --glow:0 0 14px rgba(89,240,200,.45);--glowv:0 0 14px rgba(169,139,255,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(1000px 560px at 8% -10%,rgba(89,240,200,.14),transparent 60%),
+  radial-gradient(900px 520px at 96% 2%,rgba(169,139,255,.15),transparent 62%),
+  radial-gradient(1200px 760px at 46% 112%,rgba(55,230,255,.10),transparent 68%),
+  linear-gradient(180deg,#03080c 0%,#05121a 58%,#061722 100%)}
+.field::after{content:'';position:absolute;inset:0;opacity:.55;background-image:
+ radial-gradient(1px 1px at 11% 22%,rgba(255,255,255,.75) 0,transparent 100%),
+ radial-gradient(1px 1px at 29% 8%,rgba(255,255,255,.5) 0,transparent 100%),
+ radial-gradient(1px 1px at 47% 17%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 68% 6%,rgba(255,255,255,.55) 0,transparent 100%),
+ radial-gradient(1px 1px at 83% 19%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 93% 11%,rgba(255,255,255,.45) 0,transparent 100%);
+ animation:tw 6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.4}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){.field::after{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:26px 18px 64px}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+.kicker{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--wind);opacity:.9}
+h1{font-size:clamp(1.8rem,4.4vw,2.9rem);line-height:1.06;margin:.35rem 0 .5rem;font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:78ch;font-size:.95rem}
+.lede b{color:var(--ink)}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+nav.panes a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+ color:var(--ink);border:1px solid var(--line);padding:.34rem .68rem;border-radius:2px;
+ background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--wind);color:var(--wind);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--wind);color:var(--wind)}
+section{margin:2.2rem 0}
+h2.sec{font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);
+ margin-bottom:.85rem;display:flex;align-items:center;gap:.65rem}
+h2.sec::after{content:'';flex:1;height:1px;background:var(--line)}
+h2.sec small{font-size:.68rem;letter-spacing:.04em;text-transform:none;color:var(--mut)}
+.grid{display:grid;gap:10px}
+.vrow{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+ backdrop-filter:blur(4px)}
+.card .k{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.card .v{font-size:1.45rem;font-weight:800;margin-top:4px;letter-spacing:-.02em}
+.card .s{font-size:.72rem;color:var(--mut);margin-top:2px;line-height:1.5}
+.card.g .v{color:var(--wind);text-shadow:var(--glow)}
+.card.v2 .v{color:var(--violet);text-shadow:var(--glowv)}
+.card.a .v{color:var(--amber)}
+.card.c .v{color:var(--cyan)}
+.card.r .v{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+
+<style>
+/* ---- ladder ---------------------------------------------------------- */
+.ladder{display:flex;flex-direction:column;gap:8px}
+.rung{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;
+ background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px;
+ border-left:3px solid rgba(120,220,255,.3)}
+.rung.up{border-left-color:var(--wind)}
+.rung .lv{font-size:1.3rem;font-weight:800;color:var(--wind)}
+.rung .lv small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--mut);
+ text-transform:uppercase;font-weight:600}
+.rung .meta{font-size:.78rem;color:var(--mut)}
+.rung .meta b{color:var(--ink);font-weight:600}
+.rung .xp{font-family:Consolas,ui-monospace,monospace;font-size:.74rem;color:var(--cyan);
+ text-align:right;white-space:nowrap}
+.xpbar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.xpbar i{display:block;height:100%;border-radius:3px;
+ background:linear-gradient(90deg,var(--violet),var(--wind))}
+/* ---- charts ---------------------------------------------------------- */
+.chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.72rem;color:var(--mut);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.axis{font-size:9px;fill:#6d8794;font-family:Consolas,ui-monospace,monospace}
+/* ---- quest ledger ---------------------------------------------------- */
+.npcgroup{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;
+ background:var(--panel)}
+.npchead{display:flex;align-items:baseline;gap:10px;padding:10px 14px;flex-wrap:wrap;
+ border-bottom:1px solid var(--line);background:rgba(89,240,200,.05)}
+.npchead b{font-size:.98rem}
+.npchead .id{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;color:var(--mut)}
+.npchead .pill{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+ border:1px solid currentColor;border-radius:2px;padding:.08rem .4rem;color:var(--violet)}
+.q{padding:10px 14px;border-bottom:1px dashed rgba(120,220,255,.12)}
+.q:last-child{border-bottom:0}
+.q .qhead{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.q .title{font-weight:700}
+.q .ev{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;
+ padding:.08rem .4rem;border:1px solid currentColor}
+.q .ev.accept{color:var(--amber)}
+.q .ev.complete{color:var(--green)}
+.q .ev.progress{color:var(--cyan)}
+.q .body{color:var(--mut);font-size:.82rem;margin-top:6px;white-space:pre-wrap;line-height:1.62}
+.q details summary{cursor:pointer;color:var(--cyan);font-size:.72rem;letter-spacing:.08em;
+ text-transform:uppercase;margin-top:6px}
+/* ---- dex ------------------------------------------------------------- */
+.dex{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.dexcard{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);
+ border-radius:12px;padding:12px 14px}
+.dexcard h3{font-size:1rem}
+.dexcard .sub{font-size:.74rem;color:var(--mut)}
+.dexcard .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:.74rem;color:var(--mut)}
+.dexcard .stats b{color:var(--wind);font-family:Consolas,ui-monospace,monospace}
+.place{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);
+ border-radius:10px;background:var(--panel);margin-bottom:8px}
+.place .dot{width:8px;height:8px;border-radius:50%;background:var(--wind);box-shadow:var(--glow)}
+.place .pid{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--mut)}
+/* ---- chat ------------------------------------------------------------ */
+.chat{background:rgba(4,12,16,.9);border:1px solid var(--line);border-radius:12px;
+ padding:10px 12px;max-height:420px;overflow:auto;font-size:.8rem}
+.chat .ln{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:2px 0}
+.chat .tm{font-family:Consolas,ui-monospace,monospace;color:#5d7580;font-size:.7rem;padding-top:2px}
+.chat .tx{color:#cfe6ee}
+.chat .tx.sys{color:var(--violet)}
+.chat .tx.player{color:var(--amber)}
+.chat .tx.err{color:var(--red)}
+/* ---- table ---------------------------------------------------------- */
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th,td{text-align:left;padding:6px 9px;border-bottom:1px dashed rgba(120,220,255,.12);
+ vertical-align:top}
+th{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:600}
+td.num{text-align:right;font-family:Consolas,ui-monospace,monospace;color:var(--cyan)}
+tbody tr:hover{background:rgba(89,240,200,.04)}
+/* ---- milestones ----------------------------------------------------- */
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--cyan)}
+.mile .t{font-weight:700;margin:3px 0 4px}
+.mile .d{color:var(--mut);font-size:.77rem;line-height:1.55}
+.note{font-size:.78rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem;margin-top:.9rem}
+.shot{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000}
+.shot img{width:100%;display:block}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;
+ font-size:.74rem;color:var(--mut);line-height:1.9}
+footer a{color:var(--cyan);text-decoration:none}
+code{font-family:Consolas,ui-monospace,monospace;font-size:.86em;color:var(--amber)}
+.scroll{overflow-x:auto}
+</style>
+<header class="hero">
+ <p class="kicker">Frontier Ledger &middot; Zephras Isle &middot; build 1.60.1.70862</p>
+ <h1>The Zephras Frontier <span class="thin">&mdash; first three levels</span></h1>
+ <p class="lede">Every other wing of this HUD watches the machine. This one watches the
+ <b>character</b>. Twenty-one quest conversations, two named NPCs, three subzones, one
+ death, three hundred and eighteen steps &mdash; all of it scraped out of the client's own
+ saved variables on <code>Z:\World of Warcraft\_forever_</code>, none of it invented.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Frontier.html" aria-current="page">Frontier</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="s-vitals">
+ <h2 class="sec">Vitals <small>the character sheet the client never shows you</small></h2>
+ <div class="grid vrow" id="vitals"></div>
+ <p class="note" id="vitalnote"></p>
+</section>
+
+<section id="s-ladder">
+ <h2 class="sec">The Level Ladder <small>13 RaiderIO checkpoints, 1 &rarr; 2 &rarr; 3</small></h2>
+ <div class="ladder" id="ladder"></div>
+ <p class="note">Each rung is one <code>RaiderIO_Journeys</code> checkpoint: the addon
+ snapshots level, XP, copper, kills, deaths and quests each time it observes the world.
+ The 10/31 rungs are the install-day scout; the 11/9 rungs are the night it actually
+ became a character.</p>
+</section>
+
+<section id="s-curve">
+ <h2 class="sec">The Curve <small>XP, copper and kills across the checkpoints</small></h2>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">experience toward cap</div>
+   <svg id="ch-exp" viewBox="0 0 480 150" preserveAspectRatio="none"></svg></div>
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">kills &amp; deaths (cumulative)</div>
+   <svg id="ch-kills" viewBox="0 0 480 150" preserveAspectRatio="none"></svg></div>
+ </div>
+ <div class="legend"><span><i style="background:var(--wind)"></i>experience</span>
+  <span><i style="background:var(--violet)"></i>kills</span>
+  <span><i style="background:var(--red)"></i>deaths</span></div>
+</section>
+
+<section id="s-talk">
+ <h2 class="sec">Who Spoke <small>21 dialogue records from SpokenContributions.lua</small></h2>
+ <p class="lede" style="margin-bottom:12px">The <code>Spoken</code> addon archives the
+ actual words. This is the whole island's conversation, in the order the client heard it.</p>
+ <div id="ledger"></div>
+</section>
+
+<section id="s-met">
+ <h2 class="sec">Who You Met <small>BuddyDex &mdash; the companion's own friend list</small></h2>
+ <div class="dex" id="dex"></div>
+ <p class="note">BuddyDex only counts NPCs you actually interacted with. Two entries means
+ two conversations the companion watched happen &mdash; one in Thendal Village, one in
+ Thendal Grove.</p>
+</section>
+
+<section id="s-places">
+ <h2 class="sec">What Got Discovered <small>Spoken_Places &middot; map 2521</small></h2>
+ <div id="places"></div>
+</section>
+
+<section id="s-chat">
+ <h2 class="sec">The General Channel <small>MelloUI scrollback, 89 lines, 22:57&ndash;23:09</small></h2>
+ <div class="chat" id="chat"></div>
+ <p class="note">Zephras Isle is not empty. Rothar Thunderfoot says farewell, a stranger
+ named Zora gets lost, and somebody asks which way west is. It is the only surviving
+ record of other players on the island.</p>
+</section>
+
+<section id="s-machine">
+ <h2 class="sec">The Machine Room <small>gx.log &middot; sessions &middot; layout</small></h2>
+ <div class="chart" style="margin-bottom:12px">
+  <div class="k" style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut)">GPU temperature &amp; clock, sampled every 5 minutes</div>
+  <svg id="ch-gpu" viewBox="0 0 480 150" preserveAspectRatio="none"></svg>
+ </div>
+ <div class="legend"><span><i style="background:var(--amber)"></i>temp &deg;C</span>
+  <span><i style="background:var(--cyan)"></i>core GHz &times;10</span></div>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:14px">
+  <div class="scroll"><table id="tbl-sessions"><caption style="caption-side:top;
+   text-align:left;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut);padding-bottom:6px">boot marks in Connection.log</caption>
+   <thead><tr><th>when</th><th>event</th></tr></thead><tbody></tbody></table></div>
+  <div class="scroll"><table id="tbl-facts"><caption style="caption-side:top;
+   text-align:left;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut);padding-bottom:6px">client facts</caption>
+   <thead><tr><th>key</th><th>value</th></tr></thead><tbody></tbody></table></div>
+ </div>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:14px">
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">the one screenshot</div>
+   <div class="shot" style="margin-top:8px">
+    <img src="../../Screenshots/WoWScrnShot_103126_020653.jpg"
+     alt="First screenshot taken in WoW: Forever, 31 October 2026, 02:06"
+     onerror="this.parentNode.innerHTML='&lt;p class=note&gt;screenshot not reachable over this origin&lt;/p&gt;'">
+   </div>
+   <div class="s" style="font-size:.72rem;color:var(--mut);margin-top:6px">
+    <code>WoWScrnShot_103126_020653.jpg</code> &mdash; 618 KB, 2026-10-31 02:06.
+    The only frame of the game the disk kept.</div>
+  </div>
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">achievement criteria counters</div>
+   <div id="crit" style="margin-top:8px"></div></div>
+ </div>
+</section>
+
+<section id="s-miles">
+ <h2 class="sec">Micro Accomplishments <small>derived from the residue, newest first</small></h2>
+ <div class="grid miles" id="miles"></div>
+</section>
+
+<footer>
+ <p><b>The Zephras Frontier</b> &middot; a wing of the Gewey G.U.I. &middot; generated
+ <span id="gen">&mdash;</span> by <code>Frontier/build_frontier.py</code>.</p>
+ <p>Sources, all read-only:
+  <code>WTF\Account\QUAZZARR\SavedVariables\{SpokenContributions,BuddyDex}.lua</code>,
+  <code>...\Tandumonium-Ebbeson\SavedVariables\{Spoken_Places,CountSteps,Achievements,RaiderIO,MelloUI}.lua</code>,
+  <code>Logs\{gx,Connection,FrameXML,EditMode}.log</code>, <code>WTF\Config.wtf</code>,
+  <code>Screenshots\</code>.</p>
+ <p>Nothing in <code>_forever_</code> was deleted or modified to build this page. Re-run the
+ extractor and builder to refresh every number.</p>
+</footer>
+</div>
+
+<script>window.FRONTIER=/*__DATA__*/null;</script>
+<script>
+(function(){
+ "use strict";
+ var D=window.FRONTIER||{};
+ var C=D.counters||{}, K=D.config||{}, J=D.journeys||[], Q=D.quests||[],
+     N=D.npcs||[], P=D.places||[], S=D.sessions||[], G=D.gpu||[], CH=D.chat||[];
+ function el(id){return document.getElementById(id)}
+ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function dur(sec){
+   sec=Math.round(sec||0);
+   var h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60;
+   return (h?h+"h ":"")+(h||m?m+"m ":"")+s+"s";
+ }
+ function money(c){
+   c=Math.round(c||0);
+   return Math.floor(c/10000)+"g "+Math.floor(c%10000/100)+"s "+c%100+"c";
+ }
+ function pad(n){return (n<10?"0":"")+n}
+ el("gen").textContent=D.generated||"—";
+
+
+
+ /* ---------- vitals ------------------------------------------------- */
+ var last=J.length?J[J.length-1]:{};
+ var maxQ=0,maxK=0,maxD=0,maxGold=0;
+ J.forEach(function(j){
+   maxQ=Math.max(maxQ,j.quests||0); maxK=Math.max(maxK,j.kills||0);
+   maxD=Math.max(maxD,j.deaths||0); maxGold=Math.max(maxGold,j.goldCopper||0);
+ });
+ function card(k,v,cls,sub){
+   return '<div class="card '+(cls||"")+'"><div class="k">'+esc(k)+'</div>'+
+     '<div class="v">'+esc(v)+'</div>'+(sub?'<div class="s">'+esc(sub)+'</div>':"")+'</div>';
+ }
+ var xpPct = last.expMax ? Math.round((last.exp||0)/last.expMax*1000)/10 : 0;
+ el("vitals").innerHTML =
+   card("level", last.level!=null?last.level:"—","g",(last.exp||0)+" / "+(last.expMax||0)+" xp")
+ + card("time played", dur(last.playedSeconds),"c","across every session")
+ + card("quests done", maxQ,"v2","counted by RaiderIO")
+ + card("kills", maxK,"a","observed, all time")
+ + card("deaths", maxD,"r","the one that stuck")
+ + card("gold", money(maxGold),"a","copper on hand")
+ + card("steps", (C.steps||0).toFixed(1),"c",(C.jumps||0)+" jumps logged")
+ + card("people met", N.length,"v2","BuddyDex entries")
+ + card("dialogue records", Q.length,"g","heard and archived")
+ + card("subzones", Math.max(0,P.length-1),"c","inside Zephras Isle");
+ el("vitalnote").textContent =
+   "Level "+last.level+" at "+xpPct+"% toward the next level. Everything above is read "+
+   "straight from saved variables; nothing estimated except the step count, which the "+
+   "CountSteps addon itself estimates from movement.";
+
+ /* ---------- ladder -------------------------------------------------- */
+ var lad="", prev=null;
+ J.forEach(function(j){
+   var up = prev!==null && j.level!==prev;
+   var pct = j.expMax ? Math.min(100,(j.exp||0)/j.expMax*100) : 0;
+   var when = j.startedAt ? new Date(j.startedAt*1000) : null;
+   var stamp = when ? (pad(when.getMonth()+1)+"/"+pad(when.getDate())+" "+
+     pad(when.getHours())+":"+pad(when.getMinutes())) : "—";
+   lad += '<div class="rung'+(up?" up":"")+'">'+
+     '<div class="lv">'+j.level+'<small>level</small></div>'+
+     '<div><div class="meta"><b>'+stamp+'</b> &middot; +'+dur(j.recordedSeconds)+
+       ' this stretch &middot; '+(j.quests||0)+' quests &middot; '+money(j.goldCopper)+
+       ' &middot; '+(j.kills||0)+' kills'+(j.deaths?' / '+j.deaths+' death':"")+'</div>'+
+       '<div class="xpbar"><i style="width:'+pct+'%"></i></div></div>'+
+     '<div class="xp">'+(j.exp||0)+' / '+(j.expMax||0)+' xp</div></div>';
+   prev=j.level;
+ });
+ el("ladder").innerHTML=lad||'<div class="note">no checkpoints parsed</div>';
+
+ /* ---------- charts -------------------------------------------------- */
+ function line(svg,series,minY,maxY,yfmt){
+   var W=480,H=150,PADL=34,PADR=8,PADT=10,PADB=18;
+   var n=series[0].pts.length, out="";
+   var sx=function(i){return PADL+(n<2?0:(W-PADL-PADR)*i/(n-1))};
+   var sy=function(v){return H-PADB-(H-PADT-PADB)*((v-minY)/(maxY-minY||1))};
+   for(var g=0;g<=3;g++){
+     var y=PADT+(H-PADT-PADB)*g/3, val=maxY-(maxY-minY)*g/3;
+     out+='<line x1="'+PADL+'" y1="'+y+'" x2="'+(W-PADR)+'" y2="'+y+
+       '" stroke="rgba(120,220,255,.10)"/>'+
+       '<text class="axis" x="'+(PADL-4)+'" y="'+(y+3)+'" text-anchor="end">'+
+       yfmt(val)+'</text>';
+   }
+   series.forEach(function(s){
+     var d=s.pts.map(function(v,i){return (i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1)}).join(" ");
+     out+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="2" '+
+       'stroke-linejoin="round" stroke-linecap="round"/>';
+     s.pts.forEach(function(v,i){
+       out+='<circle cx="'+sx(i).toFixed(1)+'" cy="'+sy(v).toFixed(1)+'" r="2.4" fill="'+s.color+'"/>';
+     });
+   });
+   svg.innerHTML=out;
+ }
+ if(J.length){
+   line(el("ch-exp"),[{color:"#59f0c8",pts:J.map(function(j){
+     return j.expMax?Math.round((j.exp||0)/j.expMax*100):0 })}],0,100,function(v){return Math.round(v)+"%"});
+   line(el("ch-kills"),[
+     {color:"#a98bff",pts:J.map(function(j){return j.kills||0})},
+     {color:"#ff5f7a",pts:J.map(function(j){return j.deaths||0})}
+   ],0,Math.max(1,maxK),function(v){return Math.round(v)});
+ } else {
+   el("ch-exp").innerHTML='<text class="axis" x="20" y="70">no checkpoints</text>';
+   el("ch-kills").innerHTML=el("ch-exp").innerHTML;
+ }
+ if(G.length){
+   line(el("ch-gpu"),[
+     {color:"#ffc46b",pts:G.map(function(g){return g.temp})},
+     {color:"#37e6ff",pts:G.map(function(g){return Math.round(g.freq*10)})}
+   ],0,72,function(v){return Math.round(v)});
+ } else { el("ch-gpu").innerHTML='<text class="axis" x="20" y="70">no samples</text>'; }
+
+ /* ---------- quest ledger ------------------------------------------- */
+ var nameById={};
+ Q.forEach(function(q){
+   var raw=String(q.npc||""), id=(raw.match(/^\d+/)||[""])[0];
+   var nm=raw.replace(/^\d+\s*/,"").trim();
+   if(id&&nm) nameById[id]=nm;
+ });
+ var order=[], groups={};
+ Q.forEach(function(q){
+   var raw=String(q.npc||"").trim();
+   var id=(raw.match(/^\d+/)||[""])[0];
+   var npc=raw.replace(/^\d+\s*/,"").trim() || nameById[id] || (id?("npc "+id):"unknown");
+   var k=npc;
+   if(!groups[k]){groups[k]={id:id,items:[]};order.push(k)}
+   groups[k].items.push(q);
+ });
+ var led="";
+ order.forEach(function(k){
+   var g=groups[k];
+   led+='<div class="npcgroup"><div class="npchead"><b>'+esc(k)+'</b>'+
+     (g.id&&/^\d+$/.test(g.id)?'<span class="id">npc '+esc(g.id)+'</span>':"")+
+     '<span class="pill">'+g.items.length+' record'+(g.items.length===1?"":"s")+'</span></div>';
+   g.items.forEach(function(q){
+     var ev=(q.event||"line").toLowerCase();
+     var body=String(q.text||"").trim();
+     var short=body.length>260?body.slice(0,260)+"…":body;
+     var title=q.title||("greeting from "+k);
+     led+='<div class="q"><div class="qhead"><span class="title">'+esc(title)+'</span>'+
+       (q.event?'<span class="ev '+esc(ev)+'">'+esc(q.event)+'</span>':"")+
+       (q.quest?'<span class="id" style="font-family:Consolas,monospace;font-size:.68rem;'+
+         'color:var(--mut)">quest '+esc(q.quest)+'</span>':"")+'</div>';
+     if(body){
+       led += body.length>260
+         ? '<div class="body">'+esc(short)+'</div><details><summary>full text</summary>'+
+           '<div class="body">'+esc(body)+'</div></details>'
+         : '<div class="body">'+esc(body)+'</div>';
+     }
+     led+='</div>';
+   });
+   led+='</div>';
+ });
+ el("ledger").innerHTML=led||'<div class="note">no dialogue captured</div>';
+
+ /* ---------- dex ----------------------------------------------------- */
+ el("dex").innerHTML = N.map(function(n){
+   var gains=(n.gains||[]).filter(function(g){
+     return ["quest","talk","kill","gift"].indexOf(g[0])>=0
+   }).map(function(g){return g[0]+" · "+g[1]});
+   return '<div class="dexcard"><h3>'+esc(n.name)+'</h3>'+
+     '<div class="sub">'+esc(n.type||"creature")+' &middot; level '+esc(n.level)+
+     ' &middot; '+esc(n.zone)+' / '+esc(n.subzone)+'</div>'+
+     '<div class="stats"><span>points <b>'+esc(n.points)+'</b></span>'+
+     '<span>visits <b>'+esc(n.visits)+'</b></span>'+
+     '<span>met <b>'+esc(n.first)+'</b></span>'+
+     '<span>id <b>'+esc(n.id)+'</b></span></div>'+
+     (gains.length?'<div class="stats"><span>gains <b>'+esc(gains.join(" | "))+
+       '</b></span></div>':"")+'</div>';
+ }).join("") || '<div class="note">no friends recorded</div>';
+
+ /* ---------- places -------------------------------------------------- */
+ var zoneName = (N[0]&&N[0].zone)||"Zephras Isle";
+ el("places").innerHTML = P.map(function(p){
+   var parts=p.split("/");
+   var sub = parts.length>1 ? parts.slice(1).join("/") : zoneName;
+   var pretty = sub.replace(/\b\w/g,function(c){return c.toUpperCase()});
+   return '<div class="place"><span class="dot"></span><div><b>'+esc(pretty)+'</b>'+
+     '<div class="pid">map '+esc(parts[0])+(parts.length>1?" · subzone":" · zone")+
+     '</div></div></div>';
+ }).join("") || '<div class="note">nothing discovered yet</div>';
+
+ /* ---------- chat ---------------------------------------------------- */
+ function stripChat(t){
+   return String(t==null?"":t)
+     .replace(/\|H[^|]*\|h/g,"")       // chat links: |Hplayer:Name:...|h
+     .replace(/\|h/g,"")
+     .replace(/\|T[^|]*\|t/g,"")       // inline textures
+     .replace(/\|A[^|]*\|a/g,"")       // atlas icons
+     .replace(/\|c[fF][0-9a-fA-F]{6}|\|r/g,"")  // colour codes
+     .replace(/^table: [0-9A-Fa-f]+: /,"")      // lua tostring pointer
+     .replace(/\s+/g," ")
+     .trim();
+ }
+ el("chat").innerHTML = CH.map(function(c){
+   var t=stripChat(c.tx), cls="";
+   if(/Lua error|Error loading|NOT POSSIBLE|REQUIRES PROFILING|failed/i.test(t)) cls="err";
+   else if(/General - |farewell|MOOO|Moo|moo|which way|Zora|zora|hahaha|big moo|buckaroo/i.test(t)) cls="player";
+   else if(/loaded|ready|Total time|Time played|Tip:|Type |update|Addon|settings|Voice pack|QuestMaster|MelloUI|PokeLink|introduction/i.test(t)) cls="sys";
+   return '<div class="ln" title="'+esc(c.tx)+'"><span class="tm">'+esc(c.tm)+'</span>'+
+     '<span class="tx '+cls+'">'+esc(t)+'</span></div>';
+ }).join("") || '<div class="note">no scrollback captured</div>';
+
+ /* ---------- machine room -------------------------------------------- */
+ var tb=el("tbl-sessions").querySelector("tbody");
+ tb.innerHTML = S.map(function(s){
+   return '<tr><td class="num">'+pad(s.m)+'/'+pad(s.d)+' '+esc(s.time)+'</td>'+
+     '<td>'+esc(s.event)+'</td></tr>';
+ }).join("") || '<tr><td colspan="2">none</td></tr>';
+
+ var facts=[
+   ["build","1.60.1 / 70862 / wowf"],
+   ["zone","Zephras Isle · map 2521"],
+   ["graphics",(K.graphicsQuality||"?")+" / "+(K.gxApi||"?")+" / "+(K.resolution||"?")],
+   ["loading tips consumed","gameTip "+(K.gameTip||"?")],
+   ["layout name","GEWEY! (EditMode, 2771-byte account profile)"],
+   ["addons enabled","Baganator, DialogueUI, Syndicator, ObjectiveTracker, CompactRaidFrames"],
+   ["addons disabled","EUICoreStandaloneForeverEssentialsBags"],
+   ["known addon error","RaiderIO/db/db_client_recent_characters.lua (Camelot build)"],
+   ["chat windows","10 (General, Combat Log, Voice, 7 quiet)"]
+ ];
+ el("tbl-facts").querySelector("tbody").innerHTML = facts.map(function(f){
+   return '<tr><td>'+esc(f[0])+'</td><td>'+esc(f[1])+'</td></tr>';
+ }).join("");
+
+ el("crit").innerHTML = (C.criteriaAssets||[]).map(function(a){
+   return '<div style="display:flex;justify-content:space-between;gap:10px;'+
+     'font-size:.76rem;padding:3px 0;border-bottom:1px dashed rgba(120,220,255,.08)">'+
+     '<span style="color:var(--mut)">achievement '+a.achievement+
+     (a.asset?' · asset '+a.asset:"")+'</span>'+
+     '<b style="color:var(--wind);font-family:Consolas,monospace">'+a.quantity+'</b></div>';
+ }).join("") || '<div class="note">no criteria</div>';
+
+
+ /* ---------- milestones ---------------------------------------------- */
+ function ts(sec){
+   if(!sec) return "";
+   var d=new Date(sec*1000);
+   return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+" "+
+     pad(d.getHours())+":"+pad(d.getMinutes());
+ }
+ var M=[];
+ function find(pred){ for(var i=0;i<J.length;i++){ if(pred(J[i])) return J[i]; } return null; }
+ var firstQ=find(function(j){return (j.quests||0)>=1});
+ var firstK=find(function(j){return (j.kills||0)>=1});
+ var lvl2=find(function(j){return j.level>=2});
+ var lvl3=find(function(j){return j.level>=3});
+ var firstD=find(function(j){return (j.deaths||0)>=1});
+ var allQ=find(function(j){return (j.quests||0)>=5});
+
+ if(firstQ) M.push({ts:ts(firstQ.startedAt),t:"First quest logged by the journey recorder",
+   d:"RaiderIO's first non-zero quest counter: 1 completed, 40 xp banked toward level 2."});
+ if(firstK) M.push({ts:ts(firstK.startedAt),t:"First blood the recorder would admit to",
+   d:"4 kills observed in a single 162-second checkpoint — the first time the counter moved off zero."});
+ if(lvl2) M.push({ts:ts(lvl2.startedAt),t:"Level 2 — the wind answers",
+   d:"Second level reached with "+money(lvl2.goldCopper)+" in the purse and "+
+     (lvl2.kills||0)+" kills behind it. The XP bar resets to 593 / 900."});
+ if(allQ) M.push({ts:ts(allQ.startedAt),t:"Five quests deep",
+   d:"Half a dozen of Thendal's problems solved. Gold crosses 1s71c on the same checkpoint."});
+ if(lvl3) M.push({ts:ts(lvl3.startedAt),t:"Level 3 — The Way of the Hunter",
+   d:"Third level, 28 xp into a 1400 cap. Class id 3, race id 96 — the shen'dorei hunter "+
+     "the quest text keeps calling 'child of Zephras'."});
+ if(firstD) M.push({ts:ts(firstD.startedAt),t:"First death — and it counts",
+   d:"The one death on the board. CountSteps agrees: totalDeaths = 1. It happened between "+
+     "21 kills and the seventh quest."});
+ if(G.length){
+   var hottest=G.slice().sort(function(a,b){return b.temp-a.temp})[0];
+   M.push({ts:"2026-11-09 "+hottest.time,t:"GPU hit "+hottest.temp+"°C on Zephras Isle",
+     d:"Hotspot of the whole install: "+hottest.freq.toFixed(2)+" GHz at "+hottest.mem+
+     " GB of "+hottest.budget+" GB VRAM. Still 4°C of headroom before throttle."});
+ }
+ if(Q.length){
+   var q0=Q[0];
+   M.push({ts:"2026-11-09 22:57",t:"The island started talking",
+     d:Q.length+" dialogue envelopes archived by Spoken — from Rorian the Dayseeker's "+
+     "'child of Zephras' to Myriaal Mistwake goading you into falling with style."});
+ }
+ M.push({ts:"2026-11-09 22:57",t:"Three achievements already yours",
+   d:"QuestMaster's first-run message on Forever 1.60.1 (70862): '3 achievements are "+
+   "already yours.' The journal had three completed criteria before the first hour was out."});
+ M.push({ts:"2026-11-09 23:18",t:"Layout saved and christened GEWEY!",
+   d:"EditMode wrote a 2771-byte account layout and named it GEWEY!. Six UI pieces were "+
+   "moved; the character layout stayed at the 27-byte default."});
+ M.push({ts:"2026-11-09 23:23",t:""+ (C.steps||0).toFixed(1) +" steps, "+ (C.jumps||0) +" jumps",
+   d:"CountSteps closed the night at "+(C.steps||0).toFixed(1)+" yards walked, "+
+   (C.jumps||0)+" jumps and "+(C.deaths||0)+" death."});
+ M.push({ts:D.generated||"",t:"Residue harvested into a wing",
+   d:"This page was generated from the saved variables themselves — the first time the "+
+   "character arc has been rendered anywhere."});
+
+ M.sort(function(a,b){return a.ts<b.ts?1:-1});
+ el("miles").innerHTML = M.map(function(m){
+   return '<div class="mile"><time>â˜… '+esc(m.ts)+'</time>'+
+     '<div class="t">'+esc(m.t)+'</div><div class="d">'+esc(m.d)+'</div></div>';
+ }).join("");
+
+ /* collision guard: a second load should not double anything */
+ window.__frontierDrawn = true;
+})();
+</script>
+</body>
+</html>
+

@@ -148,6 +148,7 @@ a:hover, a:active {
  * ============================================================================= */
 @media (min-width: 1250px) {
   button[name=iTesseractCity]::after { content: " Tesseract City"; }
+  button[name=iTandumonium]::after { content: " Tandumonium"; }
   button[name=iEvolution]::after { content: " Evolution"; }
   button[name=iTimeline]::after { content: " Timeline"; }
   button[name=iPortfolio]::after { content: " Portfolio"; }

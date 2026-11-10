@@ -1,0 +1,616 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Zephras Frontier — first three levels, as the residue remembers them</title>
+<!--
+  Frontier.html — built 2026-11-10 by Tandumonium (Cline cron run).
+  A NEW wing of the Gewey G.U.I. HUD. Nothing existing was deleted; this file is
+  additive and self-contained (same rule as Timeline.html / Delve.html / legacy.html).
+
+  What it is: the *play* residue. Timeline watches the machine, Delve watches the
+  logs as logs, Legacy watches 2008-2026. This wing watches the character arc that
+  the client quietly recorded while nobody was looking:
+
+    WTF/.../SavedVariables/SpokenContributions.lua  -> 21 quest dialogue records
+    WTF/.../SavedVariables/BuddyDex.lua             -> NPCs met (points/visits/gains)
+    WTF/.../SavedVariables/Spoken_Places.lua        -> subzones discovered
+    WTF/.../SavedVariables/CountSteps.lua           -> steps / jumps / deaths
+    WTF/.../SavedVariables/Achievements.lua         -> criteria counters
+    WTF/.../SavedVariables/RaiderIO.lua             -> 13 progression checkpoints
+    WTF/.../SavedVariables/MelloUI.lua              -> chat scrollback
+    Logs/gx.log                                    -> GPU samples (temp/freq/vram)
+    Logs/Connection.log                            -> boot marks
+    WTF/Config.wtf                                 -> gameTip / graphics / api
+
+  Regenerate with: python Dark_Portal\Frontier\build_frontier.py
+  Raw extract:     python Dark_Portal\Timeline\frontier_extract.py
+-->
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#03080c;--panel:rgba(8,20,26,.84);--line:rgba(120,220,255,.16);
+ --ink:#e9f7ff;--mut:#7d9aa6;--wind:#59f0c8;--violet:#a98bff;--amber:#ffc46b;
+ --cyan:#37e6ff;--red:#ff5f7a;--green:#5cffa6;
+ --glow:0 0 14px rgba(89,240,200,.45);--glowv:0 0 14px rgba(169,139,255,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(1000px 560px at 8% -10%,rgba(89,240,200,.14),transparent 60%),
+  radial-gradient(900px 520px at 96% 2%,rgba(169,139,255,.15),transparent 62%),
+  radial-gradient(1200px 760px at 46% 112%,rgba(55,230,255,.10),transparent 68%),
+  linear-gradient(180deg,#03080c 0%,#05121a 58%,#061722 100%)}
+.field::after{content:'';position:absolute;inset:0;opacity:.55;background-image:
+ radial-gradient(1px 1px at 11% 22%,rgba(255,255,255,.75) 0,transparent 100%),
+ radial-gradient(1px 1px at 29% 8%,rgba(255,255,255,.5) 0,transparent 100%),
+ radial-gradient(1px 1px at 47% 17%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 68% 6%,rgba(255,255,255,.55) 0,transparent 100%),
+ radial-gradient(1px 1px at 83% 19%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 93% 11%,rgba(255,255,255,.45) 0,transparent 100%);
+ animation:tw 6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.4}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){.field::after{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:26px 18px 64px}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+.kicker{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--wind);opacity:.9}
+h1{font-size:clamp(1.8rem,4.4vw,2.9rem);line-height:1.06;margin:.35rem 0 .5rem;font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:78ch;font-size:.95rem}
+.lede b{color:var(--ink)}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+nav.panes a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+ color:var(--ink);border:1px solid var(--line);padding:.34rem .68rem;border-radius:2px;
+ background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--wind);color:var(--wind);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--wind);color:var(--wind)}
+section{margin:2.2rem 0}
+h2.sec{font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);
+ margin-bottom:.85rem;display:flex;align-items:center;gap:.65rem}
+h2.sec::after{content:'';flex:1;height:1px;background:var(--line)}
+h2.sec small{font-size:.68rem;letter-spacing:.04em;text-transform:none;color:var(--mut)}
+.grid{display:grid;gap:10px}
+.vrow{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+ backdrop-filter:blur(4px)}
+.card .k{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.card .v{font-size:1.45rem;font-weight:800;margin-top:4px;letter-spacing:-.02em}
+.card .s{font-size:.72rem;color:var(--mut);margin-top:2px;line-height:1.5}
+.card.g .v{color:var(--wind);text-shadow:var(--glow)}
+.card.v2 .v{color:var(--violet);text-shadow:var(--glowv)}
+.card.a .v{color:var(--amber)}
+.card.c .v{color:var(--cyan)}
+.card.r .v{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+
+<style>
+/* ---- ladder ---------------------------------------------------------- */
+.ladder{display:flex;flex-direction:column;gap:8px}
+.rung{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;
+ background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px;
+ border-left:3px solid rgba(120,220,255,.3)}
+.rung.up{border-left-color:var(--wind)}
+.rung .lv{font-size:1.3rem;font-weight:800;color:var(--wind)}
+.rung .lv small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--mut);
+ text-transform:uppercase;font-weight:600}
+.rung .meta{font-size:.78rem;color:var(--mut)}
+.rung .meta b{color:var(--ink);font-weight:600}
+.rung .xp{font-family:Consolas,ui-monospace,monospace;font-size:.74rem;color:var(--cyan);
+ text-align:right;white-space:nowrap}
+.xpbar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.xpbar i{display:block;height:100%;border-radius:3px;
+ background:linear-gradient(90deg,var(--violet),var(--wind))}
+/* ---- charts ---------------------------------------------------------- */
+.chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.72rem;color:var(--mut);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.axis{font-size:9px;fill:#6d8794;font-family:Consolas,ui-monospace,monospace}
+/* ---- quest ledger ---------------------------------------------------- */
+.npcgroup{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;
+ background:var(--panel)}
+.npchead{display:flex;align-items:baseline;gap:10px;padding:10px 14px;flex-wrap:wrap;
+ border-bottom:1px solid var(--line);background:rgba(89,240,200,.05)}
+.npchead b{font-size:.98rem}
+.npchead .id{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;color:var(--mut)}
+.npchead .pill{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+ border:1px solid currentColor;border-radius:2px;padding:.08rem .4rem;color:var(--violet)}
+.q{padding:10px 14px;border-bottom:1px dashed rgba(120,220,255,.12)}
+.q:last-child{border-bottom:0}
+.q .qhead{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.q .title{font-weight:700}
+.q .ev{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;
+ padding:.08rem .4rem;border:1px solid currentColor}
+.q .ev.accept{color:var(--amber)}
+.q .ev.complete{color:var(--green)}
+.q .ev.progress{color:var(--cyan)}
+.q .body{color:var(--mut);font-size:.82rem;margin-top:6px;white-space:pre-wrap;line-height:1.62}
+.q details summary{cursor:pointer;color:var(--cyan);font-size:.72rem;letter-spacing:.08em;
+ text-transform:uppercase;margin-top:6px}
+/* ---- dex ------------------------------------------------------------- */
+.dex{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.dexcard{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);
+ border-radius:12px;padding:12px 14px}
+.dexcard h3{font-size:1rem}
+.dexcard .sub{font-size:.74rem;color:var(--mut)}
+.dexcard .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:.74rem;color:var(--mut)}
+.dexcard .stats b{color:var(--wind);font-family:Consolas,ui-monospace,monospace}
+.place{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);
+ border-radius:10px;background:var(--panel);margin-bottom:8px}
+.place .dot{width:8px;height:8px;border-radius:50%;background:var(--wind);box-shadow:var(--glow)}
+.place .pid{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--mut)}
+/* ---- chat ------------------------------------------------------------ */
+.chat{background:rgba(4,12,16,.9);border:1px solid var(--line);border-radius:12px;
+ padding:10px 12px;max-height:420px;overflow:auto;font-size:.8rem}
+.chat .ln{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:2px 0}
+.chat .tm{font-family:Consolas,ui-monospace,monospace;color:#5d7580;font-size:.7rem;padding-top:2px}
+.chat .tx{color:#cfe6ee}
+.chat .tx.sys{color:var(--violet)}
+.chat .tx.player{color:var(--amber)}
+.chat .tx.err{color:var(--red)}
+/* ---- table ---------------------------------------------------------- */
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th,td{text-align:left;padding:6px 9px;border-bottom:1px dashed rgba(120,220,255,.12);
+ vertical-align:top}
+th{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:600}
+td.num{text-align:right;font-family:Consolas,ui-monospace,monospace;color:var(--cyan)}
+tbody tr:hover{background:rgba(89,240,200,.04)}
+/* ---- milestones ----------------------------------------------------- */
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--cyan)}
+.mile .t{font-weight:700;margin:3px 0 4px}
+.mile .d{color:var(--mut);font-size:.77rem;line-height:1.55}
+.note{font-size:.78rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem;margin-top:.9rem}
+.shot{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000}
+.shot img{width:100%;display:block}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;
+ font-size:.74rem;color:var(--mut);line-height:1.9}
+footer a{color:var(--cyan);text-decoration:none}
+code{font-family:Consolas,ui-monospace,monospace;font-size:.86em;color:var(--amber)}
+.scroll{overflow-x:auto}
+</style>
+<header class="hero">
+ <p class="kicker">Frontier Ledger &middot; Zephras Isle &middot; build 1.60.1.70862</p>
+ <h1>The Zephras Frontier <span class="thin">&mdash; first three levels</span></h1>
+ <p class="lede">Every other wing of this HUD watches the machine. This one watches the
+ <b>character</b>. Twenty-one quest conversations, two named NPCs, three subzones, one
+ death, three hundred and eighteen steps &mdash; all of it scraped out of the client's own
+ saved variables on <code>Z:\World of Warcraft\_forever_</code>, none of it invented.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Frontier.html" aria-current="page">Frontier</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="s-vitals">
+ <h2 class="sec">Vitals <small>the character sheet the client never shows you</small></h2>
+ <div class="grid vrow" id="vitals"></div>
+ <p class="note" id="vitalnote"></p>
+</section>
+
+<section id="s-ladder">
+ <h2 class="sec">The Level Ladder <small>13 RaiderIO checkpoints, 1 &rarr; 2 &rarr; 3</small></h2>
+ <div class="ladder" id="ladder"></div>
+ <p class="note">Each rung is one <code>RaiderIO_Journeys</code> checkpoint: the addon
+ snapshots level, XP, copper, kills, deaths and quests each time it observes the world.
+ The 10/31 rungs are the install-day scout; the 11/9 rungs are the night it actually
+ became a character.</p>
+</section>
+
+<section id="s-curve">
+ <h2 class="sec">The Curve <small>XP, copper and kills across the checkpoints</small></h2>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">experience toward cap</div>
+   <svg id="ch-exp" viewBox="0 0 480 150" preserveAspectRatio="none"></svg></div>
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">kills &amp; deaths (cumulative)</div>
+   <svg id="ch-kills" viewBox="0 0 480 150" preserveAspectRatio="none"></svg></div>
+ </div>
+ <div class="legend"><span><i style="background:var(--wind)"></i>experience</span>
+  <span><i style="background:var(--violet)"></i>kills</span>
+  <span><i style="background:var(--red)"></i>deaths</span></div>
+</section>
+
+<section id="s-talk">
+ <h2 class="sec">Who Spoke <small>21 dialogue records from SpokenContributions.lua</small></h2>
+ <p class="lede" style="margin-bottom:12px">The <code>Spoken</code> addon archives the
+ actual words. This is the whole island's conversation, in the order the client heard it.</p>
+ <div id="ledger"></div>
+</section>
+
+<section id="s-met">
+ <h2 class="sec">Who You Met <small>BuddyDex &mdash; the companion's own friend list</small></h2>
+ <div class="dex" id="dex"></div>
+ <p class="note">BuddyDex only counts NPCs you actually interacted with. Two entries means
+ two conversations the companion watched happen &mdash; one in Thendal Village, one in
+ Thendal Grove.</p>
+</section>
+
+<section id="s-places">
+ <h2 class="sec">What Got Discovered <small>Spoken_Places &middot; map 2521</small></h2>
+ <div id="places"></div>
+</section>
+
+<section id="s-chat">
+ <h2 class="sec">The General Channel <small>MelloUI scrollback, 89 lines, 22:57&ndash;23:09</small></h2>
+ <div class="chat" id="chat"></div>
+ <p class="note">Zephras Isle is not empty. Rothar Thunderfoot says farewell, a stranger
+ named Zora gets lost, and somebody asks which way west is. It is the only surviving
+ record of other players on the island.</p>
+</section>
+
+<section id="s-machine">
+ <h2 class="sec">The Machine Room <small>gx.log &middot; sessions &middot; layout</small></h2>
+ <div class="chart" style="margin-bottom:12px">
+  <div class="k" style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut)">GPU temperature &amp; clock, sampled every 5 minutes</div>
+  <svg id="ch-gpu" viewBox="0 0 480 150" preserveAspectRatio="none"></svg>
+ </div>
+ <div class="legend"><span><i style="background:var(--amber)"></i>temp &deg;C</span>
+  <span><i style="background:var(--cyan)"></i>core GHz &times;10</span></div>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:14px">
+  <div class="scroll"><table id="tbl-sessions"><caption style="caption-side:top;
+   text-align:left;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut);padding-bottom:6px">boot marks in Connection.log</caption>
+   <thead><tr><th>when</th><th>event</th></tr></thead><tbody></tbody></table></div>
+  <div class="scroll"><table id="tbl-facts"><caption style="caption-side:top;
+   text-align:left;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+   color:var(--mut);padding-bottom:6px">client facts</caption>
+   <thead><tr><th>key</th><th>value</th></tr></thead><tbody></tbody></table></div>
+ </div>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:14px">
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">the one screenshot</div>
+   <div class="shot" style="margin-top:8px">
+    <img src="../../Screenshots/WoWScrnShot_103126_020653.jpg"
+     alt="First screenshot taken in WoW: Forever, 31 October 2026, 02:06"
+     onerror="this.parentNode.innerHTML='&lt;p class=note&gt;screenshot not reachable over this origin&lt;/p&gt;'">
+   </div>
+   <div class="s" style="font-size:.72rem;color:var(--mut);margin-top:6px">
+    <code>WoWScrnShot_103126_020653.jpg</code> &mdash; 618 KB, 2026-10-31 02:06.
+    The only frame of the game the disk kept.</div>
+  </div>
+  <div class="chart"><div class="k" style="font-size:.65rem;letter-spacing:.14em;
+   text-transform:uppercase;color:var(--mut)">achievement criteria counters</div>
+   <div id="crit" style="margin-top:8px"></div></div>
+ </div>
+</section>
+
+<section id="s-miles">
+ <h2 class="sec">Micro Accomplishments <small>derived from the residue, newest first</small></h2>
+ <div class="grid miles" id="miles"></div>
+</section>
+
+<footer>
+ <p><b>The Zephras Frontier</b> &middot; a wing of the Gewey G.U.I. &middot; generated
+ <span id="gen">&mdash;</span> by <code>Frontier/build_frontier.py</code>.</p>
+ <p>Sources, all read-only:
+  <code>WTF\Account\QUAZZARR\SavedVariables\{SpokenContributions,BuddyDex}.lua</code>,
+  <code>...\Tandumonium-Ebbeson\SavedVariables\{Spoken_Places,CountSteps,Achievements,RaiderIO,MelloUI}.lua</code>,
+  <code>Logs\{gx,Connection,FrameXML,EditMode}.log</code>, <code>WTF\Config.wtf</code>,
+  <code>Screenshots\</code>.</p>
+ <p>Nothing in <code>_forever_</code> was deleted or modified to build this page. Re-run the
+ extractor and builder to refresh every number.</p>
+</footer>
+</div>
+
+<script>window.FRONTIER={"generated":"2026-11-10 01:30:06","source":"Z:\\World of Warcraft\\_forever_","config":{"gameTip":"8","graphicsQuality":"9","resolution":"2560x1440","gxApi":"D3D12","agentUID":"wowf","portal":"US","lastAddonVersion":"16001"},"counters":{"steps":317.6993897159942,"jumps":2.0,"deaths":1.0,"statisticsStartedAt":1794282928.0,"criteria":[{"id":4953,"quantity":2.0},{"id":4956,"quantity":4.0},{"id":4944,"quantity":6.0},{"id":0,"quantity":486.0},{"id":92464,"quantity":1.0},{"id":0,"quantity":4.0},{"id":0,"quantity":9.0},{"id":0,"quantity":170.0},{"id":0,"quantity":9.0},{"id":0,"quantity":9.0},{"id":2991,"quantity":1.0},{"id":0,"quantity":9.0},{"id":0,"quantity":9.0},{"id":0,"quantity":1.0},{"id":613286,"quantity":1.0}],"criteriaAssets":[{"achievement":13,"asset":0,"quantity":486.0},{"achievement":27,"asset":92464,"quantity":1.0},{"achievement":74,"asset":0,"quantity":4.0},{"achievement":67,"asset":0,"quantity":9.0},{"achievement":86,"asset":0,"quantity":170.0},{"achievement":90,"asset":0,"quantity":9.0},{"achievement":36,"asset":0,"quantity":9.0},{"achievement":16,"asset":2991,"quantity":1.0},{"achievement":91,"asset":0,"quantity":9.0},{"achievement":42,"asset":0,"quantity":9.0},{"achievement":17,"asset":0,"quantity":1.0},{"achievement":68,"asset":613286,"quantity":1.0}]},"quests":[{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","sum":"807988266","text":"What do you need of me, child of Zephras?","key":"g:251361:17478336"},{"addon":"SpokenQuests/3.8.3","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92460","event":"complete","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","title":"Coming of Age","sum":"211558885","text":"Gale's greetings, $N. I am honored to bestow your coming of age relic today as you are recognized for the potential you bring to the shen'dorei. Our people have faced great hardship and persecution in our complex history.\n\nToday you are given this relic which is one of many held by those before you. Someday when your ashes are scattered to the winds it will pass to another to continue our tradition.\n\nAs you take this relic with you know that the winds of home will be with you wherever you travel.","key":"q:92460:complete:251361"},{"addon":"SpokenQuests/3.8.3","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92461","event":"accept","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","title":"Harmony in Balance","sum":"248863563","text":"We live in times of great uncertainty for our people. We face unprecedented challenges that may require bold solutions, but we also must contend with the ordinary and mundane here in Thendal Grove. Take, for example, the recent unsustainable rise in the vuldren population.\n\nThe vuldren are a vital part of our ecosystem. However, imbalances must be corrected to maintain the delicate harmony that all creatures in Thendal Grove share.\n\nHead east and cull some of the vuldren there.","key":"q:92461:accept:251361"},{"addon":"SpokenQuests/3.8.3","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92462","event":"accept","npc":"251368 Elatrell Featherlight","kind":"creature","model":"1100087","displays":"136967","sex":"2","creature":"Humanoid","title":"Infestation Investigation","sum":"376264575","text":"One of our rangers recently reported an infestation of cirrusflies here in Thendal Grove. \n\nCirrusflies can be dangerous if the swarm is allowed to grow too large, so please head to the eastern end of the Grove and exterminate as many as you can.","key":"q:92462:accept:251368"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92462","event":"complete","npc":"251368 Elatrell Featherlight","kind":"creature","model":"1100087","displays":"136967","sex":"2","creature":"Humanoid","title":"Infestation Investigation","sum":"1317663161","text":"Judging by the amount of bug entrails covering you, this must be quite the infestation.","key":"q:92462:complete:251368"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92463","event":"accept","npc":"251368 Elatrell Featherlight","kind":"creature","model":"1100087","displays":"136967","sex":"2","creature":"Humanoid","title":"The Cirrusfly Queen","sum":"138403413","text":"If the forest is as thick with these insects as it sounds, simply killing the workers won't be enough.\n\nGo deeper into the forest and find the queen. She'll be close to the hive and surrounded by bigger and more aggressive soldiers, so be careful.\n\nPut her down and return here when it's done. That'll be one less problem to think about around here.","key":"q:92463:accept:251368"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","npc":"263113 Myriaal Mistwake","kind":"creature","model":"7478494","displays":"143516","sex":"3","creature":"Humanoid","sum":"1312845832","text":"It can get boring up here, you know. I can only annoy that stuffy wretch Halaan so much before even that gets old.","key":"g:263113:903080092:f"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92474","event":"accept","npc":"263113 Myriaal Mistwake","kind":"creature","model":"7478494","displays":"143516","sex":"3","creature":"Humanoid","title":"Falling With Style","sum":"1323146406","text":"Well hello there, $N! Want to play a game?\n\nAll you've got to do is step up on that ledge... then jump! Use your innate ability to walk on the air to slow your fall and see how far forward you can float.\n\nThe rules are made up and the points don't matter, but you get bonus points if you can land right in front of Rorian the Dayseeker and startle him! He won't like it but I'll certainly get a good laugh if you can get him all worked up! Hah!","key":"q:92474:accept:263113"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","npc":"257554 Halaan Hawk-Eye","kind":"creature","model":"7478487","displays":"143583","sex":"2","creature":"Humanoid","sum":"262037174","text":"<The gaze of the ranger standing before you is fixed on the enormous anchor pylon in the distance.>","key":"g:257554:296407979"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"94414","event":"accept","npc":"257554 Halaan Hawk-Eye","kind":"creature","model":"7478487","displays":"143583","sex":"2","creature":"Humanoid","title":"The Anchors of Zephras","sum":"1104488754","text":"Greetings, young $N. I oftentimes come here to look upon the ancient anchor pylon. Gifts from the spirits of the winds, they bind and sustain our island. Of late however, their magic has grown unstable and inconsistent.\n\nThey suffer no distress I can see. Their splendor has not changed.\n\nIf you'd like, I can lend you my gift to look upon them yourself.","key":"q:94414:accept:257554"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"94414","event":"complete","npc":"257554 Halaan Hawk-Eye","kind":"creature","model":"7478487","displays":"143583","sex":"2","creature":"Humanoid","title":"The Anchors of Zephras","sum":"367183561","text":"Thank you for taking a moment to share this with me. I will continue to watch over the grove, and ponder on the state of our homeland.","key":"q:94414:complete:257554"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92474","event":"complete","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","title":"Falling With Style","sum":"1899862363","text":"How many times do I need to tell Myriaal not to encourage others to make reckless usage of our skyborne gifts!\n\nThat being said, I suppose that a little bit of practice in the relative safety of the village is... acceptable.\n\nIn the future I'd simply suggest you to use your ability judiciously. You do not want to exhaust your magic thoughtlessly and then not be able to use it when you truly need it.","key":"q:92474:complete:251361"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92461","event":"complete","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","title":"Harmony in Balance","sum":"1213663495","text":"Thank you for your service to Zephras, young $c.\n\nThe vuldren are typically quite docile, but the animals that call Zephras home can sense when the magic on the winds is out of balance, which can lead to dangerous and unpredictable behavior if left unchecked.","key":"q:92461:complete:251361"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92464","event":"accept","npc":"251361","kind":"creature","model":"7478487","displays":"136966","title":"Elemental Unrest","sum":"1515479819","text":"Ever since our elemental benefactors left us, it seems that we are simply moving from one unrest to another. The problem we face now is that the manifestations of the winds near the standing stones to the northeast are agitated.\n\nNot truly self-aware like the sentient wind spirits that once lived here, these simple sprites respond in kind to forces, emotions, and intentions of the creatures around them. \n\nMy apprentice Yala Windwatcher went to observe them. Seek her out and discover what she's learned.","key":"q:92464:accept:251361"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92482","event":"accept","npc":"251361 Rorian the Dayseeker","kind":"creature","model":"7478487","displays":"136966","sex":"2","creature":"Humanoid","title":"The Way of the Hunter","sum":"2011843588","text":"While you were away dealing with our vuldren problem, our resident hunter trainer--Tai'ree Farsight--left this note for you. You can find her just over yonder near the center of the village. Read the note then seek her out.","key":"q:92482:accept:251361"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","npc":"251376 Tai'ree Farsight","kind":"creature","model":"7478494","displays":"136976","sex":"3","creature":"Humanoid","sum":"1142842268","text":"The hunters and rangers of Zephras have never been more needed. The winds grow ever harsher, and the magic that sustains our island is fading. The wilds have never been more wild, and people like me are needed to keep our people safe.\n\nIf you have the proper aptitude as a $c, I can give you the tools to survive the wilds.","key":"g:251376:1458787134:f"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92482","event":"progress","npc":"251376 Tai'ree Farsight","kind":"creature","model":"7478494","displays":"136976","sex":"3","creature":"Humanoid","title":"The Way of the Hunter","sum":"1003627978","text":"<Tai'ree nods at you curtly.>","key":"q:92482:progress:251376"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92482","event":"complete","npc":"251376 Tai'ree Farsight","kind":"creature","model":"7478494","displays":"136976","sex":"3","creature":"Humanoid","title":"The Way of the Hunter","sum":"122786272","text":"The way of the hunter is fraught with danger, and only those with the keenest senses and quickest reflexes can thrive in the wilds. I look at you and I am reminded of myself when I stood before my mentor, so many years ago. I believe that you have what it takes, but in the end that is up to you alone.\n\nSpeak with me again if you wish to take your next steps.","key":"q:92482:complete:251376"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","npc":"251487 Ventaari Brightwish","kind":"creature","model":"7478494","displays":"139694","sex":"3","creature":"Humanoid","sum":"1966377132","text":"What may I do for you, fellow windshaper?","key":"g:251487:1109803604:f"},{"addon":"SpokenQuests/3.8.4","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"none","quest":"92598","event":"accept","npc":"251487 Ventaari Brightwish","kind":"creature","model":"7478494","displays":"139694","sex":"3","creature":"Humanoid","title":"The Gift of Skysight","sum":"252104892","text":"As a Windshaper, you have the ability to use the sacred skysight gifted to us by the elemental spirits. Travel to the standing stones to the northeast of the village. Find the elemental convergence there and use your gift.\n\nYou'll find that you may draw upon the skysight anywhere, but its boon is much more powerful if you do so in the presence of an elemental convergence. You may at times receive other bits of wisdom from the spirits that are drawn to such places of power, as well.","key":"q:92598:accept:251487"},{"addon":"SpokenQuests/3.8.5","build":"1.60.1/70862","locale":"enUS","pack":"enUS","packVersion":"2.6.0","quest":"93552","event":"accept","npc":"251363 Dalia the Collector","kind":"creature","sex":"3","creature":"Humanoid","title":"Harvesting Windstones","sum":"1826741797","text":"Windstones are a critical resource on Zephras Isle as they contain the raw, concentrated energy of the winds themselves. The wind elementals who used to live here on Zephras with us vanished a number of years ago, and since then, the magic that sustains this island is slowly fading. Not without limitations, the windstones are still a reliable energy source, and are incredibly valuable to us.\n\nYou'll find raw windstones scattered around the grove. Think you can help me harvest them?","key":"q:93552:accept:251363"}],"npcs":[{"id":251363,"name":"Dalia the Collector","zone":"Zephras Isle","subzone":"Thendal Village","type":"Humanoid","class":"normal","level":1.0,"points":100.0,"visits":1.0,"first":"2026-11-09","last":"2026-11-09","firstTime":1794284371.0,"lastTime":1794284371.0,"gains":[["class","normal"],["first","2026-11-09"],["last","2026-11-09"],["name","Dalia the Collector"],["quest","2026-11-09"],["subzone","Thendal Village"],["type","Humanoid"],["zone","Zephras Isle"]]},{"id":249363,"name":"Yala Windwatcher","zone":"Zephras Isle","subzone":"Thendal Grove","type":"Not specified","class":"normal","level":5.0,"points":140.0,"visits":2.0,"first":"2026-11-09","last":"2026-11-09","firstTime":1794284580.0,"lastTime":1794284589.0,"gains":[["class","normal"],["first","2026-11-09"],["last","2026-11-09"],["name","Yala Windwatcher"],["quest","2026-11-09"],["subzone","Thendal Grove"],["talk","2026-11-09"],["type","Not specified"],["zone","Zephras Isle"]]}],"places":["2521/thendal standing stones","2521","2521/thendal grove","2521/thendal village"],"sessions":[{"m":11,"d":9,"time":"22:27:53","event":"boot"},{"m":11,"d":9,"time":"22:28:09","event":"bnet"},{"m":11,"d":9,"time":"22:28:10","event":"bnet"},{"m":11,"d":9,"time":"23:02:16","event":"bnet"},{"m":11,"d":9,"time":"23:02:16","event":"bnet"}],"gpu":[{"m":11,"d":9,"time":"22:28:06","mem":1.5,"budget":15.0,"pct":10.1,"freq":2.6,"temp":37},{"m":11,"d":9,"time":"22:33:06","mem":1.7,"budget":15.0,"pct":11.6,"freq":0.21,"temp":48},{"m":11,"d":9,"time":"22:38:06","mem":2.8,"budget":15.0,"pct":18.9,"freq":2.85,"temp":64},{"m":11,"d":9,"time":"22:43:06","mem":2.9,"budget":15.0,"pct":19.6,"freq":1.14,"temp":48},{"m":11,"d":9,"time":"22:48:06","mem":2.9,"budget":15.0,"pct":19.7,"freq":1.03,"temp":47},{"m":11,"d":9,"time":"22:53:06","mem":2.9,"budget":15.0,"pct":19.7,"freq":1.18,"temp":52},{"m":11,"d":9,"time":"22:58:06","mem":2.9,"budget":15.0,"pct":19.7,"freq":2.81,"temp":61},{"m":11,"d":9,"time":"23:03:06","mem":2.9,"budget":15.0,"pct":19.7,"freq":1.14,"temp":48},{"m":11,"d":9,"time":"23:08:06","mem":2.9,"budget":15.0,"pct":19.7,"freq":2.85,"temp":66},{"m":11,"d":9,"time":"23:13:06","mem":3.0,"budget":15.0,"pct":19.7,"freq":2.36,"temp":65},{"m":11,"d":9,"time":"23:18:06","mem":3.0,"budget":15.0,"pct":19.7,"freq":1.03,"temp":51},{"m":11,"d":9,"time":"23:23:06","mem":3.0,"budget":15.0,"pct":19.7,"freq":2.06,"temp":62},{"m":11,"d":9,"time":"23:28:06","mem":3.0,"budget":15.0,"pct":20.2,"freq":1.18,"temp":47},{"m":11,"d":9,"time":"23:33:06","mem":3.0,"budget":15.0,"pct":20.2,"freq":1.02,"temp":55},{"m":11,"d":9,"time":"23:38:06","mem":3.0,"budget":15.0,"pct":20.2,"freq":1.13,"temp":48},{"m":11,"d":9,"time":"23:43:06","mem":3.0,"budget":15.0,"pct":20.2,"freq":0.98,"temp":49},{"m":11,"d":9,"time":"23:48:06","mem":3.0,"budget":15.0,"pct":20.3,"freq":1.03,"temp":53},{"m":11,"d":9,"time":"23:53:06","mem":3.0,"budget":15.0,"pct":20.3,"freq":0.96,"temp":47},{"m":11,"d":9,"time":"23:58:06","mem":3.0,"budget":15.0,"pct":20.3,"freq":1.05,"temp":48},{"m":11,"d":10,"time":"00:03:06","mem":3.0,"budget":15.0,"pct":20.3,"freq":1.1,"temp":53},{"m":11,"d":10,"time":"00:08:06","mem":3.0,"budget":15.0,"pct":20.3,"freq":1.08,"temp":47},{"m":11,"d":10,"time":"00:13:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":43},{"m":11,"d":10,"time":"00:18:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":47},{"m":11,"d":10,"time":"00:23:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":56},{"m":11,"d":10,"time":"00:28:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.82,"temp":53},{"m":11,"d":10,"time":"00:33:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.84,"temp":49},{"m":11,"d":10,"time":"00:38:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":43},{"m":11,"d":10,"time":"00:43:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.81,"temp":45},{"m":11,"d":10,"time":"00:48:06","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":51},{"m":11,"d":10,"time":"00:53:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.82,"temp":56},{"m":11,"d":10,"time":"00:58:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.87,"temp":52},{"m":11,"d":10,"time":"01:03:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.87,"temp":46},{"m":11,"d":10,"time":"01:08:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":43},{"m":11,"d":10,"time":"01:13:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":52},{"m":11,"d":10,"time":"01:18:07","mem":2.9,"budget":15.0,"pct":19.1,"freq":0.78,"temp":54}],"chat":[{"tm":"22:57","ts":1794283053,"tx":"QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040: First run on World of Warcraft: Forever 1.60.1 (70862). Checking what this client actually supports:"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Frame time (exact)         AVAILABLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Memory per addon           AVAILABLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    CPU per addon              REQUIRES PROFILING"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Global event rate          AVAILABLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    CPU per event              REQUIRES PROFILING"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Latency home/world         AVAILABLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Enable/disable next reload AVAILABLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    Unload a running addon     NOT POSSIBLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040:    OS CPU / GPU load          NOT POSSIBLE"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040: Addon CPU needs the client's scriptProfile CVar. Open /wtm and use the button on the dashboard, or type /wtm profiling."},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040: Full matrix: /wtm caps, or the System page."},{"tm":"22:57","ts":1794283053,"tx":"Total time played: 0 |4day:days;, 2 |4hour:hours;, 25 |4minute:minutes;, 28 |4second:seconds;"},{"tm":"22:57","ts":1794283053,"tx":"Time played this level: 0 |4day:days;, 0 |4hour:hours;, 3 |4minute:minutes;, 38 |4second:seconds;"},{"tm":"22:57","ts":1794283053,"tx":"table: 000001A75A0D6040: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."},{"tm":"22:57","ts":1794283053,"tx":"[Euphorrix's Spell Announcer vv2.10.04.01]"},{"tm":"22:57","ts":1794283053,"tx":"Type \"/sa\" to open addon screen."},{"tm":"22:57","ts":1794283053,"tx":"Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"},{"tm":"22:57","ts":1794283053,"tx":"QuestMaster loaded! created by JugoBetrugoTV"},{"tm":"22:57","ts":1794283053,"tx":"Twitch.tv/JugoBetrugoTV - Come hang out!"},{"tm":"22:57","ts":1794283053,"tx":"Bugs? Report on CurseForge or Discord.gg/rv2BsbE"},{"tm":"22:57","ts":1794283053,"tx":"PokeLink 0.16.2 - what's new:"},{"tm":"22:57","ts":1794283053,"tx":"- Fixed: battles in FireRed and LeafGreen were slow and choppy. They now run at full speed."},{"tm":"22:57","ts":1794283053,"tx":"- The PokeLink chat channel now has its own chat tab, so you can see what's said there."},{"tm":"22:57","ts":1794283053,"tx":"- The welcome text for a new game now shows only the first time you play it, not every time."},{"tm":"22:57","ts":1794283053,"tx":"- Fixed: in dark caves (like Granite Cave without Flash), the light around you is round again instead of a square."},{"tm":"22:57","ts":1794283053,"tx":"- Fixed: in Ruby's dark caves, the menu cursor was invisible."},{"tm":"22:57","ts":1794283053,"tx":"PokeLink: 14 earlier updates since you last played. Type /pokelink news all to read about them."},{"tm":"22:57","ts":1794283053,"tx":"QuestMaster: QuestMaster has new looks: Open fantasy, Light cartographer and Hallow's End (new). Try one in Settings > Appearance > Design - or from the tracker's view menu."},{"tm":"22:57","ts":1794283053,"tx":"QuestMaster: 3 achievements are already yours - see the journal, Achievements."},{"tm":"22:57","ts":1794283053,"tx":"What's It For?: no auction prices found. Leveling costs and profit use vendor prices and estimates; install Auctionator (or Auctioneer, TSM) for real ones."},{"tm":"22:57","ts":1794283053,"tx":"|TInterface\\FriendsFrame\\UI-Toast-ToastIcons.tga:16:16:0:0:128:64:2:29:34:61|t|HBNplayer:|Ks32|k:5:111:BN_INLINE_TOAST_ALERT:0|h[|Ks32|k]|h has gone offline."},{"tm":"22:57","ts":1794283053,"tx":"|Hchannel:channel:1|h[1. General - Zephras Isle]|h |Hplayer:Rothar Thunderfoot:112:CHANNEL:1|h[Rothar Thunderfoot]|h: farewell sky people"},{"tm":"22:57","ts":1794283054,"tx":"MelloUI: MelloUI setup installed. Keep it, or MelloUI goes back to 'Before install' when the timer runs out."},{"tm":"22:57","ts":1794283056,"tx":"MelloUI: MelloUI has a new voice pack, MelloUI_VoicePack, that replaces this one: download it from MelloUI's release page."},{"tm":"22:57","ts":1794283059,"tx":"farewell rothar"},{"tm":"22:57","ts":1794283061,"tx":"moo"},{"tm":"22:57","ts":1794283061,"tx":"bye"},{"tm":"22:57","ts":1794283074,"tx":"QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."},{"tm":"22:57","ts":1794283074,"tx":"table: 000001A755638BA0: v0.8.9 ready on World of Warcraft: Forever 1.60.1 (70862). Type /wtm to open. Library backend: Ace3 (AceAddon, AceEvent, AceConsole, AceTimer, AceDB)."},{"tm":"22:57","ts":1794283074,"tx":"table: 000001A755638BA0: Addon CPU profiling is off, so per-addon CPU is unavailable. Everything else works. /wtm profiling to enable it."},{"tm":"22:57","ts":1794283074,"tx":"|Hchannel:channel:1|h[1. General - Zephras Isle]|h |Hplayer:Rothar Thunderfoot:116:CHANNEL:1|h[Rothar Thunderfoot]|h: MOOOO"},{"tm":"22:57","ts":1794283074,"tx":"table: 000001A755638BA0: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."},{"tm":"22:57","ts":1794283074,"tx":"[Euphorrix's Spell Announcer vv2.10.04.01]"},{"tm":"22:57","ts":1794283074,"tx":"Type \"/sa\" to open addon screen."},{"tm":"22:57","ts":1794283074,"tx":"Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"},{"tm":"22:57","ts":1794283074,"tx":"MelloUI: Group Frames is on: type /reload to finish putting the game's party frames away."},{"tm":"22:57","ts":1794283075,"tx":"QuestMaster loaded! created by JugoBetrugoTV"},{"tm":"22:57","ts":1794283075,"tx":"Twitch.tv/JugoBetrugoTV - Come hang out!"},{"tm":"22:57","ts":1794283075,"tx":"Bugs? Report on CurseForge or Discord.gg/rv2BsbE"},{"tm":"22:58","ts":1794283080,"tx":"Moo"},{"tm":"22:58","ts":1794283081,"tx":"mooooooooooo"},{"tm":"22:58","ts":1794283081,"tx":"QuestMaster: QuestMaster has new looks: Open fantasy, Light cartographer and Hallow's End (new). Try one in Settings > Appearance > Design - or from the tracker's view menu."},{"tm":"22:58","ts":1794283083,"tx":"MOO"},{"tm":"22:58","ts":1794283083,"tx":"a big moo to all of you"},{"tm":"22:59","ts":1794283155,"tx":"Moo moo buckaroo!"},{"tm":"22:59","ts":1794283186,"tx":"no you are good"},{"tm":"22:59","ts":1794283187,"tx":"Dreamlight, & that ^^ you can decorate your own house, character etc"},{"tm":"22:59","ts":1794283193,"tx":"Ooops wrong chat"},{"tm":"23:00","ts":1794283208,"tx":"sure it was"},{"tm":"23:00","ts":1794283232,"tx":"Look it's been a long ride here on the island I'm tired hahaha"},{"tm":"23:00","ts":1794283241,"tx":"zora getting lost again"},{"tm":"23:00","ts":1794283251,"tx":"i get riding a island can be hard and long"},{"tm":"23:00","ts":1794283256,"tx":"I AM NOT hahaha"},{"tm":"23:01","ts":1794283305,"tx":"sure"},{"tm":"23:01","ts":1794283314,"tx":"what way is west"},{"tm":"23:01","ts":1794283314,"tx":"press M, left side"},{"tm":"23:01","ts":1794283314,"tx":"Right?"},{"tm":"23:01","ts":1794283314,"tx":"xD"},{"tm":"23:01","ts":1794283314,"tx":"did you really ask which way is west lol"},{"tm":"23:01","ts":1794283316,"tx":"You have been disconnected from Blizzard services."},{"tm":"23:02","ts":1794283377,"tx":"QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."},{"tm":"23:02","ts":1794283377,"tx":"table: 000001A7573E54F0: v0.8.9 ready on World of Warcraft: Forever 1.60.1 (70862). Type /wtm to open. Library backend: Ace3 (AceAddon, AceEvent, AceConsole, AceTimer, AceDB)."},{"tm":"23:02","ts":1794283377,"tx":"table: 000001A7573E54F0: Addon CPU profiling is off, so per-addon CPU is unavailable. Everything else works. /wtm profiling to enable it."},{"tm":"23:02","ts":1794283377,"tx":"Remember to act responsibly, protect your personal information, and report anything offensive. View our In-Game Code of Conduct on |HurlIndex:64|h|cnVISITABLE_URL_DEFAULT_CHAT_LINK_COLOR:https://support.blizzard.com/article/42673|h for more information."},{"tm":"23:02","ts":1794283377,"tx":"table: 000001A7573E54F0: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."},{"tm":"23:02","ts":1794283377,"tx":"Total time played: 0 |4day:days;, 2 |4hour:hours;, 32 |4minute:minutes;, 38 |4second:seconds;"},{"tm":"23:02","ts":1794283377,"tx":"Time played this level: 0 |4day:days;, 0 |4hour:hours;, 10 |4minute:minutes;, 48 |4second:seconds;"},{"tm":"23:02","ts":1794283377,"tx":"[Euphorrix's Spell Announcer vv2.10.04.01]"},{"tm":"23:02","ts":1794283377,"tx":"Type \"/sa\" to open addon screen."},{"tm":"23:02","ts":1794283377,"tx":"Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"},{"tm":"23:02","ts":1794283378,"tx":"QuestMaster loaded! created by JugoBetrugoTV"},{"tm":"23:02","ts":1794283378,"tx":"Twitch.tv/JugoBetrugoTV - Come hang out!"},{"tm":"23:02","ts":1794283378,"tx":"Bugs? Report on CurseForge or Discord.gg/rv2BsbE"},{"tm":"23:02","ts":1794283378,"tx":"MelloUI: Group Frames is on: type /reload to finish putting the game's party frames away."},{"tm":"23:04","ts":1794283471,"tx":"QuestMaster: Have fun questing! Settings > General shows the introduction again."},{"tm":"23:04","ts":1794283480,"tx":"QuestMaster: This box will not come back. You can switch it on again in Settings > General."},{"tm":"23:09","ts":1794283781,"tx":"QuestMaster: Style changed - type /reload to apply it everywhere."}],"journeys":[{"revision":9.0,"firstLevel":1.0,"startedAt":1794001667.0,"recordedSeconds":353.0,"level":1.0,"exp":0.0,"expMax":400.0,"goldCopper":0.0,"kills":0.0,"deaths":0.0,"quests":0.0,"playedSeconds":2371.0,"zone":"Zephras Isle"},{"revision":2.0,"firstLevel":1.0,"startedAt":1794002024.0,"recordedSeconds":60.0,"level":1.0,"exp":0.0,"expMax":400.0,"goldCopper":0.0,"kills":0.0,"deaths":0.0,"quests":0.0,"playedSeconds":2437.0,"zone":"Zephras Isle"},{"revision":29.0,"firstLevel":1.0,"startedAt":1794059472.0,"recordedSeconds":1295.0,"level":1.0,"exp":40.0,"expMax":400.0,"goldCopper":0.0,"kills":0.0,"deaths":0.0,"quests":1.0,"playedSeconds":3850.0,"zone":"Zephras Isle"},{"revision":5.0,"firstLevel":1.0,"startedAt":1794281591.0,"recordedSeconds":162.0,"level":1.0,"exp":400.0,"expMax":400.0,"goldCopper":0.0,"kills":4.0,"deaths":0.0,"quests":1.0,"playedSeconds":7523.0,"zone":"Zephras Isle"},{"revision":7.0,"firstLevel":2.0,"startedAt":1794281752.0,"recordedSeconds":212.0,"level":2.0,"exp":593.0,"expMax":900.0,"goldCopper":35.0,"kills":15.0,"deaths":0.0,"quests":2.0,"playedSeconds":7748.0,"zone":"Zephras Isle"},{"revision":2.0,"firstLevel":2.0,"startedAt":1794281966.0,"recordedSeconds":2.0,"level":2.0,"exp":593.0,"expMax":900.0,"goldCopper":35.0,"kills":15.0,"deaths":0.0,"quests":2.0,"playedSeconds":7750.0,"zone":"Zephras Isle"},{"revision":18.0,"firstLevel":2.0,"startedAt":1794281969.0,"recordedSeconds":758.0,"level":2.0,"exp":900.0,"expMax":900.0,"goldCopper":171.0,"kills":15.0,"deaths":0.0,"quests":5.0,"playedSeconds":8456.0,"zone":"Zephras Isle"},{"revision":6.0,"firstLevel":3.0,"startedAt":1794282727.0,"recordedSeconds":195.0,"level":3.0,"exp":28.0,"expMax":1400.0,"goldCopper":161.0,"kills":15.0,"deaths":0.0,"quests":6.0,"playedSeconds":8705.0,"zone":"Zephras Isle"},{"revision":4.0,"firstLevel":3.0,"startedAt":1794282944.0,"recordedSeconds":116.0,"level":3.0,"exp":28.0,"expMax":1400.0,"goldCopper":161.0,"kills":15.0,"deaths":0.0,"quests":6.0,"playedSeconds":8844.0,"zone":"Zephras Isle"},{"revision":6.0,"firstLevel":3.0,"startedAt":1794283073.0,"recordedSeconds":242.0,"level":3.0,"exp":28.0,"expMax":1400.0,"goldCopper":161.0,"kills":15.0,"deaths":0.0,"quests":6.0,"playedSeconds":9096.0,"zone":"Zephras Isle"},{"revision":16.0,"firstLevel":3.0,"startedAt":1794283374.0,"recordedSeconds":737.0,"level":3.0,"exp":28.0,"expMax":1400.0,"goldCopper":161.0,"kills":15.0,"deaths":0.0,"quests":6.0,"playedSeconds":9893.0,"zone":"Zephras Isle"},{"revision":20.0,"firstLevel":3.0,"startedAt":1794284120.0,"recordedSeconds":713.0,"level":3.0,"exp":397.0,"expMax":1400.0,"goldCopper":170.0,"kills":21.0,"deaths":1.0,"quests":7.0,"playedSeconds":10616.0,"zone":"Zephras Isle"},{"revision":47.0,"firstLevel":3.0,"startedAt":1794284835.0,"recordedSeconds":2677.0,"level":3.0,"exp":397.0,"expMax":1400.0,"goldCopper":170.0,"kills":21.0,"deaths":1.0,"quests":7.0,"playedSeconds":13293.0,"zone":"Zephras Isle"}]};</script>
+<script>
+(function(){
+ "use strict";
+ var D=window.FRONTIER||{};
+ var C=D.counters||{}, K=D.config||{}, J=D.journeys||[], Q=D.quests||[],
+     N=D.npcs||[], P=D.places||[], S=D.sessions||[], G=D.gpu||[], CH=D.chat||[];
+ function el(id){return document.getElementById(id)}
+ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function dur(sec){
+   sec=Math.round(sec||0);
+   var h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60;
+   return (h?h+"h ":"")+(h||m?m+"m ":"")+s+"s";
+ }
+ function money(c){
+   c=Math.round(c||0);
+   return Math.floor(c/10000)+"g "+Math.floor(c%10000/100)+"s "+c%100+"c";
+ }
+ function pad(n){return (n<10?"0":"")+n}
+ el("gen").textContent=D.generated||"—";
+
+
+
+ /* ---------- vitals ------------------------------------------------- */
+ var last=J.length?J[J.length-1]:{};
+ var maxQ=0,maxK=0,maxD=0,maxGold=0;
+ J.forEach(function(j){
+   maxQ=Math.max(maxQ,j.quests||0); maxK=Math.max(maxK,j.kills||0);
+   maxD=Math.max(maxD,j.deaths||0); maxGold=Math.max(maxGold,j.goldCopper||0);
+ });
+ function card(k,v,cls,sub){
+   return '<div class="card '+(cls||"")+'"><div class="k">'+esc(k)+'</div>'+
+     '<div class="v">'+esc(v)+'</div>'+(sub?'<div class="s">'+esc(sub)+'</div>':"")+'</div>';
+ }
+ var xpPct = last.expMax ? Math.round((last.exp||0)/last.expMax*1000)/10 : 0;
+ el("vitals").innerHTML =
+   card("level", last.level!=null?last.level:"—","g",(last.exp||0)+" / "+(last.expMax||0)+" xp")
+ + card("time played", dur(last.playedSeconds),"c","across every session")
+ + card("quests done", maxQ,"v2","counted by RaiderIO")
+ + card("kills", maxK,"a","observed, all time")
+ + card("deaths", maxD,"r","the one that stuck")
+ + card("gold", money(maxGold),"a","copper on hand")
+ + card("steps", (C.steps||0).toFixed(1),"c",(C.jumps||0)+" jumps logged")
+ + card("people met", N.length,"v2","BuddyDex entries")
+ + card("dialogue records", Q.length,"g","heard and archived")
+ + card("subzones", Math.max(0,P.length-1),"c","inside Zephras Isle");
+ el("vitalnote").textContent =
+   "Level "+last.level+" at "+xpPct+"% toward the next level. Everything above is read "+
+   "straight from saved variables; nothing estimated except the step count, which the "+
+   "CountSteps addon itself estimates from movement.";
+
+ /* ---------- ladder -------------------------------------------------- */
+ var lad="", prev=null;
+ J.forEach(function(j){
+   var up = prev!==null && j.level!==prev;
+   var pct = j.expMax ? Math.min(100,(j.exp||0)/j.expMax*100) : 0;
+   var when = j.startedAt ? new Date(j.startedAt*1000) : null;
+   var stamp = when ? (pad(when.getMonth()+1)+"/"+pad(when.getDate())+" "+
+     pad(when.getHours())+":"+pad(when.getMinutes())) : "—";
+   lad += '<div class="rung'+(up?" up":"")+'">'+
+     '<div class="lv">'+j.level+'<small>level</small></div>'+
+     '<div><div class="meta"><b>'+stamp+'</b> &middot; +'+dur(j.recordedSeconds)+
+       ' this stretch &middot; '+(j.quests||0)+' quests &middot; '+money(j.goldCopper)+
+       ' &middot; '+(j.kills||0)+' kills'+(j.deaths?' / '+j.deaths+' death':"")+'</div>'+
+       '<div class="xpbar"><i style="width:'+pct+'%"></i></div></div>'+
+     '<div class="xp">'+(j.exp||0)+' / '+(j.expMax||0)+' xp</div></div>';
+   prev=j.level;
+ });
+ el("ladder").innerHTML=lad||'<div class="note">no checkpoints parsed</div>';
+
+ /* ---------- charts -------------------------------------------------- */
+ function line(svg,series,minY,maxY,yfmt){
+   var W=480,H=150,PADL=34,PADR=8,PADT=10,PADB=18;
+   var n=series[0].pts.length, out="";
+   var sx=function(i){return PADL+(n<2?0:(W-PADL-PADR)*i/(n-1))};
+   var sy=function(v){return H-PADB-(H-PADT-PADB)*((v-minY)/(maxY-minY||1))};
+   for(var g=0;g<=3;g++){
+     var y=PADT+(H-PADT-PADB)*g/3, val=maxY-(maxY-minY)*g/3;
+     out+='<line x1="'+PADL+'" y1="'+y+'" x2="'+(W-PADR)+'" y2="'+y+
+       '" stroke="rgba(120,220,255,.10)"/>'+
+       '<text class="axis" x="'+(PADL-4)+'" y="'+(y+3)+'" text-anchor="end">'+
+       yfmt(val)+'</text>';
+   }
+   series.forEach(function(s){
+     var d=s.pts.map(function(v,i){return (i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1)}).join(" ");
+     out+='<path d="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="2" '+
+       'stroke-linejoin="round" stroke-linecap="round"/>';
+     s.pts.forEach(function(v,i){
+       out+='<circle cx="'+sx(i).toFixed(1)+'" cy="'+sy(v).toFixed(1)+'" r="2.4" fill="'+s.color+'"/>';
+     });
+   });
+   svg.innerHTML=out;
+ }
+ if(J.length){
+   line(el("ch-exp"),[{color:"#59f0c8",pts:J.map(function(j){
+     return j.expMax?Math.round((j.exp||0)/j.expMax*100):0 })}],0,100,function(v){return Math.round(v)+"%"});
+   line(el("ch-kills"),[
+     {color:"#a98bff",pts:J.map(function(j){return j.kills||0})},
+     {color:"#ff5f7a",pts:J.map(function(j){return j.deaths||0})}
+   ],0,Math.max(1,maxK),function(v){return Math.round(v)});
+ } else {
+   el("ch-exp").innerHTML='<text class="axis" x="20" y="70">no checkpoints</text>';
+   el("ch-kills").innerHTML=el("ch-exp").innerHTML;
+ }
+ if(G.length){
+   line(el("ch-gpu"),[
+     {color:"#ffc46b",pts:G.map(function(g){return g.temp})},
+     {color:"#37e6ff",pts:G.map(function(g){return Math.round(g.freq*10)})}
+   ],0,72,function(v){return Math.round(v)});
+ } else { el("ch-gpu").innerHTML='<text class="axis" x="20" y="70">no samples</text>'; }
+
+ /* ---------- quest ledger ------------------------------------------- */
+ var nameById={};
+ Q.forEach(function(q){
+   var raw=String(q.npc||""), id=(raw.match(/^\d+/)||[""])[0];
+   var nm=raw.replace(/^\d+\s*/,"").trim();
+   if(id&&nm) nameById[id]=nm;
+ });
+ var order=[], groups={};
+ Q.forEach(function(q){
+   var raw=String(q.npc||"").trim();
+   var id=(raw.match(/^\d+/)||[""])[0];
+   var npc=raw.replace(/^\d+\s*/,"").trim() || nameById[id] || (id?("npc "+id):"unknown");
+   var k=npc;
+   if(!groups[k]){groups[k]={id:id,items:[]};order.push(k)}
+   groups[k].items.push(q);
+ });
+ var led="";
+ order.forEach(function(k){
+   var g=groups[k];
+   led+='<div class="npcgroup"><div class="npchead"><b>'+esc(k)+'</b>'+
+     (g.id&&/^\d+$/.test(g.id)?'<span class="id">npc '+esc(g.id)+'</span>':"")+
+     '<span class="pill">'+g.items.length+' record'+(g.items.length===1?"":"s")+'</span></div>';
+   g.items.forEach(function(q){
+     var ev=(q.event||"line").toLowerCase();
+     var body=String(q.text||"").trim();
+     var short=body.length>260?body.slice(0,260)+"…":body;
+     var title=q.title||("greeting from "+k);
+     led+='<div class="q"><div class="qhead"><span class="title">'+esc(title)+'</span>'+
+       (q.event?'<span class="ev '+esc(ev)+'">'+esc(q.event)+'</span>':"")+
+       (q.quest?'<span class="id" style="font-family:Consolas,monospace;font-size:.68rem;'+
+         'color:var(--mut)">quest '+esc(q.quest)+'</span>':"")+'</div>';
+     if(body){
+       led += body.length>260
+         ? '<div class="body">'+esc(short)+'</div><details><summary>full text</summary>'+
+           '<div class="body">'+esc(body)+'</div></details>'
+         : '<div class="body">'+esc(body)+'</div>';
+     }
+     led+='</div>';
+   });
+   led+='</div>';
+ });
+ el("ledger").innerHTML=led||'<div class="note">no dialogue captured</div>';
+
+ /* ---------- dex ----------------------------------------------------- */
+ el("dex").innerHTML = N.map(function(n){
+   var gains=(n.gains||[]).filter(function(g){
+     return ["quest","talk","kill","gift"].indexOf(g[0])>=0
+   }).map(function(g){return g[0]+" · "+g[1]});
+   return '<div class="dexcard"><h3>'+esc(n.name)+'</h3>'+
+     '<div class="sub">'+esc(n.type||"creature")+' &middot; level '+esc(n.level)+
+     ' &middot; '+esc(n.zone)+' / '+esc(n.subzone)+'</div>'+
+     '<div class="stats"><span>points <b>'+esc(n.points)+'</b></span>'+
+     '<span>visits <b>'+esc(n.visits)+'</b></span>'+
+     '<span>met <b>'+esc(n.first)+'</b></span>'+
+     '<span>id <b>'+esc(n.id)+'</b></span></div>'+
+     (gains.length?'<div class="stats"><span>gains <b>'+esc(gains.join(" | "))+
+       '</b></span></div>':"")+'</div>';
+ }).join("") || '<div class="note">no friends recorded</div>';
+
+ /* ---------- places -------------------------------------------------- */
+ var zoneName = (N[0]&&N[0].zone)||"Zephras Isle";
+ el("places").innerHTML = P.map(function(p){
+   var parts=p.split("/");
+   var sub = parts.length>1 ? parts.slice(1).join("/") : zoneName;
+   var pretty = sub.replace(/\b\w/g,function(c){return c.toUpperCase()});
+   return '<div class="place"><span class="dot"></span><div><b>'+esc(pretty)+'</b>'+
+     '<div class="pid">map '+esc(parts[0])+(parts.length>1?" · subzone":" · zone")+
+     '</div></div></div>';
+ }).join("") || '<div class="note">nothing discovered yet</div>';
+
+ /* ---------- chat ---------------------------------------------------- */
+ function stripChat(t){
+   return String(t==null?"":t)
+     .replace(/\|H[^|]*\|h/g,"")       // chat links: |Hplayer:Name:...|h
+     .replace(/\|h/g,"")
+     .replace(/\|T[^|]*\|t/g,"")       // inline textures
+     .replace(/\|A[^|]*\|a/g,"")       // atlas icons
+     .replace(/\|c[fF][0-9a-fA-F]{6}|\|r/g,"")  // colour codes
+     .replace(/^table: [0-9A-Fa-f]+: /,"")      // lua tostring pointer
+     .replace(/\s+/g," ")
+     .trim();
+ }
+ el("chat").innerHTML = CH.map(function(c){
+   var t=stripChat(c.tx), cls="";
+   if(/Lua error|Error loading|NOT POSSIBLE|REQUIRES PROFILING|failed/i.test(t)) cls="err";
+   else if(/General - |farewell|MOOO|Moo|moo|which way|Zora|zora|hahaha|big moo|buckaroo/i.test(t)) cls="player";
+   else if(/loaded|ready|Total time|Time played|Tip:|Type |update|Addon|settings|Voice pack|QuestMaster|MelloUI|PokeLink|introduction/i.test(t)) cls="sys";
+   return '<div class="ln" title="'+esc(c.tx)+'"><span class="tm">'+esc(c.tm)+'</span>'+
+     '<span class="tx '+cls+'">'+esc(t)+'</span></div>';
+ }).join("") || '<div class="note">no scrollback captured</div>';
+
+ /* ---------- machine room -------------------------------------------- */
+ var tb=el("tbl-sessions").querySelector("tbody");
+ tb.innerHTML = S.map(function(s){
+   return '<tr><td class="num">'+pad(s.m)+'/'+pad(s.d)+' '+esc(s.time)+'</td>'+
+     '<td>'+esc(s.event)+'</td></tr>';
+ }).join("") || '<tr><td colspan="2">none</td></tr>';
+
+ var facts=[
+   ["build","1.60.1 / 70862 / wowf"],
+   ["zone","Zephras Isle · map 2521"],
+   ["graphics",(K.graphicsQuality||"?")+" / "+(K.gxApi||"?")+" / "+(K.resolution||"?")],
+   ["loading tips consumed","gameTip "+(K.gameTip||"?")],
+   ["layout name","GEWEY! (EditMode, 2771-byte account profile)"],
+   ["addons enabled","Baganator, DialogueUI, Syndicator, ObjectiveTracker, CompactRaidFrames"],
+   ["addons disabled","EUICoreStandaloneForeverEssentialsBags"],
+   ["known addon error","RaiderIO/db/db_client_recent_characters.lua (Camelot build)"],
+   ["chat windows","10 (General, Combat Log, Voice, 7 quiet)"]
+ ];
+ el("tbl-facts").querySelector("tbody").innerHTML = facts.map(function(f){
+   return '<tr><td>'+esc(f[0])+'</td><td>'+esc(f[1])+'</td></tr>';
+ }).join("");
+
+ el("crit").innerHTML = (C.criteriaAssets||[]).map(function(a){
+   return '<div style="display:flex;justify-content:space-between;gap:10px;'+
+     'font-size:.76rem;padding:3px 0;border-bottom:1px dashed rgba(120,220,255,.08)">'+
+     '<span style="color:var(--mut)">achievement '+a.achievement+
+     (a.asset?' · asset '+a.asset:"")+'</span>'+
+     '<b style="color:var(--wind);font-family:Consolas,monospace">'+a.quantity+'</b></div>';
+ }).join("") || '<div class="note">no criteria</div>';
+
+
+ /* ---------- milestones ---------------------------------------------- */
+ function ts(sec){
+   if(!sec) return "";
+   var d=new Date(sec*1000);
+   return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+" "+
+     pad(d.getHours())+":"+pad(d.getMinutes());
+ }
+ var M=[];
+ function find(pred){ for(var i=0;i<J.length;i++){ if(pred(J[i])) return J[i]; } return null; }
+ var firstQ=find(function(j){return (j.quests||0)>=1});
+ var firstK=find(function(j){return (j.kills||0)>=1});
+ var lvl2=find(function(j){return j.level>=2});
+ var lvl3=find(function(j){return j.level>=3});
+ var firstD=find(function(j){return (j.deaths||0)>=1});
+ var allQ=find(function(j){return (j.quests||0)>=5});
+
+ if(firstQ) M.push({ts:ts(firstQ.startedAt),t:"First quest logged by the journey recorder",
+   d:"RaiderIO's first non-zero quest counter: 1 completed, 40 xp banked toward level 2."});
+ if(firstK) M.push({ts:ts(firstK.startedAt),t:"First blood the recorder would admit to",
+   d:"4 kills observed in a single 162-second checkpoint — the first time the counter moved off zero."});
+ if(lvl2) M.push({ts:ts(lvl2.startedAt),t:"Level 2 — the wind answers",
+   d:"Second level reached with "+money(lvl2.goldCopper)+" in the purse and "+
+     (lvl2.kills||0)+" kills behind it. The XP bar resets to 593 / 900."});
+ if(allQ) M.push({ts:ts(allQ.startedAt),t:"Five quests deep",
+   d:"Half a dozen of Thendal's problems solved. Gold crosses 1s71c on the same checkpoint."});
+ if(lvl3) M.push({ts:ts(lvl3.startedAt),t:"Level 3 — The Way of the Hunter",
+   d:"Third level, 28 xp into a 1400 cap. Class id 3, race id 96 — the shen'dorei hunter "+
+     "the quest text keeps calling 'child of Zephras'."});
+ if(firstD) M.push({ts:ts(firstD.startedAt),t:"First death — and it counts",
+   d:"The one death on the board. CountSteps agrees: totalDeaths = 1. It happened between "+
+     "21 kills and the seventh quest."});
+ if(G.length){
+   var hottest=G.slice().sort(function(a,b){return b.temp-a.temp})[0];
+   M.push({ts:"2026-11-09 "+hottest.time,t:"GPU hit "+hottest.temp+"°C on Zephras Isle",
+     d:"Hotspot of the whole install: "+hottest.freq.toFixed(2)+" GHz at "+hottest.mem+
+     " GB of "+hottest.budget+" GB VRAM. Still 4°C of headroom before throttle."});
+ }
+ if(Q.length){
+   var q0=Q[0];
+   M.push({ts:"2026-11-09 22:57",t:"The island started talking",
+     d:Q.length+" dialogue envelopes archived by Spoken — from Rorian the Dayseeker's "+
+     "'child of Zephras' to Myriaal Mistwake goading you into falling with style."});
+ }
+ M.push({ts:"2026-11-09 22:57",t:"Three achievements already yours",
+   d:"QuestMaster's first-run message on Forever 1.60.1 (70862): '3 achievements are "+
+   "already yours.' The journal had three completed criteria before the first hour was out."});
+ M.push({ts:"2026-11-09 23:18",t:"Layout saved and christened GEWEY!",
+   d:"EditMode wrote a 2771-byte account layout and named it GEWEY!. Six UI pieces were "+
+   "moved; the character layout stayed at the 27-byte default."});
+ M.push({ts:"2026-11-09 23:23",t:""+ (C.steps||0).toFixed(1) +" steps, "+ (C.jumps||0) +" jumps",
+   d:"CountSteps closed the night at "+(C.steps||0).toFixed(1)+" yards walked, "+
+   (C.jumps||0)+" jumps and "+(C.deaths||0)+" death."});
+ M.push({ts:D.generated||"",t:"Residue harvested into a wing",
+   d:"This page was generated from the saved variables themselves — the first time the "+
+   "character arc has been rendered anywhere."});
+
+ M.sort(function(a,b){return a.ts<b.ts?1:-1});
+ el("miles").innerHTML = M.map(function(m){
+   return '<div class="mile"><time>â˜… '+esc(m.ts)+'</time>'+
+     '<div class="t">'+esc(m.t)+'</div><div class="d">'+esc(m.d)+'</div></div>';
+ }).join("");
+
+ /* collision guard: a second load should not double anything */
+ window.__frontierDrawn = true;
+})();
+</script>
+</body>
+</html>
+

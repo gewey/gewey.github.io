@@ -144,6 +144,9 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iMacrocosm"]::after       { content: " Macrocosm"; }
 .gw-shell button[name="iLogWatch"]::after        { content: " Timeline"; }
 .gw-shell button[name="iDelve"]::after           { content: " Delve"; }
+.gw-shell button[name="iLegacy"]::after          { content: " Legacy"; }
+.gw-shell button[name="iRaidLogs"]::after        { content: " Raid Logs"; }
+.gw-shell button[name="iFrontier"]::after        { content: " Frontier"; }
 
 /* ---- Placeholders — labelled, not built yet ------------------------------- */
 .gw-shell button[name="iCharacter"]::after { content: " Character"; }

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>legacy_bookmarks_macros-cache - macros</title>
+		<link rel="stylesheet" href="_css/shapers_terrace.css" />
+		<link rel="stylesheet" href="_css/holy_word.css" />
+		<link rel="stylesheet" href="_css/image_of_medivh.css" />
+		<link rel="stylesheet" href="_css/class_colors.css" />
+		<script>
+			const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+		<link type="text/css" href="https://wow.zamimg.com/css/universal.css?19" rel="stylesheet" />
+		<script src="https://gewey.github.io/js/dynamichead.js" defer></script>
+	</head>
+	<body class="gw-macro">
+		<h1>Legacy Bookmarks Macro Vault (2019&ndash;2020)</h1>
+		<p class="meta">
+			142 macros &middot; source: <code>bookmarks/games/warcraft/macros-cache.html</code> + 11 per-class caches &middot; ported 2026-11-10 by Tandumonium
+		</p>
+		<h2>Contents by Class &amp; Category</h2>
+		<div class="toc">
+			<ul>
+				<li><a href="#hunter">Hunter (18 macros &mdash; Faust &amp; Gadget Spirit Mend)</a></li>
+				<li><a href="#general">General Account Macros (60 macros)</a></li>
+				<li><a href="#dk">Death Knight (4 macros)</a></li>
+				<li><a href="#dh">Demon Hunter (2 macros)</a></li>
+				<li><a href="#druid">Druid (4 macros)</a></li>
+				<li><a href="#mage">Mage (10 macros)</a></li>
+				<li><a href="#monk">Monk (3 macros &mdash; !Acp Obsequy / Juun)</a></li>
+				<li><a href="#paladin">Paladin (10 macros)</a></li>
+				<li><a href="#priest">Priest (11 macros)</a></li>
+				<li><a href="#shaman">Shaman (14 macros)</a></li>
+				<li><a href="#warlock">Warlock (3 macros)</a></li>
+				<li><a href="#warrior">Warrior (1 macro)</a></li>
+			</ul>
+		</div>
+
+		<h2 id="hunter">Hunter Class Macros (<code>class/hunter/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Hunter 1. #N* (Turtle + Spirit Beast / Gadget)</h2>
+			<span class="icon">icon: 1738657</span>
+			<pre><code>#showtooltip aspect of the turtle
+/use Barnacle-Encrusted Gem
+/use Aspect of the Turtle
+/use [@player]Tar Trap
+/use 15
+/use [pet:SpiritBeast,@player]Spirit Mend;[pet:Gadget,@player]Master's Call(Cunning Ability)
+/use Foul Belly</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 2. #N+ (Exhilaration + Faust Spirit Mend)</h2>
+			<span class="icon">icon: 1786407</span>
+			<pre><code>#showtooltip
+/use Exhilaration
+/use [pet:Faust,@player]Spirit Mend
+/use Survival of the Fittest(Command Pet Ability)</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 3. #N- (Disengage + Roar of Sacrifice)</h2>
+			<span class="icon">icon: 1029744</span>
+			<pre><code>#showtooltip
+/use Disengage
+/use [@player]Tar Trap
+/use [@player] Roar of Sacrifice
+/use Survival of the Fittest(Command Pet Ability)</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 4. #N1 (Muzzle / Tranq / Counter Shot)</h2>
+			<pre><code>#showtooltip
+/use [spec:3,nomod]Muzzle;[mod:alt]Tranquilizing Shot; Counter Shot</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 5. #N2 (@cursor Binding / Tar / Freezing / Flare)</h2>
+			<pre><code>#showtooltip
+/use [spec:1,talent:5/3,nomod,@cursor]Binding Shot;[spec:3,talent:5/3,nomod,@cursor]Binding Shot;[mod:ctrl,@cursor]Tar Trap;[mod:alt,@cursor]Freezing Trap;[spec:1,talent:5/2,@cursor]Flare;[spec:2]Binding Shot; Binding Shot</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 6. #N3 (Mount / Aspect of the Cheetah / Moonfang's Paw)</h2>
+			<pre><code>#showtooltip aspect of the cheetah
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod]Aspect of the Cheetah
+/use Moonfang's Paw</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 7. 1 (Bestial Wrath / Coordinated Assault + Trinkets)</h2>
+			<span class="icon">icon: 237524</span>
+			<pre><code>#showtooltip
+/click [vehicleui]ActionButton1
+/cancelaura Aspect of the Turtle
+/use [nopet,spec:1]call pet 2;[nopet,spec:3]call pet 5;[pet,spec:1]Bestial Wrath;[pet,spec:3]Coordinated Assault
+/use [pet]Aspect of the Wild
+/use 13
+/use 14</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 8. 2 (Kill Command + Claw + Echoes of Rezan)</h2>
+			<pre><code>#showtooltip
+/click [vehicleui]ActionButton2
+/click MultiBarLeftButton2
+/petattack 
+/use [spec:1]Kill Command;[spec:2]Steady Shot;[spec:3]Kill command
+/use Claw(Basic Attack)
+/use Echoes of Rezan</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 9. 3 (Explosives + Cobra Shot)</h2>
+			<span class="icon">icon: 1412205</span>
+			<pre><code>#showtooltip [spec:1] Cobra Shot
+/click [vehicleui]ActionButton3
+/target explosives
+/cast [spec:1] Cobra Shot</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 10. 4 (Multi-Shot + Froststorm Breath)</h2>
+			<pre><code>/use Multi-Shot
+/click [vehicleui]ActionButton1
+/use Froststorm Breath(Exotic Ability)
+/use Frost Breath(Special Ability)</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 11. 5 (Aspect of the Wild / Eagle + Croak Crock)</h2>
+			<span class="icon">icon: 1357816</span>
+			<pre><code>#showtooltip
+/use [spec:1]Aspect of the Wild;[spec:3]Aspect of the Eagle
+/use Croak Crock
+/use Lightning-Forged Augment Rune</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 12. 6 (Target Spirit of Xuen + Intimidation)</h2>
+			<span class="icon">icon: 3614364</span>
+			<pre><code>#showtooltip
+/tar spirit of xuen
+/petpassive
+/petassist
+/petattack
+/use Intimidation</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 13. = (The Necronom-i-nom + Feign Death + Play Dead)</h2>
+			<span class="icon">icon: 132293</span>
+			<pre><code>#showtooltip Feign Death
+/use The Necronom-i-nom
+/use Feign Death
+/use play dead</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 14. F.n5 (Barrage / Wildfire Bomb + Tar/Flare Sequence)</h2>
+			<pre><code>/use [spec:1,talent:6/2]Barrage;[spec:3]Wildfire Bomb
+/castsequence [@cursor] reset=10 Tar Trap, Flare
+/use Azerite Firework Launcher</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 15. G (Misdirection + Spirit Mend + Mend Pet)</h2>
+			<span class="icon">icon: 458729</span>
+			<pre><code>#showtooltip misdirection
+/use [@focus,help,nodead][@pet,nodead][@none]Aqir Egg Cluster
+/use [@focus,help,nodead][@pet,nodead][@none]Misdirection
+/use [@focus,help,nodead][@pet,nodead][@none]Spirit Mend(Exotic Ability)
+/use Mend Pet</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 16. Q (Aqir / Explosives Target + Barbed Shot / Serpent Sting)</h2>
+			<pre><code>#showtooltip [spec:1]Barbed Shot;[spec:3]Serpent Sting
+/tar [nodead]aqir ravager
+/tar [nodead]aqir darter
+/tar Explosives
+/a [dead]focus
+/petattack
+/use [spec:1,harm,nodead]Barbed Shot;[spec:3,harm,nodead]Serpent Sting;Mend Pet</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 17. R/T (Arcane Shot / Bloodshed)</h2>
+			<pre><code>#showtooltip
+/use [spec:1,talent:7/1]Arcane Shot;[spec:1,talent:7/2]Arcane Shot;[spec:1,talent:7/3]Bloodshed;[spec:2]Arcane Shot</code></pre>
+		</div>
+		<div class="macro">
+			<h2>Hunter 18. Srv3 (Survival Raptor Strike)</h2>
+			<pre><code>/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Raptor Strike
+/script UIErrorsFrame:Clear()</code></pre>
+		</div>
+
+		<h2 id="general">General Account Macros (<code>bookmarks/games/warcraft/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>General 1. !1&ndash;!4 (BM/MM/SV Click Bridges)</h2>
+			<pre><code>#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack [spec:3]
+/petattack
+/click [spec:1]BM_1;[spec:2]MM_1;[spec:3]SV_1
+/use [spec:1/2]13
+/use [spec:1/2]14
+/script UIErrorsFrame:Clear()</code></pre>
+		</div>
+		<div class="macro">
+			<h2>General 2. !BLING &amp; !JUNK</h2>
+			<pre><code>#showtooltip
+/cast Summon Mechagnome
+/use Blingtron 4000
+/use Blingtron 5000
+
+/run local c,i,n,v=0;for b=0,4 do for s=1,GetContainerNumSlots(b)do i={GetContainerItemInfo(b,s)}n=i[7]if n and string.find(n,"9d9d9d")then v={GetItemInfo(n)}q=i[2]c=c+v[11]*q;UseContainerItem(b,s)print(n,q)end;end;end;print(GetCoinText(c))</code></pre>
+		</div>
+		<div class="macro">
+			<h2>General 3. #ESN &amp; #ESV (Shadowlands Covenant Macros)</h2>
+			<pre><code>#showtooltip
+/use [@cursor] Wild Spirits
+/use Fleshcraft
+/use Soulshape
+/use Summon Steward
+
+#showtooltip
+/use [mod:alt,@cursor]Door of Shadows;Flayed Shot</code></pre>
+		</div>
+		<div class="macro">
+			<h2>General 4. #Farm, #Hearth, #Whistle &amp; $Fish</h2>
+			<pre><code>#showtooltip Loot-A-Rang
+/use [combat]13
+/use [combat]14
+/targetlasttarget [noexists]
+/use [nocombat]Loot-A-Rang;[nocombat]Findle's Loot-A-Rang
+/useSkinning
+
+#showtooltip Hearthstone
+/use [mod:ctrl]Dalaran Hearthstone;[mod:shift]Garrison Hearthstone; [mod:alt]Flight Master's Whistle;Eternal Traveler's Hearthstone
+/use Greatfather Winter's Hearthstone
+/use Headless Horseman's Hearthstone
+
+#showtooltip Fishing
+/equip [noequipped:Fishing Poles, mod] Underlight Angler
+/cast [nomod] Fishing
+/use [mod:shift] Weather-Beaten Fishing Hat
+/use [mod:alt] Underlight Angler
+/use [mod:ctrl] Arcane Lure
+/use Ancient Pandaren Fishing Charm</code></pre>
+		</div>
+		<div class="macro">
+			<h2>General 5. KICK (Castle Nathria Baroness Frieda) &amp; WAYDUMP (Ardenweald)</h2>
+			<pre><code>#showtooltip
+/target Baroness Frieda
+/use [spec:3,nomod]Muzzle;[mod:alt]Tranquilizing Shot; Counter Shot
+/targetlasttarget
+
+/way 38.86 60.05 Gardener's Wand
+/way 38.49 58.07 Gardener's Flute
+/way 38.99 56.99 Diary of the Night (On top platform)
+/way 40.11 53.70 Road up the trees
+/way 39.76 54.46 Gardener's Hammer
+/way 40.30 52.65 Gardener's Basket
+/way 63.90 37.53 Twinklestar</code></pre>
+		</div>
+
+		<h2 id="dk">Death Knight (<code>class/deathknight/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Death Knight &mdash; Heart Strike / Death Strike / Marrowrend / @cursor D&amp;D</h2>
+			<pre><code>/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack
+/cast Heart Strike
+/script UIErrorsFrame:Clear()
+
+#showtooltip
+/use [@cursor]Death and Decay</code></pre>
+		</div>
+
+		<h2 id="dh">Demon Hunter (<code>class/demonhunter/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Demon Hunter &mdash; Demon's Bite &amp; Chaos Strike</h2>
+			<pre><code>/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack
+/cast Demon's Bite
+/script UIErrorsFrame:Clear()
+
+/cast Chaos Strike</code></pre>
+		</div>
+
+		<h2 id="druid">Druid (<code>class/druid/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Druid &mdash; Balance Moonkin / Guardian Bear Form-Aware 1&ndash;4</h2>
+			<pre><code>#showtooltip
+/use [spec:1,form:0/1/2/3]moonkin form;[spec:1,form:4]Moonfire
+/use [spec:3,form:0/2/3/4]bear form;[spec:3,form:1]Maul
+
+#showtooltip
+/use [spec:1,form:0/1/2/3]moonkin form;[spec:1,form:4]Starsurge
+/use [spec:3,form:0/2/3/4]bear form; [spec:3,form:1]Swipe</code></pre>
+		</div>
+
+		<h2 id="mage">Mage (<code>class/mage/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Mage &mdash; Arcane Power, Counterspell/Spellsteal, Ice Block/Slow Fall, Blink/Mount</h2>
+			<pre><code>#showtooltip
+/cast Arcane Power
+/cast Presence of Mind
+
+#showtooltip
+/cast [harm, nomod] Counterspell; [noharm, nomod, @mouseover] Remove Curse; [harm. mod:alt] Spellsteal
+
+#showtooltip
+/cast [nomod] Ice Block; [mod] Slow Fall
+
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Blink; [mounted] Goblin Glider Kit; [nomounted] Mount Up</code></pre>
+		</div>
+
+		<h2 id="monk">Monk (<code>class/monk/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Monk &mdash; !Acp Obsequy, Tiger's Lust on Juun &amp; Black Ox Vivify</h2>
+			<pre><code>/acp disableall
+/acp addset 4
+/reloadui
+
+/tar juun
+/cast tiger's lust
+
+/target black ox statue
+/cast vivify</code></pre>
+		</div>
+
+		<h2 id="paladin">Paladin (<code>class/paladin/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Paladin &mdash; Avenger's Shield / Freedom / Shield of the Righteous / Divine Steed</h2>
+			<pre><code>#showtooltip
+/use [harm,nodead]Avenger's Shield
+/use [harm,nodead]Hand of Reckoning
+/use [nodead,help]Blessing of Freedom
+/use [dead,help]Redemption
+/cleartarget [harm,dead]
+
+#showtooltip
+/cast [@mouseover, noharm, nodead, exists] Blessing of Freedom; [@player] Blessing of Freedom</code></pre>
+		</div>
+
+		<h2 id="priest">Priest (<code>class/priest/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Priest &mdash; Shadowform / Mouseover Holy &amp; Discipline Hybrids</h2>
+			<pre><code>#showtooltip
+/use [spec:3,nostance] Shadowform
+/use [spec:3,form:1]Mind Blast
+/use [@mouseover,noharm]Flash Heal;[@mouseover]Shadow Word: Pain
+
+#showtooltip
+/use [spec:3,nostance] Shadowform
+/use [spec:3,form:1]Shadow Word: Death
+/cast [@mouseover, exists, harm]Shadow Word: Death ; [@cursor] Holy Word: Sanctify</code></pre>
+		</div>
+
+		<h2 id="shaman">Shaman (<code>class/shaman/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Shaman &mdash; Wind Shear/Purge/Purify, Ghost Wolf Mount, Riptide/Chain Heal</h2>
+			<pre><code>#showtooltip
+/use [@mouseover,harm,nomod]Wind Shear;[@mouseover,harm,mod]Purge;[@mouseover]Purify Spirit
+
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Ghost Wolf; [mounted] Goblin Glider Kit; [nomounted] Mount Up
+
+#showtooltip
+/use [spec:3,@cursor,nomod] Healing Rain;[spec:3,@cursor,mod]Earthen Wall Totem</code></pre>
+		</div>
+
+		<h2 id="warlock">Warlock (<code>class/warlock/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Warlock &mdash; Healthstone/Soulwell &amp; Burning Rush Mount</h2>
+			<pre><code>#showtooltip
+/cast [noparty] Create Healthstone; [party] Create Soulwell
+
+/cancelaura Burning Rush
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [combat][indoors][mod] Burning Rush; [mounted] Goblin Glider Kit; [nomounted] Apprentice Riding</code></pre>
+		</div>
+
+		<h2 id="warrior">Warrior (<code>class/warrior/macros-cache.html</code>)</h2>
+		<div class="macro">
+			<h2>Warrior &mdash; Slam / Devastate</h2>
+			<pre><code>/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast [spec:1]Slam; [spec:3]Devastate
+/script UIErrorsFrame:Clear()</code></pre>
+		</div>
+	</body>
+</html>

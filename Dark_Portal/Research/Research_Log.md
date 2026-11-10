@@ -4,6 +4,70 @@
 **Rule:** findings come from files read and behavior observed — never inferred from log categories alone (per the 02:05 EST ledger correction). NEW ENTRIES AT TOP.
 
 ---
+## 2026-11-10 ~01:30 EST — Entry 006: Addon re-survey (46/4/38) — what each one does, the three error sources named, CombatLog mystery closed, and what would actually help
+
+Read-only peak at `Interface\AddOns` in all three installs plus every log and SVD under `_forever_`. Nothing cloned, nothing edited, no addon folders touched.
+
+**Inventory delta since Entry 005 (2026-11-06):** `_forever_` **13 → 46** addons. `_classic_era_` still 4 (RaiderIO + its three region DBs — an install that only exists to keep RaiderIO happy). `_retail_` still 38, unchanged.
+
+**Notable additions in `_forever_` since Entry 005** — none of these appear in Entry 005's description of the 13-addon install: Achievements + AchievementsData, AddonSuite, BuddyDex, CharacterForever, CountSteps, EUIStandaloneForeverEssentials, EuphorrixSpellAnnouncerV2, ForeverDungeonJournal, ForeverEpicFrames, ForeverLogsCompanion, ForeverQuestTint, Goldmind, Mapzeroth, PokeLink, QuestieDB, QuestMaster, SimpleAddonManager, WhatsItFor + 5 data packs, WhatsTraining, WoWTaskManager. The install flipped from "fresh 13" to a fully-furnished Forever UI in four days.
+
+### A. What these actually are (grouped by how they attach to the client)
+
+**Forever-native (TOC `Interface: 16001` only — cannot run anywhere else):** ForeverLogsCompanion, ForeverDungeonJournal, ForeverEpicFrames (Spanish-language description: "Marcos épicos para personaje, objetivo y objetivo del objetivo"), ForeverQuestTint (binary search over sorted vanilla quest ID ranges — no per-ID table), CharacterForever (dark-fantasy character sheet that keeps the original equipment/reputation/skills/PvP panes beneath it), Mapzeroth, Goldmind, Eu-phorrix's Spell Announcer, EUIStandaloneForeverEssentials, BuddyDex.
+
+**Ported, gated by per-flavor TOC siblings rather than inline directives:** `WoWTaskManager` ships **seven** TOCs (`_Camelot`, `_Forever`, `_Mainline`, `_Mists`, `_TBC`, `_Vanilla`, fallback), `QuestMaster` five (`_Camelot`, `_Forever`, `_TBC`, `_Vanilla`, `_Wrath`), `QuestieDB` two, `Mapzeroth` two (`_Forever`, `_Mainline`). This is the *other* strategy from Entry 005's `[AllowLoadGameType camelot]` inline gating — same problem, two idioms, both in this one folder. Which explains a false alarm: `QuestMaster.toc` advertises only `50503, 50504` (Mists), yet QuestMaster loads in Forever — `QuestMaster_Forever.toc` is the real entry point. Likewise "Mapzeroth has two versions in one folder" is just `Mapzeroth_Forever.toc` next to `Mapzeroth_Mainline.toc`, not a doubled install.
+
+**Personality / non-gameplay:** PokeLink is a Game Boy emulator that plays Pokémon over addon messages ("bring your own ROM"), BuddyDex is a Pokédex for befriending Azeroth NPCs (`/bd`), CountSteps converts distance travelled into miles.
+
+**Licence spread worth noting:** Achievements is GPL-3, ForeverLogsCompanion MIT, but `AddonSuite` ("Addon Suite Addon Manager. Because Even Your Addons Need an Overlord.") is **All Rights Reserved** — redistribution *and* modification forbidden — while three addon managers now overlap in one folder (AddonSuite, SimpleAddonManager, plus the EUI panel).
+
+**Pattern worth keeping (addon-side decision telemetry):** ForeverLogsCompanion persists a `trace` ring buffer *into its own SavedVariables* — the last N decisions with timestamps, reasons and state (`/flc trace`). That is exactly the forensic shape the station wants, and it is the reason the CombatLog question below is answerable at all. No other installed addon does this.
+
+### B. The three error sources, named (General.log 11/9, 31 error lines)
+
+No addon in `_forever_` captures errors — they exist only as `[E][Lua]` lines in `General.log`, and Sound.log confirms `Enable Error Speech [0]`, so there is no audio cue either. Joey has never seen one of these.
+
+1. **EuphorrixSpellAnnouncerV2 — 19 hits, `Core.lua:397` "attempt to call a nil value".** Line 397 is an **unguarded `GetSpellInfo(id)`** inside the `hooksecurefunc("UseAction", …)` closure opened at line 391. The same file guards every other spelling of this call — `Core.lua:286`/`318` read `C_Spell and C_Spell.GetSpellInfo and ….name or GetSpellInfo(…)`, and `Announce.lua:26-30` / `UI_Main.lua:727-731` / `Utils.lua:462-474` all test `if GetSpellInfo then`. So the author *knew* the bare global can be nil on this client and left one call site unguarded. One error per action-bar spell press — 19 in ~5 minutes of play.
+2. **EuphorrixSpellAnnouncerV2 — 1 hit, `Clicks.lua:51` "table index is nil".** Line 51 is `pendingCasts[castGUID] = {…}` inside the `UNIT_SPELLCAST_SENT` branch; `castGUID` arrives nil, i.e. the client's payload does not put the cast GUID in the third event argument the addon expects. Same theme: pre-Forever event signature assumed.
+3. **RaiderIO — 5 hits, `RaiderIO_Camelot.toc:21`.** That TOC line loads `db/db_client_recent_characters.lua`; **that file does not exist** in `db/` (the Forever set ships `db_forever_client_characters.lua`, 359 B, instead). A packaging omission upstream, not a client problem — the addon still loads and writes its SVD. Benign, but it means the recent-characters inspection data is simply empty.
+4. **WoWTaskManager — 6 hits across `Sessions.lua:146` and `FlightRecorder.lua:231`.** Both are `OnDisable` handlers that read `WTM.db.profile.retention` / `WTM.db.profile.flightRecorder`. During `OnDisable` the AceDB profile is not built yet, so both abort on a nil index. Fires at **login/reload** (22:57, 23:01, 23:15), not shutdown, and its real cost is that session finalisation and incident persistence silently bail out on those cycles. A textbook load-order bug, not a config one.
+
+### C. CombatLog mystery — closed (this answers Entry 005's open question)
+
+Entry 005 left off with "`CombatLog.txt` still has not fired… either the camelot build never emits the file or it needs actual combat." Neither. **`ForeverLogsCompanion` is installed and healthy**, v0.2.3, `auto_combatlog = true`, 39 zones monitored, `log_dungeons` and `log_raids` both on. Its own persisted trace says, session after session:
+
+`check(true) zone=Zephras Isle type=none listed=nil last=nil known=nil client=false`
+
+**Zephras Isle is not in `FLC.DEFAULT_ZONES`**, and it is the zone every session since 11/9 has been in. The addon correctly declined to log a starter zone. The file's absence is therefore *not* a client defect and *not* a missing capability — `/combatlog` has never been asked for. (`client=false` is not a fault either: that field is `LoggingCombat()`, i.e. "is logging right now", false at login by design.)
+
+### D. Telemetry already being collected that the station does not read
+
+- **WoWTaskManager** (`WoWTaskManager.lua`, 132 KB): `global.incidents` holds real frame-time spike captures as 8-field sample tuples (id 9, epoch 1794284437, deltas swinging −29.8 → −27.8 ms with an 84 ms field), plus `lastSessionId = 4`, `firstRunAt`, `schemaVersion = 3`. A working performance recorder already on the machine.
+- **Goldmind** (21 KB): auction/market observations on a read-only collector.
+- **RaiderIO Journeys**: per-character SVD `RaiderIO.lua` is **333 KB** — the largest char-level file in the install — and per AGENTS.md already scribes 60-second checkpoints (level/xp/kills/deaths/quests/gold//played). Still unread by the audit; this is the only source of level/xp anywhere in the folder.
+
+### E. Fossil record: four orphan SVDs from removed addons
+
+`MelloUI.lua` (60 KB account + 24.8 KB character), `MelloUI_Route.lua` (**232 KB** — the single largest SVD in the account), `MelloUI_DungeonInfo.lua`, `MagicQuestTracker.lua` — **none of these addons exist** in `AddOns`. `MelloUI_Route` is a pathfinding graph keyed by map ID (`[2521] = { ["223:130"] = { 2235.4, 1302.4, { ["223:131"] = 1.5, … } } }`) — node coordinates plus edge weights. `MagicQuestTracker`'s profile carries a tracker layout literally named **`GEWEY!`** (TOPRIGHT, width 260, maxHeight 696), matching the Edit Mode layout name `GEWEY!` in `EditMode.log`. Read together: MelloUI → Mapzeroth and MagicQuestTracker → QuestMaster was a deliberate swap, and ~350 KB of dead route/quest geometry is still sitting in the account folder.
+
+Meanwhile **two installed addons have never been enabled**: `SexyMap.toc` declares `SexyMap2DB` and `HandyNotes.toc` declares `HandyNotesDB`, and neither variable exists anywhere under `WTF\`. 2 of 46 are inert cargo.
+
+### F. What would actually help (ranked, evidence first)
+
+1. **BugSack + !BugGrabber.** His `_retail_` install carries exactly this pair; `_forever_` carries neither, and that absence is why 31 errors per session are invisible. It converts the invisible into an in-game catch, a minimap alert, and a saved `.lua` the hourly audit can ingest directly. Nothing else on this list gives more value for less risk — no gameplay, no rendering, no hooks.
+2. **A boss mod (DBM or BigWigs).** There is **no boss mod in any of the three installs**. Raids open Dec 9 per AGENTS.md, and `Sound.log` already has the client's `Enable Encounter Warnings Sounds [1]` channel live and waiting. `Spoken_Bosses` gives lore voiceover, not timers.
+3. **Questie.** The supporting cast is all here — `QuestieDB` is installed *as a library only*, QuestMaster tracks and navigates, ForeverQuestTint tints — but the addon that actually draws quest giver/objective pins does not exist in the folder. A conspicuous hole given the stack around it.
+4. **WeakAuras.** Absent from all three installs while Joey hand-builds UI in Edit Mode (layout `GEWEY!`, 38 placed regions, 2771-byte buffer). If bespoke per-encounter alerts are wanted, this is the gap.
+5. **Free win, no new addon:** EUI's `goldLedger` is still dormant (`bagsAutoDisabled = true`, no `goldLedger` key in the SVD) exactly as Entry 005 predicted. Enabling EUI Bags *or* DataBars starts copper-level gold tracking with zero downloads.
+
+**Deliberately not recommended:** another addon manager (three already), and anything that duplicates Blizzard_DamageMeter — it is enabled and configured in this install (`windowDataList` shown=true), so Details/Recount would be redundant.
+
+-Signed, Tandumonium
+
+
+---
+
 ## 2026-11-06 ~20:55 EST â€” Entry 005: Three-install addon survey (forever/classic_era/retail) â€” engineering patterns learned, telemetry cross-reference, scribe evidence
 
 Read-only survey of `Interface\AddOns` across `_forever_` (13 addons), `_classic_era_` (4), `_retail_` (38), cross-referenced against station telemetry needs. Nothing cloned, nothing edited.

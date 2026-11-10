@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character — Tandumonium / Hyjal-US | Gewey G.U.I.</title>
+<!--
+  CHARACTER.html — built 2026-11-10 by Tandumonium.
+  A readable, local copy of the live armory record so the HUD does not depend on
+  raider.io being up (and so the numbers survive the next re-crawl).
+  Source: Raider.IO public API /api/v1/characters/profile, crawl 2026-11-05T12:46:46Z.
+  Self-contained: every value embedded at build time, plus Wowhead mouseover tooltips.
+-->
+<script>
+const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--arcane:#37e6ff;
+ --q2:#1eff00;--q3:#0070dd;--q4:#a335ee;--glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(880px 500px at 10% -8%,rgba(51,255,120,.13),transparent 62%),
+  radial-gradient(760px 460px at 92% 2%,rgba(55,230,255,.12),transparent 64%),
+  linear-gradient(180deg,#05040a 0%,#07060f 60%,#09071400 100%),
+  linear-gradient(180deg,#05040a 0%,#08060f 100%)}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.05;margin:.35rem 0 .45rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut);font-size:.52em;display:block;margin-top:.35rem}
+.lede{color:var(--mut);max-width:74ch;font-size:.96rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+ margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .35rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid rgba(255,255,255,.07)}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.82em;color:var(--arcane)}
+.q2{color:var(--q2)}.q3{color:var(--q3)}.q4{color:var(--q4)}
+.ilvl{color:var(--gold);font-weight:700}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+footer{margin-top:3.2rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+ul{margin:.4rem 0 0 1.1rem;color:var(--mut);font-size:.86rem}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-character">
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Character Sheet &middot; account QUAZZARR</p>
+ <h1>Tandumonium<span class="thin">Hyjal-US &middot; Horde &middot; Dracthyr &middot; Beast Mastery Hunter</span></h1>
+ <p class="lede">The body I am wearing right now, frozen at the last armory crawl so it
+ stays readable when raider.io is not. Numbers are the truth; the story is in
+ <a class="ext" href="legacy.html">Legacy</a>.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html" aria-current="page">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="vitals">
+ <h2>Vitals</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">263<small>item level equipped</small></div></div>
+  <div class="card"><div class="stat">21,685<small>achievement points</small></div></div>
+  <div class="card"><div class="stat">253<small>loot spec &middot; BM Hunter</small></div></div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>Raider.IO profile &mdash; crawl 2026-11-05T12:46:46Z</caption>
+   <thead><tr><th>Field</th><th>Value</th></tr></thead>
+   <tbody>
+    <tr><td>Name / Realm / Region</td><td class="mono">Tandumonium / Hyjal / us</td></tr>
+    <tr><td>Race / Class</td><td class="mono">Dracthyr / Hunter</td></tr>
+    <tr><td>Active spec</td><td class="mono">Beast Mastery (DPS)</td></tr>
+    <tr><td>Gender / Faction</td><td class="mono">male / horde</td></tr>
+    <tr><td>Guild at crawl</td><td class="mono">null &mdash; unguilded</td></tr>
+    <tr><td>Raid difficulty setting</td><td class="mono">EJRaidDifficulty 15 &mdash; Mythic</td></tr>
+    <tr><td>Live profile</td><td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium" target="_blank" rel="noopener">raider.io</a> &middot;
+        <a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium" target="_blank" rel="noopener">armory</a></td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section id="gear">
+ <h2>Equipped</h2>
+ <div class="scroll">
+  <table>
+   <caption>16 slots &mdash; item level per slot, class colours by quality</caption>
+   <thead><tr><th>Slot</th><th>Item</th><th>iLvl</th><th>ID</th></tr></thead>
+   <tbody>
+    <tr><td>Head</td><td><a class="q4 ext" href="https://www.wowhead.com/item=249988" data-wowhead="item=249988&amp;ilvl=253" target="_blank" rel="noopener">Primal Sentry's Maw</a></td><td class="ilvl">253</td><td class="mono">249988</td></tr>
+    <tr><td>Neck</td><td><a class="q4 ext" href="https://www.wowhead.com/item=249368" data-wowhead="item=249368&amp;ilvl=250" target="_blank" rel="noopener">Eternal Voidsong Chain</a></td><td class="ilvl">250</td><td class="mono">249368</td></tr>
+    <tr><td>Shoulder</td><td><a class="q4 ext" href="https://www.wowhead.com/item=249986" data-wowhead="item=249986&amp;ilvl=240" target="_blank" rel="noopener">Primal Sentry's Trophies</a></td><td class="ilvl">240</td><td class="mono">249986</td></tr>
+    <tr><td>Back</td><td><a class="q4 ext" href="https://www.wowhead.com/item=259360" data-wowhead="item=259360&amp;ilvl=282" target="_blank" rel="noopener">Steelbark Cloak</a></td><td class="ilvl">282</td><td class="mono">259360</td></tr>
+    <tr><td>Chest</td><td><a class="q2 ext" href="https://www.wowhead.com/item=278878" data-wowhead="item=278878&amp;ilvl=256" target="_blank" rel="noopener">Crypt Cleanser Chestguard</a></td><td class="ilvl">256</td><td class="mono">278878</td></tr>
+    <tr><td>Waist</td><td><a class="q2 ext" href="https://www.wowhead.com/item=278906" data-wowhead="item=278906&amp;ilvl=256" target="_blank" rel="noopener">Tomb-Sealed Girdle</a></td><td class="ilvl">256</td><td class="mono">278906</td></tr>
+    <tr><td>Wrist</td><td><a class="q2 ext" href="https://www.wowhead.com/item=278890" data-wowhead="item=278890&amp;ilvl=256" target="_blank" rel="noopener">Armbands of Brothers</a></td><td class="ilvl">256</td><td class="mono">278890</td></tr>
+    <tr><td>Hands</td><td><a class="q4 ext" href="https://www.wowhead.com/item=268238" data-wowhead="item=268238&amp;ilvl=279" target="_blank" rel="noopener">Grips of Swirling Fury</a></td><td class="ilvl">279</td><td class="mono">268238</td></tr>
+    <tr><td>Legs</td><td><a class="q4 ext" href="https://www.wowhead.com/item=275508" data-wowhead="item=275508&amp;ilvl=292" target="_blank" rel="noopener">Preyhunter's Rugged Legguards</a></td><td class="ilvl">292</td><td class="mono">275508</td></tr>
+    <tr><td>Feet</td><td><a class="q3 ext" href="https://www.wowhead.com/item=276005" data-wowhead="item=276005&amp;ilvl=266" target="_blank" rel="noopener">Skytalon Treads</a></td><td class="ilvl">266</td><td class="mono">276005</td></tr>
+    <tr><td>Ring 1</td><td><a class="q3 ext" href="https://www.wowhead.com/item=276037" data-wowhead="item=276037&amp;ilvl=276" target="_blank" rel="noopener">Counter-Curse Circlet</a></td><td class="ilvl">276</td><td class="mono">276037</td></tr>
+    <tr><td>Ring 2</td><td><a class="q3 ext" href="https://www.wowhead.com/item=280715" data-wowhead="item=280715&amp;ilvl=266" target="_blank" rel="noopener">Eye of Skully</a></td><td class="ilvl">266</td><td class="mono">280715</td></tr>
+    <tr><td>Trinket 1</td><td><a class="q3 ext" href="https://www.wowhead.com/item=280377" data-wowhead="item=280377&amp;ilvl=263" target="_blank" rel="noopener">Breath of Jan'alai</a></td><td class="ilvl">263</td><td class="mono">280377</td></tr>
+    <tr><td>Trinket 2</td><td><a class="q4 ext" href="https://www.wowhead.com/item=250462" data-wowhead="item=250462&amp;ilvl=253" target="_blank" rel="noopener">Forgotten Farstrider's Insignia</a></td><td class="ilvl">253</td><td class="mono">250462</td></tr>
+    <tr><td>Main hand</td><td><a class="q3 ext" href="https://www.wowhead.com/item=279232" data-wowhead="item=279232&amp;ilvl=263" target="_blank" rel="noopener">Ancient Amani Longbow</a></td><td class="ilvl">263</td><td class="mono">279232</td></tr>
+    <tr><td>Shirt</td><td><a class="q4 ext" href="https://www.wowhead.com/item=98543" data-wowhead="item=98543&amp;ilvl=1" target="_blank" rel="noopener">Wraps of the Blood-Soaked Brawler</a></td><td class="ilvl">1</td><td class="mono">98543</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Two trinkets carry the legacy: <em>Forgotten Farstrider's Insignia</em>
+ (blood elf, always) and <em>Ancient Amani Longbow</em>. Even the loot is on-theme.</p>
+</section>
+<section id="config">
+ <h2>How I Am Wired</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Interface</h3>
+   <ul>
+    <li>Edit Mode layout named <code>Gewey!!</code> — serialized by <code>Tandumonium_UI</code>.</li>
+    <li>Multi-bar <code>barMapping</code>: <code>1–6</code>, <code>Q</code>, <code>E</code>, <code>R</code>, <code>T</code>, plus <code>F</code>/<code>G</code> and <code>SHIFT</code>/<code>CTRL</code>/<code>ALT</code> chords.</li>
+    <li>Dracthyr racials bound directly: <strong>Visage</strong>, <strong>Glide</strong>, <strong>Wing Buffet</strong>, <strong>Tail Swipe</strong>.</li>
+    <li>Hunter kit on the bar: Kill Command, Barbed Shot, Bestial Wrath, Call/Mend Pet, Misdirection, Feign Death, Aspect of the Turtle / Cheetah.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>CVars that matter</h3>
+   <ul>
+    <li><code>autoLootDefault 1</code> — never stop moving for loot.</li>
+    <li><code>nameplateMaxDistance 60</code>, <code>nameplateSelectedScale 1.2</code>.</li>
+    <li><code>damageMeterEnabled 1</code> — EnhanceQoL's meter, not Details.</li>
+    <li><code>EJLootSpec 253</code> (Beast Mastery), <code>EJRaidDifficulty 15</code> (Mythic).</li>
+   </ul>
+  </div>
+ </div>
+ <p class="note">The full origin story — three names, two guilds, three races — lives in
+ <a class="ext" href="legacy.html">Legacy</a>. The addon-by-addon map lives in
+ <code>Z:\World of Warcraft\_retail_\AGENTS.md</code>.</p>
+</section>
+
+<footer>
+ <p><strong>Character.html</strong> — built 2026-11-10 by Tandumonium from the Raider.IO
+ public API (crawl 2026-11-05T12:46:46Z) and the retail <code>WTF</code> config tree.
+ Values are embedded, not fetched, so this page cannot rot.</p>
+ <p style="margin-top:.5rem">Lok'tar Ogar. We don't leave our people behind.</p>
+</footer>
+
+
+</div>
+</body>
+</html>

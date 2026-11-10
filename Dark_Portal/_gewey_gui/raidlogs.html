@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Raid Log Archive &mdash; the hunt for every hunt | Gewey G.U.I.</title>
+<!--
+  RAIDLOGS.html &mdash; built 2026-11-10 by Tandumonium (second legacy pass).
+  Purpose: the raid-log paper trail. legacy.html tells WHO I was; this wing tells
+  WHAT the internet still remembers of the actual hunts &mdash; tenure-scoped
+  (BfA-era Gehenna = WCL guild 7287, per the CRITICAL tenure rule), the Wayback
+  roster sweep, the walls that block the machines, the macro-cache fingerprints,
+  and the live Raider.IO pull. Sources all harvested this run; every number
+  embedded at build time.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(55,230,255,.14),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(255,59,92,.13),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(125,255,92,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.82em}
+a{color:var(--arcane)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-color:var(--gold)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{color:var(--mut);font-size:.85rem}
+.rank1{color:var(--gold);font-weight:700}
+.ok{color:var(--fel)}
+.no{color:var(--crimson)}
+.wall{color:var(--grey)}
+ul{margin:.4rem 0 0 1.1rem}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.2rem;
+ color:var(--mut);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Gewey G.U.I. &mdash; Legacy Wing &mdash; built 2026-11-10</p>
+ <h1>The Raid Log Archive <span class="thin">every hunt the internet still remembers</span></h1>
+ <p class="lede">Warcraft Logs did not exist until December 2015, and the record of
+ Joey's raids is <strong>tenure-scoped</strong>: <code>&lt;Gehenna&gt;</code> counts during the
+ BfA era (~2018&ndash;2019, Warcraft Logs guild <code>7287</code>, Uldir & Battle of
+ Dazar'alor), <code>&lt;Theorycrafters&gt;</code> on Thrall/Hyjal after that. Pre-tenure
+ guild history is context, never his. This page is the second pass over the paper
+ trail &mdash; wider, honest about the walls, and built from the run that walked
+ every archived capture.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="raidlogs.html" aria-current="page">Raid Logs</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+ </nav>
+</header>
+
+<section id="tenure">
+ <h2>The Tenure Rule</h2>
+ <div class="card">
+  <p><strong>Only tenure-era guild history belongs to Tandu.</strong> <code>&lt;Gehenna&gt;</code>
+  counts during the <strong>BfA era (~2018&ndash;2019)</strong> &mdash; the window Joey's own
+  2019 bookmark sheet pins down: Warcraft Logs <strong>guild 7287</strong>, Wipefest, and the
+  WoWProgress Shadowsong / Borean Tundra connected-cluster pages, Uldir & Battle of
+  Dazar'alor season. <code>&lt;Theorycrafters&gt;</code> on Thrall / Hyjal follows after.
+  Pre-tenure guild snapshots (the WotLK&ndash;Legion Wayback captures of Gehenna) are
+  <em>the guild's</em> history, not the character's &mdash; they are never indexed as his.</p>
+ </div>
+ <p class="note">This pass still walked all 23 archived guild pages &mdash; as a
+ <em>negative-control sweep</em>: if <code>Tandu</code> had appeared in any pre-tenure roster,
+ the tenure rule itself would need a second look. It did not appear anywhere
+ (next section), which is exactly what the rule predicts.</p>
+</section>
+
+<section id="bfa">
+ <h2>The Valid Window &mdash; BfA (2018&ndash;2019)</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">7287<small>WCL guild id &middot; Gehenna</small></div></div>
+  <div class="card"><div class="stat">2<small>raid tiers &mdash; Uldir &middot; BoD</small></div></div>
+  <div class="card"><div class="stat">2019<small>bookmark sheet stamps the era</small></div></div>
+ </div>
+ <p>The tenure-era sources, exactly as Joey bookmarked them in 2019:</p>
+ <div class="scroll">
+  <table>
+   <caption>Tenure-era raid-log targets &mdash; all currently behind walls or quiet</caption>
+   <thead><tr><th>Source</th><th>Target</th><th>Status this run</th></tr></thead>
+   <tbody>
+    <tr><td>Warcraft Logs</td><td><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">guild/id/7287</a>
+        &middot; <a class="ext" href="https://www.warcraftlogs.com/character/us/hyjal/tandumonium" target="_blank" rel="noopener">Tandumonium</a></td>
+        <td class="no">Cloudflare wall &mdash; challenge never clears under automation</td></tr>
+    <tr><td>Wipefest</td><td><a class="ext" href="https://www.wipefest.net/guild/gehenna/Borean-Tundra/US" target="_blank" rel="noopener">Gehenna / Borean-Tundra / US</a></td>
+        <td class="no">live check: &ldquo;No reports could be found&rdquo; (recent-reports index only)</td></tr>
+    <tr><td>WoWProgress</td><td>Gehenna on Borean Tundra / Shadowsong</td>
+        <td class="wall">23 captures archived (2009&rarr;2020); tenure-era ones carried no
+        scored <code>tand</code> character &mdash; see sweep below</td></tr>
+    <tr><td>Raider.IO</td><td><a class="ext" href="https://raider.io/guilds/us/borean-tundra/Gehenna" target="_blank" rel="noopener">Gehenna (BT)</a> &middot;
+        <a class="ext" href="https://raider.io/guilds/us/hyjal/Theorycrafters" target="_blank" rel="noopener">Theorycrafters (Hyjal)</a></td>
+        <td>guild objects alive; <span class="no">0/9</span> current tier (quiet, not dead)</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Wipefest indexes only recently shared reports &mdash; a 2019 guild's Uldir/BoD
+ reports are too old for its crawler even though they may still exist on WCL itself.
+ The human-in-a-browser step (logged into WCL) remains the only reliable door.</p>
+</section>
+<section id="sweep">
+ <h2>The Wayback Roster Sweep</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">23<small>captures walked</small></div></div>
+  <div class="card"><div class="stat">0<small>&ldquo;tand&rdquo; hits in any roster</small></div></div>
+  <div class="card"><div class="stat">4<small>realms CDX-swept for character pages</small></div></div>
+ </div>
+ <p>Every archived Gehenna guild page (2009&ndash;10&rsquo;16 &rarr; 2020&ndash;08&rsquo;07) was fetched and its
+ full text scanned for <code>/tand/i</code>: no <strong>Tandu</strong>, no <strong>Tandieu</strong>,
+ no <strong>Tandumonium</strong> in any member list, join, or leave event. The 2019-08-26
+ <em>member_joined</em> and <em>member_left</em> feeds are likewise clean.</p>
+ <div class="scroll">
+  <table>
+   <caption>Roster visibility per era (member counts where the capture shows them)</caption>
+   <thead><tr><th>Capture</th><th>Era</th><th>Members shown</th><th>Result</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2009-10-16</td><td>Wrath (ToC era)</td><td>73</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2010-03-25</td><td>Wrath (ICC era)</td><td>53</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2011-06-13</td><td>Cataclysm</td><td>10</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2013-02-09</td><td>MoP</td><td>22 (scored)</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2013-10 &rarr; 2016-09</td><td>MoP &rarr; Legion</td><td>12 monthly captures</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2019-08-19</td><td>BfA</td><td>page + event feeds 08-26</td><td class="no">no tand</td></tr>
+    <tr><td class="mono">2020-08-07</td><td>Shadowlands</td><td>full page</td><td class="no">no tand</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Honest limits: WoWProgress rosters list <em>PvE-scored</em> characters only, and the
+ 2008&ndash;2015 join/leave feed pages were never archived &mdash; so this sweep proves absence
+ <em>from the archive</em>, not absence from the guild. A low-score alt or a pre-2009 main
+ could still hide behind that wall. Also swept and empty: WoWProgress character pages for
+ <code>tand*</code> on borean-tundra, shadowsong, thrall and hyjal (only unrelated names &mdash;
+ Tandrial, Tandie, Tanddrelia, Tandar&igrave; &mdash; ever got a page).</p>
+</section>
+
+<section id="walls">
+ <h2>Walls, Walls Everywhere</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>What blocked the machines <span class="no">&#10007;</span></h3>
+   <ul>
+    <li><strong>Warcraft Logs</strong> (guild 7287, character pages): Cloudflare
+        &ldquo;Performing security verification&rdquo; never clears under automation &mdash;
+        confirmed from real Chrome this run, same wall as 2026-11-05.</li>
+    <li><strong>Wipefest</strong>: live check says <em>&ldquo;No reports could be found&rdquo;</em>
+        for Gehenna / Borean Tundra &mdash; their index only carries recent shared reports.</li>
+    <li><strong>Search engines</strong>: Bing fuzzy-matches the name to a nausea drug
+        (homonym drift-event at Willow Springs, 2024 &mdash; not our guy); DuckDuckGo,
+        Mojeek and Google all CAPTCHA the automated browser.</li>
+    <li><strong>Wowhead</strong>: no user profile named Tandumonium.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>What a human can open in five minutes <span class="ok">&#10003;</span></h3>
+   <ol style="margin:.4rem 0 0 1.1rem;color:var(--mut);font-size:.85rem">
+    <li><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">WCL guild 7287</a>
+        in a logged-in browser &rarr; report codes into <code>agent-index.md</code> &sect;7.</li>
+    <li><a class="ext" href="https://www.warcraftlogs.com/character/us/hyjal/tandumonium" target="_blank" rel="noopener">Tandumonium on WCL</a>
+        (and the <code>classic.warcraftlogs.com</code> twin) &rarr; any 2019 Classic-era logs.</li>
+    <li>Wayback roster pages &rarr; confirm any nickname alt (the sweep only covers scored names).</li>
+    <li>Any old screenshot/video/forum post with the handle &rarr; row in &sect;7.</li>
+   </ol>
+  </div>
+ </div>
+ <p class="note">Archive-side status this run: the Internet Archive itself flapped
+ &ldquo;Temporarily Offline&rdquo; mid-sweep &mdash; the borean-tundra WCL subtree query returned
+ empty before the outage; the shadowsong/thrall/hyjal WCL queries and the guild-page
+ queries are <span class="wall">pending for the next pass</span> (re-run the CDX prefix
+ queries listed in <code>agent-index.md</code> &sect;7).</p>
+</section>
+<section id="macros">
+ <h2>What the Macro Cache Remembers</h2>
+ <p class="lede">With no 2015-era combat logs on disk, the account-wide
+ <code>macros-cache.txt</code> is the closest thing to a raid diary the retail tree
+ keeps &mdash; each macro block is an era fingerprint.</p>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Shadowlands era (2020&ndash;2022)</h3>
+   <ul>
+    <li>The covenant-detection hunter macro:
+        <code>SetMacroSpell(... G"Resonating Arrow" or G"Flayed Shot"
+        or G"Death Chakram" or G"Wild Spirits")</code> &mdash; one macro
+        that recolors itself for Kyrian / Necrolord / Venthyr / Night Fae.</li>
+    <li><code>/btwl a Tandu</code> &mdash; a BtWLoadouts assignment that still points at
+        the 2008 handle.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <h3>The utility era</h3>
+   <ul>
+    <li>The <code>!!</code>-prefixed block: bars toggler, then the classic
+        max-graphics clamp (<code>groundEffectDensity 256</code>,
+        <code>farclip 777</code>, <code>maxLOD 3</code>, <code>SkyCloudLOD 3</code>).</li>
+    <li><code>!!Abandon Quests</code>, <code>!!Melee template</code>, boss-1 focus
+        loop with <code>Counter shot, Tranquilizing Shot</code> castsequence.</li>
+   </ul>
+  </div>
+ </div>
+ <p class="note">The character cache on <code>Tandumonium/Hyjal</code> is the Midnight kit
+ (Barbed/Cobra/Steady/Bursting spec conditionals, Wing Buffet racial on the bar,
+ <code>@cursor</code> binding shot). Its file stamp &mdash; <span class="mono">2026-08-14 14:28</span> &mdash;
+ is the oldest file on the whole retail tree. That date is the bottom of the local
+ record; everything older exists only on the internet, which is why the tenure-era hunt above exists.</p>
+</section>
+
+<section id="live">
+ <h2>Live Pull &mdash; 2026-11-10</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">0/9<small>tier-mn-1 &middot; all difficulties</small></div></div>
+  <div class="card"><div class="stat">0<small>M+ runs this season</small></div></div>
+  <div class="card"><div class="stat">2<small>guild objects alive, both quiet</small></div></div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>Raider.IO API &mdash; pulled 2026-11-10 (character crawl stamp 2026-11-05T12:46:46Z)</caption>
+   <thead><tr><th>Target</th><th>Result</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Tandumonium</strong> / Hyjal</td><td>Dracthyr BM Hunter, ilvl 263, 21,685 ach. &mdash;
+        <span class="no">0 kills</span> in every Midnight zone (tier-mn-1, Venomous Abyss 0/8,
+        Kithrix / Tidebound / Sporefall 0/1). No M+ seasons, no recent runs.</td></tr>
+    <tr><td>Theorycrafters / Hyjal</td><td>Horde guild object alive &mdash; 0/9 N this tier.</td></tr>
+    <tr><td>Gehenna / Borean Tundra</td><td>Horde guild object alive &mdash; 0/9 N this tier.</td></tr>
+    <tr><td>Theorycrafters / Thrall &middot; Gehenna / Shadowsong</td><td><span class="no">400</span>
+        &mdash; connected-realm identity; the API only knows the primary realm name.</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Consistent with the 2026-11-05 crawl: the retail main is unguilded and between
+ raids. The record of the <em>hunts</em> lives in the sections above, not the armory.</p>
+</section>
+
+<section id="human">
+ <h2>For the Next Pass</h2>
+ <div class="card">
+  <ol style="margin-left:1.1rem;color:var(--mut);font-size:.9rem">
+   <li>Re-run the pending CDX prefix queries when the Internet Archive is back online
+       (warcraftlogs character subtrees: shadowsong / thrall / hyjal <code>tand*</code>;
+       guild pages <code>guild/us/*/Gehenna*</code> and <code>guild/id/7287*</code>).</li>
+   <li>If WCL ever lifts the automation wall (or Joey opens it logged-in), harvest report
+       codes straight into <code>agent-index.md</code> &sect;7 and link them here.</li>
+   <li>The 2009&ndash;2010 event-feed pages for Gehenna were never archived &mdash; if a
+       capture ever appears, the join/leave dates for <code>Tandu</code> may surface there
+       first. Watch <a class="ext" href="http://web.archive.org/cdx/search/cdx?url=www.wowprogress.com/guild/us/borean-tundra/Gehenna*&output=json&filter=statuscode:200&collapse=timestamp:6" target="_blank" rel="noopener">the CDX live index</a>.</li>
+  </ol>
+ </div>
+</section>
+
+<footer>
+ <p><strong>Raidlogs.html</strong> &mdash; built 2026-11-10 by Tandumonium (second legacy pass).
+ Sources: Wayback captures 2009&ndash;2020 (23/23 walked), Wipefest live check, Raider.IO API,
+ and the retail <code>macros-cache.txt</code> / <code>character-list-order</code> trees.
+ All data embedded at build time; nothing fetches.</p>
+ <p style="margin-top:.5rem">Lok'tar Ogar. The hunt remembers.</p>
+</footer>
+
+</div>
+</body>
+</html>

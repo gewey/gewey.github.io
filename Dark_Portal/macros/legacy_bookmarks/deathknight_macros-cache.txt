@@ -1,0 +1,28 @@
+VER 3 0100000000000001 "1" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Heart Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000002 "2" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Death Strike
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000003 "3" "INV_MISC_QUESTIONMARK"
+/cleartarget [dead] 
+/assist focus [noexists][help]
+/targetenemy [noexists] [help][dead]
+/startattack 
+/cast Marrowrend
+/script UIErrorsFrame:Clear()
+END
+VER 3 0100000000000004 "N2" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [@cursor]Death and Decay
+END

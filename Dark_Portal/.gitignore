@@ -20,5 +20,33 @@ Timeline/run_ledger.md
 .history/
 **/.history/
 
+# Mechanical Chicken automation internals (model-rotation engine, state, logs).
+# The SCHEDULE_SSOT.md stays public (it documents the automations); the engine
+# and its mutable state are local-only operational internals.
+Mechanical_Chicken/model_rotation.py
+Mechanical_Chicken/model_rotation.json
+Mechanical_Chicken/rotation.log
+
 # Python noise.
 __pycache__/
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-10 (Tandumonium) — legacy research pass.
+# Rule of thumb: if an .html page of the HUD reads it, it is PUBLIC. If only an
+# agent reads it, it is LOCAL and belongs below.
+# Explicitly still public: index.html, character.html, legacy.html, Timeline.html,
+# Delve.html, macrocosm.html, _fuhevva_evva.html, the macro pages, barrens_chat/.
+# ---------------------------------------------------------------------------
+
+# Research notes, harvest scratch, and anything an agent writes for itself.
+Research/_local/
+**/*.local.md
+**/*.local.json
+**/*.local.csv
+_gewey_gui/_notes/
+_gewey_gui/_data/*.local.json
+_wow_tmp/
+
+# Raw remote payloads captured while spelunking (looted JSON/HTML snapshots).
+Research/_raw/
+

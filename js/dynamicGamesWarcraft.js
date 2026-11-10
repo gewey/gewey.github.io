@@ -2,6 +2,7 @@
  * World of Warcraft resources and tools bookmarks
  */
 const gameswarcraftBookmarks = [
+  { title: 'Tandumonium', href: '../../Dark_Portal/_gewey_gui/index.html', target: '_top', alt: 'geweywarcraft' },
   { title: 'Gewey Referral', href: './shopping/referral.html', target: 'contentframe', alt: 'blank' },
   { title: 'Gewey Warcraft', href: './games/warcraft/index.html', target: 'contentframe', alt: 'geweywarcraft' },
   { title: 'World of Warcraft', href: 'https://www.worldofwarcraft.com/', alt: 'warcraft' },

@@ -1,0 +1,170 @@
+VER 3 0000000000000049 "!1" "132294"
+#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack [spec:3]
+/petattack
+/click [spec:1]BM_1;[spec:2]MM_1;[spec:3]SV_1
+/use [spec:1/2]13
+/use [spec:1/2]14
+/script UIErrorsFrame:Clear()
+END
+VER 3 000000000000004C "!2" "132176"
+#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack [spec:3]
+/petattack
+/click [spec:1]BM_2;[spec:2]MM_2;[spec:3]SV_2
+/use [spec:1/2]13
+/use [spec:1/2]14
+/script UIErrorsFrame:Clear()
+END
+VER 3 000000000000004A "!3" "461114"
+#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack [spec:3]
+/petattack
+/click [spec:1]BM_3;[spec:2]MM_3;[spec:3]SV_3
+/use [spec:1/2]13
+/use [spec:1/2]14
+/script UIErrorsFrame:Clear()
+END
+VER 3 000000000000004B "!4" "236179"
+#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack [spec:3]
+/petattack
+/click [spec:1]BM_4;[spec:2]MM_4;[spec:3]SV_4
+/use [spec:1/2]13
+/use [spec:1/2]14
+/script UIErrorsFrame:Clear()
+END
+VER 3 000000000000006B "!BLING" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast Summon Mechagnome
+/use Blingtron 4000
+/use Blingtron 5000
+END
+VER 3 0000000000000083 "!JUNK" "133784"
+/run local c,i,n,v=0;for b=0,4 do for s=1,GetContainerNumSlots(b)do i={GetContainerItemInfo(b,s)}n=i[7]if n and string.find(n,"9d9d9d")then v={GetItemInfo(n)}q=i[2]c=c+v[11]*q;UseContainerItem(b,s)print(n,q)end;end;end;print(GetCoinText(c))
+END
+VER 3 000000000000007C "!Scourge" "INV_MISC_QUESTIONMARK"
+/use 6
+/use Argenteman's Banner
+/use Darkened Scourgestone
+/use Pitch Black Scourgestone
+END
+VER 3 000000000000002B "!SND" "136197"
+#showtooltip Master's Call(Cunning Ability)
+/run local c="Sound_EnableSFX";if GetCVar(c)=="0" then SetCVar(c,1)else SetCVar(c,0)end
+/run local c="Sound_EnableErrorSpeech";if GetCVar(c)=="0" then SetCVar(c,1)else SetCVar(c,0)end
+/run local c="Sound_EnableAmbience";if GetCVar(c)=="0" then SetCVar(c,1)else SetCVar(c,0)end
+END
+VER 3 000000000000006E "!STOP" "135769"
+/stopcasting
+/petfollow
+/petpassive
+END
+VER 3 0000000000000081 "#ESN" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [@cursor] Wild Spirits
+/use Fleshcraft
+/use Soulshape
+/use Summon Steward
+END
+VER 3 0000000000000080 "#ESV" "3565445"
+#showtooltip
+/use [mod:alt,@cursor]Door of Shadows;Flayed Shot
+END
+VER 3 0000000000000021 "#Farm" "134414"
+#showtooltip Loot-A-Rang
+/use [combat]13
+/use [combat]14
+/targetlasttarget [noexists]
+/use [nocombat]Loot-A-Rang;[nocombat]Findle's Loot-A-Rang
+/useSkinning
+END
+VER 3 0000000000000075 "#Hearth" "134414"
+#showtooltip Hearthstone
+/use [mod:ctrl]Dalaran Hearthstone;[mod:shift]Garrison Hearthstone; [mod:alt]Flight Master's Whistle;Eternal Traveler's Hearthstone
+/use Greatfather Winter's Hearthstone
+/use Headless Horseman's Hearthstone
+/useThe Innkeeper's Daughter
+END
+VER 3 0000000000000076 "#Whistle" "132161"
+#showtooltip Flight Master's Whistle
+/use [mod:ctrl]Dalaran Hearthstone;[mod:shift]Garrison Hearthstone; [mod:alt]Greatfather Winter's Hearthstone;Flight Master's Whistle
+END
+VER 3 0000000000000073 "$Arch" "441139"
+#showtooltip Survey
+/use Crate of Tol'vir Archaeology Fragments
+/use Crate of Demon Archaeology Fragments
+/use Crate of Highborne Archaeology Fragments
+/use Crate of Highmountain Tauren Archaeology Fragments
+/use Survey
+/use Lorewalker's Lodestone
+END
+VER 3 0000000000000068 "$D.E." "132853"
+#showtooltip Disenchant
+/cast Disenchant
+/use item:121192
+END
+VER 3 0000000000000074 "$Fish" "136245"
+#showtooltip Fishing
+/equip [noequipped:Fishing Poles, mod] Underlight Angler
+/cast [nomod] Fishing
+/use [mod:shift] Weather-Beaten Fishing Hat
+/use [mod:alt] Underlight Angler
+/use [mod:ctrl] Arcane Lure
+/use Ancient Pandaren Fishing Charm
+END
+VER 3 000000000000006A "$Mill" "236222"
+/cast Milling
+/use Dreamleaf
+/use Yseralline Seed
+/use Aethril
+/use Foxflower
+/use Starlight Rose
+/use Fjarnskaggl
+/use Felwort
+END
+VER 3 0000000000000072 "$Run" "136088"
+#showtooltip
+/use [swimming] Underlight Angler
+/equipset [noswimming]Beast Mastery
+/use [indoors, noswimming] Aspect of the Cheetah
+END
+VER 3 0000000000000070 "$Targeting" "132212"
+/cleartarget [dead][help]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+END
+VER 3 000000000000006F "$Tracking" "236186"
+/run for i=1,GetNumTrackingTypes() do local n,t,a,c=GetTrackingInfo(i); if string.find(n, UnitClass("player")) then SetTracking(i,not a); end end
+END
+VER 3 000000000000006C "**Melee template" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cleartarget [dead]
+/assist focus [noexists][help]
+/targetenemy [noexists][help][dead]
+/startattack
+/cast Spell Name
+/script UIErrorsFrame:Clear()
+END
+VER 3 0000000000000084 "~MNT" "646674"
+#showtooltip Grand Expedition Yak
+/run if SecureCmdOptionParse"[nocombat,outdoors,nomod,nomounted]"then C_MountJournal.SummonByID(0)end
+/use [mod:alt]Grand Expedition Yak;[mod:ctrl]Mighty Caravan Brutosaur;[mod:shift]Sandstone Drake
+/dismount [mounted]
+END
+VER 3 0000000000000028 "~skull" "1391769"
+/focus [@mouseover,exists]
+/script SetRaidTarget("target",8)
+END

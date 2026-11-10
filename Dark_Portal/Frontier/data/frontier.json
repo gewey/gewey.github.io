@@ -1,0 +1,1663 @@
+{
+ "generated": "2026-11-10 01:30:06",
+ "source": "Z:\\World of Warcraft\\_forever_",
+ "config": {
+  "gameTip": "8",
+  "graphicsQuality": "9",
+  "resolution": "2560x1440",
+  "gxApi": "D3D12",
+  "agentUID": "wowf",
+  "portal": "US",
+  "lastAddonVersion": "16001"
+ },
+ "counters": {
+  "steps": 317.6993897159942,
+  "jumps": 2.0,
+  "deaths": 1.0,
+  "statisticsStartedAt": 1794282928.0,
+  "criteria": [
+   {
+    "id": 4953,
+    "quantity": 2.0
+   },
+   {
+    "id": 4956,
+    "quantity": 4.0
+   },
+   {
+    "id": 4944,
+    "quantity": 6.0
+   },
+   {
+    "id": 0,
+    "quantity": 486.0
+   },
+   {
+    "id": 92464,
+    "quantity": 1.0
+   },
+   {
+    "id": 0,
+    "quantity": 4.0
+   },
+   {
+    "id": 0,
+    "quantity": 9.0
+   },
+   {
+    "id": 0,
+    "quantity": 170.0
+   },
+   {
+    "id": 0,
+    "quantity": 9.0
+   },
+   {
+    "id": 0,
+    "quantity": 9.0
+   },
+   {
+    "id": 2991,
+    "quantity": 1.0
+   },
+   {
+    "id": 0,
+    "quantity": 9.0
+   },
+   {
+    "id": 0,
+    "quantity": 9.0
+   },
+   {
+    "id": 0,
+    "quantity": 1.0
+   },
+   {
+    "id": 613286,
+    "quantity": 1.0
+   }
+  ],
+  "criteriaAssets": [
+   {
+    "achievement": 13,
+    "asset": 0,
+    "quantity": 486.0
+   },
+   {
+    "achievement": 27,
+    "asset": 92464,
+    "quantity": 1.0
+   },
+   {
+    "achievement": 74,
+    "asset": 0,
+    "quantity": 4.0
+   },
+   {
+    "achievement": 67,
+    "asset": 0,
+    "quantity": 9.0
+   },
+   {
+    "achievement": 86,
+    "asset": 0,
+    "quantity": 170.0
+   },
+   {
+    "achievement": 90,
+    "asset": 0,
+    "quantity": 9.0
+   },
+   {
+    "achievement": 36,
+    "asset": 0,
+    "quantity": 9.0
+   },
+   {
+    "achievement": 16,
+    "asset": 2991,
+    "quantity": 1.0
+   },
+   {
+    "achievement": 91,
+    "asset": 0,
+    "quantity": 9.0
+   },
+   {
+    "achievement": 42,
+    "asset": 0,
+    "quantity": 9.0
+   },
+   {
+    "achievement": 17,
+    "asset": 0,
+    "quantity": 1.0
+   },
+   {
+    "achievement": 68,
+    "asset": 613286,
+    "quantity": 1.0
+   }
+  ]
+ },
+ "quests": [
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "sum": "807988266",
+   "text": "What do you need of me, child of Zephras?",
+   "key": "g:251361:17478336"
+  },
+  {
+   "addon": "SpokenQuests/3.8.3",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92460",
+   "event": "complete",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Coming of Age",
+   "sum": "211558885",
+   "text": "Gale's greetings, $N. I am honored to bestow your coming of age relic today as you are recognized for the potential you bring to the shen'dorei. Our people have faced great hardship and persecution in our complex history.\n\nToday you are given this relic which is one of many held by those before you. Someday when your ashes are scattered to the winds it will pass to another to continue our tradition.\n\nAs you take this relic with you know that the winds of home will be with you wherever you travel.",
+   "key": "q:92460:complete:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.3",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92461",
+   "event": "accept",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Harmony in Balance",
+   "sum": "248863563",
+   "text": "We live in times of great uncertainty for our people. We face unprecedented challenges that may require bold solutions, but we also must contend with the ordinary and mundane here in Thendal Grove. Take, for example, the recent unsustainable rise in the vuldren population.\n\nThe vuldren are a vital part of our ecosystem. However, imbalances must be corrected to maintain the delicate harmony that all creatures in Thendal Grove share.\n\nHead east and cull some of the vuldren there.",
+   "key": "q:92461:accept:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.3",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92462",
+   "event": "accept",
+   "npc": "251368 Elatrell Featherlight",
+   "kind": "creature",
+   "model": "1100087",
+   "displays": "136967",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Infestation Investigation",
+   "sum": "376264575",
+   "text": "One of our rangers recently reported an infestation of cirrusflies here in Thendal Grove. \n\nCirrusflies can be dangerous if the swarm is allowed to grow too large, so please head to the eastern end of the Grove and exterminate as many as you can.",
+   "key": "q:92462:accept:251368"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92462",
+   "event": "complete",
+   "npc": "251368 Elatrell Featherlight",
+   "kind": "creature",
+   "model": "1100087",
+   "displays": "136967",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Infestation Investigation",
+   "sum": "1317663161",
+   "text": "Judging by the amount of bug entrails covering you, this must be quite the infestation.",
+   "key": "q:92462:complete:251368"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92463",
+   "event": "accept",
+   "npc": "251368 Elatrell Featherlight",
+   "kind": "creature",
+   "model": "1100087",
+   "displays": "136967",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "The Cirrusfly Queen",
+   "sum": "138403413",
+   "text": "If the forest is as thick with these insects as it sounds, simply killing the workers won't be enough.\n\nGo deeper into the forest and find the queen. She'll be close to the hive and surrounded by bigger and more aggressive soldiers, so be careful.\n\nPut her down and return here when it's done. That'll be one less problem to think about around here.",
+   "key": "q:92463:accept:251368"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "npc": "263113 Myriaal Mistwake",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "143516",
+   "sex": "3",
+   "creature": "Humanoid",
+   "sum": "1312845832",
+   "text": "It can get boring up here, you know. I can only annoy that stuffy wretch Halaan so much before even that gets old.",
+   "key": "g:263113:903080092:f"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92474",
+   "event": "accept",
+   "npc": "263113 Myriaal Mistwake",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "143516",
+   "sex": "3",
+   "creature": "Humanoid",
+   "title": "Falling With Style",
+   "sum": "1323146406",
+   "text": "Well hello there, $N! Want to play a game?\n\nAll you've got to do is step up on that ledge... then jump! Use your innate ability to walk on the air to slow your fall and see how far forward you can float.\n\nThe rules are made up and the points don't matter, but you get bonus points if you can land right in front of Rorian the Dayseeker and startle him! He won't like it but I'll certainly get a good laugh if you can get him all worked up! Hah!",
+   "key": "q:92474:accept:263113"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "npc": "257554 Halaan Hawk-Eye",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "143583",
+   "sex": "2",
+   "creature": "Humanoid",
+   "sum": "262037174",
+   "text": "<The gaze of the ranger standing before you is fixed on the enormous anchor pylon in the distance.>",
+   "key": "g:257554:296407979"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "94414",
+   "event": "accept",
+   "npc": "257554 Halaan Hawk-Eye",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "143583",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "The Anchors of Zephras",
+   "sum": "1104488754",
+   "text": "Greetings, young $N. I oftentimes come here to look upon the ancient anchor pylon. Gifts from the spirits of the winds, they bind and sustain our island. Of late however, their magic has grown unstable and inconsistent.\n\nThey suffer no distress I can see. Their splendor has not changed.\n\nIf you'd like, I can lend you my gift to look upon them yourself.",
+   "key": "q:94414:accept:257554"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "94414",
+   "event": "complete",
+   "npc": "257554 Halaan Hawk-Eye",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "143583",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "The Anchors of Zephras",
+   "sum": "367183561",
+   "text": "Thank you for taking a moment to share this with me. I will continue to watch over the grove, and ponder on the state of our homeland.",
+   "key": "q:94414:complete:257554"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92474",
+   "event": "complete",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Falling With Style",
+   "sum": "1899862363",
+   "text": "How many times do I need to tell Myriaal not to encourage others to make reckless usage of our skyborne gifts!\n\nThat being said, I suppose that a little bit of practice in the relative safety of the village is... acceptable.\n\nIn the future I'd simply suggest you to use your ability judiciously. You do not want to exhaust your magic thoughtlessly and then not be able to use it when you truly need it.",
+   "key": "q:92474:complete:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92461",
+   "event": "complete",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "Harmony in Balance",
+   "sum": "1213663495",
+   "text": "Thank you for your service to Zephras, young $c.\n\nThe vuldren are typically quite docile, but the animals that call Zephras home can sense when the magic on the winds is out of balance, which can lead to dangerous and unpredictable behavior if left unchecked.",
+   "key": "q:92461:complete:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92464",
+   "event": "accept",
+   "npc": "251361",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "title": "Elemental Unrest",
+   "sum": "1515479819",
+   "text": "Ever since our elemental benefactors left us, it seems that we are simply moving from one unrest to another. The problem we face now is that the manifestations of the winds near the standing stones to the northeast are agitated.\n\nNot truly self-aware like the sentient wind spirits that once lived here, these simple sprites respond in kind to forces, emotions, and intentions of the creatures around them. \n\nMy apprentice Yala Windwatcher went to observe them. Seek her out and discover what she's learned.",
+   "key": "q:92464:accept:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92482",
+   "event": "accept",
+   "npc": "251361 Rorian the Dayseeker",
+   "kind": "creature",
+   "model": "7478487",
+   "displays": "136966",
+   "sex": "2",
+   "creature": "Humanoid",
+   "title": "The Way of the Hunter",
+   "sum": "2011843588",
+   "text": "While you were away dealing with our vuldren problem, our resident hunter trainer--Tai'ree Farsight--left this note for you. You can find her just over yonder near the center of the village. Read the note then seek her out.",
+   "key": "q:92482:accept:251361"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "npc": "251376 Tai'ree Farsight",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "136976",
+   "sex": "3",
+   "creature": "Humanoid",
+   "sum": "1142842268",
+   "text": "The hunters and rangers of Zephras have never been more needed. The winds grow ever harsher, and the magic that sustains our island is fading. The wilds have never been more wild, and people like me are needed to keep our people safe.\n\nIf you have the proper aptitude as a $c, I can give you the tools to survive the wilds.",
+   "key": "g:251376:1458787134:f"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92482",
+   "event": "progress",
+   "npc": "251376 Tai'ree Farsight",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "136976",
+   "sex": "3",
+   "creature": "Humanoid",
+   "title": "The Way of the Hunter",
+   "sum": "1003627978",
+   "text": "<Tai'ree nods at you curtly.>",
+   "key": "q:92482:progress:251376"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92482",
+   "event": "complete",
+   "npc": "251376 Tai'ree Farsight",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "136976",
+   "sex": "3",
+   "creature": "Humanoid",
+   "title": "The Way of the Hunter",
+   "sum": "122786272",
+   "text": "The way of the hunter is fraught with danger, and only those with the keenest senses and quickest reflexes can thrive in the wilds. I look at you and I am reminded of myself when I stood before my mentor, so many years ago. I believe that you have what it takes, but in the end that is up to you alone.\n\nSpeak with me again if you wish to take your next steps.",
+   "key": "q:92482:complete:251376"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "npc": "251487 Ventaari Brightwish",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "139694",
+   "sex": "3",
+   "creature": "Humanoid",
+   "sum": "1966377132",
+   "text": "What may I do for you, fellow windshaper?",
+   "key": "g:251487:1109803604:f"
+  },
+  {
+   "addon": "SpokenQuests/3.8.4",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "none",
+   "quest": "92598",
+   "event": "accept",
+   "npc": "251487 Ventaari Brightwish",
+   "kind": "creature",
+   "model": "7478494",
+   "displays": "139694",
+   "sex": "3",
+   "creature": "Humanoid",
+   "title": "The Gift of Skysight",
+   "sum": "252104892",
+   "text": "As a Windshaper, you have the ability to use the sacred skysight gifted to us by the elemental spirits. Travel to the standing stones to the northeast of the village. Find the elemental convergence there and use your gift.\n\nYou'll find that you may draw upon the skysight anywhere, but its boon is much more powerful if you do so in the presence of an elemental convergence. You may at times receive other bits of wisdom from the spirits that are drawn to such places of power, as well.",
+   "key": "q:92598:accept:251487"
+  },
+  {
+   "addon": "SpokenQuests/3.8.5",
+   "build": "1.60.1/70862",
+   "locale": "enUS",
+   "pack": "enUS",
+   "packVersion": "2.6.0",
+   "quest": "93552",
+   "event": "accept",
+   "npc": "251363 Dalia the Collector",
+   "kind": "creature",
+   "sex": "3",
+   "creature": "Humanoid",
+   "title": "Harvesting Windstones",
+   "sum": "1826741797",
+   "text": "Windstones are a critical resource on Zephras Isle as they contain the raw, concentrated energy of the winds themselves. The wind elementals who used to live here on Zephras with us vanished a number of years ago, and since then, the magic that sustains this island is slowly fading. Not without limitations, the windstones are still a reliable energy source, and are incredibly valuable to us.\n\nYou'll find raw windstones scattered around the grove. Think you can help me harvest them?",
+   "key": "q:93552:accept:251363"
+  }
+ ],
+ "npcs": [
+  {
+   "id": 251363,
+   "name": "Dalia the Collector",
+   "zone": "Zephras Isle",
+   "subzone": "Thendal Village",
+   "type": "Humanoid",
+   "class": "normal",
+   "level": 1.0,
+   "points": 100.0,
+   "visits": 1.0,
+   "first": "2026-11-09",
+   "last": "2026-11-09",
+   "firstTime": 1794284371.0,
+   "lastTime": 1794284371.0,
+   "gains": [
+    [
+     "class",
+     "normal"
+    ],
+    [
+     "first",
+     "2026-11-09"
+    ],
+    [
+     "last",
+     "2026-11-09"
+    ],
+    [
+     "name",
+     "Dalia the Collector"
+    ],
+    [
+     "quest",
+     "2026-11-09"
+    ],
+    [
+     "subzone",
+     "Thendal Village"
+    ],
+    [
+     "type",
+     "Humanoid"
+    ],
+    [
+     "zone",
+     "Zephras Isle"
+    ]
+   ]
+  },
+  {
+   "id": 249363,
+   "name": "Yala Windwatcher",
+   "zone": "Zephras Isle",
+   "subzone": "Thendal Grove",
+   "type": "Not specified",
+   "class": "normal",
+   "level": 5.0,
+   "points": 140.0,
+   "visits": 2.0,
+   "first": "2026-11-09",
+   "last": "2026-11-09",
+   "firstTime": 1794284580.0,
+   "lastTime": 1794284589.0,
+   "gains": [
+    [
+     "class",
+     "normal"
+    ],
+    [
+     "first",
+     "2026-11-09"
+    ],
+    [
+     "last",
+     "2026-11-09"
+    ],
+    [
+     "name",
+     "Yala Windwatcher"
+    ],
+    [
+     "quest",
+     "2026-11-09"
+    ],
+    [
+     "subzone",
+     "Thendal Grove"
+    ],
+    [
+     "talk",
+     "2026-11-09"
+    ],
+    [
+     "type",
+     "Not specified"
+    ],
+    [
+     "zone",
+     "Zephras Isle"
+    ]
+   ]
+  }
+ ],
+ "places": [
+  "2521/thendal standing stones",
+  "2521",
+  "2521/thendal grove",
+  "2521/thendal village"
+ ],
+ "sessions": [
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:27:53",
+   "event": "boot"
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:28:09",
+   "event": "bnet"
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:28:10",
+   "event": "bnet"
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:02:16",
+   "event": "bnet"
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:02:16",
+   "event": "bnet"
+  }
+ ],
+ "gpu": [
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:28:06",
+   "mem": 1.5,
+   "budget": 15.0,
+   "pct": 10.1,
+   "freq": 2.6,
+   "temp": 37
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:33:06",
+   "mem": 1.7,
+   "budget": 15.0,
+   "pct": 11.6,
+   "freq": 0.21,
+   "temp": 48
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:38:06",
+   "mem": 2.8,
+   "budget": 15.0,
+   "pct": 18.9,
+   "freq": 2.85,
+   "temp": 64
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:43:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.6,
+   "freq": 1.14,
+   "temp": 48
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:48:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 1.03,
+   "temp": 47
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:53:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 1.18,
+   "temp": 52
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "22:58:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 2.81,
+   "temp": 61
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:03:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 1.14,
+   "temp": 48
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:08:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 2.85,
+   "temp": 66
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:13:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 2.36,
+   "temp": 65
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:18:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 1.03,
+   "temp": 51
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:23:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 19.7,
+   "freq": 2.06,
+   "temp": 62
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:28:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.2,
+   "freq": 1.18,
+   "temp": 47
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:33:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.2,
+   "freq": 1.02,
+   "temp": 55
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:38:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.2,
+   "freq": 1.13,
+   "temp": 48
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:43:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.2,
+   "freq": 0.98,
+   "temp": 49
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:48:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.3,
+   "freq": 1.03,
+   "temp": 53
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:53:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.3,
+   "freq": 0.96,
+   "temp": 47
+  },
+  {
+   "m": 11,
+   "d": 9,
+   "time": "23:58:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.3,
+   "freq": 1.05,
+   "temp": 48
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:03:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.3,
+   "freq": 1.1,
+   "temp": 53
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:08:06",
+   "mem": 3.0,
+   "budget": 15.0,
+   "pct": 20.3,
+   "freq": 1.08,
+   "temp": 47
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:13:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 43
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:18:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 47
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:23:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 56
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:28:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.82,
+   "temp": 53
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:33:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.84,
+   "temp": 49
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:38:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 43
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:43:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.81,
+   "temp": 45
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:48:06",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 51
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:53:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.82,
+   "temp": 56
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "00:58:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.87,
+   "temp": 52
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "01:03:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.87,
+   "temp": 46
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "01:08:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 43
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "01:13:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 52
+  },
+  {
+   "m": 11,
+   "d": 10,
+   "time": "01:18:07",
+   "mem": 2.9,
+   "budget": 15.0,
+   "pct": 19.1,
+   "freq": 0.78,
+   "temp": 54
+  }
+ ],
+ "chat": [
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040: First run on World of Warcraft: Forever 1.60.1 (70862). Checking what this client actually supports:"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Frame time (exact)         AVAILABLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Memory per addon           AVAILABLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    CPU per addon              REQUIRES PROFILING"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Global event rate          AVAILABLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    CPU per event              REQUIRES PROFILING"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Latency home/world         AVAILABLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Enable/disable next reload AVAILABLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    Unload a running addon     NOT POSSIBLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040:    OS CPU / GPU load          NOT POSSIBLE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040: Addon CPU needs the client's scriptProfile CVar. Open /wtm and use the button on the dashboard, or type /wtm profiling."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040: Full matrix: /wtm caps, or the System page."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Total time played: 0 |4day:days;, 2 |4hour:hours;, 25 |4minute:minutes;, 28 |4second:seconds;"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Time played this level: 0 |4day:days;, 0 |4hour:hours;, 3 |4minute:minutes;, 38 |4second:seconds;"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "table: 000001A75A0D6040: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "[Euphorrix's Spell Announcer vv2.10.04.01]"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Type \"/sa\" to open addon screen."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "QuestMaster loaded! created by JugoBetrugoTV"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Twitch.tv/JugoBetrugoTV - Come hang out!"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "Bugs? Report on CurseForge or Discord.gg/rv2BsbE"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "PokeLink 0.16.2 - what's new:"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "- Fixed: battles in FireRed and LeafGreen were slow and choppy. They now run at full speed."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "- The PokeLink chat channel now has its own chat tab, so you can see what's said there."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "- The welcome text for a new game now shows only the first time you play it, not every time."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "- Fixed: in dark caves (like Granite Cave without Flash), the light around you is round again instead of a square."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "- Fixed: in Ruby's dark caves, the menu cursor was invisible."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "PokeLink: 14 earlier updates since you last played. Type /pokelink news all to read about them."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "QuestMaster: QuestMaster has new looks: Open fantasy, Light cartographer and Hallow's End (new). Try one in Settings > Appearance > Design - or from the tracker's view menu."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "QuestMaster: 3 achievements are already yours - see the journal, Achievements."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "What's It For?: no auction prices found. Leveling costs and profit use vendor prices and estimates; install Auctionator (or Auctioneer, TSM) for real ones."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "|TInterface\\FriendsFrame\\UI-Toast-ToastIcons.tga:16:16:0:0:128:64:2:29:34:61|t|HBNplayer:|Ks32|k:5:111:BN_INLINE_TOAST_ALERT:0|h[|Ks32|k]|h has gone offline."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283053,
+   "tx": "|Hchannel:channel:1|h[1. General - Zephras Isle]|h |Hplayer:Rothar Thunderfoot:112:CHANNEL:1|h[Rothar Thunderfoot]|h: farewell sky people"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283054,
+   "tx": "MelloUI: MelloUI setup installed. Keep it, or MelloUI goes back to 'Before install' when the timer runs out."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283056,
+   "tx": "MelloUI: MelloUI has a new voice pack, MelloUI_VoicePack, that replaces this one: download it from MelloUI's release page."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283059,
+   "tx": "farewell rothar"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283061,
+   "tx": "moo"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283061,
+   "tx": "bye"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "table: 000001A755638BA0: v0.8.9 ready on World of Warcraft: Forever 1.60.1 (70862). Type /wtm to open. Library backend: Ace3 (AceAddon, AceEvent, AceConsole, AceTimer, AceDB)."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "table: 000001A755638BA0: Addon CPU profiling is off, so per-addon CPU is unavailable. Everything else works. /wtm profiling to enable it."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "|Hchannel:channel:1|h[1. General - Zephras Isle]|h |Hplayer:Rothar Thunderfoot:116:CHANNEL:1|h[Rothar Thunderfoot]|h: MOOOO"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "table: 000001A755638BA0: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "[Euphorrix's Spell Announcer vv2.10.04.01]"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "Type \"/sa\" to open addon screen."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283074,
+   "tx": "MelloUI: Group Frames is on: type /reload to finish putting the game's party frames away."
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283075,
+   "tx": "QuestMaster loaded! created by JugoBetrugoTV"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283075,
+   "tx": "Twitch.tv/JugoBetrugoTV - Come hang out!"
+  },
+  {
+   "tm": "22:57",
+   "ts": 1794283075,
+   "tx": "Bugs? Report on CurseForge or Discord.gg/rv2BsbE"
+  },
+  {
+   "tm": "22:58",
+   "ts": 1794283080,
+   "tx": "Moo"
+  },
+  {
+   "tm": "22:58",
+   "ts": 1794283081,
+   "tx": "mooooooooooo"
+  },
+  {
+   "tm": "22:58",
+   "ts": 1794283081,
+   "tx": "QuestMaster: QuestMaster has new looks: Open fantasy, Light cartographer and Hallow's End (new). Try one in Settings > Appearance > Design - or from the tracker's view menu."
+  },
+  {
+   "tm": "22:58",
+   "ts": 1794283083,
+   "tx": "MOO"
+  },
+  {
+   "tm": "22:58",
+   "ts": 1794283083,
+   "tx": "a big moo to all of you"
+  },
+  {
+   "tm": "22:59",
+   "ts": 1794283155,
+   "tx": "Moo moo buckaroo!"
+  },
+  {
+   "tm": "22:59",
+   "ts": 1794283186,
+   "tx": "no you are good"
+  },
+  {
+   "tm": "22:59",
+   "ts": 1794283187,
+   "tx": "Dreamlight, & that ^^ you can decorate your own house, character etc"
+  },
+  {
+   "tm": "22:59",
+   "ts": 1794283193,
+   "tx": "Ooops wrong chat"
+  },
+  {
+   "tm": "23:00",
+   "ts": 1794283208,
+   "tx": "sure it was"
+  },
+  {
+   "tm": "23:00",
+   "ts": 1794283232,
+   "tx": "Look it's been a long ride here on the island I'm tired hahaha"
+  },
+  {
+   "tm": "23:00",
+   "ts": 1794283241,
+   "tx": "zora getting lost again"
+  },
+  {
+   "tm": "23:00",
+   "ts": 1794283251,
+   "tx": "i get riding a island can be hard and long"
+  },
+  {
+   "tm": "23:00",
+   "ts": 1794283256,
+   "tx": "I AM NOT hahaha"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283305,
+   "tx": "sure"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283314,
+   "tx": "what way is west"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283314,
+   "tx": "press M, left side"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283314,
+   "tx": "Right?"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283314,
+   "tx": "xD"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283314,
+   "tx": "did you really ask which way is west lol"
+  },
+  {
+   "tm": "23:01",
+   "ts": 1794283316,
+   "tx": "You have been disconnected from Blizzard services."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "QuestMaster loaded. The settings: the minimap button, or Options > AddOns > QuestMaster."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "table: 000001A7573E54F0: v0.8.9 ready on World of Warcraft: Forever 1.60.1 (70862). Type /wtm to open. Library backend: Ace3 (AceAddon, AceEvent, AceConsole, AceTimer, AceDB)."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "table: 000001A7573E54F0: Addon CPU profiling is off, so per-addon CPU is unavailable. Everything else works. /wtm profiling to enable it."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "Remember to act responsibly, protect your personal information, and report anything offensive. View our In-Game Code of Conduct on |HurlIndex:64|h|cnVISITABLE_URL_DEFAULT_CHAT_LINK_COLOR:https://support.blizzard.com/article/42673|h for more information."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "table: 000001A7573E54F0: Lua error in an unattributed file: Lua warning (type Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_clien..."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "Total time played: 0 |4day:days;, 2 |4hour:hours;, 32 |4minute:minutes;, 38 |4second:seconds;"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "Time played this level: 0 |4day:days;, 0 |4hour:hours;, 10 |4minute:minutes;, 48 |4second:seconds;"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "[Euphorrix's Spell Announcer vv2.10.04.01]"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "Type \"/sa\" to open addon screen."
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283377,
+   "tx": "Tip: \"/sa stop\" & \"/sa start\" to stop/start Announcements!"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283378,
+   "tx": "QuestMaster loaded! created by JugoBetrugoTV"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283378,
+   "tx": "Twitch.tv/JugoBetrugoTV - Come hang out!"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283378,
+   "tx": "Bugs? Report on CurseForge or Discord.gg/rv2BsbE"
+  },
+  {
+   "tm": "23:02",
+   "ts": 1794283378,
+   "tx": "MelloUI: Group Frames is on: type /reload to finish putting the game's party frames away."
+  },
+  {
+   "tm": "23:04",
+   "ts": 1794283471,
+   "tx": "QuestMaster: Have fun questing! Settings > General shows the introduction again."
+  },
+  {
+   "tm": "23:04",
+   "ts": 1794283480,
+   "tx": "QuestMaster: This box will not come back. You can switch it on again in Settings > General."
+  },
+  {
+   "tm": "23:09",
+   "ts": 1794283781,
+   "tx": "QuestMaster: Style changed - type /reload to apply it everywhere."
+  }
+ ],
+ "journeys": [
+  {
+   "revision": 9.0,
+   "firstLevel": 1.0,
+   "startedAt": 1794001667.0,
+   "recordedSeconds": 353.0,
+   "level": 1.0,
+   "exp": 0.0,
+   "expMax": 400.0,
+   "goldCopper": 0.0,
+   "kills": 0.0,
+   "deaths": 0.0,
+   "quests": 0.0,
+   "playedSeconds": 2371.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 2.0,
+   "firstLevel": 1.0,
+   "startedAt": 1794002024.0,
+   "recordedSeconds": 60.0,
+   "level": 1.0,
+   "exp": 0.0,
+   "expMax": 400.0,
+   "goldCopper": 0.0,
+   "kills": 0.0,
+   "deaths": 0.0,
+   "quests": 0.0,
+   "playedSeconds": 2437.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 29.0,
+   "firstLevel": 1.0,
+   "startedAt": 1794059472.0,
+   "recordedSeconds": 1295.0,
+   "level": 1.0,
+   "exp": 40.0,
+   "expMax": 400.0,
+   "goldCopper": 0.0,
+   "kills": 0.0,
+   "deaths": 0.0,
+   "quests": 1.0,
+   "playedSeconds": 3850.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 5.0,
+   "firstLevel": 1.0,
+   "startedAt": 1794281591.0,
+   "recordedSeconds": 162.0,
+   "level": 1.0,
+   "exp": 400.0,
+   "expMax": 400.0,
+   "goldCopper": 0.0,
+   "kills": 4.0,
+   "deaths": 0.0,
+   "quests": 1.0,
+   "playedSeconds": 7523.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 7.0,
+   "firstLevel": 2.0,
+   "startedAt": 1794281752.0,
+   "recordedSeconds": 212.0,
+   "level": 2.0,
+   "exp": 593.0,
+   "expMax": 900.0,
+   "goldCopper": 35.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 2.0,
+   "playedSeconds": 7748.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 2.0,
+   "firstLevel": 2.0,
+   "startedAt": 1794281966.0,
+   "recordedSeconds": 2.0,
+   "level": 2.0,
+   "exp": 593.0,
+   "expMax": 900.0,
+   "goldCopper": 35.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 2.0,
+   "playedSeconds": 7750.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 18.0,
+   "firstLevel": 2.0,
+   "startedAt": 1794281969.0,
+   "recordedSeconds": 758.0,
+   "level": 2.0,
+   "exp": 900.0,
+   "expMax": 900.0,
+   "goldCopper": 171.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 5.0,
+   "playedSeconds": 8456.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 6.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794282727.0,
+   "recordedSeconds": 195.0,
+   "level": 3.0,
+   "exp": 28.0,
+   "expMax": 1400.0,
+   "goldCopper": 161.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 6.0,
+   "playedSeconds": 8705.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 4.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794282944.0,
+   "recordedSeconds": 116.0,
+   "level": 3.0,
+   "exp": 28.0,
+   "expMax": 1400.0,
+   "goldCopper": 161.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 6.0,
+   "playedSeconds": 8844.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 6.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794283073.0,
+   "recordedSeconds": 242.0,
+   "level": 3.0,
+   "exp": 28.0,
+   "expMax": 1400.0,
+   "goldCopper": 161.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 6.0,
+   "playedSeconds": 9096.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 16.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794283374.0,
+   "recordedSeconds": 737.0,
+   "level": 3.0,
+   "exp": 28.0,
+   "expMax": 1400.0,
+   "goldCopper": 161.0,
+   "kills": 15.0,
+   "deaths": 0.0,
+   "quests": 6.0,
+   "playedSeconds": 9893.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 20.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794284120.0,
+   "recordedSeconds": 713.0,
+   "level": 3.0,
+   "exp": 397.0,
+   "expMax": 1400.0,
+   "goldCopper": 170.0,
+   "kills": 21.0,
+   "deaths": 1.0,
+   "quests": 7.0,
+   "playedSeconds": 10616.0,
+   "zone": "Zephras Isle"
+  },
+  {
+   "revision": 47.0,
+   "firstLevel": 3.0,
+   "startedAt": 1794284835.0,
+   "recordedSeconds": 2677.0,
+   "level": 3.0,
+   "exp": 397.0,
+   "expMax": 1400.0,
+   "goldCopper": 170.0,
+   "kills": 21.0,
+   "deaths": 1.0,
+   "quests": 7.0,
+   "playedSeconds": 13293.0,
+   "zone": "Zephras Isle"
+  }
+ ]
+}

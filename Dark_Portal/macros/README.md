@@ -11,6 +11,7 @@ Source: `Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\` — copied verbati
 | `Tandora-Hyjal_macros-cache.txt` | `Hyjal\Tandora\macros-cache.txt` (42 B, 2026-08-18) | alt character (near-empty) |
 | `Reticent-Shadowsong_macros-cache.txt` | `Shadowsong\Reticent\macros-cache.txt` (4,710 B, 2026-08-26) | Shadowsong realm character |
 | `Tandumonium_Macros.lua` | `Account\QUAZZARR\SavedVariables\Tandumonium_Macros.lua` (67 B) | addon SVD (empty/stub) |
+| `legacy_bookmarks/*_macros-cache.txt` | `V:\__inuus__\gewey.github.io\bookmarks\games\warcraft\` (2019–2020) | Ported historical General + 11 Class macro caches (`hunter`, `deathknight`, `demonhunter`, `druid`, `mage`, `monk`, `paladin`, `priest`, `shaman`, `warlock`, `warrior`, `general`) rendered in `_gewey_gui\legacy_bookmarks_macros-cache.html` |
 
 Porting note: to recreate these on the `_forever_` character, macros go through the in-game macro UI (or a macro addon) — never hand-edit game WTF files. Account-wide macros import per account; character macros bind to `Tandumonium-Ebbeson` (note the realm differs from retail's Hyjal, so `[realm]`-conditioned logic — if any — needs review).
 
