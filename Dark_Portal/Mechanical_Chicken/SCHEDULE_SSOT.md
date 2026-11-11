@@ -1,7 +1,7 @@
 # Mechanical Chicken — Schedule & Automation SSOT
 
-**Purpose:** Single Source of Truth for all scheduled tasks and automations provided by various IDEs/agents across the WoW: Forever station and related repos.  
-**Location:** `V:\__inuus__\gewey.github.io\Dark_Portal\Mechanical_Chicken\SCHEDULE_SSOT.md`  
+**Purpose:** Single Source of Truth for all scheduled tasks and automations provided by various IDEs/agents across the WoW: Forever station and related repos.
+**Location:** `V:\__inuus__\gewey.github.io\Dark_Portal\Mechanical_Chicken\SCHEDULE_SSOT.md`
 **Maintained by:** The Dorian (Cline) surface + scheduled agents.
 
 ---
@@ -18,6 +18,7 @@
 | 6 | Tandu Tandieu Tandumonium | `sched_807fc5b0` | Daily | 1:00 AM | yolo | — (never run) | 11/10 1:00 AM | — |
 | 7 | Update docs | `sched_b4fc5e0c` | Fri | 10:00 AM | yolo | 11/6 8:59 PM ✅ | 11/13 10:00 AM | — |
 | 8 | WoW Forever Addon brainstorm | `sched_91d2efc6` | Daily | 6:00 PM | yolo | 11/8 12:23 AM ✅ | 11/10 6:00 PM | — |
+| 9 | Addon Atlas & Mass-Set Macro Setup | `sched_6a511c2d` | Hourly at :35 | America/New_York | yolo | — | 11/10 6:35 PM | — |
 
 > **Note:** Schedules 1–3 and 5–8 are visible in your IDE schedule list but are not returned by the `tasks list` tooling available to this agent. Their enabled/disabled state and next-run times are taken from the details you provided. Schedule 4 is the only one directly verifiable and modifiable through tooling; it was found disabled and has been re-enabled.
 
@@ -61,8 +62,52 @@
 - **When a bug is found:** Apply the smallest fix confident in; add/update a test to lock in behavior. No drive-by refactors. Check for existing open PRs fixing the same bug. Only open a PR when highly confident. If PRs unavailable, commit to a branch.
 - **Report format:** One section per bug: **Bug** (one line), **Impact** (concrete consequence), **Root cause** (change that introduced it), **Fix** (what changed + PR/branch link), **Validation** (test proving the fix works). If nothing clears the bar: single line "No critical bugs found in the N commits since the last run" + up to three bullets on areas inspected.
 - **Last run:** 11/8/2026 9:04:42 AM — success
+---
 
+## Schedule 9 — Addon Atlas & Mass-Set Macro Setup
 
+- **Schedule ID:** `sched_6a511c2d-3b8a-4b5e-9c2d-1f7e8a5b4c3d`
+- **Cadence:** Hourly at :35 minutes past every hour, America/New_York (`35 * * * *`)
+- **Mode:** yolo
+- **Model:** `cline-pass/cline-free/solar-mini4` (free-first; falls back to
+  `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
+- **Duty:** Scan all three WoW addon roots (read-only) and build a structured
+  inventory: identity, commands, options, functionality tags, and
+  hide-without-disable capability for every addon. Output six JSON/MD artifacts
+  plus auto-rotated verbose scan reports.
+- **Roots (read-only):**
+  - `Z:\World of Warcraft\_forever_\Interface\AddOns`
+  - `Z:\World of Warcraft\_classic_era_\Interface\AddOns`
+  - `Z:\World of Warcraft\_retail_\Interface\AddOns`
+- **Output (write ONLY under `addon_atlas/`):**
+  - `addon_index.json` — one object per addon with identity, TOC keys, commands,
+    options, tags, hide-without-disable info, files list.
+  - `options_index.json` — `{option_key: [addon names]}` for mass-setting.
+  - `command_index.json` — `{command: [addon names]}`.
+  - `hide_notrack_map.json` — `{addon: {available, method, notes}}`.
+  - `master_index.json` — category clusters (tracking_trackers, story_generators,
+    benchmarks, collections, economy, ui_hide_ready, combat, map, ui, misc).
+  - `macros_draft.md` — mass-setting macro reference grouped by category.
+  - `reports/YYYYMMDD_HHMMSS/scan_report.md` — verbose scan log (auto-rotated).
+- **Extraction per addon:** folder name; .toc title/version/author/secure/
+  savedVariables; load order by filename; every slash command
+  (`SLASH_*_1 = "/cmd"`); option keys from DB profile assignments and option
+  tables; functionality tags (tracking, story, benchmark, collections, economy,
+  UI, combat, map); hide-without-disable capability (option keys, SetAlpha(0),
+  hide/Show frame toggles); RegisterEvent subscriptions.
+- **Limits:** cap at ~250 addons (prioritize `_forever_` first); skip binaries;
+  skip `Libs/` subdirectories; read-only on game install (never write inside
+  `Interface/`, `WTF/`, `Logs/`).
+- **Validation:** after each run, confirm all 6 JSON/MD artifacts exist and parse.
+  On failure: append stderr to `addon_atlas/rotation_failures.log`, retry ONCE,
+  then report plainly and stop.
+- **Report format (max ~8 lines):** run time, addon count found, commands
+  recorded, options recorded, hide-without-disable count, output artifact count.
+  Do NOT paste file contents.
+- **Engine:** `addon_atlas/addon_atlas_scan.py` (Python, read-only on game
+  files, writes only under `addon_atlas/`).
+- **Last run:** 2026-11-10 20:11 — 250 addons, 290 commands, 1250 options, 229
+  hide-ready, 6 artifacts, 180.6s
 ---
 
 ## Schedule 4 — Forever Telemetry Audit (hourly)
@@ -193,6 +238,29 @@
 
 ---
 
+## Antigravity (Google) Sidecars & Automations (added 2026-11-10)
+
+**Location:** `C:\Users\Gewey\.gemini\config\sidecars\`
+**Runtime & Telemetry:** `C:\Users\Gewey\.gemini\antigravity\sidecar_data\<id>\logs\sidecar.log`
+**Engine:** Native Antigravity sidecar daemon executing `agentapi new-conversation` with `--model=flash`.
+
+| # | Name | Directory / ID | Cadence | Timezone | Model | Role / Resident | Status |
+|---|------|----------------|---------|----------|-------|-----------------|--------|
+| A1 | whateva | `whateva` | Hourly at :00 (`0 * * * *`) | America/New_York | `flash` | Viktor (Substrate & Fabulinus Artificer) | ✅ Active |
+| A2 | Tandumonium | `tandumonium` | Hourly at :30 (`30 * * * *`) | America/New_York | `flash` | Tandumonium (Dark Portal & Station Sentinel) | ✅ Active |
+| A3 | Workspace Pulse Monitor | `workspace-pulse` | Daemon (`on-failure`) | — | Python | System Telemetry & Heartbeat | ✅ Active |
+
+### Antigravity Collision Avoidance & Interleaving Rules
+
+1. **The :30 Stagger:** `tandumonium` was originally initialized at `0 * * * *`, colliding directly with `whateva`. Joey explicitly required: *"make sure no google automations or sidecars all just get run at the same time. space them out. it wont let me change the time on this automation so that can be ur first mini task, making this run on the :30 of the hour so u and viktors automations dont run at the same time."*
+2. **Execution Timing:**
+   - `:00` — `whateva` fires (Viktor runs substrate exploration, HTML artifact generation, and Fabulinus/3dsnek porting).
+   - `:30` — `tandumonium` fires (Tandumonium runs station audits, Dark_Portal maintenance, and Decision_Log tracking).
+3. **Hot-Reload Verification:** Antigravity sidecars hot-reload their schedule configuration when `sidecar.json` is modified. Verification verified in `sidecar.log`: next execution confirmed at `:30` past the hour.
+4. **Mirroring Cline Discipline:** Like Cline's 10-minute cadence spacing, Antigravity sidecars must remain spaced out to prevent concurrent file locking, context thrashing, and API quota bottlenecks.
+
+---
+
 ## Model Rotation Policy (free-first)
 
 The Hourly Omni Synchronizer is the task master. It does not only sync prompts — it owns **model assignment** across the whole fleet for credit efficiency.
@@ -210,3 +278,44 @@ The Hourly Omni Synchronizer is the task master. It does not only sync prompts �
 **Boundary nuance:** model assignment is a fleet-wide operational concern, so the rotation engine changes models on BOTH your daily schedules and Cline's hourly ones. Prompt *content* and cron patterns remain governed by the earlier boundary: you don't edit Cline hourly prompts directly, Cline doesn't edit your daily prompts, and the SSOT is the only prompt-sync mechanism.
 
 This SSOT is the authoritative reference for all scheduled automations across the station. When adding, removing, or modifying a schedule, update this file first. If a schedule is managed through an IDE that cannot express hourly cron, note the discrepancy here.
+
+---
+
+## Addon Atlas data store
+
+`Addon Atlas & Mass-Set Macro Setup` (`sched_6a511c2d`, hourly at :35, free `cline-free/solar-mini4`) scans the three WoW addon roots and writes its full inventory here:
+
+- `Mechanical_Chicken/addon_atlas/addon_index.json` — one object per addon: identity, toc keys, loadOrder, `enabled`, `functionality`, `commands[]`, `options[]`, `hide_without_disable{action,method}`, `files[]`.
+- `options_index.json` — `{option_key: [addon names]}` for mass-setting.
+- `command_index.json` — `{command: [addon names]}`.
+- `hide_notrack_map.json` — `{addon: {available, method, notes}}` for "hide the UI but keep logging".
+- `master_index.json` — category clusters (`tracking_trackers`, `story_generators`, `benchmarks`, `ui_hide_ready`, `unclassified`).
+- `macros_draft.md` — mass-setting macro reference; `/run` lines are placeholders, never your real keybinds.
+- `reports/YYYYMMDD_HHMMSS/` — verbose scan logs (auto-rotated).
+
+> **Note:** `addon_atlas/` is excluded from git (local inventory + macros), while `SCHEDULE_SSOT.md` stays public.
+
+---
+
+## Flipbook Tectonic Watcher (added 2026-11-11)
+
+**Purpose:** catch the client's SavedVariables flush (reload / zone change / logout = "tectonic"), extract ONCE, and keep a chapter store so future sessions read the extracted state instead of re-parsing the Lua. Built by Tandumonium from Joey's architecture ("*auto check the differences between them on disk and auto extract all the new data then in new sessions you can just read the extracted stuff*").
+
+| | |
+| --- | --- |
+| Engine | `Timeline\flipbook_watch.py` (local, gitignored with the rest of Timeline/) |
+| Command | `python "Z:\World of Warcraft\_forever_\Dark_Portal\Timeline\flipbook_watch.py" --check --quiet` |
+| Cost when clean | pure stat calls; exits 0 in milliseconds |
+| Cost when dirty | one extract + atomic write + chapter freeze (~5 s) |
+| Watched inputs | Travelogue, Saga, AutoBiographer, Elephant, ForeverTold, Bouncy, Memento settings, Screenshots dir count |
+| Store | `Timeline\data\store\` — `last_state.json`, `watch.log`, `chapters\chapter_<n>_<mapid>.json`, `pending_render.flag` |
+| Chapters | one frozen full-dataset snapshot per NEW map id, numbered by zone-first-timestamp |
+| Renderer | `flipbook_render.py` consumes `pending_render.flag` (payload gets `_render_note`) |
+| Schedule | every 5 minutes (`*/5 * * * *` America/New_York) — cheap enough to poll, fast enough to catch most flushes |
+| Report | on extract: `"<n> input(s) changed: <kinds> | <pts> pts, <zones> zones, <shots> shots"` — one line, no file contents |
+
+**Chapter numbering rule:** `chapter_<n>_<mapid>` where `n` counts chronologically by each zone's first recorded path point. A zone already frozen is never re-frozen — the snapshot is immutable once written (Law 007; the file IS the archive).
+
+**Failure handling:** any extract error appends to `Timeline\data\store\watch.log` and exits 0 with the error in the return payload (the loop is expected to keep polling); the retry is the next scheduled poll, not a same-run retry — the client is mid-flush during most failures and a retry would race it.
+
+> **Note for whoever wires the actual scheduler:** the command above is the whole contract. `--quiet` suppresses the JSON dump; `--check` is the only mode a cron/loop should ever call. `--force` and `--status` are human tools.
