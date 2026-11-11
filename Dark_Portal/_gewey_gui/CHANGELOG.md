@@ -1,5 +1,20 @@
 # Must Contain a List of every file you edit
 
+## 2026-11-11 ~06:45 — Split stage, sticky photographs, XP bar, loot toasts, jump pressure
+
+Joey: *"the page should be half the trail frame and half the screenshot that best aligns with the time in the trail like the last screenshot stays active till the next so its not just flashing a pictures for 1 second."*
+
+- `..\Timeline\flipbook_render.py` — **split stage.** `.split` is a two-column grid: canvas left, photograph right. Stacks below 820 px.
+- **Sticky photographs.** `syncPhoto()` binary-searches the newest capture at or before the playhead and **holds it until the next one**, so a 10-minute Memento interval renders as a photograph rather than a flicker. A `MIN_HOLD_MS = 2200` floor stops bursts from strobing past unseen — Memento fires two or three captures within seconds around a level-up. The stamp shows how long the current frame holds (`holds 30m`).
+- **XP bar.** `syncXP()` reads the newest `lvl.xp` observation at or before the playhead and fills a bar under the stage: level, `xp / xp_max`, percentage. 205 ticks recovered from Saga, each carrying `delta` and `source` (kill vs quest).
+- **Loot toasts.** 305 drops, rarity-coloured dot, merged when the same item repeats within 60 s, newest first, **click to jump the trail** to that moment.
+- **Jump pressure.** Bouncy's `bySubZone` as a bar chart: Shen'dar Highlands 56, Valanaar 28, Falaath Village 25, Shen'dar Village 24, Gustberry Lowlands 8, Bandit Hideout 4, Windfield Orchard 3, West Pylon Watchtower 2. Plus best streak 17 and 2 unlocked titles.
+- `..\Timeline\flipbook_extract.py` — `load_item_names()` (AutoBiographer `ItemCatalog`), `load_bouncy()`, `loot[]`, `xp_track[]`, `bouncy{}`. `lvl.xp` removed from the marker filter so it now also appears as a canvas event.
+
+### Bug — the catalogue keys are quoted strings
+
+`load_item_names()` first matched `\[(\d+)\]`, but AutoBiographer writes `["2589"] = {`. The pattern matched **nothing** and the build summary read `loot 305 named 0` — a silently empty lookup that looked like "the catalogue has no names" rather than "my regex was wrong". Fixed to accept both forms; **285 of 305** drops now resolve. The 20 that do not are all `zone_id 1420` (a different zone), so they are genuinely absent from this character's catalogue and report as `item <id>` rather than being invented.
+
 ## 2026-11-11 ~06:25 — The gap-marker bug: segments were never overlapping, my decoder was wrong
 
 **This supersedes the two "honesty fixes" in the entry below.** Both were treatments for a misdiagnosis.
