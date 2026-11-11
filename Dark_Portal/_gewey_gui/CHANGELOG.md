@@ -1,5 +1,37 @@
 # Must Contain a List of every file you edit
 
+## 2026-11-11 ~06:25 — The gap-marker bug: segments were never overlapping, my decoder was wrong
+
+**This supersedes the two "honesty fixes" in the entry below.** Both were treatments for a misdiagnosis.
+
+- `..\Timeline\flipbook_extract.py` — **`decode_segment` gap rule corrected.** Geo.lua documents the marker as `* + 1 — how many seconds after the one before **the next point** is`. Singular. The delay applies to exactly ONE point, then the stream reverts to 1 s/point. The decoder kept the value **persistent**, so a single `*` valued 47 made all 47 following points advance 47 s each. Every segment's span was inflated 2–3x.
+- Consequence: segments appeared to overlap. Segment 5 "ran 04:01–04:58" with segment 6 "inside it at 04:21–04:31". They do not overlap — with the reset they are strictly sequential: **0 overlapping pairs out of 21**, inter-segment gaps 0.1–1.1 min (real session breaks) plus one 269-min gap overnight.
+- **Both earlier workarounds are now dead code, correctly.** The `seg`-break in the stroke stays (it is still right to not draw across a session gap), but it was never a fix for the phantom teleport. The `ambiguous` screenshot state is gone — with sequential segments a timestamp belongs to at most one recording, so there is nothing to be ambiguous about.
+- `locate()` replaces `nearest()`: returns the containing point when one exists, with a 2-minute tolerance at segment boundaries instead of 15.
+- Results after the fix: **0 level drops within a segment** (was 77 across joins, then 13 after the seg-tag workaround), **22 of 31 screenshots pinned** (was 7 of 25 under the ambiguity rule). The correct decode recovered far more than either workaround.
+
+### The lesson, stated plainly
+
+I built two layers of "honest uncertainty" on top of a decoder that was simply wrong. The level drops and the teleport were *symptoms*; I treated the symptoms and wrote a commit message claiming I had found two bugs. Both diagnoses were confident and both were wrong, and the fix was a single line — reverting a value that should have been scoped to one point.
+
+The tell was there the whole time: **two captures two seconds apart landing 88 map units away is not a camera artifact, it is a timestamp artifact.** I explained it as concurrent recordings instead of checking whether the math underneath was sound.
+
+## 2026-11-11 ~06:25 — Level 10 at 06:24:37
+
+First build to capture the milestone. Level ladder recovered from the corrected decode:
+
+| level | first seen |
+| ---: | --- |
+| 6 | 23:01:52 |
+| 7 | 03:52:57 |
+| 8 | 04:23:17 |
+| 9 | 05:14:31 |
+| **10** | **06:24:37** |
+
+`lvl.up` payload: zone 2521, `played_total` 49,478 s (13 h 44 m), position `(0.569, 0.702)`. ForeverTold wrote two beats on its own: *"Reached level 10 in Zephras Isle"* and *"Level 10. Talents are open and the real journey begins."* Its chapter recap reads **21 quests, 3 new friends, 2 deeds, 1 new place** for Chapter 1. Memento fired five captures across the ding.
+
+Dataset now: 3,091 positions, 21 recordings, 117 explored cells, 25 sessions, 31 photographs, 13 story beats.
+
 ## 2026-11-11 ~06:15 — Flipbook gains photographs; two honesty bugs found in the join
 
 - `..\Timeline\flipbook_extract.py` — **screenshot ingestion.** Reads `Screenshots/`, derives each capture's epoch from the filename (`WoWScrnShot_<MMDDYY>_<HHMMSS>`) cross-checked against mtime (filename wins on a >1h disagreement, because a copied folder carries a bogus mtime), and writes 480-px thumbnails to `_gewey_gui\_shots\` via Pillow. 25 captures → 642 KB of thumbs instead of 19.8 MB of originals.
