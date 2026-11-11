@@ -435,45 +435,36 @@ function draw(){
 
   if (showGrid) drawGrid();
 
-  // faint full path of the CURRENT zone only. Strokes BREAK at a segment
-  // change: Travelogue segments are independent recordings, so joining them
-  // would draw a line across the map between two walks that never met.
+  // faint full path of the CURRENT zone only, from the same precomputed
+  // runs -- no cross-zone strokes possible, because RUNS are zone-typed.
   cx.lineWidth = 1.4;
   cx.strokeStyle = "rgba(190,180,225,0.42)";
-  cx.beginPath();
-  var prevSeg = null;
-  for (var i = 0; i < F.length; i++) {
-    var p = F[i];
-    if (String(p.z) !== curZone) { prevSeg = null; continue; }
-    if (prevSeg === null || p.seg !== prevSeg) cx.moveTo(px(p.x), py(p.y));
-    else cx.lineTo(px(p.x), py(p.y));
-    prevSeg = p.seg;
+  for (var fi = 0; fi < RUNS.length; fi++) {
+    var fr = RUNS[fi];
+    if (fr.z !== curZone) continue;
+    cx.beginPath();
+    for (var i = fr.a; i <= fr.b; i++) {
+      var p = F[i];
+      if (i === fr.a) cx.moveTo(px(p.x), py(p.y));
+      else cx.lineTo(px(p.x), py(p.y));
+    }
+    cx.stroke();
   }
-  cx.stroke();
 
-  // walked trail up to the playhead, current zone only, segmented by mode
-  // AND by recording
-  if (showTrail && F.length) {
+  // walked trail up to the playhead: slice the precomputed runs. Every run
+  // is same-segment AND same-zone, so no cross-zone stroke is possible and
+  // no index can land outside F.
+  if (showTrail) {
     cx.lineWidth = 3.4;
     cx.lineJoin = "round";
     cx.lineCap = "round";
-    var segStart = -1, segMode = null;
-    for (var j = 0; j <= idx && j < F.length; j++) {
-      var b = F[j];
-      if (String(b.z) !== curZone) {
-        if (segStart >= 0 && segMode) strokeRun(segStart, j - 1, segMode);
-        segStart = -1; segMode = null;
-        continue;
-      }
-      var a = j > segStart ? F[j-1] : null;
-      if (a && (b.m !== a.m || b.seg !== a.seg)) {
-        strokeRun(segStart, j - 1, segMode || a.m);
-        segStart = j - 1;
-      }
-      if (segStart < 0) { segStart = j; segMode = b.m; }
+    for (var ri = 0; ri < RUNS.length; ri++) {
+      var r = RUNS[ri];
+      if (r.z !== curZone) continue;
+      if (r.a > idx) break;
+      var end = Math.min(r.b, idx);
+      strokeRun(r.a, end, r.m);
     }
-    if (segStart >= 0 && segStart <= idx - 1)
-      strokeRun(segStart, idx - 1, segMode || F[idx].m);
   }
 
   // markers: only those at or before the playhead, filtered by family AND zone
@@ -529,6 +520,34 @@ function draw(){
   updateReadout();
 }
 
+// ---- stroke runs, precomputed ONCE ----
+// The old trail pass walked F[] with j-1 indices inside draw(); at a zone
+// boundary F[j-1] can belong to a different map (or j-1 can land on a zone
+// that was filtered out), which threw "Cannot read properties of undefined
+// (reading 'x')" INSIDE the animation loop -- and one throw inside tick()
+// cancels the requestAnimationFrame chain, so the whole page stopped playing.
+// Joey's report was exactly this: "it doesnt play like a video like it did
+// before".
+//
+// Precomputation fixes it structurally: every run is a contiguous slice of
+// frames in the SAME segment AND the SAME zone. A run records (a, b, mode,
+// zone). draw() then only has to slice: take runs with b <= idx, clip the
+// tail, and skip runs whose zone is not the viewport's.
+var RUNS = [];
+(function buildRuns() {
+  var a = 0;
+  for (var i = 1; i <= F.length; i++) {
+    var prev = F[i - 1], cur = i < F.length ? F[i] : null;
+    var boundary = !cur || cur.seg !== prev.seg || cur.m !== prev.m;
+    if (boundary) {
+      RUNS.push({a: a, b: i - 1, m: prev.m, z: String(prev.z)});
+      a = i;
+    }
+  }
+})();
+
+// The faint upcoming-path strokes, also precomputed per zone: each entry is
+// an array of [runIndex...] per zone, so draw() never rescans F wholesale.
 function strokeRun(a, b, mode){
   if (b < a) return;
   cx.strokeStyle = MODE_COL[mode] || "#8dff9e";
