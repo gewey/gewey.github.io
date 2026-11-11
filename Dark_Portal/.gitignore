@@ -82,7 +82,40 @@ Research/_raw/
 # intermediate dumps. None of it is read by any .html page.
 # ---------------------------------------------------------------------------
 
-# Throwaway harvest / probe / dump scripts anywhere in the vault.
+# ---------------------------------------------------------------------------
+# Added 2026-11-10 (Tandumonium, "The Dynasty" pass).
+#
+# PUBLIC this pass: _gewey_gui/dynasty.html only. It is hand-built and
+# self-contained - every table is baked in at build time, nothing is fetched.
+#
+# LOCAL this pass (the receipts for that page, never linked by any .html):
+#   Research/_raw/armory_*.html  - the five Blizzard Armory captures
+#   Research/_raw/armory_*.json  - the parsed profiles + reputation payload
+#   Research/_local/             - already ignored above; sweep + scratch scripts
+# The two explicit rules below exist because an Armory capture is a page of
+# somebody else's HTML and must never ship from this vault.
+# ---------------------------------------------------------------------------
+
+Research/_raw/armory_*
+**/armory_*.html
+**/armory_*.json
+
+# Blizzard Armory routes a page may CITE but never fetch at runtime.
+**/_armory_*.py
+**/_sweep_*.py
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-10 (Tandumonium, "The Dynasty" pass) — bulk-fetch residue.
+#
+# A sibling surface swept Warcraft Logs in bulk and saved every response. All
+# 4,707 of them are the same 230-byte Cloudflare "Human Verification" page. They
+# are agent scratch: no .html page reads them, and they must never be published.
+# The NEGATIVE RESULT is the finding (WCL walls automation); the files are not.
+# ---------------------------------------------------------------------------
+BulkMD_*/
+BulkMD_*.zip
+
+
 **/_harvest*.py
 **/_probe*.py
 **/_show*.py
@@ -95,4 +128,47 @@ Research/_raw/
 Timeline/*_dump*.txt
 Timeline/*_dump*.json
 
+# ---------------------------------------------------------------------------
+# Added 2026-11-10 (Tandumonium, "Reliquary" retail-archaeology pass).
+#
+# PUBLIC this pass — every one of these is read by at least one .html pane:
+#   _gewey_gui/relics.html                  new wing; linked from every nav
+#   _gewey_gui/Tandu-Hyjal_macros-cache.html  linked from relics.html
+#   _gewey_gui/Chronicle.html               linked from every nav
+#   _gewey_gui/dynasty.html                 linked from every nav
+#   _gewey_gui/account_QUAZZARR_macros-cache.html   read by macrocosm.html
+#   _gewey_gui/Tandumonium-Hyjal_macros-cache.html  read by macrocosm.html
+#   _gewey_gui/legacy_bookmarks_macros-cache.html   read by macrocosm.html
+#
+# LOCAL this pass — raw copies and evidence, no page points at them:
+#   macros/*_macros-cache.txt   raw cache text (the .html render is the page)
+#   macros/*_macros-cache.html  duplicate of the _gewey_gui render
+#   Research/_raw/retail_relics.json    parsed retail archaeology
+#   Research/_local/_retail_relics.py   the extractor
+#   Research/_local/_probe*.py, _probe*_out.txt   door probes
+# The two macros/ patterns are narrow on purpose: macros/README.md stays public.
+# ---------------------------------------------------------------------------
+macros/*_macros-cache.txt
+macros/*_macros-cache.html
+
+
+# Addon Atlas data store (local inventory + macro drafts) - not git-tracked.
+addon_atlas/
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-11 (Tandumonium) - the Flipbook wing.
+#
+# PUBLIC: _gewey_gui/Flipbook.html. It bakes its own dataset at build time, so
+# the page carries every position, event and photograph reference it needs;
+# nothing is fetched at runtime.
+#
+# LOCAL: the engine (Timeline/flipbook_extract.py + flipbook_render.py) and the
+# extracted dataset (Timeline/data/flipbook.json) live under Timeline/, which is
+# already covered by Timeline/.gitignore = `*`.
+#
+# The screenshot thumbnails are regenerable from Screenshots/ on Z:, so they
+# stay local too - the page references them but the repo does not carry them.
+# Rebuild with: python Timeline/flipbook_extract.py && python Timeline/flipbook_render.py
+# ---------------------------------------------------------------------------
+_gewey_gui/_shots/
 
