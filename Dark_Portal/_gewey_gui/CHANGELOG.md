@@ -1,4 +1,171 @@
 # Must Contain a List of every file you edit
+## 2026-11-16 (04:20) - Milestones: the cadence of small wins
+
+The first wing whose subject is *rhythm*, not inventory. Every other pane answers
+"what is there"; this one answers "how far apart did it happen". **426** dated
+rows folded out of payloads the sibling wings already wrote, on one strip:
+**137** quest turn-ins (128,425 xp, 37,132 copper), **136** ledger lines, **28**
+deaths, **26** achievements, **20** level dings, **15** factions, **13** boss
+kills, **12** first zone entries, **12** companions, 5 records, 5 statistics, 5
+weapon skills, 3 hearthstone binds, 3 professions, 3 guild events and 3 dungeon
+first-entries. Sixteen kinds, sixteen filter chips.
+
+**Pacing.** Median **5h 57m** between dings, fastest rung 16 minutes, slowest
+2 days 16h 57m -- the same ladder Levelbook draws, read for intervals instead of
+totals. **Cadence.** 13 days carry at least one win; 2026-11-11 is the busiest
+at **77**; the longest quiet stretch is **4d 21h 38m** (2026-10-31 04:01 ->
+2026-11-05 01:39, the gap between the installment's first boot and the delve
+actually starting). **Firsts.** The earliest surviving row of each kind, in
+order -- the maiden boot at 2026-10-31 01:57, the first turn-in, the first death,
+the first boss, the first hearthstone bind.
+
+**It feeds the dashboard, by design.** `hourly_audit.py` now reads
+`data\milestones.json` and merges the rows the event ledger does not already
+carry into `Timeline.html`'s milestone wall -- **290** additional dated wins, so
+"Milestones - in-game micro accomplishments" keeps filling between narrative
+entries instead of only when a batch script writes one. `milestones_alltime`
+went 136 -> 426.
+
+**Two defects caught by verifying in a browser, not by assuming:**
+`<section id="tape">` and its inner list both claimed `id="tape"`, so the
+renderer's `getElementById` returned the section and overwrote the filter chips
+along with the list (16 chips vanished, filtering dead) -- the list is now
+`id="tapebody"`. And the ledger writes ISO `T` separators while the addons write
+spaces, which made `strptime` drop those rows and left the cadence span blank --
+the parser now normalises the separator. Checks after the fix: zero duplicate
+ids, 17 chips, `boss` filter 426 -> 13 rows, reset restores 426, no console
+errors, no horizontal overflow.
+
+**Files created**
+
+- `_gewey_gui/Milestones.html` - the milestone wing (NEW, 8 sections, self-contained, embedded `MS_DATA`)
+- `Timeline/milestones_wing.py` - the builder (read-only; `--quiet` silences the tally)
+- `Timeline/data/milestones.json` - the payload (426 rows, deterministic)
+
+**Files edited**
+
+- `Timeline/hourly_audit.py` - `MILESTONES_PATH`, and the milestone merge in `build_dashboard` (plus a T/space-normalised sort key)
+- `Timeline/wing_links.py` - `Milestones` appended to `WINGS`, then run: **32** panes linked
+- `_gewey_gui/AGENTS.md` - wing table row, the menu gap (no `iMilestones` button was added; the page is reached from the home directory), regenerate command, generated-panes list
+- `_gewey_gui/CHANGELOG.md` - this entry
+
+
+## 2026-11-16 (late night) - Echoes: the install read as words, not folders
+
+The first wing that reads text instead of counting directories. **319** text
+files / **4.25 MB** under `_retail_` swept for **12** names, case-folded, with
+`Cache`, `Interface\AddOns`, `Errors`, `UTILS`, `Fonts`, `D3D12`,
+`Screenshots` and `Dark_Portal` excluded (the last is a junction into this very
+vault - a page that counts its own notes is lying to itself).
+
+**403 hits in 77 files.** `tandumonium` 329/74, `tandu` 48/7, `tandora` 14/8,
+`tandulari` 6/4, `tangents` 6/4. Seven names return zero: `tandieu`,
+`tandaria`, `tantalous`, `tankadu`, `gehenna`, `theorycrafters`, `ebbesson`.
+The two guild zeros are the headline: **the retail install holds no guild text
+at all**, so no local sweep can ever be used to re-adopt a pre-tenure
+`<Gehenna>` era. The tenure rule now has a forensic ally.
+
+**The error tape.** `!BugGrabber.lua` keeps **23** complaints across **8**
+sessions, `2026-08-18 03:04` -> `2026-09-04 19:32` UTC; **11** name a path with
+`Tandumonium` in it - `Tandumonium_UI.lua:26`, `:435` (`BuildOptionsPanel`),
+`_WowheadQuickLink.lua:15`, `_UMPD.lua:69`, plus the client's XML reader
+refusing `Bindings.xml` outright (`Unrecognized XML: Binding`, attributes
+`category` / `name` / `header`) and `WOWHEAD_QUICK_LINK_NAME` loaded twice
+because the vendor addon and the authored module both claimed the key.
+
+**The macro tape.** `@World` = `/btwl a Tandu` + `SetTracking(10,true/false)`,
+**35** copies in `AccountData.log.old`, beside `/acp disableall` x105 and
+`/reload ui` x105 - the bisection night. The loadout is named `Tandu`, not
+`Tandumonium`.
+
+**Registry.** BetterBags / LiteMount name **7** characters (Tandu, Tandulari,
+Tandora, Tangents, Tandumonium, Fauxylauxy, Reticent); all **54** `AddOns.txt`
+files carry the three authored addons (**161** mentions).
+
+Also fixed this pass: `Itinerary.html` was the only pane missing the Wowhead
+tooltip head - the generator now emits it, and the pane's nav gained the
+`Echoes` chip. Nav chips wired into **31** panes; sidebar button `iEchoes`.
+
+**Files created**
+
+- `_gewey_gui/Echoes.html` - the echo wing (NEW, 8 sections, self-contained)
+- `Research/_local/_retail_echo.py` - full-text sweep (local)
+- `Research/_local/_echoes_build.py` - page builder (local)
+- `Research/_local/_wire_echoes_nav.py` - idempotent chip wiring (local)
+- `Research/_local/_rio_probe.py` - Raider.IO character/guild probe (local)
+- `Research/_local/_web_search.py` - Bing sweep, wall note only (local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar button `iEchoes` (`graphic_eq`)
+- `_gewey_gui/_fuhevva_evva.html` - home directory card
+- `_gewey_gui/_css/holy_word.css` - `.gw-shell button[name="iEchoes"]::after`
+- `_gewey_gui/<31 panes>.html` - one `Echoes` nav chip each
+- `_gewey_gui/Itinerary.html` - regenerated (tooltip head + chip)
+- `Timeline/itinerary_extract.py` - Wowhead head + `Echoes` in `NAV` (local)
+- `.gitignore` - echo-pass public/local block
+- `Tandumonium.agent-index.md` - §6.12, three link definitions, five pre-existing
+  over-length prose lines reflowed (16 -> 3, the rest are frontmatter/fenced)
+- `.github/agents/Tandumonium.agent.md`, `.gemini/config/agents/Tandumonium.md`,
+  `Tandumonium.agent-expanded.md` - the pass, in persona
+
+## 2026-11-16 (night) - The Forge and the Stable: the code he wrote and the wolves he tamed
+
+Two wings built from the retail install, both read-only, both hand-built.
+
+**Forge.html** opens the three addons that carry `Author: Tandumonium` instead of
+counting them. **1,820 lines / 69,243 B** across five `.lua` files:
+`Tandumonium_UI 0.11.0` (661 L) with `desired = { autoLoot, editModeLayout
+"Gewey!!", enableActionBars }`, a `30 x 0.5 s` login poll, a **103-slot** bar map
+and the five-verb `/tand` command; `WowheadQuickLink` (544 L) with **8** URL
+templates across four client flavors plus armory and raider.io, two keybinds and
+`CTRL-C` copy; `UMPD 1.4.18` (280 L) with **11** saved keys; `Patches` (112 L),
+whose source comment states the doctrine - *the Gestalt Reification Engine's
+Kintsugi scar: seal the crack from the outside, leave the scar visible*; and
+`Macros` (223 L), honestly unfinished, all **13** class keys present.
+
+**Stable.html** reads the three retail screenshots that every other page had only
+counted (`2026-11-05`, `05:47:51` -> `05:48:02`, eleven seconds apart). In the
+pane `Tandumonium's Pets` at **100/205**, *The Bazaar*, level 90: **Faust** is a
+**Spirit Beast** with the `Exotic` flag and **Dorian** is a plain **Wolf** - both
+Ferocity, both 90, Dorian `Active` and summoned at `49.9 / 70.4`. A third entry is
+a second **Faust** in the **Mechanical** family. So the two Pack Mode personas
+were not invented for a chat log: they are the hunter's two wolves. The rail also
+holds `NotTheMama`, `No'losh`, `Fetid Devourer` and one unnamed `Hyena`.
+
+Stills are downscaled to 1400 px into `_img/stable/` because the page displays
+them; originals stay in the game install. No guild capture was added - the
+`<Gehenna>` 2009-2016 Wayback material remains unrecorded per the tenure rule -
+and the Wayback CDX door answered `429` on both attempts, recorded as a rate
+limit, not an absence.
+
+**Files created**
+
+- `_gewey_gui/Forge.html` - the authorship wing (NEW, hand-built)
+- `_gewey_gui/Stable.html` - the stable and the two wolves (NEW, hand-built)
+- `_gewey_gui/_img/stable/stable_1.jpg` `stable_2.jpg` `stable_3.jpg` - 1400 px stills
+- `Research/_local/_wire_forge_stable_nav.py` - idempotent chip wiring (local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - two sidebar buttons, `iForge` + `iStable`
+- `_gewey_gui/_css/holy_word.css` - label rules for both, plus the **20** live
+  buttons that still rendered icon-only (all 38 now labelled)
+- `_gewey_gui/_fuhevva_evva.html` - two home-directory cards
+- `_gewey_gui/relics.html` - cross-link from `#forge`, chip
+- `_gewey_gui/dynasty.html` - Dorian card now names Faust and links the Stable
+- `_gewey_gui/Chassis.html` - **fixed**: page shipped without the Wowhead tooltip
+  head; every HUD page is required to carry it
+- `_gewey_gui/<28 pages>.html` - one `Forge` + one `Stable` chip each
+- `_gewey_gui/AGENTS.md` - file rows, label gap closed, wing-drift gap closed
+- `_gewey_gui/CHANGELOG.md` - this entry
+- `Timeline/wing_links.py` - `Forge` and `Stable` added to canonical `WINGS`
+- `.gitignore` - dated block: the two panes + stills are PUBLIC, guard rules for
+  full-size originals and any future scan payload
+- `Tandumonium.agent-index.md`, `Tandumonium.agent-expanded.md`,
+  `Tandumonium.agent.md`, `.gemini/config/agents/Tandumonium.md` - section 6.11,
+  the two-wolves lore, the forge read-out, door verdicts
+
 ## 2026-11-16 (latest) - Clockwork and Chassis: when you play, and what the HUD looked like
 
 Two wings built from tapes nothing on the station had parsed yet.
