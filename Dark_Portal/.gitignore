@@ -159,16 +159,23 @@ addon_atlas/
 # Added 2026-11-11 (Tandumonium) - the Flipbook wing.
 #
 # PUBLIC: _gewey_gui/Flipbook.html. It bakes its own dataset at build time, so
-# the page carries every position, event and photograph reference it needs;
-# nothing is fetched at runtime.
+# the page carries every position and event it needs; nothing is fetched at
+# runtime.
 #
 # LOCAL: the engine (Timeline/flipbook_extract.py + flipbook_render.py) and the
 # extracted dataset (Timeline/data/flipbook.json) live under Timeline/, which is
 # already covered by Timeline/.gitignore = `*`.
 #
-# The screenshot thumbnails are regenerable from Screenshots/ on Z:, so they
-# stay local too - the page references them but the repo does not carry them.
-# Rebuild with: python Timeline/flipbook_extract.py && python Timeline/flipbook_render.py
+# PUBLIC as well, and this line used to be wrong: the screenshot thumbnails in
+# _gewey_gui/_shots/. Flipbook.html embeds each of them as a page-relative
+# <img src="_shots/<shot>.jpg"> -- that is the filmstrip, the sticky photo pane
+# and the photo pins on the canvas. Ignoring the folder meant the page shipped
+# 61 references to files no published copy of the repo carries, so every
+# photograph 404'd on the site while the local build looked perfect. The
+# originals stay on Z: in Screenshots/; these 480px derivatives (~45 KB each)
+# travel with the page. Rebuild with:
+#   python Timeline/flipbook_extract.py && python Timeline/flipbook_render.py
+# then commit the page together with any new thumbnails it references --
+# tests/test_published_assets.py fails if a published page points at a file the
+# repo does not carry.
 # ---------------------------------------------------------------------------
-_gewey_gui/_shots/
-
