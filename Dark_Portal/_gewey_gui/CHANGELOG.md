@@ -1,5 +1,51 @@
 # Must Contain a List of every file you edit
 
+## 2026-11-11 ~07:43 — The tectonic watcher + the chapter store
+
+Joey's architecture, his words: *"wow settings being written to disk is pretty tectonic u should be able to like auto check the differences between them on disk and auto extract all the new data then in new sessions you can just read the extracted stuff instead of extracting it."*
+
+The client rewrites its SavedVariables wholesale on every reload, zone change and logout. **That flush is the event** — nothing needs to hook the game.
+
+- `..\Timeline\flipbook_watch.py` — **NEW (local, under `Timeline\`, so untracked).** Polls mtime + size of the 8 inputs the extractor reads (Travelogue, Saga, AutoBiographer, Elephant, ForeverTold, Bouncy, Memento, and the `Screenshots\` member count — a new photo counts as a change). On any movement: one extraction, atomic `flipbook.json` write, one frozen chapter snapshot per **new map id**, `pending_render.flag`, one line in `store\watch.log`, exit 0.
+- **Flags.** `--check` is pure `stat` work and exits in well under a second when nothing moved, so a scheduler can call it every few minutes without cost. `--force` re-extracts regardless. `--status` prints the store state and writes nothing.
+- **The store** lives in `..\Timeline\data\store\`: `last_state.json` (the watched mtimes+sizes), `chapters\chapter_<n>_<mapid>.json` (one frozen snapshot per chapter, numbered chronologically by each zone's first path point), `watch.log`.
+- `..\Timeline\flipbook_render.py` — consumes `pending_render.flag` and marks the payload `store-fresh`, so a new session reads the store instead of re-deriving it from the Lua.
+- `_gewey_gui/Flipbook.html` — regenerated from the wider data (Zephras Isle + Thunder Bluff + Mulgore + its Barrens border + Red Cloud Mesa): 592 `prog.skill` ticks, 179 `prog.rep`, 69 `eco.gold`, 30 logins, 203 jumps. Chapter 1 is Thunder Bluff outskirts (map 1411 — a grid with no walk in it yet); Chapter 3 is Zephras Isle.
+
+### Bug — the chapter counter grew inside its own loop
+
+The first numbering pass produced `chapter_1,3,5,7,9,11,13`: the id came from `len(have)` while `have` was still being appended within the same loop, so each chapter skipped a number. The counter is snapshotted **before** the loop now, and the chapters were re-seeded `1..7`. The files were wrong on disk, not just in the render.
+
+## 2026-11-11 ~07:39 — Playback died at every zone crossing: stroke runs are now precomputed
+
+Joey: *"it doesnt play like a video like it did before."* The throw was in the page's error stream — `strokeRun` reading `x` of `undefined`, fired from inside `tick()`. **One exception in a `requestAnimationFrame` callback cancels the chain**, so the animation loop was dying the instant the trail crossed a zone boundary: the zone-filtered trail pass indexed `F[j-1]`, which after filtering can be a different zone's frame, or out of range.
+
+- `_gewey_gui/Flipbook.html` — **fix is structural, not a guard.** Stroke runs are precomputed once; each run is a contiguous slice of frames in the same segment **and** the same zone, tagged `(a, b, mode, zone)`. `draw()` only slices runs with `b <= idx`, clips the tail, and skips runs outside the viewport's zone. The faint upcoming-path strokes read the same run list, so the two cannot disagree. No cross-zone stroke is expressible and no index can land outside `F`.
+- Verified live: playback runs `25 → 36 → 283 → 699 → 990` with zero page errors; scrubbing to 990 auto-flips to *Mulgore — Barrens border* and highlights the correct zone button.
+
+
+## 2026-11-11 ~07:34 — Multi-zone viewport with a zone selector
+
+Joey left Zephras Isle, so the trail now spans five maps: Zephras Isle (2521), Thunder Bluff (1456), Mulgore (1412) and its Barrens border (1413), Red Cloud Mesa (1454), with The Barrens (1414) at 2 points and growing.
+
+- `_gewey_gui/Flipbook.html` — `px()`/`py()` read a **per-zone `VIEW`**: bounds computed from the current zone's frames alone and recomputed on every zone change. A single global viewport would smear five different coordinate spaces into one rectangle.
+- The playhead flips the zone itself when the trail crosses a map boundary; the zone row of buttons flips it on demand, each named from the `ZONE_ID_NAMES` table with its frame count. Grid, trail, markers and photo pins all filter to the current zone, so one zone's silhouette inside another's rectangle is no longer expressible.
+- Verified live: Thunder Bluff selected, lift-ramp grid descending the mesa, playhead mid-map, photo pane holding a 07:13 Barrens-border shot with guild chat visible, XP bar 4,032/7,600 (53%) at level 10. In the same flush: 5 zones, 291 cells, 50 photos, 193 jumps, 3,459 → 4,225 positions.
+
+### Lesson — two syntax traps of my own making, both caught live
+
+`function draw(){{={{` (a doubled brace from a sloppy replace) killed every zone button, and `drawGrid` still read the deleted global `spanDim`. Neither showed up in the build output; both surfaced as page errors in the browser's event stream, and the button row stayed empty until both were fixed. Valid generated markup says nothing about whether its script runs.
+
+## 2026-11-11 ~06:58 — `--no-thumbs` zeroed every thumbnail reference
+
+One cheap rebuild with `--no-thumbs` was enough to blank the whole filmstrip. `load_screenshots()` gated the **entire** thumbnail block behind `make_thumbs`, so with generation disabled the lookup for *existing* thumbs was skipped too and every entry got `thumb: None`. The page had 33 photographs and referenced none of them — verified live: `total thumbs referenced: 0`.
+
+- `..\Timeline\flipbook_extract.py` — the reference check now runs **unconditionally**; only *generation* is gated by the flag. 33/33 thumbs referenced after the fix.
+- `_gewey_gui/Flipbook.html` — rebuilt and re-verified: split stage two columns, sticky photo holding with *"before the recorded trail"* labelling for captures that predate the trail, XP bar, 162 jumps, 123 cells, 33 photos / 24 pinned, 14.93 miles.
+
+This is the same **silent-empty** family as the `ItemCatalog` bug below: the build reported success and the number was zero.
+
+
 ## 2026-11-11 ~06:45 — Split stage, sticky photographs, XP bar, loot toasts, jump pressure
 
 Joey: *"the page should be half the trail frame and half the screenshot that best aligns with the time in the trail like the last screenshot stays active till the next so its not just flashing a pictures for 1 second."*
