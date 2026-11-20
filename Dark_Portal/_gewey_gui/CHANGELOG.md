@@ -1,4 +1,30 @@
 # Must Contain a List of every file you edit
+## 2026-11-20 (docs pass) - the index catches up to the last three wings
+
+The shell says what it holds now: **46 live panes, 1 disabled** (`iSettings`) -
+47 buttons in `index.html`, one of them disabled. The old row said 44.
+
+**Five panes were live and unindexed.** `Origins.html` (the decade before the
+logs), `Echoes.html` (the word census), `Company.html` (Wing 35, the social
+residue), `Concordance.html` (two installs, one account) and
+`MicroAccomplishments.html` (Wing 22, the union tape) had buttons, nav chips and
+builders but no row in the index, so nobody could read the layout and find them.
+Each now has a row: source files, build command, the limits the page itself
+states, and - for Concordance - the fact that the page is **untracked in git**
+at this pass, so its nav chip resolves only after the file is committed.
+
+**Two drift claims were stale.** The Sortie row said it was linked from 28 of
+the 30 pages with a `nav.panes` strip, with `Forge.html` and `Stable.html` still
+missing from `WINGS`. The shell row said `WINGS` ended at `Vignettes.html`, so
+Muster and Tenure could not be verified. Both were closed by the 2026-11-20
+roll-call pass: `WINGS` now ends at `Company.html` and registers Muster, Tenure
+and Concordance, and `python Timeline/wing_links.py --check` reports **39 pages
+ok, 15 skipped (no strip), 0 pages of drift**.
+
+**Files.** Edited: `README_BODY.md` (regenerated into `README.md` / `AGENTS.md`
+by `READUS.py`), `_gewey_gui/CHANGELOG.md`. No page, builder or data file was
+touched - this pass only made the map match the territory.
+
 ## 2026-11-20 (evening) - Muster and Tenure: the roll call and the gate
 
 Two wings landed in the same pass, and they read the same night from opposite
