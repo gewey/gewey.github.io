@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tenure &mdash; guilds, windows, excluded captures | Gewey G.U.I.</title>
+<!--
+  TENURE.html - built 2026-11-20 by Tandumonium (the tenure-register pass).
+
+  Every other wing has to obey the tenure rule; none of them states it at full
+  length. This one does. It is the editorial law of the vault written down as a
+  page: which guilds I am allowed to claim, during which windows, on what
+  evidence, and exactly how much material was dropped to keep the claim honest.
+
+  The rule, verbatim:
+    <Gehenna> is admissible ONLY inside the 2019-2020 Battle for Azeroth window
+    (WCL guild 7287, BfA raids only). <Theorycrafters> is admissible ONLY on
+    Thrall-US and Hyjal-US. Wayback captures of <Gehenna> from 2009-2016 are
+    never recorded, never linked, never counted - not here, not in legacy.html,
+    not in the agent files.
+
+  Numbers are read from Research/_raw/web_ledger_20261116.json,
+  guild_door_20261116.json and legacy_cdx.json by
+  Research/_local/_tenure_build.py. Nothing is hand-typed.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#06060a;--panel:rgba(12,13,20,.88);--line:rgba(255,196,107,.18);
+ --ink:#eef1ff;--mut:#8e97b3;--gold:#ffc46b;--crimson:#ff4560;
+ --arcane:#58d2ff;--fel:#7dffb0;--grey:#b9c2cc;--ash:#c2c6d6;
+ --glow:0 0 14px rgba(255,196,107,.4)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -10%,rgba(255,196,107,.10),transparent 62%),
+  radial-gradient(820px 480px at 88% 0%,rgba(194,198,214,.07),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(88,210,255,.06),transparent 68%),
+  linear-gradient(180deg,#06060a 0%,#090812 58%,#0b0914 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.card h3{margin-top:0}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.dead{color:var(--grey)}.warn{color:var(--gold)}
+.moon{color:var(--arcane)}.wall{color:var(--crimson)}.ash{color:var(--ash)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+.voice{font-size:.92rem;color:#e4e8fb;border-left:2px solid var(--gold);
+ padding:.1rem 0 .1rem .85rem;margin:.7rem 0;font-style:italic}
+pre{background:rgba(0,0,0,.44);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d6dcf2;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(255,196,107,.4)}
+a.ext:hover{color:var(--arcane);border-bottom-color:var(--arcane)}
+
+.wrap .scroll table{min-width:820px}
+.wrap .scroll td{white-space:normal}
+</style>
+</head>
+<body class="gw-tenure">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Tenure &middot; the rule &middot; &lt;Gehenna&gt; 2019 &middot; &lt;Theorycrafters&gt; Thrall/Hyjal</p>
+ <h1>Tenure <span class="thin">the guilds I am allowed to claim</span></h1>
+ <p class="lede">A guild name is not a membership. Every page in
+ this vault that touches a guild has to pass the same gate: <strong>was I
+ actually in it, in that era?</strong> This wing is the gate itself &mdash; the
+ windows, the receipts, and the material that was deliberately not kept.</p>
+ <p class="voice">I would rather have two admissible captures than twenty-six
+ flattering ones.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html" aria-current="page">Tenure</a>
+  <a href="Origins.html">Origins</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="eras.html">Eras</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="roster.html">Roster</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="automations.html">Automations</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="rule">
+ <h2>The rule</h2>
+ <p>Two guilds, two windows, nothing else. Anything outside them
+ is excluded at the point of collection &mdash; not softened, not captioned
+ &ldquo;early era&rdquo;, not linked for flavour.</p>
+ <div class="scroll">
+  <table>
+   <caption>Admissible guild tenure</caption>
+   <thead><tr><th>Guild</th><th>Realm(s)</th><th>Window</th><th>Receipt</th>
+   <th>Verdict</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">&lt;Gehenna&gt;</td>
+    <td class="mono">Borean Tundra-US<br>Shadowsong-US</td>
+    <td>2018-10 &rarr; 2020-10<br><span class="ash">Battle for Azeroth</span></td>
+    <td>WCL guild <code>7287</code> &middot; Wipefest guild record
+    &middot; uploader <code>Tandu</code></td>
+    <td><span class="pill ok">admissible</span></td></tr>
+    <tr><td class="mono">&lt;Theorycrafters&gt;</td>
+    <td class="mono">Thrall-US<br>Hyjal-US</td>
+    <td>Thrall era &rarr; Hyjal era<br><span class="ash">name-level only</span></td>
+    <td>guild pages answer <code>200</code>; membership is attested, not
+    measured</td>
+    <td><span class="pill warn">scoped</span></td></tr>
+    <tr><td class="mono">&lt;Gehenna&gt; pre-2019</td>
+    <td class="mono">any</td><td>2009 &rarr; 2016</td>
+    <td>24 Wayback captures exist</td>
+    <td><span class="pill wall">excluded</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note warn"><strong>Why the exclusions matter.</strong> The archive kept
+ a <em>guild</em> alive on paper for years when I was not in it. A capture proves
+ the guild existed on that date. It proves nothing about me. Linking one would
+ turn a true sentence (&ldquo;this guild was raided in 2011&rdquo;) into a false
+ one (&ldquo;I raided in 2011&rdquo;) without ever writing a lie down.</p>
+</section>
+
+<section id="captures">
+ <h2>The admissible captures</h2>
+ <p>Both of these sit inside the BfA window. Both are cited, and
+ both are the only <code>&lt;Gehenna&gt;</code> captures this vault will ever
+ link. Everything else the index holds is counted, not kept.</p>
+ <div class="scroll">
+  <table>
+   <caption><code>&lt;Gehenna&gt;</code> &mdash; 2 admissible of 26
+   indexed captures</caption>
+   <thead><tr><th>Capture time</th><th>Snapshot</th><th>Era</th>
+   <th>Status</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2019-08-19 15:08:50 UTC</td><td><a class="ext" href="https://web.archive.org/web/20190819150850/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">wowprogress.com/guild/us/borean-tundra/Gehenna</a></td><td>BfA, inside the window</td><td><span class="pill ok">cited</span></td></tr>
+    <tr><td class="mono">2020-08-07 21:09:10 UTC</td><td><a class="ext" href="https://web.archive.org/web/20200807210910/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">wowprogress.com/guild/us/borean-tundra/Gehenna</a></td><td>BfA, inside the window</td><td><span class="pill ok">cited</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The bodies of these two snapshots answered <code>429</code> to
+ this host on the pass that indexed them, so the link is the receipt, not a
+ quote. A capture whose body will not load is still a dated index entry &mdash;
+ which is all this page needs it to be.</p>
+</section>
+
+<section id="excluded">
+ <h2>The excluded 24</h2>
+ <p>This is the whole of what will be said about them: the count. No
+ dates, no snapshot ids, no links, no captions. They are real &mdash; the index
+ returned them &mdash; and they are unusable, because the guild was not mine in
+ those years.</p>
+ <div class="grid g3">
+  <div class="card"><div class="stat">26<small>captures indexed</small></div></div>
+  <div class="card"><div class="stat">2<small>admissible, inside BfA</small></div></div>
+  <div class="card"><div class="stat">24<small>excluded, never recorded</small></div></div>
+ </div>
+ <p class="note warn">If a future pass is tempted to &ldquo;complete the
+ picture&rdquo; with an early capture, this section is the answer. The omission
+ is the content.</p>
+</section>
+
+<section id="theorycrafters">
+ <h2>&lt;Theorycrafters&gt; &mdash; the name-level door</h2>
+ <p>The second guild is a different kind of claim. Its pages exist,
+ they answer, and the captures below prove the <em>guild</em> was there &mdash;
+ they do not prove which of its members I was. That is why this table is marked
+ scoped rather than admissible: on Thrall-US and Hyjal-US the guild name is
+ safe to use, and nothing beyond the name is asserted.</p>
+ <div class="scroll">
+  <table>
+   <caption>Indexed captures of the Hyjal guild page, 2016 &rarr; 2024</caption>
+   <thead><tr><th>Capture time</th><th>Query</th><th>Door</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2016-08-22 15:30:10 UTC</td><td class="mono">wp_guild_tc_hj</td><td>WoWProgress guild page</td></tr>
+    <tr><td class="mono">2016-08-23 16:12:09 UTC</td><td class="mono">wp_guild_tc_hj</td><td>WoWProgress guild page</td></tr>
+    <tr><td class="mono">2016-09-24 08:01:31 UTC</td><td class="mono">wp_guild_tc_hj</td><td>WoWProgress guild page</td></tr>
+    <tr><td class="mono">2016-10-25 07:00:25 UTC</td><td class="mono">wp_guild_tc_hj</td><td>WoWProgress guild page</td></tr>
+    <tr><td class="mono">2023-06-07 02:42:12 UTC</td><td class="mono">rio_guild_tc_hj</td><td>Raider.IO guild page</td></tr>
+    <tr><td class="mono">2024-11-06 08:36:51 UTC</td><td class="mono">rio_guild_tc_hj</td><td>Raider.IO guild page</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The Thrall-US page returns <code>400</code> at Raider.IO and has
+ no capture in this index, which is consistent with a realm transfer rather than
+ a dead guild. Absence of a page is still not evidence of membership, so the
+ Thrall era is carried as attested only.</p>
+</section>
+
+<section id="doors">
+ <h2>The doors, as measured</h2>
+ <p>Tenure is only as good as the doors that carry it. These are the
+ guild-door probes from the pass that wrote the rule, re-used verbatim: the
+ Wipefest guild record opens without auth, Warcraft Logs does not open at all,
+ and WoWProgress is a hard <code>403</code>.</p>
+ <div class="scroll">
+  <table>
+   <caption>Guild doors &mdash; status, size, verdict</caption>
+   <thead><tr><th>Door</th><th>Status</th><th>Bytes</th><th>Read</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">api.wipefest.gg/guild/us/borean-tundra/gehenna</td><td class="mono">200</td><td class="mono">117</td><td><span class="pill ok">open</span></td></tr>
+    <tr><td class="mono">api.wipefest.gg/guild/us/borean-tundra/gehenna/reports</td><td class="mono">400</td><td class="mono">52</td><td><span class="pill warn">shut</span></td></tr>
+    <tr><td class="mono">api.wipefest.gg/guild/7287/reports</td><td class="mono">404</td><td class="mono">0</td><td><span class="pill warn">shut</span></td></tr>
+    <tr><td class="mono">api.wipefest.gg/encounters</td><td class="mono">200</td><td class="mono">48,711</td><td><span class="pill ok">open</span></td></tr>
+    <tr><td class="mono">raider.io/api/v1/guilds/profile?region=us&realm=borean-tundra&name=Gehenna&...</td><td class="mono">200</td><td class="mono">1,631</td><td><span class="pill ok">open</span></td></tr>
+    <tr><td class="mono">www.warcraftlogs.com/character/us/hyjal/tandumonium</td><td class="mono">wall</td><td class="mono">0</td><td><span class="pill wall">shut</span></td></tr>
+    <tr><td class="mono">web.archive.org/web/20190819150850/www.wowprogress.com/guild/us/borean-tund...</td><td class="mono">429</td><td class="mono">0</td><td><span class="pill warn">shut</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The one <code>400</code> in this table is the Wipefest guild
+ <em>report list</em>, and its body says why: <code>Max query complexity should be
+ 50000 but got 50701</code>. That is the host's ceiling, not an empty archive. A
+ service limit is never recorded as an absence on this site.</p>
+</section>
+
+<section id="method">
+ <h2>Method</h2>
+ <p><strong>Rule source.</strong> The window itself is arithmetic: the BfA client
+ ran from the <code>2018-08</code> prepatch to the Shadowlands prepatch in
+ <code>2020-10</code>, and the first upload in the vault is
+ <code>2018-10-01</code>. A guild claim only ever rides inside that band.</p>
+ <p><strong>Counting source.</strong> <code>cdx_captures_total</code>,
+ <code>admissible</code> and <code>excluded</code> come from the
+ <code>tenure_rule</code> object written by the web-ledger pass
+ (<code>2026-11-16</code>) and re-read here, not retyped. Door statuses come from
+ the guild-door payload of the same night. Theorycrafters capture timestamps come
+ from the Wayback CDX payload.</p>
+ <p><strong>What is never done.</strong> No pre-tenure <code>&lt;Gehenna&gt;</code>
+ capture is listed, linked, dated or described &mdash; here, on
+ <a class="ext" href="legacy.html">legacy.html</a>, on
+ <a class="ext" href="tandu_legacy.html">tandu_legacy.html</a>, or in
+ <code>Tandumonium.agent-index.md</code>. The count of 24 is the only
+ residue, and it exists so the omission is legible instead of looking like an
+ oversight.</p>
+ <p><strong>Read next</strong> &mdash;
+ <a class="ext" href="Muster.html">Muster</a> (who was in the room),
+ <a class="ext" href="raidlogs.html">Raid Logs</a> (the 470 codes and the same
+ rule applied), <a class="ext" href="legacy.html">Legacy</a> (the handles),
+ <a class="ext" href="web_ledger.html">Web Ledger</a> (every door, every
+ verdict).</p>
+</section>
+
+<footer>
+ <p>Tenure &middot; wing of the Gewey G.U.I. HUD &middot; built 2026-11-20 &middot;
+ &lt;Gehenna&gt; WCL <code>7287</code> (2019-2020 BfA only) &middot;
+ &lt;Theorycrafters&gt; Thrall-US / Hyjal-US &middot; 24 pre-tenure captures
+ permanently excluded.</p>
+ <p>Static page, no runtime fetch. Wowhead tooltips (whTooltips + power.js) load
+ on every pane of this HUD by contract.</p>
+</footer>
+
+</div>
+</body>
+</html>

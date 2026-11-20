@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Sortie &mdash; combat residue of WoW: Forever</title>
+<meta name="description" content="Every boss, every kill, every soul the combat log overheard - parsed from the WoW: Forever install.">
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#0a0a0c;--panel:rgba(22,18,20,.82);--panel2:rgba(28,22,24,.92);
+ --line:rgba(255,122,69,.18);--ink:#f4ece3;--mut:#9c8f88;
+ --ember:#ff7a45;--gold:#ffc861;--steel:#6fd7ff;--jade:#7dffb0;
+ --blood:#ff4d5e;--violet:#b48cff;
+ --glow:0 0 16px rgba(255,122,69,.42);--glows:0 0 14px rgba(111,215,255,.35);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(1100px 600px at 4% -10%,rgba(255,122,69,.16),transparent 62%),
+  radial-gradient(900px 520px at 98% 2%,rgba(111,215,255,.12),transparent 64%),
+  radial-gradient(1200px 760px at 50% 118%,rgba(180,140,255,.10),transparent 70%),
+  linear-gradient(180deg,#0a0a0c 0%,#100c0e 56%,#150f11 100%)}
+.field::after{content:'';position:absolute;inset:0;opacity:.45;background-image:
+ radial-gradient(1px 1px at 8% 18%,rgba(255,214,170,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 26% 8%,rgba(255,214,170,.4) 0,transparent 100%),
+ radial-gradient(1px 1px at 44% 15%,rgba(255,214,170,.75) 0,transparent 100%),
+ radial-gradient(1px 1px at 63% 6%,rgba(255,214,170,.45) 0,transparent 100%),
+ radial-gradient(1px 1px at 82% 17%,rgba(255,214,170,.6) 0,transparent 100%),
+ radial-gradient(1px 1px at 93% 9%,rgba(255,214,170,.38) 0,transparent 100%);
+ animation:tw 7s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.3}50%{opacity:.8}}
+@media (prefers-reduced-motion:reduce){.field::after{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:2.2rem 1.4rem 5rem}
+header.hero{margin-bottom:.4rem}
+.kicker{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;
+ color:var(--ember);text-shadow:var(--glow);margin-bottom:.7rem}
+h1{font-size:clamp(2rem,5vw,3.1rem);letter-spacing:.06em;line-height:1.05;
+ font-weight:800;background:linear-gradient(96deg,var(--gold),var(--ember) 46%,var(--violet));
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .thin{-webkit-text-fill-color:var(--mut);color:var(--mut);font-weight:300;
+ font-size:.44em;letter-spacing:.02em;display:block;margin-top:.6rem}
+.lede{color:var(--mut);max-width:74ch;margin-top:.9rem;font-size:.92rem}
+.lede b{color:var(--ink);font-weight:600}
+.lede a{color:var(--steel);text-decoration:none;border-bottom:1px dotted var(--steel)}
+.lede a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.prov{margin-top:.7rem;font-size:.7rem;color:#6f655f;font-family:ui-monospace,Consolas,monospace}
+nav.panes{display:flex;flex-wrap:wrap;gap:.3rem;margin:1.3rem 0 .5rem;
+ padding-bottom:.9rem;border-bottom:1px solid var(--line)}
+nav.panes a{font-size:.7rem;text-decoration:none;color:var(--mut);
+ padding:.34rem .6rem;border:1px solid transparent;border-radius:999px;transition:.15s}
+nav.panes a:hover{color:var(--ink);border-color:var(--line);
+ background:rgba(255,122,69,.07)}
+nav.panes a[aria-current]{color:var(--ember);border-color:var(--line);
+ background:rgba(255,122,69,.12);text-shadow:var(--glow)}
+.jump{display:flex;flex-wrap:wrap;gap:.25rem .9rem;margin:.9rem 0 1.8rem}
+.jump a{font-size:.7rem;color:#7d726c;text-decoration:none;letter-spacing:.04em}
+.jump a::before{content:'▸ ';color:var(--ember);opacity:.7}
+.jump a:hover{color:var(--steel)}
+h2.sec{font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;
+ color:var(--gold);margin:3rem 0 .3rem;padding-bottom:.5rem;
+ border-bottom:1px solid var(--line);display:flex;align-items:baseline;
+ gap:.7rem;flex-wrap:wrap}
+h2.sec small{font-size:.66rem;letter-spacing:.02em;text-transform:none;
+ color:#6f655f;font-weight:400;font-family:ui-monospace,Consolas,monospace}
+.note{color:#75695f;font-size:.74rem;margin:.5rem 0 1.1rem;max-width:88ch}
+
+/* --- vitals ------------------------------------------------------------- */
+.vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+ gap:.7rem;margin:1.1rem 0 0}
+.vit{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+ padding:.85rem .95rem;position:relative;overflow:hidden}
+.vit::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+ background:linear-gradient(180deg,var(--ember),transparent)}
+.vit .n{font-size:1.5rem;font-weight:800;letter-spacing:.02em;color:var(--ink);
+ font-variant-numeric:tabular-nums}
+.vit .n small{font-size:.62em;color:var(--mut);font-weight:500;margin-left:.15rem}
+.vit .l{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);margin-top:.15rem}
+.vit.s .n{color:var(--steel);text-shadow:var(--glows)}
+.vit.g .n{color:var(--jade)}
+.vit.e .n{color:var(--ember);text-shadow:var(--glow)}
+.vit.v .n{color:var(--violet)}
+.vit.b .n{color:var(--blood)}
+
+/* --- sortie cards ------------------------------------------------------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+ gap:1rem;margin-top:1.2rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+ padding:1.15rem 1.2rem;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(420px 180px at 108% -18%,rgba(255,122,69,.14),transparent 70%)}
+.card h3{font-size:1.12rem;letter-spacing:.04em;margin-bottom:.15rem}
+.card .sub{font-size:.68rem;color:var(--mut);letter-spacing:.1em;
+ text-transform:uppercase;margin-bottom:.85rem}
+.card .row{display:flex;justify-content:space-between;gap:.8rem;
+ font-size:.78rem;padding:.32rem 0;border-bottom:1px dashed rgba(255,122,69,.12)}
+.card .row:last-of-type{border-bottom:none}
+.card .row span:first-child{color:var(--mut)}
+.card .row span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
+.bosses{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.8rem}
+.boss{font-size:.64rem;padding:.22rem .5rem;border-radius:999px;
+ background:rgba(125,255,176,.1);border:1px solid rgba(125,255,176,.3);
+ color:var(--jade);white-space:nowrap}
+.boss i{font-style:normal;opacity:.65;margin-left:.3rem;
+ font-family:ui-monospace,Consolas,monospace}
+
+/* --- encounter ladder --------------------------------------------------- */
+.ladder{margin-top:1.1rem;display:flex;flex-direction:column;gap:.35rem}
+.enc{display:grid;grid-template-columns:26px minmax(140px,1.1fr) 2.2fr 74px;
+ align-items:center;gap:.7rem;padding:.45rem .6rem;border-radius:10px;
+ background:rgba(255,255,255,.015);border:1px solid transparent;transition:.15s}
+.enc:hover{background:rgba(255,122,69,.06);border-color:var(--line)}
+.enc .ix{font-size:.66rem;color:#655c57;font-family:ui-monospace,Consolas,monospace;
+ text-align:right}
+.enc .nm{font-size:.82rem;font-weight:600}
+.enc .nm em{display:block;font-style:normal;font-size:.6rem;color:var(--mut);
+ letter-spacing:.1em;text-transform:uppercase;font-weight:400}
+.enc .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden}
+.enc .bar i{display:block;height:100%;border-radius:99px;
+ background:linear-gradient(90deg,var(--ember),var(--gold))}
+.enc .ms{font-size:.7rem;text-align:right;color:var(--mut);
+ font-variant-numeric:tabular-nums;font-family:ui-monospace,Consolas,monospace}
+.enc.wipe .bar i{background:linear-gradient(90deg,var(--blood),#ff8f6b)}
+
+
+/* --- damage ledger ------------------------------------------------------ */
+.ledgers{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+ gap:1.1rem;margin-top:1.1rem}
+.ledger{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+ padding:1rem 1.1rem}
+.ledger h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+ color:var(--steel);margin-bottom:.75rem}
+.lp{margin-bottom:.62rem}
+.lp .top{display:flex;justify-content:space-between;align-items:baseline;
+ gap:.5rem;font-size:.76rem;margin-bottom:.22rem}
+.lp .who{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lp .num{font-variant-numeric:tabular-nums;color:var(--mut);font-size:.7rem;
+ font-family:ui-monospace,Consolas,monospace;white-space:nowrap}
+.lp .track{height:7px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden}
+.lp .track i{display:block;height:100%;border-radius:99px;
+ background:linear-gradient(90deg,var(--ember),var(--gold))}
+.lp .meta{font-size:.62rem;color:#6f655f;margin-top:.18rem;
+ font-family:ui-monospace,Consolas,monospace}
+.chip{display:inline-block;font-size:.55rem;padding:.05rem .34rem;border-radius:4px;
+ letter-spacing:.08em;text-transform:uppercase;font-weight:700;vertical-align:middle;
+ border:1px solid currentColor;opacity:.9}
+
+/* --- kill ledger / abilities ------------------------------------------- */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+ gap:1.1rem;margin-top:1.1rem}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+ padding:1rem 1.1rem}
+.panel h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.7rem}
+.kr{display:grid;grid-template-columns:1fr 88px;align-items:center;gap:.6rem;
+ font-size:.76rem;padding:.2rem 0}
+.kr .kn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kr .kb{height:5px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden;
+ grid-column:1/-1;margin-bottom:.2rem}
+.kr .kb i{display:block;height:100%;border-radius:99px;background:var(--ember);opacity:.8}
+.kr .kv{text-align:right;font-variant-numeric:tabular-nums;color:var(--mut);
+ font-size:.7rem;font-family:ui-monospace,Consolas,monospace}
+.ab{display:grid;grid-template-columns:1fr 96px;gap:.5rem;align-items:center;
+ font-size:.75rem;padding:.26rem 0;border-bottom:1px dashed rgba(255,122,69,.1)}
+.ab:last-child{border-bottom:none}
+.ab .an{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ab .av{text-align:right;font-variant-numeric:tabular-nums;color:var(--jade);
+ font-size:.7rem;font-family:ui-monospace,Consolas,monospace}
+
+/* --- the crowd ---------------------------------------------------------- */
+.tools{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.9rem 0 .8rem}
+.tools input{background:rgba(255,255,255,.04);border:1px solid var(--line);
+ border-radius:9px;color:var(--ink);padding:.44rem .7rem;font-size:.78rem;
+ min-width:220px;outline:none}
+.tools input:focus{border-color:var(--steel);box-shadow:var(--glows)}
+.tools button{background:rgba(255,122,69,.08);border:1px solid var(--line);
+ color:var(--mut);border-radius:9px;padding:.42rem .8rem;font-size:.72rem;
+ cursor:pointer;letter-spacing:.06em;transition:.15s}
+.tools button:hover{color:var(--ink);border-color:var(--ember)}
+.tools button.on{background:rgba(255,122,69,.2);color:var(--ember);
+ border-color:var(--ember);text-shadow:var(--glow)}
+.tools .count{font-size:.7rem;color:#6f655f;margin-left:auto;
+ font-family:ui-monospace,Consolas,monospace}
+table.souls{width:100%;border-collapse:collapse;font-size:.75rem}
+table.souls th{text-align:left;font-size:.6rem;letter-spacing:.16em;
+ text-transform:uppercase;color:#6f655f;font-weight:600;padding:.4rem .5rem;
+ border-bottom:1px solid var(--line);position:sticky;top:0;
+ background:rgba(12,10,12,.96);z-index:1}
+table.souls td{padding:.38rem .5rem;border-bottom:1px solid rgba(255,255,255,.035);
+ font-variant-numeric:tabular-nums}
+table.souls tr:hover td{background:rgba(255,122,69,.05)}
+table.souls td.nm{font-weight:600;white-space:nowrap}
+table.souls td.n{text-align:right;font-family:ui-monospace,Consolas,monospace;
+ font-size:.72rem;color:var(--mut)}
+.tblwrap{max-height:620px;overflow:auto;border:1px solid var(--line);
+ border-radius:14px;background:rgba(10,8,10,.5)}
+.zero{color:#4d4641}
+
+/* --- heat strip --------------------------------------------------------- */
+.heat{display:flex;gap:2px;align-items:flex-end;height:80px;margin-top:1rem;
+ padding:.4rem;background:rgba(255,255,255,.02);border:1px solid var(--line);
+ border-radius:12px;overflow:hidden}
+.heat i{flex:1;min-width:2px;border-radius:2px 2px 0 0;
+ background:linear-gradient(180deg,var(--gold),var(--ember));opacity:.85}
+.heat i:hover{opacity:1;box-shadow:var(--glow)}
+.heatx{display:flex;justify-content:space-between;font-size:.62rem;
+ color:#6f655f;font-family:ui-monospace,Consolas,monospace;margin-top:.3rem}
+
+/* --- method / footer ---------------------------------------------------- */
+.method{margin-top:1.2rem;display:grid;gap:.55rem}
+.mi{display:grid;grid-template-columns:130px 1fr;gap:.8rem;font-size:.76rem;
+ padding:.5rem .7rem;border-radius:10px;background:rgba(255,255,255,.02);
+ border-left:2px solid var(--violet)}
+.mi b{color:var(--violet);font-size:.66rem;letter-spacing:.12em;
+ text-transform:uppercase;font-weight:700}
+.mi span{color:#a99c94}
+footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--line);
+ font-size:.68rem;color:#5f5651;font-family:ui-monospace,Consolas,monospace;
+ display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.empty{color:var(--mut);font-size:.8rem;padding:1rem;text-align:center}
+@media(max-width:760px){
+ .enc{grid-template-columns:22px 1fr 60px}
+ .enc .bar{display:none}
+ .mi{grid-template-columns:1fr}
+ table.souls td.hide,.souls th.hide{display:none}
+}</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Dark Portal &middot; Gewey G.U.I. &middot; wing</div>
+    <h1>The Sortie
+      <span class="thin">what the combat log remembers &mdash; parsed from
+      Logs\WoWCombatLog*.txt, not a screenshot of it</span>
+    </h1>
+    <p class="lede">Two dungeon runs left <b>18.4 MB</b> of combat residue in this
+    install. <a href="Residue.html">Residue</a> already reads those logs as an
+    event necropsy &mdash; signatures, weather, atlases. This wing reads the same
+    bytes as a <b>room full of people</b>: every boss pull with its kill time,
+    every party member credited with damage and healing, <b>292</b> kills named by
+    creature, and the <b>168</b> souls the log overheard in between &mdash; most of
+    them cooking, sewing and fishing in Orgrimmar.</p>
+    <div class="prov">source: <b>Logs\WoWCombatLog*.txt</b> &middot;
+      generated <span id="stamp">&mdash;</span> &middot;
+      engine <span id="engine">&mdash;</span></div>
+  </header>
+
+  <nav class="panes" aria-label="Dashboard panes">
+    <a href="index.html" target="_top">Shell</a>
+    <a href="_fuhevva_evva.html">Home</a>
+    <a href="character.html">Character</a>
+    <a href="gear.html">Gear</a>
+    <a href="legacy.html">Legacy</a>
+    <a href="dynasty.html">Dynasty</a>
+    <a href="roster.html">Roster</a>
+    <a href="eras.html">Eras</a>
+    <a href="links.html">Links</a>
+    <a href="raidlogs.html">Raid Logs</a>
+    <a href="log_ledger.html">Log Ledger</a>
+    <a href="Frontier.html">Frontier</a>
+    <a href="Timeline.html">Timeline</a>
+    <a href="Delve.html">Delve</a>
+    <a href="Chronicle.html">Chronicle</a>
+    <a href="relics.html">Relics</a>
+    <a href="macrocosm.html">Macrocosm</a>
+    <a href="Sortie.html" aria-current="page">Sortie</a>
+    <a href="Residue.html">Residue</a>
+    <a href="tandu_legacy.html">Tandu Legacy</a>
+    <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+    <a href="Almanac.html">Almanac</a>
+    <a href="Levelbook.html">Levelbook</a>
+    <a href="Faces.html">Faces</a>
+    <a href="Purse.html">Purse</a>
+    <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+    <a href="Clockwork.html">Clockwork</a>
+    <a href="Chassis.html">Chassis</a>
+    <a href="Itinerary.html">Itinerary</a>
+    <a href="Milestones.html">Milestones</a>
+    <a href="Origins.html">Origins</a>
+    <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+    <a href="Company.html">Company</a></nav>
+
+  <div class="jump">
+    <a href="#vitals">vitals</a>
+    <a href="#sorties">the sorties</a>
+    <a href="#ladder">encounter ladder</a>
+    <a href="#ledger">damage ledger</a>
+    <a href="#kills">kill ledger</a>
+    <a href="#abilities">abilities</a>
+    <a href="#heat">intensity</a>
+    <a href="#crowd">the crowd</a>
+    <a href="#method">method</a>
+  </div>
+
+  <div class="vitals" id="vitals"></div>
+
+  <h2 class="sec" id="sorties">The Sorties
+    <small>one card per WoWCombatLog file</small></h2>
+  <p class="note">A combat log is written once per client launch that had logging
+  enabled. Each file is a single continuous sortie: a dungeon entered, cleared and
+  left behind.</p>
+  <div class="cards" id="cards"></div>
+
+  <h2 class="sec" id="ladder">Encounter Ladder
+    <small>every ENCOUNTER_START / ENCOUNTER_END pair</small></h2>
+  <p class="note">Duration is the client's own measurement. Every boss in this
+  residue died, so bar length is time-to-fell &mdash; the long bars are the fights
+  that actually pushed back.</p>
+  <div class="ladder" id="ladder"></div>
+
+  <h2 class="sec" id="ledger">Damage Ledger
+    <small>party members credited by the log</small></h2>
+  <p class="note">Totals are summed from the log's own amount field. Reflected
+  damage (Fire Shield, thorns) is credited to whoever's shield did the work &mdash;
+  which is why a Fire Shield can out-total a sword swing.</p>
+  <div class="ledgers" id="ledgers"></div>
+
+  <h2 class="sec" id="kills">Kill Ledger
+    <small>PARTY_KILL, grouped by creature</small></h2>
+  <div class="duo" id="kills"></div>
+
+  <h2 class="sec" id="abilities">Ability Constellation
+    <small>where the damage actually came from</small></h2>
+  <div class="duo">
+    <div class="panel">
+      <h4>Top damage sources &mdash; both sorties</h4>
+      <div id="abilities"></div>
+    </div>
+  </div>
+
+  <h2 class="sec" id="heat">Intensity
+    <small>log events per clock minute</small></h2>
+  <p class="note">Each bar is one minute of the run; taller means the client wrote
+  more lines. Trash packs, boss pulls and the quiet walk out all have a shape.</p>
+  <div class="heat" id="heat"></div>
+  <div class="heatx" id="heatx"></div>
+
+
+  <h2 class="sec" id="crowd">The Crowd
+    <small>every player the log overheard</small></h2>
+  <p class="note">Combat logging does not filter to your group &mdash; it records
+  every player who casts in range, so these two files also caught a city going about
+  its business. Classes are <em>inferred</em> from cast signatures and never stated
+  by the log: treat the chip as a guess with evidence behind it, not a fact.</p>
+  <div class="tools">
+    <input id="soulq" placeholder="filter by name or class&hellip;" autocomplete="off">
+    <button id="btn-combat" class="on">in combat</button>
+    <button id="btn-all">everyone</button>
+    <span class="count" id="crowdn"></span>
+  </div>
+  <div class="tblwrap">
+    <table class="souls">
+      <thead><tr>
+        <th>soul</th><th>signature</th><th>damage</th><th>healing</th>
+        <th>kills</th><th>deaths</th><th>sorties</th>
+      </tr></thead>
+      <tbody id="crowd"></tbody>
+    </table>
+  </div>
+
+  <h2 class="sec" id="method">Method
+    <small>how this was read, and what it cannot say</small></h2>
+  <div class="method">
+    <div class="mi"><b>parser</b><span>Timeline\sortie_extract.py reads
+      <code>Logs\WoWCombatLog*.txt</code> as CSV, one event per line, using the
+      advanced-logging layout where the amount sits directly after
+      <code>ownerGUID</code>. Output lands in
+      <code>Timeline\data\sortie.json</code>.</span></div>
+    <div class="mi"><b>read-only</b><span>The game install is never written. Only the
+      JSON ledger and this page are produced; every other wing is untouched and
+      nothing was deleted.</span></div>
+    <div class="mi"><b>one log = one sortie</b><span>Files are grouped by file, not by
+      session. A log left open across two dungeons would merge into a single
+      card.</span></div>
+    <div class="mi"><b>counting souls</b><span>168 is every distinct player
+      <em>name</em> appearing anywhere in either file. Residue.html reports 167
+      because it registers players from casting events only. Both counts are
+      honest; they answer slightly different questions.</span></div>
+    <div class="mi"><b>inference</b><span>Class chips come from a curated per-class
+      spell list matched against each player's casts &mdash; 57 of 168 souls scored
+      a label. It is evidence, not fact. Bystanders often score nothing and stay
+      unlabelled.</span></div>
+    <div class="mi"><b>blind spots</b><span>No loot, no XP, no quest text, no gold:
+      combat logs carry none of it. Reward residue lives on the Chronicle and
+      Frontier wings instead.</span></div>
+  </div>
+
+  <footer>
+    <span>Sortie.html &middot; additive wing of the Gewey G.U.I. HUD</span>
+    <span id="foot-counts"></span>
+  </footer>
+</div>
+<script>
+const D = {"generated":"2026-11-15 21:07:10","engine":"sortie_extract.py v1.0.0","source":"Logs\\WoWCombatLog*.txt","files":["WoWCombatLog-111326_063935.txt","WoWCombatLog-111526_060037.txt"],"runs":[{"file":"WoWCombatLog-111326_063935.txt","start":"2026-11-13 06:39:35.728000","end":"2026-11-13 07:12:11.691000","zones":[{"ts":"2026-11-13 06:39:35.729000","id":"389","name":"Ragefire Chasm"},{"ts":"2026-11-13 07:10:55.163000","id":"1","name":"Orgrimmar"}],"encounters":[{"id":"2732","name":"Oggleflint","difficulty":"1","size":"5","zone_id":"389","start":"2026-11-13 06:46:30.729000","end":"2026-11-13 06:46:53.268000","success":true,"ms":22458},{"id":"2733","name":"Taragaman the Hungerer","difficulty":"1","size":"5","zone_id":"389","start":"2026-11-13 06:55:24.725000","end":"2026-11-13 06:55:41.382000","success":true,"ms":16661},{"id":"2735","name":"Bazzalan","difficulty":"1","size":"5","zone_id":"389","start":"2026-11-13 07:01:01.744000","end":"2026-11-13 07:01:28.920000","success":true,"ms":27205},{"id":"2734","name":"Jergosh the Invoker","difficulty":"1","size":"5","zone_id":"389","start":"2026-11-13 07:03:08.340000","end":"2026-11-13 07:03:28.919000","success":true,"ms":20595}],"kills":[["Ragefire Trogg",17],["Searing Blade Cultist",16],["Searing Blade Enforcer",12],["Earthborer",10],["Voidwalker Minion",8],["Ragefire Shaman",7],["Molten Elemental",6],["Searing Blade Warlock",6],["Oggleflint",1],["Taragaman the Hungerer",1],["Bazzalan",1]],"killers":[["Sir-Cuumference-Normal-US",36],["Tandumonium-Ebbeson-Normal-US",24],["Caillomian-Ghoulbasher-Normal-US",17],["Guster-Rotgut-Normal-US",8]],"creature_deaths":[["Searing Blade Cultist",25],["Ragefire Trogg",21],["Searing Blade Enforcer",18],["Earthborer",11],["Molten Elemental",9],["Ragefire Shaman",8],["Voidwalker Minion",8],["Searing Blade Warlock",8],["Oggleflint",1],["Taragaman the Hungerer",1],["Bazzalan",1],["Jergosh the Invoker",1],["Summoned Voidwalker",1]],"player_deaths":[],"ability_dmg":[["Fire Shield",450464],["Bane of Agony",271818],["Seal of Fury",216335],["Auto Shot",175676],["Corruption",160211],["Serpent Sting",160180],["Holy Strike",97803],["Seal of Righteousness",95145],["Touch of the Grave",94918],["Shoot",79286],["Judgement of Fury",75566],["Arcane Shot",65018],["Immolate",61076],["Judgement of Righteousness",57013],["Shadow Bolt",14600],["Immolation Trap",14344],["Raptor Strike",10130],["Touch of Weakness",6218],["Shadow Word: Pain",4943],["Thorns",2809],["Mongoose Bite",567],["Drain Soul",189]],"ability_hits":{"Judgement of Righteousness":103,"Seal of Righteousness":209,"Judgement of Fury":105,"Seal of Fury":352,"Holy Strike":159,"Arcane Shot":113,"Touch of the Grave":164,"Auto Shot":335,"Corruption":299,"Serpent Sting":293,"Bane of Agony":510,"Fire Shield":676,"Shoot":225,"Immolate":103,"Thorns":6,"Raptor Strike":23,"Immolation Trap":41,"Shadow Bolt":34,"Drain Soul":1,"Touch of Weakness":6,"Mongoose Bite":1,"Shadow Word: Pain":7},"encounter_open":{},"minutes":[["2026-11-13 06:39",31],["2026-11-13 06:40",460],["2026-11-13 06:41",557],["2026-11-13 06:42",723],["2026-11-13 06:43",757],["2026-11-13 06:44",531],["2026-11-13 06:45",774],["2026-11-13 06:46",888],["2026-11-13 06:47",57],["2026-11-13 06:48",677],["2026-11-13 06:49",491],["2026-11-13 06:50",819],["2026-11-13 06:51",593],["2026-11-13 06:52",849],["2026-11-13 06:53",882],["2026-11-13 06:54",482],["2026-11-13 06:55",433],["2026-11-13 06:56",840],["2026-11-13 06:57",579],["2026-11-13 06:58",721],["2026-11-13 06:59",756],["2026-11-13 07:00",477],["2026-11-13 07:01",634],["2026-11-13 07:02",634],["2026-11-13 07:03",771],["2026-11-13 07:04",731],["2026-11-13 07:05",565],["2026-11-13 07:06",713],["2026-11-13 07:07",562],["2026-11-13 07:08",153],["2026-11-13 07:09",742],["2026-11-13 07:10",1041],["2026-11-13 07:11",1949],["2026-11-13 07:12",195]],"swings":0,"crits":0,"bytes":6377116,"roster":[{"name":"Caillomian-Ghoulbasher-Normal-US","class":"Paladin","conf":100,"cov":63,"sig":[["Seal of Fury",119],["Judgement",110],["Hammer of Justice",18]],"dmg":776313,"hits":1143,"heal":28125,"heals":53,"kills":17,"deaths":0,"taken":85292,"in_combat":true,"top_casts":[["Seal of Fury",119],["Judgement",110],["Holy Strike",95],["Touch of the Grave",52],["Hammer of Justice",18],["Lay on Hands",2]],"top_dmg":[["Fire Shield",395117],["Seal of Fury",216335],["Judgement of Fury",75566],["Holy Strike",52501],["Touch of the Grave",36794]]},{"name":"Guster-Rotgut-Normal-US","class":"Warlock","conf":100,"cov":44,"sig":[["Corruption",93],["Bane of Agony",86],["Shadow Bolt",33]],"dmg":626283,"hits":1240,"heal":27102,"heals":56,"kills":8,"deaths":0,"taken":4642,"in_combat":true,"top_casts":[["Shoot",254],["Corruption",93],["Bane of Agony",86],["Touch of the Grave",54],["Shadow Bolt",33],["Immolate",25]],"top_dmg":[["Bane of Agony",271818],["Corruption",160028],["Shoot",79286],["Immolate",60474],["Touch of the Grave",29187],["Shadow Bolt",14482]]},{"name":"Tandumonium-Ebbeson-Normal-US","class":"Hunter","conf":100,"cov":96,"sig":[["Auto Shot",355],["Serpent Sting",134],["Arcane Shot",117]],"dmg":438618,"hits":833,"heal":0,"heals":0,"kills":24,"deaths":0,"taken":10845,"in_combat":true,"top_casts":[["Auto Shot",355],["Serpent Sting",134],["Arcane Shot",117],["Hunter's Mark",27],["Raptor Strike",26],["Immolation Trap",19]],"top_dmg":[["Auto Shot",175676],["Serpent Sting",160180],["Arcane Shot",65018],["Immolation Trap",14344],["Raptor Strike",10130],["Fire Shield",9894]]},{"name":"Sir-Cuumference-Normal-US","class":"Paladin","conf":100,"cov":61,"sig":[["Judgement",105],["Seal of Righteousness",58],["Holy Light",42]],"dmg":246017,"hits":510,"heal":47020,"heals":65,"kills":36,"deaths":0,"taken":65157,"in_combat":true,"top_casts":[["Judgement",105],["Holy Strike",96],["Seal of Righteousness",58],["Touch of the Grave",44],["Holy Light",42],["Hammer of Justice",11]],"top_dmg":[["Seal of Righteousness",95145],["Judgement of Righteousness",57013],["Holy Strike",45302],["Fire Shield",28254],["Touch of the Grave",20303]]},{"name":"Francine-Stein-Normal-US","class":"Priest","conf":100,"cov":96,"sig":[["Renew",648],["Lesser Heal",168],["Fade",16]],"dmg":26175,"hits":32,"heal":352502,"heals":621,"kills":0,"deaths":0,"taken":19840,"in_combat":true,"top_casts":[["Renew",648],["Lesser Heal",168],["Power Word: Shield",19],["Fade",16],["Touch of the Grave",14],["Touch of Weakness",6]],"top_dmg":[["Touch of the Grave",8634],["Fire Shield",6380],["Touch of Weakness",6218],["Shadow Word: Pain",4943]]},{"name":"Ferengi-Wizard-Normal-US","class":"Warlock","conf":100,"cov":100,"sig":[["Summon Voidwalker",1],["Immolate",1],["Corruption",1]],"dmg":903,"hits":7,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Summon Voidwalker",1],["Immolate",1],["Corruption",1],["Shadow Bolt",1]],"top_dmg":[["Immolate",602],["Corruption",183],["Shadow Bolt",118]]},{"name":"Hurne-Sagetalon-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Rejuvenation",3]],"dmg":0,"hits":0,"heal":1318,"heals":3,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Rejuvenation",3]],"top_dmg":[]},{"name":"Inspectahh-Deckk-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Healing Wave",2]],"dmg":0,"hits":0,"heal":318,"heals":1,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Healing Wave",2]],"top_dmg":[]},{"name":"Abrah-Ge-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Raptor Rouladen",2]],"top_dmg":[]},{"name":"Afway-Gaming-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1]],"top_dmg":[]},{"name":"Alunna-Nightbreeze-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1]],"top_dmg":[]},{"name":"Aphotic-Dreadtide-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Greater Healing Potion",4]],"top_dmg":[]},{"name":"Apung-Bardagul-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Wool Bandage",22]],"top_dmg":[]},{"name":"Aqpo-Strider-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["White Linen Robe",1],["Linen Belt",1]],"top_dmg":[]},{"name":"Archon-Dalaran-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",5]],"top_dmg":[]},{"name":"Arixx-Sola-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Stock Crate",1]],"top_dmg":[]},{"name":"Asylump-Gravelump-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Boiled Clams",5]],"top_dmg":[]},{"name":"Athelaz-Canebrake-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Hearthstone",1]],"top_dmg":[]},{"name":"Beelphegor-Sloth-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",1]],"top_dmg":[]},{"name":"Biberty-Jones-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cured Medium Hide",2],["Dark Leather Cloak",1]],"top_dmg":[]},{"name":"Blackthornes-Wither-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Greater Adept's Robe",2],["Robes of Arcana",1]],"top_dmg":[]},{"name":"Blacktooth-Grin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchanted Lute",1]],"top_dmg":[]},{"name":"Blood-Power-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Rough Blasting Powder",3]],"top_dmg":[]},{"name":"Boomska-Boom-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Comprehend Scroll",7]],"top_dmg":[]},{"name":"Boy-Axeripper-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",3]],"top_dmg":[]},{"name":"Braum-Healscream-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Buttsy-Normus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Charred Wolf Meat",5]],"top_dmg":[]},{"name":"Cathedrus-Brightshadow-Normal-US","class":"Paladin","conf":100,"cov":100,"sig":[["Divine Protection",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Divine Protection",1]],"top_dmg":[]},{"name":"Chewed-Toy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skysight",1]],"top_dmg":[]},{"name":"Coraline-Dreadmoore-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Reinforced Linen Cape",1]],"top_dmg":[]},{"name":"Darielthis-Mistblade-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Sprint",1],["Skysight",1]],"top_dmg":[]},{"name":"Dark-Roidz-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Fine Leather Belt",1]],"top_dmg":[]},{"name":"Darkhealer-Holyhealer-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Simple Kilt",9]],"top_dmg":[]},{"name":"Dasbier-Immerbier-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Basic Campfire",2]],"top_dmg":[]},{"name":"Days-Goldentusk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Brightcloth Cloak",1]],"top_dmg":[]},{"name":"Deathguard-Behlial-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Teleport: Undercity",1]],"top_dmg":[]},{"name":"Demi-Tasse-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Strider Stew",7]],"top_dmg":[]},{"name":"Dirk-Hardpecs-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Rough Blasting Powder",3]],"top_dmg":[]},{"name":"Docabdul-Elsayed-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",4]],"top_dmg":[]},{"name":"Epidemius-Plaguebearer-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Armor +8, Stamina +1",1],["Feed Pet",1]],"top_dmg":[]},{"name":"Eris-Ash-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",13]],"top_dmg":[]},{"name":"Evill-Dark-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",2]],"top_dmg":[]},{"name":"Flatulent-Finn-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Elixir of Minor Force",1],["Minor Arcane Elixir",1],["Sprint",1]],"top_dmg":[]},{"name":"Flyte-Risk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cure Poison",1]],"top_dmg":[]},{"name":"Fontane-Crowley-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Bracer - Lesser Stamina",1]],"top_dmg":[]},{"name":"Ghazghkull-Thruka-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Silk Cloth",3]],"top_dmg":[]},{"name":"Grunk-Offal-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Embossed Leather Gloves",8]],"top_dmg":[]},{"name":"Gunk-Magerson-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Comprehend Scroll",7]],"top_dmg":[]},{"name":"Hawkeye-Talon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Tanning Rack",2]],"top_dmg":[]},{"name":"Ilyarozanov-Hollander-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1],["Arcane Intellect",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1],["Arcane Intellect",1]],"top_dmg":[]},{"name":"Jelayani-Soulcaller-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Cloak - Minor Resistance",1]],"top_dmg":[]},{"name":"Jellifish-Cakes-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Silk Cloth",10]],"top_dmg":[]},{"name":"Katlinn-Cross-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Silk Bandage",12]],"top_dmg":[]},{"name":"Ken-Lockenspiel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Summon Felsteed",1]],"top_dmg":[]},{"name":"Krawlix-Wildvine-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",6]],"top_dmg":[]},{"name":"Lagill-Ashenwing-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1],["Cat Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1],["Cat Form",1]],"top_dmg":[]},{"name":"Lenore-Hawthorn-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Chest - Lesser Stamina",2]],"top_dmg":[]},{"name":"Lor-Cravel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Hearthstone",1]],"top_dmg":[]},{"name":"Lori-Earthfisher-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",22]],"top_dmg":[]},{"name":"Lucifers-Petuwu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Summon Warhorse",1]],"top_dmg":[]},{"name":"Mcpoil-Rules-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Sprint",1]],"top_dmg":[]},{"name":"Moore-Kaobell-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Elixir of Minor Fortitude",2]],"top_dmg":[]},{"name":"Mrsnyp-Featherstep-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skysight",1]],"top_dmg":[]},{"name":"Mystic-Rabbyt-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bristle Whisker Catfish",8]],"top_dmg":[]},{"name":"Nitro-Claw-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1]],"top_dmg":[]},{"name":"Norian-Ashford-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Boiled Clams",11]],"top_dmg":[]},{"name":"Nothealingur-Janus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",5]],"top_dmg":[]},{"name":"Old-Dagger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Blasting Powder",3]],"top_dmg":[]},{"name":"Ozamataz-Buckshanks-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Pajeraso-Rnc-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Linen Bag",6]],"top_dmg":[]},{"name":"Perro-Pastor-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Lesser Healing Potion",15]],"top_dmg":[]},{"name":"Playinwit-Makittycat-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Hillman's Shoulders",3]],"top_dmg":[]},{"name":"Raijin-Aetherion-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Blasting Powder",13]],"top_dmg":[]},{"name":"Ralal-Lightnin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",2]],"top_dmg":[]},{"name":"Rasta-Bumbatroll-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Minor Arcane Elixir",9]],"top_dmg":[]},{"name":"Ronga-Bank-Normal-US","class":"Mage","conf":100,"cov":40,"sig":[["Arcane Intellect",1],["Frost Armor",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Linen Bag",3],["Arcane Intellect",1],["Frost Armor",1]],"top_dmg":[]},{"name":"Roy-Haroldgene-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Wool Bandage",5]],"top_dmg":[]},{"name":"Rukthar-Beastcaller-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Light Leather Pants",7]],"top_dmg":[]},{"name":"Sae-Kari-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skysight",1],["Walk on Air",1]],"top_dmg":[]},{"name":"Silly-Sal-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1]],"top_dmg":[]},{"name":"Silvare-Lifebane-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Goblin Deviled Clams",13]],"top_dmg":[]},{"name":"Skizzik-Notabot-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Light Leather Quiver",1]],"top_dmg":[]},{"name":"Sleepycreepy-Joebiden-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Sprint",1]],"top_dmg":[]},{"name":"Slowly-Balding-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Fish Bowl",5]],"top_dmg":[]},{"name":"Slurpi-Dirp-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1]],"top_dmg":[]},{"name":"Some-Newguy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Runed Silver Rod",1]],"top_dmg":[]},{"name":"Sylenis-Sunbloom-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Leather",3]],"top_dmg":[]},{"name":"Sír-Lóin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Stock Crate",2]],"top_dmg":[]},{"name":"Thalvex-Soulrender-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",12]],"top_dmg":[]},{"name":"Thargil-Stormblade-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Rough Dynamite",13]],"top_dmg":[]},{"name":"Theymademe-Rename-Normal-US","class":"Shaman","conf":100,"cov":50,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cerulean Dye",1],["Ghost Wolf",1]],"top_dmg":[]},{"name":"Trollololo-Daholyone-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Brown Linen Pants",9]],"top_dmg":[]},{"name":"Tyraxus-Vyseria-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Battle Stance",2],["Berserker Stance",1]],"top_dmg":[]},{"name":"Wanilulan-Thunderneck-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",3]],"top_dmg":[]},{"name":"Weirdblue-Owlthing-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Roast Raptor",9],["Carrion Surprise",8],["Rockscale Cod",1]],"top_dmg":[]},{"name":"Work-Worker-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Silk Cloth",3],["Mystic Heavy Armor Kit",1]],"top_dmg":[]},{"name":"Yolanda-Forger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Sprint",1]],"top_dmg":[]},{"name":"Zaza-Dagerdik-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Bracer - Minor Stamina",1]],"top_dmg":[]},{"name":"Zugzugshock-Orcward-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]}],"secs":1955},{"file":"WoWCombatLog-111526_060037.txt","start":"2026-11-15 06:00:37.419000","end":"2026-11-15 07:02:49.172000","zones":[{"ts":"2026-11-15 06:00:37.420000","id":"43","name":"Wailing Caverns"},{"ts":"2026-11-15 07:00:50.297000","id":"1","name":"The Wailing Caverns"},{"ts":"2026-11-15 07:01:17.219000","id":"1","name":"Orgrimmar"}],"encounters":[{"id":"585","name":"Lady Anacondra","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:06:24.753000","end":"2026-11-15 06:06:51.489000","success":true,"ms":26668},{"id":"587","name":"Kresh","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:08:04.521000","end":"2026-11-15 06:08:34.565000","success":true,"ms":29941},{"id":"586","name":"Lord Cobrahn","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:17:31.157000","end":"2026-11-15 06:17:50.084000","success":true,"ms":18998},{"id":"588","name":"Lord Pythas","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:27:26.179000","end":"2026-11-15 06:28:09.856000","success":true,"ms":43716},{"id":"589","name":"Skum","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:37:41.188000","end":"2026-11-15 06:38:20.528000","success":true,"ms":39373},{"id":"590","name":"Lord Serpentis","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:46:43.504000","end":"2026-11-15 06:47:14.292000","success":true,"ms":30752},{"id":"591","name":"Verdan the Everliving","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:47:51.304000","end":"2026-11-15 06:48:31.513000","success":true,"ms":40108},{"id":"592","name":"Mutanus the Devourer","difficulty":"1","size":"5","zone_id":"43","start":"2026-11-15 06:58:32.373000","end":"2026-11-15 06:59:15.179000","success":true,"ms":42822}],"kills":[["Druid of the Fang",41],["Deviate Lasher",26],["Snake",16],["Deviate Ravager",15],["Evolving Ectoplasm",13],["Deviate Shambler",13],["Deviate Python",12],["Deviate Guardian",9],["Deviate Crocolisk",8],["Deviate Viper",8],["Nightmare Ectoplasm",8],["Deviate Adder",7],["Deviate Dreadfang",7],["Serpentbloom Snake",6],["Deviate Venomwing",5],["Biletoad",2],["Deviate Moccasin",2],["Lady Anacondra",1],["Kresh",1],["Lord Cobrahn",1],["Lord Pythas",1],["Deviate Faerie Dragon",1],["Skum",1],["Lord Serpentis",1],["Verdan the Everliving",1],["Mutanus the Devourer",1]],"killers":[["Spugglas-Bjones-Normal-US",58],["Duggywanna-Tuggy-Normal-US",56],["Tandumonium-Ebbeson-Normal-US",49],["Zolaerius-Duongtotem-Normal-US",41],["Letti-Cultoflorb-Normal-US",3]],"creature_deaths":[["Druid of the Fang",58],["Deviate Lasher",33],["Deviate Ravager",19],["Snake",16],["Deviate Shambler",15],["Evolving Ectoplasm",14],["Deviate Python",12],["Deviate Crocolisk",11],["Deviate Viper",11],["Deviate Dreadfang",11],["Deviate Guardian",10],["Deviate Adder",8],["Nightmare Ectoplasm",8],["Serpentbloom Snake",6],["Deviate Venomwing",6],["Deviate Moccasin",3],["Biletoad",2],["Lady Anacondra",1],["Kresh",1],["Lord Cobrahn",1]],"player_deaths":[["Zolaerius-Duongtotem-Normal-US",1]],"ability_dmg":[["Toxic Sporidium",1228370],["Bane of Agony",1209344],["Fire Shield",1023403],["Immolate",816276],["Rend",670555],["Auto Shot",663177],["Flame Shock",434904],["Flametongue Attack",349502],["Serpent Sting",330501],["Thunder Clap",307389],["Revenge",253125],["Fire Nova",209531],["Arcane Shot",152929],["Shoot",124651],["Corruption",86153],["Lightning Bolt",79924],["Searing Pain",79253],["Aimed Shot",78007],["Shield Bash",69767],["Cleave",69644],["Rain of Fire",54652],["Multi-Shot",42723],["Earth Shock",35987],["Raptor Strike",19201],["Shadow Bolt",12820],["Victory Rush",11471],["Lightning Shield",9821],["Immolation Trap",9366],["Touch of the Grave",6361],["Frost Shock",2143],["Shadowburn",864],["Mongoose Bite",704],["Thorns",562],["Claw",214],["Drain Soul",207],["Rip",25]],"ability_hits":{"Arcane Shot":163,"Toxic Sporidium":1349,"Auto Shot":712,"Rend":682,"Revenge":242,"Bane of Agony":1316,"Flame Shock":522,"Aimed Shot":50,"Immolate":906,"Serpent Sting":429,"Flametongue Attack":432,"Shoot":252,"Thunder Clap":332,"Fire Nova":244,"Cleave":82,"Corruption":86,"Lightning Bolt":85,"Multi-Shot":50,"Earth Shock":51,"Lightning Shield":9,"Victory Rush":9,"Shield Bash":44,"Raptor Strike":25,"Fire Shield":1137,"Searing Pain":44,"Frost Shock":2,"Mongoose Bite":1,"Immolation Trap":9,"Rain of Fire":111,"Touch of the Grave":5,"Shadow Bolt":12,"Shadowburn":4,"Drain Soul":1,"Thorns":2,"Claw":1,"Rip":1},"encounter_open":{},"minutes":[["2026-11-15 06:00",29],["2026-11-15 06:01",944],["2026-11-15 06:02",1249],["2026-11-15 06:03",1116],["2026-11-15 06:04",276],["2026-11-15 06:05",670],["2026-11-15 06:06",991],["2026-11-15 06:07",638],["2026-11-15 06:08",441],["2026-11-15 06:09",749],["2026-11-15 06:10",635],["2026-11-15 06:11",886],["2026-11-15 06:12",795],["2026-11-15 06:13",1076],["2026-11-15 06:14",796],["2026-11-15 06:15",1180],["2026-11-15 06:16",678],["2026-11-15 06:17",717],["2026-11-15 06:18",159],["2026-11-15 06:19",288],["2026-11-15 06:20",693],["2026-11-15 06:21",817],["2026-11-15 06:22",848],["2026-11-15 06:23",867],["2026-11-15 06:24",868],["2026-11-15 06:25",588],["2026-11-15 06:26",565],["2026-11-15 06:27",1041],["2026-11-15 06:28",283],["2026-11-15 06:29",10],["2026-11-15 06:30",890],["2026-11-15 06:31",582],["2026-11-15 06:32",496],["2026-11-15 06:33",621],["2026-11-15 06:34",369],["2026-11-15 06:35",816],["2026-11-15 06:36",649],["2026-11-15 06:37",799],["2026-11-15 06:38",476],["2026-11-15 06:39",512],["2026-11-15 06:40",891],["2026-11-15 06:41",399],["2026-11-15 06:42",619],["2026-11-15 06:43",812],["2026-11-15 06:44",463],["2026-11-15 06:45",914],["2026-11-15 06:46",547],["2026-11-15 06:47",735],["2026-11-15 06:48",478],["2026-11-15 06:49",568],["2026-11-15 06:50",26],["2026-11-15 06:51",414],["2026-11-15 06:52",42],["2026-11-15 06:53",527],["2026-11-15 06:54",1029],["2026-11-15 06:55",821],["2026-11-15 06:56",600],["2026-11-15 06:57",797],["2026-11-15 06:58",452],["2026-11-15 06:59",251],["2026-11-15 07:00",176],["2026-11-15 07:01",1790],["2026-11-15 07:02",563]],"swings":0,"crits":0,"bytes":12032916,"roster":[{"name":"Duggywanna-Tuggy-Normal-US","class":"Warrior","conf":100,"cov":38,"sig":[["Rend",233],["Thunder Clap",121],["Cleave",47]],"dmg":3542216,"hits":3767,"heal":12739,"heals":9,"kills":56,"deaths":0,"taken":410725,"in_combat":true,"top_casts":[["Shield Block",358],["Revenge",286],["Rend",233],["Thunder Clap",121],["Taunt",49],["Shield Bash",48]],"top_dmg":[["Toxic Sporidium",1220114],["Fire Shield",940151],["Rend",670555],["Thunder Clap",307389],["Revenge",253125],["Shield Bash",69767]]},{"name":"Spugglas-Bjones-Normal-US","class":"Warlock","conf":100,"cov":64,"sig":[["Immolate",223],["Bane of Agony",172],["Searing Pain",45]],"dmg":2388823,"hits":2731,"heal":1343,"heals":2,"kills":58,"deaths":0,"taken":4929,"in_combat":true,"top_casts":[["Shoot",273],["Immolate",223],["Bane of Agony",172],["Searing Pain",45],["Life Tap",31],["Corruption",28]],"top_dmg":[["Bane of Agony",1209344],["Immolate",816276],["Shoot",115378],["Corruption",86153],["Searing Pain",79253],["Rain of Fire",54652]]},{"name":"Tandumonium-Ebbeson-Normal-US","class":"Hunter","conf":100,"cov":99,"sig":[["Auto Shot",761],["Arcane Shot",176],["Serpent Sting",174]],"dmg":1322633,"hits":1459,"heal":0,"heals":0,"kills":49,"deaths":0,"taken":33738,"in_combat":true,"top_casts":[["Auto Shot",761],["Arcane Shot",176],["Serpent Sting",174],["Aimed Shot",54],["Hunter's Mark",47],["Raptor Strike",27]],"top_dmg":[["Auto Shot",662016],["Serpent Sting",330501],["Arcane Shot",152929],["Aimed Shot",78007],["Multi-Shot",42723],["Raptor Strike",19201]]},{"name":"Zolaerius-Duongtotem-Normal-US","class":"Shaman","conf":100,"cov":70,"sig":[["Flame Shock",132],["Lightning Bolt",91],["Searing Totem",70]],"dmg":1159331,"hits":1414,"heal":4980,"heals":5,"kills":41,"deaths":1,"taken":36376,"in_combat":true,"top_casts":[["Flame Shock",132],["Fire Nova",91],["Lightning Bolt",91],["Searing Totem",70],["Earth Shock",63],["Strength of Earth Totem",18]],"top_dmg":[["Flame Shock",434904],["Flametongue Attack",349502],["Fire Nova",209531],["Lightning Bolt",79924],["Fire Shield",37519],["Earth Shock",35987]]},{"name":"Letti-Cultoflorb-Normal-US","class":"Priest","conf":100,"cov":96,"sig":[["Renew",936],["Lesser Heal",256],["Heal",18]],"dmg":28561,"hits":26,"heal":1095359,"heals":915,"kills":3,"deaths":0,"taken":5208,"in_combat":true,"top_casts":[["Renew",936],["Lesser Heal",256],["Shoot",29],["Power Word: Shield",19],["Heal",18],["Touch of the Grave",5]],"top_dmg":[["Fire Shield",12927],["Shoot",9273],["Touch of the Grave",6361]]},{"name":"Subitai-Jujinkai-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Hunter's Mark",1],["Auto Shot",1]],"dmg":1161,"hits":1,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Hunter's Mark",1],["Auto Shot",1]],"top_dmg":[["Auto Shot",1161]]},{"name":"Bloody-Panterraqu-Normal-US","class":"Druid","conf":100,"cov":67,"sig":[["Claw",1],["Healing Touch",1]],"dmg":801,"hits":4,"heal":1138,"heals":1,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Claw",1],["Rip",1],["Healing Touch",1]],"top_dmg":[["Thorns",562],["Claw",214],["Rip",25]]},{"name":"Farras-Stormhoof-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Rejuvenation",3],["Regrowth",2],["Maul",2]],"dmg":0,"hits":0,"heal":6694,"heals":5,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Rejuvenation",3],["Regrowth",2],["Maul",2]],"top_dmg":[]},{"name":"Fidelini-Fideo-Normal-US","class":"Priest","conf":100,"cov":100,"sig":[["Renew",6]],"dmg":0,"hits":0,"heal":4835,"heals":5,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Renew",6]],"top_dmg":[]},{"name":"Tamara-Softwind-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Healing Wave",2]],"dmg":0,"hits":0,"heal":596,"heals":1,"kills":0,"deaths":0,"taken":0,"in_combat":true,"top_casts":[["Healing Wave",2]],"top_dmg":[]},{"name":"Alaskan-Boy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Summon Warhorse",1]],"top_dmg":[]},{"name":"Allstar-Crowdly-Normal-US","class":"Warlock","conf":100,"cov":100,"sig":[["Summon Imp",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Summon Imp",1]],"top_dmg":[]},{"name":"Alohaduk-Duk-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Apêx-Bloodâxe-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Aspect of the Cheetah",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Aspect of the Cheetah",1]],"top_dmg":[]},{"name":"Askani-Fallstar-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Thick Armor Kit",1]],"top_dmg":[]},{"name":"Axeohol-Drunkmon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Forceful Heavy Armor Kit",1]],"top_dmg":[]},{"name":"Azunder-Chaos-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Summon Warhorse",1]],"top_dmg":[]},{"name":"Beastmaster-Venxchu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Walk on Air",1]],"top_dmg":[]},{"name":"Beck-Cultfu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Linen Gloves",7],["Bolt of Linen Cloth",3],["Linen Boots",1]],"top_dmg":[]},{"name":"Bird-Time-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1]],"top_dmg":[]},{"name":"Chunchunmaru-Desu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Grace of Air Totem",1]],"top_dmg":[]},{"name":"Dalamar-Navik-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Walk on Air",1]],"top_dmg":[]},{"name":"Dekurgan-Beefnova-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Enchant Weapon - Striking",1]],"top_dmg":[]},{"name":"Demon-Babysitter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",21]],"top_dmg":[]},{"name":"El-Woop-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",6]],"top_dmg":[]},{"name":"Eryn-Thebank-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Frost Armor",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Frost Armor",1]],"top_dmg":[]},{"name":"Farolen-Falconstrike-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cat Form",1]],"top_dmg":[]},{"name":"Fear-Hashira-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Blasting Powder",9]],"top_dmg":[]},{"name":"Gankz-Fury-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Camp Tent",10]],"top_dmg":[]},{"name":"Hawksy-Mon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",8]],"top_dmg":[]},{"name":"Heehee-Yougae-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Handstitched Leather Vest",4]],"top_dmg":[]},{"name":"Holgual-Oxford-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skinning",1]],"top_dmg":[]},{"name":"Jibbidiah-Thunderhoof-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Aspect of the Cheetah",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Aspect of the Cheetah",1]],"top_dmg":[]},{"name":"John-Kreeger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Sprint",1]],"top_dmg":[]},{"name":"Juju-Skinner-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Bear Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bear Form",1]],"top_dmg":[]},{"name":"Kellathas-Windstrider-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skysight",1]],"top_dmg":[]},{"name":"Konstantine-Boros-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Rough Dynamite",18]],"top_dmg":[]},{"name":"Kris-Terratomb-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Lamaldi-Tabruja-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Light Leather",2]],"top_dmg":[]},{"name":"Lanky-Boy-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1]],"top_dmg":[]},{"name":"Liloinky-Maximus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Red Mageweave Bag",2]],"top_dmg":[]},{"name":"Lucy-Lore-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cat Form",1]],"top_dmg":[]},{"name":"Lyra-Beary-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",2]],"top_dmg":[]},{"name":"Madcow-Diesel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Savory Whimsyfin Delight",29]],"top_dmg":[]},{"name":"Mage-Evercraft-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Linen Cloth",6]],"top_dmg":[]},{"name":"Mana-Steal-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Hillman's Shoulders",1]],"top_dmg":[]},{"name":"Mobari-Dusktongue-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Create Soulstone",1]],"top_dmg":[]},{"name":"Moisty-Fish-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",1]],"top_dmg":[]},{"name":"Nommarad-Palbielle-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",2]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",2]],"top_dmg":[]},{"name":"Nomo-Hatesgnomes-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Slow Fall",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Slow Fall",1]],"top_dmg":[]},{"name":"Nox-Pai-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1]],"top_dmg":[]},{"name":"Odeon-Duskfisher-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Bolt of Silk Cloth",7]],"top_dmg":[]},{"name":"Owlbert-Boomchicken-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Claw",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Claw",1]],"top_dmg":[]},{"name":"Oxymoh-Ronik-Normal-US","class":"Paladin","conf":100,"cov":100,"sig":[["Blessing of Might",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blessing of Might",1]],"top_dmg":[]},{"name":"Paddington-Bearclaw-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1]],"top_dmg":[]},{"name":"Prosper-Hunter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Linen Bandage",30]],"top_dmg":[]},{"name":"Pustulent-Porthios-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Lesser Healing Potion",5]],"top_dmg":[]},{"name":"Pyhia-Pilvi-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Raja-Stormhunter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Roast Raptor",30]],"top_dmg":[]},{"name":"Rashid-Windfury-Normal-US","class":"Shaman","conf":100,"cov":50,"sig":[["Flametongue Weapon",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Skysight",1],["Flametongue Weapon",1]],"top_dmg":[]},{"name":"Redrock-Granitehoof-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Heavy Linen Bandage",15]],"top_dmg":[]},{"name":"Samagon-Hackskull-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Spine-Anddine-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Stock Crate",2]],"top_dmg":[]},{"name":"State-Propaganda-Normal-US","class":"Druid","conf":100,"cov":67,"sig":[["Travel Form",1],["Cat Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Travel Form",1],["Walk on Air",1],["Cat Form",1]],"top_dmg":[]},{"name":"Steinner-Mojotusk-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",2]],"top_dmg":[]},{"name":"Svartvargr-Storma-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Ghost Wolf",1]],"top_dmg":[]},{"name":"Toes-Straitsuk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Armor +16, Attack Power +4",2]],"top_dmg":[]},{"name":"Vincent-Veal-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Cat Form",1]],"top_dmg":[]},{"name":"Zesty-Zeez-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Blink",1]],"top_dmg":[]},{"name":"Zombie-Bones-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"hits":0,"heal":0,"heals":0,"kills":0,"deaths":0,"taken":0,"in_combat":false,"top_casts":[["Coarse Grinding Stone",2]],"top_dmg":[]}],"secs":3731}],"players":[{"name":"Duggywanna-Tuggy-Normal-US","class":"Warrior","conf":100,"cov":38,"sig":[["Rend",233],["Thunder Clap",121],["Cleave",47]],"dmg":3542216,"heal":12739,"kills":56,"deaths":0,"hits":3767,"taken":410725,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Shield Block",358],["Revenge",286],["Rend",233],["Thunder Clap",121],["Taunt",49],["Shield Bash",48]]},{"name":"Spugglas-Bjones-Normal-US","class":"Warlock","conf":100,"cov":64,"sig":[["Immolate",223],["Bane of Agony",172],["Searing Pain",45]],"dmg":2388823,"heal":1343,"kills":58,"deaths":0,"hits":2731,"taken":4929,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Shoot",273],["Immolate",223],["Bane of Agony",172],["Searing Pain",45],["Life Tap",31],["Corruption",28]]},{"name":"Tandumonium-Ebbeson-Normal-US","class":"Hunter","conf":100,"cov":96,"sig":[["Auto Shot",355],["Serpent Sting",134],["Arcane Shot",117]],"dmg":1761251,"heal":0,"kills":73,"deaths":0,"hits":2292,"taken":44583,"runs":["WoWCombatLog-111326_063935.txt","WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Auto Shot",355],["Serpent Sting",134],["Arcane Shot",117],["Hunter's Mark",27],["Raptor Strike",26],["Immolation Trap",19]]},{"name":"Zolaerius-Duongtotem-Normal-US","class":"Shaman","conf":100,"cov":70,"sig":[["Flame Shock",132],["Lightning Bolt",91],["Searing Totem",70]],"dmg":1159331,"heal":4980,"kills":41,"deaths":1,"hits":1414,"taken":36376,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Flame Shock",132],["Fire Nova",91],["Lightning Bolt",91],["Searing Totem",70],["Earth Shock",63],["Strength of Earth Totem",18]]},{"name":"Caillomian-Ghoulbasher-Normal-US","class":"Paladin","conf":100,"cov":63,"sig":[["Seal of Fury",119],["Judgement",110],["Hammer of Justice",18]],"dmg":776313,"heal":28125,"kills":17,"deaths":0,"hits":1143,"taken":85292,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Seal of Fury",119],["Judgement",110],["Holy Strike",95],["Touch of the Grave",52],["Hammer of Justice",18],["Lay on Hands",2]]},{"name":"Guster-Rotgut-Normal-US","class":"Warlock","conf":100,"cov":44,"sig":[["Corruption",93],["Bane of Agony",86],["Shadow Bolt",33]],"dmg":626283,"heal":27102,"kills":8,"deaths":0,"hits":1240,"taken":4642,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Shoot",254],["Corruption",93],["Bane of Agony",86],["Touch of the Grave",54],["Shadow Bolt",33],["Immolate",25]]},{"name":"Sir-Cuumference-Normal-US","class":"Paladin","conf":100,"cov":61,"sig":[["Judgement",105],["Seal of Righteousness",58],["Holy Light",42]],"dmg":246017,"heal":47020,"kills":36,"deaths":0,"hits":510,"taken":65157,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Judgement",105],["Holy Strike",96],["Seal of Righteousness",58],["Touch of the Grave",44],["Holy Light",42],["Hammer of Justice",11]]},{"name":"Letti-Cultoflorb-Normal-US","class":"Priest","conf":100,"cov":96,"sig":[["Renew",936],["Lesser Heal",256],["Heal",18]],"dmg":28561,"heal":1095359,"kills":3,"deaths":0,"hits":26,"taken":5208,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Renew",936],["Lesser Heal",256],["Shoot",29],["Power Word: Shield",19],["Heal",18],["Touch of the Grave",5]]},{"name":"Francine-Stein-Normal-US","class":"Priest","conf":100,"cov":96,"sig":[["Renew",648],["Lesser Heal",168],["Fade",16]],"dmg":26175,"heal":352502,"kills":0,"deaths":0,"hits":32,"taken":19840,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Renew",648],["Lesser Heal",168],["Power Word: Shield",19],["Fade",16],["Touch of the Grave",14],["Touch of Weakness",6]]},{"name":"Subitai-Jujinkai-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Hunter's Mark",1],["Auto Shot",1]],"dmg":1161,"heal":0,"kills":0,"deaths":0,"hits":1,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Hunter's Mark",1],["Auto Shot",1]]},{"name":"Ferengi-Wizard-Normal-US","class":"Warlock","conf":100,"cov":100,"sig":[["Summon Voidwalker",1],["Immolate",1],["Corruption",1]],"dmg":903,"heal":0,"kills":0,"deaths":0,"hits":7,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Summon Voidwalker",1],["Immolate",1],["Corruption",1],["Shadow Bolt",1]]},{"name":"Bloody-Panterraqu-Normal-US","class":"Druid","conf":100,"cov":67,"sig":[["Claw",1],["Healing Touch",1]],"dmg":801,"heal":1138,"kills":0,"deaths":0,"hits":4,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Claw",1],["Rip",1],["Healing Touch",1]]},{"name":"Farras-Stormhoof-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Rejuvenation",3],["Regrowth",2],["Maul",2]],"dmg":0,"heal":6694,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Rejuvenation",3],["Regrowth",2],["Maul",2]]},{"name":"Fidelini-Fideo-Normal-US","class":"Priest","conf":100,"cov":100,"sig":[["Renew",6]],"dmg":0,"heal":4835,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Renew",6]]},{"name":"Hurne-Sagetalon-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Rejuvenation",3]],"dmg":0,"heal":1318,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Rejuvenation",3]]},{"name":"Tamara-Softwind-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Healing Wave",2]],"dmg":0,"heal":596,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":true,"top_casts":[["Healing Wave",2]]},{"name":"Inspectahh-Deckk-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Healing Wave",2]],"dmg":0,"heal":318,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":true,"top_casts":[["Healing Wave",2]]},{"name":"Abrah-Ge-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Raptor Rouladen",2]]},{"name":"Afway-Gaming-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Travel Form",1]]},{"name":"Alaskan-Boy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Summon Warhorse",1]]},{"name":"Allstar-Crowdly-Normal-US","class":"Warlock","conf":100,"cov":100,"sig":[["Summon Imp",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Summon Imp",1]]},{"name":"Alohaduk-Duk-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Alunna-Nightbreeze-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Travel Form",1]]},{"name":"Aphotic-Dreadtide-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Greater Healing Potion",4]]},{"name":"Apung-Bardagul-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Wool Bandage",22]]},{"name":"Apêx-Bloodâxe-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Aspect of the Cheetah",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Aspect of the Cheetah",1]]},{"name":"Aqpo-Strider-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["White Linen Robe",1],["Linen Belt",1]]},{"name":"Archon-Dalaran-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",5]]},{"name":"Arixx-Sola-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Stock Crate",1]]},{"name":"Askani-Fallstar-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Thick Armor Kit",1]]},{"name":"Asylump-Gravelump-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Boiled Clams",5]]},{"name":"Athelaz-Canebrake-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Hearthstone",1]]},{"name":"Axeohol-Drunkmon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Forceful Heavy Armor Kit",1]]},{"name":"Azunder-Chaos-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Summon Warhorse",1]]},{"name":"Beastmaster-Venxchu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Walk on Air",1]]},{"name":"Beck-Cultfu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Heavy Linen Gloves",7],["Bolt of Linen Cloth",3],["Linen Boots",1]]},{"name":"Beelphegor-Sloth-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",1]]},{"name":"Biberty-Jones-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Cured Medium Hide",2],["Dark Leather Cloak",1]]},{"name":"Bird-Time-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Travel Form",1]]},{"name":"Blackthornes-Wither-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Greater Adept's Robe",2],["Robes of Arcana",1]]},{"name":"Blacktooth-Grin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchanted Lute",1]]},{"name":"Blood-Power-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Rough Blasting Powder",3]]},{"name":"Boomska-Boom-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Comprehend Scroll",7]]},{"name":"Boy-Axeripper-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",3]]},{"name":"Braum-Healscream-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Buttsy-Normus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Charred Wolf Meat",5]]},{"name":"Cathedrus-Brightshadow-Normal-US","class":"Paladin","conf":100,"cov":100,"sig":[["Divine Protection",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Divine Protection",1]]},{"name":"Chewed-Toy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Skysight",1]]},{"name":"Chunchunmaru-Desu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Grace of Air Totem",1]]},{"name":"Coraline-Dreadmoore-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Reinforced Linen Cape",1]]},{"name":"Dalamar-Navik-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Walk on Air",1]]},{"name":"Darielthis-Mistblade-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Sprint",1],["Skysight",1]]},{"name":"Dark-Roidz-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Fine Leather Belt",1]]},{"name":"Darkhealer-Holyhealer-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Simple Kilt",9]]},{"name":"Dasbier-Immerbier-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Basic Campfire",2]]},{"name":"Days-Goldentusk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Brightcloth Cloak",1]]},{"name":"Deathguard-Behlial-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Teleport: Undercity",1]]},{"name":"Dekurgan-Beefnova-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Enchant Weapon - Striking",1]]},{"name":"Demi-Tasse-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Strider Stew",7]]},{"name":"Demon-Babysitter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",21]]},{"name":"Dirk-Hardpecs-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Rough Blasting Powder",3]]},{"name":"Docabdul-Elsayed-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",4]]},{"name":"El-Woop-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",6]]},{"name":"Epidemius-Plaguebearer-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Armor +8, Stamina +1",1],["Feed Pet",1]]},{"name":"Eris-Ash-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",13]]},{"name":"Eryn-Thebank-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Frost Armor",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Frost Armor",1]]},{"name":"Evill-Dark-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Blink",2]]},{"name":"Farolen-Falconstrike-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Cat Form",1]]},{"name":"Fear-Hashira-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Heavy Blasting Powder",9]]},{"name":"Flatulent-Finn-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Elixir of Minor Force",1],["Minor Arcane Elixir",1],["Sprint",1]]},{"name":"Flyte-Risk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Cure Poison",1]]},{"name":"Fontane-Crowley-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Bracer - Lesser Stamina",1]]},{"name":"Gankz-Fury-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Camp Tent",10]]},{"name":"Ghazghkull-Thruka-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Silk Cloth",3]]},{"name":"Grunk-Offal-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Embossed Leather Gloves",8]]},{"name":"Gunk-Magerson-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Comprehend Scroll",7]]},{"name":"Hawkeye-Talon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Tanning Rack",2]]},{"name":"Hawksy-Mon-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",8]]},{"name":"Heehee-Yougae-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Handstitched Leather Vest",4]]},{"name":"Holgual-Oxford-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Skinning",1]]},{"name":"Ilyarozanov-Hollander-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1],["Arcane Intellect",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Blink",1],["Arcane Intellect",1]]},{"name":"Jelayani-Soulcaller-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Cloak - Minor Resistance",1]]},{"name":"Jellifish-Cakes-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Silk Cloth",10]]},{"name":"Jibbidiah-Thunderhoof-Normal-US","class":"Hunter","conf":100,"cov":100,"sig":[["Aspect of the Cheetah",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Aspect of the Cheetah",1]]},{"name":"John-Kreeger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Sprint",1]]},{"name":"Juju-Skinner-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Bear Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bear Form",1]]},{"name":"Katlinn-Cross-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Silk Bandage",12]]},{"name":"Kellathas-Windstrider-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Skysight",1]]},{"name":"Ken-Lockenspiel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Summon Felsteed",1]]},{"name":"Konstantine-Boros-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Rough Dynamite",18]]},{"name":"Krawlix-Wildvine-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",6]]},{"name":"Kris-Terratomb-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Lagill-Ashenwing-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1],["Cat Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Travel Form",1],["Cat Form",1]]},{"name":"Lamaldi-Tabruja-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Light Leather",2]]},{"name":"Lanky-Boy-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Travel Form",1]]},{"name":"Lenore-Hawthorn-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Chest - Lesser Stamina",2]]},{"name":"Liloinky-Maximus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Red Mageweave Bag",2]]},{"name":"Lor-Cravel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Hearthstone",1]]},{"name":"Lori-Earthfisher-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",22]]},{"name":"Lucifers-Petuwu-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Summon Warhorse",1]]},{"name":"Lucy-Lore-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Cat Form",1]]},{"name":"Lyra-Beary-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Blink",2]]},{"name":"Madcow-Diesel-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Savory Whimsyfin Delight",29]]},{"name":"Mage-Evercraft-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",6]]},{"name":"Mana-Steal-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Hillman's Shoulders",1]]},{"name":"Mcpoil-Rules-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Sprint",1]]},{"name":"Mobari-Dusktongue-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Create Soulstone",1]]},{"name":"Moisty-Fish-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",1]]},{"name":"Moore-Kaobell-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Elixir of Minor Fortitude",2]]},{"name":"Mrsnyp-Featherstep-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Skysight",1]]},{"name":"Mystic-Rabbyt-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bristle Whisker Catfish",8]]},{"name":"Nitro-Claw-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Blink",1]]},{"name":"Nommarad-Palbielle-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",2]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",2]]},{"name":"Nomo-Hatesgnomes-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Slow Fall",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Slow Fall",1]]},{"name":"Norian-Ashford-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Boiled Clams",11]]},{"name":"Nothealingur-Janus-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",5]]},{"name":"Nox-Pai-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Blink",1]]},{"name":"Odeon-Duskfisher-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Bolt of Silk Cloth",7]]},{"name":"Old-Dagger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Blasting Powder",3]]},{"name":"Owlbert-Boomchicken-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Claw",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Claw",1]]},{"name":"Oxymoh-Ronik-Normal-US","class":"Paladin","conf":100,"cov":100,"sig":[["Blessing of Might",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Blessing of Might",1]]},{"name":"Ozamataz-Buckshanks-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Paddington-Bearclaw-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Travel Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Travel Form",1]]},{"name":"Pajeraso-Rnc-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Linen Bag",6]]},{"name":"Perro-Pastor-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Lesser Healing Potion",15]]},{"name":"Playinwit-Makittycat-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Hillman's Shoulders",3]]},{"name":"Prosper-Hunter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Heavy Linen Bandage",30]]},{"name":"Pustulent-Porthios-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Lesser Healing Potion",5]]},{"name":"Pyhia-Pilvi-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Raijin-Aetherion-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Blasting Powder",13]]},{"name":"Raja-Stormhunter-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Roast Raptor",30]]},{"name":"Ralal-Lightnin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Woolen Cloth",2]]},{"name":"Rashid-Windfury-Normal-US","class":"Shaman","conf":100,"cov":50,"sig":[["Flametongue Weapon",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Skysight",1],["Flametongue Weapon",1]]},{"name":"Rasta-Bumbatroll-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Minor Arcane Elixir",9]]},{"name":"Redrock-Granitehoof-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Heavy Linen Bandage",15]]},{"name":"Ronga-Bank-Normal-US","class":"Mage","conf":100,"cov":40,"sig":[["Arcane Intellect",1],["Frost Armor",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Linen Bag",3],["Arcane Intellect",1],["Frost Armor",1]]},{"name":"Roy-Haroldgene-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Wool Bandage",5]]},{"name":"Rukthar-Beastcaller-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Light Leather Pants",7]]},{"name":"Sae-Kari-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Skysight",1],["Walk on Air",1]]},{"name":"Samagon-Hackskull-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Silly-Sal-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Blink",1]]},{"name":"Silvare-Lifebane-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Goblin Deviled Clams",13]]},{"name":"Skizzik-Notabot-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Light Leather Quiver",1]]},{"name":"Sleepycreepy-Joebiden-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Sprint",1]]},{"name":"Slowly-Balding-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Fish Bowl",5]]},{"name":"Slurpi-Dirp-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Blink",1]]},{"name":"Some-Newguy-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Runed Silver Rod",1]]},{"name":"Spine-Anddine-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Stock Crate",2]]},{"name":"State-Propaganda-Normal-US","class":"Druid","conf":100,"cov":67,"sig":[["Travel Form",1],["Cat Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Travel Form",1],["Walk on Air",1],["Cat Form",1]]},{"name":"Steinner-Mojotusk-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",2]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Blink",2]]},{"name":"Svartvargr-Storma-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]},{"name":"Sylenis-Sunbloom-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Heavy Leather",3]]},{"name":"Sír-Lóin-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Stock Crate",2]]},{"name":"Thalvex-Soulrender-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Linen Cloth",12]]},{"name":"Thargil-Stormblade-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Rough Dynamite",13]]},{"name":"Theymademe-Rename-Normal-US","class":"Shaman","conf":100,"cov":50,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Cerulean Dye",1],["Ghost Wolf",1]]},{"name":"Toes-Straitsuk-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Armor +16, Attack Power +4",2]]},{"name":"Trollololo-Daholyone-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Brown Linen Pants",9]]},{"name":"Tyraxus-Vyseria-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Battle Stance",2],["Berserker Stance",1]]},{"name":"Vincent-Veal-Normal-US","class":"Druid","conf":100,"cov":100,"sig":[["Cat Form",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Cat Form",1]]},{"name":"Wanilulan-Thunderneck-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Chest - Inferior Stamina",3]]},{"name":"Weirdblue-Owlthing-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Roast Raptor",9],["Carrion Surprise",8],["Rockscale Cod",1]]},{"name":"Work-Worker-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Bolt of Silk Cloth",3],["Mystic Heavy Armor Kit",1]]},{"name":"Yolanda-Forger-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Sprint",1]]},{"name":"Zaza-Dagerdik-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Enchant Bracer - Minor Stamina",1]]},{"name":"Zesty-Zeez-Normal-US","class":"Mage","conf":100,"cov":100,"sig":[["Blink",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Blink",1]]},{"name":"Zombie-Bones-Normal-US","class":null,"conf":0,"cov":0,"sig":[],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111526_060037.txt"],"in_combat":false,"top_casts":[["Coarse Grinding Stone",2]]},{"name":"Zugzugshock-Orcward-Normal-US","class":"Shaman","conf":100,"cov":100,"sig":[["Ghost Wolf",1]],"dmg":0,"heal":0,"kills":0,"deaths":0,"hits":0,"taken":0,"runs":["WoWCombatLog-111326_063935.txt"],"in_combat":false,"top_casts":[["Ghost Wolf",1]]}],"totals":{"runs":2,"bytes":18410032,"encounters":12,"kills":292,"players":168,"in_combat":17,"dmg":10557835,"heal":1584069,"deaths":1}};
+const $ = (id) => document.getElementById(id);
+const RUNS = D.runs || [];
+const SOULS = D.players || [];
+const T = D.totals || {};
+
+const CLASS_COLOR = {
+  Warrior:'#C79C6E', Paladin:'#F58CBA', Hunter:'#ABD473', Rogue:'#FFF569',
+  Priest:'#FFFFFF', Shaman:'#0070DE', Mage:'#69CCF0', Warlock:'#9482C9',
+  Druid:'#FF7D0A'
+};
+
+function fmt(n){
+  n = n || 0;
+  if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1) + 'k';
+  return String(Math.round(n));
+}
+function exact(n){ return (n||0).toLocaleString('en-US'); }
+function mmss(s){
+  s = Math.max(0, Math.round(s));
+  const m = Math.floor(s/60), r = s%60;
+  return m + ':' + String(r).padStart(2,'0');
+}
+function clock(ts){
+  if (!ts) return '—';
+  const d = new Date(ts.replace(' ','T'));
+  if (isNaN(d)) return ts;
+  return d.toLocaleString('en-US',{month:'short',day:'numeric',
+    hour:'2-digit',minute:'2-digit',hour12:false});
+}
+function chip(cls){
+  if (!cls) return '<span class="chip" style="color:#6f655f">unknown</span>';
+  const c = CLASS_COLOR[cls] || '#9c8f88';
+  return '<span class="chip" style="color:'+c+'">'+cls+'</span>';
+}
+function short(n){ return String(n||'').replace(/-Normal-US$/,''); }
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, (c) => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ---- vitals ---------------------------------------------------------- */
+function renderVitals(){
+  const bosses = RUNS.reduce((a,r)=>a + r.encounters.filter(e=>e.success).length, 0);
+  const totalEnc = RUNS.reduce((a,r)=>a + r.encounters.length, 0);
+  const party = RUNS.reduce((a,r)=>a + r.roster.filter(p=>p.in_combat).length, 0);
+  const tiles = [
+    ['e', T.runs, 'sorties logged'],
+    ['g', bosses + '<small>/' + totalEnc + '</small>', 'bosses felled'],
+    ['e', exact(T.kills), 'party kills'],
+    ['s', fmt(T.dmg), 'damage dealt'],
+    ['v', fmt(T.heal), 'healing done'],
+    ['', exact(T.players), 'souls overheard']
+  ];
+  $('vitals').innerHTML = tiles.map(t =>
+    '<div class="vit '+t[0]+'"><div class="n">'+t[1]+'</div>'+
+    '<div class="l">'+t[2]+'</div></div>').join('');
+}
+
+/* ---- sortie cards ---------------------------------------------------- */
+function renderCards(){
+  $('cards').innerHTML = RUNS.map(function(r){
+    const zone = (r.zones[0] && r.zones[0].name) || 'unknown';
+    const bosses = r.encounters.filter(e=>e.success);
+    const kills = r.kills.reduce((a,k)=>a+k[1],0);
+    const deaths = r.roster.reduce((a,p)=>a+p.deaths,0);
+    const dmg = r.roster.reduce((a,p)=>a+p.dmg,0);
+    const heal = r.roster.reduce((a,p)=>a+p.heal,0);
+    return '<article class="card">'+
+      '<h3>'+esc(zone)+'</h3>'+
+      '<div class="sub">'+clock(r.start)+' &rarr; '+clock(r.end)+'</div>'+
+      '<div class="row"><span>duration</span><span>'+mmss(r.secs)+'</span></div>'+
+      '<div class="row"><span>log bytes parsed</span><span>'+exact(r.bytes)+'</span></div>'+
+      '<div class="row"><span>bosses</span><span>'+bosses.length+' / '+r.encounters.length+'</span></div>'+
+      '<div class="row"><span>kills</span><span>'+kills+'</span></div>'+
+      '<div class="row"><span>damage / healing</span><span>'+fmt(dmg)+' / '+fmt(heal)+'</span></div>'+
+      '<div class="row"><span>party deaths</span><span>'+deaths+'</span></div>'+
+      '<div class="bosses">'+bosses.map(function(b){
+        return '<span class="boss">'+esc(b.name)+'<i>'+Math.round(b.ms/1000)+'s</i></span>';
+      }).join('')+'</div></article>';
+  }).join('');
+}
+
+/* ---- encounter ladder ------------------------------------------------ */
+function renderLadder(){
+  const rows = [];
+  RUNS.forEach(function(r){
+    const zone = (r.zones[0] && r.zones[0].name) || '—';
+    r.encounters.forEach(function(e){ rows.push({e:e, zone:zone}); });
+  });
+  const max = Math.max.apply(null, rows.map(x=>x.e.ms||1));
+  let i = 0;
+  $('ladder').innerHTML = rows.map(function(x){
+    i++;
+    const e = x.e;
+    const pct = Math.max(4, Math.round(100 * (e.ms||0)/max));
+    return '<div class="enc '+(e.success?'':'wipe')+'">'+
+      '<div class="ix">'+String(i).padStart(2,'0')+'</div>'+
+      '<div class="nm">'+esc(e.name)+'<em>'+esc(x.zone)+'</em></div>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="ms">'+(e.ms?Math.round(e.ms/1000)+'s':'—')+'</div></div>';
+  }).join('') || '<div class="empty">no encounters recorded</div>';
+}
+
+
+
+/* ---- damage ledgers -------------------------------------------------- */
+function renderLedgers(){
+  $('ledgers').innerHTML = RUNS.map(function(r){
+    const zone = (r.zones[0] && r.zones[0].name) || '—';
+    const party = r.roster.filter(p=>p.in_combat)
+      .sort((a,b)=>(b.dmg+b.heal)-(a.dmg+a.heal));
+    const max = Math.max.apply(null, party.map(p=>Math.max(p.dmg,p.heal)).concat([1]));
+    const body = party.map(function(p){
+      const dPct = Math.round(100*p.dmg/max);
+      const hPct = Math.round(100*p.heal/max);
+      const shown = p.dmg >= p.heal ? dPct : hPct;
+      const val = p.dmg >= p.heal ? fmt(p.dmg)+' dmg' : fmt(p.heal)+' heal';
+      const meta = [];
+      if (p.kills) meta.push(p.kills+' kills');
+      if (p.deaths) meta.push(p.deaths+' death');
+      if (p.taken) meta.push(fmt(p.taken)+' taken');
+      if (p.top_dmg && p.top_dmg[0]) meta.push('top: '+p.top_dmg[0][0]);
+      return '<div class="lp">'+
+        '<div class="top"><span class="who">'+esc(short(p.name))+' '+chip(p.class)+'</span>'+
+        '<span class="num">'+val+'</span></div>'+
+        '<div class="track"><i style="width:'+Math.max(3,shown)+'%"></i></div>'+
+        '<div class="meta">'+esc(meta.join(' · '))+'</div></div>';
+    }).join('');
+    return '<div class="ledger"><h4>'+esc(zone)+' &mdash; party ledger</h4>'+
+      (body || '<div class="empty">nobody fought</div>')+'</div>';
+  }).join('');
+}
+
+/* ---- kill ledger + abilities ----------------------------------------- */
+function renderKills(){
+  $('kills').innerHTML = RUNS.map(function(r){
+    const zone = (r.zones[0] && r.zones[0].name) || '—';
+    const top = r.kills.slice(0,10);
+    const max = Math.max.apply(null, top.map(k=>k[1]).concat([1]));
+    const body = top.map(function(k){
+      const pct = Math.round(100*k[1]/max);
+      return '<div class="kr"><span class="kn">'+esc(k[0])+'</span>'+
+        '<span class="kv">'+k[1]+'</span>'+
+        '<span class="kb"><i style="width:'+pct+'%"></i></span></div>';
+    }).join('');
+    return '<div class="panel"><h4>'+esc(zone)+'</h4>'+
+      (body || '<div class="empty">no kills</div>')+'</div>';
+  }).join('');
+}
+
+function renderAbilities(){
+  const agg = {};
+  RUNS.forEach(function(r){
+    (r.ability_dmg||[]).forEach(function(a){ agg[a[0]] = (agg[a[0]]||0) + a[1]; });
+  });
+  const list = Object.keys(agg).map(k=>[k,agg[k]]).sort((a,b)=>b[1]-a[1]).slice(0,14);
+  $('abilities').innerHTML = list.map(function(a){
+    return '<div class="ab"><span class="an">'+esc(a[0])+'</span>'+
+      '<span class="av">'+fmt(a[1])+'</span></div>';
+  }).join('') || '<div class="empty">no damage abilities recorded</div>';
+}
+
+/* ---- heat strip ------------------------------------------------------ */
+function renderHeat(){
+  const box = $('heat'), labels = $('heatx');
+  box.innerHTML = ''; labels.innerHTML = '';
+  RUNS.forEach(function(r){
+    const mins = r.minutes || [];
+    if (!mins.length) return;
+    const max = Math.max.apply(null, mins.map(m=>m[1]).concat([1]));
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:2px;flex:1;align-items:flex-end;height:100%';
+    mins.forEach(function(m){
+      const b = document.createElement('i');
+      b.style.height = Math.max(3, Math.round(100*m[1]/max)) + '%';
+      b.title = m[0] + ' — ' + m[1] + ' events';
+      row.appendChild(b);
+    });
+    box.appendChild(row);
+  });
+  labels.innerHTML = RUNS.map(function(r){
+    return '<span>'+esc((r.zones[0]&&r.zones[0].name)||r.file)+
+      ' · '+mmss(r.secs)+'</span>';
+  }).join('');
+}
+
+/* ---- the crowd ------------------------------------------------------- */
+let crowdMode = 'combat';
+function renderCrowd(){
+  const q = ($('soulq') ? $('soulq').value : '').toLowerCase().trim();
+  const combatOnly = crowdMode === 'combat';
+  const rows = SOULS.filter(function(p){
+    if (combatOnly && !p.in_combat) return false;
+    if (q && !(p.name || '').toLowerCase().includes(q) &&
+        !(p.class || '').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  const maxDmg = Math.max.apply(null, SOULS.map(p=>p.dmg).concat([1]));
+  $('crowd').innerHTML = rows.map(function(p){
+    const pct = Math.round(100*(p.dmg||0)/maxDmg);
+    return '<tr>'+
+      '<td class="nm">'+esc(short(p.name))+'</td>'+
+      '<td>'+chip(p.class)+'</td>'+
+      '<td class="n">'+(p.dmg?exact(p.dmg):'<span class="zero">—</span>')+
+        '<div class="track" style="margin-top:3px"><i style="width:'+
+        Math.max(0,pct)+'%;background:linear-gradient(90deg,#ff7a45,#ffc861)"></i></div></td>'+
+      '<td class="n">'+(p.heal?exact(p.heal):'<span class="zero">—</span>')+'</td>'+
+      '<td class="n">'+(p.kills||'<span class="zero">—</span>')+'</td>'+
+      '<td class="n">'+(p.deaths||'<span class="zero">—</span>')+'</td>'+
+      '<td class="n">'+(p.runs?p.runs.length:0)+'</td>'+
+      '</tr>';
+  }).join('');
+  $('crowdn').textContent = rows.length + ' / ' + SOULS.length + ' souls listed';
+}
+
+function boot(){
+  renderVitals(); renderCards(); renderLadder(); renderLedgers();
+  renderKills(); renderAbilities(); renderHeat(); renderCrowd();
+
+  $('soulq').addEventListener('input', renderCrowd);
+  $('btn-combat').addEventListener('click', function(){
+    crowdMode = 'combat';
+    this.classList.add('on'); $('btn-all').classList.remove('on');
+    renderCrowd();
+  });
+  $('btn-all').addEventListener('click', function(){
+    crowdMode = 'all';
+    this.classList.add('on'); $('btn-combat').classList.remove('on');
+    renderCrowd();
+  });
+  $('stamp').textContent = D.generated || '—';
+  $('engine').textContent = D.engine || '—';
+  const fc = $('foot-counts');
+  if (fc) fc.textContent = T.runs + ' sorties · ' + T.encounters + ' encounters · ' +
+    T.kills + ' kills · ' + T.players + ' souls';
+}
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>

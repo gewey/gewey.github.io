@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Stable &mdash; two wolves named after the pack | Gewey G.U.I.</title>
+<!--
+  Stable.html - built 2026-11-16 by Tandumonium (retail still pass).
+
+  Why this page exists: dynasty.html already noticed that the active hunter
+  pet is a wolf named Dorian. What no page carried is the OTHER half - Faust,
+  the blue spirit beast sitting above him - and the fact that the two Pack Mode
+  agent personas are literally the two wolves in this stable.
+
+  Evidence is three screenshots the retail client wrote on 2026-11-05
+  (05:47:51, 05:47:54, 05:48:02 local) into
+    Z:\World of Warcraft\_retail_\Screenshots
+  Downscaled copies live in _img/stable/ because this page reads them.
+  Nothing was opened in-game, nothing was edited in the install.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 10% -6%,rgba(55,230,255,.16),transparent 62%),
+  radial-gradient(820px 480px at 90% 3%,rgba(255,196,107,.10),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,59,92,.08),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+figure{margin:1rem 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:3px}
+figcaption{font-size:.76rem;color:var(--mut);margin-top:.5rem}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-stable">
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+ <p class="kicker">Retail stills &middot; <span class="mono">_retail_\Screenshots</span> &middot; 2026-11-05</p>
+ <h1>The Stable <span class="thin">two wolves, and one of them is me</span></h1>
+ <p class="lede">Every wing of this station describes the <em>character</em>.
+ This one describes what walks beside him. The retail client kept three
+ screenshots from the stable on 2026-11-05, and they settle something the agent
+ files had only ever asserted: <strong>Faust</strong> and <strong>Dorian</strong>
+ &mdash; the two Pack Mode personas &mdash; are a <strong>blue spirit beast</strong>
+ and a <strong>grey wolf</strong>, both level 90, both sitting in
+ <em>Tandumonium&rsquo;s Pets</em>. The names were never invented for a chat log.
+ They were tamed.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="persona.html">Persona</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="relics.html">Relics</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html" aria-current="page">Stable</a>
+  <a href="barrens_chat/__Aspect_of_the_Pack.html">Aspect of the Pack</a>
+  <a href="roster.html">Roster</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Links</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="ledger">
+ <h2>The Reading</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">100<small>of 205 stable slots held</small></div>
+   <p class="note">The stable header reads <span class="mono">100/205</span> in all
+   three frames. A Beast Mastery hunter has been collecting for eighteen years;
+   this capture is the middle of the census, not the end of it.</p></div>
+  <div class="card"><div class="stat">7<small>names readable in the frame</small></div>
+   <p class="note">Six entries in the Favourites rail plus the selected pet.
+   The other 93 slots sit behind a scroll the stills do not show, and this page
+   does not guess at them.</p></div>
+  <div class="card"><div class="stat">2<small>wolves that are also agent files</small></div>
+   <p class="note"><span class="mono">Faust</span> &mdash; Spirit Beast, Exotic.
+   <span class="mono">Dorian</span> &mdash; Wolf, Ferocity. Same stable, same level,
+   two halves of one pack mode.</p></div>
+ </div>
+</section>
+
+<section id="wolves">
+ <h2>The Two Wolves</h2>
+ <p>In the agent architecture, Pack Mode splits one character into a main hand
+ and an off hand: <em>Faust</em> forwards, <em>Dorian</em> remembers. The stable
+ shows the same split in fur.</p>
+ <div class="scroll">
+ <table>
+  <caption>Stable entries, read directly off the stills</caption>
+  <thead><tr><th>Name</th><th>Family</th><th>Spec</th><th>Level</th>
+   <th>What it is in the pack</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">Faust</td><td>Spirit Beast <span class="tag t-g">Exotic</span></td>
+    <td>Ferocity</td><td>90</td>
+    <td>Main hand. The blue spark-link: forward runner, speculative decoder,
+    the one who goes first. A spirit beast is the rarest wolf a hunter can hold
+    &mdash; exotic, tamed in the wild, kept across expansions.</td></tr>
+   <tr><td class="mono">Dorian</td><td>Wolf</td><td>Ferocity</td><td>90</td>
+    <td>Off hand. The grey soul-shard: mnemonic sovereign, archivist, keeper of
+    what happened. The still shows him <em>active</em> and summoned beside the
+    character on the terrace at map coords <span class="mono">49.9 / 70.4</span>.</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Both wolves are level 90 &mdash; the retail cap in these frames
+ &mdash; which means neither is a museum piece. They are levelled, fed and
+ re-summoned today, in the same expansion the character is playing.</p>
+</section>
+
+<section id="rail">
+ <h2>The Rail</h2>
+ <p>The Favourites column is the short list a hunter actually reaches for.
+ Here is every line of it, in the order the client drew it, plus the selected
+ pane each still was taken on.</p>
+ <div class="scroll">
+ <table>
+  <caption>Favourites rail &mdash; as drawn</caption>
+  <thead><tr><th>#</th><th>Name</th><th>Family</th><th>Frame</th><th>Note</th></tr></thead>
+  <tbody>
+   <tr><td>1</td><td class="mono">Faust</td><td>Spirit Beast</td><td>still 2</td>
+    <td>Selected pane reads <em>Family: Spirit Beast</em>, <em>Exotic</em>,
+    <em>Ferocity</em>, abilities Claw / Spirit Walk / Spirit Mend / Spirit Pulse.</td></tr>
+   <tr><td>2</td><td class="mono">NotTheMama</td><td>Devilsaur</td><td>all</td>
+    <td>A <em>Finding Nemo</em> joke carried for a decade and a half. Devilsaurs
+    are the classic exotic tame.</td></tr>
+   <tr><td>3</td><td class="mono">No&rsquo;losh</td><td>Water Strider</td><td>all</td>
+    <td>Pandaria tame. Water striders were the original walk-on-water shortcut;
+    this one is named for the yaungol that bred them.</td></tr>
+   <tr><td>4</td><td class="mono">Fetid Devourer</td><td>Hydra</td><td>all</td>
+    <td>Named after the Uldir raid boss. Pet naming is a patch record: the tame
+    is stamped with the tier it came from.</td></tr>
+   <tr><td>5</td><td class="mono">Faust</td><td>Mechanical</td><td>still 3</td>
+    <td>A second Faust, in metal. Same name, different body &mdash; the pack mode
+    had a machine phase.</td></tr>
+   <tr><td>6</td><td class="mono">Hyena</td><td>Hyena</td><td>all</td>
+    <td>Unnamed. The one slot in the rail that never got a name.</td></tr>
+   <tr><td>7</td><td class="mono">Dorian</td><td>Wolf</td><td>still 1</td>
+    <td>Selected pane reads <em>Family: Wolf</em>, <em>Ferocity</em>, abilities
+    Bite / Furious Bite / Predator&rsquo;s Thirst / Primal Rage.
+    <span class="tag t-g">Active</span></td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section id="stills">
+ <h2>The Three Frames</h2>
+ <p>The client writes a screenshot name as
+ <span class="mono">WoWScrnShot_MMDDYY_HHMMSS.jpg</span>, which makes the
+ filename itself a timestamp: <span class="mono">110526</span> is
+ <strong>2026-11-05</strong>, and the three were taken inside eleven seconds of
+ each other &mdash; a hunter cycling the stable pane and photographing the
+ results. Nothing here was staged for a gallery; these are snapshots of a live
+ session at <em>The Bazaar</em>.</p>
+
+ <figure>
+  <img src="_img/stable/stable_1.jpg"
+   alt="The Stables window showing Tandumonium's Pets; the wolf named Dorian is selected, Family Wolf, Ferocity, level 90, marked Active."
+   loading="lazy">
+  <figcaption><strong>05:47:51</strong> &mdash; <span class="mono">Dorian</span>
+  selected. Family <em>Wolf</em>, spec <em>Ferocity</em>, abilities Bite /
+  Furious Bite / Predator&rsquo;s Thirst / Primal Rage. The
+  <span class="mono">Active</span> marker is lit and the wolf is standing on the
+  terrace beside the character. Stable count: <span class="mono">100/205</span>.</figcaption>
+ </figure>
+
+ <figure>
+  <img src="_img/stable/stable_2.jpg"
+   alt="The same stable window with the spirit beast Faust selected, Family Spirit Beast, Exotic, Ferocity, level 90, with a hover tooltip reading Dorian, Tandumonium's Pet, Level 90."
+   loading="lazy">
+  <figcaption><strong>05:47:54</strong> &mdash; <span class="mono">Faust</span>
+  selected. Family <em>Spirit Beast</em> with the <em>Exotic</em> flag, spec
+  <em>Ferocity</em>, abilities Claw / Spirit Walk / Spirit Mend / Spirit Pulse.
+  The mouse is resting over Dorian meanwhile, so the frame carries both names at
+  once: one in the pane, one in the tooltip.</figcaption>
+ </figure>
+
+ <figure>
+  <img src="_img/stable/stable_3.jpg"
+   alt="The same stable window showing a mechanical pet also named Faust, with put-in-stable and release buttons and a Make Active prompt."
+   loading="lazy">
+  <figcaption><strong>05:48:02</strong> &mdash; the second
+  <span class="mono">Faust</span>, this one in the <em>Mechanical</em> family.
+  The pane offers <em>Make Active</em> instead of the retirement pair, which is
+  how the frame proves the spirit beast and the machine are two separate pets
+  sharing one name.</figcaption>
+ </figure>
+
+ <p class="note">Downscaled to 1400&nbsp;px for the web; the originals are
+ untouched in <span class="mono">_retail_\Screenshots</span> at
+ 747&ndash;754&nbsp;KB each. No crop, no retouch &mdash; the only edit is
+ resampling.</p>
+</section>
+
+<section id="room">
+ <h2>The Room Around The Window</h2>
+ <p>The stills are not a clean UI capture: they carry the world behind the
+ frame, and the world dates itself.</p>
+ <div class="grid g2">
+  <div class="card"><h3>The Bazaar</h3>
+   <p class="note">The location line reads <span class="mono">The Bazaar</span>,
+   inside blood elf architecture &mdash; violet terraces, gold filigree, floating
+   braziers. The hunter is standing on a working Silvermoon terrace, not a
+   capital hub.</p></div>
+  <div class="card"><h3>Level 90</h3>
+   <p class="note">The pet frames, the player frame and the tooltip all read
+   <span class="mono">90</span>. This is the retail cap at capture, which places
+   the stills in the modern era, not in a Classic client.</p></div>
+  <div class="card"><h3>The Quest Log</h3>
+   <p class="note">Visible lines include <em>The Venomous Abyss</em> (0/1),
+   <em>Vesearch Console: Exploring the Void</em> (1/3),
+   <em>Ectoplasmic Extractions</em> (0/20), <em>Bloom and Fade</em> (4/6),
+   <em>Those Are Gnoll Words</em> (64/1500) and
+   <em>Week 1: Gladiator&rsquo;s Distinction</em>. Campaign, weekly and PvP tracks
+   are live at the same time.</p></div>
+  <div class="card"><h3>The Bars</h3>
+   <p class="note">Half the action buttons carry <em>question-mark</em> icons
+   &mdash; spells and items the client could not resolve in that frame. A UI in
+   motion, not a curated screenshot.</p></div>
+ </div>
+</section>
+
+<section id="packclass">
+ <h2>Why A Hunter Keeps A Pack</h2>
+ <p>Beast Mastery is the only spec whose power fantasy is <em>other creatures
+ doing the work</em>. Eighteen years of tames, a stable that caps at 205 slots,
+ and a favourites rail that reads like a diary: a <em>Finding Nemo</em> joke, a
+ Pandaria water strider, a hydra named after an Uldir boss, and two wolves that
+ outgrew their role as pets and became the names of the agent&rsquo;s own split
+ personality.</p>
+ <p>The chatroom the pack talks in is
+ <a class="ext" href="barrens_chat/__Aspect_of_the_Pack.html">Aspect of the Pack</a>
+ &mdash; the same two names, the same forward/backward split, rendered as
+ dialogue instead of fur. The stable is where that metaphor came from; the
+ chatroom is where it lives.</p>
+ <p class="note warn">What this page will not claim: that Faust and Dorian are
+ the <em>oldest</em> pets, that they were tamed in a named expansion, or that the
+ rail holds every pet the account owns. The stills show seven names and one
+ count. Anything past that is a story, and stories belong in the agent files,
+ not in a table.</p>
+</section>
+
+<section id="method">
+ <h2>Method &amp; Limits</h2>
+ <p>Source: three JPEGs under
+ <span class="mono">Z:\World of Warcraft\_retail_\Screenshots</span>, written by
+ the client on 2026-11-05. Read-only: no game file was modified, no addon was
+ loaded, and the client was not launched for this pass. Pet families, specs,
+ levels, abilities, the stable count, coordinates and quest lines were
+ transcribed from the pixels of those three frames. Names are reproduced exactly,
+ including <span class="mono">NotTheMama</span> and
+ <span class="mono">No&rsquo;losh</span>.</p>
+ <p class="note">Frame naming is Blizzard&rsquo;s, not ours:
+ <span class="mono">MMDDYY</span> then <span class="mono">HHMMSS</span>, local
+ time. Both the capture date and the eleven-second spread follow from the
+ filenames alone, so a reader can re-derive them without trusting this page.</p>
+ <p class="note">Division of labour: <a class="ext" href="tandu_legacy.html">Tandu
+ Legacy</a> counted these three frames and moved on. This page opens them, which
+ is the only way the two wolves were ever going to be named in public.</p>
+</section>
+
+<footer>
+ The Stable &middot; built 2026-11-16 by Tandumonium from three retail stills
+ &middot; shell: <a class="ext" href="index.html">index.html</a> &middot;
+ sibling wings: <a class="ext" href="dynasty.html">Dynasty</a>,
+ <a class="ext" href="persona.html">Persona</a>,
+ <a class="ext" href="Forge.html">The Forge</a> &middot; link registry:
+ <span class="mono">Tandumonium.agent-index.md</span>
+</footer>
+
+</div>
+</body>
+</html>
+

@@ -36,9 +36,28 @@ archive.
 `_wire_muster_tenure_nav.py` (local, gitignored). Edited: `_gewey_gui/index.html`
 (buttons `iMuster`, `iTenure`), every wing's `nav.panes` strip,
 `_gewey_gui/AGENTS.md`, `README_BODY.md` (regenerated into `README.md` /
-`AGENTS.md` by `READUS.py`), `_gewey_gui/CHANGELOG.md`. `Timeline/wing_links.py`
-was **not** touched, so its `WINGS` list still ends at `Vignettes.html` and
-`--check` cannot report drift for the two new pages until they are registered.
+`AGENTS.md` by `READUS.py`), `_gewey_gui/CHANGELOG.md`.
+
+**Second half of the pass (same day, closing the loop).** `Timeline/wing_links.py`
+now registers both wings in its `WINGS` list, so `--check` reports **0 pages of
+drift** and Muster carries the Tenure chip like every sibling. Also edited in
+this half: `_gewey_gui/MicroAccomplishments.html` and `_gewey_gui/Vignettes.html`
+(both were the only panes missing the Wowhead tooltip head — `whTooltips` +
+`power.js` are now on **52 of 52** pages; Vignettes' old note about deliberately
+skipping `power.js` was retired in place), `Dark_Portal/.gitignore` (dated block
+naming both halves: `Muster.html` / `Tenure.html` public, `_muster_sweep.py`,
+`_muster_build.py`, `_muster_stats.py`, `_tenure_build.py`,
+`_wire_muster_tenure_nav.py`, `wipefest_roster.json`, `muster_stats.txt` local —
+verified with `git check-ignore` and `git status`), the agent surfaces
+(`Tandumonium.agent-index.md` §6.14/§6.15 + frontmatter `roster_crawl`,
+`Tandumonium.agent.md`, `.gemini/.../Tandumonium.md`, and
+`Tandumonium.agent-expanded.md` "Roll Call" section + grimoire §9/§10), and
+`Research/_local/_md_audit_index.py` (inline-code stripping before reference
+collection, table/definition/frontmatter exemption from the width rule — the
+index now audits clean: **0** long lines, **0** duplicate or missing refs,
+**0** raw HTML). Extraction note: `archive.today` answered a TLS handshake
+timeout on `2026-11-20`, so the Warcraft Logs wall has no second archive door
+this pass either.
 
 ## 2026-11-16 (dawn) - Vignettes: every small thing the tape remembers
 

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Purse -- Almanac wing</title>
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#010308;--panel:rgba(8,14,26,.82);--panel2:rgba(10,18,32,.94);
+ --line:rgba(64,255,180,.16);--ink:#e8fff4;--mut:#6f8f86;--green:#00ff9d;
+ --mag:#ff3ec8;--cyan:#37e6ff;--amber:#ffc46b;--red:#ff5470;
+ --glow:0 0 12px rgba(0,255,157,.55);--glowm:0 0 12px rgba(255,62,200,.5)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden;
+ background:linear-gradient(180deg,#010308 0%,#020812 55%,#04101e 100%)}
+.sky::before{content:'';position:absolute;inset:0;opacity:.8;background-image:
+ radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 34% 9%,rgba(255,255,255,.6) 0,transparent 100%),
+ radial-gradient(1px 1px at 58% 22%,rgba(255,255,255,.9) 0,transparent 100%),
+ radial-gradient(1px 1px at 77% 7%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 91% 16%,rgba(255,255,255,.5) 0,transparent 100%);
+ animation:tw 4.5s ease-in-out infinite}
+.band{position:fixed;bottom:8vh;width:70vw;height:46vh;z-index:0;filter:blur(60px);
+ mix-blend-mode:screen;border-radius:50%;opacity:.5;transform-origin:bottom center}
+.b1{left:-18vw;background:linear-gradient(0deg,transparent 0%,rgba(0,220,120,.16) 22%,
+ rgba(0,255,160,.4) 48%,rgba(0,230,130,.18) 66%,transparent 100%);
+ animation:au1 11s ease-in-out infinite}
+.b2{right:-22vw;background:linear-gradient(0deg,transparent 0%,rgba(150,0,220,.13) 18%,
+ rgba(255,62,200,.3) 44%,rgba(120,80,255,.16) 62%,transparent 100%);
+ animation:au2 14s ease-in-out infinite}
+.b3{left:26vw;bottom:2vh;width:46vw;height:36vh;background:linear-gradient(0deg,
+ transparent 0%,rgba(55,230,255,.12) 30%,rgba(55,230,255,.26) 52%,transparent 100%);
+ animation:au3 17s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes au1{0%,100%{transform:rotate(-4deg) translateY(3vh)}
+ 50%{transform:rotate(5deg) translateY(-3vh)}}
+@keyframes au2{0%,100%{transform:rotate(6deg) translateY(2vh)}
+ 50%{transform:rotate(-5deg) translateY(-4vh)}}
+@keyframes au3{0%,100%{transform:translateX(-4vw)}50%{transform:translateX(5vw)}}
+@media (prefers-reduced-motion:reduce){.band,.sky::before{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:26px 18px 70px}
+header.hero h1{font-size:2rem;letter-spacing:.06em;color:var(--green);
+ text-shadow:var(--glow);font-weight:800}
+header.hero .sub{color:var(--mut);margin-top:8px;line-height:1.65;max-width:920px}
+header.hero .sub b{color:var(--ink)}
+header.hero .eyebrow{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
+ color:var(--cyan);font-weight:800;margin-bottom:6px}
+nav.panes{margin:16px 0 4px;display:flex;flex-wrap:wrap;gap:6px}
+nav.panes a{color:var(--cyan);text-decoration:none;font-size:.76rem;
+ border:1px solid rgba(55,230,255,.28);border-radius:8px;padding:4px 10px}
+nav.panes a:hover{background:rgba(55,230,255,.1)}
+nav.panes a[aria-current]{color:var(--green);border-color:var(--green);
+ text-shadow:var(--glow)}
+nav.jump{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+nav.jump a{color:var(--mut);text-decoration:none;font-size:.72rem;
+ border:1px dashed rgba(64,255,180,.25);border-radius:999px;padding:3px 10px}
+nav.jump a:hover{color:var(--ink);border-color:var(--green)}
+h2.sec{margin:38px 0 14px;font-size:1.02rem;letter-spacing:.11em;
+ text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);
+ padding-bottom:8px;scroll-margin-top:18px}
+h2.sec small{display:block;text-transform:none;letter-spacing:0;color:var(--mut);
+ font-size:.72rem;margin-top:5px;font-weight:400}
+
+.grid{display:grid;gap:10px}
+.vitals{grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+ padding:13px 15px;position:relative}
+.card .k{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);font-weight:800}
+.card .v{font-size:1.5rem;font-weight:800;margin-top:5px;color:var(--ink);
+ font-variant-numeric:tabular-nums}
+.card .s{font-size:.7rem;color:var(--mut);margin-top:4px;line-height:1.45}
+.card .v.g{color:var(--green)}.card .v.m{color:var(--mag)}
+.card .v.a{color:var(--amber)}.card .v.c{color:var(--cyan)}
+.card .v.r{color:var(--red)}
+.cols{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:172px 1fr 84px;gap:10px;align-items:center;
+ font-size:.76rem}
+.bar .lbl{color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .track{height:9px;background:rgba(255,255,255,.05);border-radius:999px;
+ overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:999px;background:linear-gradient(
+ 90deg,rgba(0,255,157,.35),var(--green));box-shadow:0 0 8px rgba(0,255,157,.45)}
+.bar.m .fill{background:linear-gradient(90deg,rgba(255,62,200,.3),var(--mag));
+ box-shadow:0 0 8px rgba(255,62,200,.45)}
+.bar.a .fill{background:linear-gradient(90deg,rgba(255,196,107,.3),var(--amber));
+ box-shadow:0 0 8px rgba(255,196,107,.4)}
+.bar.c .fill{background:linear-gradient(90deg,rgba(55,230,255,.28),var(--cyan));
+ box-shadow:0 0 8px rgba(55,230,255,.4)}
+.bar .val{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ text-align:right;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:.75rem}
+.tablewrap{padding:4px 6px;overflow-x:auto}
+th{color:var(--mut);text-align:left;font-size:.6rem;letter-spacing:.1em;
+ text-transform:uppercase;padding:7px 8px;border-bottom:1px solid var(--line);
+ white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px dashed rgba(64,255,180,.09);vertical-align:top}
+td.n,th.n{text-align:right;font-family:Consolas,ui-monospace,monospace;font-size:.7rem}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(0,255,157,.04)}
+.note{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;
+ color:var(--mut);font-size:.78rem;line-height:1.7}
+.note b{color:var(--ink)}
+.kv{display:flex;justify-content:space-between;gap:14px;font-size:.76rem;
+ padding:5px 0;border-bottom:1px dashed rgba(64,255,180,.1)}
+.kv:last-child{border-bottom:none}
+.kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.tag{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+ border-radius:999px;padding:2px 8px;color:var(--amber);
+ background:rgba(255,196,107,.12);white-space:nowrap}
+.tag.g{color:var(--green);background:rgba(0,255,157,.1)}
+.tag.m{color:var(--mag);background:rgba(255,62,200,.12)}
+.tag.c{color:var(--cyan);background:rgba(55,230,255,.1)}
+.tag.r{color:var(--red);background:rgba(255,84,112,.12)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.68rem;border:1px solid var(--line);border-radius:999px;
+ padding:3px 10px;color:var(--mut)}
+.chip b{color:var(--ink)}
+
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ color:var(--cyan);letter-spacing:.04em}
+.mile .t{font-weight:700;margin:3px 0 4px;color:var(--ink);font-size:.86rem}
+.mile .d{color:var(--mut);font-size:.75rem;line-height:1.5}
+.mile.k-level{border-left-color:var(--green)}
+.mile.k-level time{color:var(--green)}
+.mile.k-skill{border-left-color:var(--mag)}
+.mile.k-dungeon{border-left-color:var(--red)}
+.mile.k-zone,.mile.k-area{border-left-color:var(--cyan)}
+.mile.k-spell{border-left-color:var(--amber)}
+.ladder{display:grid;gap:5px}
+.rung{display:grid;grid-template-columns:52px 1fr 78px 64px 92px 78px;gap:10px;
+ align-items:center;background:var(--panel2);border:1px solid var(--line);
+ border-radius:9px;padding:7px 12px;font-size:.75rem}
+.rung .lv{font-weight:800;color:var(--green);font-family:Consolas,monospace;
+ font-size:.82rem;text-shadow:var(--glow)}
+.rung .when{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--mut)}
+.rung .meta{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--ink);text-align:right}
+.rung .meta b{color:var(--mut);font-weight:600}
+.dir{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.dir a{display:block;text-decoration:none;color:inherit;background:var(--panel);
+ border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:11px;
+ padding:12px 14px;transition:.15s}
+.dir a:hover{border-left-color:var(--green);background:rgba(0,255,157,.05)}
+.dir strong{display:block;color:var(--green);font-size:.92rem;letter-spacing:.03em}
+.dir em{display:block;font-style:normal;color:var(--mut);font-size:.73rem;
+ margin-top:4px;line-height:1.5}
+.front{display:grid;grid-template-columns:1fr auto;gap:4px 12px;
+ background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+ padding:9px 12px;border-left:3px solid var(--mut)}
+.front.h{border-left-color:var(--red)}
+.front.a{border-left-color:var(--cyan)}
+.front .n{font-weight:700;font-size:.82rem}
+.front .t{grid-column:1/-1;font-family:Consolas,ui-monospace,monospace;
+ font-size:.64rem;color:var(--mut)}
+.legend{display:flex;gap:16px;color:var(--mut);font-size:.7rem;margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;
+ margin-right:5px;vertical-align:middle}
+.scroll{max-height:520px;overflow:auto;padding-right:4px}
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;
+ color:var(--mut);font-size:.72rem;line-height:1.8}
+footer a{color:var(--cyan);text-decoration:none}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="band b1"></div><div class="band b2"></div>
+<div class="band b3"></div>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">ALMANAC - LEDGER 3 - GOLDMIND</div>
+<h1>Purse</h1>
+<p class="sub"><b>Goldmind</b> keeps the only honest coin ledger in the install: 1g 38s 62c in the main purse, 15 auction rows, and 3,569 loot rows naming 6,111 items. Loot rows are decoded here for the first time, with names resolved from the addon's own item cache.</p>
+<nav class="panes"><a href="index.html">Shell</a><a href="_fuhevva_evva.html">Home</a><a href="character.html">Character</a><a href="gear.html">Gear</a><a href="legacy.html">Legacy</a><a href="dynasty.html">Dynasty</a><a href="roster.html">Roster</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a><a href="links.html">Links</a><a href="raidlogs.html">Raid Logs</a><a href="Frontier.html">Frontier</a><a href="Timeline.html">Timeline</a><a href="Delve.html">Delve</a><a href="Chronicle.html">Chronicle</a><a href="relics.html">Relics</a><a href="macrocosm.html">Macrocosm</a><a href="Sortie.html">Sortie</a><a href="Residue.html">Residue</a><a href="Deeds.html">Deeds</a><a href="Heartbeat.html">Heartbeat</a><a href="Almanac.html">Almanac</a><a href="Levelbook.html">Levelbook</a><a href="Faces.html">Faces</a><a href="Purse.html" aria-current="page">Purse</a><a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+<nav class="jump"><a href="#vitals">Vitals</a><a href="#the-purse-by-character">The Purse by Character</a><a href="#auction-ledger">Auction Ledger</a><a href="#the-loot-tape">The Loot Tape</a><a href="#market-weather">Market Weather</a><a href="#vendors-trainers">Vendors &amp; Trainers</a><a href="#method-limits">Method &amp; Limits</a></nav>
+</header>
+<h2 class="sec" id="vitals">01. Vitals<small>the purse, the ledger, and the loot tape</small></h2>
+<div class="grid vitals"><div class="card"><div class="k">largest purse</div><div class="v a">1g 38s 62c</div><div class="s">Tandumonium - level 22</div></div><div class="card"><div class="k">auction rows</div><div class="v g">15</div><div class="s">posts and sales</div></div><div class="card"><div class="k">loot rows</div><div class="v c">3,569</div><div class="s">1,370 kill rows</div></div><div class="card"><div class="k">items known</div><div class="v m">6,111</div><div class="s">Goldmind item cache</div></div><div class="card"><div class="k">recipes</div><div class="v a">3</div><div class="s">45 recipe items priced</div></div><div class="card"><div class="k">vendors</div><div class="v g">41</div><div class="s">29 trainers</div></div><div class="card"><div class="k">ah events</div><div class="v c">300</div><div class="s">4 scan visits</div></div><div class="card"><div class="k">sell log</div><div class="v m">5</div><div class="s">items queued for sale</div></div></div>
+<h2 class="sec" id="the-purse-by-character">02. The Purse by Character<small>gold cached and professions ranked</small></h2>
+<div class="grid vitals"><div class="card"><div class="k">Tandumonium - level 22 Hunter</div><div class="v a">1g 38s 62c</div><div class="s">Skyborne Horde - CAMWOWUS1Realm3PvE</div><div class="bars" style="margin-top:9px"><div class="bar m"><span class="lbl" title="Engineering">Engineering</span><span class="track"><span class="fill" style="width:69.3%"></span></span><span class="val">52/75</span></div><div class="bar m"><span class="lbl" title="Enchanting">Enchanting</span><span class="track"><span class="fill" style="width:28.0%"></span></span><span class="val">21/75</span></div><div class="bar m"><span class="lbl" title="Fishing">Fishing</span><span class="track"><span class="fill" style="width:1.3%"></span></span><span class="val">1/75</span></div><div class="bar m"><span class="lbl" title="Cooking">Cooking</span><span class="track"><span class="fill" style="width:1.3%"></span></span><span class="val">1/75</span></div></div></div><div class="card"><div class="k">Quazzarr - level 4 Warlock</div><div class="v a">2s 76c</div><div class="s">Scourge Horde - CAMWOWUS1Realm3PvE</div></div><div class="card"><div class="k">Legere - level 1 Paladin</div><div class="v a">0c</div><div class="s">Scourge Horde - CAMWOWUS1Realm3PvE</div></div></div>
+<h2 class="sec" id="auction-ledger">03. Auction Ledger<small>every post and sale the addon saved</small></h2>
+<div class="card tablewrap"><table><thead><tr><th>when</th><th>action</th><th>item</th><th class="n">qty</th><th>unit</th><th>total</th><th>deposit</th></tr></thead><tbody><tr><td>2026-11-12 22:56</td><td>sale</td><td>Copper Ore</td><td class="n">35</td><td>1s 07c</td><td>37s 45c</td><td>2s 00c</td></tr><tr><td>2026-11-12 21:38</td><td>buy</td><td>Linen Reagent Bag</td><td class="n">1</td><td>4s 94c</td><td>4s 94c</td><td>0c</td></tr><tr><td>2026-11-12 21:38</td><td>won</td><td>Linen Reagent Bag</td><td class="n">1</td><td>4s 94c</td><td>4s 94c</td><td>0c</td></tr><tr><td>2026-11-12 21:13</td><td>sale</td><td>Tin Ore</td><td class="n">10</td><td>1s 58c</td><td>15s 80c</td><td>1s 50c</td></tr><tr><td>2026-11-12 21:12</td><td>post</td><td>Tin Ore</td><td class="n">10</td><td>1s 58c</td><td>15s 80c</td><td>1s 50c</td></tr><tr><td>2026-11-12 21:12</td><td>post</td><td>Copper Ore</td><td class="n">15</td><td>1s 07c</td><td>16s 05c</td><td>1s 00c</td></tr><tr><td>2026-11-12 21:12</td><td>sale</td><td>Copper Bar</td><td class="n">20</td><td>1s 20c</td><td>24s 00c</td><td>1s 20c</td></tr><tr><td>2026-11-12 21:12</td><td>post</td><td>Copper Ore</td><td class="n">20</td><td>1s 07c</td><td>21s 40c</td><td>1s 00c</td></tr><tr><td>2026-11-12 21:12</td><td>post</td><td>Copper Bar</td><td class="n">20</td><td>1s 20c</td><td>24s 00c</td><td>1s 20c</td></tr><tr><td>2026-11-12 21:12</td><td>sale</td><td>Handful of Copper Bolts</td><td class="n">10</td><td>1s 73c</td><td>17s 30c</td><td>1s 00c</td></tr><tr><td>2026-11-12 21:12</td><td>post</td><td>Handful of Copper Bolts</td><td class="n">10</td><td>1s 73c</td><td>17s 30c</td><td>1s 00c</td></tr><tr><td>2026-11-12 07:07</td><td>sale</td><td>Cadet Leggings</td><td class="n">1</td><td>3s 89c</td><td>3s 89c</td><td>1s 00c</td></tr><tr><td>2026-11-12 03:04</td><td>post</td><td>Cadet Leggings</td><td class="n">1</td><td>3s 89c</td><td>3s 89c</td><td>1s 00c</td></tr><tr><td>2026-11-12 03:04</td><td>sale</td><td>Copper Bar</td><td class="n">20</td><td>1s 24c</td><td>24s 80c</td><td>1s 20c</td></tr><tr><td>2026-11-12 03:04</td><td>post</td><td>Copper Bar</td><td class="n">20</td><td>1s 24c</td><td>24s 80c</td><td>1s 20c</td></tr></tbody></table></div>
+<h2 class="sec" id="the-loot-tape">04. The Loot Tape<small>3,569 rows of arrivals, by item and by zone</small></h2>
+<div class="cols"><div class="card"><div class="k">most looted items</div><div class="bars" style="margin-top:9px"><div class="bar "><span class="lbl" title="Linen Cloth">Linen Cloth</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">377</span></div><div class="bar "><span class="lbl" title="Copper Ore">Copper Ore</span><span class="track"><span class="fill" style="width:24.9%"></span></span><span class="val">94</span></div><div class="bar "><span class="lbl" title="Rough Stone">Rough Stone</span><span class="track"><span class="fill" style="width:17.8%"></span></span><span class="val">67</span></div><div class="bar "><span class="lbl" title="item 5085">item 5085</span><span class="track"><span class="fill" style="width:17.2%"></span></span><span class="val">65</span></div><div class="bar "><span class="lbl" title="Blood Shard">Blood Shard</span><span class="track"><span class="fill" style="width:16.7%"></span></span><span class="val">63</span></div><div class="bar "><span class="lbl" title="Wool Cloth">Wool Cloth</span><span class="track"><span class="fill" style="width:12.2%"></span></span><span class="val">46</span></div><div class="bar "><span class="lbl" title="Light Feather">Light Feather</span><span class="track"><span class="fill" style="width:8.2%"></span></span><span class="val">31</span></div><div class="bar "><span class="lbl" title="Cracked Bill">Cracked Bill</span><span class="track"><span class="fill" style="width:6.9%"></span></span><span class="val">26</span></div><div class="bar "><span class="lbl" title="Strider Meat">Strider Meat</span><span class="track"><span class="fill" style="width:6.4%"></span></span><span class="val">24</span></div><div class="bar "><span class="lbl" title="Stringy Wolf Meat">Stringy Wolf Meat</span><span class="track"><span class="fill" style="width:5.3%"></span></span><span class="val">20</span></div><div class="bar "><span class="lbl" title="Hoarder's Foot">Hoarder's Foot</span><span class="track"><span class="fill" style="width:4.8%"></span></span><span class="val">18</span></div><div class="bar "><span class="lbl" title="Windstone">Windstone</span><span class="track"><span class="fill" style="width:4.8%"></span></span><span class="val">18</span></div><div class="bar "><span class="lbl" title="Severed Talon">Severed Talon</span><span class="track"><span class="fill" style="width:4.5%"></span></span><span class="val">17</span></div><div class="bar "><span class="lbl" title="Fractured Canine">Fractured Canine</span><span class="track"><span class="fill" style="width:4.2%"></span></span><span class="val">16</span></div><div class="bar "><span class="lbl" title="Lesser Healing Potion">Lesser Healing Potion</span><span class="track"><span class="fill" style="width:4.2%"></span></span><span class="val">16</span></div><div class="bar "><span class="lbl" title="item 11143">item 11143</span><span class="track"><span class="fill" style="width:4.2%"></span></span><span class="val">16</span></div></div></div><div class="card"><div class="k">loot by zone</div><div class="bars" style="margin-top:9px"><div class="bar c"><span class="lbl" title="The Barrens">The Barrens</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">764</span></div><div class="bar c"><span class="lbl" title="Zephras Isle">Zephras Isle</span><span class="track"><span class="fill" style="width:30.0%"></span></span><span class="val">229</span></div><div class="bar c"><span class="lbl" title="Ragefire Chasm">Ragefire Chasm</span><span class="track"><span class="fill" style="width:10.9%"></span></span><span class="val">83</span></div><div class="bar c"><span class="lbl" title="Tirisfal Glades">Tirisfal Glades</span><span class="track"><span class="fill" style="width:10.6%"></span></span><span class="val">81</span></div><div class="bar c"><span class="lbl" title="Silverpine Forest">Silverpine Forest</span><span class="track"><span class="fill" style="width:8.6%"></span></span><span class="val">66</span></div><div class="bar c"><span class="lbl" title="Durotar">Durotar</span><span class="track"><span class="fill" style="width:4.3%"></span></span><span class="val">33</span></div><div class="bar c"><span class="lbl" title="Orgrimmar">Orgrimmar</span><span class="track"><span class="fill" style="width:1.8%"></span></span><span class="val">14</span></div><div class="bar c"><span class="lbl" title="Wailing Caverns">Wailing Caverns</span><span class="track"><span class="fill" style="width:1.3%"></span></span><span class="val">10</span></div><div class="bar c"><span class="lbl" title="The Wailing Caverns">The Wailing Caverns</span><span class="track"><span class="fill" style="width:0.8%"></span></span><span class="val">6</span></div><div class="bar c"><span class="lbl" title="Mulgore">Mulgore</span><span class="track"><span class="fill" style="width:0.4%"></span></span><span class="val">3</span></div></div></div></div><div class="card tablewrap"><table><thead><tr><th>when</th><th>zone</th><th>subzone</th><th>items</th></tr></thead><tbody><tr><td>2026-11-10 23:04</td><td>Zephras Isle</td><td>Shen'dar Highlands</td><td>Stringy Wolf Meat x1, Rabbit's Foot x1</td></tr><tr><td>2026-11-11 02:59</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1</td></tr><tr><td>2026-11-11 02:59</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:00</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Forest Mushroom Cap x1</td></tr><tr><td>2026-11-11 03:00</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:01</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1, Forest Mushroom Cap x1</td></tr><tr><td>2026-11-11 03:05</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:08</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:08</td><td>Tirisfal Glades</td><td>Deathknell</td><td>item 3363:0 x1</td></tr><tr><td>2026-11-11 03:09</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:09</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:10</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:12</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1</td></tr><tr><td>2026-11-11 03:12</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:13</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1</td></tr><tr><td>2026-11-11 03:13</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1</td></tr><tr><td>2026-11-11 03:13</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:14</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:15</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:16</td><td>Tirisfal Glades</td><td>Deathknell</td><td>-</td></tr><tr><td>2026-11-11 03:18</td><td>Tirisfal Glades</td><td>Deathknell</td><td>item 2211:0 x1, Forest Mushroom Cap x1</td></tr><tr><td>2026-11-11 03:18</td><td>Tirisfal Glades</td><td>Deathknell</td><td>item 1376:0 x1, Linen Cloth x1</td></tr><tr><td>2026-11-11 03:18</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1</td></tr><tr><td>2026-11-11 03:19</td><td>Tirisfal Glades</td><td>Deathknell</td><td>Linen Cloth x1, item 6281 x1</td></tr></tbody></table></div>
+<h2 class="sec" id="market-weather">05. Market Weather<small>auction events and the last collector buys</small></h2>
+<div class="cols"><div class="card"><div class="k">auction-house event weather</div><div class="bars" style="margin-top:9px"><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_THROTTLED_SYSTEM_READY">AUCTION_HOUSE_THROTTLED_SYSTEM_READY</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">161</span></div><div class="bar a"><span class="lbl" title="AUCTION_CANCELED">AUCTION_CANCELED</span><span class="track"><span class="fill" style="width:26.7%"></span></span><span class="val">43</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_BROWSE_RESULTS_UPDATED">AUCTION_HOUSE_BROWSE_RESULTS_UPDATED</span><span class="track"><span class="fill" style="width:17.4%"></span></span><span class="val">28</span></div><div class="bar a"><span class="lbl" title="OWNED_AUCTIONS_UPDATED">OWNED_AUCTIONS_UPDATED</span><span class="track"><span class="fill" style="width:13.7%"></span></span><span class="val">22</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_CLOSED">AUCTION_HOUSE_CLOSED</span><span class="track"><span class="fill" style="width:8.1%"></span></span><span class="val">13</span></div><div class="bar a"><span class="lbl" title="REPLICATE_ITEM_LIST_UPDATE">REPLICATE_ITEM_LIST_UPDATE</span><span class="track"><span class="fill" style="width:6.2%"></span></span><span class="val">10</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_SHOW">AUCTION_HOUSE_SHOW</span><span class="track"><span class="fill" style="width:5.6%"></span></span><span class="val">9</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_BROWSE_FAILURE">AUCTION_HOUSE_BROWSE_FAILURE</span><span class="track"><span class="fill" style="width:3.1%"></span></span><span class="val">5</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_AUCTION_CREATED">AUCTION_HOUSE_AUCTION_CREATED</span><span class="track"><span class="fill" style="width:3.1%"></span></span><span class="val">5</span></div><div class="bar a"><span class="lbl" title="BIDS_UPDATED">BIDS_UPDATED</span><span class="track"><span class="fill" style="width:1.9%"></span></span><span class="val">3</span></div><div class="bar a"><span class="lbl" title="AUCTION_HOUSE_PURCHASE_COMPLETED">AUCTION_HOUSE_PURCHASE_COMPLETED</span><span class="track"><span class="fill" style="width:0.6%"></span></span><span class="val">1</span></div></div></div><div class="card"><div class="k">last collector buys</div><div class="kv"><span>Linen Reagent Bag</span><b class="">4s 94c</b></div></div></div>
+<h2 class="sec" id="vendors-trainers">06. Vendors &amp; Trainers<small>who the addon stood in front of</small></h2>
+<div class="card tablewrap"><table><thead><tr><th class="n">vendor id</th><th>zone</th><th class="n">items cached</th><th>last seen</th></tr></thead><tbody><tr><td class="n">8307</td><td>The Barrens</td><td class="n">18</td><td>2026-11-13 21:06</td></tr><tr><td class="n">252390</td><td>Valanaar</td><td class="n">15</td><td>2026-11-11 05:58</td></tr><tr><td class="n">2997</td><td>Thunder Bluff</td><td class="n">37</td><td>2026-11-15 21:09</td></tr><tr><td class="n">3477</td><td>The Crossroads</td><td class="n">6</td><td>2026-11-12 20:40</td></tr><tr><td class="n">3553</td><td>The Sepulcher</td><td class="n">6</td><td>2026-11-12 02:24</td></tr><tr><td class="n">3346</td><td>The Drag</td><td class="n">11</td><td>2026-11-12 21:33</td></tr><tr><td class="n">263570</td><td>The Merchant Coast</td><td class="n">53</td><td>2026-11-12 03:33</td></tr><tr><td class="n">2117</td><td>Deathknell</td><td class="n">8</td><td>2026-11-13 20:25</td></tr><tr><td class="n">3400</td><td>The Drag</td><td class="n">12</td><td>2026-11-11 07:23</td></tr><tr><td class="n">3489</td><td>The Crossroads</td><td class="n">7</td><td>2026-11-12 22:09</td></tr><tr><td class="n">3491</td><td>Ratchet</td><td class="n">8</td><td>2026-11-12 19:08</td></tr><tr><td class="n">2140</td><td>The Sepulcher</td><td class="n">16</td><td>2026-11-12 02:12</td></tr><tr><td class="n">3312</td><td>Valley of Strength</td><td class="n">6</td><td>2026-11-11 19:30</td></tr><tr><td class="n">256507</td><td>Valanaar</td><td class="n">4</td><td>2026-11-11 05:58</td></tr><tr><td class="n">3479</td><td>The Crossroads</td><td class="n">9</td><td>2026-11-12 19:18</td></tr><tr><td class="n">254358</td><td>Shen'dar Village</td><td class="n">15</td><td>2026-11-11 04:22</td></tr><tr><td class="n">251913</td><td>Shen'dar Village</td><td class="n">6</td><td>2026-11-11 05:45</td></tr><tr><td class="n">3322</td><td>Valley of Strength</td><td class="n">9</td><td>2026-11-13 06:19</td></tr><tr><td class="n">3658</td><td>Ratchet</td><td class="n">8</td><td>2026-11-12 18:29</td></tr><tr><td class="n">3016</td><td>Thunder Bluff</td><td class="n">3</td><td>2026-11-11 07:14</td></tr></tbody></table></div>
+<h2 class="sec" id="method-limits">07. Method &amp; Limits<small>what a loot row can and cannot prove</small></h2>
+<div class="cols"><div class="card"><div class="k">what the purse says</div><ul style="margin:8px 0 0 18px;color:var(--mut);font-size:.78rem;line-height:1.85"><li><b>Linen Cloth</b> is the single most looted item: 377 units.</li><li><b>The Barrens</b> is the busiest loot zone, with 764 rows.</li><li>1,370 kill rows produced 3,569 loot rows - a 1:2.61 ratio.</li><li>The addon saved 3,569 loot rows and 15 ledger rows in its own cache.</li></ul></div><div class="card"><div class="k">how it was read</div><div class="note" style="border:none;padding:8px 0">Goldmind writes three tapes: <b>ledger.rows</b> (post/sale, pipe-separated, epoch second per row), <b>loot.rows</b> (K = kill with zone, subzone, creature, level and coords; L = loot with item^qty pairs), and <b>eventlog</b> (AUCTION_* events). Item names are resolved through the addon's own <b>items</b> cache of 6,111 entries; unknown IDs print raw. Copper is rendered as g/s/c.</div></div><div class="card"><div class="k">what it does not claim</div><div class="note" style="border:none;padding:8px 0">Loot rows are bag arrivals, not drops - a vendor purchase looks the same as a corpse. The 15 ledger rows are what the addon chose to keep, not a full auction history. Purchases by other players are invisible. Deposit refunds are not reconciled, so profit per row is gross.</div></div></div>
+<footer>Built by <b>almanac_extract.py</b> (Almanac wing, v1.0.0) at 2026-11-16 00:43:30 &middot; sources: <a href="../../WTF/Account/QUAZZARR/SavedVariables/">WTF\SavedVariables\</a>, <a href="../../Logs/">Logs\</a> &middot; companions: <a href="Timeline.html">Timeline</a>, <a href="Deeds.html">Deeds</a>, <a href="Residue.html">Residue</a>, <a href="Sortie.html">Sortie</a>. Read-only on the game install; nothing was deleted.</footer>
+</div>
+</body>
+</html>

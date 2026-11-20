@@ -11,7 +11,7 @@ standing description of the vault. Edit in place; don't append forever.
 ## The Dark_Portal vault — index
 
 **This folder is the research vault for the World of Warcraft: Forever station**
-(`Z:\World of Warcraft\_forever_`, client build 1.60.1.70790, flavor `wowf`).
+(`Z:\World of Warcraft\_forever_`, client build 1.60.1.70959, flavor `wowf`).
 
 - **Junction:** `Z:\World of Warcraft\_forever_\Dark_Portal` ⇄
   `V:\__jocinus__\02_World_of_Warcraft\Dark_Portal`. Both paths address the same
@@ -37,10 +37,10 @@ standing description of the vault. Edit in place; don't append forever.
 
 ## Standing facts (station)
 
-- Client: **World of Warcraft: Forever**, build `1.60.1.70790`, flavor `wowf`,
+- Client: **World of Warcraft: Forever**, build `1.60.1.70959`, flavor `wowf`,
   internal codename **Camelot**. D3D12/SM6, RTX 4060 Ti, no RT path enabled.
 - Character: **Tandumonium-Ebbeson**, realm folder `91`.
-- Realm JSON: "CAMWOW US1 Realm 3 PvE" at build 70399 (client is 70790).
+- Realm JSON: "CAMWOW US1 Realm 3 PvE" at build 70399 (client is 70959).
 - Hotfix `VALIDATION_RESULT_INVALID` on `TransmogHoliday` / `TradeSkillItem` /
   `ModifiedCraftingItem` is **structural and benign** — same table set fails on retail.
 - **World-entry marker:** `Logs\CombatLog.txt` appearing. `advancedCombatLogging "1"`

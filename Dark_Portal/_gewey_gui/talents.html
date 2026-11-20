@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Talents &amp; Loadouts &mdash; Beast Mastery, Dark Ranger &amp; Action Bars | Gewey G.U.I.</title>
+<script>
+  const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<script src="https://gewey.github.io/js/dynamichead.js" defer></script>
+<!--
+  TALENTS.html — Built 2026-11-10 by Tandumonium.
+  Wired to replace the disabled placeholder iTalents button in index.html.
+  Bakes in BtWLoadouts from retail account QUAZZARR, WhatsTraining from Forever, and the Dark Ranger toolkit.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05040a;--panel:rgba(14,10,22,.86);--panel-sub:rgba(22,16,36,.7);
+  --line:rgba(255,196,107,.18);--ink:#f3ecff;--mut:#9b8fb4;
+  --gold:#ffc46b;--crimson:#ff3b5c;--arcane:#37e6ff;--fel:#7dff5c;--hunter:#aad372;
+  --glow:0 0 14px rgba(255,196,107,.45);
+  --font-mono:'Cascadia Mono','JetBrains Mono','Fira Code',Consolas,monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+  font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 12% -6%,rgba(170,211,114,.16),transparent 62%),
+    radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+    radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+    linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--hunter);opacity:.9}
+h1{font-size:clamp(1.9rem,4.5vw,3.1rem);line-height:1.1;margin:.35rem 0 .5rem;
+  font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.95rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);border:1px solid var(--line);
+  padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02);transition:all .15s ease}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold);background:rgba(255,196,107,.08)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem;color:var(--ink)}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.55rem .65rem;border-bottom:1px solid rgba(255,255,255,.07);
+  vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:var(--font-mono);font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.25rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.stat{font-size:1.9rem;font-weight:800;color:var(--hunter);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mut);display:block;margin-top:.35rem}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid currentColor;padding:.12rem .45rem;border-radius:2px;line-height:1.5}
+.t-h{color:var(--hunter);border-color:var(--hunter)}
+.t-g{color:var(--gold);border-color:var(--gold)}
+.t-a{color:var(--arcane);border-color:var(--arcane)}
+.t-r{color:var(--crimson);border-color:var(--crimson)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+  padding-left:.8rem;margin-top:.9rem}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+  font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.tree-node{display:flex;align-items:center;gap:.6rem;padding:.4rem .5rem;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.tree-node:last-child{border-bottom:none}
+</style>
+</head>
+<body class="gw-talents">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">Tandumonium &middot; Hunter Grimoire &middot; Spec ID 253</p>
+  <h1>Talents &amp; Loadouts <span class="thin">Beast Mastery, Dark Ranger &amp; Action Bars</span></h1>
+  <p class="lede">The hunter kit across eight years of saved loadouts and live World of Warcraft: Forever training. From the retail BtWLoadouts matrix (&ldquo;Marx&rdquo;, &ldquo;BM&rdquo;, action bars) to the foundational Beast Training drills on Zephras Isle.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+    <a href="index.html">Shell</a>
+    <a href="_fuhevva_evva.html">Home</a>
+    <a href="character.html">Character</a>
+    <a href="gear.html">Gear</a>
+    <a href="talents.html" aria-current="page">Talents</a>
+    <a href="automations.html">Automations</a>
+    <a href="Timeline.html">Timeline</a>
+    <a href="Chronicle.html">Chronicle</a>
+    <a href="relics.html">Relics</a>
+    <a href="dynasty.html">Dynasty</a>
+    <a href="legacy.html">Legacy</a>
+    <a href="roster.html">Roster</a>
+    <a href="tandu_legacy.html">Tandu Legacy</a>
+    <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+    <a href="log_ledger.html">Log Ledger</a>
+    <a href="Delve.html">Delve</a>
+    <a href="Frontier.html">Frontier</a>
+    <a href="macrocosm.html">Macrocosm</a>
+    <a href="eras.html">Eras</a>
+    <a href="links.html">Links</a>
+    <a href="Residue.html">Residue</a>
+    <a href="Sortie.html">Sortie</a>
+    <a href="Heartbeat.html">Heartbeat</a>
+    <a href="Almanac.html">Almanac</a>
+    <a href="Levelbook.html">Levelbook</a>
+    <a href="Faces.html">Faces</a>
+    <a href="Purse.html">Purse</a>
+    <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+    <a href="Clockwork.html">Clockwork</a>
+    <a href="Chassis.html">Chassis</a>
+    <a href="Itinerary.html">Itinerary</a>
+    <a href="Milestones.html">Milestones</a>
+    <a href="Origins.html">Origins</a>
+    <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+    <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="spec-vitals">
+  <div class="grid g3">
+    <div class="card">
+      <div class="stat">Beast Mastery <small>Primary Specialization</small></div>
+      <p class="note">Class ID <code class="mono">3</code> &middot; Spec ID <code class="mono">253</code>. Ranged master of exotic beasts and primal focus.</p>
+    </div>
+    <div class="card">
+      <div class="stat">Dark Ranger <small>Hero Tree Affinity</small></div>
+      <p class="note">Anchored by <a href="https://www.wowhead.com/spell=392060" class="ext">Wailing Arrow</a>, Black Arrow, and shadow-infused munitions.</p>
+    </div>
+    <div class="card">
+      <div class="stat">Marx &amp; BM <small>Saved Loadouts</small></div>
+      <p class="note">2 registered equipment sets &amp; &ldquo;Tandumonium Action Barzz&rdquo; in <code class="mono">BtWLoadouts.lua</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="dark-ranger-core">
+  <h2>The Dark Ranger &amp; Beast Mastery Core Spells</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Rotational Keystones</h3>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=392060" data-wowhead="spell=392060">Wailing Arrow</a>
+        <span class="tag t-h">Hero Talent</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Bound in #RachelRay</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=34026" data-wowhead="spell=34026">Kill Command</a>
+        <span class="tag t-h">Core</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Primary damage driver</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=217200" data-wowhead="spell=217200">Barbed Shot</a>
+        <span class="tag t-h">Focus / Frenzy</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Maintains Frenzy x3</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=19574" data-wowhead="spell=19574">Bestial Wrath</a>
+        <span class="tag t-g">Major CD</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Enrage burst window</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=359844" data-wowhead="spell=359844">Call of the Wild</a>
+        <span class="tag t-g">Major CD</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Primal pet swarm</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Utility, Movement &amp; Survival</h3>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=186257" data-wowhead="spell=186257">Aspect of the Turtle</a>
+        <span class="tag t-a">Defensive</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">100% deflect &amp; immunity</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=109304" data-wowhead="spell=109304">Exhilaration</a>
+        <span class="tag t-a">Self Heal</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">30% max HP + Pet heal</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=781" data-wowhead="spell=781">Disengage</a>
+        <span class="tag t-a">Mobility</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Leap backward + break snares</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=369536" data-wowhead="spell=369536">Soar (Dracthyr)</a>
+        <span class="tag t-g">Racial</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Dragonriding momentum</span>
+      </div>
+      <div class="tree-node">
+        <a href="https://www.wowhead.com/spell=358267" data-wowhead="spell=358267">Glide (Dracthyr)</a>
+        <span class="tag t-g">Racial</span>
+        <span style="margin-left:auto;font-size:.78rem;color:var(--mut)">Slow fall / anti-gravity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="loadout-matrix">
+  <h2>BtWLoadouts &mdash; Retail Configuration Record</h2>
+  <div class="card">
+    <p>Read from <code class="mono">Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\SavedVariables\BtWLoadouts.lua</code> (20,246 lines of persistent loadout trees):</p>
+    <div class="scroll" style="margin-top:1rem">
+      <table>
+        <caption>Saved Equipment &amp; Action Bar Sets</caption>
+        <thead>
+          <tr>
+            <th>Set ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Class / Spec</th>
+            <th>Equipped Pieces</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="mono">Set 1</code></td>
+            <td><strong>Marx</strong></td>
+            <td>Equipment Set</td>
+            <td>Hunter (Beast Mastery)</td>
+            <td>11 items (<a href="https://www.wowhead.com/item=235499" class="ext">Reshii Wraps</a>, <a href="https://www.wowhead.com/item=143903" class="ext">The Horseman's Ring</a>, <a href="https://www.wowhead.com/item=228411" class="ext">Cyrce's Circlet</a>)</td>
+            <td><span class="tag t-h">Saved</span></td>
+          </tr>
+          <tr>
+            <td><code class="mono">Set 2</code></td>
+            <td><strong>BM</strong></td>
+            <td>Equipment Set</td>
+            <td>Hunter (Beast Mastery)</td>
+            <td>6 items (<a href="https://www.wowhead.com/item=245965" class="ext">Durable Information Securing Container</a>, <a href="https://www.wowhead.com/item=98543" class="ext">Wraps of the Blood-Soaked Brawler</a>)</td>
+            <td><span class="tag t-h">Saved</span></td>
+          </tr>
+          <tr>
+            <td><code class="mono">Bar 1</code></td>
+            <td><strong>Tandumonium Action Barzz</strong></td>
+            <td>Action Bars</td>
+            <td>Hunter</td>
+            <td>Multi-page macro bindings (including macro <code class="mono">Q</code>)</td>
+            <td><span class="tag t-g">Active</span></td>
+          </tr>
+          <tr>
+            <td><code class="mono">Legacy</code></td>
+            <td><strong>MM / Surv</strong></td>
+            <td>Talent Trees</td>
+            <td>Marksmanship (254) / Survival (255)</td>
+            <td>Alternate hunter specs preserved in loadout cache</td>
+            <td><span class="tag t-a">Preserved</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="forever-training">
+  <h2>WoW Forever &mdash; WhatsTraining &amp; Zephras Isle Progression</h2>
+  <div class="card">
+    <p>In World of Warcraft: Forever (<code class="mono">Tandumonium-Ebbeson</code>, Level 3 Beast Mastery Hunter), training progresses through the physical trainer on Zephras Isle via <code class="mono">WhatsTraining</code>:</p>
+    <div class="grid g2" style="margin-top:1rem">
+      <div>
+        <h3>Known &amp; Available Abilities (Level 1&ndash;10)</h3>
+        <div class="tree-node">Auto Shot (Passive / Auto Attack) <span class="tag t-h">Learned</span></div>
+        <div class="tree-node">Arcane Shot (Rank 1) <span class="tag t-h">Learned</span></div>
+        <div class="tree-node">Serpent Sting (Rank 1) <span class="tag t-h">Learned</span></div>
+        <div class="tree-node">Hunter's Mark (Rank 1) <span class="tag t-g">Trainer</span></div>
+        <div class="tree-node">Aspect of the Monkey <span class="tag t-g">Trainer</span></div>
+        <div class="tree-node">Aspect of the Hawk (Rank 1) <span class="tag t-g">Trainer</span></div>
+      </div>
+      <div>
+        <h3>Beast Training Drill (Level 10 Target)</h3>
+        <div class="tree-node">Tame Beast (Pet Quest Chain) <span class="tag t-a">Target Lvl 10</span></div>
+        <div class="tree-node">Feed Pet / Dismiss Pet <span class="tag t-a">Target Lvl 10</span></div>
+        <div class="tree-node">Revive Pet / Mend Pet <span class="tag t-a">Target Lvl 10</span></div>
+        <div class="tree-node">Concussive Shot <span class="tag t-a">Target Lvl 8</span></div>
+      </div>
+    </div>
+    <div class="note">
+      <strong>WhatsTraining Status:</strong> <code class="mono">WT_NeedsToOpenBeastTraining = true</code> logged in <code class="mono">WhatsTraining.lua</code>. Ready for trainer interaction once level requirements are met.
+    </div>
+  </div>
+</section>
+
+<footer>
+  Gewey G.U.I. &middot; Hunter Talents &amp; Loadouts &middot; Built 2026-11-10 &middot;
+  Shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot;
+  Source: <code>BtWLoadouts.lua</code> &amp; <code>WhatsTraining.lua</code>
+</footer>
+
+</div>
+</body>
+</html>

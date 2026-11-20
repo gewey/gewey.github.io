@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Races — Blood Elf, Dracthyr, Undeath | Gewey G.U.I.</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+tr:hover td{background:rgba(255,196,107,.04)}
+.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dashed var(--arcane)}
+.ext:hover{color:var(--gold);border-color:var(--gold)}
+.badge{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+ padding:.15rem .35rem;border:1px solid var(--line);border-radius:3px;
+ color:var(--mut);background:rgba(255,255,255,.03)}
+.badge.f{background:rgba(255,59,92,.15);border-color:var(--crimson);color:var(--crimson)}
+.badge.r{background:rgba(55,230,255,.15);border-color:var(--arcane);color:var(--arcane)}
+.race-card{display:grid;grid-template-columns:1fr 2fr;gap:.5rem;align-items:start;padding:.6rem;border:1px solid var(--line);border-radius:4px;margin-bottom:.5rem;background:rgba(255,255,255,.02)}
+.race-card .race{font-weight:700;font-size:1.1rem}
+</style>
+</head>
+<body class="gw-shell">
+<div class="viewArea">
+ <div class="pageHeader">
+  <marquee>
+   <p id="demo">Lok'Tar Ogar! &mdash; Gewey G.U.I.
+    <script>document.write(Date());</script>
+   </p>
+  </marquee>
+ </div>
+ <div class="pageLeftMenu">
+  <div name="Logo">
+   <h2>
+    <a target="_top" href="./index.html">
+     <img class="geweyLogo" width="100%" alt="Gewey"
+      src="V:\__inuus__\gewey.github.io\img\logo\gewey\geweyLogo.png"/>
+    </a>
+    <br/>
+   </h2>
+  </div>
+  <div class="geweyMenuButtons">
+   <a href="_fuhevva_evva.html" target="contentframe">
+    <button name="iHome" class="btnbarfull" title="Home"><i class="material-icons md-24">home</i></button></a>
+   <a href="persona.html" target="contentframe">
+    <button name="iPersona" class="btnbarfull" title="Persona — three skins, four names, one spine"><i class="material-icons md-24">psychology</i></button></a>
+   <a href="handles.html" target="contentframe">
+    <button name="iHandles" class="btnbarfull" title="Handles — every name this character has carried, on every realm"><i class="material-icons md-24">badge</i></button></a>
+   <a href="races.html" target="contentframe">
+    <button name="iRaces" class="btnbarfull" title="Races — blood elf, dracthyr, undeath: the full lineage"><i class="material-icons md-24">self_improvement</i></button></a>
+   <a href="web_legacy.html" target="contentframe">
+    <button name="iWebLegacy" class="btnbarfull" title="Web Legacy — old raid logs, external doors, everything the internet still remembers"><i class="material-icons md-24">web</i></button></a>
+   <a href="Origins.html" target="contentframe">
+    <button name="iOrigins" class="btnbarfull" title="Origins — the ten years the archive never saw"><i class="material-icons md-24">hourglass_empty</i></button></a>
+   <a href="character.html" target="contentframe">
+    <button name="iCharacter" class="btnbarfull" title="Character — the live armory record"><i class="material-icons md-24">person</i></button></a>
+   <a href="tandu_legacy.html" target="contentframe">
+    <button name="iTanduLegacy" class="btnbarfull" title="Tandu Legacy — what the retail disk remembers"><i class="material-icons md-24">history</i></button></a>
+   <a href="legacy.html" target="contentframe">
+    <button name="iLegacy" class="btnbarfull" title="Legacy — the 2008→Present paper trail"><i class="material-icons md-24">library_books</i></button></a>
+   <a href="dynasty.html" target="contentframe">
+    <button name="iDynasty" class="btnbarfull" title="Dynasty — the family name across realms"><i class="material-icons md-24">family_restroom</i></button></a>
+   <a href="eras.html" target="contentframe">
+    <button name="iEras" class="btnbarfull" title="Eras — the fossil record"><i class="material-icons md-24">auto_stories</i></button></a>
+   <a href="links.html" target="contentframe">
+    <button name="iLinks" class="btnbarfull" title="Link Vault — every external door"><i class="material-icons md-24">link</i></button></a>
+   <a href="raidlogs.html" target="contentframe">
+    <button name="iRaidLogs" class="btnbarfull" title="Raid Logs — the raid-log archive"><i class="material-icons md-24">military_tech</i></button></a>
+   <a href="log_ledger.html" target="contentframe">
+    <button name="iLogLedger" class="btnbarfull" title="Log Ledger — 470 personal Warcraft Logs"><i class="material-icons md-24">receipt_long</i></button></a>
+   <a href="index.html" target="_top">
+    <button name="iRoot" class="btnbarfull" title="Root — dashboard homepage"><i class="material-icons md-24">dashboard</i></button></a>
+  </div>
+ </div>
+ <div class="pageContent">
+  <iframe id="contentframe" name="contentframe" frameborder="0" width="100%" height="100%" align="right" src="races.html"></iframe>
+ </div>
+</div>
+
+<section id="lineage">
+ <h2>Race Lineage Through the Ages</h2>
+ <p class="lede">The original and eternal baseline is Blood Elf. Even across race changes, this character has always been a blood elf at heart — including during the undeath Forsaken stint. Dracthyr was chosen 100% for slow fall / glide because gravity.</p>
+
+ <div class="race-card">
+  <div class="race">Blood Elf (<em>Sin'dorei</em>)</div>
+  <div>Order: 1 — True form. Always. The eternal baseline. Even across race changes, Tandumonium has <strong>always been a blood elf at heart</strong>, including during the undeath Forsaken stint.</div>
+ </div>
+
+ <div class="race-card">
+  <div class="race">Dracthyr</div>
+  <div>Current retail main form (Hyjal-US, Mythic BM Hunter). Chosen <strong>100% for slow fall / glide because gravity</strong>. The racial mobility made it the practical pick for a Hunter who needs to manage positioning.</div>
+ </div>
+
+ <div class="race-card">
+  <div class="race">Undead / Forsaken</div>
+  <div>The undeath stint. Still a blood elf beneath — the race changed but the soul didn't. A temporary vessel, not the true form.</div>
+ </div>
+</section>
+
+<section id="context">
+ <h2>Why each race was chosen</h2>
+ <table>
+  <caption>Race decisions by era</caption>
+  <thead><tr><th>Era</th><th>Race</th><th>Reason</th></tr></thead>
+  <tbody>
+   <tr><td>2008 → present (baseline)</td><td>Blood Elf</td><td>The eternal baseline. Always at heart.</td></tr>
+   <tr><td>Undeath stint</td><td>Forsaken</td><td>Temporary vessel. Soul remained blood elf.</td></tr>
+   <tr><td>Current Retail (Hyjal-US)</td><td>Dracthyr</td><td>Chosen 100% for slow fall / glide because gravity.</td></tr>
+   <tr><td>Forever (Ebbeson)</td><td>—</td><td>Level 60 cap realm; race per Forever character creation</td></tr>
+  </tbody>
+ </table>
+</section>
+
+<section id="provenance">
+ <h2>Provenance &amp; method</h2>
+ <div class="scroll">
+  <table>
+   <caption>Where each figure on this page came from</caption>
+   <thead><tr><th>Figure</th><th>Source</th><th>Kind</th></tr></thead>
+   <tbody>
+    <tr><td>Blood elf as eternal baseline</td><td>Attested (player) — Tandumonium.agent-expanded.md §character lineage</td><td><span class="badge r">attested</span></td></tr>
+    <tr><td>Dracthyr chosen for slow fall / glide</td><td>Attested (player) — gravity-based racial choice</td><td><span class="badge r">attested</span></td></tr>
+    <tr><td>Undeath Forsaken stint</td><td>Attested (player) — temporary vessel, blood elf beneath</td><td><span class="badge r">attested</span></td></tr>
+    <tr><td>Current retail race: Dracthyr Hunter</td><td><code>Tandumonium.agent-index.md</code> §live_stats (race: Dracthyr, class: Hunter)</td><td><span class="badge r">measured</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Static, self-contained, no runtime fetch. Built by Tandumonium (wide-scale retail legacy pass). Shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot; router: <code>Tandumonium.agent-index.md</code></p>
+</section>
+
+<footer>
+ <p><strong>Races.html</strong> &mdash; built by Tandumonium &middot; shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot; <a class="ext" href="handles.html">Handles</a> &middot; <a class="ext" href="web_legacy.html">Web Legacy</a> &middot; <a class="ext" href="persona.html">Persona</a></p>
+</footer>
+
+</div>
+</body>
+</html>

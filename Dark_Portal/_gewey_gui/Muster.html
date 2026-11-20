@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Muster &mdash; the roll call behind 470 reports | Gewey G.U.I.</title>
+<!--
+  MUSTER.html - built 2026-11-20 by Tandumonium (the roll-call pass).
+
+  Raid Logs counts the nights. Log Ledger reads the fights. This wing reads the
+  one field every earlier pass threw away: `friendlies` - the roster of every
+  report. It is the only surviving record of who stood next to me, and it
+  answers a question no Armory can: when did the name change?
+
+  Rules of the wing, same as every other:
+    1. Every figure is recomputed by Research/_local/_muster_build.py from
+       Research/_raw/wipefest_roster.json. No number is hand-typed.
+    2. A roster is not a guild. `friendlies` carries name, class and guid -
+       never a guild tag - so nothing here is used as tenure evidence.
+       <Gehenna> stays scoped to the 2019 BfA window; <Theorycrafters> to
+       Thrall-US and Hyjal-US. No pre-tenure capture is linked or counted.
+    3. NPCs, bosses and pets are filtered out of every player count (thirteen
+       playable classes only), and the page says so where it matters.
+
+  Static, self-contained, no runtime fetch. Wowhead tooltips are loaded on
+  every pane of this HUD by contract, this one included.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#06060a;--panel:rgba(12,13,20,.88);--line:rgba(255,196,107,.18);
+ --ink:#eef1ff;--mut:#8e97b3;--gold:#ffc46b;--crimson:#ff4560;
+ --arcane:#58d2ff;--fel:#7dffb0;--grey:#b9c2cc;--ash:#c2c6d6;
+ --glow:0 0 14px rgba(255,196,107,.4)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -10%,rgba(255,196,107,.10),transparent 62%),
+  radial-gradient(820px 480px at 88% 0%,rgba(194,198,214,.07),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(88,210,255,.06),transparent 68%),
+  linear-gradient(180deg,#06060a 0%,#090812 58%,#0b0914 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.card h3{margin-top:0}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.dead{color:var(--grey)}.warn{color:var(--gold)}
+.moon{color:var(--arcane)}.wall{color:var(--crimson)}.ash{color:var(--ash)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+.voice{font-size:.92rem;color:#e4e8fb;border-left:2px solid var(--gold);
+ padding:.1rem 0 .1rem .85rem;margin:.7rem 0;font-style:italic}
+pre{background:rgba(0,0,0,.44);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d6dcf2;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(255,196,107,.4)}
+a.ext:hover{color:var(--arcane);border-bottom-color:var(--arcane)}
+</style>
+</head>
+<body class="gw-muster">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Muster &middot; 2018-10-01 &rarr; 2024-12-30 &middot; every seat in 470 reports</p>
+ <h1>Muster <span class="thin">the roll call behind the logs</span></h1>
+ <p class="lede">Four hundred and seventy uploads. Each one carries
+ the roster of the night it was recorded &mdash; every name that stood in the
+ instance with me, their class, and a guid that survives across years. No earlier
+ wing read that field. This one does: <strong>13,112</strong> player seats,
+ <strong>7,862</strong> distinct names, and exactly one date that rearranges
+ the whole story.</p>
+ <p class="voice">Guilds change, realms change, my name changed. The bench is what stayed.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Muster.html" aria-current="page">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Origins.html">Origins</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="eras.html">Eras</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="roster.html">Roster</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="automations.html">Automations</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="roll">
+ <h2>The roll</h2>
+ <p>Every report was read back through the Wipefest API, which
+ returns the roster as plain JSON while Warcraft Logs keeps its own pages behind
+ an interactive challenge. The counts below exclude pets, bosses and NPC allies
+ &mdash; thirteen playable classes only &mdash; because a hunter brings a second
+ body and a warlock brings three, and none of them count as company.</p>
+ <div class="grid g4">
+  <div class="card"><div class="stat">470<small>reports in the vault</small></div></div>
+  <div class="card"><div class="stat">410<small>carry a usable roster</small></div></div>
+  <div class="card"><div class="stat">13,112<small>player seats, summed</small></div></div>
+  <div class="card"><div class="stat">7,862<small>distinct names</small></div></div>
+ </div>
+ <div class="grid g4" style="margin-top:.7rem">
+  <div class="card"><div class="stat">1,753<small>came back a second night</small></div></div>
+  <div class="card"><div class="stat">115<small>made ten nights</small></div></div>
+  <div class="card"><div class="stat">4<small>crossed one hundred</small></div></div>
+  <div class="card"><div class="stat">19,222<small>pet appearances, uncounted</small></div></div>
+ </div>
+ <p class="note">A seat is one friendly player row inside one report. The same
+ body contributes one seat per night, so a pug that raided with me three times is
+ three seats and one name. 14,620 raw friendly rows collapse to
+ 13,112 player seats once pets, NPC allies and placeholder actors are
+ removed.</p>
+</section>
+
+<section id="rename">
+ <h2>The five-day rename</h2>
+ <p>Two names appear as the hunter in these rosters, never together, and
+ the handoff is not gradual. <code>Tandu</code> is in the roster of
+ <strong>2020-09-11</strong>. The next report that carries a row for me is
+ <strong>2020-09-16</strong>, and that row reads <code>Tandieu</code>. Five
+ days. Nothing in between.</p>
+ <div class="scroll">
+  <table>
+   <caption>Handle, as recorded by the roster field, not by memory</caption>
+   <thead><tr><th>Roster name</th><th>First seen</th><th>Last seen</th>
+   <th>Nights</th><th>Class</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">Tandu</td><td class="mono">2018-10-01</td>
+    <td class="mono">2020-09-11</td><td>171</td><td>Hunter</td></tr>
+    <tr><td class="mono">Tandieu</td><td class="mono">2020-09-16</td>
+    <td class="mono">2024-10-20</td><td>172</td><td>Hunter</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p>The two names total <strong>343</strong> of the
+ 470 reports. The remaining 127 have no row for me at all &mdash;
+ uploads where the recorder was not one of the friendlies Wipefest keeps. The
+ rename date is derived only from the reports that do carry me, so it is a
+ <em>lower bound</em> on precision, never a guess dressed up as one.</p>
+ <p class="note good">Why this matters: the phonetic variant <code>Tandieu</code>
+ was always filed as a "transfer artefact" on the legacy pages, because both
+ handles exist on disk and both answer nothing at the Armory. The roster says
+ otherwise. It is not a second character. It is the same hunter, renamed, and the
+ bench records the week it happened.</p>
+ <div class="grid g3" style="margin-top:.9rem">
+  <div class="card"><h3>Tandu era</h3>
+   <p class="mono">220 reports &middot; 4,357 names &middot;
+   7,068 seats</p>
+   <p class="note">Everything before 2020-09-16. BfA launch, Uldir, Dazar'alor,
+   Crucible, Eternal Palace, Ny'alotha &mdash; and the <code>&lt;Gehenna&gt;</code>
+   tenure year.</p></div>
+  <div class="card"><h3>The bridge</h3>
+   <p class="mono">37 names on both sides</p>
+   <p class="note">Out of 7862 names in the vault, only these 37 were
+   in the roster before the rename <em>and</em> after it. That is the real
+   long-term company &mdash; everyone else is one era or the other.</p></div>
+  <div class="card"><h3>Tandieu era</h3>
+   <p class="mono">250 reports &middot; 3,542 names &middot;
+   6,044 seats</p>
+   <p class="note">Shadowlands, Sepulcher, Dragonflight, the taper. Fewer
+   distinct names on a slightly larger number of reports, the same core of the
+   roster, and a bench that kept shrinking.</p></div>
+ </div>
+ <p class="note">Names exclusive to the Tandu era: <strong>4320</strong>.
+ Names exclusive to the Tandieu era: <strong>3505</strong>. The bench
+ turned over almost completely, and it turned over <em>with</em> the name, which
+ suggests the rename coincided with leaving one raid community for another rather
+ than with a server move.</p>
+</section>
+
+<section id="bridge">
+ <h2>The bridge &mdash; 37 names on both sides</h2>
+ <p>Sorted by nights served. These are the only people the roster can
+ prove were present before <strong>2020-09-16</strong> and after it &mdash; no
+ handle of mine can appear here, since my two names sit on opposite sides of the
+ line by definition. 37 out of 7,862 is the whole of the continuity.</p>
+ <div class="scroll">
+  <table>
+   <caption>Present in a report on both sides of the rename</caption>
+   <thead><tr><th>Name</th><th>Class</th><th>Nights</th><th>First</th>
+   <th>Last</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">Stinkychef</td><td>Warlock</td><td>117</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr>
+    <tr><td class="mono">Twilightmoon</td><td>Priest</td><td>106</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr>
+    <tr><td class="mono">Tarutao</td><td>Druid</td><td>99</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr>
+    <tr><td class="mono">Únknówn</td><td>DemonHunter</td><td>86</td><td class="mono">2020-02-12</td><td class="mono">2022-12-21</td></tr>
+    <tr><td class="mono">Karkol</td><td>Mage</td><td>78</td><td class="mono">2018-10-23</td><td class="mono">2023-01-11</td></tr>
+    <tr><td class="mono">Maahk</td><td>Mage</td><td>55</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Ankhán</td><td>Paladin</td><td>54</td><td class="mono">2020-02-12</td><td class="mono">2020-10-21</td></tr>
+    <tr><td class="mono">Veriholy</td><td>Paladin</td><td>51</td><td class="mono">2020-02-26</td><td class="mono">2020-10-21</td></tr>
+    <tr><td class="mono">Lantheros</td><td>Warrior</td><td>49</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Shockinmon</td><td>Shaman</td><td>45</td><td class="mono">2020-02-12</td><td class="mono">2020-09-16</td></tr>
+    <tr><td class="mono">Darmugon</td><td>Warrior</td><td>41</td><td class="mono">2020-04-17</td><td class="mono">2020-12-12</td></tr>
+    <tr><td class="mono">Palabi</td><td>Paladin</td><td>41</td><td class="mono">2020-02-12</td><td class="mono">2020-12-15</td></tr>
+    <tr><td class="mono">Thr</td><td>Rogue</td><td>36</td><td class="mono">2020-05-13</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Garudo</td><td>Monk</td><td>36</td><td class="mono">2020-05-13</td><td class="mono">2020-10-21</td></tr>
+    <tr><td class="mono">Knebdh</td><td>DemonHunter</td><td>34</td><td class="mono">2020-04-17</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Theconvict</td><td>Warrior</td><td>23</td><td class="mono">2020-03-11</td><td class="mono">2021-09-18</td></tr>
+    <tr><td class="mono">Monkeysuncle</td><td>Druid</td><td>21</td><td class="mono">2020-07-08</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Anxious</td><td>Hunter</td><td>18</td><td class="mono">2020-05-27</td><td class="mono">2020-10-21</td></tr>
+    <tr><td class="mono">Tarumila</td><td>Druid</td><td>17</td><td class="mono">2020-03-11</td><td class="mono">2021-04-27</td></tr>
+    <tr><td class="mono">Namioka</td><td>Priest</td><td>17</td><td class="mono">2020-05-08</td><td class="mono">2022-04-13</td></tr>
+    <tr><td class="mono">Entropycat</td><td>Priest</td><td>14</td><td class="mono">2019-11-29</td><td class="mono">2023-01-13</td></tr>
+    <tr><td class="mono">Légere</td><td>Paladin</td><td>13</td><td class="mono">2018-10-21</td><td class="mono">2022-04-16</td></tr>
+    <tr><td class="mono">Jacipo</td><td>Hunter</td><td>13</td><td class="mono">2020-03-20</td><td class="mono">2021-04-27</td></tr>
+    <tr><td class="mono">Crea</td><td>Druid</td><td>12</td><td class="mono">2020-08-12</td><td class="mono">2021-03-12</td></tr>
+    <tr><td class="mono">Fish</td><td>Rogue</td><td>12</td><td class="mono">2020-08-07</td><td class="mono">2020-10-21</td></tr>
+    <tr><td class="mono">Karkanis</td><td>Monk</td><td>7</td><td class="mono">2020-09-09</td><td class="mono">2021-04-20</td></tr>
+    <tr><td class="mono">Tarumil</td><td>Mage</td><td>7</td><td class="mono">2020-03-11</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Lilbeyblade</td><td>Paladin</td><td>4</td><td class="mono">2020-09-09</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Shamlen</td><td>Shaman</td><td>4</td><td class="mono">2020-04-17</td><td class="mono">2020-09-18</td></tr>
+    <tr><td class="mono">Devi</td><td>Druid</td><td>4</td><td class="mono">2020-09-09</td><td class="mono">2022-04-26</td></tr>
+    <tr><td class="mono">Axeingar</td><td>Warrior</td><td>3</td><td class="mono">2019-05-02</td><td class="mono">2022-05-01</td></tr>
+    <tr><td class="mono">Nerfdhpls</td><td>DemonHunter</td><td>3</td><td class="mono">2019-11-30</td><td class="mono">2021-07-19</td></tr>
+    <tr><td class="mono">Shidela</td><td>Hunter</td><td>3</td><td class="mono">2020-09-09</td><td class="mono">2020-09-17</td></tr>
+    <tr><td class="mono">Xanthu</td><td>Warlock</td><td>2</td><td class="mono">2019-05-04</td><td class="mono">2021-07-19</td></tr>
+    <tr><td class="mono">Gackpoid</td><td>DemonHunter</td><td>2</td><td class="mono">2019-10-30</td><td class="mono">2022-05-01</td></tr>
+    <tr><td class="mono">Lìlly</td><td>Priest</td><td>2</td><td class="mono">2020-02-10</td><td class="mono">2021-09-21</td></tr>
+    <tr><td class="mono">Ëff</td><td>Paladin</td><td>2</td><td class="mono">2019-11-16</td><td class="mono">2021-03-12</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section id="company">
+ <h2>The company</h2>
+ <p>The twenty-five names with the most nights on the roster. This is
+ the bench as it actually existed &mdash; not a guild roster (the payload carries no
+ guild tag at all) and not a friends list, just a count of nights two rows shared
+ the same report.</p>
+ <div class="scroll">
+  <table>
+   <caption>Top 25 by nights present</caption>
+   <thead><tr><th>#</th><th>Name</th><th>Class</th><th>Nights</th>
+   <th>First</th><th>Last</th><th>Span</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">1</td><td class="mono">Tandieu <span class="pill warn">me</span></td><td>Hunter</td><td>172</td><td class="mono">2020-09-16</td><td class="mono">2024-10-20</td><td class="mono">2020&ndash;2024</td></tr>
+    <tr><td class="mono">2</td><td class="mono">Tandu <span class="pill warn">me</span></td><td>Hunter</td><td>171</td><td class="mono">2018-10-01</td><td class="mono">2020-09-11</td><td class="mono">2018&ndash;2020</td></tr>
+    <tr><td class="mono">3</td><td class="mono">Stinkychef</td><td>Warlock</td><td>117</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td><td class="mono">2020&ndash;2023</td></tr>
+    <tr><td class="mono">4</td><td class="mono">Twilightmoon</td><td>Priest</td><td>106</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td><td class="mono">2020&ndash;2023</td></tr>
+    <tr><td class="mono">5</td><td class="mono">Tarutao</td><td>Druid</td><td>99</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td><td class="mono">2020&ndash;2023</td></tr>
+    <tr><td class="mono">6</td><td class="mono">Únknówn</td><td>DemonHunter</td><td>86</td><td class="mono">2020-02-12</td><td class="mono">2022-12-21</td><td class="mono">2020&ndash;2022</td></tr>
+    <tr><td class="mono">7</td><td class="mono">Karkol</td><td>Mage</td><td>78</td><td class="mono">2018-10-23</td><td class="mono">2023-01-11</td><td class="mono">2018&ndash;2023</td></tr>
+    <tr><td class="mono">8</td><td class="mono">Maahk</td><td>Mage</td><td>55</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">9</td><td class="mono">Ankhán</td><td>Paladin</td><td>54</td><td class="mono">2020-02-12</td><td class="mono">2020-10-21</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">10</td><td class="mono">Veriholy</td><td>Paladin</td><td>51</td><td class="mono">2020-02-26</td><td class="mono">2020-10-21</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">11</td><td class="mono">Lantheros</td><td>Warrior</td><td>49</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">12</td><td class="mono">Shockinmon</td><td>Shaman</td><td>45</td><td class="mono">2020-02-12</td><td class="mono">2020-09-16</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">13</td><td class="mono">Gwendyla</td><td>Paladin</td><td>42</td><td class="mono">2020-09-17</td><td class="mono">2024-10-06</td><td class="mono">2020&ndash;2024</td></tr>
+    <tr><td class="mono">14</td><td class="mono">Darmugon</td><td>Warrior</td><td>41</td><td class="mono">2020-04-17</td><td class="mono">2020-12-12</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">15</td><td class="mono">Palabi</td><td>Paladin</td><td>41</td><td class="mono">2020-02-12</td><td class="mono">2020-12-15</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">16</td><td class="mono">Ankhen</td><td>Mage</td><td>40</td><td class="mono">2021-03-12</td><td class="mono">2023-01-13</td><td class="mono">2021&ndash;2023</td></tr>
+    <tr><td class="mono">17</td><td class="mono">Erazorhead</td><td>Druid</td><td>39</td><td class="mono">2019-04-16</td><td class="mono">2020-06-14</td><td class="mono">2019&ndash;2020</td></tr>
+    <tr><td class="mono">18</td><td class="mono">Demindar</td><td>Mage</td><td>38</td><td class="mono">2020-12-10</td><td class="mono">2022-04-27</td><td class="mono">2020&ndash;2022</td></tr>
+    <tr><td class="mono">19</td><td class="mono">Garudo</td><td>Monk</td><td>36</td><td class="mono">2020-05-13</td><td class="mono">2020-10-21</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">20</td><td class="mono">Thr</td><td>Rogue</td><td>36</td><td class="mono">2020-05-13</td><td class="mono">2020-09-18</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">21</td><td class="mono">Hordehobbs</td><td>Paladin</td><td>35</td><td class="mono">2019-04-16</td><td class="mono">2020-09-04</td><td class="mono">2019&ndash;2020</td></tr>
+    <tr><td class="mono">22</td><td class="mono">Syrlinus</td><td>Hunter</td><td>35</td><td class="mono">2018-10-28</td><td class="mono">2020-09-04</td><td class="mono">2018&ndash;2020</td></tr>
+    <tr><td class="mono">23</td><td class="mono">Knebdh</td><td>DemonHunter</td><td>34</td><td class="mono">2020-04-17</td><td class="mono">2020-09-18</td><td class="mono">2020&ndash;2020</td></tr>
+    <tr><td class="mono">24</td><td class="mono">Drakenmaegis</td><td>Warlock</td><td>31</td><td class="mono">2019-04-16</td><td class="mono">2019-08-14</td><td class="mono">2019&ndash;2019</td></tr>
+    <tr><td class="mono">25</td><td class="mono">Grohmish</td><td>Shaman</td><td>30</td><td class="mono">2019-04-22</td><td class="mono">2019-08-23</td><td class="mono">2019&ndash;2019</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">A quirk worth stating instead of hiding: the same person can
+ outlive a rename and change class between eras, so one human may appear under two
+ names (&ldquo;Ankh&aacute;n&rdquo; the paladin and &ldquo;Ankhen&rdquo; the mage are
+ the same typographic joke, not necessarily the same body). The page counts rows,
+ never people.</p>
+</section>
+
+<section id="classes">
+ <h2>What the bench was made of</h2>
+ <p>Player seats per class across the whole vault. A hunter main
+ measurably attracts guardians and healers &mdash; the two classes that keep a beast
+ master standing are the two that finish second and third.</p>
+ <div class="scroll">
+  <table>
+   <caption>Player seats and distinct names by class</caption>
+   <thead><tr><th>Class</th><th>Seats</th><th>Seat share</th>
+   <th>Distinct names</th></tr></thead>
+   <tbody>
+    <tr><td>Hunter</td><td>1500</td><td class="mono">11.4%</td><td>775</td></tr>
+    <tr><td>Druid</td><td>1444</td><td class="mono">11.0%</td><td>885</td></tr>
+    <tr><td>Paladin</td><td>1318</td><td class="mono">10.1%</td><td>782</td></tr>
+    <tr><td>DemonHunter</td><td>1128</td><td class="mono">8.6%</td><td>675</td></tr>
+    <tr><td>Priest</td><td>1120</td><td class="mono">8.5%</td><td>633</td></tr>
+    <tr><td>Shaman</td><td>1094</td><td class="mono">8.3%</td><td>711</td></tr>
+    <tr><td>Mage</td><td>1057</td><td class="mono">8.1%</td><td>581</td></tr>
+    <tr><td>Warrior</td><td>1053</td><td class="mono">8.0%</td><td>680</td></tr>
+    <tr><td>Warlock</td><td>1008</td><td class="mono">7.7%</td><td>591</td></tr>
+    <tr><td>Monk</td><td>884</td><td class="mono">6.7%</td><td>510</td></tr>
+    <tr><td>DeathKnight</td><td>747</td><td class="mono">5.7%</td><td>503</td></tr>
+    <tr><td>Rogue</td><td>640</td><td class="mono">4.9%</td><td>453</td></tr>
+    <tr><td>Evoker</td><td>119</td><td class="mono">0.9%</td><td>83</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section id="sizes">
+ <h2>How many showed up</h2>
+ <p>Players per report, by year. This is raid-format archaeology: the
+ mode is what the group was built to hold, and it moves when the content does
+ &mdash; flexible twenty-five in 2019 BfA, a hard twenty through Shadowlands, a
+ half-empty bench on the quiet Dragonflight nights that still got logged.</p>
+ <div class="scroll">
+  <table>
+   <caption>Players per report &mdash; pets, NPCs and bosses excluded</caption>
+   <thead><tr><th>Year</th><th>Reports</th><th>Min</th><th>Median</th>
+   <th>Mode</th><th>Max</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2018</td><td>35</td><td>5</td><td>29</td><td>5</td><td>203</td></tr>
+    <tr><td class="mono">2019</td><td>88</td><td>2</td><td>26</td><td>25</td><td>310</td></tr>
+    <tr><td class="mono">2020</td><td>88</td><td>4</td><td>20</td><td>20</td><td>78</td></tr>
+    <tr><td class="mono">2021</td><td>128</td><td>1</td><td>22</td><td>18</td><td>180</td></tr>
+    <tr><td class="mono">2022</td><td>36</td><td>5</td><td>22</td><td>5</td><td>47</td></tr>
+    <tr><td class="mono">2023</td><td>16</td><td>16</td><td>25</td><td>24</td><td>91</td></tr>
+    <tr><td class="mono">2024</td><td>19</td><td>15</td><td>25</td><td>16</td><td>74</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note warn">The maxima are not raids. A report that merges several
+ groups &mdash; or a world-boss or warfront night &mdash; can list a hundred
+ friendlies in one instance. The median and the mode are the honest numbers; the
+ max is printed so nobody has to wonder why it is missing.</p>
+</section>
+
+<section id="method">
+ <h2>Method, limits, and what this is not</h2>
+ <p><strong>Door.</strong> <code>https://api.wipefest.gg/report/{code}</code>, one
+ plain GET per report, no key, no login, no scraping. The 470 report codes come from
+ the link set baked into <a class="ext" href="raidlogs.html">raidlogs.html</a>. All
+ 470 answered; zero failures. Each response carries <code>friendlies</code>,
+ <code>friendlyPets</code>, <code>enemies</code>, <code>fights</code> and the
+ uploader &mdash; earlier passes kept only the fights, which is why this field sat
+ unread.</p>
+ <p><strong>Filter.</strong> A row counts as a player only if its
+ <code>type</code> is one of the thirteen playable class names. <code>Pet</code>,
+ <code>NPC</code>, <code>Boss</code> and empty rows are dropped from every count on
+ this page. Raw friendly rows: <strong>14620</strong>; player seats:
+ <strong>13112</strong>; pet rows: <strong>19222</strong>.</p>
+ <p><strong>What it cannot say.</strong> No guild. No realm. No rank. The payload
+ has no such field, so no figure here is usable as tenure evidence and none is
+ offered as such. <code>&lt;Gehenna&gt;</code> remains scoped to the 2019 BfA window
+ (WCL guild <code>7287</code>, Wipefest); <code>&lt;Theorycrafters&gt;</code> to
+ Thrall-US and Hyjal-US; the 2009&ndash;2016 Wayback captures of
+ <code>&lt;Gehenna&gt;</code> stay unrecorded and unlinked, exactly as the tenure
+ rule requires. A roster is a room, not a charter.</p>
+ <p><strong>What it can say.</strong> Presence. A name in a friendly row was in the
+ instance while the log was recording, on that date, with that class. That is the
+ strongest claim on the page and the only one being made.</p>
+ <div class="note">
+  <p><strong>Provenance</strong> &mdash; payload:
+  <code>Research/_raw/wipefest_roster.json</code> (local, gitignored); generators:
+  <code>Research/_local/_muster_sweep.py</code> and
+  <code>Research/_local/_muster_build.py</code> (local, gitignored). Re-run both and
+  every number above is re-derived. The HUD page is the render; the payload is the
+  receipt.</p>
+  <p><strong>Read next</strong> &mdash;
+  <a class="ext" href="raidlogs.html">Raid Logs</a> (the 470 codes),
+  <a class="ext" href="log_ledger.html">Log Ledger</a> (the fights themselves),
+  <a class="ext" href="Origins.html">Origins</a> (the decade before them),
+  <a class="ext" href="legacy.html">Legacy</a> (the handles on disk),
+  <a class="ext" href="Company.html">Company</a> (the same question, answered
+  from the Forever side by DingFanfare's cards),
+  <a class="ext" href="persona.html">Persona</a> (the names as a self).</p>
+ </div>
+</section>
+
+<footer>
+ <p>Muster &middot; wing of the Gewey G.U.I. HUD &middot; built
+ 2026-11-20 from 470 Wipefest report payloads &middot; Tandumonium / Tandieu,
+ Hyjal-US &middot; wow-forever main: Tandumonium-Ebbeson.</p>
+ <p>Static page, no runtime fetch. Wowhead tooltips (whTooltips + power.js) load
+ on every pane of this HUD by contract.</p>
+</footer>
+
+</div>
+</body>
+</html>

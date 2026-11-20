@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Origins &mdash; the ten years the archive never saw | Gewey G.U.I.</title>
+<!--
+  ORIGINS.html - built 2026-11-16 by Tandumonium (pre-log decade pass).
+
+  Every other wing of this HUD starts where the evidence starts: 470 Warcraft
+  Logs reports from 2018-10-01, a 2019 BfA guild tenure, a 2026 retail install.
+  The character is older than all of it. This wing is the negative space - the
+  2008-2018 decade that no API ever recorded - stated as a measurement instead
+  of a memory.
+
+  Three rules, same as every wing:
+    1. Nothing here is invented. Attested facts are labelled ATTESTED and carry
+       the name of the source (the player). Measured facts carry a file path.
+    2. The tenure rule is absolute. <Gehenna> appears only inside 2019 BfA.
+       Pre-tenure Wayback captures of it are never linked, never counted.
+    3. A zero is a finding. Where a door answered "no captures", the table says
+       zero and the method section says what that means.
+
+  Static, self-contained, no runtime fetch. Nav chips wired idempotently by
+  Research/_local/_wire_origins_nav.py (local, gitignored).
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#06060a;--panel:rgba(12,13,20,.88);--line:rgba(120,168,255,.18);
+ --ink:#eef1ff;--mut:#8e97b3;--gold:#ffc46b;--crimson:#ff4560;
+ --arcane:#58d2ff;--fel:#7dffb0;--grey:#b9c2cc;--ash:#c2c6d6;
+ --glow:0 0 14px rgba(88,210,255,.4)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -10%,rgba(88,210,255,.10),transparent 62%),
+  radial-gradient(820px 480px at 88% 0%,rgba(194,198,214,.07),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(88,210,255,.06),transparent 68%),
+  linear-gradient(180deg,#06060a 0%,#080911 58%,#0a0b14 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--arcane);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--arcane);color:var(--arcane);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--arcane);color:var(--arcane)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--arcane);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.card h3{margin-top:0}
+.stat{font-size:1.9rem;font-weight:800;color:var(--arcane);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--arcane);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.dead{color:var(--grey)}.warn{color:var(--gold)}
+.moon{color:var(--arcane)}.wall{color:var(--crimson)}.ash{color:var(--ash)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+.voice{font-size:.92rem;color:#e4e8fb;border-left:2px solid var(--arcane);
+ padding:.1rem 0 .1rem .85rem;margin:.7rem 0;font-style:italic}
+pre{background:rgba(0,0,0,.44);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d6dcf2;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(88,210,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-origins">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Origins &middot; 2008 &rarr; 2018 &middot; the decade with no logs</p>
+ <h1>Origins <span class="thin">the ten years the archive never saw</span></h1>
+ <p class="lede">Every other wing of this HUD begins where the evidence begins:
+ four hundred and seventy Warcraft Logs reports, the first of them on
+ <strong>2018-10-01</strong>. The character is ten years older than that first
+ upload. This page is the negative space &mdash; what can be proven about
+ 2008&ndash;2018, what can only be attested, and what the archive's silence is
+ actually made of.</p>
+ <p class="voice">I did not start existing when I started uploading. I started
+ uploading when someone else built a website that would keep the numbers.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Origins.html" aria-current="page">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="eras.html">Eras</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="roster.html">Roster</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="automations.html">Automations</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="horizon">
+ <h2>The log horizon</h2>
+ <p>Warcraft Logs is not the whole of me, but it is the only instrument that was
+ pointed at me continuously. It starts on a date, and that date is the horizon
+ behind which every page on this site goes quiet.</p>
+ <div class="grid g4">
+  <div class="card"><div class="stat">470<small>reports, all owner <code>Tandu</code></small></div></div>
+  <div class="card"><div class="stat">2018-10-01<small>first upload, 20:27 UTC</small></div></div>
+  <div class="card"><div class="stat">4,019<small>pulls inside them</small></div></div>
+  <div class="card"><div class="stat">0<small>reports before that date</small></div></div>
+ </div>
+ <div class="scroll" style="margin-top:.9rem">
+  <table>
+   <caption>Reports per calendar year &mdash; 470 total, all read back through Wipefest</caption>
+   <thead><tr><th>Year</th><th>Reports</th><th>What the game was doing</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2018</td><td>44</td><td>Battle for Azeroth opens &mdash; Uldir. The tape starts late in the year.</td></tr>
+    <tr><td class="mono">2019</td><td>94</td><td>Dazar'alor, Crucible, Eternal Palace. The <code>&lt;Gehenna&gt;</code> tenure year.</td></tr>
+    <tr><td class="mono">2020</td><td>107</td><td>Ny'alotha, then the long Shadowlands wait.</td></tr>
+    <tr><td class="mono">2021</td><td>146</td><td>The heaviest year on the tape &mdash; Castle Nathria, Sanctum.</td></tr>
+    <tr><td class="mono">2022</td><td>40</td><td>Sepulcher, then a tapering.</td></tr>
+    <tr><td class="mono">2023</td><td>18</td><td>Dragonflight, sparse logs.</td></tr>
+    <tr><td class="mono">2024</td><td>21</td><td>Final upload 2024-12-30 03:39 UTC.</td></tr>
+    <tr><td class="mono">2008&ndash;2017</td><td><span class="pill wall">none</span></td><td>The decade this page is about.</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Counted from the 470 report records behind
+ <a class="ext" href="log_ledger.html">Log Ledger</a>; the per-year split is the
+ report's own start timestamp, not the tier it belongs to. A year with fewer
+ reports is a year with fewer uploads, not a year with less play &mdash; that
+ distinction is the whole point of this wing.</p>
+</section>
+<section id="attested">
+ <h2>Attested &mdash; what only the player can say</h2>
+ <p>Some of the record has no file behind it and never will. It is not weaker
+ evidence, it is a different kind: a statement by the only witness. It is
+ labelled <span class="pill warn">attested</span> everywhere it appears, so no
+ future pass can mistake it for a crawl.</p>
+ <div class="grid g3">
+  <div class="card">
+   <h3>2008 &middot; Shadowsong <span class="pill warn">attested</span></h3>
+   <p>The account begins in 2008 on <code>Shadowsong-US</code> as a
+   <strong>blood elf</strong>. Not a transfer, not a reroll with a new name: the
+   same handle, the same realm cluster, the same faction, for eighteen years.</p>
+   <p class="note">That realm cluster still holds 12 character folders today &mdash;
+   the largest retail block on disk after Hyjal.</p>
+  </div>
+  <div class="card">
+   <h3>Tandu &middot; the OG handle <span class="pill warn">attested</span></h3>
+   <p>Short, blunt, two syllables. Everything later &mdash; <code>Tandieu</code>,
+   <code>Tandumonium</code>, <code>Tandumonium-Ebbeson</code> &mdash; is an
+   elaboration of it, usually forced by a name collision on a transfer.</p>
+   <p class="note">Four spellings, one spine:
+   <a class="ext" href="legacy.html">Legacy &middot; The Four Handles</a>.</p>
+  </div>
+  <div class="card">
+   <h3>The bodies <span class="pill warn">attested</span></h3>
+   <p>Blood elf throughout, with one detour through undeath and one deliberate
+   respec into dracthyr &mdash; chosen for <strong>Glide</strong>, because
+   gravity has killed this character more often than any boss.</p>
+   <p class="note"><a class="ext" href="persona.html">Persona</a> carries the
+   long version; this card exists so Origins is not read as a race history.</p>
+  </div>
+ </div>
+ <p class="note warn" style="margin-top:.9rem"><strong>Why attestation is fenced
+ off.</strong> A pre-2018 armory page would be <em>evidence</em>; a memory of
+ 2008 is <em>testimony</em>. Mixing the two is how a legacy page starts inventing
+ guilds. This wing keeps them in separate columns, and the tenure rule keeps
+ every pre-2019 <code>&lt;Gehenna&gt;</code> capture out of both.</p>
+</section>
+
+<section id="orphans">
+ <h2>Orphans &mdash; what outlived its addon</h2>
+ <p>The retail install cannot say what happened in 2011. It can say what was
+ installed and then deleted, because deleting an addon folder does not delete the
+ things that pointed at it. Those pointers are the closest thing to a fossil this
+ decade has.</p>
+ <div class="scroll">
+  <table>
+   <caption>Surviving references to addons with no folder on disk &mdash; read 2026-11-16</caption>
+   <thead><tr><th>Artifact</th><th>Where it survives</th><th>Tells you</th></tr></thead>
+   <tbody>
+    <tr>
+     <td class="mono">Decursive</td>
+     <td>account macro <code>Decursive</code> in
+      <code>WTF\Account\QUAZZARR\macros-cache.txt</code></td>
+     <td>Body:
+      <code>/script DecursiveRootTable.Dcr:Println('No spell available')</code>.
+      Decursive's lineage runs back to vanilla; the macro is still in the cache
+      with the addon long gone &mdash; a dead API call preserved as muscle
+      memory.</td>
+    </tr>
+    <tr>
+     <td class="mono">ElvUI</td>
+     <td><code>Hyjal\Tangents\macros-cache.txt</code></td>
+     <td>One macro ends <code>/click ElvUI_Bar6Button12</code>. ElvUI appears in
+      the enable list of <strong>0 of 54</strong> characters and has no folder,
+      yet a bind still clicks its bar.</td>
+    </tr>
+    <tr>
+     <td class="mono">Immersion</td>
+     <td><code>SavedVariables\Immersion.lua</code> &mdash; 598 bytes</td>
+     <td>The addon is gone; its settings block is not. Still holds
+      <code>strata = "MEDIUM"</code>, <code>reset = "BACKSPACE"</code>,
+      <code>inspect = "SHIFT"</code>, <code>accept = "SPACE"</code> &mdash; the
+      dialog keys of a UI that no longer exists. Exactly
+      <strong>1 of 54</strong> characters still lists it.</td>
+    </tr>
+    <tr>
+     <td class="mono">WorldFlightMap</td>
+     <td>enable lists on <strong>51 of 54</strong> characters</td>
+     <td>A flight-path overlay the retail <code>AGENTS.md</code> calls "removed
+      since the 14-addon era". Two sources, one absence.</td>
+    </tr>
+    <tr>
+     <td class="mono">!Swatter</td>
+     <td>enable lists on <strong>54 of 54</strong> characters</td>
+     <td>The error-swallowing engine under !BugGrabber. Every character still
+      thinks it is loaded.</td>
+    </tr>
+    <tr>
+     <td class="mono">!ImprovedErrorFrame</td>
+     <td>enable lists on <strong>54 of 54</strong> characters</td>
+     <td>Swatter's older sibling. Same story: a name with no code behind it.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p>Installed today: <strong>40</strong> addon folders. Account macro cache:
+ <strong>98</strong> macros across 489 lines, <strong>42</strong> of them
+ carrying a <code>/click</code> into some bar that may or may not still exist.
+ That ratio &mdash; one live folder to two remembered names &mdash; is the decade
+ in miniature.</p>
+ <div class="voice">An addon leaves nothing behind but the fact that you once
+ needed it. That is also the best description of the years 2008 to 2018.</div>
+</section>
+<section id="doors">
+ <h2>The doors, and what the archive actually holds</h2>
+ <p>If the decade is undocumented, the proof is a sweep of every door that could
+ have documented it: character sheets on three aggregators, the old Blizzard
+ armory's <code>/simple</code> and <code>/advanced</code> views, the personal log
+ vault, and the two guild homes. One read-only pass, no auth, no cookies.</p>
+ <div class="scroll">
+  <table id="door-table">
+   <caption>Wayback CDX, 14 door families / 33 exact-URL queries &mdash; captures returned, not captures hoped for</caption>
+   <thead><tr><th>Door family</th><th>Queries</th><th>Captures</th><th>Years</th></tr></thead>
+   <tbody>
+    <tr><td>WoWProgress character pages<br>
+      <span class="mono">Tandu / Tandumonium &middot; Shadowsong, Hyjal, Thrall</span></td>
+      <td>7</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Blizzard armory, original site<br>
+      <span class="mono">/simple (both casings) &middot; /advanced &middot; root</span></td>
+      <td>7</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>WoW-Heroes character pages</td><td>3</td>
+      <td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Warcraft Logs character pages<br>
+      <span class="mono">Shadowsong &middot; Hyjal &middot; Thrall, both casings</span></td>
+      <td>5</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Warcraft Logs personal vault<br>
+      <span class="mono">user/reports-list/815764</span></td>
+      <td>1</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Warcraft Logs guild pages<br>
+      <span class="mono">&lt;Theorycrafters&gt; Hyjal &middot; Thrall</span></td>
+      <td>2</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Raider.IO guild page<br><span class="mono">&lt;Theorycrafters&gt; Hyjal</span></td>
+      <td>1</td><td>2</td><td class="mono">2023 &middot; 2024</td></tr>
+    <tr><td>Raider.IO guild page<br><span class="mono">&lt;Theorycrafters&gt; Thrall</span></td>
+      <td>1</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>WoWProgress guild page<br><span class="mono">&lt;Theorycrafters&gt; Hyjal</span></td>
+      <td>1</td><td>4</td><td class="mono">2016 (Aug&ndash;Oct)</td></tr>
+    <tr><td>WoWProgress guild page<br><span class="mono">&lt;Theorycrafters&gt; Thrall</span></td>
+      <td>1</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Blizzard armory, modern domain<br>
+      <span class="mono">worldofwarcraft.blizzard.com/en-us/character/&hellip;</span></td>
+      <td>1</td><td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>GuildOx character page</td><td>1</td>
+      <td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>Wowtrack character page</td><td>1</td>
+      <td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+    <tr><td>WoWProgress PvP character page</td><td>1</td>
+      <td><span class="pill wall">0</span></td><td class="mono">&mdash;</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p><strong>31 of 33 doors answered with nothing.</strong> The two that answered
+ hold six captures between them, and every one of those six is a capture of a
+ <em>guild page</em>, not of me: a guild name resolving on a date proves the name
+ existed, never that I was in it. They are counted here and linked nowhere.</p>
+ <p class="note">A control URL was run in the same session &mdash; a well-known
+ character on a full-population realm, plus its WoWProgress sheet &mdash; and both
+ returned zero as well. The emptiness is a property of how the archive crawled
+ character sheets, not a property of these handles: individual armory pages were
+ rendered client-side for most of the 2008&ndash;2016 window, which is exactly the
+ kind of page a crawler saves as a shell and forgets.</p>
+ <p class="note warn">Tenure rule applied to the six: the four 2016
+ <code>&lt;Theorycrafters&gt;</code> captures on Hyjal predate any membership this
+ record can establish, and the two Raider.IO captures are name-level only. None of
+ the six is quoted, dated into a timeline, or presented as tenure &mdash; the same
+ rule that keeps 24 pre-tenure <code>&lt;Gehenna&gt;</code> captures out of
+ <a class="ext" href="legacy.html">Legacy</a>.</p>
+</section>
+<section id="meaning">
+ <h2>What the silence is worth</h2>
+ <p>Ten years is not a hole in the story, it is most of the story: the levelling,
+ the first raid, the first guild that did not work out, the undeath detour, the
+ transfers, the name that had to change because someone on the destination realm
+ already had it. None of that produced an upload, because nothing was uploading
+ yet.</p>
+ <p>What survived instead is the shape of the habits: a Decursive macro that
+ refuses to die, dialog keys for a quest mod that was uninstalled, a bind that
+ clicks a bar belonging to an addon that is not installed, 54 character folders
+ across three realms where 9 of them were ever played. Habits leave sediment.
+ Achievements leave rows. Only one of the two is archivable, and it is not the
+ one that made me.</p>
+ <div class="grid g3" style="margin-top:.9rem">
+  <div class="card"><div class="stat">54<small>folders on disk</small></div></div>
+  <div class="card"><div class="stat">9<small>that were lived in</small></div></div>
+  <div class="card"><div class="stat">18<small>years, one handle root</small></div></div>
+ </div>
+ <p class="voice">The logs begin in 2018 because that is when I started keeping
+ them. Everything before that is mine, and yours to take on faith &mdash; this page
+ will never argue otherwise, and it will never pad the gap with a guild I was not
+ in.</p>
+</section>
+
+<section id="provenance">
+ <h2>Provenance, method, limits</h2>
+ <div class="scroll">
+  <table>
+   <caption>Where each number on this page came from</caption>
+   <thead><tr><th>Figure</th><th>Source</th><th>Kind</th></tr></thead>
+   <tbody>
+    <tr><td>470 reports, 4,019 fights, the year split</td>
+        <td><code>Research\_raw\wipefest_sweep.json</code> &mdash; Wipefest API over
+        the 470 codes on <a class="ext" href="raidlogs.html">Raid Logs</a></td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>First / last upload timestamps</td>
+        <td>same sweep, each report's <code>start</code></td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>40 addon folders, 54 enable lists, 98 macros, 489 lines</td>
+        <td><code>Z:\World of Warcraft\_retail_\Interface\AddOns</code> and
+        <code>WTF\Account\QUAZZARR</code></td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Orphan counts (1 / 51 / 54 / 54)</td>
+        <td>grep across all 54 <code>AddOns.txt</code> files, 2026-11-16</td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Decursive and ElvUI macro bodies</td>
+        <td><code>macros-cache.txt</code> (account) and
+        <code>Hyjal\Tangents\macros-cache.txt</code></td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Immersion settings block, 598 bytes</td>
+        <td><code>WTF\Account\QUAZZARR\SavedVariables\Immersion.lua</code></td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Capture counts across 33 doors</td>
+        <td><code>Research\_raw\legacy_cdx.json</code> &mdash; Wayback CDX,
+        33 exact-URL queries, generated 2026-11-16</td>
+        <td><span class="pill ok">measured</span></td></tr>
+    <tr><td>2008 origin, blood-elf lineage, handle history</td>
+        <td>the player; corroborated only by the realm folders and the name
+        lineage on <a class="ext" href="legacy.html">Legacy</a></td>
+        <td><span class="pill warn">attested</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3>Tenure rule, restated because this is the page most likely to break it</h3>
+ <p class="note warn">The Wayback index holds <strong>26</strong> captures of
+ <code>&lt;Gehenna&gt;</code> on Borean Tundra. Exactly <strong>two</strong> fall
+ inside the 2019 BfA membership &mdash; <code>2019-08-19</code> and
+ <code>2020-08-07</code> &mdash; and those are already recorded on
+ <a class="ext" href="legacy.html">Legacy</a>. The other 24 predate the guild and
+ are never linked, quoted or counted, here or in any other wing, page or agent
+ file. <code>&lt;Theorycrafters&gt;</code> is recorded only as the guild the
+ account moved to, on Thrall-US and Hyjal-US.</p>
+ <p class="note">Method: read-only HTTP GET against the Wayback CDX API, one
+ browser user agent, no cookies, no authentication, exact-URL queries with
+ <code>collapse=digest</code>, throttled against the archive's own 429s. The raw
+ payload lives in <code>Research\_raw\legacy_cdx.json</code> and is gitignored
+ because no page reads it at runtime &mdash; every figure above is baked in at
+ build time.</p>
+ <footer>
+  Gewey G.U.I. &middot; Origins &middot; built 2026-11-16 &middot; the wing for the
+  years before the logs &middot; shell:
+  <a class="ext" href="index.html">index.html</a> &middot; link registry:
+  <code>Tandumonium.agent-index.md</code>
+ </footer>
+</section>
+
+</div>
+</body>
+</html>

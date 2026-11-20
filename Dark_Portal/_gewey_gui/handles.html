@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Handles — Tandu, Tandieu, Tandumonium, Tandumonium Ebbeson | Gewey G.U.I.</title>
+<!--
+  HANDLES.html — built by Tandumonium (wide-scale retail legacy pass).
+
+  Why this page exists: persona.html covers "three skins, four names" from the
+  inside; origins.html covers the pre-log decade from the outside; tandu_legacy.html
+  reads the retail disk. None of them maps every handle onto every realm across
+  the full 2008→Present arc with the realms, guilds, and on-disk evidence for
+  each one. This wing does that. It is the handle census.
+
+  Static, self-contained, no runtime fetch. Every figure is baked in at build
+  time from verified sources: the WTF tree under _retail_, the agent index,
+  the Raider.IO public API crawl, and the player's attested handle history.
+
+  Tenure rule: <Gehenna> appears only inside the 2019 BfA membership window.
+  Pre-tenure Wayback captures are never linked, never counted.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+tr:hover td{background:rgba(255,196,107,.04)}
+.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dashed var(--arcane)}
+.ext:hover{color:var(--gold);border-color:var(--gold)}
+.badge{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+ padding:.15rem .35rem;border:1px solid var(--line);border-radius:3px;
+ color:var(--mut);background:rgba(255,255,255,.03)}
+.badge.f{background:rgba(255,59,92,.15);border-color:var(--crimson);color:var(--crimson)}
+.badge.r{background:rgba(55,230,255,.15);border-color:var(--arcane);color:var(--arcane)}
+.handle-row{display:grid;grid-template-columns:1fr 1.2fr 1fr 1fr 1.4fr;gap:.5rem;align-items:start;padding:.6rem;border:1px solid var(--line);border-radius:4px;margin-bottom:.5rem;background:rgba(255,255,255,.02)}
+.handle-row .name{font-weight:700;font-size:1.1rem}
+.handle-row .tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
+.flavor-text{font-size:.85rem;color:var(--mut)}
+.grid3{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1rem}
+.card h4{color:var(--gold);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
+</style>
+</head>
+<body class="gw-shell">
+<div class="viewArea">
+ <div class="pageHeader">
+  <marquee>
+   <p id="demo">Lok'Tar Ogar! &mdash; Gewey G.U.I.
+    <script>document.write(Date());</script>
+   </p>
+  </marquee>
+ </div>
+ <div class="pageLeftMenu">
+  <div name="Logo">
+   <h2>
+    <a target="_top" href="./index.html">
+     <img class="geweyLogo" width="100%" alt="Gewey"
+      src="V:\__inuus__\gewey.github.io\img\logo\gewey\geweyLogo.png"/>
+    </a>
+    <br/>
+   </h2>
+  </div>
+  <div class="geweyMenuButtons">
+   <a href="_fuhevva_evva.html" target="contentframe">
+    <button name="iHome" class="btnbarfull" title="Home"><i class="material-icons md-24">home</i></button></a>
+   <a href="persona.html" target="contentframe">
+    <button name="iPersona" class="btnbarfull" title="Persona — three skins, four names, one spine"><i class="material-icons md-24">psychology</i></button></a>
+   <a href="handles.html" target="contentframe">
+    <button name="iHandles" class="btnbarfull" title="Handles — every name this character has carried, on every realm"><i class="material-icons md-24">badge</i></button></a>
+   <a href="races.html" target="contentframe">
+    <button name="iRaces" class="btnbarfull" title="Races — blood elf, dracthyr, undeath: the full lineage"><i class="material-icons md-24">self_improvement</i></button></a>
+   <a href="web_legacy.html" target="contentframe">
+    <button name="iWebLegacy" class="btnbarfull" title="Web Legacy — old raid logs, external doors, everything the internet still remembers"><i class="material-icons md-24">web</i></button></a>
+   <a href="Origins.html" target="contentframe">
+    <button name="iOrigins" class="btnbarfull" title="Origins — the ten years the archive never saw"><i class="material-icons md-24">hourglass_empty</i></button></a>
+   <a href="character.html" target="contentframe">
+    <button name="iCharacter" class="btnbarfull" title="Character — the live armory record"><i class="material-icons md-24">person</i></button></a>
+   <a href="tandu_legacy.html" target="contentframe">
+    <button name="iTanduLegacy" class="btnbarfull" title="Tandu Legacy — what the retail disk remembers"><i class="material-icons md-24">history</i></button></a>
+   <a href="legacy.html" target="contentframe">
+    <button name="iLegacy" class="btnbarfull" title="Legacy — the 2008→Present paper trail"><i class="material-icons md-24">library_books</i></button></a>
+   <a href="dynasty.html" target="contentframe">
+    <button name="iDynasty" class="btnbarfull" title="Dynasty — the family name across realms"><i class="material-icons md-24">family_restroom</i></button></a>
+   <a href="eras.html" target="contentframe">
+    <button name="iEras" class="btnbarfull" title="Eras — the fossil record"><i class="material-icons md-24">auto_stories</i></button></a>
+   <a href="links.html" target="contentframe">
+    <button name="iLinks" class="btnbarfull" title="Link Vault — every external door"><i class="material-icons md-24">link</i></button></a>
+   <a href="raidlogs.html" target="contentframe">
+    <button name="iRaidLogs" class="btnbarfull" title="Raid Logs — the raid-log archive"><i class="material-icons md-24">military_tech</i></button></a>
+   <a href="log_ledger.html" target="contentframe">
+    <button name="iLogLedger" class="btnbarfull" title="Log Ledger — 470 personal Warcraft Logs"><i class="material-icons md-24">receipt_long</i></button></a>
+   <a href="index.html" target="_top">
+    <button name="iRoot" class="btnbarfull" title="Root — dashboard homepage"><i class="material-icons md-24">dashboard</i></button></a>
+  </div>
+ </div>
+ <div class="pageContent">
+  <iframe id="contentframe" name="contentframe" frameborder="0" width="100%" height="100%" align="right" src="handles.html"></iframe>
+ </div>
+</div>
+
+<section id="census">
+ <h2>The Four Handles — every name this character has carried</h2>
+ <p class="lede">Four handles across eighteen years, four realms, two guilds, and two flavors of WoW. Retail is the archive; Forever is the present. Every handle below has a folder on disk under <code>Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\</code> or a character under <code>Z:\World of Warcraft\_forever_\WTF\Account\QUAZZARR\</code>.</p>
+
+ <div class="handle-row">
+  <div class="name">Tandu</div>
+  <div class="tag badge r">[^R] Retail</div>
+  <div class="flavor-text">OG handle. Live since <strong>2008</strong> on Shadowsong-US. Still preserved on disk in <code>Shadowsong\Tandu\</code> and <code>Thrall\Tandu\</code>.</div>
+  <div><a class="ext" href="https://raider.io/characters/us/shadowsong/Tandu" target="_blank" rel="noopener">Raider.IO</a> &middot; <a class="ext" href="https://www.warcraftlogs.com/character/us/shadowsong/tandu" target="_blank" rel="noopener">WCL</a></div>
+  <div><a class="ext" href="tandu_legacy.html">Tandu Legacy wing</a></div>
+ </div>
+
+ <div class="handle-row">
+  <div class="name">Tandieu</div>
+  <div class="tag badge r">[^R] Retail</div>
+  <div class="flavor-text">Phonetic / French-inflected variant of <em>Tandu</em> (-dieu). Used when <em>Tandu</em> collided on realm transfers across Shadowsong-US, Thrall-US, and Hyjal-US.</div>
+  <div><a class="ext" href="https://www.warcraftlogs.com/search?term=Tandieu" target="_blank" rel="noopener">WCL search</a></div>
+  <div><a class="ext" href="persona.html#four-handles">Persona — four names</a></div>
+ </div>
+
+ <div class="handle-row">
+  <div class="name">Tandumonium</div>
+  <div class="tag badge r">[^R] Retail</div>
+  <div class="flavor-text">Current Retail main. Mythic Beast Mastery / Dark Ranger Hunter on <strong>Hyjal-US</strong>. Equipped ilvl 263, 21,685 achievement points. Unguilded at last crawl.</div>
+  <div><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium" target="_blank" rel="noopener">Raider.IO</a> &middot; <a class="ext" href="character.html">Character wing</a></div>
+  <div><a class="ext" href="gear.html">Gear wing</a> &middot; <a class="ext" href="talents.html">Talents wing</a></div>
+ </div>
+
+ <div class="handle-row">
+  <div class="name">Tandumonium Ebbeson</div>
+  <div class="tag badge f">[^F] Forever</div>
+  <div class="flavor-text">World of Warcraft: Forever main on realm <strong>Ebbeson</strong> (CAMWOW US1 Realm 3 PvE, realmID 6921, subRegion 91, GUID Player-6921-002BA20F). Level 60 cap on the modern 12.1 engine. Shares the Ebbeson surname with retail <code>Jacobebbeson</code> on Hyjal-US.</div>
+  <div><a class="ext" href="Chronicle.html">Chronicle wing</a> &middot; <a class="ext" href="Deeds.html">Deeds wing</a></div>
+  <div><a class="ext" href="Levelbook.html">Levelbook wing</a></div>
+ </div>
+</section>
+
+<table>
+ <caption>Handle → Realm → Guild → Flavor → On-disk evidence</caption>
+ <thead><tr><th>Handle</th><th>Realm</th><th>Guild</th><th>Flavor</th><th>On disk</th></tr></thead>
+ <tbody>
+  <tr><td>Tandu</td><td>Shadowsong-US</td><td>&lt;Gehenna&gt;</td><td><span class="badge r">[^R]</span></td><td><code>WTF\Account\QUAZZARR\Shadowsong\Tandu\</code> (AddOns.txt only)</td></tr>
+  <tr><td>Tandu</td><td>Thrall-US</td><td>&lt;Theorycrafters&gt;</td><td><span class="badge r">[^R]</span></td><td><code>WTF\Account\QUAZZARR\Thrall\Tandu\</code> (AddOns.txt only)</td></tr>
+  <tr><td>Tandieu</td><td>Shadowsong-US / Thrall-US / Hyjal-US</td><td>—</td><td><span class="badge r">[^R]</span></td><td>No character folder on disk (phonetic variant only)</td></tr>
+  <tr><td>Tandumonium</td><td>Hyjal-US</td><td>none (unguilded)</td><td><span class="badge r">[^R]</span></td><td><code>WTF\Account\QUAZZARR\Hyjal\Tandumonium\</code> (28 macros, 20 SVDs, config-cache.wtf)</td></tr>
+  <tr><td>Tandumonium Ebbeson</td><td>Ebbeson</td><td>TBD</td><td><span class="badge f">[^F]</span></td><td><code>WTF\Account\QUAZZARR\91\Tandumonium-Ebbeson\</code> (Forever install)</td></tr>
+ </tbody>
+</table>
+
+<section id="aliases">
+ <h2>Alt family — the Tan* names on Hyjal-US</h2>
+ <p class="lede">The Hyjal-US roster preserves the <em>Tan*</em> alt family alongside Tandumonium and Tandu. These are measured from the 54-folder retail census.</p>
+ <table>
+  <caption>Alt family by realm (census 2026-11-10)</caption>
+  <thead><tr><th>Realm</th><th>Tan* alts</th><th>Total chars on disk</th></tr></thead>
+  <tbody>
+   <tr><td>Hyjal-US</td><td>Tandaria, Tandora, Tandulari, Tangents, Tankadu, Tankard, Tantalous, Tantrums</td><td>27</td></tr>
+   <tr><td>Shadowsong-US</td><td>—</td><td>12</td></tr>
+   <tr><td>Thrall-US</td><td>—</td><td>13</td></tr>
+   <tr><td>Borean Tundra-US</td><td>—</td><td>0</td></tr>
+   <tr><td>Ebbeson (Forever)</td><td>—</td><td>1</td></tr>
+  </tbody>
+ </table>
+ <p class="note">Census source: <code>Research/_local/roster_extract.py</code> → <code>_gewey_gui/roster.html</code>. 54 folders counted, 9 lived characters, 45 ghost shells.</p>
+</section>
+
+<section id="tenure">
+ <h2>Guild Tenure Rule</h2>
+ <div class="card">
+  <h4>&lt;Gehenna&gt; — Shadowsong / Borean Tundra (Retail)</h4>
+  <p>Joey's guild during the 2019 Battle for Azeroth tenure. WCL Guild ID <code>7287</code>. Only the two tenure-era captures (<code>2019-08-19</code> and <code>2020-08-07</code>) are recorded. The other 24 Borean Tundra captures predate the guild and are <strong>never</strong> linked, quoted, or counted.</p>
+ </div>
+ <div class="card">
+  <h4>&lt;Theorycrafters&gt; — Thrall-US / Hyjal-US (Retail)</h4>
+  <p>The guild the account moved to after Gehenna. Recorded only as the post-Gehenna guild home on Thrall-US and Hyjal-US.</p>
+ </div>
+ <div class="card">
+  <h4>Forever — Ebbeson</h4>
+  <p>TBD guild. Active launch realm in World of Warcraft: Forever.</p>
+ </div>
+ <p class="note warn">Tenure rule: <code>&lt;Gehenna&gt;</code> exists here only as 2019 BfA. Pre-tenure Wayback captures are never linked, never counted, never recorded in any agent file.</p>
+</section>
+
+<section id="provenance">
+ <h2>Provenance &amp; method</h2>
+ <div class="scroll">
+  <table>
+   <caption>Where each figure on this page came from</caption>
+   <thead><tr><th>Figure</th><th>Source</th><th>Kind</th></tr></thead>
+   <tbody>
+    <tr><td>Four handles + realms + guilds</td><td><code>Tandumonium.agent-index.md</code> §names · §servers · §guilds</td><td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Tandumonium ilvl 263, AP 21,685</td><td>Raider.IO public API crawl 2026-11-05</td><td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Tandieu phonetic variant</td><td>Attested (player) — corroborated by realm folders</td><td><span class="pill warn">attested</span></td></tr>
+    <tr><td>Tandumonium Ebbeson GUID Player-6921-002BA20F</td><td><code>Z:\World of Warcraft\_forever_\WTF\Account\QUAZZARR\91\</code></td><td><span class="pill ok">measured</span></td></tr>
+    <tr><td>Tan* alt family list</td><td><code>Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR\Hyjal\</code> folder scan</td><td><span class="pill ok">measured</span></td></tr>
+    <tr><td>54-folder census, 9 lived, 45 ghosts</td><td><code>Research/_local/roster_extract.py</code></td><td><span class="pill ok">measured</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Static, self-contained, no runtime fetch. Built by Tandumonium (wide-scale retail legacy pass). Shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot; router: <code>Tandumonium.agent-index.md</code></p>
+</section>
+
+<footer>
+ <p><strong>Handles.html</strong> &mdash; built by Tandumonium &middot; shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot; <a class="ext" href="races.html">Races</a> &middot; <a class="ext" href="web_legacy.html">Web Legacy</a> &middot; <a class="ext" href="persona.html">Persona</a> &middot; <a class="ext" href="tandu_legacy.html">Tandu Legacy</a></p>
+</footer>
+
+</div>
+</body>
+</html>

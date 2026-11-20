@@ -178,4 +178,307 @@ addon_atlas/
 # then commit the page together with any new thumbnails it references --
 # tests/test_published_assets.py fails if a published page points at a file the
 # repo does not carry.
+
 # ---------------------------------------------------------------------------
+# Added 2026-11-16 (Tandumonium, "Tandu Legacy" wide retail pass).
+#
+# PUBLIC this pass - read by the new pane and by every nav:
+#   _gewey_gui/tandu_legacy.html    new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html           new sidebar button "iTanduLegacy"
+#   _gewey_gui/_fuhevva_evva.html   home card linking the wing
+# Everything the page displays is embedded at build time; it fetches nothing,
+# so no data file has to ship beside it.
+#
+# LOCAL this pass - probes and payloads, no page points at them:
+#   Research/_local/_retail_legacy_scan.py   walks all 54 retail folders
+#   Research/_local/_legacy_api_probe.py     Raider.IO + Wayback CDX
+#   Research/_local/_legacy_web_probe.py     SERP probe (returned noise)
+#   Research/_local/_wire_nav.py             nav wiring, idempotent
+#   Research/_local/_link_audit.py           every local href must resolve
+#   Research/_raw/retail_legacy.json         per-folder census (58 KB)
+#   Research/_raw/legacy_api_probe.json      captures + profiles
+#   Research/_raw/legacy_web_probe.json      SERP dump
+# Research/_local/ and Research/_raw/ already cover the four scripts and three
+# JSON files, so this section exists to STATE the rule, not to widen it.
+#
+# The one new pattern is deliberate: Wayback captures are somebody else's HTML.
+# They are evidence, never assets - the same rule the armory_* patterns below
+# already enforce.
+# ---------------------------------------------------------------------------
+Research/_raw/wayback_*
+**/wayback_*.html
+**/wayback_*.json
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 (Tandumonium, tenure-correction + convergence pass).
+#
+# PUBLIC this pass - no new files; four existing pages were CORRECTED:
+#   _gewey_gui/tandu_legacy.html    pre-tenure Wayback rows deleted (24 of 26)
+#   _gewey_gui/links.html           pre-tenure Gehenna captures replaced with
+#                                   the two BfA-tenure ones
+#   _gewey_gui/index.html           sidebar tooltip no longer advertises the
+#                                   2009-2020 capture span
+#   _gewey_gui/_fuhevva_evva.html   home card matches the new count
+# Tenure rule enforced repo-wide: a Wayback capture of <Gehenna> dated before
+# 2019 is never recorded, never linked, never counted. Read by the pages:
+# nothing new to ship, so nothing new is un-ignored.
+#
+# LOCAL this pass - two probe/converge scripts and their payloads. All four
+# paths are already covered by Research/_local/ and Research/_raw/ above; this
+# block exists to STATE the rule, not to widen it.
+#   Research/_local/_gui_converge.py        idempotent: prune + widget + nav
+#   Research/_local/_legacy_door_probe.py   Raider.IO + WCL + Wipefest re-probe
+#   Research/_raw/gui_converge.json         what the converge pass changed
+#   Research/_raw/legacy_door_probe.json    door verdicts, 7 handles + 4 guilds
+#   Research/_raw/gui_pre_converge_20261116/  pre-edit copies of the pages
+#
+# The rule of thumb stays: if an .html page of the HUD reads it, it is PUBLIC.
+# If only an agent reads it, it is LOCAL.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 late (Tandumonium, "Wipefest second door" pass).
+#
+# PUBLIC this pass - the new pane and every edge that reaches it:
+#   _gewey_gui/log_ledger.html      new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html           sidebar button "iLogLedger"
+#   _gewey_gui/<16 pages>.html      one nav chip each (idempotent wiring)
+#   _gewey_gui/_fuhevva_evva.html   home card
+# Nothing on the page fetches the JSON at runtime: every number is embedded
+# at build time, so no data file has to ship beside it.
+#
+# LOCAL this pass - the sweep, its checkpoint, its renderer, its wiring:
+#   Research/_local/_wipefest_sweep.py   470 report codes -> api.wipefest.gg
+#   Research/_local/_log_ledger_build.py JSON -> _gewey_gui/log_ledger.html
+#   Research/_local/_wire_ledger_nav.py  idempotent nav + home card wiring
+#   Research/_raw/wipefest_sweep.json          470 reports, 4k pulls (local)
+#   Research/_raw/wipefest_sweep.json.partial  resume checkpoint (local)
+#   Research/_raw/wipefest_sweep.log(+.err)    run transcript (local)
+# Research/_local/ and Research/_raw/ already cover every path above; this
+# block exists to STATE the rule, not to widen it. The one explicit pattern
+# below is for the checkpoint, which lives beside the payload.
+# ---------------------------------------------------------------------------
+Research/_raw/wipefest_sweep.json.partial
+Research/_raw/wipefest_sweep.log
+Research/_raw/wipefest_sweep.log.err
+
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 (Tandumonium, external web-ledger pass).
+#
+# PUBLIC this pass - read by a new pane and by every nav:
+#   _gewey_gui/web_ledger.html     new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html          new sidebar button "iWebLedger"
+#   _gewey_gui/_fuhevva_evva.html  home card linking the wing
+#   _gewey_gui/tandu_legacy.html   nav entry added
+#   _gewey_gui/legacy.html         nav entry added
+#   _gewey_gui/raidlogs.html       nav entry added
+# Everything the page displays is embedded at build time; it fetches nothing,
+# so no data file has to ship beside it.
+#
+# LOCAL this pass - probes and payloads, no page points at them:
+#   Research/_local/_web_ledger_probe.ps1    18-door status probe
+#   Research/_local/_link_check_web_ledger.py local href resolver for the wing
+#   Research/_raw/web_ledger_20261116.json    verdict payload (18 targets)
+# Research/_local/ and Research/_raw/ already cover all three, so this block
+# exists to STATE the rule, not to widen it.
+#
+# Rule of thumb stays: if an .html page of the HUD reads it, it is PUBLIC.
+# If only an agent reads it, it is LOCAL.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 late (Tandumonium, "persona wing + guild door" pass).
+#
+# PUBLIC this pass - the new pane and every edge that reaches it:
+#   _gewey_gui/persona.html        new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html          sidebar button "iPersona"
+#   _gewey_gui/_fuhevva_evva.html  home directory card
+#   _gewey_gui/<25 pages>.html     one nav chip each (idempotent wiring)
+#   _gewey_gui/web_ledger.html     new section #guild-door (five probes)
+# Every number on the persona pane is embedded at build time and already
+# verified on another wing, so no data file has to ship beside it.
+#
+# LOCAL this pass - the wiring, the auditor, and the payload:
+#   Research/_local/_wire_persona_nav.py   idempotent: chip + button + card
+#   Research/_local/_md_index_audit.py     refs/anchors/dupes/80-col audit
+#   Research/_raw/guild_door_20261116.json eight probe verdicts, no page reads
+# Research/_local/ and Research/_raw/ already cover all three, so this block
+# exists to STATE the rule, not to widen it. The patterns below are belt and
+# braces for anyone who moves a file out of those two folders by accident.
+# ---------------------------------------------------------------------------
+Research/_raw/guild_door_*.json
+**/_probe_out*.txt
+**/_audit_out*.txt
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 late (Tandumonium, "retail reliquary" pass).
+#
+# PUBLIC this pass - the new pane and every edge that reaches it:
+#   _gewey_gui/reliquary.html      new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html          sidebar button "iReliquary"
+#   _gewey_gui/_fuhevva_evva.html  home directory card
+#   _gewey_gui/<26 pages>.html     one nav chip each (idempotent wiring)
+#   _gewey_gui/_css/holy_word.css  label rule for iReliquary
+# Every number on the reliquary pane is baked in at build time - 54 slots,
+# 105 macro blocks, 22 sessions, 94 bar slots, 234.7 days /played - so no data
+# file has to ship beside it.
+#
+# LOCAL this pass - the two scanners, the wiring, and their payloads:
+#   Research/_local/_retail_reliquary_scan.py  read-only retail strata scan
+#   Research/_local/_retail_door_sweep.py     13 handles + 6 doors, read-only
+#   Research/_local/_wire_reliquary_nav.py    idempotent nav-chip wiring
+#   Research/_raw/retail_reliquary.json       scan payload, no page reads it
+#   Research/_raw/retail_door_sweep.json      door verdicts, no page reads it
+# Research/_local/ and Research/_raw/ already cover all five, so this block
+# exists to STATE the rule. The explicit patterns below are belt and braces
+# for anyone who moves one of these files out of those two folders.
+# ---------------------------------------------------------------------------
+Research/_raw/retail_reliquary*.json
+Research/_raw/retail_door_sweep*.json
+**/_retail_reliquary_scan.py
+**/_retail_door_sweep.py
+**/_wire_reliquary_nav.py
+**/_val_out*.txt
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 night (Tandumonium, "Forge & Stable" pass).
+#
+# PUBLIC this pass - the two new panes and everything that reaches them:
+#   _gewey_gui/Forge.html          new wing; authored-addon read-out, baked in
+#   _gewey_gui/Stable.html         new wing; stable stills + persona receipts
+#   _gewey_gui/_img/stable/*.jpg   three 1400px stills Stable.html displays
+#   _gewey_gui/index.html          sidebar buttons iForge + iStable
+#   _gewey_gui/_css/holy_word.css  label rules for both buttons
+#   _gewey_gui/_fuhevva_evva.html  home directory cards
+#   _gewey_gui/relics.html         cross-link from #forge
+#   _gewey_gui/dynasty.html        cross-link from #marks (Dorian card)
+#   _gewey_gui/Chassis.html        missing Wowhead tooltip head, now present
+# The stills are PUBLIC on purpose: Stable.html <img>s them. Full-resolution
+# originals stay where the client wrote them, outside this repo entirely.
+#
+# LOCAL by rule, not by use: nothing new was written this pass. The block
+# below only guards the shapes a future pass might drop here - originals
+# copied in at full size, or a scan that produces a payload no page reads.
+# ---------------------------------------------------------------------------
+_gewey_gui/_img/**/_originals/
+_gewey_gui/_img/**/*.local.*
+Research/_raw/stable_*.json
+Research/_raw/forge_*.json
+**/_retail_forge_readout*.py
+**/_retail_stable_readout*.py
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 (Tandumonium, "echo sweep" pass) - the words, not the
+# folders.
+#
+# PUBLIC this pass - the new pane and every edge that reaches it:
+#   _gewey_gui/Echoes.html         new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html          sidebar button iEchoes
+#   _gewey_gui/_fuhevva_evva.html  home directory card
+#   _gewey_gui/<31 pages>.html     one nav chip each (idempotent wiring)
+#   _gewey_gui/_css/holy_word.css  label rule for iEchoes
+# Every figure on the echo pane is baked in at build time - 319 files,
+# 403 token hits, 23 BugGrabber failures, 35 copies of the @World macro - so
+# no data file has to ship beside it.
+#
+# LOCAL this pass - three scanners, their payloads, and the wall notes:
+#   Research/_local/_retail_echo.py     read-only full-text sweep of _retail_
+#   Research/_local/_echoes_build.py    the page builder
+#   Research/_local/_wire_echoes_nav.py idempotent nav-chip wiring
+#   Research/_local/_rio_probe.py       Raider.IO character/guild probe
+#   Research/_local/_web_search.py      Bing sweep (noise, nothing recorded)
+#   Research/_raw/retail_echo.json      the token census, no page reads it
+#   Research/_raw/search_echo.json      the search wall, no page reads it
+# Research/_local/ and Research/_raw/ already cover all of the above, so this
+# block exists to STATE the rule, not to widen it. The patterns below are belt
+# and braces for anyone who moves a file out of those two folders by accident.
+# ---------------------------------------------------------------------------
+Research/_raw/retail_echo*.json
+Research/_raw/search_echo*.json
+Research/_raw/rio_ledger*.json
+**/_retail_echo.py
+**/_echoes_build.py
+**/_wire_echoes_nav.py
+**/_rio_probe.py
+**/_web_search.py
+**/_peek*.py
+**/_echoes_*.out
+**/_echoes_*.err
+
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-16 (Tandumonium, "Origins" pass) - the decade before the logs.
+#
+# PUBLIC this pass - the new wing and every edge that reaches it:
+#   _gewey_gui/Origins.html        new wing; self-contained, no runtime fetch
+#   _gewey_gui/index.html          sidebar button "iOrigins" (before Settings)
+#   _gewey_gui/_css/holy_word.css  label rule for iOrigins
+#   _gewey_gui/_fuhevva_evva.html  directory card for Origins
+#   _gewey_gui/<33 pages>.html     one nav chip each (idempotent wiring)
+#   _gewey_gui/Milestones.html     missing Wowhead tooltip head, now present
+# Every figure on the Origins pane is baked in at build time - 470 reports, the
+# 2018-10-01 horizon, 31 of 33 doors empty, 1/51/54/54 orphan counts - so no data
+# file has to ship beside it.
+#
+# LOCAL this pass - the probe, the wiring, and the payloads:
+#   Research/_local/_legacy_cdx_probe.py    33 exact-URL Wayback CDX queries
+#   Research/_local/_wire_origins_nav.py    idempotent chip + button + card
+#   Research/_local/_origins_format_repair.py  chip/button re-flow, one-off
+#   Research/_local/_fix_shell_block.py     shell block indent repair, one-off
+#   Research/_raw/legacy_cdx.json           capture census, no page reads it
+#   Research/_raw/legacy_cdx.log            probe log, human only
+# Research/_local/ and Research/_raw/ already cover those, so this block exists
+# to STATE the rule. The patterns below are belt and braces for anyone who moves
+# one of these files out of those two folders by accident.
+# ---------------------------------------------------------------------------
+Research/_raw/legacy_cdx.*
+**/_legacy_cdx_probe.py
+**/_wire_origins_nav.py
+**/_origins_format_repair.py
+**/_fix_shell_block.py
+**/_origins_*.out
+
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-20 (Tandumonium, "roll call" + "tenure register" pass).
+#
+# PUBLIC this pass - two new wings and every edge that reaches them:
+#   _gewey_gui/Muster.html         roster wing; self-contained, no fetch
+#   _gewey_gui/Tenure.html         guild-tenure register; self-contained
+#   _gewey_gui/index.html          buttons "iMuster" (groups) + "iTenure" (gavel)
+#   _gewey_gui/_css/holy_word.css  label rules for both
+#   _gewey_gui/_fuhevva_evva.html  two directory cards
+#   _gewey_gui/<35 pages>.html     one nav chip each (idempotent wiring)
+#   _gewey_gui/MicroAccomplishments.html  Wowhead tooltip head added
+#   _gewey_gui/Vignettes.html             Wowhead tooltip head added
+# Every figure on Muster (13,112 seats / 7,862 names / 37 bridge / the
+# 2020-09-16 rename) and on Tenure (26 indexed / 2 admissible / 24 excluded)
+# is baked in at build time, so no data file has to ship beside either page.
+#
+# LOCAL this pass - the sweep, the two builders, the stat read-out, the wiring,
+# and the payloads they read:
+#   Research/_local/_muster_sweep.py      470 report GETs -> friendlies payload
+#   Research/_local/_muster_stats.py      plain-text read-out for review
+#   Research/_local/_muster_build.py      renders _gewey_gui/Muster.html
+#   Research/_local/_tenure_build.py      renders _gewey_gui/Tenure.html
+#   Research/_local/_wire_muster_tenure_nav.py  chips + buttons + cards
+#   Research/_raw/wipefest_roster.json    rosters, no page fetches it
+#   Research/_raw/wipefest_roster.json.partial  resumable checkpoint
+#   Research/_raw/muster_stats.txt        the numbers, human-only
+# Research/_local/ and Research/_raw/ already cover those, so this block exists
+# to STATE the rule. The patterns below are belt and braces for anyone who moves
+# one of these files out of those two folders by accident.
+# ---------------------------------------------------------------------------
+Research/_raw/wipefest_roster.*
+Research/_raw/muster_*.*
+**/_muster_sweep.py
+**/_muster_build.py
+**/_muster_stats.py
+**/_tenure_build.py
+**/_wire_muster_tenure_nav.py
+**/_muster_*.out
+**/_muster_*.err
+

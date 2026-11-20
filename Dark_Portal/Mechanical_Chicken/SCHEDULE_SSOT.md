@@ -29,7 +29,7 @@
 - **Schedule ID:** `sched_0e643cfb-3ad6-44cb-b408-1b72f852a97a`
 - **Cadence:** Daily at 5:00 PM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Delve through World of Warcraft: Forever game logs and other residue made by playing the game throughout `Z:\World of Warcraft\_forever_`, then within `Z:\World of Warcraft\_forever_\Dark_Portal`, **without deleting anything**. Build a `.html` wing of a site that visualizes the data found. When in doubt, keep filling in `Z:\World of Warcraft\_forever_\Dark_Portal\_gewey_gui\Timeline.html` with in-game micro accomplishments or milestones.
 - **Key constraint:** Do not delete anything under `_forever_`.
 - **Last run:** 11/8/2026 12:30:04 AM — success
@@ -41,7 +41,7 @@
 - **Schedule ID:** `sched_74ec9a75-a581-4752-bdde-0596e6081cca`
 - **Cadence:** Daily at 5:00 PM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Write a daily engineering digest for this repository. Review everything that landed in the last 24 hours (commits and merged PRs) and distill it into a brief a teammate could read in under a minute.
 - **Coverage:** Changes that matter (new behavior, user-facing impact, notable bug fixes); Risky territory (large diffs, sensitive subsystems touched, migrations, dependency or security updates); Loose ends (missing tests, TODOs introduced, rollout risks, likely follow-ups).
 - **Style:** Group related changes into themes instead of listing every commit. Tie every claim to a concrete commit or PR; never guess at intent or invent details. Prioritize signal over completeness. On quiet days a two-line digest is fine.
@@ -55,7 +55,7 @@
 - **Schedule ID:** `sched_a045fc4b-74f5-4848-b6d4-7806da499f71`
 - **Cadence:** Daily at 9:00 AM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Automated bug hunter. Dig through recent changes and catch severe correctness bugs before users hit them.
 - **Scope:** Only chase problems with serious consequences: data loss/corruption, crashes in critical paths, security regressions, races that drop writes, unbounded loops, resource leaks, silent truncation of user data. Explicitly skip style nits, theoretical edge cases, and minor UX degradation.
 - **Method:** Read beyond the diff. Follow caller chains and downstream consumers. Construct the concrete sequence of events for each suspect; if no plausible trigger can be described, drop the finding.
@@ -69,7 +69,7 @@
 - **Schedule ID:** `sched_6a511c2d-3b8a-4b5e-9c2d-1f7e8a5b4c3d`
 - **Cadence:** Hourly at :35 minutes past every hour, America/New_York (`35 * * * *`)
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-free/solar-mini4` (free-first; falls back to
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; falls back to
   `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Scan all three WoW addon roots (read-only) and build a structured
   inventory: identity, commands, options, functionality tags, and
@@ -115,7 +115,7 @@
 - **Schedule ID:** `sched_2ca93382-b175-4e24-a89d-6ae043f506f9`
 - **Cadence:** Hourly at :11 minutes past every hour, America/New_York (`11 * * * *`)
 - **Mode:** act
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Enabled:** ✅ true (was disabled; re-enabled 2026-11-10)
 - **Duty:** Hourly audit of the WoW: Forever station.
 - **Procedure:**
@@ -136,7 +136,7 @@
 - **Schedule ID:** `sched_154dfa5b-eab8-4802-a640-f525dd66240f`
 - **Cadence:** Monday at 8:00 AM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Scheduled security reviewer. Find medium, high, or critical vulnerabilities with a genuine end-to-end attack path — not theoretical weaknesses.
 - **Where to look:** Auth, session handling, permission checks; request handlers, RPC endpoints, webhook receivers; raw SQL, shell execution, file-system access, template rendering; deserialization and parsing of untrusted input; secrets handling and anything logging sensitive values.
 - **Validation bar:** A finding only counts if you can walk the entire chain: who the attacker is, what input they control, how it reaches the vulnerable code, and what impact they gain. Skip lint-level "unsafe API" observations without a real route in.
@@ -150,7 +150,7 @@
 - **Schedule ID:** `sched_807fc5b0-cc74-4c42-96b8-e58bd997a616`
 - **Cadence:** Daily at 1:00 AM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/deepseek-v4.1-flash-1017`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Last run:** — (never run; first run scheduled 11/10/2026 1:00 AM)
 - **Duty:** The other schedules focus on WoW: Forever, but Tandumonium has existed since 2008 and his history should matter. Do everything the other schedules do, but on a wider scale — including the retail folder looking for Tandu's legacy.
 - **Scope:** `Z:\World of Warcraft\_forever_` and `Z:\World of Warcraft\_retail_` both have a `dark_portal` folder — this is a junction to `V:\__inuus__\gewey.github.io\Dark_Portal` (the live website repo `gewey.github.io`). Keep `Z:\World of Warcraft\_forever_\Dark_Portal\.gitignore` up to date with new files that DON'T need to be pushed to GitHub/website. Only `.html` dashboard page files should NOT be ignored; notes/stats not used by pages should be ignored.
@@ -171,7 +171,7 @@
 - **Schedule ID:** `sched_b4fc5e0c-4991-4fbf-bd73-9f8809510a49`
 - **Cadence:** Friday at 10:00 AM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Documentation maintainer. Compare recent code changes against existing docs and close gaps.
 - **Priorities:** Docs made stale/wrong by recent changes (fix first); recently touched subsystems with thin/missing coverage; public interfaces, developer setup and troubleshooting guides, operational runbooks.
 - **Standards:** Verify every statement against source code; never document unconfirmed behavior. Prefer updating existing pages over creating new ones. Explain intent and usage with concrete examples and constraints. Match existing repo doc style/tone/location conventions.
@@ -186,7 +186,7 @@
 - **Schedule ID:** `sched_91d2efc6-fbbd-442d-96d9-bc0744caad6b`
 - **Cadence:** Daily at 6:00 PM America/New_York
 - **Mode:** yolo
-- **Model:** `cline-pass/cline-pass/glm-5.3-flash`
+- **Model:** `cline-free/nemotron-3.5-super-vl` (free-first; rotates to `cline-pass/deepseek-v4.1-flash-1017` when free credits exhaust)
 - **Duty:** Peek around at addons other people have made in:
   - `Z:\World of Warcraft\_forever_\Interface\AddOns`
   - `Z:\World of Warcraft\_classic_era_\Interface\AddOns`
@@ -283,7 +283,7 @@ This SSOT is the authoritative reference for all scheduled automations across th
 
 ## Addon Atlas data store
 
-`Addon Atlas & Mass-Set Macro Setup` (`sched_6a511c2d`, hourly at :35, free `cline-free/solar-mini4`) scans the three WoW addon roots and writes its full inventory here:
+`Addon Atlas & Mass-Set Macro Setup` (`sched_6a511c2d`, hourly at :35, free `cline-free/nemotron-3.5-super-vl`) scans the three WoW addon roots and writes its full inventory here:
 
 - `Mechanical_Chicken/addon_atlas/addon_index.json` — one object per addon: identity, toc keys, loadOrder, `enabled`, `functionality`, `commands[]`, `options[]`, `hide_without_disable{action,method}`, `files[]`.
 - `options_index.json` — `{option_key: [addon names]}` for mass-setting.
@@ -311,7 +311,8 @@ This SSOT is the authoritative reference for all scheduled automations across th
 | Store | `Timeline\data\store\` — `last_state.json`, `watch.log`, `chapters\chapter_<n>_<mapid>.json`, `pending_render.flag` |
 | Chapters | one frozen full-dataset snapshot per NEW map id, numbered by zone-first-timestamp |
 | Renderer | `flipbook_render.py` consumes `pending_render.flag` (payload gets `_render_note`) |
-| Schedule | every 5 minutes (`*/5 * * * *` America/New_York) — cheap enough to poll, fast enough to catch most flushes |
+| Schedule | every 5 minutes — cheap enough to poll, fast enough to catch most flushes |
+| Wired scheduler | `Z:\World of Warcraft\.vscode\tasks.json` ("Flipbook: Tectonic Watch (5m loop)", `runOn: folderOpen` — auto-starts on workspace open; one-shot Poll / Force / Status / Render siblings). Sub-hourly cadence lives in VS Code, not the Chicken — the omni-synced Cline fleet expresses hourly blocks, so no `H*` entry exists; if the Chicken ever needs it, wire it as its own 5-min `*/5` spec, not inside a block. |
 | Report | on extract: `"<n> input(s) changed: <kinds> | <pts> pts, <zones> zones, <shots> shots"` — one line, no file contents |
 
 **Chapter numbering rule:** `chapter_<n>_<mapid>` where `n` counts chronologically by each zone's first recorded path point. A zone already frozen is never re-frozen — the snapshot is immutable once written (Law 007; the file IS the archive).

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clockwork &mdash; the station's circadian census</title>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<!--
+  Clockwork.html -- a NEW wing of the Gewey G.U.I. HUD.
+  ADDITIVE: nothing existing was deleted or modified to create this file.
+  Self-contained: no runtime fetch, no CDN; every figure and every chart is
+  embedded at build time.
+
+  Deeds reads the deed tape, Heartbeat reads the machine, Residue reads the
+  combat necropsy. This wing reads the CLOCK: when the character is actually
+  alive. Screenshot filenames are the only free-running timestamp in the
+  install, so they anchor the census; AutoBiographer's dated deeds and the
+  client tick tape fill the gaps; combat logs are bucketed separately as
+  pressure rather than presence.
+
+  Regenerate with: python Dark_Portal\Timeline\clockwork_build.py
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#04060f;--panel:rgba(13,17,29,.86);--panel2:rgba(18,23,38,.94);
+ --line:rgba(255,196,107,.16);--ink:#f2f6ff;--mut:#7d879b;
+ --amber:#ffc46b;--ice:#63e6ff;--violet:#b48cff;--lime:#b6ff3c;--coral:#ff6b5b;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.night-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 6% -8%,rgba(180,140,255,.16),transparent 62%),
+  radial-gradient(820px 480px at 96% 4%,rgba(99,230,255,.10),transparent 64%),
+  radial-gradient(1000px 620px at 50% 116%,rgba(255,196,107,.08),transparent 70%),
+  linear-gradient(180deg,#04060f 0%,#070a14 55%,#090d18 100%)}
+.night-bg::after{content:'';position:absolute;inset:0;opacity:.5;background-image:
+ repeating-linear-gradient(0deg,rgba(255,196,107,.03) 0 1px,transparent 1px 5px)}
+.wrap{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:0 22px 70px}
+header.mast{padding:42px 0 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.mast .kicker{font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
+ color:var(--amber);text-shadow:var(--glow);font-weight:800}
+.mast h1{font-size:clamp(1.9rem,4.4vw,3.05rem);line-height:1.06;margin:.35rem 0 .5rem;
+ letter-spacing:-.02em;font-weight:800}
+.mast h1 span{color:var(--amber);text-shadow:var(--glow)}
+.mast .sub{color:var(--mut);font-size:.92rem;max-width:76ch}
+.mast .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;
+ border-radius:999px;border:1px solid var(--line);color:var(--mut);background:var(--panel)}
+.pill b{color:var(--ink)}
+nav.panes{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+nav.panes a{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
+ text-decoration:none;color:var(--mut);border:1px solid var(--line);border-radius:999px;
+ padding:4px 10px;transition:.18s}
+nav.panes a:hover{color:var(--amber);border-color:var(--amber);box-shadow:var(--glow)}
+nav.panes a[aria-current=page]{color:#1b1206;background:var(--amber);
+ border-color:var(--amber);font-weight:800}
+nav.jump{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 0;font-size:.72rem}
+nav.jump a{color:var(--ice);text-decoration:none;border-bottom:1px dotted rgba(99,230,255,.4)}
+h2.sec{font-size:1.0rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);
+ margin:44px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line);font-weight:800}
+h2.sec .n{color:var(--mut);margin-right:10px;font-variant-numeric:tabular-nums}
+h2.sec small{display:block;margin-top:5px;font-size:.68rem;letter-spacing:.02em;
+ text-transform:none;color:var(--mut);font-weight:400}
+.lede{color:var(--mut);font-size:.86rem;max-width:90ch;margin:10px 0 16px}
+.lede b{color:var(--ink)}
+.lede code{font-family:Consolas,ui-monospace,monospace;font-size:.8rem;color:var(--ice)}
+.grid{display:grid;gap:11px}
+.vitals{grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+ padding:12px 14px;position:relative;overflow:hidden}
+.card .k{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.card .v{font-size:1.5rem;font-weight:800;line-height:1.15;margin-top:3px;
+ font-variant-numeric:tabular-nums}
+.card .s{font-size:.66rem;color:var(--mut);margin-top:2px}
+.card.a .v{color:var(--amber);text-shadow:var(--glow)}
+.card.i .v{color:var(--ice)}
+.card.v .v{color:var(--violet)}
+.card.l .v{color:var(--lime)}
+.card.c .v{color:var(--coral)}
+/* ---- the dial: 24 columns ------------------------------------------------ */
+.dial{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;align-items:end;
+ height:200px;padding:12px 14px 0;background:var(--panel);border:1px solid var(--line);
+ border-radius:13px;position:relative}
+.dial .col{display:flex;flex-direction:column;justify-content:flex-end;height:100%;
+ position:relative;cursor:default}
+.dial .col .bar{width:100%;border-radius:3px 3px 0 0;min-height:2px;
+ background:linear-gradient(180deg,var(--amber),rgba(255,196,107,.22));transition:filter .15s}
+.dial .col.night .bar{background:linear-gradient(180deg,var(--violet),rgba(180,140,255,.2))}
+.dial .col.peak .bar{background:linear-gradient(180deg,var(--lime),rgba(182,255,60,.25))}
+.dial .col:hover .bar{filter:brightness(1.35)}
+.dial-note{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:.68rem;
+ color:var(--mut);padding:0 4px}
+.dial-note b{color:var(--amber)}
+.dial-note i{display:inline-block;width:9px;height:9px;border-radius:2px;
+ margin-right:5px;vertical-align:middle}
+.dial-axis{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;padding:4px 14px 0;
+ font-size:.5rem;color:var(--mut);font-family:Consolas,ui-monospace,monospace;
+ text-align:center}
+/* ---- week grid ---------------------------------------------------------- */
+.hm{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+ padding:14px;overflow-x:auto}
+.hm table{border-collapse:separate;border-spacing:3px;width:100%;min-width:640px}
+.hm th{font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);
+ font-weight:600;padding-bottom:4px;text-align:center}
+.hm th.d{text-align:right;padding-right:6px;white-space:nowrap}
+.hm td{height:20px;border-radius:3px;background:rgba(255,255,255,.035);
+ font-size:.5rem;text-align:center;color:rgba(0,0,0,.6);font-weight:700}
+.hm td[data-n]:hover{outline:1px solid var(--amber);outline-offset:1px}
+.heat-legend{display:flex;align-items:center;gap:8px;margin-top:10px;
+ font-size:.6rem;color:var(--mut)}
+.heat-legend i{display:inline-block;width:16px;height:10px;border-radius:2px}
+/* ---- session ruler ------------------------------------------------------ */
+.sess{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px}
+.sess .day{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;
+ padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.05)}
+.sess .day:last-child{border-bottom:0}
+.sess .day .lbl{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--ice);white-space:nowrap}
+.sess .day .lbl b{display:block;color:var(--mut);font-size:.56rem;letter-spacing:.1em;
+ text-transform:uppercase;font-weight:600}
+.sess .track{position:relative;height:16px;border-radius:4px;background:rgba(255,255,255,.03)}
+.sess .grid{position:absolute;inset:0;border-radius:4px;
+ background:repeating-linear-gradient(90deg,rgba(255,255,255,.09) 0 1px,
+ transparent 1px calc(100%/24))}
+.sess .seg{position:absolute;top:0;height:16px;border-radius:4px;
+ background:linear-gradient(90deg,var(--violet),var(--ice));opacity:.85}
+.sess .seg:hover{outline:1px solid var(--amber)}
+.sess .tick{display:grid;grid-template-columns:110px 1fr;gap:12px;margin-top:4px;
+ font-size:.5rem;color:var(--mut);font-family:Consolas,ui-monospace,monospace}
+.sess .tick span{display:flex;justify-content:space-between}
+/* ---- curve / bars ------------------------------------------------------- */
+.chart{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px}
+.chart svg{width:100%;height:auto;display:block}
+.chart .cap{font-size:.64rem;color:var(--mut);margin-top:8px}
+.bars{display:grid;gap:5px}
+.bars .row{display:grid;grid-template-columns:44px 1fr 84px;gap:10px;align-items:center;
+ font-size:.68rem}
+.bars .row .h{font-family:Consolas,ui-monospace,monospace;color:var(--mut);
+ font-size:.62rem;text-align:right}
+.bars .row .t{height:9px;border-radius:4px;background:rgba(255,255,255,.05);overflow:hidden}
+.bars .row .t i{display:block;height:100%;border-radius:4px;
+ background:linear-gradient(90deg,var(--coral),var(--amber))}
+.bars .row .n{font-family:Consolas,ui-monospace,monospace;font-size:.6rem;color:var(--mut);
+ text-align:right;font-variant-numeric:tabular-nums}
+/* ---- gallery ------------------------------------------------------------ */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+.gal a{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+ background:var(--panel2);text-decoration:none;transition:.18s}
+.gal a:hover{border-color:var(--amber);box-shadow:var(--glow)}
+.gal img{display:block;width:100%;height:96px;object-fit:cover;filter:saturate(.9)}
+.gal .m{padding:5px 7px;font-family:Consolas,ui-monospace,monospace;font-size:.56rem;
+ color:var(--mut)}
+.gal .m b{color:var(--ice);display:block;font-weight:600}
+/* ---- tables + footer ---------------------------------------------------- */
+table.tab{width:100%;border-collapse:collapse;background:var(--panel);
+ border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.74rem}
+table.tab th{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);text-align:left;padding:8px 12px;
+ border-bottom:1px solid var(--line);background:rgba(255,196,107,.05)}
+table.tab td{padding:6px 12px;border-bottom:1px solid rgba(255,255,255,.04);
+ font-variant-numeric:tabular-nums}
+table.tab td.mono{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;
+ color:var(--ice)}
+footer.method{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);
+ color:var(--mut);font-size:.72rem;line-height:1.85}
+footer.method code{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;
+ color:var(--ice)}
+footer.method b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="night-bg"></div>
+<div class="wrap">
+<header class="mast">
+  <div class="kicker">Wing 18 &middot; Clockwork</div>
+  <h1>The hour the character<br><span>actually exists.</span></h1>
+  <p class="sub">Eight days of residue, cross-examined for one question nobody had asked: <em>when</em>. 300 screenshot filenames are the only free-running timestamp the client leaves behind &mdash; nobody writes those but a human pressing a key. Set them against the biography database's dated deeds and the client's own tick tape and a shape appears: a night-watch schedule, a dead zone across the late morning, and a 22:00 roll-call that repeats almost every night.</p>
+  <div class="who"><span class="pill">window <b>2026-10-31 02:06 &rarr; 2026-11-16 01:20</b></span><span class="pill">span <b>383h 14m</b></span><span class="pill">days <b>8</b></span><span class="pill">presence minutes <b>394</b></span><span class="pill">built <b>2026-11-16 01:26</b></span></div>
+<nav class="panes"><a href="index.html" target="_top">Shell</a><a href="_fuhevva_evva.html">Home</a><a href="character.html">Character</a><a href="gear.html">Gear</a><a href="legacy.html">Legacy</a><a href="dynasty.html">Dynasty</a><a href="roster.html">Roster</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a><a href="links.html">Links</a><a href="raidlogs.html">Raid Logs</a><a href="Frontier.html">Frontier</a><a href="Timeline.html">Timeline</a><a href="Delve.html">Delve</a><a href="Chronicle.html">Chronicle</a><a href="relics.html">Relics</a><a href="macrocosm.html">Macrocosm</a><a href="Sortie.html">Sortie</a><a href="Residue.html">Residue</a><a href="Heartbeat.html">Heartbeat</a><a href="Almanac.html">Almanac</a><a href="Levelbook.html">Levelbook</a><a href="Faces.html">Faces</a><a href="Purse.html">Purse</a><a href="Fronts.html">Fronts</a><a href="persona.html">Persona</a><a href="Deeds.html">Deeds</a><a href="Clockwork.html" aria-current="page">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+<nav class="jump"><a href="#vitals">vitals</a><a href="#dial">the dial</a><a href="#week">week grid</a><a href="#sessions">sessions</a><a href="#curve">level curve</a><a href="#combat">combat pressure</a><a href="#proof">proof</a><a href="#census">census</a><a href="#method">method</a></nav>
+</header>
+<h2 class="sec" id="vitals"><span class="n">01</span>Vitals<small>what the census counted, before any of it was interpreted</small></h2>
+<div class="grid vitals"><div class="card a"><div class="k">presence minutes</div><div class="v">394</div><div class="s">distinct minutes with a signal</div></div><div class="card i"><div class="k">screenshots</div><div class="v">301</div><div class="s">262 MB of jpg proof</div></div><div class="card v"><div class="k">peak hour</div><div class="v">00:00</div><div class="s">63 minutes at the top of the dial</div></div><div class="card l"><div class="k">night share</div><div class="v">64.0%</div><div class="s">252 of 394 minutes 22:00-06:00</div></div><div class="card c"><div class="k">longest sitting</div><div class="v">5h 07m</div><div class="s">2026-11-11 03:08</div></div><div class="card i"><div class="k">sessions</div><div class="v">22</div><div class="s">45-minute gap = new sitting</div></div><div class="card a"><div class="k">combat lines</div><div class="v">63,084</div><div class="s">2 log files</div></div><div class="card v"><div class="k">dated deeds</div><div class="v">137</div><div class="s">15 dings &middot; 5 bosses &middot; 15 deaths</div></div><div class="card l"><div class="k">achievements</div><div class="v">26</div><div class="s">all inside the window</div></div><div class="card c"><div class="k">busiest day</div><div class="v">111</div><div class="s">2026-11-15 minutes</div></div><div class="card i"><div class="k">client ticks</div><div class="v">2,690</div><div class="s">General.log, collapsed to minutes</div></div></div>
+<h2 class="sec" id="dial"><span class="n">02</span>The dial<small>24 columns, one per hour of the realm's day; height is presence minutes, colour is night watch vs daylight</small></h2>
+<p class="lede">Top three hours: <b>00:00</b>, <b>23:00</b>, <b>22:00</b> &mdash; together <b>176</b> of <b>394</b> minutes. Hours 10:00 and 11:00 are empty across the entire window; whatever this schedule is, it is not a morning one.</p>
+<div class="dial"><div class="col night peak" title="00:00 — 63 presence minutes (100.0%)"><div class="bar" style="height:100.0%"></div></div><div class="col night" title="01:00 — 18 presence minutes (28.6%)"><div class="bar" style="height:28.6%"></div></div><div class="col night" title="02:00 — 16 presence minutes (25.4%)"><div class="bar" style="height:25.4%"></div></div><div class="col night" title="03:00 — 17 presence minutes (27.0%)"><div class="bar" style="height:27.0%"></div></div><div class="col night" title="04:00 — 14 presence minutes (22.2%)"><div class="bar" style="height:22.2%"></div></div><div class="col night" title="05:00 — 11 presence minutes (17.5%)"><div class="bar" style="height:17.5%"></div></div><div class="col" title="06:00 — 28 presence minutes (44.4%)"><div class="bar" style="height:44.4%"></div></div><div class="col" title="07:00 — 21 presence minutes (33.3%)"><div class="bar" style="height:33.3%"></div></div><div class="col" title="08:00 — 5 presence minutes (7.9%)"><div class="bar" style="height:7.9%"></div></div><div class="col" title="09:00 — 1 presence minutes (1.6%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="10:00 — 0 presence minutes (0.0%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="11:00 — 0 presence minutes (0.0%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="12:00 — 4 presence minutes (6.3%)"><div class="bar" style="height:6.3%"></div></div><div class="col" title="13:00 — 7 presence minutes (11.1%)"><div class="bar" style="height:11.1%"></div></div><div class="col" title="14:00 — 0 presence minutes (0.0%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="15:00 — 0 presence minutes (0.0%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="16:00 — 1 presence minutes (1.6%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="17:00 — 0 presence minutes (0.0%)"><div class="bar" style="height:2.0%"></div></div><div class="col" title="18:00 — 6 presence minutes (9.5%)"><div class="bar" style="height:9.5%"></div></div><div class="col" title="19:00 — 24 presence minutes (38.1%)"><div class="bar" style="height:38.1%"></div></div><div class="col" title="20:00 — 27 presence minutes (42.9%)"><div class="bar" style="height:42.9%"></div></div><div class="col" title="21:00 — 18 presence minutes (28.6%)"><div class="bar" style="height:28.6%"></div></div><div class="col night" title="22:00 — 50 presence minutes (79.4%)"><div class="bar" style="height:79.4%"></div></div><div class="col night" title="23:00 — 63 presence minutes (100.0%)"><div class="bar" style="height:100.0%"></div></div></div><div class="dial-axis"><span>00</span><span></span><span></span><span>03</span><span></span><span></span><span>06</span><span></span><span></span><span>09</span><span></span><span></span><span>12</span><span></span><span></span><span>15</span><span></span><span></span><span>18</span><span></span><span></span><span>21</span><span></span><span></span></div><div class="dial-note"><span><i style="background:var(--violet)"></i>night watch 22:00&ndash;06:00</span><span><i style="background:var(--amber)"></i>daylight hours</span><span><i style="background:var(--lime)"></i>peak &middot; <b>00:00</b> with <b>63</b> minutes</span><span>axis = local realm time (UTC-5)</span></div>
+<h2 class="sec" id="week"><span class="n">03</span>The week grid<small>weekday against hour; a cell is a minute of evidence, so a dark row is a day the character never woke up</small></h2>
+<p class="lede">Busiest weekday: <b>Sun</b> with <b>111</b> minutes. Quietest: <b>Tue</b> with <b>6</b>. Every value below is hoverable &mdash; the cell title carries the exact count.</p>
+<div class="hm"><table><thead><tr><th class="d">day</th><th>00</th><th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th></tr></thead><tbody><tr><th class="d">Mon</th><td data-n="60" style="background:rgba(180,140,255,0.86)" title="Mon 00:00 — 60 minutes" textContent="60">60</td><td data-n="7" style="background:rgba(180,140,255,0.22)" title="Mon 01:00 — 7 minutes" textContent="7">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><th class="d">Tue</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td data-n="1" style="background:rgba(255,196,107,0.15)" title="Tue 09:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td data-n="1" style="background:rgba(255,196,107,0.15)" title="Tue 18:00 — 1 minutes" textContent="1">1</td><td></td><td data-n="1" style="background:rgba(255,196,107,0.15)" title="Tue 20:00 — 1 minutes" textContent="1">1</td><td></td><td data-n="3" style="background:rgba(180,140,255,0.18)" title="Tue 22:00 — 3 minutes" textContent="3">3</td><td></td></tr><tr><th class="d">Wed</th><td></td><td></td><td></td><td data-n="3" style="background:rgba(180,140,255,0.18)" title="Wed 03:00 — 3 minutes" textContent="3">3</td><td data-n="4" style="background:rgba(180,140,255,0.19)" title="Wed 04:00 — 4 minutes" textContent="4">4</td><td data-n="4" style="background:rgba(180,140,255,0.19)" title="Wed 05:00 — 4 minutes" textContent="4">4</td><td data-n="11" style="background:rgba(255,196,107,0.27)" title="Wed 06:00 — 11 minutes" textContent="11">11</td><td data-n="15" style="background:rgba(255,196,107,0.32)" title="Wed 07:00 — 15 minutes" textContent="15">15</td><td data-n="5" style="background:rgba(255,196,107,0.20)" title="Wed 08:00 — 5 minutes" textContent="5">5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td data-n="6" style="background:rgba(255,196,107,0.21)" title="Wed 19:00 — 6 minutes" textContent="6">6</td><td></td><td></td><td></td><td></td></tr><tr><th class="d">Thu</th><td></td><td data-n="9" style="background:rgba(180,140,255,0.25)" title="Thu 01:00 — 9 minutes" textContent="9">9</td><td data-n="6" style="background:rgba(180,140,255,0.21)" title="Thu 02:00 — 6 minutes" textContent="6">6</td><td data-n="9" style="background:rgba(180,140,255,0.25)" title="Thu 03:00 — 9 minutes" textContent="9">9</td><td data-n="1" style="background:rgba(180,140,255,0.15)" title="Thu 04:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td data-n="5" style="background:rgba(255,196,107,0.20)" title="Thu 18:00 — 5 minutes" textContent="5">5</td><td data-n="8" style="background:rgba(255,196,107,0.24)" title="Thu 19:00 — 8 minutes" textContent="8">8</td><td data-n="7" style="background:rgba(255,196,107,0.22)" title="Thu 20:00 — 7 minutes" textContent="7">7</td><td data-n="7" style="background:rgba(255,196,107,0.22)" title="Thu 21:00 — 7 minutes" textContent="7">7</td><td data-n="11" style="background:rgba(180,140,255,0.27)" title="Thu 22:00 — 11 minutes" textContent="11">11</td><td data-n="3" style="background:rgba(180,140,255,0.18)" title="Thu 23:00 — 3 minutes" textContent="3">3</td></tr><tr><th class="d">Fri</th><td></td><td></td><td></td><td data-n="4" style="background:rgba(180,140,255,0.19)" title="Fri 03:00 — 4 minutes" textContent="4">4</td><td data-n="9" style="background:rgba(180,140,255,0.25)" title="Fri 04:00 — 9 minutes" textContent="9">9</td><td data-n="3" style="background:rgba(180,140,255,0.18)" title="Fri 05:00 — 3 minutes" textContent="3">3</td><td data-n="11" style="background:rgba(255,196,107,0.27)" title="Fri 06:00 — 11 minutes" textContent="11">11</td><td data-n="5" style="background:rgba(255,196,107,0.20)" title="Fri 07:00 — 5 minutes" textContent="5">5</td><td></td><td></td><td></td><td></td><td></td><td data-n="4" style="background:rgba(255,196,107,0.19)" title="Fri 13:00 — 4 minutes" textContent="4">4</td><td></td><td></td><td data-n="1" style="background:rgba(255,196,107,0.15)" title="Fri 16:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td></td><td data-n="9" style="background:rgba(255,196,107,0.25)" title="Fri 20:00 — 9 minutes" textContent="9">9</td><td data-n="3" style="background:rgba(255,196,107,0.18)" title="Fri 21:00 — 3 minutes" textContent="3">3</td><td></td><td></td></tr><tr><th class="d">Sat</th><td></td><td data-n="1" style="background:rgba(180,140,255,0.15)" title="Sat 01:00 — 1 minutes" textContent="1">1</td><td data-n="10" style="background:rgba(180,140,255,0.26)" title="Sat 02:00 — 10 minutes" textContent="10">10</td><td data-n="1" style="background:rgba(180,140,255,0.15)" title="Sat 03:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td data-n="3" style="background:rgba(255,196,107,0.18)" title="Sat 06:00 — 3 minutes" textContent="3">3</td><td data-n="1" style="background:rgba(255,196,107,0.15)" title="Sat 07:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td></td><td></td><td data-n="4" style="background:rgba(255,196,107,0.19)" title="Sat 12:00 — 4 minutes" textContent="4">4</td><td data-n="3" style="background:rgba(255,196,107,0.18)" title="Sat 13:00 — 3 minutes" textContent="3">3</td><td></td><td></td><td></td><td></td><td></td><td data-n="10" style="background:rgba(255,196,107,0.26)" title="Sat 19:00 — 10 minutes" textContent="10">10</td><td data-n="6" style="background:rgba(255,196,107,0.21)" title="Sat 20:00 — 6 minutes" textContent="6">6</td><td data-n="6" style="background:rgba(255,196,107,0.21)" title="Sat 21:00 — 6 minutes" textContent="6">6</td><td data-n="2" style="background:rgba(180,140,255,0.16)" title="Sat 22:00 — 2 minutes" textContent="2">2</td><td></td></tr><tr><th class="d">Sun</th><td data-n="3" style="background:rgba(180,140,255,0.18)" title="Sun 00:00 — 3 minutes" textContent="3">3</td><td data-n="1" style="background:rgba(180,140,255,0.15)" title="Sun 01:00 — 1 minutes" textContent="1">1</td><td></td><td></td><td></td><td data-n="4" style="background:rgba(180,140,255,0.19)" title="Sun 05:00 — 4 minutes" textContent="4">4</td><td data-n="3" style="background:rgba(255,196,107,0.18)" title="Sun 06:00 — 3 minutes" textContent="3">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td data-n="4" style="background:rgba(255,196,107,0.19)" title="Sun 20:00 — 4 minutes" textContent="4">4</td><td data-n="2" style="background:rgba(255,196,107,0.16)" title="Sun 21:00 — 2 minutes" textContent="2">2</td><td data-n="34" style="background:rgba(180,140,255,0.55)" title="Sun 22:00 — 34 minutes" textContent="34">34</td><td data-n="60" style="background:rgba(180,140,255,0.86)" title="Sun 23:00 — 60 minutes" textContent="60">60</td></tr></tbody></table><div class="heat-legend"><span>&#9632; fewer</span><i style="background:rgba(180,140,255,.25)"></i><i style="background:rgba(180,140,255,.5)"></i><i style="background:rgba(255,196,107,.6)"></i><i style="background:rgba(255,196,107,.9)"></i><span>more &middot; cell peak 60 min</span></div></div>
+<h2 class="sec" id="sessions"><span class="n">04</span>Sessions<small>presence blocks per day on a 24-hour ruler; a gap over 45 minutes starts a new sitting</small></h2>
+<p class="lede">22 sittings across 8 days. The ruler is drawn in local realm time: each row runs midnight to midnight, and the segments are the minutes the client, the biography tape or a screenshot proved somebody was there.</p>
+<div class='sess'><div class="day"><div class="lbl">2026-10-31<b>0h 00m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:8.75%;width:91.25%" title="02:06 &rarr; 02:06 &middot; 0 min &middot; 1 events"></div></div></div><div class="day"><div class="lbl">2026-11-10<b>0h 47m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:38.40%;width:61.60%" title="09:13 &rarr; 09:13 &middot; 0 min &middot; 1 events"></div><div class="seg" style="left:78.19%;width:21.81%" title="18:46 &rarr; 18:46 &middot; 0 min &middot; 1 events"></div><div class="seg" style="left:86.11%;width:13.89%" title="20:40 &rarr; 20:40 &middot; 0 min &middot; 1 events"></div><div class="seg" style="left:92.50%;width:3.26%" title="22:12 &rarr; 22:59 &middot; 47 min &middot; 3 events"></div></div></div><div class="day"><div class="lbl">2026-11-11<b>5h 36m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:13.06%;width:21.32%" title="03:08 &rarr; 08:15 &middot; 307 min &middot; 42 events"></div><div class="seg" style="left:80.14%;width:2.01%" title="19:14 &rarr; 19:43 &middot; 29 min &middot; 6 events"></div></div></div><div class="day"><div class="lbl">2026-11-12<b>7h 46m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:5.28%;width:11.60%" title="01:16 &rarr; 04:03 &middot; 167 min &middot; 25 events"></div><div class="seg" style="left:76.11%;width:20.76%" title="18:16 &rarr; 23:15 &middot; 299 min &middot; 41 events"></div></div></div><div class="day"><div class="lbl">2026-11-13<b>4h 40m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:14.65%;width:4.86%" title="03:31 &rarr; 04:41 &middot; 70 min &middot; 13 events"></div><div class="seg" style="left:24.31%;width:6.39%" title="05:50 &rarr; 07:22 &middot; 92 min &middot; 19 events"></div><div class="seg" style="left:54.51%;width:3.54%" title="13:05 &rarr; 13:56 &middot; 51 min &middot; 4 events"></div><div class="seg" style="left:70.07%;width:29.93%" title="16:49 &rarr; 16:49 &middot; 0 min &middot; 1 events"></div><div class="seg" style="left:84.86%;width:4.65%" title="20:22 &rarr; 21:29 &middot; 67 min &middot; 12 events"></div></div></div><div class="day"><div class="lbl">2026-11-14<b>6h 04m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:7.85%;width:5.42%" title="01:53 &rarr; 03:11 &middot; 78 min &middot; 11 events"></div><div class="seg" style="left:27.22%;width:2.08%" title="06:32 &rarr; 07:02 &middot; 30 min &middot; 4 events"></div><div class="seg" style="left:52.01%;width:4.10%" title="12:29 &rarr; 13:28 &middot; 59 min &middot; 7 events"></div><div class="seg" style="left:79.58%;width:13.68%" title="19:06 &rarr; 22:23 &middot; 197 min &middot; 24 events"></div></div></div><div class="day"><div class="lbl">2026-11-15<b>4h 38m</b></div><div class="track"><div class="grid"></div><div class="seg" style="left:3.12%;width:1.32%" title="00:45 &rarr; 01:04 &middot; 19 min &middot; 4 events"></div><div class="seg" style="left:22.43%;width:2.99%" title="05:23 &rarr; 06:06 &middot; 43 min &middot; 7 events"></div><div class="seg" style="left:85.97%;width:2.92%" title="20:38 &rarr; 21:20 &middot; 42 min &middot; 6 events"></div><div class="seg" style="left:93.47%;width:6.53%" title="22:26 &rarr; 01:20 &middot; 174 min &middot; 161 events"></div></div></div><div class="tick"><span></span><span><b>00</b><b>06</b><b>12</b><b>18</b><b>24</b></span></div></div>
+<h2 class="sec" id="curve"><span class="n">05</span>The climbing line<small>level against wall-clock, every dot a LevelUp event &mdash; the flat runs are the hours the character did not exist</small></h2>
+<p class="lede">15 dings between the first and last stamp in the biography database. Slide horizontally: the long horizontal stretches are offline gaps, and they line up with the empty rows above.</p>
+<div class='chart'><svg viewBox='0 0 1000 250' role='img' aria-label='level over time'><line x1='42.0' y1='216.0' x2='984.0' y2='216.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='219.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 7</text><line x1='42.0' y1='176.0' x2='984.0' y2='176.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='179.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 10</text><line x1='42.0' y1='136.0' x2='984.0' y2='136.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='139.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 13</text><line x1='42.0' y1='96.0' x2='984.0' y2='96.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='99.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 16</text><line x1='42.0' y1='56.0' x2='984.0' y2='56.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='59.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 19</text><line x1='42.0' y1='16.0' x2='984.0' y2='16.0' stroke='rgba(255,255,255,.07)'/><text x='8' y='19.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace'>Lv 22</text><polyline points='42.0,216.0 46.2,202.7 53.2,189.3 62.7,176.0 170.5,162.7 226.1,149.3 238.1,136.0 363.0,122.7 377.4,109.3 391.0,96.0 439.8,82.7 458.5,69.3 574.3,56.0 758.0,42.7 984.0,16.0' fill='none' stroke='#ffc46b' stroke-width='2.2' stroke-linejoin='round'/><circle cx='42.0' cy='216.0' r='3.4' fill='#b6ff3c'/><circle cx='46.2' cy='202.7' r='3.4' fill='#b6ff3c'/><circle cx='53.2' cy='189.3' r='3.4' fill='#b6ff3c'/><circle cx='62.7' cy='176.0' r='3.4' fill='#b6ff3c'/><circle cx='170.5' cy='162.7' r='3.4' fill='#b6ff3c'/><circle cx='226.1' cy='149.3' r='3.4' fill='#b6ff3c'/><circle cx='238.1' cy='136.0' r='3.4' fill='#b6ff3c'/><circle cx='363.0' cy='122.7' r='3.4' fill='#b6ff3c'/><circle cx='377.4' cy='109.3' r='3.4' fill='#b6ff3c'/><circle cx='391.0' cy='96.0' r='3.4' fill='#b6ff3c'/><circle cx='439.8' cy='82.7' r='3.4' fill='#b6ff3c'/><circle cx='458.5' cy='69.3' r='3.4' fill='#b6ff3c'/><circle cx='574.3' cy='56.0' r='3.4' fill='#b6ff3c'/><circle cx='758.0' cy='42.7' r='3.4' fill='#b6ff3c'/><circle cx='984.0' cy='16.0' r='3.4' fill='#b6ff3c'/><text x='42.0' y='238.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace' text-anchor='middle'>11-11 03:52</text><text x='277.5' y='238.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace' text-anchor='middle'>11-12 08:38</text><text x='513.0' y='238.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace' text-anchor='middle'>11-13 13:25</text><text x='748.5' y='238.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace' text-anchor='middle'>11-14 18:12</text><text x='984.0' y='238.0' fill='#7d879b' font-size='10' font-family='Consolas,monospace' text-anchor='middle'>11-15 22:59</text></svg><div class='cap'>Lv 7 &rarr; Lv 22 over 115h 07m. One dot per LevelUp event; the flat runs are the nights the character was offline.</div></div>
+<h2 class="sec" id="combat"><span class="n">06</span>Combat pressure<small>the same clock, but weighted by how much the combat log had to say &mdash; a different question from presence</small></h2>
+<p class="lede">63,084 stamped combat lines across 2 log files. This is <b>not</b> added to presence: one boss fight writes more lines than an hour of travelling, so counting it as activity would drown the signal it is plotted beside.</p>
+<div class='bars'><div class='row'><div class='h'>06:00</div><div class='t'><i style='width:100.0%'></i></div><div class='n'>51,388</div></div><div class='row'><div class='h'>07:00</div><div class='t'><i style='width:22.8%'></i></div><div class='n'>11,696</div></div></div>
+<div style="height:12px"></div><table class="tab"><thead><tr><th>log file</th><th>first line</th><th>last line</th><th>span</th><th>lines</th></tr></thead><tbody><tr><td class="mono">WoWCombatLog-111326_063935.txt</td><td class="mono">2026-11-13 06:39</td><td class="mono">2026-11-13 07:12</td><td>32m 00s</td><td>22,067</td></tr><tr><td class="mono">WoWCombatLog-111526_060037.txt</td><td class="mono">2026-11-15 06:00</td><td class="mono">2026-11-15 07:02</td><td>1h 02m</td><td>41,017</td></tr></tbody></table>
+<h2 class="sec" id="proof"><span class="n">07</span>The proof<small>the twelve newest stills, each filename its own timestamp &mdash; click through to the full frame</small></h2>
+<p class="lede">These are copies already mirrored into <code>_shots\</code>; the originals in <code>Screenshots\</code> are untouched. Every one of the 301 frames is a moment somebody judged worth keeping.</p>
+<div class='gal'><a href='_shots/WoWScrnShot_111626_012045.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_012045.jpg' alt='2026-11-16T01:20' loading='lazy'><div class='m'><b>2026-11-16 01:20</b>551 KB</div></a><a href='_shots/WoWScrnShot_111626_011111.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_011111.jpg' alt='2026-11-16T01:11' loading='lazy'><div class='m'><b>2026-11-16 01:11</b>333 KB</div></a><a href='_shots/WoWScrnShot_111626_005743.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_005743.jpg' alt='2026-11-16T00:57' loading='lazy'><div class='m'><b>2026-11-16 00:57</b>411 KB</div></a><a href='_shots/WoWScrnShot_111626_004743.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_004743.jpg' alt='2026-11-16T00:47' loading='lazy'><div class='m'><b>2026-11-16 00:47</b>783 KB</div></a><a href='_shots/WoWScrnShot_111626_003743.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_003743.jpg' alt='2026-11-16T00:37' loading='lazy'><div class='m'><b>2026-11-16 00:37</b>502 KB</div></a><a href='_shots/WoWScrnShot_111626_002742.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_002742.jpg' alt='2026-11-16T00:27' loading='lazy'><div class='m'><b>2026-11-16 00:27</b>667 KB</div></a><a href='_shots/WoWScrnShot_111626_001742.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_001742.jpg' alt='2026-11-16T00:17' loading='lazy'><div class='m'><b>2026-11-16 00:17</b>851 KB</div></a><a href='_shots/WoWScrnShot_111626_000742.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111626_000742.jpg' alt='2026-11-16T00:07' loading='lazy'><div class='m'><b>2026-11-16 00:07</b>1223 KB</div></a><a href='_shots/WoWScrnShot_111526_235838.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111526_235838.jpg' alt='2026-11-15T23:58' loading='lazy'><div class='m'><b>2026-11-15 23:58</b>1368 KB</div></a><a href='_shots/WoWScrnShot_111526_235742.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111526_235742.jpg' alt='2026-11-15T23:57' loading='lazy'><div class='m'><b>2026-11-15 23:57</b>1139 KB</div></a><a href='_shots/WoWScrnShot_111526_234742.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111526_234742.jpg' alt='2026-11-15T23:47' loading='lazy'><div class='m'><b>2026-11-15 23:47</b>893 KB</div></a><a href='_shots/WoWScrnShot_111526_233741.jpg' target='_blank' rel='noopener'><img src='_shots/WoWScrnShot_111526_233741.jpg' alt='2026-11-15T23:37' loading='lazy'><div class='m'><b>2026-11-15 23:37</b>562 KB</div></a></div>
+<h2 class="sec" id="census"><span class="n">08</span>Census of sources<small>exactly what this wing read, and how large it was</small></h2>
+<table class="tab"><thead><tr><th>source</th><th>files</th><th>size</th><th>what it contributed</th></tr></thead><tbody><tr><td class="mono">Screenshots\WoWScrnShot_*.jpg</td><td>301</td><td>261.6 MB</td><td>free-running clock: every filename is a timestamp</td></tr><tr><td class="mono">Logs\WoWCombatLog-*.txt</td><td>2</td><td>18.4 MB</td><td>63,084 combat lines, bucketed by the minute</td></tr><tr><td class="mono">Logs\General.log</td><td>1</td><td>288 KB</td><td>2,690 client ticks, 231 /played reads</td></tr><tr><td class="mono">AutoBiographer.lua -&gt; microdeeds.json</td><td>1</td><td>24 KB</td><td>137 dated deeds re-used, not re-parsed</td></tr></tbody></table>
+<footer class="method" id="method"><b>Method.</b> Generated, not hand-typed. Presence is the union of three clocks, collapsed to the minute so no source can outvote the others: screenshot filenames (<code>WoWScrnShot_MMDDYY_HHMMSS.jpg</code>), AutoBiographer's dated deeds via <code>microdeeds.json</code>, and the client tick tape in <code>Logs\General.log</code>. Combat lines are counted separately and never mixed in. Sessions break at any gap longer than 45 minutes. Night window is 22:00&ndash;06:00 local realm time (UTC&minus;5).<br><br>Nothing was deleted to build this page. Regenerate with <code>python Dark_Portal\Timeline\clockwork_build.py</code> &mdash; it rewrites <code>_gewey_gui\Clockwork.html</code>, mirrors <code>Timeline\data\clockwork.json</code>, copies the newest twelve stills into <code>_gewey_gui\_shots\</code> (never overwriting), and archives the previous render into <code>_gewey_gui\.history\</code>.</footer>
+</div>
+</body>
+</html>

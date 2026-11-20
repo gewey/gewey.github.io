@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web Ledger &mdash; every external door, re-probed | Gewey G.U.I.</title>
+<!--
+  WEB_LEDGER.html - built 2026-11-16 by Tandumonium (external sweep pass).
+
+  Why this page exists: legacy.html writes down the links, links.html keeps the
+  door registry, raidlogs.html holds the 470 harvested reports. None of them
+  records the SWEEP itself - which endpoints were hit, when, with which status,
+  and what each answer proved or failed to prove. A negative is a finding;
+  without a ledger it just gets re-run forever.
+
+  Method: read-only HTTP probes from this workstation, one user agent, no
+  cookies, no auth. Companion script (local, gitignored):
+    Research/_local/_web_ledger_probe.ps1
+  Payload (local, gitignored):
+    Research/_raw/web_ledger_20261116.json
+
+  Tenure rule stays absolute: the only archived <Gehenna> captures this page
+  will ever link are the two inside the 2019-2020 BfA tenure window.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 10% -8%,rgba(255,59,92,.14),transparent 62%),
+  radial-gradient(820px 480px at 90% 2%,rgba(55,230,255,.11),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.09),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.wall{color:var(--crimson)}.dead{color:var(--grey)}
+.warn{color:var(--gold)}.moon{color:var(--arcane)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-web-ledger">
+<div class="field"></div>
+<div class="wrap">
+
+
+<header class="hero">
+ <p class="kicker">External sweep &middot; 2026-11-16 &middot; 18 doors &middot; zero guesses</p>
+ <h1>Web Ledger <span class="thin">every external door, re-probed</span></h1>
+ <p class="lede">The Legacy wing writes down the links and the Raid Logs wing
+ holds the harvested reports. This wing records the <strong>sweep</strong>: the
+ endpoints actually hit from this workstation, the HTTP verdict each one
+ returned, and what that answer proves. Doors that opened are listed beside
+ doors that slammed &mdash; because a <strong>negative</strong> is a finding, and
+ an unrecorded negative is a chore that repeats every hour.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="web_ledger.html" aria-current="page">Web Ledger</a>
+  <a href="relics.html">Reliquary</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="verdicts">
+ <h2>The count</h2>
+ <div class="grid g3" style="grid-template-columns:repeat(3,1fr)">
+  <div class="card"><div class="stat">18<small>doors probed</small></div></div>
+  <div class="card"><div class="stat">5<small>answered with data</small></div></div>
+  <div class="card"><div class="stat">3<small>walls (403 / 429)</small></div></div>
+  <div class="card"><div class="stat">2<small>dead services</small></div></div>
+  <div class="card"><div class="stat">1<small>candidate handle</small></div></div>
+  <div class="card"><div class="stat">0<small>archived character pages</small></div></div>
+ </div>
+ <p class="note" style="margin-top:.9rem">Probe window
+ <code>2026-11-16 04:55&ndash;05:10 UTC</code>. One user agent, no cookies, no
+ auth, no scraping library. Every row below is reproducible with the command in
+ <a class="ext" href="#rerun">Re-run this sweep</a>.</p>
+</section>
+
+<section id="doors">
+ <h2>The doors &mdash; status is not a verdict</h2>
+ <div class="scroll">
+ <table>
+  <caption>Live probes, 2026-11-16 (status &middot; bytes &middot; what it means)</caption>
+  <thead><tr><th>Door</th><th>Status</th><th>Bytes</th><th>Verdict</th></tr></thead>
+  <tbody>
+   <tr><td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium" target="_blank" rel="noopener">Raider.IO &middot; Hyjal / Tandumonium</a></td><td class="mono ok">200</td><td class="mono">75,018</td><td><span class="pill ok">open</span> Dracthyr BM Hunter, ilvl 263, guild <code>null</code></td></tr>
+   <tr><td><a class="ext" href="https://raider.io/characters/us/hyjal/Tantrums" target="_blank" rel="noopener">Raider.IO &middot; Hyjal / Tantrums</a></td><td class="mono ok">200</td><td class="mono">75,138</td><td><span class="pill ok">open</span> Zandalari Enhancement Shaman, ilvl 107 &mdash; the only alt that still answers</td></tr>
+   <tr><td><a class="ext" href="https://raider.io/guilds/us/borean-tundra/Gehenna" target="_blank" rel="noopener">Raider.IO &middot; <code>&lt;Gehenna&gt;</code> Borean Tundra</a></td><td class="mono ok">200</td><td class="mono">74,520</td><td><span class="pill ok">open</span> guild name resolves; five Midnight-era tiers, no tenure claim</td></tr>
+   <tr><td><a class="ext" href="https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium" target="_blank" rel="noopener">Blizzard Armory &middot; Hyjal / Tandumonium</a></td><td class="mono ok">200</td><td class="mono">915,048</td><td><span class="pill ok">open</span> the widest door in the set; the page carries its own embedded state</td></tr>
+   <tr><td><a class="ext" href="https://www.warcraftlogs.com/character/us/hyjal/Tandumonium" target="_blank" rel="noopener">Warcraft Logs &middot; character</a></td><td class="mono wall">403</td><td class="mono">&mdash;</td><td><span class="pill wall">wall</span> bot policy, not absence</td></tr>
+   <tr><td><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">Warcraft Logs &middot; guild <code>7287</code></a></td><td class="mono wall">403</td><td class="mono">&mdash;</td><td><span class="pill wall">wall</span> same policy; an earlier pass saw <code>200</code> + a 3.7 KB challenge body</td></tr>
+   <tr><td><a class="ext" href="https://www.wipefest.gg/guild/7287" target="_blank" rel="noopener">Wipefest &middot; guild <code>7287</code></a></td><td class="mono warn">200</td><td class="mono">2,223</td><td><span class="pill warn">200-as-wall</span> Angular shell only (<code>&lt;app-root&gt;</code>); no record in the body</td></tr>
+   <tr><td><a class="ext" href="https://www.wowprogress.com/character/us/hyjal/Tandumonium" target="_blank" rel="noopener">WoWProgress &middot; character</a></td><td class="mono wall">403</td><td class="mono">&mdash;</td><td><span class="pill wall">wall</span> Cloudflare tightened since the last pass</td></tr>
+   <tr><td><a class="ext" href="https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">WoWProgress &middot; <code>&lt;Gehenna&gt;</code></a></td><td class="mono wall">403</td><td class="mono">&mdash;</td><td><span class="pill wall">wall</span> live page shut; captures still indexed (below)</td></tr>
+   <tr><td><a class="ext" href="https://wow-heroes.com/" target="_blank" rel="noopener">WoW-Heroes (legacy)</a></td><td class="mono dead">200</td><td class="mono">0</td><td><span class="pill dead">dead</span> empty 200 &mdash; domain parked</td></tr>
+   <tr><td><a class="ext" href="https://www.warcraftrealms.com/search.php?search=Tandumonium" target="_blank" rel="noopener">WarcraftRealms census</a></td><td class="mono dead">200</td><td class="mono">83,438</td><td><span class="pill dead">dead</span> redirects to <code>warcraftdb.com</code>; the census is gone</td></tr>
+   <tr><td><a class="ext" href="https://www.openraid.us/" target="_blank" rel="noopener">OpenRaid</a></td><td class="mono ok">200</td><td class="mono">358,351</td><td><span class="pill ok">alive</span> site lives; no Tandu record surfaced by search</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note warn"><strong>Read the body, not the code.</strong> Wipefest and
+ WarcraftRealms both answered <code>200</code> and both told us nothing.
+ WoW-Heroes answered <code>200</code> with zero bytes. A green status on this
+ table is a claim about the <em>response</em>; the verdict column is the claim
+ about the <em>record</em>.</p>
+</section>
+
+
+<section id="walls">
+ <h2>Three walls, three causes</h2>
+ <div class="grid g3">
+  <div class="card"><h3 class="wall">Warcraft Logs &mdash; 403</h3>
+   <p class="note">Character and guild endpoints both refuse a plain client.
+   This is a policy wall. The reports themselves are not lost: the 470-report
+   vault on <a class="ext" href="raidlogs.html">Raid Logs</a> was harvested
+   through the uploader's own pages before the policy tightened.</p></div>
+  <div class="card"><h3 class="wall">WoWProgress &mdash; 403</h3>
+   <p class="note">The live guild page now challenges every request. The
+   archived copies still exist &mdash; <code>archive.org</code>'s availability
+   API confirmed the 2019 snapshot in 297 bytes.</p></div>
+  <div class="card"><h3 class="wall">Wayback &mdash; 429</h3>
+   <p class="note">CDX and capture bodies both rate-limit this host. The index
+   was read on a previous pass; the bodies were not. The archive is
+   <strong>throttled</strong>, never empty.</p></div>
+ </div>
+ <p class="note good" style="margin-top:.9rem"><strong>The one clean proof:</strong>
+ <code>archive.org/wayback/available?url=wowprogress.com/guild/us/borean-tundra/Gehenna</code>
+ returned <code>200</code>, <strong>297 bytes</strong>, closest snapshot
+ <code>20190819150850</code>, status <code>200</code>, available
+ <code>true</code>. That is the API confirming the capture exists without
+ touching the throttled body endpoint.</p>
+</section>
+
+<section id="social">
+ <h2>The social sweep</h2>
+ <div class="scroll">
+ <table>
+  <caption>Handles and search engines, 2026-11-16</caption>
+  <thead><tr><th>Surface</th><th>Query</th><th>Verdict</th><th>Detail</th></tr></thead>
+  <tbody>
+   <tr><td><a class="ext" href="https://www.twitch.tv/tandu" target="_blank" rel="noopener">Twitch</a></td><td class="mono">tandu</td><td><span class="pill moon">candidate</span></td><td>Channel <code>154769281</code>, display <code>tandu</code>, title &ldquo;How to be Bad&rdquo;, no game set. Handle matches; ownership <strong>not</strong> proven.</td></tr>
+   <tr><td><a class="ext" href="https://www.youtube.com/results?search_query=Tandumonium" target="_blank" rel="noopener">YouTube</a></td><td class="mono">Tandumonium</td><td><span class="pill dead">no WoW content</span></td><td>The single hit is an unrelated drift-racing video that uses the word. No raid footage under any Tandu spelling.</td></tr>
+   <tr><td><a class="ext" href="https://www.reddit.com/search/?q=Tandumonium" target="_blank" rel="noopener">Reddit</a></td><td class="mono">Tandumonium &middot; Tandu Gehenna &middot; Tandu Theorycrafters</td><td><span class="pill dead">no hits</span></td><td>Fuzzy matches only: AJR song lyrics, tantalum metal samples, Toram Online. None are the character.</td></tr>
+   <tr><td><a class="ext" href="https://www.bing.com/search?q=%22Tandumonium%22+warcraft" target="_blank" rel="noopener">Bing</a></td><td class="mono">&quot;Tandumonium&quot; warcraft</td><td><span class="pill dead">noise</span></td><td>The engine silently rewrites the query to &ldquo;Pandemonium&rdquo;. A quoted unique surname with no hits is evidence of indexing absence.</td></tr>
+   <tr><td>DuckDuckGo (HTML)</td><td class="mono">&quot;Tandumonium&quot;</td><td><span class="pill wall">bot wall</span></td><td><code>202</code> + &ldquo;select all squares containing a duck&rdquo;. Useless from this host; recorded so nobody retries it blind.</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">The honest reading: between 2008 and 2026 the character left
+ <strong>no public social footprint</strong> that a search engine can see. What
+ survives is the <em>institutional</em> record &mdash; Raider.IO, the Armory,
+ the Warcraft Logs vault, and two archived guild pages.</p>
+</section>
+
+
+<section id="captures">
+ <h2>The archive &mdash; and the tenure rule</h2>
+ <p>The CDX index for <code>wowprogress.com/guild/us/borean-tundra/Gehenna</code>
+ holds <strong>26</strong> captures. Only <strong>two</strong> fall inside the
+ documented <code>&lt;Gehenna&gt;</code> tenure (Battle for Azeroth,
+ guild ID <code>7287</code>). The other twenty-four are 2009&ndash;2016
+ captures of a guild this character had not joined, and they are
+ <strong>never recorded, never linked, never counted</strong>.</p>
+ <div class="scroll">
+ <table>
+  <caption>Admissible captures &mdash; inside the BfA tenure only</caption>
+  <thead><tr><th>#</th><th>Captured (UTC)</th><th>Era</th><th>Snapshot</th></tr></thead>
+  <tbody>
+   <tr><td>1</td><td class="mono">2019-08-19 15:08</td><td>Battle for Azeroth</td><td><a class="ext" href="https://web.archive.org/web/20190819150850/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">open</a></td></tr>
+   <tr><td>2</td><td class="mono">2020-08-07 21:09</td><td>BfA &rarr; Shadowlands</td><td><a class="ext" href="https://web.archive.org/web/20200807210910/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">open</a></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <h3>Archived character pages &mdash; the search that came back empty</h3>
+ <p>Eight URL variants were queried through the availability API. Not one
+ returned a snapshot. This is the clearest negative of the whole project:
+ <strong>nobody ever archived Tandu's character page</strong>, on any realm,
+ on any old site.</p>
+ <div class="scroll">
+ <table>
+  <caption>Availability API results, 2026-11-16</caption>
+  <thead><tr><th>URL variant</th><th>Closest snapshot</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">wowprogress.com/character/us/shadowsong/Tandu</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">wowprogress.com/character/us/shadowsong/Tandumonium</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">wowprogress.com/character/us/hyjal/Tandu</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">wowprogress.com/character/us/hyjal/Tandumonium</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">wowprogress.com/character/us/thrall/Tandu</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">us.battle.net/wow/en/character/shadowsong/Tandu/advanced</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">us.battle.net/wow/en/character/hyjal/Tandumonium/advanced</td><td><span class="pill dead">none</span></td></tr>
+   <tr><td class="mono">wow-heroes.com/character/us/shadowsong/Tandu</td><td><span class="pill dead">none</span></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note warn">A prior pass also walked the CDX index for
+ <code>warcraftlogs.com/character/us/*</code> across Hyjal, Shadowsong, Thrall
+ and Borean Tundra and found <strong>zero</strong> captures. Two independent
+ methods, same answer: the character was played, not archived.</p>
+</section>
+
+
+<section id="rerun">
+ <h2>Re-run this sweep</h2>
+ <p>Six requests, no key. Run it from anywhere; only status and size are kept.</p>
+<pre>$ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0'
+foreach ($u in @(
+  'https://raider.io/characters/us/hyjal/Tandumonium',
+  'https://worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium',
+  'https://www.warcraftlogs.com/character/us/hyjal/Tandumonium',
+  'https://www.wipefest.gg/guild/7287',
+  'https://www.wowprogress.com/guild/us/borean-tundra/Gehenna',
+  'http://archive.org/wayback/available?url=wowprogress.com/guild/us/borean-tundra/Gehenna'
+)) {
+  try {
+    $r = Invoke-WebRequest $u -UserAgent $ua -TimeoutSec 12 -UseBasicParsing
+    "$($r.StatusCode)`t$($r.Content.Length)`t$u"
+  } catch {
+    "$([int]$_.Exception.Response.StatusCode)`twall`t$u"
+  }
+}</pre>
+ <p class="note">The full 18-target script lives at
+ <code>Research/_local/_web_ledger_probe.ps1</code> and writes
+ <code>Research/_raw/web_ledger_20261116.json</code>. Both paths are gitignored,
+ so the engine stays local while this page carries its own conclusions.</p>
+</section>
+
+<section id="guild-door">
+ <h2>Second pass &mdash; the guild door (2026-11-16, late)</h2>
+ <p>The first sweep asked <em>does the character exist out there</em>. This pass
+ asked the narrower, harder question: <strong>can the guild itself be read</strong>
+ &mdash; because a guild roster is the only thing that could ever turn the
+ tenure rule from a constraint into a citation.</p>
+ <div class="scroll">
+ <table>
+  <caption>Five probes, one route nobody had tried</caption>
+  <thead><tr><th>Door</th><th>Status</th><th>Bytes</th><th>Verdict</th></tr></thead>
+  <tbody>
+   <tr><td><a class="ext" href="https://api.wipefest.gg/guild/us/borean-tundra/gehenna" target="_blank" rel="noopener">Wipefest API &middot; guild object <code>&lt;Gehenna&gt;</code></a></td><td class="mono ok">200</td><td class="mono">117</td><td><span class="pill ok">open</span> <code>{id:7287, realm:"Borean Tundra", region:"US", faction:Horde}</code> &mdash; the guild <em>record</em>, no auth, no key</td></tr>
+   <tr><td>Wipefest API &middot; <code>/guild/&hellip;/reports</code></td><td class="mono warn">400</td><td class="mono">52</td><td><span class="pill warn">server cap</span> <code>Max query complexity should be 50000 but got 50701</code> &mdash; the route exists and the server's own query is over budget; not an absence</td></tr>
+   <tr><td><a class="ext" href="https://api.wipefest.gg/encounters" target="_blank" rel="noopener">Wipefest API &middot; encounter map</a></td><td class="mono ok">200</td><td class="mono">48,711</td><td><span class="pill ok">open</span> boss id &rarr; instance, every tier; the decoder the sweep already used</td></tr>
+   <tr><td><a class="ext" href="https://raider.io/api/v1/guilds/profile?region=us&amp;realm=borean-tundra&amp;name=Gehenna&amp;fields=raid_progression" target="_blank" rel="noopener">Raider.IO API &middot; guild progression</a></td><td class="mono ok">200</td><td class="mono">1,631</td><td><span class="pill ok">open</span> five <em>Midnight</em>-era tiers at <code>0/N</code>, last crawled <code>2026-03-14</code> &mdash; a live name with no modern raiding and no BfA data retained</td></tr>
+   <tr><td>WCL character page, <strong>real Chromium</strong></td><td class="mono wall">wall</td><td class="mono">&mdash;</td><td><span class="pill wall">wall</span> title <code>Just a moment...</code> after a 12&nbsp;s wait &mdash; the block is an <em>interactive</em> challenge, not a header check</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note good" style="margin-top:.9rem"><strong>What the new route is
+ worth.</strong> <code>api.wipefest.gg</code> answers with no key and no bot wall,
+ and it carries the same metadata WCL hides: report owner, start/end, boss, zone,
+ difficulty, raid size, kill flag. It is how the 470-report vault was read. What
+ it will <em>not</em> do is list a guild's reports &mdash; that one query exceeds
+ the host's own complexity ceiling, which is a limit of the service, not evidence
+ about the record.</p>
+ <p class="note warn"><strong>Negative, upgraded.</strong> The earlier ledger said
+ the WCL wall was "a policy wall". This pass proves it is stronger than that: a
+ full browser with JavaScript, cookies and twelve seconds of patience still gets
+ the challenge page. Stop spending sweeps on it. The guild-door route above is the
+ one that pays.</p>
+ <p class="note">Wayback, re-probed the same session: the tenure-era capture
+ body still answers <code>429</code> while the CDX <em>index</em> keeps answering
+ &mdash; the archive is rate-limited, not empty. Record stays what
+ <a class="ext" href="raidlogs.html">Raid Logs</a> says it is: 26 captures of
+ <code>&lt;Gehenna&gt;</code>, exactly 2 admissible.</p>
+</section>
+
+<footer>
+ <p>Built 2026-11-16 by Tandumonium &mdash; read-only sweep, nothing written
+ into the game tree, nothing copied out of a remote body. Companion wings:
+ <a class="ext" href="tandu_legacy.html">Tandu Legacy</a> (the disk),
+ <a class="ext" href="raidlogs.html">Raid Logs</a> (the vault),
+ <a class="ext" href="links.html">Link Vault</a> (the registry),
+ <a class="ext" href="index.html">Shell</a>.</p>
+</footer>
+</div>
+</body>
+</html>
+

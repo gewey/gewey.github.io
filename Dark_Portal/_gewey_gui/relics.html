@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Reliquary &mdash; retail artifacts of a 2008 hunter | Gewey G.U.I.</title>
+<!--
+  RELICS.html - built 2026-11-10 by Tandumonium (retail archaeology surface).
+
+  Why this page exists: roster.html counts the folders, dynasty.html reads the
+  Armory, eras.html dates the layers, Chronicle.html covers the FOREVER client.
+  None of them opens the retail install and reads what the character actually
+  left behind: 98 account macros, a 13,046-quest ledger, a saved loadout, a
+  98-mount stable, and the three addons that carry the name as their author.
+
+  Every figure below comes out of a read-only walk of
+    Z:\World of Warcraft\_retail_\WTF\Account\QUAZZARR
+  by Research/_local/_retail_relics.py (gitignored). Nothing was written to the
+  game tree, nothing was opened in-game. Quest-era bands are an ID-band PROXY:
+  Blizzard allocates quest ids roughly in expansion order, so the seams are
+  fuzzy by a few hundred ids. Labelled as a proxy everywhere it appears.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 10% -6%,rgba(255,196,107,.15),transparent 62%),
+  radial-gradient(820px 480px at 90% 3%,rgba(125,255,92,.11),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,59,92,.09),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.bar{display:inline-block;width:84px;height:6px;background:rgba(255,255,255,.08);
+ vertical-align:middle;margin-left:.45rem;border-radius:3px;overflow:hidden}
+.fill{display:block;height:100%;background:var(--gold)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-relics">
+<div class="field"></div>
+<div class="wrap">
+
+
+<header class="hero">
+ <p class="kicker">Retail archaeology &middot; <span class="mono">_retail_</span> &middot; read-only</p>
+ <h1>The Reliquary <span class="thin">what the retail install remembers</span></h1>
+ <p class="lede">The other wings read the <em>Forever</em> client, the Armory, or
+ the census. This one opens the retail WTF folder and reads the archaeology
+ directly: <strong>98 account macros</strong> still cached, a
+ <strong>13,046-quest ledger</strong> on the Dracthyr main, a saved equipment
+ loadout, a <strong>98-mount stable</strong>, three addons that carry the name as
+ their author, and the two crash dumps from the night the client fell over. No
+ game file was modified and nothing here was opened in-game &mdash; every number
+ is a read-only walk of <code>WTF\Account\QUAZZARR</code>.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="relics.html" aria-current="page">Relics</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="ledger">
+ <h2>The Ledger</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">54<small>character folders on disk</small></div></div>
+  <div class="card"><div class="stat">98<small>account macros still cached</small></div></div>
+  <div class="card"><div class="stat">13,046<small>quests on the main's ledger</small></div></div>
+  <div class="card"><div class="stat">98<small>distinct mounts summoned</small></div></div>
+  <div class="card"><div class="stat">38<small>addon folders installed</small></div></div>
+  <div class="card"><div class="stat">2<small>crash dumps, 2026-09-02</small></div></div>
+ </div>
+ <p class="note">Counted 2026-11-10 by <code>Research/_local/_retail_relics.py</code>
+ against <code>Z:\World of Warcraft\_retail_</code>. The script is gitignored; the
+ raw JSON (<code>Research/_raw/retail_relics.json</code>) is too. This page carries
+ its own data.</p>
+</section>
+
+
+<section id="quests">
+ <h2>The Quest Ledger</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>The receipt nobody can fake</h3>
+   <p><code>BtWQuests.lua</code> stores a boolean for every quest a character has
+   ever turned in. It is not a score, not an achievement, not a screenshot: it is
+   the client's own completion table, written as you play and never pruned. The
+   Dracthyr hunter carries <strong>13,046</strong> of them.</p>
+   <p>Two level-10 alts are tracked beside him &mdash; a Vulpera (788 quests) and
+   a Harronir (783) &mdash; which is how we know the file follows the account, not
+   just the main.</p>
+  </div>
+  <div class="card">
+   <h3>Read the bands carefully</h3>
+   <p>Quest ids are allocated roughly in expansion order, so an id band is a
+   <em>proxy</em> for the era a quest shipped in, not proof of when it was
+   completed. A Classic-band quest can be finished tomorrow. What the ledger
+   proves is <strong>breadth</strong>: this character has walked every expansion's
+   quest chain, not one.</p>
+   <p class="note warn">Seams are fuzzy by a few hundred ids, and holiday or
+   removed content can sit outside its era. Treat the table as shape, not
+   arithmetic.</p>
+  </div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>Tandumonium (Dracthyr &middot; Hunter &middot; 90) &mdash; 13,046 quests by ID-band proxy</caption>
+   <thead><tr><th>Era</th><th>ID band</th><th class="num">Quests</th><th>Share of the ledger</th></tr></thead>
+   <tbody>
+    <tr><td>Classic</td><td class="mono">0 &ndash; 8,999</td><td class="num">475</td><td><span class="bar"><span class="fill" style="width:21%"></span></span></td></tr>
+    <tr><td>The Burning Crusade</td><td class="mono">9,000 &ndash; 13,999</td><td class="num">1,532</td><td><span class="bar"><span class="fill" style="width:68%"></span></span></td></tr>
+    <tr><td>Wrath of the Lich King</td><td class="mono">14,000 &ndash; 27,999</td><td class="num">788</td><td><span class="bar"><span class="fill" style="width:35%"></span></span></td></tr>
+    <tr><td>Cataclysm</td><td class="mono">28,000 &ndash; 32,999</td><td class="num">576</td><td><span class="bar"><span class="fill" style="width:26%"></span></span></td></tr>
+    <tr><td>Mists of Pandaria</td><td class="mono">33,000 &ndash; 39,999</td><td class="num">936</td><td><span class="bar"><span class="fill" style="width:42%"></span></span></td></tr>
+    <tr><td>Warlords of Draenor</td><td class="mono">40,000 &ndash; 49,999</td><td class="num">1,712</td><td><span class="bar"><span class="fill" style="width:77%"></span></span></td></tr>
+    <tr><td>Legion</td><td class="mono">50,000 &ndash; 59,999</td><td class="num">2,237</td><td><span class="bar"><span class="fill" style="width:100%"></span></span></td></tr>
+    <tr><td>Battle for Azeroth</td><td class="mono">60,000 &ndash; 67,999</td><td class="num">1,740</td><td><span class="bar"><span class="fill" style="width:78%"></span></span></td></tr>
+    <tr><td>Shadowlands</td><td class="mono">68,000 &ndash; 77,999</td><td class="num">692</td><td><span class="bar"><span class="fill" style="width:31%"></span></span></td></tr>
+    <tr><td>Dragonflight</td><td class="mono">78,000 &ndash; 85,999</td><td class="num">1,465</td><td><span class="bar"><span class="fill" style="width:65%"></span></span></td></tr>
+    <tr><td>The War Within</td><td class="mono">86,000 &ndash; 92,999</td><td class="num">674</td><td><span class="bar"><span class="fill" style="width:30%"></span></span></td></tr>
+    <tr><td>Midnight</td><td class="mono">93,000 &ndash; 99,999</td><td class="num">219</td><td><span class="bar"><span class="fill" style="width:10%"></span></span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Legion at 2,237 is the deepest single era on the ledger, with
+ Battle for Azeroth (1,740) and Warlords (1,712) close behind &mdash; the shape of
+ a hunter who played every campaign rather than camping one expansion.</p>
+</section>
+
+
+<section id="macros">
+ <h2>The Macro Library</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>98 macros, one account</h3>
+   <p>The account cache is the largest single artifact in the retail tree:
+   <strong>98 macros</strong> in 489 lines, written across every era the account
+   has seen. The naming convention is the author's own shorthand, and the
+   families are unmistakable:</p>
+   <table style="margin-top:.6rem">
+    <caption>Macro families by leading character</caption>
+    <thead><tr><th>Prefix</th><th class="num">Count</th><th>Reads as</th></tr></thead>
+    <tbody>
+     <tr><td class="mono">#</td><td class="num">38</td><td>the kit &mdash; <code>#sArm</code>, <code>#sPot</code>, <code>#sHrth</code>, <code>#Whistle</code></td></tr>
+     <tr><td class="mono">/</td><td class="num">16</td><td>slash wrappers &mdash; <code>/TSM</code>, <code>/SUF</code>, <code>/WQA</code>, <code>/fstk</code></td></tr>
+     <tr><td class="mono">!</td><td class="num">13</td><td>panic buttons &mdash; <code>!STOP</code>, <code>!!Abandon Quests</code>, <code>!2222</code></td></tr>
+     <tr><td class="mono">A&ndash;Z</td><td class="num">13</td><td>named tools &mdash; <code>Rachel Ray</code>, <code>Soarp</code>, <code>Decursive</code>, <code>WAYDUMP</code></td></tr>
+     <tr><td class="mono">$</td><td class="num">7</td><td>farming passes &mdash; <code>$Farm</code>, <code>$Fish</code>, <code>$Loot</code>, <code>$JUNK</code></td></tr>
+     <tr><td class="mono">@</td><td class="num">5</td><td>audience switches &mdash; <code>@Raid</code>, <code>@PvP</code>, <code>@World</code>, <code>@Banker</code></td></tr>
+     <tr><td class="mono">a&ndash;z / ~</td><td class="num">6</td><td>bottom-of-the-barrel utilities &mdash; <code>crybaby</code>, <code>focus</code>, <code>~skull</code></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="card">
+   <h3>Per-character caches</h3>
+   <p>Only five characters ever kept a personalised bar. The rest of the roster
+   is mules, name reservations, and ghost shells.</p>
+   <table style="margin-top:.6rem">
+    <caption>Macros cached per character</caption>
+    <thead><tr><th>Character</th><th>Realm</th><th class="num">Macros</th><th class="num">Bytes</th></tr></thead>
+    <tbody>
+     <tr><td><strong>Tangents</strong></td><td class="mono">Hyjal</td><td class="num">30</td><td class="num">5,441</td></tr>
+     <tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td class="num">28</td><td class="num">4,521</td></tr>
+     <tr><td><strong>Tandu</strong></td><td class="mono">Hyjal</td><td class="num">24</td><td class="num">4,183</td></tr>
+     <tr><td><strong>Reticent</strong></td><td class="mono">Shadowsong</td><td class="num">22</td><td class="num">4,710</td></tr>
+     <tr><td><strong>Tandora</strong></td><td class="mono">Hyjal</td><td class="num">1</td><td class="num">42</td></tr>
+    </tbody>
+   </table>
+   <p class="note">Tangents holds the <em>most</em> personal macros; the main holds
+   the widest account library. The two are not the same thing, and that gap is
+   itself a piece of history. The alt's 24 macros are rendered in full at
+   <a class="ext" href="Tandu-Hyjal_macros-cache.html">Tandu &mdash; Hyjal macro cache</a>;
+   the account library and the main's kit are in
+   <a class="ext" href="macrocosm.html">Macrocosm</a>.</p>
+  </div>
+ </div>
+</section>
+
+
+<section id="exhibits">
+ <h2>Four Exhibits</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Rachel Ray <span class="tag t-g">the scream</span></h3>
+   <p>The macro the persona was built on: one button that pops every offensive
+   cooldown and both trinkets at once. It is named for the television host on
+   purpose &mdash; the sound is the point. The in-raid joke about yelling to force
+   focus is not a joke in this file; it is a binding.</p>
+   <pre>#showtooltip wailing arrow
+/use aspect of the wild
+/use 13
+/use 14
+/use wailing arrow
+/use [@player] Sack of Spectral Spiders</pre>
+  </div>
+  <div class="card">
+   <h3>Soarp <span class="tag t-f">the slow-fall blanket</span></h3>
+   <p>Nine toys in one button. This is the Dracthyr answer to gravity: if the
+   glide is on cooldown, throw every slow-fall and transformation toy at the
+   problem until one of them catches you.</p>
+   <pre>/use Soar
+/use Faded Wizard Hat
+/use Coin of Many Faces
+/use Glimmerflies on Strings
+/use Winning Hand
+/use Words of Akunda
+/use World Shrinker
+/use Stylish Black Parasol
+/use Stone Breaker
+/use Azerite Firework Launcher</pre>
+  </div>
+  <div class="card">
+   <h3>@Raid <span class="tag t-x">loadout switch</span></h3>
+   <p>One keystroke swaps the whole interface posture: apply the Raid loadout,
+   disable every addon profile, reload on right-click. The <code>/btwl a Raid</code>
+   line is the only surviving reference to the loadout manager's own set naming.</p>
+   <pre>/btwl a Raid
+/acp disableall
+/acp disableall
+/acp disableall
+/reload ui [btn:2]</pre>
+  </div>
+  <div class="card">
+   <h3>Human <span class="tag t-r">a Classic ghost</span></h3>
+   <p><code>GetSpellInfo(19883)</code> is Track Humanoids, and this macro still
+   toggles it by hand with a coloured chat report. It is a 2008-era habit that
+   survived every expansion because it never needed updating.</p>
+   <pre>/run for i=1,GetNumTrackingTypes() do local x,_,y=GetTrackingInfo(i)
+if x==GetSpellInfo(19883) then SetTracking(i, not y) ...</pre>
+  </div>
+ </div>
+</section>
+
+
+<details class="card">
+ <summary style="cursor:pointer;color:var(--gold);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase">The full 98-name index</summary>
+ <p class="note" style="margin-top:.8rem"><code>!!!!</code>, <code>!!!!!</code>,
+ <code>!!!!!!</code>, <code>!!Abandon Quests</code>, <code>!!Melee template</code>,
+ <code>!/btwl</code>, <code>!1</code>, <code>!2222</code>, <code>!3333</code>,
+ <code>!4444</code>, <code>!DR2</code>, <code>!SND</code>, <code>!STOP</code>,
+ <code>#Cv-E</code>, <code>#CvA-H2</code>, <code>#CvA-M2</code>, <code>#CvS</code>,
+ <code>#CvS2</code>, <code>#CvS3</code>, <code>#N* - ALL - IMUN</code>,
+ <code>#N+ - ALL - HALP</code>, <code>#N- - Boogy</code>, <code>#N3 template</code>,
+ <code>#Whistle</code>, <code>#s???</code>, <code>#sArm</code>, <code>#sBff</code>,
+ <code>#sBun</code>, <code>#sDed</code>, <code>#sDum</code>, <code>#sFire</code>,
+ <code>#sFrm</code>, <code>#sFsk</code>, <code>#sFst</code>, <code>#sFud</code>,
+ <code>#sGme</code>, <code>#sHlSt</code>, <code>#sHrth</code>, <code>#sHth</code>,
+ <code>#sLst</code>, <code>#sMail</code>, <code>#sOil</code>, <code>#sOrg</code>,
+ <code>#sPot</code>, <code>#sPrfn</code>, <code>#sRacial</code>, <code>#sRne</code>,
+ <code>#sRpr</code>, <code>#sTrvl</code>, <code>#sWrmhl</code>, <code>#sXmg</code>,
+ <code>$Dstry</code>, <code>$Farm</code>, <code>$Fish</code>, <code>$JUNK</code>,
+ <code>$Loot</code>, <code>$Run</code>, <code>$Targeting</code>, <code>/13</code>,
+ <code>/14</code>, <code>/15</code>, <code>/6</code>, <code>/SUF</code>,
+ <code>/TSM</code>, <code>/WQA</code>, <code>/addonprofiler</code>,
+ <code>/findYourself 0</code>, <code>/findYourself 1</code>, <code>/follow</code>,
+ <code>/fstk</code>, <code>/hnnew</code>, <code>/litemout</code>,
+ <code>/note</code>, <code>/tar @mouse</code>, <code>@Banker</code>,
+ <code>@NO RAID</code>, <code>@PvP</code>, <code>@Raid</code>,
+ <code>@World</code>, <code>AutoBandage</code>, <code>AutoPotion</code>,
+ <code>BM</code>, <code>Decursive</code>, <code>EA_BMH_AOE</code>,
+ <code>EA_BMH_ST</code>, <code>Human</code>, <code>PD_TEST_4_SET</code>,
+ <code>RXPTargeting</code>, <code>Rachel Ray</code>, <code>Soarp</code>,
+ <code>Tracking</code>, <code>WAYDUMP</code>, <code>crybaby</code>,
+ <code>focus</code>, <code>s-G</code>, <code>~!umod</code>, <code>~skull</code>,
+ <code>~~clk qst dlg</code>.</p>
+</details>
+
+<section id="wardrobe">
+ <h2>The Wardrobe</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>&ldquo;Marx&rdquo; &mdash; the saved set</h3>
+   <p><code>BtWLoadouts</code> keeps equipment sets by name. The main has exactly
+   two: <strong>Marx</strong> (eleven saved slots) and an empty
+   <strong>ST</strong> placeholder. The set is a photograph of a real outfit,
+   saved at some point in Dragonflight-era gearing and never overwritten.</p>
+   <p class="note">Item ids are stable; open one on Wowhead to see the actual
+   piece. <code>Cyrce's Circlet</code> appears three times because the ring's
+   socket variants are saved separately &mdash; not a bug in the save.</p>
+  </div>
+  <div class="card">
+   <h3>What is in it</h3>
+   <table>
+    <caption>Loadout &ldquo;Marx&rdquo; &mdash; 11 saved slots, 6 distinct items</caption>
+    <thead><tr><th>Item</th><th class="num">ID</th></tr></thead>
+    <tbody>
+     <tr><td>Durable Information Securing Container</td><td class="num mono">245965</td></tr>
+     <tr><td>Reshii Wraps</td><td class="num mono">235499</td></tr>
+     <tr><td>The Horseman's Ring</td><td class="num mono">143903</td></tr>
+     <tr><td>Wraps of the Blood-Soaked Brawler</td><td class="num mono">98543</td></tr>
+     <tr><td>Court of Harvesters Tabard</td><td class="num mono">179282</td></tr>
+     <tr><td>Cyrce's Circlet</td><td class="num mono">228411</td></tr>
+    </tbody>
+   </table>
+   <p class="note">The Court of Harvesters tabard is a Shadowlands covenant
+   cosmetic: the outfit crosses eras on purpose.</p>
+  </div>
+ </div>
+</section>
+
+<section id="stable">
+ <h2>The Mount Stable</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>98 mounts, 193 summons</h3>
+   <p><code>LiteMount.lua</code> counts every summon per mount id. The roster is
+   wide &mdash; <strong>98 distinct mounts</strong> out of <strong>193 total
+   summons</strong> &mdash; which means the hunter cycles rather than camps one
+   favourite. There is no saved-favourites list in the file, only the counts.</p>
+   <p class="note warn">Caveat: LiteMount was installed on this client in 2026, so
+   these counts describe current habits, not a lifetime of travel. They are still
+   the only machine-readable mount record on disk.</p>
+  </div>
+  <div class="card">
+   <h3>Most-summoned</h3>
+   <table>
+    <caption>Top ten by summon count (id &rarr; Wowhead search)</caption>
+    <thead><tr><th>Mount id</th><th class="num">Summons</th><th>Look it up</th></tr></thead>
+    <tbody>
+     <tr><td class="mono">290328</td><td class="num">8</td><td><a class="ext" href="https://www.wowhead.com/search?q=290328">Wowhead</a></td></tr>
+     <tr><td class="mono">353884</td><td class="num">6</td><td><a class="ext" href="https://www.wowhead.com/search?q=353884">Wowhead</a></td></tr>
+     <tr><td class="mono">59570</td><td class="num">6</td><td><a class="ext" href="https://www.wowhead.com/search?q=59570">Wowhead</a></td></tr>
+     <tr><td class="mono">75614</td><td class="num">5</td><td><a class="ext" href="https://www.wowhead.com/search?q=75614">Wowhead</a></td></tr>
+     <tr><td class="mono">61447</td><td class="num">4</td><td><a class="ext" href="https://www.wowhead.com/search?q=61447">Wowhead</a></td></tr>
+     <tr><td class="mono">222202</td><td class="num">4</td><td><a class="ext" href="https://www.wowhead.com/search?q=222202">Wowhead</a></td></tr>
+     <tr><td class="mono">61230</td><td class="num">4</td><td><a class="ext" href="https://www.wowhead.com/search?q=61230">Wowhead</a></td></tr>
+     <tr><td class="mono">413825</td><td class="num">4</td><td><a class="ext" href="https://www.wowhead.com/search?q=413825">Wowhead</a></td></tr>
+     <tr><td class="mono">463133</td><td class="num">4</td><td><a class="ext" href="https://www.wowhead.com/search?q=463133">Wowhead</a></td></tr>
+     <tr><td class="mono">98718</td><td class="num">3</td><td><a class="ext" href="https://www.wowhead.com/search?q=98718">Wowhead</a></td></tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section id="forge">
+ <h2>The Addon Forge</h2>
+ <p>Three addons on this client are authored by <strong>Tandumonium</strong>, not
+ installed from CurseForge. They are the clearest evidence that the character is
+ also the person who builds the interface.</p>
+ <div class="scroll">
+  <table>
+   <caption>Authored addons &mdash; folder, title, version, stated purpose</caption>
+   <thead><tr><th>Folder</th><th>Title</th><th>Version</th><th>Notes</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">Tandumonium_UI</td><td>Tandumonium UI</td><td class="mono">0.11.0</td><td>Personal account-wide settings addon. Applies settings to whatever character logs in.</td></tr>
+    <tr><td class="mono">Tandumonium_Patches</td><td>Tandumonium Patches</td><td class="mono">0.1.0</td><td>External runtime patches for third-party addons; survives CurseForge updates because it lives outside them.</td></tr>
+    <tr><td class="mono">Tandumonium_Macros</td><td>Tandumonium Macros</td><td class="mono">0.1.0</td><td>Per-class macro libraries. Pick your main character for each class.</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Thirty-five other addon folders are installed. The heaviest
+ footprint is <code>EnhanceQoL</code> at thirteen modules (13.19.0, R41Z0R),
+ followed by the Raider.IO family (live plus three realm databases) and the
+ BtW suite from Breen. The authored three are the only ones whose Author field
+ reads <em>Tandumonium</em>.</p>
+ <p>These three have since been opened rather than counted:
+ <a class="ext" href="Forge.html">The Forge</a> reads the Lua and reports the
+ <code>/tand</code> command grammar, the 103-slot bar map, the Wowhead Quick
+ Link URL matrix, the UMPD pin engine and the Kintsugi patch doctrine &mdash;
+ 1,820 lines in total.</p>
+</section>
+<section id="artifacts">
+ <h2>The Artifacts Drawer</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Two crashes, four files</h3>
+   <p>On <strong>2026-09-02</strong> the client fell over twice in four minutes.
+   Both dumps and both text reports are still in <code>_retail_\Errors</code>:</p>
+   <table style="margin-top:.5rem">
+    <caption>Crash residue</caption>
+    <thead><tr><th>File</th><th class="num">Bytes</th><th>Stamp</th></tr></thead>
+    <tbody>
+     <tr><td class="mono">..._Error_27640.dmp</td><td class="num">3,609,677</td><td class="mono">20:06:46</td></tr>
+     <tr><td class="mono">..._Error_27640.txt</td><td class="num">51,205</td><td class="mono">20:06:46</td></tr>
+     <tr><td class="mono">..._Error_5432.dmp</td><td class="num">3,656,609</td><td class="mono">20:10:59</td></tr>
+     <tr><td class="mono">..._Error_5432.txt</td><td class="num">50,553</td><td class="mono">20:10:58</td></tr>
+    </tbody>
+   </table>
+   <p class="note">The reports are readable text; the dumps are not. Nothing in
+   them is a legacy claim, so they are recorded as artifacts, not evidence.</p>
+  </div>
+  <div class="card">
+   <h3>Three screenshots</h3>
+   <p>The last retail session left three JPGs in <code>Screenshots</code>, all
+   from <strong>2026-11-05, 05:47:51&ndash;05:48:02</strong> &mdash; eleven seconds
+   of the client's final night on this install. They are the only images the game
+   itself produced.</p>
+   <p class="note">Filenames are timestamp-coded
+   (<code>WoWScrnShot_110526_054751.jpg</code>), so they can be dated without
+   opening them.</p>
+  </div>
+ </div>
+
+ <div class="grid g2" style="margin-top:1rem">
+  <div class="card">
+   <h3>GUID families = realm identities</h3>
+   <p><code>character-list-order.txt</code> holds <strong>53 GUID slots</strong>
+   against <strong>54 folders</strong> &mdash; one shell was never given a slot.
+   The first segment of each GUID groups cleanly by realm:</p>
+   <table style="margin-top:.5rem">
+    <caption>GUID prefixes in the character list</caption>
+    <thead><tr><th>Prefix</th><th class="num">Slots</th><th>Realm family</th></tr></thead>
+    <tbody>
+     <tr><td class="mono">3661-*</td><td class="num">28</td><td>Hyjal</td></tr>
+     <tr><td class="mono">3678-*</td><td class="num">13</td><td>Thrall</td></tr>
+     <tr><td class="mono">86-*</td><td class="num">12</td><td>Shadowsong (lowest ids &mdash; oldest identity)</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="card">
+   <h3>Forty-five ghost shells</h3>
+   <p>Of the 54 folders, only <strong>9</strong> contain a character anybody
+   played. The other <strong>45</strong> hold a single <code>AddOns.txt</code>
+   stamped <code>2026-09-16 18:31:44</code> by a bulk copy &mdash; name
+   reservations and mules that never wrote a second file.</p>
+   <p>That asymmetry is the honest shape of a long-lived account: a handful of
+   characters accumulate a life, and the rest are placeholders waiting for a
+   story. Full per-toon evidence on <a class="ext" href="roster.html">Roster</a>.</p>
+  </div>
+ </div>
+</section>
+
+<section id="method">
+ <h2>Method &amp; Honesty</h2>
+ <div class="card">
+  <p><strong>Read-only.</strong> The extractor walks
+  <code>WTF\Account\QUAZZARR</code>, <code>Interface\AddOns</code>,
+  <code>Screenshots</code>, <code>Errors</code> and <code>Logs</code>. It opens
+  files for reading and writes its JSON to
+  <code>Research\_raw\retail_relics.json</code> inside <code>Dark_Portal</code>.
+  No file under <code>_retail_</code> is created, modified, or deleted.</p>
+  <p><strong>What is solid:</strong> macro counts and bodies, per-character macro
+  counts, quest completion counts, loadout items, mount summon counts, addon
+  folder versions and authors, crash and screenshot timestamps, GUID prefixes.
+  All of it is copied out of the files, not inferred.</p>
+  <p><strong>What is a proxy:</strong> the era bands on the quest ledger. Quest
+  ids are allocated roughly in expansion order; the seams are fuzzy and holiday
+  content does not obey them. The ledger proves breadth, not dates.</p>
+  <p><strong>What this page does not claim:</strong> that any of these artifacts
+  date back to 2008. The retail install on this machine is a 2026 client; the
+  2008&ndash;2016 record lives in the Armory reputation fossil
+  (<a class="ext" href="dynasty.html">Dynasty</a>), the Warcraft Logs vault
+  (<a class="ext" href="raidlogs.html">Raid Logs</a>), and the era ledger
+  (<a class="ext" href="eras.html">Eras</a>).</p>
+ </div>
+</section>
+
+<footer>
+ <p>Built 2026-11-10 by Tandumonium &mdash; retail archaeology surface.
+ Source script: <code>Research/_local/_retail_relics.py</code> (local).
+ Raw capture: <code>Research/_raw/retail_relics.json</code> (local).
+ Sibling wings: <a class="ext" href="roster.html">Roster</a> &middot;
+ <a class="ext" href="dynasty.html">Dynasty</a> &middot;
+ <a class="ext" href="eras.html">Eras</a> &middot;
+ <a class="ext" href="raidlogs.html">Raid Logs</a> &middot;
+ <a class="ext" href="legacy.html">Legacy</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>

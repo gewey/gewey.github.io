@@ -147,6 +147,50 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iLegacy"]::after          { content: " Legacy"; }
 .gw-shell button[name="iRaidLogs"]::after        { content: " Raid Logs"; }
 .gw-shell button[name="iFrontier"]::after        { content: " Frontier"; }
+.gw-shell button[name="iChronicle"]::after       { content: " Chronicle"; }
+.gw-shell button[name="iDynasty"]::after         { content: " Dynasty"; }
+.gw-shell button[name="iForge"]::after           { content: " The Forge"; }
+.gw-shell button[name="iStable"]::after          { content: " Stable"; }
+.gw-shell button[name="iTanduLegacy"]::after     { content: " Tandu Legacy"; }
+.gw-shell button[name="iReliquary"]::after       { content: " Reliquary"; }
+.gw-shell button[name="iEchoes"]::after          { content: " Echoes"; }
+
+/* ---- Promoted later, labelled 2026-11-16 (were icon-only) -----------------
+   AGENTS.md lists these as a known gap: "iRoster, iEras and iLinks were
+   promoted without one - they render icon-only until a ::after rule lands".
+   The buttons already point at real panes, so the only missing piece was the
+   word. Same sheet, same mechanism, no markup touched. */
+.gw-shell button[name="iRelics"]::after          { content: " Relics"; }
+.gw-shell button[name="iRoster"]::after          { content: " Roster"; }
+.gw-shell button[name="iEras"]::after            { content: " Eras"; }
+.gw-shell button[name="iLinks"]::after           { content: " Link Vault"; }
+.gw-shell button[name="iWebLedger"]::after       { content: " Web Ledger"; }
+.gw-shell button[name="iLogLedger"]::after       { content: " Log Ledger"; }
+.gw-shell button[name="iAutomations"]::after     { content: " Automations"; }
+
+/* ---- Panes promoted by earlier passes with no label rule yet (2026-11-16) --
+   Every one of these already has an href and a real page behind it; the only
+   thing missing was the word. Found by reading getComputedStyle(::after) on
+   all 38 shell buttons: 13 returned "none". Same fix, same sheet. */
+.gw-shell button[name="iPersona"]::after         { content: " Persona"; }
+.gw-shell button[name="iOrigins"]::after      { content: " Origins"; }
+.gw-shell button[name="iTenure"]::after      { content: " Tenure"; }
+.gw-shell button[name="iMuster"]::after      { content: " Muster"; }
+.gw-shell button[name="iDeeds"]::after           { content: " Deeds"; }
+.gw-shell button[name="iResidue"]::after         { content: " Residue"; }
+.gw-shell button[name="iSortie"]::after          { content: " Sortie"; }
+.gw-shell button[name="iAlmanac"]::after         { content: " Almanac"; }
+.gw-shell button[name="iLevelbook"]::after       { content: " Levelbook"; }
+.gw-shell button[name="iFaces"]::after           { content: " Faces"; }
+.gw-shell button[name="iPurse"]::after           { content: " Purse"; }
+.gw-shell button[name="iFronts"]::after          { content: " Fronts"; }
+.gw-shell button[name="iHeartbeat"]::after       { content: " Heartbeat"; }
+.gw-shell button[name="iClockwork"]::after       { content: " Clockwork"; }
+.gw-shell button[name="iChassis"]::after         { content: " Chassis"; }
+.gw-shell button[name="iItinerary"]::after       { content: " Itinerary"; }
+.gw-shell button[name="iVignettes"]::after       { content: " Vignettes"; }
+.gw-shell button[name="iFlipbook"]::after        { content: " Flipbook"; }
+.gw-shell button[name="iCompany"]::after         { content: " Company"; }
 
 /* ---- Placeholders — labelled, not built yet ------------------------------- */
 .gw-shell button[name="iCharacter"]::after { content: " Character"; }
