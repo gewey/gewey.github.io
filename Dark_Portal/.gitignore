@@ -482,3 +482,33 @@ Research/_raw/muster_*.*
 **/_muster_*.out
 **/_muster_*.err
 
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-20 (Tandumonium, "two-install bridge" pass).
+#
+# PUBLIC this pass - one new wing and every edge that reaches it:
+#   _gewey_gui/Concordance.html    retail <-> forever; self-contained, no fetch
+#   _gewey_gui/index.html          button "iConcordance" (merge_type icon)
+#   _gewey_gui/_css/holy_word.css  label rule for iConcordance
+#   _gewey_gui/_fuhevva_evva.html  directory card
+#   _gewey_gui/<39 pages>.html     one nav chip each (idempotent wiring)
+# Every figure on the pane (54 retail folders, 5 forever keys, 5 bridged,
+# 9 lived, 45 ghosts, 59 total) is baked in at build time, so no data file has
+# to ship beside it.
+#
+# LOCAL this pass - the builder, the wiring, and the payload they read:
+#   Research/_local/_concordance_build.py     walk both WTF trees -> the page
+#   Research/_local/_wire_concordance_nav.py  chips + button + card
+#   Research/_raw/concordance_20261120.json   the numbers, no page fetches it
+# Research/_local/ and Research/_raw/ already cover those, so this block exists
+# to STATE the rule. The patterns below are belt and braces for anyone who moves
+# one of these files out of those two folders by accident.
+# ---------------------------------------------------------------------------
+Research/_raw/concordance_*.*
+Research/_raw/concordance_doors*.*
+**/_concordance_build.py
+**/_wire_concordance_nav.py
+**/_concordance_doors.py
+**/_concordance_doors2.py
+
+

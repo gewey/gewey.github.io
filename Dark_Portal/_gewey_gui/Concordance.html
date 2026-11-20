@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concordance &mdash; two installs, one account | Gewey G.U.I.</title>
+<!--
+  CONCORDANCE.html - built 2026-11-20 by Tandumonium (the two-install bridge pass).
+
+  Every other wing reads ONE install. This one reads both and puts them in the
+  same frame of reference: the retail account QUAZZARR (character folders across
+  Hyjal / Shadowsong / Thrall) and the WoW: Forever account QUAZZARR\91 (the
+  realmID-91 shard). Nobody had drawn the line between them.
+
+  What the bridge proves: the Forever shard registers a character as
+  Name-Surname (Tandumonium-Ebbeson, Quazzarr-Paradoxia), and those surnames are
+  family names the retail side never wrote down. The hyphen is not decoration -
+  it is a server rule, and it is the only place the family names survive.
+
+  Method: read-only walk of both WTF trees by Research/_local/_concordance_build.py,
+  which also writes Research/_raw/concordance_20261120.json. Both are gitignored;
+  this page is self-contained and fetches nothing at runtime. Nothing in either
+  game tree was created, modified, or deleted.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#06060a;--panel:rgba(12,13,20,.88);--line:rgba(255,196,107,.18);
+ --ink:#eef1ff;--mut:#8e97b3;--gold:#ffc46b;--crimson:#ff4560;
+ --arcane:#58d2ff;--fel:#7dffb0;--grey:#b9c2cc;--ash:#c2c6d6;
+ --glow:0 0 14px rgba(255,196,107,.4)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -10%,rgba(255,196,107,.10),transparent 62%),
+  radial-gradient(820px 480px at 88% 0%,rgba(88,210,255,.08),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(194,198,214,.06),transparent 68%),
+  linear-gradient(180deg,#06060a 0%,#090812 58%,#0b0914 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.card h3{margin-top:0}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.dead{color:var(--grey)}.warn{color:var(--gold)}
+.moon{color:var(--arcane)}.wall{color:var(--crimson)}.ash{color:var(--ash)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+.voice{font-size:.92rem;color:#e4e8fb;border-left:2px solid var(--gold);
+ padding:.1rem 0 .1rem .85rem;margin:.7rem 0;font-style:italic}
+pre{background:rgba(0,0,0,.44);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d6dcf2;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(255,196,107,.4)}
+a.ext:hover{color:var(--arcane);border-bottom-color:var(--arcane)}
+.wrap .scroll table{min-width:720px}
+.wrap .scroll td{white-space:normal}
+
+</style>
+</head>
+<body class="gw-concordance">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Concordance &middot; retail &harr; forever &middot; account QUAZZARR</p>
+ <h1>Concordance <span class="thin">two installs, one account</span></h1>
+ <p class="lede">54 folders on the retail account, 5 on the
+ Forever shard. Nobody had asked which of them are the <strong>same
+ person</strong>. This wing answers it with file counts: the shared base
+ handles, the 5 family names the Forever shard keeps, and the
+ naming law that separates the two worlds.</p>
+ <p class="voice">5 of 5 Forever keys wear a retail folder
+ of the same first name. That is not a coincidence, it is a family.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Concordance.html" aria-current="page">Concordance</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Origins.html">Origins</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="handles.html">Handles</a>
+  <a href="eras.html">Eras</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="roster.html">Roster</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="races.html">Races</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="web_legacy.html">Web Legacy</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a>
+  <a href="automations.html">Automations</a>
+ </nav>
+</header>
+
+<section id="numbers">
+ <h2>The six numbers</h2>
+ <div class="grid g4">
+  <div class="card"><div class="stat">59<small>folders, both installs</small></div></div>
+  <div class="card"><div class="stat">54<small>retail, three realms</small></div></div>
+  <div class="card"><div class="stat">5<small>forever, realmID 91</small></div></div>
+  <div class="card"><div class="stat">9<small>retail folders lived in</small></div></div>
+  <div class="card"><div class="stat">45<small>retail ghost shells</small></div></div>
+  <div class="card"><div class="stat">5<small>family names, Forever only</small></div></div>
+ </div>
+ <p class="note">A folder counts as <em>lived in</em> when it holds more than
+ the single <span class="mono">AddOns.txt</span> the client writes for a
+ character you merely log in to. Total disk under both accounts:
+ <span class="mono">29.85 MB</span>
+ (173.2 kB retail + 29.67 MB Forever).</p>
+</section>
+
+<section id="bridge">
+ <h2>The bridge &mdash; 5 keys, one family</h2>
+ <p>The Forever shard will not register a bare name. Every folder there is
+ <span class="mono">Name-Surname</span>; every retail folder is a bare handle.
+ Match on the first name and the family falls out.</p>
+ <div class="scroll">
+  <table>
+   <caption>Forever key &rarr; retail folder of the same base handle</caption>
+   <thead><tr><th>Forever key</th><th>Base</th><th>Surname</th>
+   <th>Retail folder</th><th>Realm(s)</th><th>Match</th></tr></thead>
+   <tbody>
+   <tr><td class="mono">Christar-Leroy</td>
+    <td class="mono">Christar</td>
+    <td class="mono">Leroy</td>
+    <td class="mono">Christar</td>
+    <td>Hyjal, Shadowsong, Thrall</td>
+    <td><span class="pill ok">exact</span></td></tr>
+   <tr><td class="mono">Kar-Kol</td>
+    <td class="mono">Kar</td>
+    <td class="mono">Kol</td>
+    <td class="mono">Karkol</td>
+    <td>Hyjal</td>
+    <td><span class="pill ok">prefix</span></td></tr>
+   <tr><td class="mono">Legere-Goulette</td>
+    <td class="mono">Legere</td>
+    <td class="mono">Goulette</td>
+    <td class="mono">Legere</td>
+    <td>Hyjal</td>
+    <td><span class="pill ok">exact</span></td></tr>
+   <tr><td class="mono">Quazzarr-Paradoxia</td>
+    <td class="mono">Quazzarr</td>
+    <td class="mono">Paradoxia</td>
+    <td class="mono">Quazzarr</td>
+    <td>Hyjal, Shadowsong, Thrall</td>
+    <td><span class="pill ok">exact</span></td></tr>
+   <tr><td class="mono">Tandumonium-Ebbeson</td>
+    <td class="mono">Tandumonium</td>
+    <td class="mono">Ebbeson</td>
+    <td class="mono">Tandumonium</td>
+    <td>Hyjal</td>
+    <td><span class="pill ok">exact</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Only <span class="mono">exact</span> and
+ <span class="mono">prefix</span> matches are claimed. A prefix match means the
+ shard hyphenated a name the retail client had always spelled as one word
+ (<span class="mono">Kar-Kol</span> against <span class="mono">Karkol</span>);
+ the page says so rather than pretending the spelling is identical.</p>
+ <p>Exactly 1 retail folder carries a Forever surname inside a first name: <span class="mono">Jacobebbeson</span>. A surname welded onto a handle is how the family survived on a server that does not use them.</p>
+</section>
+
+<section id="census">
+ <h2>The retail census, by realm</h2>
+ <div class="scroll">
+  <table>
+   <caption>Three realms on account QUAZZARR (retail)</caption>
+   <thead><tr><th>Realm</th><th>Folders</th><th>Lived in</th>
+   <th>Ghost shells</th><th>Disk</th></tr></thead>
+   <tbody>
+   <tr><td class="mono">Hyjal</td>
+    <td>29</td>
+    <td>8</td>
+    <td>21</td>
+    <td class="mono">141.6 kB</td></tr>
+   <tr><td class="mono">Shadowsong</td>
+    <td>12</td>
+    <td>1</td>
+    <td>11</td>
+    <td class="mono">24.7 kB</td></tr>
+   <tr><td class="mono">Thrall</td>
+    <td>13</td>
+    <td>0</td>
+    <td>13</td>
+    <td class="mono">6.9 kB</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Hyjal carries the main and the deepest config trees;
+ Shadowsong and Thrall are older addresses kept alive by a single
+ <span class="mono">AddOns.txt</span> each. That is what a server move looks
+ like after the fact: the character leaves, the folder stays.</p>
+</section>
+
+<section id="lived">
+ <h2>The 9 that actually lived</h2>
+ <div class="scroll">
+  <table>
+   <caption>Retail folders holding more than an addon list, fullest first</caption>
+   <thead><tr><th>Character</th><th>Realm</th><th>Files</th><th>Disk</th>
+   <th>SVDs</th><th>Newest write (UTC)</th></tr></thead>
+   <tbody>
+   <tr><td class="mono">Tandumonium</td>
+    <td>Hyjal</td>
+    <td>36</td>
+    <td class="mono">37.3 kB</td>
+    <td>12</td>
+    <td class="mono">2026-11-13 08:45</td></tr>
+   <tr><td class="mono">Reticent</td>
+    <td>Shadowsong</td>
+    <td>24</td>
+    <td class="mono">18.8 kB</td>
+    <td>6</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Tandora</td>
+    <td>Hyjal</td>
+    <td>23</td>
+    <td class="mono">10.8 kB</td>
+    <td>6</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Tandulari</td>
+    <td>Hyjal</td>
+    <td>22</td>
+    <td class="mono">13.7 kB</td>
+    <td>6</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Fauxylauxy</td>
+    <td>Hyjal</td>
+    <td>21</td>
+    <td class="mono">16.3 kB</td>
+    <td>9</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Tangents</td>
+    <td>Hyjal</td>
+    <td>20</td>
+    <td class="mono">24.6 kB</td>
+    <td>6</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Testytester</td>
+    <td>Hyjal</td>
+    <td>20</td>
+    <td class="mono">8.2 kB</td>
+    <td>5</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Tandu</td>
+    <td>Hyjal</td>
+    <td>18</td>
+    <td class="mono">16.6 kB</td>
+    <td>6</td>
+    <td class="mono">2026-09-16 22:31</td></tr>
+   <tr><td class="mono">Radaradas</td>
+    <td>Hyjal</td>
+    <td>5</td>
+    <td class="mono">3.0 kB</td>
+    <td>1</td>
+    <td class="mono">2026-08-26 07:54</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The newest write in each folder is the last moment the client
+ touched that character on this machine. Nothing here is a login timestamp from
+ Blizzard &mdash; it is a file timestamp, and it is the only clock the disk
+ keeps.</p>
+</section>
+
+<section id="forever">
+ <h2>The Forever five</h2>
+ <p>The realmID-91 shard is where the current main actually lives, and it is
+ the only install that spells out the family name. Sizes are not prestige: the
+ main folder is large because the biography and travel addons write their own
+ ledgers beside the client's.</p>
+ <div class="scroll">
+  <table>
+   <caption>WTF\Account\QUAZZARR\91 - five Name-Surname folders</caption>
+   <thead><tr><th>Character</th><th>Files</th><th>Disk</th><th>SVDs</th>
+   <th>Newest write (UTC)</th></tr></thead>
+   <tbody>
+   <tr><td class="mono">Tandumonium-Ebbeson</td>
+    <td>142</td>
+    <td class="mono">27.46 MB</td>
+    <td>65</td>
+    <td class="mono">2026-11-19 18:01</td></tr>
+   <tr><td class="mono">Christar-Leroy</td>
+    <td>113</td>
+    <td class="mono">952.7 kB</td>
+    <td>51</td>
+    <td class="mono">2026-11-19 14:47</td></tr>
+   <tr><td class="mono">Quazzarr-Paradoxia</td>
+    <td>126</td>
+    <td class="mono">890.3 kB</td>
+    <td>60</td>
+    <td class="mono">2026-11-19 03:37</td></tr>
+   <tr><td class="mono">Legere-Goulette</td>
+    <td>124</td>
+    <td class="mono">369.0 kB</td>
+    <td>61</td>
+    <td class="mono">2026-11-19 05:57</td></tr>
+   <tr><td class="mono">Kar-Kol</td>
+    <td>1</td>
+    <td class="mono">4.5 kB</td>
+    <td>0</td>
+    <td class="mono">2026-11-19 03:37</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section id="lineage">
+ <h2>The handles, roster-proven</h2>
+ <p>Three retail names, one account. The dates are not remembered; they are the
+ first and last rows carrying each name in the 470 crawled report rosters.</p>
+ <div class="scroll">
+  <table>
+   <caption>Name lineage &mdash; first and last roster appearance</caption>
+   <thead><tr><th>Handle</th><th>First seen</th><th>Last seen</th>
+   <th>What changed</th></tr></thead>
+   <tbody>
+   <tr><td class="mono">Tandu</td><td class="mono">2008-10-01</td>
+    <td class="mono">2020-09-11</td><td>The OG handle. First roster row 2018-10-01.</td></tr>
+   <tr><td class="mono">Tandieu</td><td class="mono">2020-09-16</td>
+    <td class="mono">2024-10-20</td><td>Rename. First roster row under the new name.</td></tr>
+   <tr><td class="mono">Tandumonium</td><td class="mono">2024-10-20</td>
+    <td class="mono">present</td><td>Current retail main, Hyjal-US.</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">The rename is a server event, not a story event: the character
+ never changed realms, the name string did. Full derivation lives in
+ <a class="ext" href="Muster.html">Muster</a>.</p>
+</section>
+
+<section id="missing">
+ <h2>The decade the disk does not hold</h2>
+ <p>Neither install contains a single file older than the retail client that
+ wrote it. There is no 2008 folder, no Wrath-era config, no Cataclysm cache:
+ the auth server has never replayed an old character tree onto a new machine.
+ The 2008&ndash;2018 stretch is carried entirely by
+ <a class="ext" href="Origins.html">Origins</a> (what the archive never saw) and
+ <a class="ext" href="legacy.html">Legacy</a> (the handles and the guild
+ windows).</p>
+ <p class="note warn">Guild tenure rule, restated because this wing touches
+ guild history: <span class="mono">&lt;Gehenna&gt;</span> is admissible only
+ inside the 2019&ndash;2020 Battle for Azeroth window (WCL guild 7287);
+ <span class="mono">&lt;Theorycrafters&gt;</span> only on Thrall-US and
+ Hyjal-US. Pre-tenure Wayback captures of the guild page are never recorded, not
+ here and not in any other wing.</p>
+</section>
+
+<section id="method">
+ <h2>Method &amp; limits</h2>
+ <p>One read-only walk of both WTF trees. A folder is a character; a file is a
+ file; the newest mtime is the newest mtime. No inference is drawn from an
+ addon name about what a character did.</p>
+ <pre>Research/_local/_concordance_build.py   -> this page
+Research/_raw/concordance_20261120.json  -> the same numbers, machine-readable</pre>
+ <p class="note">Limits, stated plainly. (1) The retail account shows
+ 54 folders; the realm a character <em>plays</em> on is read from
+ the folder it sits in, not from the server. (2) A ghost shell proves only that
+ the folder was written, never that the character was deleted. (3) Prefix
+ bridging is a spelling judgement and is labelled as one. (4) Nothing on this
+ page is live &mdash; re-run the builder to refresh it.</p>
+</section>
+
+<footer>
+ <p>Concordance &middot; built 2026-11-20 from two installs &middot;
+ <a class="ext" href="index.html">Shell</a> &middot;
+ <a class="ext" href="_fuhevva_evva.html">Home</a> &middot;
+ <a class="ext" href="Tenure.html">Tenure</a> &middot;
+ <a class="ext" href="Muster.html">Muster</a></p>
+ <p>Gewey G.U.I. &mdash; Lok'Tar Ogar.</p>
+</footer>
+</div>
+</body>
+</html>

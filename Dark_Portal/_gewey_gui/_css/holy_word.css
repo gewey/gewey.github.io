@@ -175,6 +175,7 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iPersona"]::after         { content: " Persona"; }
 .gw-shell button[name="iOrigins"]::after      { content: " Origins"; }
 .gw-shell button[name="iTenure"]::after      { content: " Tenure"; }
+.gw-shell button[name="iConcordance"]::after  { content: " Concordance"; }
 .gw-shell button[name="iMuster"]::after      { content: " Muster"; }
 .gw-shell button[name="iDeeds"]::after           { content: " Deeds"; }
 .gw-shell button[name="iResidue"]::after         { content: " Residue"; }
