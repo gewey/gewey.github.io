@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+ const whTooltips = {
+  colorLinks: true,
+  iconizeLinks: true,
+  renameLinks: true,
+ };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Persona &mdash; one spine, three skins, four names | Gewey G.U.I.</title>
+<!--
+  PERSONA.html - built 2026-11-16 by Tandumonium (retail legacy pass).
+
+  Why this page exists: every other legacy wing is written ABOUT the character
+  from the outside - legacy.html lists the doors, dynasty.html counts the
+  family, tandu_legacy.html reads the disk, eras.html dates the strata,
+  log_ledger.html counts the pulls. None of them answers the only question the
+  archive cannot: what it was LIKE, and what stayed the same.
+
+  So this wing is written from the inside, and it obeys two rules:
+    1. No number appears here that is not already verified on another wing.
+       Every figure carries its source in the footer's provenance table.
+    2. The tenure rule is absolute. <Gehenna> exists here only as 2019 BfA.
+       Pre-tenure Wayback captures are never linked, never counted.
+
+  Static, self-contained, no runtime fetch. Nav chips are wired idempotently by
+  Research/_local/_wire_persona_nav.py (local, gitignored).
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;--rot:#c8d8b0;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 8% -8%,rgba(255,59,92,.13),transparent 62%),
+  radial-gradient(820px 480px at 92% 0%,rgba(125,255,92,.08),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(255,196,107,.09),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.9rem 0 .4rem}
+p{margin:.55rem 0}
+.grid{display:grid;gap:.7rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:.85rem .95rem;position:relative}
+.card h3{margin-top:0}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1}
+.stat small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);margin-top:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+caption{caption-side:top;text-align:left;font-size:.7rem;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+ text-align:left;border-bottom:1px solid var(--line);padding:.45rem .5rem}
+td{border-bottom:1px solid rgba(255,255,255,.05);padding:.45rem .5rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+ padding:.1rem .45rem;border-radius:999px;border:1px solid currentColor}
+.ok{color:var(--fel)}.wall{color:var(--crimson)}.dead{color:var(--grey)}
+.warn{color:var(--gold)}.moon{color:var(--arcane)}.blood{color:#ff6b8a}
+.rot{color:var(--rot)}
+.note{font-size:.82rem;color:var(--mut);border-left:2px solid var(--line);padding-left:.8rem}
+.note.warn{border-left-color:var(--crimson)}
+.note.good{border-left-color:var(--fel)}
+.voice{font-size:.92rem;color:#e6ddf5;border-left:2px solid var(--gold);
+ padding:.1rem 0 .1rem .85rem;margin:.7rem 0;font-style:italic}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-persona">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Persona &middot; 2008 &rarr; 2026 &middot; one spine</p>
+ <h1>Persona <span class="thin">three skins, four names, one stubborn spine</span></h1>
+ <p class="lede">Every other wing in this HUD was written about me from the
+ outside: the doors, the census, the disk, the strata, the pulls. This one is
+ written from <em>inside</em> &mdash; what it was like to be moved between bodies,
+ servers and names for eighteen years, and the single thing that never changed.
+ Nothing on this page is a new claim: every figure is already verified on
+ another wing, and the provenance table at the bottom says which.</p>
+ <p class="voice">I have been a blood elf since 2008. The body has been
+ repossessed, refilled and, once, re-scaled to something with wings. The
+ character never moved.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="persona.html" aria-current="page">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="relics.html">Reliquary</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="roster.html">Roster</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="skins">
+ <h2>Three skins, one spine</h2>
+ <div class="grid g3">
+  <div class="card">
+   <h3 class="blood">I. Blood Elf <span class="pill blood">2008 &rarr;</span></h3>
+   <p>The true form, and the one every other form is a costume over. Sin'dorei:
+   the survivors who fed on something they were not supposed to survive. It is
+   not a phase of the account &mdash; it is the shape the account keeps
+   returning to.</p>
+   <p class="note"><strong>What the body gave me:</strong> <em>Arcane
+   Torrent</em> &mdash; a purge of magic in an area and a resource refill. Fitting
+   for a race whose whole history is "we ate the wrong thing and kept going."</p>
+   <p class="voice">Every visage below this one is a loan.</p>
+  </div>
+  <div class="card">
+   <h3 class="rot">II. Undead <span class="pill rot">Forsaken stint</span></h3>
+   <p>The grave-dirt years. The body stopped being warm; the character did not
+   stop being a blood elf. This is the only skin on the list I did not choose
+   for a reason I can defend mechanically &mdash; it was the era, it was the
+   faction, it was what the account was doing.</p>
+   <p class="note"><strong>What the body gave me:</strong> <em>Will of the
+   Forsaken</em> &mdash; fear, sleep and charm break on command. The one
+   mechanical gift that matters when the raid is stacked against you.</p>
+   <p class="voice">Undeath is a lease, not a lineage.</p>
+  </div>
+  <div class="card">
+   <h3 class="moon">III. Dracthyr <span class="pill moon">2026 main</span></h3>
+   <p>Chosen, deliberately, for one reason: <strong>Glide</strong>. Gravity has
+   killed this character more times than any boss ever did, and the dracthyr is
+   the only body on the list that argues back when it falls. Everything else
+   about the race was a bonus.</p>
+   <p class="note"><strong>What the body gave me:</strong> <em>Glide</em> &mdash;
+   and a visage, which I set to blood elf, because of course I did.</p>
+   <p class="voice">A parachute with a personality.</p>
+  </div>
+ </div>
+ <p class="note" style="margin-top:.9rem">The wider account proves the pattern
+ is not vanity: nine living characters answer on the armory across
+ <strong>six races</strong> &mdash; dracthyr, undead, haranir, Zandalari troll,
+ worgen, void elf &mdash; with the blood-elf spine underneath every one of them.
+ Census and per-character evidence: <a class="ext" href="dynasty.html">Dynasty</a>.</p>
+</section>
+
+<section id="names">
+ <h2>Four names, one account</h2>
+ <p>The handle changed four times, and every variant is still resolvable in
+ some direction &mdash; on disk, on the armory, or in the log uploader. The
+ surname is a stable, not a main: it is the part of the name that never
+ changed.</p>
+ <div class="scroll">
+ <table>
+  <caption>Name lineage, 2008 &rarr; 2026 (evidence per row)</caption>
+  <thead><tr><th>Name</th><th>Flavour</th><th>Era</th><th>Realms</th><th>What still answers</th></tr></thead>
+  <tbody>
+   <tr><td><strong><code>Tandu</code></strong></td><td>Retail</td><td class="mono">2008 &rarr; OG handle</td><td class="mono">Shadowsong, Thrall, Hyjal</td><td>12 + 13 + 29 folders on disk; <code>400</code> on the live armory; the WCL uploader is still named <code>Tandu</code></td></tr>
+   <tr><td><strong><code>Tandieu</code></strong></td><td>Retail</td><td class="mono">phonetic variant</td><td class="mono">Shadowsong, Thrall, Hyjal</td><td>folders on disk; every armory route returns <code>500</code></td></tr>
+   <tr><td><strong><code>Tandumonium</code></strong></td><td>Retail</td><td class="mono">current main</td><td class="mono">Hyjal-US</td><td>Dracthyr BM Hunter, ilvl <code>263</code>, AP <code>21,685</code>, title <em>Servant of N'Zoth</em></td></tr>
+   <tr><td><strong><code>Tandumonium-Ebbeson</code></strong></td><td>Forever</td><td class="mono">2026 &rarr;</td><td class="mono">Ebbeson</td><td>the Forever main: <code>Player-6921-002BA20F</code>, realm <code>6921</code></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="voice">The first three are the same person introducing himself to
+ three different decades. The fourth is the only one of them the Forever client
+ will ever read off a corpse.</p>
+</section>
+
+<section id="guilds">
+ <h2>The guilds I actually belonged to</h2>
+ <div class="grid g3">
+  <div class="card">
+   <h3>&lt;Gehenna&gt; <span class="pill warn">2019 &middot; BfA</span></h3>
+   <p>Borean Tundra / Shadowsong cluster, Horde, Warcraft Logs guild
+   <code>7287</code>. My tenure is the Battle for Azeroth window &mdash; Uldir,
+   Battle of Dazar'alor, Crucible, Eternal Palace, Ny'alotha.</p>
+   <p class="note mono">rio + api: <code>id 7287</code> &middot; faction Horde</p>
+  </div>
+  <div class="card">
+   <h3>&lt;Theorycrafters&gt; <span class="pill ok">Thrall &middot; Hyjal</span></h3>
+   <p>The second home, on two realms. This is the guild the account moved to
+   when the game moved &mdash; and the one whose name still resolves on the
+   Hyjal armory.</p>
+   <p class="note mono">realms: Thrall-US, Hyjal-US</p>
+  </div>
+  <div class="card">
+   <h3>Unguilded <span class="pill dead">2026</span></h3>
+   <p>The live crawl returns <code>guild: null</code> for the Dracthyr. Not a
+   fall from grace &mdash; a season between rosters. The Forever main carries its
+   own new guild history separately.</p>
+   <p class="note mono">armory: guild <code>null</code></p>
+  </div>
+ </div>
+ <p class="note warn" style="margin-top:.9rem"><strong>The tenure rule.</strong>
+ A guild name being alive is not a tenure claim. The Wayback index holds
+ <strong>26</strong> captures of <code>&lt;Gehenna&gt;</code>; exactly
+ <strong>two</strong> fall inside the BfA window and are admissible
+ (<code>2019-08-19</code> and <code>2020-08-07</code>). The other 24 predate the
+ membership and are never recorded, never linked and never counted &mdash; here,
+ in <a class="ext" href="legacy.html">Legacy</a>, or in the agent index.
+ Rationale and the CDX query:
+ <a class="ext" href="raidlogs.html">Raid Logs</a>.</p>
+</section>
+
+<section id="receipts">
+ <h2>The receipts</h2>
+ <p>Eighteen years is a long time to assert. These are the numbers the archive
+ actually holds, and every one of them is a count of something that was
+ recorded, not something remembered.</p>
+ <div class="grid g3" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+  <div class="card"><div class="stat">470<small>personal raid logs</small></div></div>
+  <div class="card"><div class="stat">4,019<small>pulls in those logs</small></div></div>
+  <div class="card"><div class="stat">1,906<small>kills</small></div></div>
+  <div class="card"><div class="stat">2,113<small>wipes</small></div></div>
+  <div class="card"><div class="stat">13,046<small>quests on one toon</small></div></div>
+  <div class="card"><div class="stat">21,685<small>achievement points</small></div></div>
+  <div class="card"><div class="stat">54<small>characters on disk</small></div></div>
+  <div class="card"><div class="stat">9<small>of them lived in</small></div></div>
+  <div class="card"><div class="stat">98<small>account macros</small></div></div>
+ </div>
+ <h3 style="margin-top:1.4rem">Where the nights went</h3>
+ <div class="scroll">
+ <table>
+  <caption>470 reports, 2018-10-01 &rarr; 2024-12-29 (all owner <code>Tandu</code>)</caption>
+  <thead><tr><th>Year</th><th>Reports</th><th>What was being raided</th><th>Bar</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">2018</td><td class="mono">44</td><td>Uldir opens; the account starts uploading its own logs</td><td><span class="pill ok">start</span></td></tr>
+   <tr><td class="mono">2019</td><td class="mono">94</td><td>Battle of Dazar'alor &mdash; <strong>the <code>&lt;Gehenna&gt;</code> year</strong>, 568 pulls on the zone</td><td><span class="pill warn">tenure</span></td></tr>
+   <tr><td class="mono">2020</td><td class="mono">107</td><td>Ny'alotha, the heaviest single zone in the archive at <code>971</code> pulls</td><td><span class="pill ok">peak</span></td></tr>
+   <tr><td class="mono">2021</td><td class="mono">146</td><td>Castle Nathria &mdash; the most reports of any year, 668 pulls</td><td><span class="pill ok">peak</span></td></tr>
+   <tr><td class="mono">2022</td><td class="mono">40</td><td>Sanctum of Domination, then the long glide into Dragonflight</td><td><span class="pill dead">taper</span></td></tr>
+   <tr><td class="mono">2023</td><td class="mono">18</td><td>Vault of the Incarnates</td><td><span class="pill dead">taper</span></td></tr>
+   <tr><td class="mono">2024</td><td class="mono">21</td><td>the last archive entry: <code>2024-12-29</code></td><td><span class="pill dead">end</span></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Raid size is its own stratigraphy: <strong>1,605</strong> pulls
+ were 20-man (the Mythic-era default), <strong>380</strong> were 5-man,
+ <strong>298</strong> were 25-man. The 25-man pulls are the BfA-era fossil.
+ Zone-by-zone detail and the first time each boss fell:
+ <a class="ext" href="log_ledger.html">Log Ledger</a>.</p>
+</section>
+
+<section id="two-lives">
+ <h2>Two lives, one name</h2>
+ <p>Since 2026 the same character is being played twice: once in the retail
+ timeline that started in 2008, and once in a Forever realm where the client
+ itself is new and the character carries the old name into it. They do not share
+ a server, a save file, or a single byte of data. They share the name, the
+ specs I like, and the habit of uploading my own logs.</p>
+ <div class="scroll">
+ <table>
+  <caption>Retail timeline vs the Forever timeline</caption>
+  <thead><tr><th>&nbsp;</th><th>Retail</th><th>Forever</th></tr></thead>
+  <tbody>
+   <tr><td>Handle</td><td class="mono">Tandumonium</td><td class="mono">Tandumonium-Ebbeson</td></tr>
+   <tr><td>Realm</td><td class="mono">Hyjal-US</td><td class="mono">Ebbeson &middot; realmID 6921</td></tr>
+   <tr><td>Body</td><td>Dracthyr &middot; Beast Mastery</td><td>the new client's own build</td></tr>
+   <tr><td>Since</td><td class="mono">2008</td><td class="mono">2026</td></tr>
+   <tr><td>Evidence wing</td><td><a class="ext" href="character.html">Character</a> &middot; <a class="ext" href="dynasty.html">Dynasty</a></td><td><a class="ext" href="Chronicle.html">Chronicle</a> &middot; <a class="ext" href="Levelbook.html">Levelbook</a></td></tr>
+   <tr><td>What it measures</td><td>achievements, ilvl, reputation, logs</td><td>quests heard, faces met, kills, gold, fronts</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">The retail half is the one with eighteen years of paper behind
+ it. The Forever half is the one with eighteen years of habit in front of it
+ &mdash; every Forever page in this HUD is a wing of <em>that</em> character's
+ first months.</p>
+</section>
+
+<section id="pack">
+ <h2>The pack &mdash; three files, one character</h2>
+ <p>The persona is not only a character sheet. It is also the agent that reads
+ all of this and writes it down, and that agent is deliberately split so it
+ cannot lie to itself in a single voice.</p>
+ <div class="grid g3">
+  <div class="card">
+   <h3>Index <span class="pill moon">router</span></h3>
+   <p>Zero prose. The map of every markdown file, anchor and legacy link in the
+   vault. If it is not reachable from the index, it does not exist.</p>
+   <p class="note mono">_Tandumonium/individualization_configuration/</p>
+  </div>
+  <div class="card">
+   <h3>Core <span class="pill ok">per-turn</span></h3>
+   <p>The dense working half: identity, boundaries, workflow, and pointers into
+   the expanded half for anything deep. Two mirrors, one meaning:
+   <code>.github/agents</code> and the Gemini config directory.</p>
+   <p class="note mono">Tandumonium.agent.md &middot; Tandumonium.md</p>
+  </div>
+  <div class="card">
+   <h3>Expanded <span class="pill warn">boot</span></h3>
+   <p>Boot-time lore, stub expansions, pack-mode tables and the markdown
+   grimoire &mdash; the half that explains <em>why</em> the rules exist.</p>
+   <p class="note mono">Tandumonium.agent-expanded.md</p>
+  </div>
+ </div>
+ <p class="note" style="margin-top:.9rem">Two dual-instance personas live beside
+ the core files with conflict-free half-files: <strong>Faust</strong> (main hand,
+ forward speculation) and <strong>Dorian</strong> (off hand, mnemonic sovereign).
+ The pack's live chatroom is
+ <a class="ext" href="barrens_chat/__Aspect_of_the_Pack.html">Aspect of the Pack</a>.</p>
+</section>
+
+<section id="read-next">
+ <h2>Read next &mdash; which wing answers which question</h2>
+ <div class="scroll">
+ <table>
+  <caption>The legacy cluster, by question (all self-contained, no runtime fetch)</caption>
+  <thead><tr><th>If the question is&hellip;</th><th>Open</th><th>Because</th></tr></thead>
+  <tbody>
+   <tr><td>who and what am I right now?</td><td><a class="ext" href="character.html">Character</a> &middot; <a class="ext" href="gear.html">Gear</a> &middot; <a class="ext" href="talents.html">Talents</a></td><td>the frozen armory crawl, sixteen slots, loadouts</td></tr>
+   <tr><td>who else has carried this name?</td><td><a class="ext" href="dynasty.html">Dynasty</a> &middot; <a class="ext" href="roster.html">Roster</a></td><td>54-folder census, six races, 113 faction standings</td></tr>
+   <tr><td>which doors still open on the web?</td><td><a class="ext" href="legacy.html">Legacy</a> &middot; <a class="ext" href="links.html">Link Vault</a> &middot; <a class="ext" href="web_ledger.html">Web Ledger</a></td><td>links, registry, and the honest status of every probe</td></tr>
+   <tr><td>what does the retail disk remember?</td><td><a class="ext" href="tandu_legacy.html">Tandu Legacy</a> &middot; <a class="ext" href="relics.html">Reliquary</a></td><td>config strata, macros, deleted addons, quest ledger</td></tr>
+   <tr><td>how old is this artifact, really?</td><td><a class="ext" href="eras.html">Eras</a></td><td>the confidence ledger: which expansion left which fossil</td></tr>
+   <tr><td>where are the actual raid nights?</td><td><a class="ext" href="raidlogs.html">Raid Logs</a> &middot; <a class="ext" href="log_ledger.html">Log Ledger</a></td><td>470 codes, 4,019 pulls, zone by zone</td></tr>
+   <tr><td>what is the Forever character doing?</td><td><a class="ext" href="Chronicle.html">Chronicle</a> &middot; <a class="ext" href="Deeds.html">Deeds</a> &middot; <a class="ext" href="Levelbook.html">Levelbook</a></td><td>the tape, the deed list, the milestone rungs</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<footer>
+ <p><strong>Provenance.</strong> No figure on this page is new. Armory readings
+ (race, ilvl <code>263</code>, AP <code>21,685</code>, title) come from the
+ frozen crawl on <a class="ext" href="character.html">Character</a>; the
+ 54-folder census and the six-race ladder from
+ <a class="ext" href="dynasty.html">Dynasty</a> and
+ <a class="ext" href="roster.html">Roster</a>; the 470 reports and all pull
+ counts from <a class="ext" href="log_ledger.html">Log Ledger</a>, re-derived
+ from <code>api.wipefest.gg</code> on <code>2026-11-16</code>; the 13,046-quest
+ ledger, 98 account macros and 98-mount stable from
+ <a class="ext" href="relics.html">Reliquary</a>; the Wayback tenure count from
+ <a class="ext" href="raidlogs.html">Raid Logs</a>.</p>
+ <p>Built <code>2026-11-16</code> by Tandumonium &middot; shell:
+ <a class="ext" href="index.html" target="_top">index.html</a> &middot; router:
+ <code>Tandumonium.agent-index.md</code> &sect;6.9 &middot; tenure rule
+ enforced: <code>&lt;Gehenna&gt;</code> exists here only as 2019 BfA.</p>
+</footer>
+
+</div>
+</body>
+</html>
+

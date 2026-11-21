@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Faces -- Almanac wing</title>
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#010308;--panel:rgba(8,14,26,.82);--panel2:rgba(10,18,32,.94);
+ --line:rgba(64,255,180,.16);--ink:#e8fff4;--mut:#6f8f86;--green:#00ff9d;
+ --mag:#ff3ec8;--cyan:#37e6ff;--amber:#ffc46b;--red:#ff5470;
+ --glow:0 0 12px rgba(0,255,157,.55);--glowm:0 0 12px rgba(255,62,200,.5)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden;
+ background:linear-gradient(180deg,#010308 0%,#020812 55%,#04101e 100%)}
+.sky::before{content:'';position:absolute;inset:0;opacity:.8;background-image:
+ radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 34% 9%,rgba(255,255,255,.6) 0,transparent 100%),
+ radial-gradient(1px 1px at 58% 22%,rgba(255,255,255,.9) 0,transparent 100%),
+ radial-gradient(1px 1px at 77% 7%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 91% 16%,rgba(255,255,255,.5) 0,transparent 100%);
+ animation:tw 4.5s ease-in-out infinite}
+.band{position:fixed;bottom:8vh;width:70vw;height:46vh;z-index:0;filter:blur(60px);
+ mix-blend-mode:screen;border-radius:50%;opacity:.5;transform-origin:bottom center}
+.b1{left:-18vw;background:linear-gradient(0deg,transparent 0%,rgba(0,220,120,.16) 22%,
+ rgba(0,255,160,.4) 48%,rgba(0,230,130,.18) 66%,transparent 100%);
+ animation:au1 11s ease-in-out infinite}
+.b2{right:-22vw;background:linear-gradient(0deg,transparent 0%,rgba(150,0,220,.13) 18%,
+ rgba(255,62,200,.3) 44%,rgba(120,80,255,.16) 62%,transparent 100%);
+ animation:au2 14s ease-in-out infinite}
+.b3{left:26vw;bottom:2vh;width:46vw;height:36vh;background:linear-gradient(0deg,
+ transparent 0%,rgba(55,230,255,.12) 30%,rgba(55,230,255,.26) 52%,transparent 100%);
+ animation:au3 17s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes au1{0%,100%{transform:rotate(-4deg) translateY(3vh)}
+ 50%{transform:rotate(5deg) translateY(-3vh)}}
+@keyframes au2{0%,100%{transform:rotate(6deg) translateY(2vh)}
+ 50%{transform:rotate(-5deg) translateY(-4vh)}}
+@keyframes au3{0%,100%{transform:translateX(-4vw)}50%{transform:translateX(5vw)}}
+@media (prefers-reduced-motion:reduce){.band,.sky::before{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:26px 18px 70px}
+header.hero h1{font-size:2rem;letter-spacing:.06em;color:var(--green);
+ text-shadow:var(--glow);font-weight:800}
+header.hero .sub{color:var(--mut);margin-top:8px;line-height:1.65;max-width:920px}
+header.hero .sub b{color:var(--ink)}
+header.hero .eyebrow{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
+ color:var(--cyan);font-weight:800;margin-bottom:6px}
+nav.panes{margin:16px 0 4px;display:flex;flex-wrap:wrap;gap:6px}
+nav.panes a{color:var(--cyan);text-decoration:none;font-size:.76rem;
+ border:1px solid rgba(55,230,255,.28);border-radius:8px;padding:4px 10px}
+nav.panes a:hover{background:rgba(55,230,255,.1)}
+nav.panes a[aria-current]{color:var(--green);border-color:var(--green);
+ text-shadow:var(--glow)}
+nav.jump{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+nav.jump a{color:var(--mut);text-decoration:none;font-size:.72rem;
+ border:1px dashed rgba(64,255,180,.25);border-radius:999px;padding:3px 10px}
+nav.jump a:hover{color:var(--ink);border-color:var(--green)}
+h2.sec{margin:38px 0 14px;font-size:1.02rem;letter-spacing:.11em;
+ text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);
+ padding-bottom:8px;scroll-margin-top:18px}
+h2.sec small{display:block;text-transform:none;letter-spacing:0;color:var(--mut);
+ font-size:.72rem;margin-top:5px;font-weight:400}
+
+.grid{display:grid;gap:10px}
+.vitals{grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+ padding:13px 15px;position:relative}
+.card .k{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);font-weight:800}
+.card .v{font-size:1.5rem;font-weight:800;margin-top:5px;color:var(--ink);
+ font-variant-numeric:tabular-nums}
+.card .s{font-size:.7rem;color:var(--mut);margin-top:4px;line-height:1.45}
+.card .v.g{color:var(--green)}.card .v.m{color:var(--mag)}
+.card .v.a{color:var(--amber)}.card .v.c{color:var(--cyan)}
+.card .v.r{color:var(--red)}
+.cols{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:172px 1fr 84px;gap:10px;align-items:center;
+ font-size:.76rem}
+.bar .lbl{color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .track{height:9px;background:rgba(255,255,255,.05);border-radius:999px;
+ overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:999px;background:linear-gradient(
+ 90deg,rgba(0,255,157,.35),var(--green));box-shadow:0 0 8px rgba(0,255,157,.45)}
+.bar.m .fill{background:linear-gradient(90deg,rgba(255,62,200,.3),var(--mag));
+ box-shadow:0 0 8px rgba(255,62,200,.45)}
+.bar.a .fill{background:linear-gradient(90deg,rgba(255,196,107,.3),var(--amber));
+ box-shadow:0 0 8px rgba(255,196,107,.4)}
+.bar.c .fill{background:linear-gradient(90deg,rgba(55,230,255,.28),var(--cyan));
+ box-shadow:0 0 8px rgba(55,230,255,.4)}
+.bar .val{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ text-align:right;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:.75rem}
+.tablewrap{padding:4px 6px;overflow-x:auto}
+th{color:var(--mut);text-align:left;font-size:.6rem;letter-spacing:.1em;
+ text-transform:uppercase;padding:7px 8px;border-bottom:1px solid var(--line);
+ white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px dashed rgba(64,255,180,.09);vertical-align:top}
+td.n,th.n{text-align:right;font-family:Consolas,ui-monospace,monospace;font-size:.7rem}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(0,255,157,.04)}
+.note{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;
+ color:var(--mut);font-size:.78rem;line-height:1.7}
+.note b{color:var(--ink)}
+.kv{display:flex;justify-content:space-between;gap:14px;font-size:.76rem;
+ padding:5px 0;border-bottom:1px dashed rgba(64,255,180,.1)}
+.kv:last-child{border-bottom:none}
+.kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.tag{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+ border-radius:999px;padding:2px 8px;color:var(--amber);
+ background:rgba(255,196,107,.12);white-space:nowrap}
+.tag.g{color:var(--green);background:rgba(0,255,157,.1)}
+.tag.m{color:var(--mag);background:rgba(255,62,200,.12)}
+.tag.c{color:var(--cyan);background:rgba(55,230,255,.1)}
+.tag.r{color:var(--red);background:rgba(255,84,112,.12)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.68rem;border:1px solid var(--line);border-radius:999px;
+ padding:3px 10px;color:var(--mut)}
+.chip b{color:var(--ink)}
+
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ color:var(--cyan);letter-spacing:.04em}
+.mile .t{font-weight:700;margin:3px 0 4px;color:var(--ink);font-size:.86rem}
+.mile .d{color:var(--mut);font-size:.75rem;line-height:1.5}
+.mile.k-level{border-left-color:var(--green)}
+.mile.k-level time{color:var(--green)}
+.mile.k-skill{border-left-color:var(--mag)}
+.mile.k-dungeon{border-left-color:var(--red)}
+.mile.k-zone,.mile.k-area{border-left-color:var(--cyan)}
+.mile.k-spell{border-left-color:var(--amber)}
+.ladder{display:grid;gap:5px}
+.rung{display:grid;grid-template-columns:52px 1fr 78px 64px 92px 78px;gap:10px;
+ align-items:center;background:var(--panel2);border:1px solid var(--line);
+ border-radius:9px;padding:7px 12px;font-size:.75rem}
+.rung .lv{font-weight:800;color:var(--green);font-family:Consolas,monospace;
+ font-size:.82rem;text-shadow:var(--glow)}
+.rung .when{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--mut)}
+.rung .meta{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--ink);text-align:right}
+.rung .meta b{color:var(--mut);font-weight:600}
+.dir{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.dir a{display:block;text-decoration:none;color:inherit;background:var(--panel);
+ border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:11px;
+ padding:12px 14px;transition:.15s}
+.dir a:hover{border-left-color:var(--green);background:rgba(0,255,157,.05)}
+.dir strong{display:block;color:var(--green);font-size:.92rem;letter-spacing:.03em}
+.dir em{display:block;font-style:normal;color:var(--mut);font-size:.73rem;
+ margin-top:4px;line-height:1.5}
+.front{display:grid;grid-template-columns:1fr auto;gap:4px 12px;
+ background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+ padding:9px 12px;border-left:3px solid var(--mut)}
+.front.h{border-left-color:var(--red)}
+.front.a{border-left-color:var(--cyan)}
+.front .n{font-weight:700;font-size:.82rem}
+.front .t{grid-column:1/-1;font-family:Consolas,ui-monospace,monospace;
+ font-size:.64rem;color:var(--mut)}
+.legend{display:flex;gap:16px;color:var(--mut);font-size:.7rem;margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;
+ margin-right:5px;vertical-align:middle}
+.scroll{max-height:520px;overflow:auto;padding-right:4px}
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;
+ color:var(--mut);font-size:.72rem;line-height:1.8}
+footer a{color:var(--cyan);text-decoration:none}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="band b1"></div><div class="band b2"></div>
+<div class="band b3"></div>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">ALMANAC - LEDGER 2 - FAMILIARFACES</div>
+<h1>Faces</h1>
+<p class="sub"><b>FamiliarFaces</b> remembers every unit the cursor touched; <b>PlayerHistory</b> remembers the wider population; <b>WhoTargetsMe</b> remembers who pointed at you; <b>LorePath</b> remembers what was read. 1,528 faces in 13 zones, 1,052 characters seen, 2,194 targeting events - none of it had a page before today.</p>
+<nav class="panes"><a href="index.html">Shell</a>
+<a href="Concordance.html">Concordance</a><a href="_fuhevva_evva.html">Home</a><a href="character.html">Character</a><a href="gear.html">Gear</a><a href="legacy.html">Legacy</a><a href="dynasty.html">Dynasty</a><a href="roster.html">Roster</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a><a href="links.html">Links</a><a href="raidlogs.html">Raid Logs</a><a href="Frontier.html">Frontier</a><a href="Timeline.html">Timeline</a><a href="Delve.html">Delve</a><a href="Chronicle.html">Chronicle</a><a href="relics.html">Relics</a><a href="macrocosm.html">Macrocosm</a><a href="Sortie.html">Sortie</a><a href="Residue.html">Residue</a><a href="Deeds.html">Deeds</a><a href="Heartbeat.html">Heartbeat</a><a href="Almanac.html">Almanac</a><a href="Levelbook.html">Levelbook</a><a href="Faces.html" aria-current="page">Faces</a><a href="Purse.html">Purse</a><a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+<nav class="jump"><a href="#vitals">Vitals</a><a href="#where-faces-were-met">Where Faces Were Met</a><a href="#who-they-were">Who They Were</a><a href="#the-newest-faces">The Newest Faces</a><a href="#the-wider-population">The Wider Population</a><a href="#who-targeted-you">Who Targeted You</a><a href="#beasts-lore">Beasts &amp; Lore</a><a href="#method-limits">Method &amp; Limits</a></nav>
+</header>
+<h2 class="sec" id="vitals">01. Vitals<small>1,528 faces, 1,601 encounters, 2,194 names</small></h2>
+<div class="grid vitals"><div class="card"><div class="k">faces met</div><div class="v g">1,528</div><div class="s">FamiliarFaces, realm Normal</div></div><div class="card"><div class="k">encounters</div><div class="v c">1,601</div><div class="s">zone-stamped sightings</div></div><div class="card"><div class="k">zones</div><div class="v a">13</div><div class="s">distinct zones of meeting</div></div><div class="card"><div class="k">beast families</div><div class="v m">17</div><div class="s">tracked for taming</div></div><div class="card"><div class="k">players seen</div><div class="v g">1,052</div><div class="s">PlayerHistory characters</div></div><div class="card"><div class="k">targeted by</div><div class="v c">2,194</div><div class="s">WhoTargetsMe, 1,000s of names</div></div><div class="card"><div class="k">lore unlocks</div><div class="v a">17</div><div class="s">LorePath, 3 characters</div></div><div class="card"><div class="k">quest texts</div><div class="v m">169</div><div class="s">LorePath cache</div></div></div>
+<h2 class="sec" id="where-faces-were-met">02. Where Faces Were Met<small>the zones the cursor actually visited</small></h2>
+<div class="card"><div class="bars"><div class="bar "><span class="lbl" title="The Barrens">The Barrens</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">559</span></div><div class="bar "><span class="lbl" title="Orgrimmar">Orgrimmar</span><span class="track"><span class="fill" style="width:90.9%"></span></span><span class="val">508</span></div><div class="bar "><span class="lbl" title="Thunder Bluff">Thunder Bluff</span><span class="track"><span class="fill" style="width:54.9%"></span></span><span class="val">307</span></div><div class="bar "><span class="lbl" title="Zephras Isle">Zephras Isle</span><span class="track"><span class="fill" style="width:15.7%"></span></span><span class="val">88</span></div><div class="bar "><span class="lbl" title="Tirisfal Glades">Tirisfal Glades</span><span class="track"><span class="fill" style="width:14.7%"></span></span><span class="val">82</span></div><div class="bar "><span class="lbl" title="Durotar">Durotar</span><span class="track"><span class="fill" style="width:9.3%"></span></span><span class="val">52</span></div><div class="bar "><span class="lbl" title="Unknown">Unknown</span><span class="track"><span class="fill" style="width:4.8%"></span></span><span class="val">27</span></div><div class="bar "><span class="lbl" title="Silverpine Forest">Silverpine Forest</span><span class="track"><span class="fill" style="width:4.3%"></span></span><span class="val">24</span></div><div class="bar "><span class="lbl" title="The Wailing Caverns">The Wailing Caverns</span><span class="track"><span class="fill" style="width:3.0%"></span></span><span class="val">17</span></div><div class="bar "><span class="lbl" title="Mulgore">Mulgore</span><span class="track"><span class="fill" style="width:2.9%"></span></span><span class="val">16</span></div><div class="bar "><span class="lbl" title="Ashenvale">Ashenvale</span><span class="track"><span class="fill" style="width:1.1%"></span></span><span class="val">6</span></div><div class="bar "><span class="lbl" title="Wailing Caverns">Wailing Caverns</span><span class="track"><span class="fill" style="width:0.9%"></span></span><span class="val">5</span></div><div class="bar "><span class="lbl" title="Ragefire Chasm">Ragefire Chasm</span><span class="track"><span class="fill" style="width:0.9%"></span></span><span class="val">5</span></div></div></div>
+<h2 class="sec" id="who-they-were">03. Who They Were<small>class, faction and level of the met</small></h2>
+<div class="cols"><div class="card"><div class="k">classes of the faces met</div><div class="bars" style="margin-top:9px"><div class="bar c"><span class="lbl" title="Hunter">Hunter</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">279</span></div><div class="bar c"><span class="lbl" title="Shaman">Shaman</span><span class="track"><span class="fill" style="width:87.5%"></span></span><span class="val">244</span></div><div class="bar c"><span class="lbl" title="Druid">Druid</span><span class="track"><span class="fill" style="width:85.3%"></span></span><span class="val">238</span></div><div class="bar c"><span class="lbl" title="Warrior">Warrior</span><span class="track"><span class="fill" style="width:72.8%"></span></span><span class="val">203</span></div><div class="bar c"><span class="lbl" title="Paladin">Paladin</span><span class="track"><span class="fill" style="width:47.7%"></span></span><span class="val">133</span></div><div class="bar c"><span class="lbl" title="Warlock">Warlock</span><span class="track"><span class="fill" style="width:47.0%"></span></span><span class="val">131</span></div><div class="bar c"><span class="lbl" title="Mage">Mage</span><span class="track"><span class="fill" style="width:40.9%"></span></span><span class="val">114</span></div><div class="bar c"><span class="lbl" title="Priest">Priest</span><span class="track"><span class="fill" style="width:33.7%"></span></span><span class="val">94</span></div><div class="bar c"><span class="lbl" title="Rogue">Rogue</span><span class="track"><span class="fill" style="width:33.0%"></span></span><span class="val">92</span></div></div></div><div class="card"><div class="k">faction &amp; level spread</div><div class="chips" style="margin-top:9px"><span class="chip">Horde <b>1,501</b></span><span class="chip">Alliance <b>22</b></span><span class="chip">? <b>5</b></span></div><div class="kv"><span>10-19</span><b class="">598</b></div><div class="kv"><span>20-29</span><b class="">521</b></div><div class="kv"><span>30-39</span><b class="">206</b></div><div class="kv"><span>40-49</span><b class="">54</b></div><div class="kv"><span>50-59</span><b class="">18</b></div><div class="kv"><span>60-69</span><b class="">4</b></div></div></div>
+<h2 class="sec" id="the-newest-faces">04. The Newest Faces<small>the last forty hovered, newest first</small></h2>
+<div class="card tablewrap"><table><thead><tr><th>face</th><th>race / class</th><th class="n">level</th><th>last zone</th><th class="n">seen</th><th>last seen</th></tr></thead><tbody><tr><td>Tandumonium</td><td>Skyborne Hunter</td><td class="n">22</td><td>Unknown</td><td class="n">54</td><td>2026-11-15 23:17</td></tr><tr><td>Impressive</td><td>Scourge Paladin</td><td class="n">16</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 23:15</td></tr><tr><td>Brewtus</td><td>Tauren Shaman</td><td class="n">31</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 23:14</td></tr><tr><td>Shaunzo</td><td>Troll Warlock</td><td class="n">24</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 23:14</td></tr><tr><td>Lucius</td><td>Orc Hunter</td><td class="n">22</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 23:04</td></tr><tr><td>Antee</td><td>Troll Shaman</td><td class="n">22</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 22:53</td></tr><tr><td>Squishy</td><td>Scourge Mage</td><td class="n">24</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 22:52</td></tr><tr><td>Gunnar</td><td>Tauren Hunter</td><td class="n">20</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 22:52</td></tr><tr><td>Chai</td><td>Skyborne Hunter</td><td class="n">20</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 22:51</td></tr><tr><td>Trossitus</td><td>Scourge Paladin</td><td class="n">24</td><td>The Barrens</td><td class="n">1</td><td>2026-11-15 22:50</td></tr><tr><td>Quazzarr</td><td>Scourge Warlock</td><td class="n">5</td><td>Tirisfal Glades</td><td class="n">5</td><td>2026-11-15 22:49</td></tr><tr><td>Chael</td><td>Scourge Priest</td><td class="n">10</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:49</td></tr><tr><td>Sækø</td><td>Troll Rogue</td><td class="n">13</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:49</td></tr><tr><td>Solomon</td><td>Scourge Paladin</td><td class="n">10</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:49</td></tr><tr><td>Korrak</td><td>Skyborne Warrior</td><td class="n">36</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Celine</td><td>Scourge Priest</td><td class="n">7</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Mawrix</td><td>Scourge Paladin</td><td class="n">6</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Kushala</td><td>Scourge Mage</td><td class="n">7</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Sammi</td><td>Scourge Mage</td><td class="n">9</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Viktor</td><td>Scourge Priest</td><td class="n">7</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Beranin</td><td>Scourge Rogue</td><td class="n">1</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Jade</td><td>Tauren Druid</td><td class="n">12</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Zoey</td><td>Skyborne Hunter</td><td class="n">29</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Annubus</td><td>Scourge Paladin</td><td class="n">8</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Itopoff</td><td>Scourge Paladin</td><td class="n">10</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Xaelinx</td><td>Scourge Warlock</td><td class="n">10</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Mrlowdangle</td><td>Skyborne Rogue</td><td class="n">22</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Gequ</td><td>Scourge Priest</td><td class="n">11</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Outstanding</td><td>Scourge Paladin</td><td class="n">6</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Aerosmith</td><td>Scourge Paladin</td><td class="n">7</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Detestable</td><td>Scourge Warlock</td><td class="n">11</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:48</td></tr><tr><td>Dissmissive</td><td>Scourge Priest</td><td class="n">7</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:47</td></tr><tr><td>Deadberry</td><td>Scourge Mage</td><td class="n">10</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:47</td></tr><tr><td>Leondra</td><td>Scourge Paladin</td><td class="n">3</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:47</td></tr><tr><td>Alpharius</td><td>Scourge Priest</td><td class="n">6</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:46</td></tr><tr><td>Burning</td><td>Orc Shaman</td><td class="n">26</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:45</td></tr><tr><td>Eibhear</td><td>Scourge Paladin</td><td class="n">5</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:43</td></tr><tr><td>Mark</td><td>Scourge Paladin</td><td class="n">5</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:43</td></tr><tr><td>Altair</td><td>Scourge Rogue</td><td class="n">4</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:43</td></tr><tr><td>Hexcuseme</td><td>Scourge Mage</td><td class="n">11</td><td>Tirisfal Glades</td><td class="n">1</td><td>2026-11-15 22:43</td></tr></tbody></table></div>
+<h2 class="sec" id="the-wider-population">05. The Wider Population<small>1,052 characters across three retail realms</small></h2>
+<div class="cols"><div class="card"><div class="k">guilds seen</div><div class="bars" style="margin-top:9px"><div class="bar m"><span class="lbl" title="Warsong Battalion">Warsong Battalion</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">402</span></div><div class="bar m"><span class="lbl" title="Eat Pant">Eat Pant</span><span class="track"><span class="fill" style="width:36.8%"></span></span><span class="val">148</span></div><div class="bar m"><span class="lbl" title="(no guild)">(no guild)</span><span class="track"><span class="fill" style="width:34.3%"></span></span><span class="val">138</span></div><div class="bar m"><span class="lbl" title="The Greek Legion">The Greek Legion</span><span class="track"><span class="fill" style="width:4.0%"></span></span><span class="val">16</span></div><div class="bar m"><span class="lbl" title="Shadow Legion PVP">Shadow Legion PVP</span><span class="track"><span class="fill" style="width:2.0%"></span></span><span class="val">8</span></div><div class="bar m"><span class="lbl" title="Huge in Japan">Huge in Japan</span><span class="track"><span class="fill" style="width:2.0%"></span></span><span class="val">8</span></div><div class="bar m"><span class="lbl" title="Vanguard">Vanguard</span><span class="track"><span class="fill" style="width:2.0%"></span></span><span class="val">8</span></div><div class="bar m"><span class="lbl" title="KiLL SWiTCH">KiLL SWiTCH</span><span class="track"><span class="fill" style="width:1.7%"></span></span><span class="val">7</span></div><div class="bar m"><span class="lbl" title="Midwinter">Midwinter</span><span class="track"><span class="fill" style="width:1.7%"></span></span><span class="val">7</span></div><div class="bar m"><span class="lbl" title="Igotaguildlol">Igotaguildlol</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val">6</span></div><div class="bar m"><span class="lbl" title="Myths and Legends">Myths and Legends</span><span class="track"><span class="fill" style="width:1.2%"></span></span><span class="val">5</span></div><div class="bar m"><span class="lbl" title="Once upon a time">Once upon a time</span><span class="track"><span class="fill" style="width:1.0%"></span></span><span class="val">4</span></div></div></div><div class="card"><div class="k">realms seen</div><div class="bars" style="margin-top:9px"><div class="bar c"><span class="lbl" title="emerald-dream">emerald-dream</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">402</span></div><div class="bar c"><span class="lbl" title="kiljaeden">kiljaeden</span><span class="track"><span class="fill" style="width:69.7%"></span></span><span class="val">280</span></div><div class="bar c"><span class="lbl" title="darkspear">darkspear</span><span class="track"><span class="fill" style="width:54.7%"></span></span><span class="val">220</span></div><div class="bar c"><span class="lbl" title="tichondrius">tichondrius</span><span class="track"><span class="fill" style="width:5.7%"></span></span><span class="val">23</span></div><div class="bar c"><span class="lbl" title="illidan">illidan</span><span class="track"><span class="fill" style="width:4.2%"></span></span><span class="val">17</span></div><div class="bar c"><span class="lbl" title="stormrage">stormrage</span><span class="track"><span class="fill" style="width:2.7%"></span></span><span class="val">11</span></div><div class="bar c"><span class="lbl" title="khadgar">khadgar</span><span class="track"><span class="fill" style="width:2.0%"></span></span><span class="val">8</span></div><div class="bar c"><span class="lbl" title="sargeras">sargeras</span><span class="track"><span class="fill" style="width:2.0%"></span></span><span class="val">8</span></div><div class="bar c"><span class="lbl" title="zuljin">zuljin</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val">6</span></div><div class="bar c"><span class="lbl" title="proudmoore">proudmoore</span><span class="track"><span class="fill" style="width:1.5%"></span></span><span class="val">6</span></div><div class="bar c"><span class="lbl" title="quelthalas">quelthalas</span><span class="track"><span class="fill" style="width:1.2%"></span></span><span class="val">5</span></div><div class="bar c"><span class="lbl" title="kelthuzad">kelthuzad</span><span class="track"><span class="fill" style="width:1.0%"></span></span><span class="val">4</span></div></div></div></div><div class="card tablewrap"><table><thead><tr><th>character</th><th>class</th><th>race</th><th class="n">level</th><th>guild</th><th>realm</th><th class="n">since</th></tr></thead><tbody><tr><td>Rihanal</td><td>Druid</td><td>Night Elf</td><td class="n">80</td><td>All Skins</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Chìefbeef</td><td>Druid</td><td>Tauren</td><td class="n">80</td><td>Salty Nagaz</td><td>kiljaeden</td><td class="n">2012</td></tr><tr><td>Birun</td><td>Shaman</td><td>Troll</td><td class="n">80</td><td>-</td><td>darkspear</td><td class="n">2008</td></tr><tr><td>Deusfox</td><td>Death Knight</td><td>Vulpera</td><td class="n">80</td><td>Degen</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Truthfulness</td><td>Paladin</td><td>Blood Elf</td><td class="n">80</td><td>Roadrunners</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Leböwski</td><td>Death Knight</td><td>Tauren</td><td class="n">80</td><td>B E D T I M E</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Derrith</td><td>Rogue</td><td>Nightborne</td><td class="n">80</td><td>Rhev Island</td><td>kiljaeden</td><td class="n">2010</td></tr><tr><td>Celetra</td><td>Druid</td><td>Night Elf</td><td class="n">80</td><td>BG RATS</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Blackløl</td><td>Rogue</td><td>Night Elf</td><td class="n">80</td><td>THExMOVE</td><td>tichondrius</td><td class="n">2008</td></tr><tr><td>Bøøzê</td><td>Rogue</td><td>Human</td><td class="n">80</td><td>Seventh Sun</td><td>dalaran</td><td class="n">2020</td></tr><tr><td>Streakender</td><td>Warrior</td><td>Orc</td><td class="n">80</td><td>-</td><td>hyjal</td><td class="n">2023</td></tr><tr><td>Cabrini</td><td>Druid</td><td>Zandalari Troll</td><td class="n">80</td><td>-</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Tredarius</td><td>Mage</td><td>Human</td><td class="n">80</td><td>-</td><td>kiljaeden</td><td class="n">2021</td></tr><tr><td>Herdmon</td><td>Shaman</td><td>Highmountain Tauren</td><td class="n">80</td><td>-</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Realeyes</td><td>Priest</td><td>Tauren</td><td class="n">80</td><td>The Hotbox</td><td>kiljaeden</td><td class="n">2014</td></tr><tr><td>Drìden</td><td>Warrior</td><td>Tauren</td><td class="n">80</td><td>-</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Shortbread</td><td>Druid</td><td>Tauren</td><td class="n">80</td><td>Ångst</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Archimbaud</td><td>Paladin</td><td>Human</td><td class="n">80</td><td>dokgodie</td><td>stormrage</td><td class="n">2013</td></tr><tr><td>Plumpies</td><td>Paladin</td><td>Blood Elf</td><td class="n">80</td><td>Wokeback Mountain</td><td>tichondrius</td><td class="n">2008</td></tr><tr><td>Slurmz</td><td>Demon Hunter</td><td>Blood Elf</td><td class="n">80</td><td>-</td><td>kiljaeden</td><td class="n">2009</td></tr><tr><td>Àble</td><td>Monk</td><td>Human</td><td class="n">80</td><td>Seventh Sun</td><td>dalaran</td><td class="n">2010</td></tr><tr><td>Reynarr</td><td>Warrior</td><td>Mag'har Orc</td><td class="n">80</td><td>The Old Gods</td><td>korgath</td><td class="n">2008</td></tr><tr><td>Daito</td><td>Demon Hunter</td><td>Night Elf</td><td class="n">80</td><td>Yacht Club</td><td>kiljaeden</td><td class="n">2008</td></tr><tr><td>Broshunteri</td><td>Priest</td><td>Dwarf</td><td class="n">80</td><td>Valour</td><td>darkspear</td><td class="n">2008</td></tr></tbody></table></div>
+<h2 class="sec" id="who-targeted-you">06. Who Targeted You<small>the WhoTargetsMe ledger, most recent first</small></h2>
+<div class="cols"><div class="card"><div class="k">classes that targeted you</div><div class="bars" style="margin-top:9px"><div class="bar m"><span class="lbl" title="Druid">Druid</span><span class="track"><span class="fill" style="width:100.0%"></span></span><span class="val">368</span></div><div class="bar m"><span class="lbl" title="Shaman">Shaman</span><span class="track"><span class="fill" style="width:92.4%"></span></span><span class="val">340</span></div><div class="bar m"><span class="lbl" title="Hunter">Hunter</span><span class="track"><span class="fill" style="width:92.4%"></span></span><span class="val">340</span></div><div class="bar m"><span class="lbl" title="Warrior">Warrior</span><span class="track"><span class="fill" style="width:75.8%"></span></span><span class="val">279</span></div><div class="bar m"><span class="lbl" title="Paladin">Paladin</span><span class="track"><span class="fill" style="width:61.1%"></span></span><span class="val">225</span></div><div class="bar m"><span class="lbl" title="Warlock">Warlock</span><span class="track"><span class="fill" style="width:52.7%"></span></span><span class="val">194</span></div><div class="bar m"><span class="lbl" title="Priest">Priest</span><span class="track"><span class="fill" style="width:44.6%"></span></span><span class="val">164</span></div><div class="bar m"><span class="lbl" title="Mage">Mage</span><span class="track"><span class="fill" style="width:42.4%"></span></span><span class="val">156</span></div><div class="bar m"><span class="lbl" title="Rogue">Rogue</span><span class="track"><span class="fill" style="width:34.8%"></span></span><span class="val">128</span></div></div></div><div class="card"><div class="k">level spread</div><div class="chips" style="margin-top:9px"><span class="chip">10-19 <b>776</b></span><span class="chip">20-29 <b>779</b></span><span class="chip">30-39 <b>324</b></span><span class="chip">40-49 <b>131</b></span><span class="chip">50-59 <b>40</b></span><span class="chip">60-69 <b>10</b></span></div></div></div><div class="card tablewrap"><table><thead><tr><th>who</th><th>class</th><th>race</th><th class="n">level</th><th>last seen</th></tr></thead><tbody><tr><td>Antee-Totemsizzle</td><td>Shaman</td><td>Troll</td><td class="n">22</td><td>2026-11-15 22:50</td></tr><tr><td>Chai-Morningwind</td><td>Hunter</td><td>Windshaper Skyborne</td><td class="n">20</td><td>2026-11-15 22:50</td></tr><tr><td>Ciarran-Moonshadow</td><td>Druid</td><td>Tauren</td><td class="n">22</td><td>2026-11-15 22:50</td></tr><tr><td>Moonarch-Soup</td><td>Paladin</td><td>Undead</td><td class="n">26</td><td>2026-11-15 22:50</td></tr><tr><td>Seraphena-Lasania</td><td>Hunter</td><td>Tauren</td><td class="n">21</td><td>2026-11-15 22:50</td></tr><tr><td>Squishy-Spellcaster</td><td>Mage</td><td>Undead</td><td class="n">24</td><td>2026-11-15 22:50</td></tr><tr><td>Trossitus-Lightheart</td><td>Paladin</td><td>Undead</td><td class="n">24</td><td>2026-11-15 22:50</td></tr><tr><td>Fire-Folds</td><td>Hunter</td><td>Orc</td><td class="n">35</td><td>2026-11-15 22:50</td></tr><tr><td>Gunnar-Gorebeef</td><td>Hunter</td><td>Tauren</td><td class="n">20</td><td>2026-11-15 22:50</td></tr><tr><td>Sgt-Cornflakes</td><td>Warrior</td><td>Orc</td><td class="n">32</td><td>2026-11-15 22:50</td></tr><tr><td>Skaergard-Reykholt</td><td>Paladin</td><td>Undead</td><td class="n">26</td><td>2026-11-15 22:50</td></tr><tr><td>Alexandros-Macedon</td><td>Paladin</td><td>Undead</td><td class="n">17</td><td>2026-11-15 22:49</td></tr><tr><td>Annubus-Shadowshire</td><td>Paladin</td><td>Undead</td><td class="n">8</td><td>2026-11-15 22:49</td></tr><tr><td>Gequ-Eversorrow</td><td>Priest</td><td>Undead</td><td class="n">11</td><td>2026-11-15 22:49</td></tr><tr><td>Icky-Smitelight</td><td>Paladin</td><td>Undead</td><td class="n">8</td><td>2026-11-15 22:49</td></tr><tr><td>Itopoff-Dreampie</td><td>Paladin</td><td>Undead</td><td class="n">10</td><td>2026-11-15 22:49</td></tr><tr><td>Jade-Bloodwind</td><td>Druid</td><td>Tauren</td><td class="n">12</td><td>2026-11-15 22:49</td></tr><tr><td>Marlo-Black</td><td>Rogue</td><td>Undead</td><td class="n">8</td><td>2026-11-15 22:49</td></tr><tr><td>Mrlowdangle-Eatapoptart</td><td>Rogue</td><td>Windshaper Skyborne</td><td class="n">22</td><td>2026-11-15 22:49</td></tr><tr><td>Xaelinx-Xfireheartx</td><td>Warlock</td><td>Undead</td><td class="n">10</td><td>2026-11-15 22:49</td></tr><tr><td>Myst-Manaweaver</td><td>Mage</td><td>Undead</td><td class="n">8</td><td>2026-11-15 22:49</td></tr><tr><td>Poised-Mordain</td><td>Mage</td><td>Undead</td><td class="n">8</td><td>2026-11-15 22:49</td></tr><tr><td>Sækø-Izø</td><td>Rogue</td><td>Troll</td><td class="n">13</td><td>2026-11-15 22:49</td></tr><tr><td>Zoey-Aldent</td><td>Hunter</td><td>Windshaper Skyborne</td><td class="n">29</td><td>2026-11-15 22:49</td></tr><tr><td>Bishop-Grum</td><td>Paladin</td><td>Undead</td><td class="n">22</td><td>2026-11-15 22:49</td></tr><tr><td>Chael-Weaver</td><td>Priest</td><td>Undead</td><td class="n">10</td><td>2026-11-15 22:49</td></tr><tr><td>Dirty-Dianna</td><td>Warlock</td><td>Undead</td><td class="n">10</td><td>2026-11-15 22:49</td></tr><tr><td>Gooseadin-Downs</td><td>Paladin</td><td>Undead</td><td class="n">7</td><td>2026-11-15 22:49</td></tr><tr><td>Outstanding-Debt</td><td>Paladin</td><td>Undead</td><td class="n">6</td><td>2026-11-15 22:49</td></tr><tr><td>Rx-Scripts</td><td>Warlock</td><td>Undead</td><td class="n">9</td><td>2026-11-15 22:49</td></tr></tbody></table></div>
+<h2 class="sec" id="beasts-lore">07. Beasts &amp; Lore<small>tameable families and the lore unlocks</small></h2>
+<div class="cols"><div class="card"><div class="k">beast families tracked</div><div class="chips" style="margin-top:9px"><span class="chip">Bat <b>1,513</b></span><span class="chip">Bear <b>1,778</b></span><span class="chip">Boar <b>3,100</b></span><span class="chip">Carrion Bird <b>2,970</b></span><span class="chip">Cat <b>251,245</b></span><span class="chip">Crab <b>254,588</b></span><span class="chip">Crocolisk <b>3,110</b></span><span class="chip">Fox <b>250,868</b></span><span class="chip">Hyena <b>4,127</b></span><span class="chip">Imp <b>12,922</b></span><span class="chip">Raptor <b>3,123</b></span><span class="chip">Scorpid <b>3,127</b></span><span class="chip">Spider <b>1,504</b></span><span class="chip">Tallstrider <b>251,661</b></span><span class="chip">Turtle <b>3,461</b></span><span class="chip">Wind Serpent <b>3,247</b></span><span class="chip">Wolf <b>1,509</b></span></div></div><div class="card"><div class="k">lore unlocks</div><div class="kv"><span>Legere</span><b class="">tracked</b></div><div class="kv"><span>Tandumonium</span><b class="">Windshaper Skyborne / Hunter</b></div><div class="kv"><span>Quazzarr</span><b class="">Undead / Warlock</b></div><div class="kv"><span>unlocked entries</span><b class="">17</b></div><div class="kv"><span>quest texts cached</span><b class="">169</b></div></div></div>
+<h2 class="sec" id="method-limits">08. Method &amp; Limits<small>what a hover can and cannot prove</small></h2>
+<div class="cols"><div class="card"><div class="k">what the faces say</div><ul style="margin:8px 0 0 18px;color:var(--mut);font-size:.78rem;line-height:1.85"><li><b>The Barrens</b> leads the realm with 559 encounters, then <b>Orgrimmar</b>.</li><li><b>Hunter</b> is the most-met class, ahead of <b>Shaman</b>.</li><li><b>Warsong Battalion</b> is the largest guild in PlayerHistory with 402 characters.</li><li>The oldest player record starts in <b>2008</b>.</li></ul></div><div class="card"><div class="k">how it was read</div><div class="note" style="border:none;padding:8px 0">FamiliarFaces stores <b>realms.Normal.players</b>, one node per GUID, each with class, race, level, faction, first/last sighting and an <b>enc[]</b> list of zone-stamped encounters. PlayerHistory stores retail characters keyed <b>name-realm</b> with class, guild, level and the year the player started. WhoTargetsMe stores one node per name that ever targeted the player, with class, race, level and lastSeen.</div></div><div class="card"><div class="k">what it does not claim</div><div class="note" style="border:none;padding:8px 0">A face is not a friend: FamiliarFaces records a hover, not an interaction. Encounter counts are sightings, not kills. PlayerHistory is retail-era and is not a Forever census. WhoTargetsMe includes NPCs and other players alike, and "targeted" may mean a click, a macro or a tab-target.</div></div></div>
+<footer>Built by <b>almanac_extract.py</b> (Almanac wing, v1.0.0) at 2026-11-16 00:43:30 &middot; sources: <a href="../../WTF/Account/QUAZZARR/SavedVariables/">WTF\SavedVariables\</a>, <a href="../../Logs/">Logs\</a> &middot; companions: <a href="Timeline.html">Timeline</a>, <a href="Deeds.html">Deeds</a>, <a href="Residue.html">Residue</a>, <a href="Sortie.html">Sortie</a>. Read-only on the game install; nothing was deleted.</footer>
+</div>
+</body>
+</html>

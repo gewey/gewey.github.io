@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Chronicle — micro-accomplishments of Tandumonium-Ebbeson</title>
+<!--
+  Chronicle.html — built 2026-11-10 03:07:12 by Tandumonium (Cline cron run).
+  A NEW wing of the Gewey G.U.I. HUD. Nothing existing was deleted; this file is
+  additive and self-contained (same rule as Timeline.html / Delve.html / Frontier.html).
+
+  What it is: the *micro* residue. Timeline watches the machine, Delve watches the
+  logs as logs, Frontier watches the island, Legacy watches 2008-2026. This wing
+  watches the small stuff the client wrote down while nobody was looking: /played
+  readings, skill ticks, bag contents, coin, stutters, layout saves, quest lines,
+  discovery pins.
+
+  Regenerate with: python Dark_Portal\Timeline\chronicle_extract.py
+-->
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#0a0703;--panel:rgba(26,19,10,.82);--line:rgba(255,206,120,.16);
+ --ink:#fdf3e0;--mut:#ab9678;--gold:#ffcf6b;--amber:#ffa63d;
+ --cyan:#5fd8ff;--violet:#b79bff;--green:#8dff9e;--red:#ff7a6b;
+ --glow:0 0 16px rgba(255,207,107,.4);--glowc:0 0 14px rgba(95,216,255,.35)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.62;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(1100px 620px at 6% -12%,rgba(255,166,61,.16),transparent 62%),
+  radial-gradient(900px 540px at 98% 4%,rgba(183,155,255,.13),transparent 64%),
+  radial-gradient(1200px 760px at 52% 116%,rgba(95,216,255,.09),transparent 70%),
+  linear-gradient(180deg,#0a0703 0%,#120d06 58%,#171008 100%)}
+.field::after{content:'';position:absolute;inset:0;opacity:.5;background-image:
+ radial-gradient(1px 1px at 9% 21%,rgba(255,226,170,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 27% 7%,rgba(255,226,170,.45) 0,transparent 100%),
+ radial-gradient(1px 1px at 45% 16%,rgba(255,226,170,.8) 0,transparent 100%),
+ radial-gradient(1px 1px at 67% 5%,rgba(255,226,170,.5) 0,transparent 100%),
+ radial-gradient(1px 1px at 84% 18%,rgba(255,226,170,.65) 0,transparent 100%),
+ radial-gradient(1px 1px at 94% 10%,rgba(255,226,170,.4) 0,transparent 100%);
+ animation:tw 7s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.35}50%{opacity:.85}}
+@media (prefers-reduced-motion:reduce){.field::after{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:26px 18px 64px}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:18px}
+.kicker{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(1.8rem,4.4vw,2.85rem);line-height:1.05;margin:.35rem 0 .5rem;font-weight:800;
+ letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:80ch;font-size:.94rem}
+.lede b{color:var(--ink)}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+nav.panes a{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+ color:var(--ink);border:1px solid var(--line);padding:.32rem .66rem;border-radius:2px;
+ background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+.jump{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem}
+.jump a{font-size:.66rem;text-decoration:none;color:var(--mut);border-bottom:1px dotted var(--line)}
+.jump a:hover{color:var(--cyan)}
+section{margin:2.1rem 0}
+h2.sec{font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+ margin-bottom:.8rem;display:flex;align-items:center;gap:.65rem}
+h2.sec::after{content:'';flex:1;height:1px;background:var(--line)}
+h2.sec small{font-size:.66rem;letter-spacing:.04em;text-transform:none;color:var(--mut)}
+.grid{display:grid;gap:10px}
+.vrow{grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.card .k{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.card .v{font-size:1.4rem;font-weight:800;margin-top:3px;letter-spacing:-.02em}
+.card .s{font-size:.71rem;color:var(--mut);margin-top:2px;line-height:1.5}
+.card.g .v{color:var(--gold);text-shadow:var(--glow)}
+.card.v2 .v{color:var(--violet)}
+.card.a .v{color:var(--amber)}
+.card.c .v{color:var(--cyan);text-shadow:var(--glowc)}
+
+/* ladder */
+.ladder{display:flex;flex-direction:column;gap:7px}
+.rung{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;
+ background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;
+ border-left:3px solid rgba(255,206,120,.25)}
+.rung.up{border-left-color:var(--gold)}
+.rung.ding{border-left-color:var(--green);background:rgba(20,34,18,.55)}
+.rung .lv{font-size:1.25rem;font-weight:800;color:var(--gold)}
+.rung .lv small{display:block;font-size:.55rem;letter-spacing:.13em;color:var(--mut);
+ text-transform:uppercase;font-weight:600}
+.rung .meta{font-size:.76rem;color:var(--mut)}
+.rung .meta b{color:var(--ink);font-weight:600}
+.rung .when{font-family:Consolas,ui-monospace,monospace;font-size:.72rem;color:var(--cyan);
+ text-align:right;white-space:nowrap}
+.xpbar{height:5px;border-radius:3px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.xpbar i{display:block;height:100%;border-radius:3px;
+ background:linear-gradient(90deg,var(--violet),var(--gold))}
+/* tape */
+.tape{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.tick{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;
+ border-top:2px solid var(--cyan)}
+.tick .n{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mut)}
+.tick .t{font-family:Consolas,ui-monospace,monospace;font-size:1.06rem;color:var(--ink);margin-top:2px}
+.tick .l{font-family:Consolas,ui-monospace,monospace;font-size:.72rem;color:var(--mut)}
+.tick .d{font-size:.68rem;color:var(--gold);margin-top:3px}
+/* firsts */
+.firsts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.first{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);
+ border-radius:10px;padding:10px 13px}
+.first time{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--cyan)}
+.first .t{font-weight:700;margin:2px 0 4px}
+.first .d{color:var(--mut);font-size:.77rem;line-height:1.55}
+.first .src{font-family:Consolas,ui-monospace,monospace;font-size:.62rem;color:var(--amber);
+ opacity:.8;margin-top:5px;display:block}
+/* quest ledger */
+.npcgroup{border:1px solid var(--line);border-radius:12px;margin-bottom:11px;overflow:hidden;
+ background:var(--panel)}
+.npchead{display:flex;align-items:baseline;gap:10px;padding:9px 13px;flex-wrap:wrap;
+ background:rgba(255,206,120,.05);border-bottom:1px solid var(--line)}
+.npchead .nm{font-weight:700}
+.npchead .id{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;color:var(--mut)}
+.npchead .n{margin-left:auto;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+ color:var(--gold)}
+.line{padding:9px 13px;border-top:1px dashed rgba(255,206,120,.1)}
+.line:first-of-type{border-top:none}
+.line .hd{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.line .q{font-family:Consolas,ui-monospace,monospace;font-size:.64rem;color:var(--mut)}
+.line .ti{font-weight:600;font-size:.84rem}
+.line .ev{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;padding:1px 6px;
+ border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.line .ev.complete{color:var(--green);border-color:rgba(141,255,158,.4)}
+.line .ev.accept{color:var(--cyan);border-color:rgba(95,216,255,.4)}
+.line .ev.progress{color:var(--gold);border-color:rgba(255,207,107,.4)}
+.line .ev.gossip{color:var(--violet);border-color:rgba(183,155,255,.4)}
+.line blockquote{margin:5px 0 0;padding-left:9px;border-left:2px solid rgba(255,206,120,.25);
+ color:var(--mut);font-size:.78rem;white-space:pre-wrap}
+/* kit */
+.kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+.item{display:flex;gap:8px;align-items:baseline;background:var(--panel);border:1px solid var(--line);
+ border-radius:8px;padding:6px 10px;font-size:.8rem}
+.item .ct{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;color:var(--mut);
+ margin-left:auto;white-space:nowrap}
+.item .bd{font-size:.55rem;letter-spacing:.1em;color:var(--violet)}
+/* skill bars */
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.skill .hd{display:flex;justify-content:space-between;font-size:.74rem;color:var(--mut)}
+.skill .hd b{color:var(--ink)}
+.sbar{height:7px;border-radius:4px;background:rgba(255,255,255,.07);margin-top:5px;overflow:hidden}
+.sbar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--gold))}
+/* chips + tables */
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip2{font-family:Consolas,ui-monospace,monospace;font-size:.68rem;border:1px solid var(--line);
+ border-radius:6px;padding:2px 7px;color:var(--mut)}
+.chip2 b{color:var(--ink);font-weight:600}
+table.t{width:100%;border-collapse:collapse;font-size:.78rem}
+table.t th{text-align:left;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
+ color:var(--mut);font-weight:600;padding:5px 8px;border-bottom:1px solid var(--line)}
+table.t td{padding:5px 8px;border-bottom:1px dashed rgba(255,206,120,.08);
+ font-family:Consolas,ui-monospace,monospace;font-size:.73rem;color:var(--ink)}
+table.t td.n{text-align:right}
+.note{background:rgba(255,166,61,.06);border:1px solid rgba(255,166,61,.22);
+ border-radius:10px;padding:10px 14px;font-size:.8rem;color:var(--mut);line-height:1.65}
+.note b{color:var(--ink)}
+.empty{color:var(--mut);font-size:.8rem;padding:12px;border:1px dashed var(--line);border-radius:10px}
+footer{margin-top:2.6rem;border-top:1px solid var(--line);padding-top:14px;
+ font-size:.72rem;color:var(--mut);line-height:1.7}
+footer code{font-family:Consolas,ui-monospace,monospace;color:var(--gold);font-size:.7rem}
+@media(max-width:620px){.rung{grid-template-columns:44px 1fr}.rung .when{display:none}}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+  <div class="kicker">The Chronicle · micro-accomplishments</div>
+  <h1>Tandumonium-Ebbeson <span class="thin">— what the residue remembers</span></h1>
+  <p class="lede">Every number on this page was written by the client itself, on this
+  machine, while the game was being played — <b>14 progression
+  checkpoints</b>, <b>5 <code>/played</code> readings</b>,
+  <b>9 skill lines</b>, <b>21 carried items</b> and
+  <b>21 archived spoken lines</b>. Nothing here is estimated unless the
+  label says so. Last extract 2026-11-10 03:07:12.</p>
+  <nav class="panes">
+    <a href="index.html" target="_top">Shell</a>
+    <a href="Concordance.html">Concordance</a>
+    <a href="_fuhevva_evva.html">Home</a>
+    <a href="character.html">Character</a>
+    <a href="gear.html">Gear</a>
+    <a href="legacy.html">Legacy</a>
+    <a href="dynasty.html">Dynasty</a>
+    <a href="roster.html">Roster</a>
+    <a href="tandu_legacy.html">Tandu Legacy</a>
+    <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a>
+    <a href="links.html">Links</a>
+    <a href="raidlogs.html">Raid Logs</a>
+    <a href="log_ledger.html">Log Ledger</a>
+    <a href="Frontier.html">Frontier</a>
+    <a href="Timeline.html">Timeline</a>
+    <a href="Delve.html">Delve</a>
+    <a href="Chronicle.html" aria-current="page">Chronicle</a>
+    <a href="macrocosm.html">Macrocosm</a>
+    <a href="relics.html">Relics</a>
+    <a href="Residue.html">Residue</a>
+    <a href="Sortie.html">Sortie</a>
+    <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+    <a href="Almanac.html">Almanac</a>
+    <a href="Levelbook.html">Levelbook</a>
+    <a href="Faces.html">Faces</a>
+    <a href="Purse.html">Purse</a>
+    <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+    <a href="Clockwork.html">Clockwork</a>
+    <a href="Chassis.html">Chassis</a>
+    <a href="Itinerary.html">Itinerary</a>
+    <a href="Milestones.html">Milestones</a>
+    <a href="Origins.html">Origins</a>
+    <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+    <a href="Company.html">Company</a></nav>
+  <div class="jump">
+    <a href="#vitals">vitals</a><a href="#ladder">the ladder</a><a href="#tape">/played tape</a>
+    <a href="#firsts">firsts</a><a href="#quests">quest ledger</a><a href="#kit">kit</a>
+    <a href="#skills">skill lines</a><a href="#places">places</a>
+    <a href="#machine">machine notebook</a><a href="#residue">residue census</a>
+    <a href="#addons">addons</a><a href="#fractures">fractures</a><a href="#method">method</a>
+  </div>
+</header>
+<section>
+<h2 id="vitals" class="sec">Vitals<small>the newest checkpoint · the log counters · the install</small></h2>
+  <div class="grid vrow">
+    <div class="card g"><div class="k">Level</div><div class="v">3</div><div class="s">397 / 1400 xp · 28.4% to 4</div></div>
+    <div class="card v2"><div class="k">Played</div><div class="v">4h 11m 50s</div><div class="s">Raider.IO counter · /played reads 3h 41m 40s</div></div>
+    <div class="card a"><div class="k">Quests done</div><div class="v">7</div><div class="s">21 archived spoken lines</div></div>
+    <div class="card c"><div class="k">Kills</div><div class="v">21</div><div class="s">1 death · 2 jumps</div></div>
+    <div class="card a"><div class="k">Copper</div><div class="v">170</div><div class="s">no gold, no silver, all copper</div></div>
+    <div class="card v2"><div class="k">Steps</div><div class="v">317.7</div><div class="s">yards walked · CountSteps estimate</div></div>
+    <div class="card g"><div class="k">AddOns</div><div class="v">46</div><div class="s">31,166 files on disk</div></div>
+    <div class="card c"><div class="k">Console lines</div><div class="v">1,021</div><div class="s">the client's own message history</div></div>
+  </div>
+</section>
+<section>
+<h2 id="ladder" class="sec">The Ladder<small>14 Raider.IO checkpoints, oldest first</small></h2>
+  <div class="ladder">
+    <div class="rung "><div class="lv">1<small>level</small></div><div class="meta"><b>0 / 400 xp</b> · 0h 39m 31s played · 0q 0k 0c<div class="xpbar"><i style="width:0.0%"></i></div></div><div class="when">2026-11-06 16:47:47<br>#01 · rev 9</div></div>
+    <div class="rung "><div class="lv">1<small>level</small></div><div class="meta"><b>0 / 400 xp</b> · 0h 40m 37s played · 0q 0k 0c<div class="xpbar"><i style="width:0.0%"></i></div></div><div class="when">2026-11-06 16:53:44<br>#02 · rev 2</div></div>
+    <div class="rung "><div class="lv">1<small>level</small></div><div class="meta"><b>40 / 400 xp</b> · 1h 04m 10s played · 1q 0k 0c · +1 quest<div class="xpbar"><i style="width:10.0%"></i></div></div><div class="when">2026-11-07 08:51:12<br>#03 · rev 29</div></div>
+    <div class="rung up"><div class="lv">1<small>level</small></div><div class="meta"><b>400 / 400 xp</b> · 2h 05m 23s played · 1q 4k 0c · +4 kills<div class="xpbar"><i style="width:100.0%"></i></div></div><div class="when">2026-11-09 22:33:11<br>#04 · rev 5</div></div>
+    <div class="rung ding"><div class="lv">2<small>level</small></div><div class="meta"><b>593 / 900 xp</b> · 2h 09m 08s played · 2q 15k 35c · +1 quest, +11 kills, +35c<div class="xpbar"><i style="width:65.9%"></i></div></div><div class="when">2026-11-09 22:35:52<br>#05 · rev 7</div></div>
+    <div class="rung "><div class="lv">2<small>level</small></div><div class="meta"><b>593 / 900 xp</b> · 2h 09m 10s played · 2q 15k 35c<div class="xpbar"><i style="width:65.9%"></i></div></div><div class="when">2026-11-09 22:39:26<br>#06 · rev 2</div></div>
+    <div class="rung up"><div class="lv">2<small>level</small></div><div class="meta"><b>900 / 900 xp</b> · 2h 20m 56s played · 5q 15k 171c · +3 quest, +136c<div class="xpbar"><i style="width:100.0%"></i></div></div><div class="when">2026-11-09 22:39:29<br>#07 · rev 18</div></div>
+    <div class="rung ding"><div class="lv">3<small>level</small></div><div class="meta"><b>28 / 1400 xp</b> · 2h 25m 05s played · 6q 15k 161c · +1 quest, -10c<div class="xpbar"><i style="width:2.0%"></i></div></div><div class="when">2026-11-09 22:52:07<br>#08 · rev 6</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>28 / 1400 xp</b> · 2h 27m 24s played · 6q 15k 161c<div class="xpbar"><i style="width:2.0%"></i></div></div><div class="when">2026-11-09 22:55:44<br>#09 · rev 4</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>28 / 1400 xp</b> · 2h 31m 36s played · 6q 15k 161c<div class="xpbar"><i style="width:2.0%"></i></div></div><div class="when">2026-11-09 22:57:53<br>#10 · rev 6</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>28 / 1400 xp</b> · 2h 44m 53s played · 6q 15k 161c<div class="xpbar"><i style="width:2.0%"></i></div></div><div class="when">2026-11-09 23:02:54<br>#11 · rev 16</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>397 / 1400 xp</b> · 2h 56m 56s played · 7q 21k 170c · +1 quest, +6 kills, +9c, a death<div class="xpbar"><i style="width:28.4%"></i></div></div><div class="when">2026-11-09 23:15:20<br>#12 · rev 20</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>397 / 1400 xp</b> · 3h 41m 33s played · 7q 21k 170c<div class="xpbar"><i style="width:28.4%"></i></div></div><div class="when">2026-11-09 23:27:15<br>#13 · rev 47</div></div>
+    <div class="rung "><div class="lv">3<small>level</small></div><div class="meta"><b>397 / 1400 xp</b> · 4h 11m 50s played · 7q 21k 170c<div class="xpbar"><i style="width:28.4%"></i></div></div><div class="when">2026-11-10 01:22:40<br>#14 · rev 32</div></div>
+  </div>
+</section>
+<section>
+<h2 id="tape" class="sec">The /played Tape<small>5 readings the console kept, in order</small></h2>
+  <div class="tape">
+    <div class="tick"><div class="n">reading 01 · 22:55:47</div><div class="t">2h 25m 30s</div><div class="l">level 0h 03m 40s</div><div class="d">first reading</div></div>
+    <div class="tick"><div class="n">reading 02 · 22:57:56</div><div class="t">2h 27m 38s</div><div class="l">level 0h 05m 48s</div><div class="d">+0h 02m 08s</div></div>
+    <div class="tick"><div class="n">reading 03 · 23:02:59</div><div class="t">2h 32m 41s</div><div class="l">level 0h 10m 51s</div><div class="d">+0h 05m 03s</div></div>
+    <div class="tick"><div class="n">reading 04 · 23:15:23</div><div class="t">2h 45m 06s</div><div class="l">level 0h 23m 16s</div><div class="d">+0h 12m 25s</div></div>
+    <div class="tick"><div class="n">reading 05 · 01:22:41</div><div class="t">3h 41m 40s</div><div class="l">level 1h 19m 50s</div><div class="d">+0h 56m 34s</div></div>
+  </div>
+  <p class="note" style="margin-top:9px">Every reading is the client answering <code>/played</code>. Total time climbs <b>2h 25m 30s</b> → <b>3h 41m 40s</b>; time <i>on this character</i> climbs <b>0h 03m 40s</b> → <b>1h 19m 50s</b>. Total time and character time are two different counters — the gap is older life the account still carries.</p>
+</section>
+<section>
+<h2 id="firsts" class="sec">Firsts<small>14 micro-accomplishments, each with the file that proves it</small></h2>
+  <div class="firsts">
+    <div class="first"><time>2026-10-31 01:57</time><div class="t">The cinematic, at 1080p</div><div class="d">Movie 1098 queued and began playing at 1080P resolution, stopped again at 10/31 02:01:09.322. Three minutes fifty seconds of Blizzard film before a single character existed on this install.</div><span class="src">Logs\Movie.log</span></div>
+    <div class="first"><time>2026-10-31 02:06</time><div class="t">One screenshot, kept</div><div class="d">WoWScrnShot_103126_020653.jpg — 618,054 bytes, the only frame Joey ever pressed Print Screen for on this station. It predates every character-level checkpoint.</div><span class="src">Screenshots\</span></div>
+    <div class="first"><time>2026-11-06 16:47:47</time><div class="t">First footfall — level 1, 0 xp of 400</div><div class="d">The earliest progression checkpoint Raider.IO kept: level 1, 0 xp, 0h 39m 31s played, 0 kills, zone Zephras Isle. Nothing on the character but the starter kit.</div><span class="src">RaiderIO.lua</span></div>
+    <div class="first"><time>2026-11-09 22:33:11</time><div class="t">The xp bar fills for the first time — 400/400</div><div class="d">Four kills and one quest later the level-1 bar reads 400/400. The next checkpoint, 161 seconds later, is level 2.</div><span class="src">RaiderIO.lua</span></div>
+    <div class="first"><time>2026-11-09 22:35:52</time><div class="t">Level 2 — and the first thirty-five copper</div><div class="d">Level 2 at 593/900 xp, 15 kills, 2 quests and 35 copper in the purse — the first money the character held.</div><span class="src">RaiderIO.lua</span></div>
+    <div class="first"><time>2026-11-09 22:35:53</time><div class="t">4 skill lines stamped 5 → 10 in one frame</div><div class="d">Lines 51, 183, 163, 2980 move together, milliseconds apart — the client handing out a first-day grant, not practice. The practised lines tell the other story: 51 climbs 5 → 20 over 3 separate ticks, 163 climbs 5 → 20 over 3 separate ticks, 183 climbs 5 → 20 over 3 separate ticks, 2980 climbs 5 → 20 over 3 separate ticks, 45 climbs 4 → 15 over 11 separate ticks, 173 climbs 2 → 15 over 13 separate ticks, 95 climbs 1 → 14 over 13 separate ticks. The client prints raw SkillLine ids, never names.</div><span class="src">Logs\General.log</span></div>
+    <div class="first"><time>2026-11-09 22:39:29</time><div class="t">The richest moment so far — 171 copper</div><div class="d">A second bar lands on 900/900 and the purse peaks at 171 copper with 5 quests done. It reads 170 copper by the end of the night — a repair or a reagent, unrecorded.</div><span class="src">RaiderIO.lua</span></div>
+    <div class="first"><time>2026-11-09 22:52:07</time><div class="t">Level 3 — the Way of the Hunter</div><div class="d">Third level, 28 xp into a 1400 cap, 6 quests and 15 kills on the board.</div><span class="src">RaiderIO.lua</span></div>
+    <div class="first"><time>2026-11-09 22:55:47</time><div class="t">`/played` asked for, 5 times</div><div class="d">The console keeps every answer: 2h 25m 30s at the first reading, 3h 41m 40s at the last — 1h 16m 10s banked between them. Time on this character alone climbs 0h 03m 40s → 1h 19m 50s.</div><span class="src">Logs\General.log + Blizzard_Console.lua</span></div>
+    <div class="first"><time>2026-11-09 23:15:20</time><div class="t">First death — and both counters agree</div><div class="d">observedDeaths goes 0 → 1 with 21 kills on the board. CountSteps independently records totalDeaths = 1, so the body count is corroborated rather than inferred.</div><span class="src">RaiderIO.lua + CountSteps.lua</span></div>
+    <div class="first"><time>2026-11-09 23:23:59</time><div class="t">Goldmind catches the purse moving</div><div class="d">PLAYER_MONEY fires twice: 165 copper, then 170 copper, 162 seconds apart.</div><span class="src">Goldmind.lua</span></div>
+    <div class="first"><time>2026-11-09 23:27:03</time><div class="t">20 stutters on the flight recorder</div><div class="d">Incident #19 is the first: 6 spikes wide, 29.8s of pre-window and 11.9s after. Every entry in the file is a 150 ms frame — the client's own stutter diary.</div><span class="src">WoWTaskManager.lua</span></div>
+    <div class="first"><time>2026-11-10 00:11</time><div class="t">The interface gets a name: GEWEY!</div><div class="d">Account Edit Mode saved 2,772 bytes with the layout name 'GEWEY!' embedded in the payload. The character-level layout stays at the 27-byte default — the UI lives on the account, not the toon.</div><span class="src">Logs\EditMode.log</span></div>
+    <div class="first"><time>2026-11-10 01:22:40</time><div class="t">4h 11m 50s played — the newest checkpoint on disk</div><div class="d">Level 3, 397/1400 xp, 7 quests, 21 kills, 1 death, 170 copper. This is the last progression record the client wrote; everything after it is unpriced.</div><span class="src">RaiderIO.lua</span></div>
+  </div>
+</section>
+<section>
+<h2 id="quests" class="sec">The Quest Ledger<small>21 spoken lines across 7 speakers</small></h2>
+  <p class="note" style="margin-bottom:10px">The Spoken addon archives every line it hears as a key/value envelope. This is the island's dialogue, quoted verbatim — accept, progress and complete events included, in the order the addon wrote them.</p>
+  <div class="npcgroup"><div class="npchead"><span class="nm">251361 Rorian the Dayseeker</span><span class="id">npc 251361</span><span class="n">7 lines</span></div>
+    <div class="line"><div class="hd"><span class="ev gossip">gossip</span></div><blockquote>What do you need of me, child of Zephras?</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92460</span><span class="ti">Coming of Age</span><span class="ev complete">complete</span></div><blockquote>Gale's greetings, $N. I am honored to bestow your coming of age relic today as you are recognized for the potential you bring to the shen'dorei. Our people have faced great hardship and persecution in our complex history.
+
+Today you are given this relic which is one of many held by those before you. Someday when your ashes are scattered to the winds it will pass to another to continue our tradition.
+
+As you take this relic with you know that the winds of home will be with you wherever you travel.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92461</span><span class="ti">Harmony in Balance</span><span class="ev accept">accept</span></div><blockquote>We live in times of great uncertainty for our people. We face unprecedented challenges that may require bold solutions, but we also must contend with the ordinary and mundane here in Thendal Grove. Take, for example, the recent unsustainable rise in the vuldren population.
+
+The vuldren are a vital part of our ecosystem. However, imbalances must be corrected to maintain the delicate harmony that all creatures in Thendal Grove share.
+
+Head east and cull some of the vuldren there.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92474</span><span class="ti">Falling With Style</span><span class="ev complete">complete</span></div><blockquote>How many times do I need to tell Myriaal not to encourage others to make reckless usage of our skyborne gifts!
+
+That being said, I suppose that a little bit of practice in the relative safety of the village is... acceptable.
+
+In the future I'd simply suggest you to use your ability judiciously. You do not want to exhaust your magic thoughtlessly and then not be able to use it when you truly need it.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92461</span><span class="ti">Harmony in Balance</span><span class="ev complete">complete</span></div><blockquote>Thank you for your service to Zephras, young $c.
+
+The vuldren are typically quite docile, but the animals that call Zephras home can sense when the magic on the winds is out of balance, which can lead to dangerous and unpredictable behavior if left unchecked.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92464</span><span class="ti">Elemental Unrest</span><span class="ev accept">accept</span></div><blockquote>Ever since our elemental benefactors left us, it seems that we are simply moving from one unrest to another. The problem we face now is that the manifestations of the winds near the standing stones to the northeast are agitated.
+
+Not truly self-aware like the sentient wind spirits that once lived here, these simple sprites respond in kind to forces, emotions, and intentions of the creatures around them. 
+
+My apprentice Yala Windwatcher went to observe them. Seek her out and discover what she's learned.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92482</span><span class="ti">The Way of the Hunter</span><span class="ev accept">accept</span></div><blockquote>While you were away dealing with our vuldren problem, our resident hunter trainer--Tai'ree Farsight--left this note for you. You can find her just over yonder near the center of the village. Read the note then seek her out.</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">251368 Elatrell Featherlight</span><span class="id">npc 251368</span><span class="n">3 lines</span></div>
+    <div class="line"><div class="hd"><span class="q">q92462</span><span class="ti">Infestation Investigation</span><span class="ev accept">accept</span></div><blockquote>One of our rangers recently reported an infestation of cirrusflies here in Thendal Grove. 
+
+Cirrusflies can be dangerous if the swarm is allowed to grow too large, so please head to the eastern end of the Grove and exterminate as many as you can.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92462</span><span class="ti">Infestation Investigation</span><span class="ev complete">complete</span></div><blockquote>Judging by the amount of bug entrails covering you, this must be quite the infestation.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92463</span><span class="ti">The Cirrusfly Queen</span><span class="ev accept">accept</span></div><blockquote>If the forest is as thick with these insects as it sounds, simply killing the workers won't be enough.
+
+Go deeper into the forest and find the queen. She'll be close to the hive and surrounded by bigger and more aggressive soldiers, so be careful.
+
+Put her down and return here when it's done. That'll be one less problem to think about around here.</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">263113 Myriaal Mistwake</span><span class="id">npc 263113</span><span class="n">2 lines</span></div>
+    <div class="line"><div class="hd"><span class="ev gossip">gossip</span></div><blockquote>It can get boring up here, you know. I can only annoy that stuffy wretch Halaan so much before even that gets old.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92474</span><span class="ti">Falling With Style</span><span class="ev accept">accept</span></div><blockquote>Well hello there, $N! Want to play a game?
+
+All you've got to do is step up on that ledge... then jump! Use your innate ability to walk on the air to slow your fall and see how far forward you can float.
+
+The rules are made up and the points don't matter, but you get bonus points if you can land right in front of Rorian the Dayseeker and startle him! He won't like it but I'll certainly get a good laugh if you can get him all worked up! Hah!</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">257554 Halaan Hawk-Eye</span><span class="id">npc 257554</span><span class="n">3 lines</span></div>
+    <div class="line"><div class="hd"><span class="ev gossip">gossip</span></div><blockquote>&lt;The gaze of the ranger standing before you is fixed on the enormous anchor pylon in the distance.&gt;</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q94414</span><span class="ti">The Anchors of Zephras</span><span class="ev accept">accept</span></div><blockquote>Greetings, young $N. I oftentimes come here to look upon the ancient anchor pylon. Gifts from the spirits of the winds, they bind and sustain our island. Of late however, their magic has grown unstable and inconsistent.
+
+They suffer no distress I can see. Their splendor has not changed.
+
+If you'd like, I can lend you my gift to look upon them yourself.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q94414</span><span class="ti">The Anchors of Zephras</span><span class="ev complete">complete</span></div><blockquote>Thank you for taking a moment to share this with me. I will continue to watch over the grove, and ponder on the state of our homeland.</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">251376 Tai'ree Farsight</span><span class="id">npc 251376</span><span class="n">3 lines</span></div>
+    <div class="line"><div class="hd"><span class="ev gossip">gossip</span></div><blockquote>The hunters and rangers of Zephras have never been more needed. The winds grow ever harsher, and the magic that sustains our island is fading. The wilds have never been more wild, and people like me are needed to keep our people safe.
+
+If you have the proper aptitude as a $c, I can give you the tools to survive the wilds.</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92482</span><span class="ti">The Way of the Hunter</span><span class="ev progress">progress</span></div><blockquote>&lt;Tai'ree nods at you curtly.&gt;</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92482</span><span class="ti">The Way of the Hunter</span><span class="ev complete">complete</span></div><blockquote>The way of the hunter is fraught with danger, and only those with the keenest senses and quickest reflexes can thrive in the wilds. I look at you and I am reminded of myself when I stood before my mentor, so many years ago. I believe that you have what it takes, but in the end that is up to you alone.
+
+Speak with me again if you wish to take your next steps.</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">251487 Ventaari Brightwish</span><span class="id">npc 251487</span><span class="n">2 lines</span></div>
+    <div class="line"><div class="hd"><span class="ev gossip">gossip</span></div><blockquote>What may I do for you, fellow windshaper?</blockquote></div>
+    <div class="line"><div class="hd"><span class="q">q92598</span><span class="ti">The Gift of Skysight</span><span class="ev accept">accept</span></div><blockquote>As a Windshaper, you have the ability to use the sacred skysight gifted to us by the elemental spirits. Travel to the standing stones to the northeast of the village. Find the elemental convergence there and use your gift.
+
+You'll find that you may draw upon the skysight anywhere, but its boon is much more powerful if you do so in the presence of an elemental convergence. You may at times receive other bits of wisdom from the spirits that are drawn to such places of power, as well.</blockquote></div>
+  </div>
+  <div class="npcgroup"><div class="npchead"><span class="nm">251363 Dalia the Collector</span><span class="id">npc 251363</span><span class="n">1 lines</span></div>
+    <div class="line"><div class="hd"><span class="q">q93552</span><span class="ti">Harvesting Windstones</span><span class="ev accept">accept</span></div><blockquote>Windstones are a critical resource on Zephras Isle as they contain the raw, concentrated energy of the winds themselves. The wind elementals who used to live here on Zephras with us vanished a number of years ago, and since then, the magic that sustains this island is slowly fading. Not without limitations, the windstones are still a reliable energy source, and are incredibly valuable to us.
+
+You'll find raw windstones scattered around the grove. Think you can help me harvest them?</blockquote></div>
+  </div>
+</section>
+<section>
+<h2 id="kit" class="sec">Kit &amp; Bags<small>21 stacks · 176 items · 170 copper</small></h2>
+  <p class="note" style="margin-bottom:10px">Syndicator writes down every carried stack with its item id, quality and bind state. Nothing here is a guess — the stack counts are the addon's, the names come from the client's own item links.</p>
+  <div class="kit">
+    <div class="item"><a href="https://www.wowhead.com/item=2504" data-wowhead="item=2504" style="color:#ffffff;text-decoration:none">Worn Shortbow</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2092" data-wowhead="item=2092" style="color:#ffffff;text-decoration:none">Worn Dagger</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=258772" data-wowhead="item=258772" style="color:#ffffff;text-decoration:none">Windstone Cluster</a><span class="bd">bound</span><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=257280" data-wowhead="item=257280" style="color:#ffffff;text-decoration:none">Vuldren Hide Bracers</a><span class="bd">bound</span><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=117" data-wowhead="item=117" style="color:#ffffff;text-decoration:none">Tough Jerky</a><span class="ct">×4</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=271668" data-wowhead="item=271668" style="color:#ffffff;text-decoration:none">Thendal Survivalist's Shirt</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=271665" data-wowhead="item=271665" style="color:#ffffff;text-decoration:none">Thendal Survivalist's Boots</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2512" data-wowhead="item=2512" style="color:#ffffff;text-decoration:none">Rough Arrow</a><span class="ct">×149</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=159" data-wowhead="item=159" style="color:#ffffff;text-decoration:none">Refreshing Spring Water</a><span class="ct">×3</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2101" data-wowhead="item=2101" style="color:#ffffff;text-decoration:none">Light Quiver</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=6948" data-wowhead="item=6948" style="color:#ffffff;text-decoration:none">Hearthstone</a><span class="bd">bound</span><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=264908" data-wowhead="item=264908" style="color:#ffffff;text-decoration:none">Ancient Heirloom</a><span class="bd">bound</span><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=271666" data-wowhead="item=271666" style="color:#9d9d9d;text-decoration:none">Thendal Survivalist's Pants</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=251930" data-wowhead="item=251930" style="color:#9d9d9d;text-decoration:none">Minor Essence of the Four Winds</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=1380" data-wowhead="item=1380" style="color:#9d9d9d;text-decoration:none">Frayed Robe</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=1377" data-wowhead="item=1377" style="color:#9d9d9d;text-decoration:none">Frayed Gloves</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=1376" data-wowhead="item=1376" style="color:#9d9d9d;text-decoration:none">Frayed Cloak</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2651" data-wowhead="item=2651" style="color:#9d9d9d;text-decoration:none">Flimsy Chain Bracers</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2651" data-wowhead="item=2651" style="color:#9d9d9d;text-decoration:none">Flimsy Chain Bracers</a><span class="ct">×1</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=251931" data-wowhead="item=251931" style="color:#9d9d9d;text-decoration:none">Depleted Windstone</a><span class="ct">×3</span></div>
+    <div class="item"><a href="https://www.wowhead.com/item=2210" data-wowhead="item=2210" style="color:#9d9d9d;text-decoration:none">Battered Buckler</a><span class="ct">×1</span></div>
+  </div>
+  <p class="note" style="margin-top:9px">Coin, as Goldmind watched it: 165c → 170c. The bag total agrees with the last progression checkpoint.</p>
+</section>
+<section>
+<h2 id="skills" class="sec">Skill Lines<small>51 recorded ticks across 9 lines</small></h2>
+  <p class="note" style="margin-bottom:10px">The client prints every skill tick into its console history. The line numbers are the client's raw SkillLine ids, not guesses — only the arrows are ours.</p>
+  <div class="grid vrow">
+    <div class="skill"><div class="hd"><span>line <b>51</b></span><span>5 → <b>20</b></span></div><div class="sbar"><i style="width:20%"></i></div><div class="hd" style="margin-top:4px"><span>3 gains</span><span>22:35:53 → 02:17:36</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>163</b></span><span>5 → <b>20</b></span></div><div class="sbar"><i style="width:20%"></i></div><div class="hd" style="margin-top:4px"><span>3 gains</span><span>22:35:53 → 02:17:36</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>183</b></span><span>5 → <b>20</b></span></div><div class="sbar"><i style="width:20%"></i></div><div class="hd" style="margin-top:4px"><span>3 gains</span><span>22:35:53 → 02:17:36</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>2980</b></span><span>5 → <b>20</b></span></div><div class="sbar"><i style="width:20%"></i></div><div class="hd" style="margin-top:4px"><span>3 gains</span><span>22:35:53 → 02:17:36</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>45</b></span><span>4 → <b>15</b></span></div><div class="sbar"><i style="width:15%"></i></div><div class="hd" style="margin-top:4px"><span>11 gains</span><span>22:35:36 → 02:06:22</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>173</b></span><span>2 → <b>15</b></span></div><div class="sbar"><i style="width:15%"></i></div><div class="hd" style="margin-top:4px"><span>13 gains</span><span>22:35:02 → 02:16:44</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>95</b></span><span>1 → <b>14</b></span></div><div class="sbar"><i style="width:14%"></i></div><div class="hd" style="margin-top:4px"><span>13 gains</span><span>22:34:53 → 02:17:20</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>186</b></span><span>0 → <b>3</b></span></div><div class="sbar"><i style="width:3%"></i></div><div class="hd" style="margin-top:4px"><span>1 gain</span><span>02:58:26 → 02:58:26</span></div></div>
+    <div class="skill"><div class="hd"><span>line <b>2946</b></span><span>0 → <b>3</b></span></div><div class="sbar"><i style="width:3%"></i></div><div class="hd" style="margin-top:4px"><span>1 gain</span><span>02:58:27 → 02:58:27</span></div></div>
+  </div>
+  <h3 class="sec" style="margin-top:1.2rem;font-size:.8rem">Proficiency masks <small>last value the client stamped per item class</small></h3>
+  <div class="chips"><span class="chip2">item class <b>2</b> · 0x000000c184 (5 bits)</span><span class="chip2">item class <b>4</b> · 0x0000000027 (4 bits)</span></div>
+</section>
+<section>
+<h2 id="places" class="sec">Places<small>4 map pins · 2 NPCs on the dex</small></h2>
+  <div class="chips" style="margin-bottom:12px">
+    <span class="chip2"><b>zone 2521</b></span>
+    <span class="chip2"><b>Thendal Grove</b> · 2521</span>
+    <span class="chip2"><b>Thendal Standing Stones</b> · 2521</span>
+    <span class="chip2"><b>Thendal Village</b> · 2521</span>
+  </div>
+  <table class="t">
+    <tr><th>NPC</th><th>Where</th><th>Level</th><th>Points</th><th>Visits</th><th>First seen</th></tr>
+    <tr><td>Dalia the Collector</td><td>Thendal Village</td><td class="n">1</td><td class="n">100</td><td class="n">1</td><td>2026-11-09</td></tr>
+    <tr><td>Yala Windwatcher</td><td>Thendal Grove</td><td class="n">5</td><td class="n">140</td><td class="n">2</td><td>2026-11-09</td></tr>
+  </table>
+</section>
+<section>
+<h2 id="machine" class="sec">The Machine's Notebook<small>what the client said about itself</small></h2>
+  <div class="grid vrow">
+    <div class="card c"><div class="k">Console history</div><div class="v">1,021</div><div class="s">4 distinct Lua error heads</div></div>
+    <div class="card g"><div class="k">Hotfix rows</div><div class="v">62,985</div><div class="s">45,451 refused as invalid</div></div>
+    <div class="card a"><div class="k">GPU samples</div><div class="v">43</div><div class="s">66C peak · 3.0 GB peak</div></div>
+    <div class="card v2"><div class="k">Boots</div><div class="v">1</div><div class="s">Client connection initialized</div></div>
+    <div class="card v2"><div class="k">Stutters</div><div class="v">20</div><div class="s">26 spikes total</div></div>
+    <div class="card g"><div class="k">Layout saves</div><div class="v">34</div><div class="s">GEWEY!</div></div>
+  </div>
+  <h3 class="sec" style="margin-top:1.3rem;font-size:.8rem">Lua error heads <small>repeats collapsed</small></h3>
+  <table class="t">
+    <tr><th>Error</th><th style="text-align:right">Count</th></tr>
+    <tr><td>Lua Error: Interface/AddOns/EuphorrixSpellAnnouncerV2/Core.lua:397: attempt to call a nil value</td><td class="n">32</td></tr>
+    <tr><td>Lua Error: WoWTaskManager: Sessions.OnDisable failed: Interface/AddOns/WoWTaskManager/History/Sessions.lua:146: attempt to index field 'retention' (a nil value)</td><td class="n">5</td></tr>
+    <tr><td>Lua Error: WoWTaskManager: FlightRecorder.OnDisable failed: ...ace/AddOns/WoWTaskManager/History/FlightRecorder.lua:231: attempt to index field 'flightRecorder' (a nil value)</td><td class="n">2</td></tr>
+    <tr><td>Lua Error: ...nterface/AddOns/EuphorrixSpellAnnouncerV2/Clicks.lua:51: table index is nil</td><td class="n">1</td></tr>
+  </table>
+  <p class="note" style="margin-top:9px"><b>Weather</b> — the client changed it 8 times: 22:33:09 kind 0 @ 0.00 · 22:33:11 kind 0 @ 0.00 · 23:02:53 kind 0 @ 0.00 · 23:28:54 kind 4 @ 0.30 · 01:22:36 kind 4 @ 0.32 · 01:22:40 kind 0 @ 0.00 · 02:02:50 kind 0 @ 0.00 · 02:02:53 kind 0 @ 0.00. Kind 0 is clear; the 0.30-ish readings are precipitation over Thendal Grove.</p>
+  <p class="note" style="margin-top:9px"><b>The cinematic</b> — movie 1098 began 10/31 01:57:18.988 at 1080P and stopped 10/31 02:01:09.322. The install itself is dated the same evening.</p>
+  <h3 class="sec" style="margin-top:1.3rem;font-size:.8rem">Stutter diary <small>WoWTaskManager flight recorder</small></h3>
+  <table class="t">
+    <tr><th>When</th><th style="text-align:right">Spikes</th><th style="text-align:right">Pre (s)</th><th style="text-align:right">Post (s)</th><th style="text-align:right">Frame (ms)</th></tr>
+    <tr><td>2026-11-10 01:31:47</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:39:47</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:43:57</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:47:57</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:48:57</td><td class="n">2</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:49:47</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:50:47</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+    <tr><td>2026-11-10 01:51:47</td><td class="n">1</td><td class="n">0.0</td><td class="n">0.0</td><td class="n">150.0</td></tr>
+  </table>
+</section>
+<section>
+<h2 id="residue" class="sec">Residue Census<small>what the play left behind, by folder</small></h2>
+  <table class="t">
+    <tr><th>Folder</th><th style="text-align:right">Files</th><th style="text-align:right">Dirs</th><th style="text-align:right">Bytes</th><th style="text-align:right">MiB</th></tr>
+    <tr><td>Logs</td><td class="n">23</td><td class="n">1</td><td class="n">12,403,711</td><td class="n">11.8</td></tr>
+    <tr><td>WTF\SavedVariables (account)</td><td class="n">76</td><td class="n">1</td><td class="n">1,058,566</td><td class="n">1.0</td></tr>
+    <tr><td>WTF\SavedVariables (character)</td><td class="n">36</td><td class="n">1</td><td class="n">782,608</td><td class="n">0.7</td></tr>
+    <tr><td>WTF\SavedVariables (base)</td><td class="n">6</td><td class="n">1</td><td class="n">302,938</td><td class="n">0.3</td></tr>
+    <tr><td>Interface\AddOns</td><td class="n">31,166</td><td class="n">517</td><td class="n">3,554,910,842</td><td class="n">3390.2</td></tr>
+    <tr><td>Screenshots</td><td class="n">1</td><td class="n">1</td><td class="n">618,054</td><td class="n">0.6</td></tr>
+    <tr><td><b>total</b></td><td class="n"><b>31,308</b></td><td class="n">—</td><td class="n"><b>3,570,076,719</b></td><td class="n"><b>3404.7</b></td></tr>
+  </table>
+  <h3 class="sec" style="margin-top:1.3rem;font-size:.8rem">Heaviest single files <small>the whole install, minus the executables</small></h3>
+  <table class="t">
+    <tr><th>Path</th><th style="text-align:right">MiB</th><th>Last write</th></tr>
+    <tr><td>Interface\AddOns\PokeLink\Media\mask4x4.tga</td><td class="n">16.00</td><td>2026-11-09 22:53:07</td></tr>
+    <tr><td>Interface\AddOns\Achievements\Data\AchievementsData_TBC.lua</td><td class="n">14.93</td><td>2026-11-09 22:54:49</td></tr>
+    <tr><td>Interface\AddOns\AchievementsData\AchievementsData_TBC.lua</td><td class="n">14.93</td><td>2026-11-09 22:54:18</td></tr>
+    <tr><td>Interface\AddOns\QuestieDB\QuestieDB_Camelot.toc</td><td class="n">14.80</td><td>2026-11-09 22:50:49</td></tr>
+    <tr><td>Interface\AddOns\QuestieDB\QuestieDB_Forever.toc</td><td class="n">14.80</td><td>2026-11-09 22:50:49</td></tr>
+    <tr><td>Interface\AddOns\CharacterForever\Media\Fonts\CharacterForeverNames-Regular.ttf</td><td class="n">12.37</td><td>2026-11-09 22:56:06</td></tr>
+    <tr><td>Logs\Hotfix.log</td><td class="n">11.21</td><td>2026-11-10 02:58:47</td></tr>
+    <tr><td>Interface\AddOns\QuestMaster\Database\MoP\CreatureData.lua</td><td class="n">11.04</td><td>2026-11-10 01:41:01</td></tr>
+    <tr><td>Interface\AddOns\Achievements\Data\AchievementsData_Classic.lua</td><td class="n">10.93</td><td>2026-11-09 22:54:49</td></tr>
+    <tr><td>Interface\AddOns\AchievementsData\AchievementsData_Classic.lua</td><td class="n">10.93</td><td>2026-11-09 22:54:18</td></tr>
+    <tr><td>Interface\AddOns\QuestMaster\Database\MoP\L10n_ruRU.lua</td><td class="n">10.71</td><td>2026-11-10 01:41:02</td></tr>
+    <tr><td>Interface\AddOns\Achievements\Data\AchievementsData_Camelot.lua</td><td class="n">10.21</td><td>2026-11-09 22:54:49</td></tr>
+    <tr><td>Interface\AddOns\AchievementsData\AchievementsData_Camelot.lua</td><td class="n">10.21</td><td>2026-11-09 22:54:18</td></tr>
+    <tr><td>Interface\AddOns\QuestMaster\Database\MoP\ItemSourceData.lua</td><td class="n">9.60</td><td>2026-11-10 01:41:01</td></tr>
+  </table>
+  <p class="note" style="margin-top:9px"><b>Screenshots</b> — 1 on disk: WoWScrnShot_103126_020653.jpg (618,054 B, 2026-10-31 02:06:53).</p>
+</section>
+<section>
+<h2 id="addons" class="sec">The AddOn Census<small>46 folders · 31,166 files · 3390 MiB</small></h2>
+  <table class="t">
+    <tr><th>AddOn</th><th style="text-align:right">Files</th><th style="text-align:right">MiB</th></tr>
+    <tr><td>SpokenReadablesAudio</td><td class="n">1,143</td><td class="n">453.2</td></tr>
+    <tr><td>SpokenQuestsAudioGossip</td><td class="n">6,952</td><td class="n">451.8</td></tr>
+    <tr><td>SpokenQuestsAudioAlliance</td><td class="n">3,574</td><td class="n">388.3</td></tr>
+    <tr><td>SpokenQuestsAudioHorde</td><td class="n">3,057</td><td class="n">364.7</td></tr>
+    <tr><td>SpokenQuestsAudioShared</td><td class="n">3,277</td><td class="n">338.8</td></tr>
+    <tr><td>SpokenPlacesAudio</td><td class="n">845</td><td class="n">332.3</td></tr>
+    <tr><td>CharacterForever</td><td class="n">109</td><td class="n">275.9</td></tr>
+    <tr><td>QuestMaster</td><td class="n">550</td><td class="n">240.1</td></tr>
+    <tr><td>BuddyDex</td><td class="n">6,342</td><td class="n">143.1</td></tr>
+    <tr><td>Spoken_Places</td><td class="n">922</td><td class="n">88.4</td></tr>
+    <tr><td>ForeverEpicFrames</td><td class="n">14</td><td class="n">72.4</td></tr>
+    <tr><td>Achievements</td><td class="n">557</td><td class="n">40.4</td></tr>
+    <tr><td>AchievementsData</td><td class="n">524</td><td class="n">39.0</td></tr>
+    <tr><td>EUIStandaloneForeverEssentials</td><td class="n">1,094</td><td class="n">32.2</td></tr>
+    <tr><td>QuestieDB</td><td class="n">65</td><td class="n">31.1</td></tr>
+    <tr><td>Spoken_Quests</td><td class="n">128</td><td class="n">22.8</td></tr>
+    <tr><td>PokeLink</td><td class="n">53</td><td class="n">20.4</td></tr>
+    <tr><td>DialogueUI</td><td class="n">402</td><td class="n">11.3</td></tr>
+    <tr><td>SexyMap</td><td class="n">128</td><td class="n">8.2</td></tr>
+    <tr><td>ForeverDungeonJournal</td><td class="n">14</td><td class="n">5.6</td></tr>
+    <tr><td>Spoken</td><td class="n">188</td><td class="n">4.3</td></tr>
+    <tr><td>RaiderIO</td><td class="n">94</td><td class="n">3.9</td></tr>
+    <tr><td>WoWTaskManager</td><td class="n">210</td><td class="n">3.6</td></tr>
+    <tr><td>Mapzeroth</td><td class="n">129</td><td class="n">3.0</td></tr>
+    <tr><td>WhatsTraining</td><td class="n">149</td><td class="n">2.0</td></tr>
+    <tr><td>Spoken_Bosses</td><td class="n">21</td><td class="n">1.8</td></tr>
+    <tr><td>WhatsItFor_Data_Mists</td><td class="n">2</td><td class="n">1.5</td></tr>
+    <tr><td>Baganator</td><td class="n">177</td><td class="n">1.3</td></tr>
+    <tr><td>WhatsItFor_Data_Titan</td><td class="n">2</td><td class="n">1.1</td></tr>
+    <tr><td>AddonSuite</td><td class="n">149</td><td class="n">1.0</td></tr>
+    <tr><td>WhatsItFor_Data_Anniversary</td><td class="n">2</td><td class="n">0.8</td></tr>
+    <tr><td>Spoken_Readables</td><td class="n">28</td><td class="n">0.8</td></tr>
+    <tr><td>WhatsItFor_Data_Forever</td><td class="n">2</td><td class="n">0.8</td></tr>
+    <tr><td>WhatsItFor_Data_Classic</td><td class="n">2</td><td class="n">0.6</td></tr>
+    <tr><td>Goldmind</td><td class="n">31</td><td class="n">0.6</td></tr>
+    <tr><td>HandyNotes</td><td class="n">66</td><td class="n">0.6</td></tr>
+    <tr><td>ForeverQuestTint</td><td class="n">12</td><td class="n">0.6</td></tr>
+    <tr><td>WhatsItFor</td><td class="n">29</td><td class="n">0.5</td></tr>
+    <tr><td>Syndicator</td><td class="n">41</td><td class="n">0.4</td></tr>
+    <tr><td>SimpleAddonManager</td><td class="n">44</td><td class="n">0.4</td></tr>
+    <tr><td>EuphorrixSpellAnnouncerV2</td><td class="n">13</td><td class="n">0.2</td></tr>
+    <tr><td>ForeverLogsCompanion</td><td class="n">14</td><td class="n">0.2</td></tr>
+    <tr><td>CountSteps</td><td class="n">3</td><td class="n">0.0</td></tr>
+    <tr><td>SpokenContributions</td><td class="n">2</td><td class="n">0.0</td></tr>
+    <tr><td>SpokenAll</td><td class="n">3</td><td class="n">0.0</td></tr>
+    <tr><td>SpokenQuestsAudio</td><td class="n">3</td><td class="n">0.0</td></tr>
+  </table>
+  <p class="note" style="margin-top:9px"><b>Families</b> — WhatsItFor ×6; Spoken ×5. The largest is <b>WhatsItFor</b> at 6 folders — the Spoken stack alone carries recorded audio for quests, bosses, places and readables.</p>
+</section>
+<section>
+<h2 id="fractures" class="sec">Fractures<small>what is broken, what is missing, what is merely odd</small></h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+    <div class="card"><div class="k">AddOn load failure</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">11/10 02:02:47.934  Interface/AddOns/RaiderIO/RaiderIO_Camelot.toc:21 Error loading Interface/AddOns/RaiderIO/db/db_client_recent_characters.lua</div></div>
+    <div class="card"><div class="k">Loudest Lua error</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">Lua Error: Interface/AddOns/EuphorrixSpellAnnouncerV2/Core.lua:397: attempt to call a nil value — ×32</div></div>
+    <div class="card"><div class="k">Stutter recorder</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">20 incidents, each a 150 ms frame; the addon also raises a Lua error on disable, visible in the console history.</div></div>
+    <div class="card"><div class="k">Two clocks disagree</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">/played totals 3h 41m 40s at 2026-11-10 01:22:41, while Raider.IO's playedSeconds says 4h 11m 50s at the same minute — 0h 30m 10s apart. Neither file is wrong; they count different things.</div></div>
+    <div class="card"><div class="k">No CombatLog</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">Logs\CombatLog.txt does not exist. Raider.IO is the only witness to kills and deaths, which is why every kill count on this page is an observed value, not a combat-log tally.</div></div>
+    <div class="card"><div class="k">SkillLine ids unmapped</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">The 1.60 client prints raw line ids (45, 95, 173, 51, 163, 183, 2980) without names. No names are invented here.</div></div>
+    <div class="card"><div class="k">Achievement criteria</div><div class="s" style="font-size:.78rem;color:var(--ink);margin-top:4px">three criteria carry progress (6 NPC kills, 2 humanoid, 4 unspecified) but no achievement is complete, so the journal shows counters, not badges.</div></div>
+  </div>
+</section>
+<section>
+  <h2 id="method" class="sec">Method &amp; Limits<small>how every number above was obtained</small></h2>
+
+  <div class="note">
+    <p><b>Read-only.</b> Nothing in <code>Z:\World of Warcraft\_forever_</code> was written,
+    moved or deleted. Every parser opens files for reading and nothing else.</p>
+    <p style="margin-top:6px"><b>One implementation.</b> Quest envelopes, progression checkpoints,
+    GPU samples and boot marks come from <code>frontier_extract.py</code>, imported rather than
+    copied, so this wing and the Frontier wing cannot disagree about the same file.</p>
+    <p style="margin-top:6px"><b>Timestamps.</b> Client logs carry no year; the year is inferred
+    from the file's mtime. Epoch values (Raider.IO checkpoints, Goldmind, WoWTaskManager) are
+    rendered in this machine's local time. Where a fact is bracketed between two checkpoints, the
+    card says so instead of picking a second.</p>
+    <p style="margin-top:6px"><b>What is estimated.</b> Exactly one figure: the step count
+    (317.7 yards), which CountSteps derives from movement.
+    Copper, kills, deaths, quests, xp and played time are read straight out of the addon that
+    recorded them.</p>
+    <p style="margin-top:6px"><b>Regenerate.</b>
+    <code>python "Z:\World of Warcraft\_forever_\Dark_Portal\Timeline\chronicle_extract.py"</code>
+    — the prior render is archived to <code>_gewey_gui\.history\</code> first.</p>
+  </div>
+</section>
+<footer>
+  <p>The Chronicle · built 2026-11-10 03:07:12 · dataset
+  <code>Timeline\data\chronicle.json</code> · source <code>Z:\World of Warcraft\_forever_</code></p>
+  <p style="margin-top:5px">Generated by <code>chronicle_extract.py</code>. Additive wing — no
+  existing page, log or save was modified to make it. Item links resolve through Wowhead's tooltip
+  script when the page is served from an origin; over <code>file://</code> they are plain links to
+  the item page.</p>
+</footer>
+</div>
+</body>
+</html>

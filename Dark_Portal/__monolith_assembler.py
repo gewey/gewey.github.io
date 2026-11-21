@@ -33,7 +33,7 @@ VALID_TEXT_EXTENSIONS = {
 EXCLUDED_DIRS = {
     "__pycache__", ".git", ".github_cache", ".venv", "venv", "env",
     "node_modules", ".vs", ".vscode_cache", ".idea", ".pytest_cache",
-    "build", "dist", "eggs", "logs", "tmp", "temp"
+    "build", "dist", "eggs", "logs", "tmp", "temp", ".history"
 }
 
 EXCLUDED_FILES = {

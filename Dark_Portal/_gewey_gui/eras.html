@@ -1,6 +1,14 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Eras &mdash; the fossil record, 2008 &rarr; 2026 | Gewey G.U.I.</title>
@@ -101,18 +109,48 @@ a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
  layer existed &mdash; plus the ones that prove nothing, marked as such.</p>
  <nav class="panes" aria-label="Dashboard panes">
   <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
   <a href="_fuhevva_evva.html">Home</a>
   <a href="character.html">Character</a>
   <a href="legacy.html">Legacy</a>
   <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
   <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
   <a href="eras.html" aria-current="page">Eras</a>
   <a href="links.html">Link Vault</a>
   <a href="Timeline.html">Timeline</a>
   <a href="Delve.html">Delve</a>
   <a href="macrocosm.html">Macrocosm</a>
   <a href="gear.html">Gear</a>
-  <a href="Frontier.html">Frontier</a></nav>
+  <a href="Frontier.html">Frontier</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
 </header>
 
 <section id="method">
@@ -288,7 +326,7 @@ a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
     <tr><td>Midnight</td><td class="mono">Tandumonium_UI v0.11.0</td><td>authoring his own tooling, 2026</td><td><span class="tag t-f">hard</span></td></tr>
     <tr><td>WotLK</td><td class="mono">86-* GUID family + Shadowsong</td><td>realm is the account's oldest</td><td><span class="tag t-g">strong</span></td></tr>
     <tr><td>All eras</td><td class="mono">WorldFlightMap ghost row</td><td>the list predates the current addon set</td><td><span class="tag t-g">strong</span></td></tr>
-    <tr><td>Undead stint</td><td class="mono">(lore only)</td><td>a race detour happened, date unknown</td><td><span class="tag t-x">weak</span></td></tr>
+    <tr><td>Undead stint</td><td class="mono">armory: Tandu-Hyjal, race=Undead</td><td>the detour is real, and which handle wore it</td><td><span class="tag t-f">hard</span></td></tr>
     <tr><td>2008&ndash;2015</td><td class="mono">(nothing on disk)</td><td>that he played &mdash; not what he played</td><td><span class="tag t-x">weak</span></td></tr>
    </tbody>
   </table>
@@ -309,7 +347,11 @@ a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
    challenge that does not clear under automation. A logged-in human opening guild
    <code>7287</code> &rarr; Reports &rarr; 2018&ndash;2019 would give this page its
    first real DPS row. Everything else has been swept &mdash;
-   <a class="ext" href="raidlogs.html">see the sweep log</a>.</p>
+   <a class="ext" href="raidlogs.html">see the sweep log</a>. The pre-2018
+   decade is now measured rather than assumed:
+   <a class="ext" href="Origins.html">Origins</a> runs 33 exact-URL queries and
+   gets 31 empty answers plus a control, which is what an unarchived character
+   sheet looks like from the outside.</p>
   </div>
   <div class="card">
    <h3>What will not be found</h3>
@@ -318,8 +360,9 @@ a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
    Shadowsong, Thrall and Hyjal all return
    <span class="mono">archived_snapshots: {}</span> &mdash; the Armory was never
    crawled for these names. The guild page for
-   <code>/guild/borean-tundra/Gehenna/</code> <em>is</em> archived (2015-12-10),
-   but that snapshot predates the recorded tenure: guild history, not his.</p>
+   <code>/guild/borean-tundra/Gehenna/</code> holds no capture inside the
+   recorded tenure window: whatever the archive carries for that path falls
+   outside it, so it is guild history, not his, and is not recorded here.</p>
   </div>
  </div>
 </section>

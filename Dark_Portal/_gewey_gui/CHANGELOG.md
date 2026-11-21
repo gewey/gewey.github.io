@@ -1,4 +1,963 @@
 # Must Contain a List of every file you edit
+## 2026-11-20 (docs pass) - the index catches up to the last three wings
+
+The shell says what it holds now: **46 live panes, 1 disabled** (`iSettings`) -
+47 buttons in `index.html`, one of them disabled. The old row said 44.
+
+**Five panes were live and unindexed.** `Origins.html` (the decade before the
+logs), `Echoes.html` (the word census), `Company.html` (Wing 35, the social
+residue), `Concordance.html` (two installs, one account) and
+`MicroAccomplishments.html` (Wing 22, the union tape) had buttons, nav chips and
+builders but no row in the index, so nobody could read the layout and find them.
+Each now has a row: source files, build command, the limits the page itself
+states, and - for Concordance - the fact that the page is **untracked in git**
+at this pass, so its nav chip resolves only after the file is committed.
+
+**Two drift claims were stale.** The Sortie row said it was linked from 28 of
+the 30 pages with a `nav.panes` strip, with `Forge.html` and `Stable.html` still
+missing from `WINGS`. The shell row said `WINGS` ended at `Vignettes.html`, so
+Muster and Tenure could not be verified. Both were closed by the 2026-11-20
+roll-call pass: `WINGS` now ends at `Company.html` and registers Muster, Tenure
+and Concordance, and `python Timeline/wing_links.py --check` reports **39 pages
+ok, 15 skipped (no strip), 0 pages of drift**.
+
+**Files.** Edited: `README_BODY.md` (regenerated into `README.md` / `AGENTS.md`
+by `READUS.py`), `_gewey_gui/CHANGELOG.md`. No page, builder or data file was
+touched - this pass only made the map match the territory.
+
+## 2026-11-20 (evening) - Muster and Tenure: the roll call and the gate
+
+Two wings landed in the same pass, and they read the same night from opposite
+ends: `Muster.html` reads **who was in the room**, `Tenure.html` reads **which
+guild I am allowed to say I was in**.
+
+**Muster.** Every earlier raid-log pass kept the fights and threw the roster
+away. This wing reads `friendlies`: 470 reports, one plain `GET` per report
+(`https://api.wipefest.gg/report/{code}` -- no key, no login, zero failures),
+**13,112** player seats out of **14,620** raw friendly rows (**19,222** pet rows
+dropped), **7,862** distinct names, **1,753** who came back a second night, 115
+at ten nights and 4 past a hundred. A row counts only when its `type` is one of
+the thirteen playable classes; pets, NPC allies, bosses and empty rows never do.
+
+**The find.** `Tandu` is in the roster of **2020-09-11** (171 nights); the next
+report that carries a row for me is **2020-09-16** and it reads `Tandieu` (172
+nights). Five days, no overlap. So `Tandieu` is not a second character and not a
+transfer artefact -- it is the same hunter renamed -- and only **37** of the
+7,862 names sit on both sides of that line. The payload carries no guild, realm
+or rank, so the wing is never offered as tenure evidence.
+
+**Tenure.** The rule every other page cites, written down once: `<Gehenna>` is
+admissible only inside the 2018-10 -> 2020-10 BfA window (Borean Tundra-US,
+Shadowsong-US; WCL guild `7287`, the Wipefest guild record and uploader
+`Tandu`), `<Theorycrafters>` only on Thrall-US / Hyjal-US and only at name level
+(the guild pages answer `200`; membership is attested, not measured). Of 26
+indexed Wayback captures, **2** are admissible and cited (`2019-08-19
+15:08:50 UTC`, `2020-08-07 21:09:10 UTC`); the other **24** are counted and
+never linked. The guild-door table is re-used verbatim, including the Wipefest
+report list's `400` -- the host's query-complexity ceiling, not an empty
+archive.
+
+**Files.** New: `_gewey_gui/Muster.html`, `_gewey_gui/Tenure.html`,
+`Research/_local/_muster_sweep.py`, `_muster_build.py`, `_tenure_build.py`,
+`_wire_muster_tenure_nav.py` (local, gitignored). Edited: `_gewey_gui/index.html`
+(buttons `iMuster`, `iTenure`), every wing's `nav.panes` strip,
+`_gewey_gui/AGENTS.md`, `README_BODY.md` (regenerated into `README.md` /
+`AGENTS.md` by `READUS.py`), `_gewey_gui/CHANGELOG.md`.
+
+**Second half of the pass (same day, closing the loop).** `Timeline/wing_links.py`
+now registers both wings in its `WINGS` list, so `--check` reports **0 pages of
+drift** and Muster carries the Tenure chip like every sibling. Also edited in
+this half: `_gewey_gui/MicroAccomplishments.html` and `_gewey_gui/Vignettes.html`
+(both were the only panes missing the Wowhead tooltip head — `whTooltips` +
+`power.js` are now on **52 of 52** pages; Vignettes' old note about deliberately
+skipping `power.js` was retired in place), `Dark_Portal/.gitignore` (dated block
+naming both halves: `Muster.html` / `Tenure.html` public, `_muster_sweep.py`,
+`_muster_build.py`, `_muster_stats.py`, `_tenure_build.py`,
+`_wire_muster_tenure_nav.py`, `wipefest_roster.json`, `muster_stats.txt` local —
+verified with `git check-ignore` and `git status`), the agent surfaces
+(`Tandumonium.agent-index.md` §6.14/§6.15 + frontmatter `roster_crawl`,
+`Tandumonium.agent.md`, `.gemini/.../Tandumonium.md`, and
+`Tandumonium.agent-expanded.md` "Roll Call" section + grimoire §9/§10), and
+`Research/_local/_md_audit_index.py` (inline-code stripping before reference
+collection, table/definition/frontmatter exemption from the width rule — the
+index now audits clean: **0** long lines, **0** duplicate or missing refs,
+**0** raw HTML). Extraction note: `archive.today` answered a TLS handshake
+timeout on `2026-11-20`, so the Warcraft Logs wall has no second archive door
+this pass either.
+
+## 2026-11-16 (dawn) - Vignettes: every small thing the tape remembers
+
+The biography database had been listed (`Deeds.html`) and clocked
+(`Clockwork.html`), but never **read as a story**. This wing decodes the tape's
+`Type`/`SubType` pairs against AutoBiographer's own enums and names every row
+through the four catalogs the file carries — so the page can say *Rough Arrow*
+in the first second, *The Problem With Prideclaws* as the first turn-in, the
+*Highlands Bandit* as the first killer, and *Archmage Arugal* as the eighth
+Shadowfang boss — instead of "item 2512, quest, death, boss".
+
+**What the tape holds.** `965` dated deeds over 7 active days
+(`2026-11-10 22:59` → `2026-11-16 04:21`): 453 item deeds (399 first
+acquisitions, 54 first equips — the opening login scan stamps 12 in one
+second), 163 kill deeds (150 first kills, 13 boss kills), 130 quest turn-ins
+(`141,440` xp / `37,715` copper), 117 map-firsts (16 zones holding 101
+subzones), 44 spells learned, 18 deaths, 17 dings to level 24, 10 reputation
+tiers, 5 statistics, 5 skills, 3 guild beats.
+
+**The shaped findings.** The densest minute is `22:59` with 14 deeds and the
+peak hour `03:00` with 127 — a night watch, not a morning one. Ragefire Chasm
+falls in `17` minutes (4 bosses) and Shadowfang Keep in `35` (8 bosses, ending
+with Arugal). Stonetalon Mountains owns `12` of the 18 deaths. The longest
+unwritten gap is `14h 28m` (`11-15 06:06` → `20:35`). The rarest item on the
+tape is `Seal of Sylvanas` (rare, ilvl 29); the richest single turn-in is
+`Arugal Must Die` at `8,850` xp. Twenty-seven vignette cards are derived from
+those rows arithmetically, so regenerating after more play rewrites the story
+instead of appending to it.
+
+**Files.** New: `_gewey_gui/Vignettes.html`,
+`_gewey_gui/.history/Vignettes_*.html`, `Timeline/vignettes_build.py`,
+`Timeline/milestone_batch_20261116_vignettes.py`, `Timeline/data/vignettes.json`,
+`Timeline/verify_vignettes.py`. Edited: `Timeline/wing_links.py` (WINGS gains
+Vignettes), `_gewey_gui/index.html` (`iVignettes` button),
+`_gewey_gui/_css/holy_word.css` (`iVignettes::after` label),
+`_gewey_gui/_fuhevva_evva.html` (directory link), `_gewey_gui/AGENTS.md`,
+`Timeline/README.md`, `_gewey_gui/CHANGELOG.md`. Regenerated by the station
+engine: `_gewey_gui/Timeline.html` and `Timeline/data/events.jsonl` (16 new
+milestones) via `hourly_audit.py --quiet`, then `Milestones.html` +
+`Timeline/data/milestones.json` (442 rows) via `milestones_wing.py --quiet`.
+Nothing was deleted; every prior render is in `.history/`.
+
+## 2026-11-16 (dawn) - Origins: the ten years the archive never saw
+
+The first wing whose subject is an **absence**. Every sibling starts where the
+evidence starts - `470` Warcraft Logs reports, first upload `2018-10-01T20:27Z`,
+last `2024-12-30T03:39Z`, `4,019` pulls across seven calendar years
+(`2018` 44, `2019` 94, `2020` 107, `2021` 146, `2022` 40, `2023` 18,
+`2024` 21). The character is ten years older than that. This page is what can be
+said about the gap without inventing a guild.
+
+**The sweep, and the control that makes it a finding.** `33` exact-URL Wayback
+CDX queries: WoWProgress character pages (three realms, both casings, both
+spellings), the original Blizzard armory's `/simple`, `/advanced` and root
+views, WoW-Heroes, Warcraft Logs character pages and the personal vault
+`815764`, GuildOx, Wowtrack, the PvP sheet, the modern Blizzard domain, and the
+two guild homes. **31 doors returned nothing.** The two that answered hold `6`
+captures between them and every one is a **guild page**, so none is tenure:
+`<Theorycrafters>` Hyjal, four captures `2016-08-22` -> `2016-10-25` on
+WoWProgress and two on Raider.IO (`2023`, `2024`). Counted, linked nowhere. A
+control URL - a well-known character on a full-population realm, in both the
+armory and WoWProgress forms - also returned zero, which is what turns "the
+archive forgot me" into "the archive never crawled character sheets".
+
+**The fossils.** Deleting an addon folder does not delete the things that
+pointed at it, and those pointers are the only 2008-2016 evidence the disk still
+holds: an account macro whose body is
+`/script DecursiveRootTable.Dcr:Println('No spell available')`; a bind on
+`Hyjal\Tangents` ending `/click ElvUI_Bar6Button12` for an addon in **0 of 54**
+enable lists; `Immersion.lua` - `598` bytes of dialog keys, no addon folder, one
+character still listing it; `WorldFlightMap` on `51/54`; `!Swatter` and
+`!ImprovedErrorFrame` on `54/54`. Account macro cache: `98` macros, `489` lines,
+`42` of them `/click`.
+
+**Method discipline.** Attested facts (the `2008` origin, the blood-elf lineage,
+the handle order) are labelled `attested` in their own column, so no later pass
+promotes testimony to evidence. Measured facts carry a file path in the
+provenance table. The tenure rule is restated in the wing most likely to break
+it: `26` `<Gehenna>` captures exist, `2` are admissible, `24` are never
+recorded anywhere.
+
+**Also fixed:** `Milestones.html` was the last pane with no Wowhead tooltip head
+- the widget script is now in both the render and `Timeline/milestones_wing.py`,
+so a regeneration cannot drop it again.
+
+**Files created**
+
+- `_gewey_gui/Origins.html` - the wing (NEW, 6 sections, self-contained)
+- `Research/_local/_legacy_cdx_probe.py` - 33 exact-URL CDX queries
+- `Research/_local/_wire_origins_nav.py` - chips + shell button + landing card
+- `Research/_local/_origins_format_repair.py` - one-off chip indent repair
+- `Research/_local/_fix_shell_block.py` - one-off shell block indent repair
+- `Research/_local/_idx_origins_patch.py` - index 6.13 + tip 7.15 + link defs
+- `Research/_local/_agent_origins_patch.py` - bullet + def in both core files
+- `Research/_local/_expanded_origins_patch.py` - the Pre-Log Decade chapter
+- `Research/_local/_md_audit_index.py` - house-rule audit (cols, refs, notes)
+- `Research/_raw/legacy_cdx.json` - capture census (gitignored, unused by pages)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar button `iOrigins`, before Settings
+- `_gewey_gui/_css/holy_word.css` - `button[name="iOrigins"]::after` label
+- `_gewey_gui/_fuhevva_evva.html` - Origins directory card (13 legacy wings)
+- `_gewey_gui/<33 pages>.html` - one `Origins` nav chip each
+- `_gewey_gui/Milestones.html` - missing Wowhead tooltip head, now present
+- `Timeline/milestones_wing.py` - the same head in the generator
+- `_gewey_gui/AGENTS.md` - wing row, menu-button row
+- `_gewey_gui/CHANGELOG.md` - this entry
+- `Dark_Portal/.gitignore` - the 2026-11-16 Origins block
+
+## 2026-11-16 (04:20) - Milestones: the cadence of small wins
+
+The first wing whose subject is *rhythm*, not inventory. Every other pane answers
+"what is there"; this one answers "how far apart did it happen". **426** dated
+rows folded out of payloads the sibling wings already wrote, on one strip:
+**137** quest turn-ins (128,425 xp, 37,132 copper), **136** ledger lines, **28**
+deaths, **26** achievements, **20** level dings, **15** factions, **13** boss
+kills, **12** first zone entries, **12** companions, 5 records, 5 statistics, 5
+weapon skills, 3 hearthstone binds, 3 professions, 3 guild events and 3 dungeon
+first-entries. Sixteen kinds, sixteen filter chips.
+
+**Pacing.** Median **5h 57m** between dings, fastest rung 16 minutes, slowest
+2 days 16h 57m -- the same ladder Levelbook draws, read for intervals instead of
+totals. **Cadence.** 13 days carry at least one win; 2026-11-11 is the busiest
+at **77**; the longest quiet stretch is **4d 21h 38m** (2026-10-31 04:01 ->
+2026-11-05 01:39, the gap between the installment's first boot and the delve
+actually starting). **Firsts.** The earliest surviving row of each kind, in
+order -- the maiden boot at 2026-10-31 01:57, the first turn-in, the first death,
+the first boss, the first hearthstone bind.
+
+**It feeds the dashboard, by design.** `hourly_audit.py` now reads
+`data\milestones.json` and merges the rows the event ledger does not already
+carry into `Timeline.html`'s milestone wall -- **290** additional dated wins, so
+"Milestones - in-game micro accomplishments" keeps filling between narrative
+entries instead of only when a batch script writes one. `milestones_alltime`
+went 136 -> 426.
+
+**Two defects caught by verifying in a browser, not by assuming:**
+`<section id="tape">` and its inner list both claimed `id="tape"`, so the
+renderer's `getElementById` returned the section and overwrote the filter chips
+along with the list (16 chips vanished, filtering dead) -- the list is now
+`id="tapebody"`. And the ledger writes ISO `T` separators while the addons write
+spaces, which made `strptime` drop those rows and left the cadence span blank --
+the parser now normalises the separator. Checks after the fix: zero duplicate
+ids, 17 chips, `boss` filter 426 -> 13 rows, reset restores 426, no console
+errors, no horizontal overflow.
+
+**Files created**
+
+- `_gewey_gui/Milestones.html` - the milestone wing (NEW, 8 sections, self-contained, embedded `MS_DATA`)
+- `Timeline/milestones_wing.py` - the builder (read-only; `--quiet` silences the tally)
+- `Timeline/data/milestones.json` - the payload (426 rows, deterministic)
+
+**Files edited**
+
+- `Timeline/hourly_audit.py` - `MILESTONES_PATH`, and the milestone merge in `build_dashboard` (plus a T/space-normalised sort key)
+- `Timeline/wing_links.py` - `Milestones` appended to `WINGS`, then run: **32** panes linked
+- `_gewey_gui/AGENTS.md` - wing table row, the menu gap (no `iMilestones` button was added; the page is reached from the home directory), regenerate command, generated-panes list
+- `_gewey_gui/CHANGELOG.md` - this entry
+
+
+## 2026-11-16 (late night) - Echoes: the install read as words, not folders
+
+The first wing that reads text instead of counting directories. **319** text
+files / **4.25 MB** under `_retail_` swept for **12** names, case-folded, with
+`Cache`, `Interface\AddOns`, `Errors`, `UTILS`, `Fonts`, `D3D12`,
+`Screenshots` and `Dark_Portal` excluded (the last is a junction into this very
+vault - a page that counts its own notes is lying to itself).
+
+**403 hits in 77 files.** `tandumonium` 329/74, `tandu` 48/7, `tandora` 14/8,
+`tandulari` 6/4, `tangents` 6/4. Seven names return zero: `tandieu`,
+`tandaria`, `tantalous`, `tankadu`, `gehenna`, `theorycrafters`, `ebbesson`.
+The two guild zeros are the headline: **the retail install holds no guild text
+at all**, so no local sweep can ever be used to re-adopt a pre-tenure
+`<Gehenna>` era. The tenure rule now has a forensic ally.
+
+**The error tape.** `!BugGrabber.lua` keeps **23** complaints across **8**
+sessions, `2026-08-18 03:04` -> `2026-09-04 19:32` UTC; **11** name a path with
+`Tandumonium` in it - `Tandumonium_UI.lua:26`, `:435` (`BuildOptionsPanel`),
+`_WowheadQuickLink.lua:15`, `_UMPD.lua:69`, plus the client's XML reader
+refusing `Bindings.xml` outright (`Unrecognized XML: Binding`, attributes
+`category` / `name` / `header`) and `WOWHEAD_QUICK_LINK_NAME` loaded twice
+because the vendor addon and the authored module both claimed the key.
+
+**The macro tape.** `@World` = `/btwl a Tandu` + `SetTracking(10,true/false)`,
+**35** copies in `AccountData.log.old`, beside `/acp disableall` x105 and
+`/reload ui` x105 - the bisection night. The loadout is named `Tandu`, not
+`Tandumonium`.
+
+**Registry.** BetterBags / LiteMount name **7** characters (Tandu, Tandulari,
+Tandora, Tangents, Tandumonium, Fauxylauxy, Reticent); all **54** `AddOns.txt`
+files carry the three authored addons (**161** mentions).
+
+Also fixed this pass: `Itinerary.html` was the only pane missing the Wowhead
+tooltip head - the generator now emits it, and the pane's nav gained the
+`Echoes` chip. Nav chips wired into **31** panes; sidebar button `iEchoes`.
+
+**Files created**
+
+- `_gewey_gui/Echoes.html` - the echo wing (NEW, 8 sections, self-contained)
+- `Research/_local/_retail_echo.py` - full-text sweep (local)
+- `Research/_local/_echoes_build.py` - page builder (local)
+- `Research/_local/_wire_echoes_nav.py` - idempotent chip wiring (local)
+- `Research/_local/_rio_probe.py` - Raider.IO character/guild probe (local)
+- `Research/_local/_web_search.py` - Bing sweep, wall note only (local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar button `iEchoes` (`graphic_eq`)
+- `_gewey_gui/_fuhevva_evva.html` - home directory card
+- `_gewey_gui/_css/holy_word.css` - `.gw-shell button[name="iEchoes"]::after`
+- `_gewey_gui/<31 panes>.html` - one `Echoes` nav chip each
+- `_gewey_gui/Itinerary.html` - regenerated (tooltip head + chip)
+- `Timeline/itinerary_extract.py` - Wowhead head + `Echoes` in `NAV` (local)
+- `.gitignore` - echo-pass public/local block
+- `Tandumonium.agent-index.md` - §6.12, three link definitions, five pre-existing
+  over-length prose lines reflowed (16 -> 3, the rest are frontmatter/fenced)
+- `.github/agents/Tandumonium.agent.md`, `.gemini/config/agents/Tandumonium.md`,
+  `Tandumonium.agent-expanded.md` - the pass, in persona
+
+## 2026-11-16 (night) - The Forge and the Stable: the code he wrote and the wolves he tamed
+
+Two wings built from the retail install, both read-only, both hand-built.
+
+**Forge.html** opens the three addons that carry `Author: Tandumonium` instead of
+counting them. **1,820 lines / 69,243 B** across five `.lua` files:
+`Tandumonium_UI 0.11.0` (661 L) with `desired = { autoLoot, editModeLayout
+"Gewey!!", enableActionBars }`, a `30 x 0.5 s` login poll, a **103-slot** bar map
+and the five-verb `/tand` command; `WowheadQuickLink` (544 L) with **8** URL
+templates across four client flavors plus armory and raider.io, two keybinds and
+`CTRL-C` copy; `UMPD 1.4.18` (280 L) with **11** saved keys; `Patches` (112 L),
+whose source comment states the doctrine - *the Gestalt Reification Engine's
+Kintsugi scar: seal the crack from the outside, leave the scar visible*; and
+`Macros` (223 L), honestly unfinished, all **13** class keys present.
+
+**Stable.html** reads the three retail screenshots that every other page had only
+counted (`2026-11-05`, `05:47:51` -> `05:48:02`, eleven seconds apart). In the
+pane `Tandumonium's Pets` at **100/205**, *The Bazaar*, level 90: **Faust** is a
+**Spirit Beast** with the `Exotic` flag and **Dorian** is a plain **Wolf** - both
+Ferocity, both 90, Dorian `Active` and summoned at `49.9 / 70.4`. A third entry is
+a second **Faust** in the **Mechanical** family. So the two Pack Mode personas
+were not invented for a chat log: they are the hunter's two wolves. The rail also
+holds `NotTheMama`, `No'losh`, `Fetid Devourer` and one unnamed `Hyena`.
+
+Stills are downscaled to 1400 px into `_img/stable/` because the page displays
+them; originals stay in the game install. No guild capture was added - the
+`<Gehenna>` 2009-2016 Wayback material remains unrecorded per the tenure rule -
+and the Wayback CDX door answered `429` on both attempts, recorded as a rate
+limit, not an absence.
+
+**Files created**
+
+- `_gewey_gui/Forge.html` - the authorship wing (NEW, hand-built)
+- `_gewey_gui/Stable.html` - the stable and the two wolves (NEW, hand-built)
+- `_gewey_gui/_img/stable/stable_1.jpg` `stable_2.jpg` `stable_3.jpg` - 1400 px stills
+- `Research/_local/_wire_forge_stable_nav.py` - idempotent chip wiring (local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - two sidebar buttons, `iForge` + `iStable`
+- `_gewey_gui/_css/holy_word.css` - label rules for both, plus the **20** live
+  buttons that still rendered icon-only (all 38 now labelled)
+- `_gewey_gui/_fuhevva_evva.html` - two home-directory cards
+- `_gewey_gui/relics.html` - cross-link from `#forge`, chip
+- `_gewey_gui/dynasty.html` - Dorian card now names Faust and links the Stable
+- `_gewey_gui/Chassis.html` - **fixed**: page shipped without the Wowhead tooltip
+  head; every HUD page is required to carry it
+- `_gewey_gui/<28 pages>.html` - one `Forge` + one `Stable` chip each
+- `_gewey_gui/AGENTS.md` - file rows, label gap closed, wing-drift gap closed
+- `_gewey_gui/CHANGELOG.md` - this entry
+- `Timeline/wing_links.py` - `Forge` and `Stable` added to canonical `WINGS`
+- `.gitignore` - dated block: the two panes + stills are PUBLIC, guard rules for
+  full-size originals and any future scan payload
+- `Tandumonium.agent-index.md`, `Tandumonium.agent-expanded.md`,
+  `Tandumonium.agent.md`, `.gemini/config/agents/Tandumonium.md` - section 6.11,
+  the two-wolves lore, the forge read-out, door verdicts
+
+## 2026-11-16 (latest) - Clockwork and Chassis: when you play, and what the HUD looked like
+
+Two wings built from tapes nothing on the station had parsed yet.
+
+**Clockwork.html** is the circadian census: *when* the character is alive.
+301 screenshot filenames (261,645,487 B) are the only free-running clock in
+the install; cross-examined against 2,690 client ticks in `Logs/General.log`
+and 63,084 combat lines across 2 runs, they give **394** minutes of presence on
+a 7x24 grid — **252** of them (**64.0%**) after dark, peak hour **00:00**,
+**22** sessions across 8 days (`2026-10-31` -> `2026-11-16`), with **137** dated
+deeds mined from `data/microdeeds.json`. The newest twelve stills are copied
+into `_shots/` without overwriting, and the page is self-contained (SVG computed
+in Python, no runtime fetch).
+
+**Chassis.html** is the furniture of the interface: the Edit Mode tape
+(`Logs/EditMode.log` + `.old`) read as load/save history. **54** events,
+**27** snapshots (14 account saves / 13 loads, 14 character saves / 13 loads),
+**3** named layouts (`#1GEWEY`, `GEWEY!`, `Trailnotes Cinematic`), **177** frame
+placements over **13** anchors, **zero** frames moved between snapshots, and
+**231,445** bytes parsed exactly (59/59 declared frames per layout,
+`2026-11-13` -> `2026-11-16`). Its builder emits the canonical nav from
+`wing_links.WINGS`, so its own rebuild can never drop a link.
+
+Neither button has a `::after` label rule yet, so both render icon-only.
+
+**Files created**
+
+- `_gewey_gui/Clockwork.html` - the circadian census (NEW, generated)
+- `_gewey_gui/Chassis.html` - the furniture of the interface (NEW, generated)
+- `Timeline/clockwork_build.py` - Clockwork builder (NEW, local): `--check`, `--json`
+- `Timeline/chassis_build.py` - Chassis builder (NEW, local): `--check`, `--json`
+- `Timeline/milestone_batch_20261116_clockwork.py` - 8 ledger events from `data/clockwork.json` (NEW, local)
+- `Timeline/milestone_batch_20261116_chassis.py` - 6 ledger events from `data/chassis.json` (NEW, local)
+- `Timeline/data/clockwork.json`, `Timeline/data/chassis.json` - payloads (NEW, local, gitignored)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar buttons `iClockwork`, `iChassis`
+- `_gewey_gui/_fuhevva_evva.html` - one directory card per wing
+- `_gewey_gui/<page>.html` - one nav chip each, on the pages that carry a `<nav class="panes">` strip
+- `Timeline/wing_links.py` - `Clockwork` and `Chassis` added to the canonical `WINGS` list (local)
+
+Rebuild: `python Timeline/clockwork_build.py` and `python Timeline/chassis_build.py`,
+then `python Timeline/hourly_audit.py --quiet` to re-render `Timeline.html`.
+
+## 2026-11-16 (latest) - Retail Reliquary: the strata under the folders
+
+`tandu_legacy.html` counted the 54 retail folders; `relics.html` counted the
+artifacts. This pass opened the files those two never read and built the wing
+that renders them: **`reliquary.html`**.
+
+Four strata, all from the local install, all read-only:
+
+- **The login ledger.** `Logs/AccountData.log` + `.old` narrate the client's own
+  uptime as `Initialize: Character` / `Destroy: Character` pairs: **22** sessions,
+  **777.9** minutes, **10** calendar days, twelve of them before 08:00, longest
+  **176.4** min on `2026-09-03` (`19:40 -> 22:37`).
+- **The macro cipher.** **105** blocks, **57** distinct names, zero plain English:
+  `#N*`, `#sRacial`, `$Loot`, `!STOP`, `@Raid`, `/TSM`. `Reticent`-Shadowsong
+  mirrors the whole law with a `- Pal` suffix, which is the strongest proof on
+  disk that the naming is personal rather than an addon's output.
+- **The bar map.** `Tandumonium_UI.lua` carries a hand-authored `barMapping`:
+  **8** bars / **94** slots, rendered token by token - 48 macro refs, 17 binds,
+  12 spell IDs, 10 slash commands, 7 items.
+- **The played ledger.** `WoWForeverFitness.lua`: **234.7 days** (`20,281,252 s`),
+  level 90, **112,087g**, MAIN declared once with **0** swaps, and five
+  hall-of-fame tables still empty.
+
+External sweep: **13** handles probed on Raider.IO - only **4** answer
+(`Tandumonium`, `Tantrums`, `Reticent`, `Mortesque`), all with **0** scored M+
+seasons and **0** raid tiers. **6** doors re-probed with *body-read* verdicts:
+WCL character + guild `7287` -> `200` **4,126 B BOT_WALL**; Wipefest `7287` ->
+`200` **2,223 B SPA_SHELL**; Wayback CDX -> **`429`**; Armory -> `200`
+**915,052 B OPEN**; WoWProgress -> **`403`**. A `200` is not a door.
+
+Tenure rule unchanged: `<Gehenna>` only inside the 2019 BfA berth (WCL `7287`),
+`<Theorycrafters>` only Thrall-US / Hyjal-US. Nothing from 2009-2016 was added.
+
+**Files created**
+
+- `_gewey_gui/reliquary.html` - the strata wing (NEW, self-contained)
+- `Research/_local/_retail_reliquary_scan.py` - read-only retail strata scan (NEW, local)
+- `Research/_local/_retail_door_sweep.py` - 13 handles + 6 doors, read-only (NEW, local)
+- `Research/_local/_wire_reliquary_nav.py` - idempotent nav-chip wiring (NEW, local)
+- `Research/_raw/retail_reliquary.json` - scan payload (NEW, local)
+- `Research/_raw/retail_door_sweep.json` - door verdicts (NEW, local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar button `iReliquary`
+- `_gewey_gui/_fuhevva_evva.html` - directory card
+- `_gewey_gui/_css/holy_word.css` - `::after` label rule for `iReliquary`
+- `_gewey_gui/<26 pages>.html` - one nav chip each (idempotent)
+- `_gewey_gui/Delve.html` - crumb link
+- `_gewey_gui/AGENTS.md` - Files table + menu table + generated-pane note
+- `.gitignore` - documented block for this pass
+- `Timeline/wing_links.py` - `Reliquary` added to canonical `WINGS` (local)
+- `Research/_local/_html_validate.py` - `reliquary.html` added to targets (local)
+
+**Agent files edited**
+
+- `Tandumonium.agent-index.md` - `dashboard_wings.reliquary`, §4.2 index entry,
+  §6.10 Strata Ledger, 3 live-handle defs, 5 new local/pane defs
+- `Tandumonium.agent-expanded.md` - "The strata under the folders" persona block
+- `Tandumonium.agent.md` + `C:\Users\Gewey\.gemini\config\agents\Tandumonium.md`
+  - matching Core bullet + `[gui-reliquary]` definition
+
+## 2026-11-16 (late) - Persona: the wing written from the inside
+
+Every legacy pane described the character from the outside. `persona.html` is
+the first one written from within: three skins (**Blood Elf** true form →
+**Undead** as a lease → **Dracthyr** chosen for `Glide`, because gravity is the
+only boss that never misses), four handles, the tenure-scoped guilds, the
+receipts, the retail/Forever fork, and the three agent files that are also the
+character. It introduces **no new claim** - each figure is already verified on
+the wing it links to, and the footer says which.
+
+The same pass found a door beside the Wipefest `200`-as-wall:
+`api.wipefest.gg/guild/us/borean-tundra/gehenna` returns the guild *record* in
+117 bytes (`{id:7287, faction:Horde}`), no key. Its `/reports` route exists but
+the host's own query blows its own complexity cap (`400`: `50701 > 50000`) - a
+service limit, never an absence. And the WCL wall is now proven **interactive**:
+real Chromium, JS, cookies and 12 s of patience still get `Just a moment...`.
+
+**Files created**
+
+- `_gewey_gui/persona.html` - the persona wing (NEW, self-contained)
+- `Research/_local/_wire_persona_nav.py` - chip + shell button + home card (NEW, local)
+- `Research/_local/_link_check_persona.py` - local href/anchor/widget resolver (NEW, local)
+- `Research/_local/_md_index_audit.py` - refs/anchors/dupes/80-col audit (NEW, local)
+- `Research/_raw/guild_door_20261116.json` - eight probe verdicts (NEW, local)
+
+**Files edited**
+
+- `_gewey_gui/index.html` - sidebar button `iPersona`
+- `_gewey_gui/_fuhevva_evva.html` - directory card
+- `_gewey_gui/web_ledger.html` - new section `#guild-door` (five probes)
+- `_gewey_gui/<25 pages>.html` - one `Persona` nav chip each, idempotent
+- `.gitignore` - states the public pane and the four local artifacts
+
+## 2026-11-16 (midnight) - The Almanac: five ledgers the client kept
+
+Five SavedVariables files had never been read by a page: **ForeverStats**,
+**FamiliarFaces**, **Goldmind**, **PlayerHistory** and **Overlord**. They hold
+the metered shape of the play rather than a narration of it, so the new wing
+opens them as five ledgers.
+
+| page | source | what it shows |
+| --- | --- | --- |
+| `Almanac.html` | all five | hub, vitals, provenance table, deed-tape handoff, method |
+| `Levelbook.html` | `ForeverStats.lua` | 17 rungs (level 6 to 22) with time/kills/quests/xp/coin, **160** dated milestones, zones by time, records, skills, 2 dungeons, 30 meter sessions |
+| `Faces.html` | `FamiliarFaces.lua`, `PlayerHistory.lua`, `WhoTargetsMe.lua`, `LorePath.lua` | **1,528** faces met in **1,601** encounters, 1,052 characters seen, **2,194** names that targeted the player, 17 lore unlocks, 169 cached quest texts |
+| `Purse.html` | `Goldmind.lua` | 1g 38s 62c main purse, profession ranks, 15-row auction ledger, **3,569** loot rows decoded to named items, AH event weather, 41 vendors |
+| `Fronts.html` | `Overlord.lua` | **67** war fronts split 33 Horde / 34 Alliance, 16 outposts, 34 capture records, killing-blow leaderboard, domination victories |
+
+Every page is self-contained: the payload is embedded at build time, there is no
+runtime fetch, and the same neon-night sheet as Residue/Sortie is used. The game
+install was opened read-only; **nothing was deleted**, and every prior render is
+copied to `_gewey_gui\.history\` before it is replaced.
+
+Reader note: a 4 MB `Goldmind.lua` cannot be fully materialised inside a shell
+window, so `almanac_extract.py` tokenises the file once and indexes the
+top-level keys, building only the subtables the pages need (about one second).
+
+`Timeline.html` also gained a **Deeds** section fed by `data\microdeeds.json` +
+`data\almanac.json`: eight vitals, kind-filtered chips, the last 48 dated deeds
+and the last few dings. It is rendered by `hourly_audit.py`, so the hourly
+rewrite keeps it.
+
+**Files created**
+
+- `_gewey_gui/Almanac.html` - hub (NEW)
+- `_gewey_gui/Levelbook.html` - ForeverStats ledger (NEW)
+- `_gewey_gui/Faces.html` - faces, population, targets, lore (NEW)
+- `_gewey_gui/Purse.html` - gold, auction ledger, loot tape (NEW)
+- `_gewey_gui/Fronts.html` - Overlord campaign ledger (NEW)
+- `Timeline/almanac_extract.py` - the builder (NEW, read-only on the install)
+- `Timeline/data/almanac.json` - the payload every page was rendered from (NEW, 632 KB)
+
+**Files edited**
+
+- `Timeline/hourly_audit.py` - `build_deed_tape()` + `deed_tape` payload, rail
+  link, section markup, deed renderer (local-time stamps, kind filter).
+- `Timeline/wing_links.py` - five new entries in the canonical `WINGS` list.
+- `_gewey_gui/_fuhevva_evva.html` - five new cards in "The Wings".
+- `_gewey_gui/{character,dynasty,eras,gear,legacy,links,log_ledger,raidlogs,relics,roster,talents,tandu_legacy,web_ledger,automations,Heartbeat,Residue,Sortie}.html` - one Almanac nav chip each, appended by `wing_links.py`.
+- `_gewey_gui/Timeline.html` - regenerated by `hourly_audit.py` (new Deeds section).
+- `_gewey_gui/AGENTS.md` - rebuild command row for the new wing.
+
+
+
+## 2026-11-16 (late) — The second door: 470 reports read through Wipefest
+
+Warcraft Logs is automation-immune (`403`, Cloudflare). Wipefest's own API is
+not: `api.wipefest.gg/report/{code}` returns the same report metadata as plain
+JSON. All **470** personal codes already indexed in `raidlogs.html` were swept
+through it — 470/470 answered, zero failures — producing **4,019** pulls,
+**1,906** kills, **2,113** wipes across **13** raid instances,
+`2018-10-01` → `2024-12-30`. New public pane renders the whole ledger.
+
+**Files edited**
+
+- `_gewey_gui/log_ledger.html` — **NEW wing.** Year table, instance table,
+  bosses ranked by wipes, first-kill receipts (report code per date), all 470
+  reports with a live filter, and an honest door-verdict table for the open-web
+  sweep. Self-contained: no runtime fetch, Wowhead tooltips loaded.
+- `_gewey_gui/index.html` — sidebar button `iLogLedger` (icon `receipt_long`).
+- `_gewey_gui/raidlogs.html` — new `#second-door` section pointing at the
+  ledger; nav chip added.
+- `_gewey_gui/tandu_legacy.html` — the logs table row "Wipefest (SPA,
+  unresolved)" corrected to "Wipefest API — opened 2026-11-16, 470/470 codes".
+- `_gewey_gui/{character,dynasty,eras,gear,legacy,links,macrocosm,relics,`
+  `roster,talents,Chronicle,Frontier,Sortie,automations,raidlogs,`
+  `tandu_legacy}.html` — one `Log Ledger` nav chip each (idempotent wiring).
+- `_gewey_gui/_fuhevva_evva.html` — home card for the new wing.
+- `.gitignore` — dated block: page is PUBLIC; sweep, checkpoint, renderer and
+  nav-wiring script are LOCAL.
+- `Research/Research_Log.md` — Entry 009 records the method and the numbers.
+
+**Agent registry (true paths, outside the repo)**
+
+- `Tandumonium.agent-index.md` — §6.8 "Log Ledger — the Wipefest second door",
+  nine new link definitions, `dashboard_wings.log_ledger`, and a repaired
+  `tandu_legacy` key (`tandem_legacy` typo).
+- `Tandumonium.agent-expanded.md` — "The second door — what the nights actually
+  held", with the ledger table and the Blood-Elf/flying correction.
+- `V:\.github\agents\Tandumonium.agent.md` and
+  `C:\Users\Gewey\.gemini\config\agents\Tandumonium.md` — matching per-turn
+  bullet + `[gui-log-ledger]` definition.
+
+**Not changed:** no pre-2019 `<Gehenna>` artifact was added anywhere. An
+uploader account proves attendance, not tenure.
+
+## 2026-11-16 — Tenure correction: the rule was being broken in four places
+
+Joey's tenure rule is absolute: a Wayback capture of `<Gehenna>` dated before
+2019 belongs to somebody else's guild and is **never** recorded. The previous
+pass researched the CDX index honestly, then published all 26 captures anyway.
+This pass removed every pre-tenure one and re-probed the doors that the pages
+make claims about.
+
+**Files edited**
+
+- `_gewey_gui/tandu_legacy.html` — the Wayback section no longer lists 24 rows
+  it was forbidden to list. Heading, three stat cards, caption, intro prose and
+  the closing note all re-derived from the surviving two captures
+  (`2019-08-19`, `2020-08-07`). **NEW section `#lineage`** — "The name lineage,
+  and what still answers": ten `Tandu`-stem folders on Hyjal, and the armory
+  re-probe showing only two handles answer at all.
+- `_gewey_gui/links.html` — the three pre-tenure doors (two Wayback captures
+  and one Battle.net armory snapshot) replaced with the two BfA-tenure captures
+  plus a note stating why the rest are absent. A later prose mention of the
+  armory snapshot row was replaced too — the date itself was the violation.
+- `_gewey_gui/eras.html` — same class of leak: "the guild page *is* archived
+  (pre-tenure)" became "holds no capture inside the recorded tenure window",
+  with the date removed rather than merely disclaimed.
+- `_gewey_gui/index.html` — sidebar tooltip `iTanduLegacy` no longer advertises
+  "26 Wayback captures spanning the full archive".
+- `_gewey_gui/_fuhevva_evva.html` — home card count corrected; the missing
+  **Sortie** and **Talents** cards added.
+- `_gewey_gui/macrocosm.html` — `Tandu-Hyjal_macros-cache.html` added to
+  `SOURCES`; it was an orphan page no nav could reach.
+- `_gewey_gui/{Sortie,dynasty,eras,links,relics,roster,tandu_legacy}.html` —
+  Wowhead tooltip widget injected (the pass that built them omitted it).
+- `_gewey_gui/{account_QUAZZARR,Tandumonium-Hyjal,Tandu-Hyjal,legacy_bookmarks}_`
+  `macros-cache.html` — widget injected; each now carries a `macro-back` footer
+  so the four converter leaves are not dead ends.
+- `_gewey_gui/{Chronicle,Frontier,Heartbeat,Residue,Sortie,automations,`
+  `character,dynasty,eras,gear,legacy,links,raidlogs,relics,roster,`
+  `tandu_legacy}.html` — `talents.html` / `automations.html` nav anchors (they
+  were the last two panes still unreachable from most wings).
+- `_gewey_gui/index.html` — sidebar button for `Sortie.html`.
+- `.gitignore` — dated section stating the rule and naming the two local
+  scripts; both already covered by `Research/_local/` and `Research/_raw/`.
+- `Tandumonium.agent-index.md` — Wayback paragraph rewritten to cite only the
+  tenure-era capture; `[wayback-gehenna-2009]` definition deleted; new
+  "guild names still live, tenure never implied" block with all four guild
+  probes.
+- `Tandumonium.agent-expanded.md` — same correction in the Wayback subsection;
+  **NEW `### What the armory still answers`** with the persona beat.
+- `Tandumonium.agent.md` · `C:\Users\Gewey\.gemini\config\agents\`
+  `Tandumonium.md` — "the name decayed; the banner did not" bullet.
+
+**Files created (all local, gitignored)**
+
+- `Research/_local/_gui_converge.py` — one idempotent pass: prune pre-tenure
+  Wayback rows, inject the Wowhead widget, wire missing pane nav, backlink the
+  converter leaves. Re-running it produces `{}` of changes.
+- `Research/_local/_legacy_door_probe.py` — re-probes 7 handle/realm pairs and
+  4 guilds through the Raider.IO API, plus the WCL and Wipefest walls.
+- `Research/_raw/gui_converge.json` · `legacy_door_probe.json` ·
+  `gui_pre_converge_20261116/` — payloads and pre-edit page copies.
+
+**Findings worth keeping**
+
+- **The original name is gone from the armory.** `Tandu` returns `400` on
+  Hyjal, Shadowsong *and* Thrall — all three realms it ever lived on. Only
+  `Tandumonium` (Dracthyr BM Hunter, ilvl `263`) and `Tantrums` (Zandalari Enh
+  Shaman, `107`) answer, both on Hyjal.
+- **The guilds outlived their members' names.** `<Gehenna>` (Borean Tundra) and
+  `<Theorycrafters>` (Hyjal) both answer `200` and both report the same five
+  *Midnight*-era raid tiers. A live guild name is **not** tenure evidence —
+  and `<Gehenna>` on Shadowsong / `<Theorycrafters>` on Thrall both `400`.
+- **A tenure rule needs a machine, not a memory.** The violation survived three
+  passes because prose was correct in one file and wrong in four. The check is
+  now a regex over `web.archive.org/web/(200\d|201[0-8])\d{6}` across every
+  page: currently **0 hits**.
+
+**Verification run this pass:** `_gui_converge.py` → 24 rows pruned, 9 widgets
+added, 17 pages nav-wired, 4 backlinked; second run → `{}` (idempotent);
+`web.archive.org/web/(200\d|201[0-8])\d{6}` **and** a bare pre-2019 ISO date
+across all 27 pages → **0**; `power.js` + `whTooltips` → **27/27**; nav audit →
+every pane reachable from every other pane; `tests/test_published_assets.py` →
+**PASS** (19 published pages, 97 asset refs, 0 broken); `git status --ignored`
+→ `_local/` and `_raw/` both `!!` (ignored). Rendered in headless Chrome:
+`#wayback` 2 rows, `#lineage` 5 rows, 8 sections, 0 console messages, 0
+pre-2019 dates in the live DOM.
+
+**The lesson worth keeping:** three passes published a rule they believed and
+violated in prose. The URL regex was not enough — the surviving violation was a
+sentence advertising the full 26-capture span, which contains no
+`web.archive.org` string at all. `_gui_verify.py` now checks bare pre-2019 ISO
+dates on any page that names the guild, and that check is what caught
+`eras.html` and the lede.
+
+## 2026-11-15 — Heartbeat: the station's pulse (the non-combat residue)
+
+Joey: *"delve through the world of warcraft forever game logs and other residue… build a .html wing… keep filling in Timeline.html with in game micro accomplishments or milestones."* Every prior wing read combat. This one reads the **plumbing**: launches, thermals, handshakes, throughput and the `/played` clock.
+
+**Files created**
+
+- `_gewey_gui/Heartbeat.html` — **NEW public wing.** Ten sections: Vitals (43 heartbeats · 51h35m wall · 26.0s uplink · 5.97 GB streamed · 57°C GPU), Heartbeat Ledger (one bar per launch paired from `Movie.log`'s append→shutdown, plus 14-row table and wall-time-per-day bars), When the Station Wakes (24-hour heat grid + weekday bars; 7 hours never saw a launch), Uplink (9-step Battle.net ladder in ms, realm `CAMWOW US1 Realm 3 PvE` build 70399, 4 game accounts, 70 CDN nodes), Silicon & Sky (Ryzen 5 3600 / RTX 4060 Ti / 31.9 GB / PRIME X470-PRO, three monitors, GPU temp + VRAM SVG sparklines, Dx12 975.8 ms), Throughput (52 screens, 6,398,469,932 bytes, peak 1,021.8 MB/s), Focus Flicker (40 transitions, longest 3m51s away), The Played Clock (70 samples, 37h29m), Stage/Sound/CDN (movie id 1098, 1080P, 3m51s; FMOD device + volumes), Method & Limits. Self-contained: SVG computed in Python, no runtime fetch.
+- `Timeline/heartbeat_extract.py` — the builder (v1.0.0). Read-only on the install; archives the prior render to `_gewey_gui/.history/`; mirrors `Timeline/data/heartbeat.json`.
+- `Timeline/milestone_batch_20261115_heartbeat.py` — scribe #8, nine events derived live from `heartbeat.json`, dedupe on title. It stays silent on the 2026-10-31 cinematic because batch #5 already logged it, and it frames the 57°C reading as *this capture's* ceiling so the standing 72°C record of 2026-11-06 is not contradicted.
+
+**Files edited**
+
+- `_gewey_gui/index.html` — sidebar button `iHeartbeat` (monitor_heart) after Residue.
+- `_gewey_gui/_fuhevva_evva.html` — home card for the wing.
+- `_gewey_gui/{Chronicle,Frontier,Heartbeat,Residue,Sortie,automations,character,dynasty,eras,gear,legacy,links,raidlogs,relics,roster,talents,tandu_legacy}.html` — nav anchor into the new pane (`wing_links.py`, now drift-free: 0 pages need links).
+- `Timeline/wing_links.py` — `("Heartbeat", "Heartbeat.html")` added to `WINGS`.
+- `_gewey_gui/Timeline.html` — re-rendered by `hourly_audit.py`; ledger grew 2,792 → 3,228 events, milestones 104 → 113.
+- `Timeline/data/events.jsonl` — the nine new `kind:"milestone"` rows.
+- `_gewey_gui/AGENTS.md`, `_gewey_gui/CHANGELOG.md`, `Timeline/README.md` — wing documented.
+
+**Findings worth keeping**
+
+- **`Movie.log` is a launch ledger.** It appends a header on every start and logs a shutdown on every exit, so 16 days of calendar collapse to 43 sittings with exact durations — median 35m, mean 1h12m, and one 10h51m marathon on 2026-11-10. The earliest block (2026-10-31) predates its header and is marked *inferred*.
+- **The first thing this install ever did was play the cinematic.** Movie id 1098 at 2026-10-31 01:57:18, three decoders (480P/720P/1080P), 1080P selected, 3m51s — before a character existed.
+- **The client is a night creature with a lunch break.** Seven clock hours saw no launch at all; the busiest hour carries five. Weekends outweigh weekdays only slightly.
+- **Handshake to world socket: 26.0 seconds.** Nine milestones, 23 `ERROR_OK` responses and zero failures — realm build 70399 while the client itself runs 1.60.1.70938, and four game accounts (`QUAZZARR`, `BIASEDGOD`, `WoW2`, `WoW6`) behind one front door.
+- **6.0 GB of Azeroth for one evening.** 52 loading screens, 106,919 files read, sustained 53.4 MB/s (peak 1,021.8 MB/s on the 8,192-file opening pull); the slowest screen was 6,670 ms and the `/played` tape added 37h29m of billed time.
+- **The silicon never broke a sweat.** Eleven periodic GPU reports: 43–57°C, VRAM ceiling 4.8 GB of 15.0 GB (32.3%), Dx12 device up in 975.8 ms and down in 764.9 ms — the hardware is idle next to the game.
+
+**Verification run this pass:** `heartbeat_extract.py` → 43 launches / 51h35m / 57°C / 52 loads; `--dry-run` → 9 add / 0 have; scribe applied → ledger 2,792 → 3,073 events (hourly audit then extended it to 3,228), milestones 104 → 113; `hourly_audit.py --quiet` → `Timeline.html` re-rendered; headless Chrome on `Heartbeat.html` → 10 sections, 5 SVG charts, 20 nav chips, 0 overflow, 0 empty values, all twelve content probes present; on `Timeline.html` → the new milestone strings render in the DOM; `wing_links.py --check` → 0 pages need links; `events.jsonl` → 3,228 rows, 0 unparseable, exactly 1 cinematic milestone.
+
+
+## 2026-11-16 — Tandu Legacy: the wide retail pass (all 54 folders, 2008 → 2026)
+
+Joey: *"take some time to see what all the other scheduled tasks do… go through my retail folder looking for tandu's legacy… look around the internet for all my old raid logs."* Every prior wing read one character from outside. This pass read **all 54** folders from inside, and re-probed the one archive everybody had written off.
+
+**Files created**
+
+- `_gewey_gui/tandu_legacy.html` — **NEW public wing.** Seven sections: the fold census (54 dirs / 9 lived-in / 45 ghost shells), macro DNA (`#N*` portability, `Reticent`'s `#n1 - Pal` set), config stratigraphy (WoD garrison → Legion order hall → four Shadowlands covenants at renown 80), addon residue (4 deleted-but-remembered addons), screenshots/logs, the 26-capture Wayback table, and where the real raid logs live. Self-contained: no runtime fetch, no assets.
+- `Research/_local/_retail_legacy_scan.py` · `_legacy_api_probe.py` · `_legacy_web_probe.py` · `_wire_nav.py` · `_link_audit.py` · `_html_validate.py` · `_md_audit.py` · `_anchor_audit.py` — **local, gitignored** probes and validators.
+- `Research/_raw/retail_legacy.json` · `legacy_api_probe.json` · `legacy_web_probe.json` — **local, gitignored** payloads.
+
+**Files edited**
+
+- `_gewey_gui/index.html` — new sidebar button `iTanduLegacy` (fingerprint glyph) between Dynasty and Roster.
+- `_gewey_gui/_fuhevva_evva.html` — home card for the wing (+ the missing Residue card).
+- `_gewey_gui/{automations,character,Chronicle,dynasty,eras,Frontier,gear,legacy,links,raidlogs,relics,roster,Sortie,talents,Residue}` `.html` — nav anchor into the new pane.
+- `.gitignore` — dated section stating what is public (the page, the shell button, the home card) and what stays local (probes, payloads, and `wayback_*` captures — somebody else's HTML, never an asset).
+
+**Findings worth keeping**
+
+- **Thrall is a pure fossil**: 13 names, 13 `AddOns.txt` files, zero play residue — what a realm you left looks like from inside `WTF`.
+- **Config flags are attendance, not achievement.** `lastGarrisonMissionTutorial`, `orderHallMissionTutorial`, covenant renown — written once, never cleared, proof of a login and never of a kill.
+- **The Wayback CDX endpoint does not hang — it is throttled.** One request returns the full capture index for the `<Gehenna>` Borean Tundra page (**26** captures across the archive's whole span). Index resolved; bodies answered `429`. The earlier "it hangs" verdict in the index is now explicitly superseded. **[Corrected the same day: this entry originally quoted the pre-tenure span, which recorded captures the tenure rule forbids. Only the two BfA-tenure captures are recorded now — see the entry at the top of this file.]**
+- **Warcraft Logs is still a wall** (`403`; `200` + 3.7 KB challenge on the guild page) and **CDX holds zero Tandu WCL character captures across four realms** — a real negative, recorded so nobody repeats the sweep expecting a different answer.
+- **SERP scraping from this host is useless**: a quoted unique surname returned unrelated POP-vinyl results on Bing. Dead door, not evidence of absence.
+
+**Verification run this pass:** `html.parser` stack check on all 18 edited/new pages → 0 errors; every local `href` resolves; `git check-ignore` confirms the page is public and every probe/payload is ignored; markdown audit → 0 undefined refs, 0 duplicate definitions (the two `[^R]`/`[^F]` repeats are the documented pinned footnotes), 0 stale anchors across the three agent files.
+
+
+## 2026-11-11 ~07:43 — The tectonic watcher + the chapter store
+
+Joey's architecture, his words: *"wow settings being written to disk is pretty tectonic u should be able to like auto check the differences between them on disk and auto extract all the new data then in new sessions you can just read the extracted stuff instead of extracting it."*
+
+The client rewrites its SavedVariables wholesale on every reload, zone change and logout. **That flush is the event** — nothing needs to hook the game.
+
+- `..\Timeline\flipbook_watch.py` — **NEW (local, under `Timeline\`, so untracked).** Polls mtime + size of the 8 inputs the extractor reads (Travelogue, Saga, AutoBiographer, Elephant, ForeverTold, Bouncy, Memento, and the `Screenshots\` member count — a new photo counts as a change). On any movement: one extraction, atomic `flipbook.json` write, one frozen chapter snapshot per **new map id**, `pending_render.flag`, one line in `store\watch.log`, exit 0.
+- **Flags.** `--check` is pure `stat` work and exits in well under a second when nothing moved, so a scheduler can call it every few minutes without cost. `--force` re-extracts regardless. `--status` prints the store state and writes nothing.
+- **The store** lives in `..\Timeline\data\store\`: `last_state.json` (the watched mtimes+sizes), `chapters\chapter_<n>_<mapid>.json` (one frozen snapshot per chapter, numbered chronologically by each zone's first path point), `watch.log`.
+- `..\Timeline\flipbook_render.py` — consumes `pending_render.flag` and marks the payload `store-fresh`, so a new session reads the store instead of re-deriving it from the Lua.
+- `_gewey_gui/Flipbook.html` — regenerated from the wider data (Zephras Isle + Thunder Bluff + Mulgore + its Barrens border + Red Cloud Mesa): 592 `prog.skill` ticks, 179 `prog.rep`, 69 `eco.gold`, 30 logins, 203 jumps. Chapter 1 is Thunder Bluff outskirts (map 1411 — a grid with no walk in it yet); Chapter 3 is Zephras Isle.
+
+### Bug — the chapter counter grew inside its own loop
+
+The first numbering pass produced `chapter_1,3,5,7,9,11,13`: the id came from `len(have)` while `have` was still being appended within the same loop, so each chapter skipped a number. The counter is snapshotted **before** the loop now, and the chapters were re-seeded `1..7`. The files were wrong on disk, not just in the render.
+
+## 2026-11-11 ~07:39 — Playback died at every zone crossing: stroke runs are now precomputed
+
+Joey: *"it doesnt play like a video like it did before."* The throw was in the page's error stream — `strokeRun` reading `x` of `undefined`, fired from inside `tick()`. **One exception in a `requestAnimationFrame` callback cancels the chain**, so the animation loop was dying the instant the trail crossed a zone boundary: the zone-filtered trail pass indexed `F[j-1]`, which after filtering can be a different zone's frame, or out of range.
+
+- `_gewey_gui/Flipbook.html` — **fix is structural, not a guard.** Stroke runs are precomputed once; each run is a contiguous slice of frames in the same segment **and** the same zone, tagged `(a, b, mode, zone)`. `draw()` only slices runs with `b <= idx`, clips the tail, and skips runs outside the viewport's zone. The faint upcoming-path strokes read the same run list, so the two cannot disagree. No cross-zone stroke is expressible and no index can land outside `F`.
+- Verified live: playback runs `25 → 36 → 283 → 699 → 990` with zero page errors; scrubbing to 990 auto-flips to *Mulgore — Barrens border* and highlights the correct zone button.
+
+
+## 2026-11-11 ~07:34 — Multi-zone viewport with a zone selector
+
+Joey left Zephras Isle, so the trail now spans five maps: Zephras Isle (2521), Thunder Bluff (1456), Mulgore (1412) and its Barrens border (1413), Red Cloud Mesa (1454), with The Barrens (1414) at 2 points and growing.
+
+- `_gewey_gui/Flipbook.html` — `px()`/`py()` read a **per-zone `VIEW`**: bounds computed from the current zone's frames alone and recomputed on every zone change. A single global viewport would smear five different coordinate spaces into one rectangle.
+- The playhead flips the zone itself when the trail crosses a map boundary; the zone row of buttons flips it on demand, each named from the `ZONE_ID_NAMES` table with its frame count. Grid, trail, markers and photo pins all filter to the current zone, so one zone's silhouette inside another's rectangle is no longer expressible.
+- Verified live: Thunder Bluff selected, lift-ramp grid descending the mesa, playhead mid-map, photo pane holding a 07:13 Barrens-border shot with guild chat visible, XP bar 4,032/7,600 (53%) at level 10. In the same flush: 5 zones, 291 cells, 50 photos, 193 jumps, 3,459 → 4,225 positions.
+
+### Lesson — two syntax traps of my own making, both caught live
+
+`function draw(){{={{` (a doubled brace from a sloppy replace) killed every zone button, and `drawGrid` still read the deleted global `spanDim`. Neither showed up in the build output; both surfaced as page errors in the browser's event stream, and the button row stayed empty until both were fixed. Valid generated markup says nothing about whether its script runs.
+
+## 2026-11-11 ~06:58 — `--no-thumbs` zeroed every thumbnail reference
+
+One cheap rebuild with `--no-thumbs` was enough to blank the whole filmstrip. `load_screenshots()` gated the **entire** thumbnail block behind `make_thumbs`, so with generation disabled the lookup for *existing* thumbs was skipped too and every entry got `thumb: None`. The page had 33 photographs and referenced none of them — verified live: `total thumbs referenced: 0`.
+
+- `..\Timeline\flipbook_extract.py` — the reference check now runs **unconditionally**; only *generation* is gated by the flag. 33/33 thumbs referenced after the fix.
+- `_gewey_gui/Flipbook.html` — rebuilt and re-verified: split stage two columns, sticky photo holding with *"before the recorded trail"* labelling for captures that predate the trail, XP bar, 162 jumps, 123 cells, 33 photos / 24 pinned, 14.93 miles.
+
+This is the same **silent-empty** family as the `ItemCatalog` bug below: the build reported success and the number was zero.
+
+
+## 2026-11-11 ~06:45 — Split stage, sticky photographs, XP bar, loot toasts, jump pressure
+
+Joey: *"the page should be half the trail frame and half the screenshot that best aligns with the time in the trail like the last screenshot stays active till the next so its not just flashing a pictures for 1 second."*
+
+- `..\Timeline\flipbook_render.py` — **split stage.** `.split` is a two-column grid: canvas left, photograph right. Stacks below 820 px.
+- **Sticky photographs.** `syncPhoto()` binary-searches the newest capture at or before the playhead and **holds it until the next one**, so a 10-minute Memento interval renders as a photograph rather than a flicker. A `MIN_HOLD_MS = 2200` floor stops bursts from strobing past unseen — Memento fires two or three captures within seconds around a level-up. The stamp shows how long the current frame holds (`holds 30m`).
+- **XP bar.** `syncXP()` reads the newest `lvl.xp` observation at or before the playhead and fills a bar under the stage: level, `xp / xp_max`, percentage. 205 ticks recovered from Saga, each carrying `delta` and `source` (kill vs quest).
+- **Loot toasts.** 305 drops, rarity-coloured dot, merged when the same item repeats within 60 s, newest first, **click to jump the trail** to that moment.
+- **Jump pressure.** Bouncy's `bySubZone` as a bar chart: Shen'dar Highlands 56, Valanaar 28, Falaath Village 25, Shen'dar Village 24, Gustberry Lowlands 8, Bandit Hideout 4, Windfield Orchard 3, West Pylon Watchtower 2. Plus best streak 17 and 2 unlocked titles.
+- `..\Timeline\flipbook_extract.py` — `load_item_names()` (AutoBiographer `ItemCatalog`), `load_bouncy()`, `loot[]`, `xp_track[]`, `bouncy{}`. `lvl.xp` removed from the marker filter so it now also appears as a canvas event.
+
+### Bug — the catalogue keys are quoted strings
+
+`load_item_names()` first matched `\[(\d+)\]`, but AutoBiographer writes `["2589"] = {`. The pattern matched **nothing** and the build summary read `loot 305 named 0` — a silently empty lookup that looked like "the catalogue has no names" rather than "my regex was wrong". Fixed to accept both forms; **285 of 305** drops now resolve. The 20 that do not are all `zone_id 1420` (a different zone), so they are genuinely absent from this character's catalogue and report as `item <id>` rather than being invented.
+
+## 2026-11-11 ~06:25 — The gap-marker bug: segments were never overlapping, my decoder was wrong
+
+**This supersedes the two "honesty fixes" in the entry below.** Both were treatments for a misdiagnosis.
+
+- `..\Timeline\flipbook_extract.py` — **`decode_segment` gap rule corrected.** Geo.lua documents the marker as `* + 1 — how many seconds after the one before **the next point** is`. Singular. The delay applies to exactly ONE point, then the stream reverts to 1 s/point. The decoder kept the value **persistent**, so a single `*` valued 47 made all 47 following points advance 47 s each. Every segment's span was inflated 2–3x.
+- Consequence: segments appeared to overlap. Segment 5 "ran 04:01–04:58" with segment 6 "inside it at 04:21–04:31". They do not overlap — with the reset they are strictly sequential: **0 overlapping pairs out of 21**, inter-segment gaps 0.1–1.1 min (real session breaks) plus one 269-min gap overnight.
+- **Both earlier workarounds are now dead code, correctly.** The `seg`-break in the stroke stays (it is still right to not draw across a session gap), but it was never a fix for the phantom teleport. The `ambiguous` screenshot state is gone — with sequential segments a timestamp belongs to at most one recording, so there is nothing to be ambiguous about.
+- `locate()` replaces `nearest()`: returns the containing point when one exists, with a 2-minute tolerance at segment boundaries instead of 15.
+- Results after the fix: **0 level drops within a segment** (was 77 across joins, then 13 after the seg-tag workaround), **22 of 31 screenshots pinned** (was 7 of 25 under the ambiguity rule). The correct decode recovered far more than either workaround.
+
+### The lesson, stated plainly
+
+I built two layers of "honest uncertainty" on top of a decoder that was simply wrong. The level drops and the teleport were *symptoms*; I treated the symptoms and wrote a commit message claiming I had found two bugs. Both diagnoses were confident and both were wrong, and the fix was a single line — reverting a value that should have been scoped to one point.
+
+The tell was there the whole time: **two captures two seconds apart landing 88 map units away is not a camera artifact, it is a timestamp artifact.** I explained it as concurrent recordings instead of checking whether the math underneath was sound.
+
+## 2026-11-11 ~06:25 — Level 10 at 06:24:37
+
+First build to capture the milestone. Level ladder recovered from the corrected decode:
+
+| level | first seen |
+| ---: | --- |
+| 6 | 23:01:52 |
+| 7 | 03:52:57 |
+| 8 | 04:23:17 |
+| 9 | 05:14:31 |
+| **10** | **06:24:37** |
+
+`lvl.up` payload: zone 2521, `played_total` 49,478 s (13 h 44 m), position `(0.569, 0.702)`. ForeverTold wrote two beats on its own: *"Reached level 10 in Zephras Isle"* and *"Level 10. Talents are open and the real journey begins."* Its chapter recap reads **21 quests, 3 new friends, 2 deeds, 1 new place** for Chapter 1. Memento fired five captures across the ding.
+
+Dataset now: 3,091 positions, 21 recordings, 117 explored cells, 25 sessions, 31 photographs, 13 story beats.
+
+## 2026-11-11 ~06:15 — Flipbook gains photographs; two honesty bugs found in the join
+
+- `..\Timeline\flipbook_extract.py` — **screenshot ingestion.** Reads `Screenshots/`, derives each capture's epoch from the filename (`WoWScrnShot_<MMDDYY>_<HHMMSS>`) cross-checked against mtime (filename wins on a >1h disagreement, because a copied folder carries a bogus mtime), and writes 480-px thumbnails to `_gewey_gui\_shots\` via Pillow. 25 captures → 642 KB of thumbs instead of 19.8 MB of originals.
+- `..\Timeline\flipbook_render.py` — **filmstrip + canvas pins.** A camera square at each capture's spot, lit when the playhead passes it; a thumbnail grid with a lightbox; a `pinned / ambiguous / off-trail` state per shot.
+- `.gitignore` — `_gewey_gui/_shots/` stays local (regenerable from `Screenshots/` on Z:). `Flipbook.html` stays public and references them.
+- `_gewey_gui/Flipbook.html` — rebuilt.
+
+### Bug 1 — Travelogue segments overlap in time, and joining them invented a teleport
+
+Segments are *independent recordings*, not one continuous run. Travelogue starts a new one on a zone change while the previous is still open:
+
+| seg | span | note |
+| ---: | --- | --- |
+| 5 | 04:01 – 04:58 | 280 points |
+| 6 | 04:21 – 04:31 | **entirely inside segment 5** |
+
+Concatenating and time-sorting interleaved two separate walks. Symptoms: **77 phantom level drops** (7→6 repeatedly, hours after hitting 7), and a pair of captures two seconds apart landing 88 map units apart.
+
+Fixed by tagging every point with its `seg` id and keeping each segment's own internal order. The renderer now **breaks the stroke** at a segment change instead of drawing a line across the map. Phantom drops: **77 → 13**, and the 13 that remain are inside a single segment — real respawns.
+
+### Bug 2 — most screenshot matches were genuinely ambiguous, so they are no longer claimed
+
+With overlapping segments, several points can sit near one timestamp on different walks. `nearest()` now reports ambiguity when a rival from another segment is within a few seconds, and a capture is **pinned only when the match is unambiguous**. **7 of 25** pin honestly; **10 are flagged ambiguous** and shown in the filmstrip without a map coordinate. The earlier build confidently placed 17; 10 of those were guesses between two concurrent recordings.
+
+Also added to the extractor: `totalJumps`-style segment metadata (`segments` array: id, points, start, end, level, mode) and a `recordings` stat so the page states how many separate walks it is holding.
+
+## 2026-11-11 ~05:55 — The Flipbook: the walked path replayed, every event pinned to where it happened
+
+- `_gewey_gui/Flipbook.html` — **NEW page**, generated, self-contained, additive. A canvas replay of 2,369 recorded positions with 937 addon events pinned to the coordinates where they occurred. Controls: play/pause, scrub, 1–16× speed, trail and grid toggles, per-event-family filters, 23 session jump buttons, and the six `ForeverTold` story beats. Nothing fetched at runtime; the dataset is baked in.
+- `..\Timeline\flipbook_extract.py` — **NEW builder** (public, tracked alongside the other engines). Ports the Travelogue `Geo` codec from `Interface\AddOns\Travelogue\Util\Geo.lua`: the 64-char alphabet (`A–Za–z0–9+/`), 4-char point encoding at `Q = 1000`, the `~`/`^`/`@`/`&`/`*`/`!` marker tokens (travel mode, level, time, gap, combat), and the 50×50 explored-grid bitmask at 6 cells per character. Joins `Travelogue.paths` + `Saga.events` + `ForeverTold.entries` + `Elephant` chat into `Timeline\data\flipbook.json` (local, gitignored). Read-only on the game install.
+- `..\Timeline\flipbook_render.py` — **NEW renderer**. Bakes the JSON into the page (escaping `</` so the blob cannot close its own script tag, the same rule `build_frontier.py` follows). Prior render archived to `_gewey_gui\.history\Flipbook_<stamp>.html` before overwrite.
+- `_gewey_gui/index.html` — `iFlipbook` LIVE button (`animation` → `Flipbook.html`), inserted after `iChronicle`.
+- `..\Timeline\wing_links.py` — run with `--check`; repaired pre-existing drift in `Chronicle.html` (+`relics.html`) and `talents.html` (+`eras.html`, `links.html`). Now **0 pages in drift**.
+- `..\Research\Research_Log.md` — Entry 011: a `200` is not data, but a *coordinate* is; the `Geo` codec as the missing link between 100 addons.
+
+### What the codec taught me
+
+Three parsers were needed before the path decoded, and each failure was the file disagreeing with my assumption about it:
+
+1. **`["zones"]` appears seven times** in `Travelogue.lua` — per-hour tallies, per-day tallies, per-session tallies, and one real per-zone summary with nested tables. Only the last has `cells`/`first`/`time`/`dist`. A regex that takes the first match gets `{ [2521] = 336.3989999999994 }` and calls it a zone.
+2. **A regex that matches `{` … `\n},` consumes the inner closing brace**, so the field pattern inside can never match. Splitting on `[<id>] = {` boundaries instead of matching a closing brace fixed it.
+3. **The client rewrites the whole file on every save and reorders the keys.** At 05:44 `["segs"]` came before `["grid"]`; at 05:50 `["grid"]` came first. A position-dependent regex silently returned 0 points on the second run, while the event count went *up* — the dataset looked fine everywhere except the one field that mattered. The parser now isolates each zone first and pulls `segs` and `grid` out independently, so key order cannot matter.
+
+### What the data says
+
+| | first build (05:44) | after the reload (05:55) |
+| --- | ---: | ---: |
+| path points | 1,698 | **2,369** |
+| explored cells | 64 | **89** |
+| events | 1,016 | **1,152** |
+| sessions | 22 | **23** |
+| miles in Zephras Isle | 7.22 | **11.10** |
+
+The single reload flushed 671 positions and 25 grid cells that existed only in the client's RAM. That is the strongest argument for the `/reload` habit: the flipbook is only as complete as the last save.
+
+Travel modes in the recovered path: `foot`, `swim`, **`ghost`**. The death runs are in the record. So are the 128 kills, 12 quests and 2 emotes in `AchievementsForever`'s custom buckets, and the hour histogram that peaks at **04:00** with 3,508 seconds logged in that hour alone.
+
+Path bounds: x `0.341–0.508`, y `0.334–0.654` on map 2521, reaching level 9. 11.10 miles walked inside one custom zone.
+
+
+## 2026-11-10 ~23:5x — The Reliquary: retail archaeology, read off the disk (fifth pass)
+
+- `_gewey_gui/relics.html` — **NEW page**, hand-built, self-contained, additive. Nine sections: The Ledger (54 folders / 98 macros / 13,046 quests / 98 mounts / 38 addons / 2 crash dumps), The Quest Ledger (12 era bands, **labelled ID-band proxy**), The Macro Library (families by prefix + per-character caches), Four Exhibits (`Rachel Ray`, `Soarp`, `@Raid`, `Human` with bodies), The Wardrobe (`Marx` loadout, 11 slots), The Mount Stable (98 distinct / 193 summons, top ten), The Addon Forge (3 authored `Tandumonium_*` addons), The Artifacts Drawer (crash dumps, screenshots, GUID families, ghost shells) and Method & Honesty (read-only, proxy caveats, what is *not* claimed). Every figure baked in; nothing fetched at runtime.
+- `_gewey_gui/relics.html` nav — added to **every** hand-authored pane (`character`, `gear`, `legacy`, `dynasty`, `roster`, `eras`, `links`, `raidlogs`, `Chronicle`, `Frontier`) and to the home directory (`_fuhevva_evva.html`, which gained **both** a Chronicle and a Relics card).
+- `_gewey_gui/index.html` — `iRelics` LIVE button (`inventory_2` → `relics.html`), inserted after `iChronicle`. Written byte-preservingly (the file is UTF-8 with 12 em dashes; a latin-1 round-trip proved lossless).
+- `..\Timeline\wing_links.py` — `Relics` added to `WINGS`; `--check` now reports **0 pages in drift**.
+- `..\Research\_local\_retail_relics.py` — **NEW extractor** (local). Read-only walk of `_retail_\WTF\Account\QUAZZARR` + `Interface\AddOns` + `Screenshots` + `Errors` + `Logs`; parses the `VER 3 "<name>" "<icon>" … END` macro cache, `BtWQuests` character blocks, `BtWLoadouts` sets, `LiteMount` summon counts, TOC metadata and `character-list-order.txt`. Writes `..\Research\_raw\retail_relics.json` (local).
+- `..\Research\_local\verify_relics.py` — **NEW check suite**: strict HTML parse, internal anchors, local links, nav presence on 13 panes, `iRelics` uniqueness, em-dash integrity, agent-surface tokens, and `git check-ignore` public/local boundary.
+- `..\Research\_local\verify_all.py` — **fixed**: strips fenced/inline code before reference linting (example `[^R]:` and `[label][ref-id]` were false-positive duplicates/undefs) and reconfigures stdout to UTF-8 (the `→` in a label crashed on cp1252). Section tokens updated to the current index (`6.5`, `6.6`, `7.10`, `7.11`, `gui-relics`, `gui-chronicle`). Now **ALL GREEN**.
+- `.gitignore` — public/local split documented for this pass. Public: `relics.html`, `Tandu-Hyjal_macros-cache.html`, `Chronicle.html`, `dynasty.html`, the three macro pages `macrocosm.html` reads. Local: `macros/*_macros-cache.txt`, `macros/*_macros-cache.html`, `Research/_raw/retail_relics.json`, every probe/extractor script under `Research/_local/`. `macros/README.md` stays public.
+- `_gewey_gui/AGENTS.md` — files table gained `relics.html`; menu table gained `iRelics`; shell count 13 → **14 live + 3 disabled**.
+- `..\Research\Research_Log.md` — Entry 010 (the disk receipts, the macro library, the 200-is-not-data correction).
+- Agent surfaces — `V:\.github\agents\Tandumonium.agent.md` gained a **retail archaeology** persona bullet + `[gui-relics]`; `Tandumonium.agent-expanded.md` gained §8 “Fifth Pass — The Reliquary”; `Tandumonium.agent-index.md` gained §6.6 (the disk-door table + re-probed verdicts), §7.10 “Status codes are not verdicts”, §7.11 “Link text is a claim”, the `relics`/`chronicle`/`dynasty` wing links, and five new reference definitions. Both mirrors (`_forever_` + Gemini) synced with the same persona bullet and definition.
+
+
+## 2026-11-10 ~02:25 — the Chronicle wing: micro-accomplishments, timed from General.log
+
+- `_gewey_gui/Chronicle.html` — **NEW page**, machine-generated by `..\Timeline\chronicle_extract.py`. The micro-residue wing: 8 vitals, the 14-checkpoint ladder, the `/played` tape (5 readings, 2h 25m 30s → 3h 41m 40s, each stamped with the clock General.log kept), 14 firsts, the 21-line quest ledger across 7 speakers, all 21 carried stacks with Wowhead links and quality colours, 7 skill lines with every tick timed, 4 discovery pins, the machine notebook (Lua error heads, 62,976/45,442 hotfix rows, GPU peak, 20 stutters, weather, the 3m 50s cinematic), the residue census (folder totals + heaviest files), the 46-addon census, and the fractures — including **two clocks disagree** (`/played` 3h 41m 40s vs Raider.IO `playedSeconds` 4h 11m 50s at the same minute). Prior render archived to `.history\`.
+- `..\Timeline\chronicle_extract.py` — **NEW generator**. Read-only on the game install; imports `frontier_extract.py` for the quest/journey/GPU/boot parsers and adds its own for `Blizzard_Console.lua`, `Logs\General.log` `[N][Console]` lines (the timestamps the saved history lacks), `Syndicator`, `Goldmind`, `WoWTaskManager`, `EditMode.log`, `Movie.log`, `Hotfix.log`, `FrameXML.log` and the `Interface\AddOns` tree. Writes `Chronicle.html` + gitignored `data\chronicle.json`.
+- `..\Timeline\milestone_batch_20261110_chronicle.py` — **NEW scribe**, batch #5: 15 `kind:"milestone"` events (cinematic, four-line skill grant + its 02:17 repeat, the `/played` tape, achievement counters, 165→170 copper, 20 stutters, rain at 0.296, the 15,110 s checkpoint, the two-clock disagreement, the 21-stack bag census, the Thendal set, the RaiderIO fracture, the hotfix split, the 46-addon tree). Idempotent on ts+title, atomic rewrite; exact-duplicate collapse took the 1075-line ledger to 1029 before the 15 additions.
+- `_gewey_gui/Timeline.html` — regenerated by the engine at 02:25:42; the ★ Milestones section now renders **75 cards**, 15 of them new.
+- `..\Timeline\wing_links.py` — `Chronicle` added to `WINGS`, so every page carrying a `<nav class="panes">` block links the new wing.
+- `_gewey_gui/index.html` — `iChronicle` LIVE button (`auto_awesome` → `Chronicle.html`), placed after `iDelve`.
+- `_gewey_gui/_css/holy_word.css` — `iChronicle` `::after` label (`" Chronicle"`) added to the live block.
+- `_gewey_gui/AGENTS.md` — files table gained `Chronicle.html`, `chronicle_extract.py` and `milestone_batch_20261110_chronicle.py`; the rebuild runbook gained the Chronicle command; `Chronicle.html` moved OUT of the hand-built list (it has a generator).
+- `..\Timeline\README.md` — builders table gained `chronicle_extract.py`; the milestone-scribe list gained batch #5.
+- `_gewey_gui/CHANGELOG.md` — this list.
+
+
+## 2026-11-10 ~02:20 (fourth pass) — The Dynasty: the Armory opens, and the name turns out to be a family
+
+- `_gewey_gui/dynasty.html` — **NEW page** (hand-built, self-contained, additive). Nine sections: The Widening (13 probed / 9 answered / 6 races), The Census (nine living handles + four gone, with race · class · spec · level · server last-seen), The Disk Forgets What The Server Remembers (three characters alive at 60/56/24 that exist locally as one-file shells; two with folders that no longer exist), The Race Ladder (Undead · Zandalari ×4 · Haranir · Worgen · Void Elf · Dracthyr), The Reputation Fossil Record (113 factions / 32 Exalted across 13 expansion blocks), The Profession Ladder (12 skill bands × Engineering/Enchanting/Cooking/Fishing), Marks That Outlive A Spec, Method & Limits, Where This Leads Next.
+- **The unlock behind it:** `worldofwarcraft.blizzard.com/en-us/character/us/<realm>/<handle>` answers in **plain HTTP with no key and no login**, and embeds the whole character object in a `<script id="model">` blob. Raider.IO answers for **one** handle; this answers for **nine**. Raw captures in gitignored `Research/_raw/armory_*`, parser at `Research/_local/armory_parse.py`.
+- `_gewey_gui/index.html` — `iDynasty` live button added (`account_tree` icon → `dynasty.html`), placed after `iLegacy`.
+- `_gewey_gui/_css/holy_word.css` — `iDynasty` `::after` label `" Dynasty"`.
+- `..\Timeline\wing_links.py` — `("Dynasty", "dynasty.html")` added to `WINGS`, between Legacy and Roster. Run propagated it to all ten pages that carry a `nav.panes` block.
+- `_gewey_gui/eras.html` — **one row corrected**: the Undead stint moved from `weak` (lore only) to `hard`, because `Tandu`-Hyjal now returns `race.name = "Undead"`. The old note ("a race detour happened, date unknown") was factually wrong.
+- `..\macros\Tandu-Hyjal_macros-cache.html` + `.txt`, `_gewey_gui/Tandu-Hyjal_macros-cache.html` — **NEW**, 24 macros generated by `macros\_macro_to_html.ps1` from `_retail_\WTF\Account\QUAZZARR\Hyjal\Tandu\macros-cache.txt`. This closes a link the agent index had been pointing at for days without the file existing.
+- `.gitignore` — public/local split for this pass: `dynasty.html` and the macro pages are **public**; `Research/_raw/armory_*`, `**/armory_*.html`, `**/armory_*.json`, `**/_armory_*.py`, `**/_sweep_*.py` are **local**. Also ignore `BulkMD_*/` and `BulkMD_*.zip` — 4,707 saved responses from a WCL bulk sweep, every one of them the same 230-byte Cloudflare `Human Verification` page.
+- `..\Research\Research_Log.md` — Entry 009 (the Armory route, the dynasty table, the two claims it invalidates, the reputation raid receipts, the re-confirmed WCL wall).
+- `..\Research\_local\` — new one-shot tooling, all gitignored: `armory_parse.py` (profile → JSON), `_armory_*.py` (model/reputation/category probes), `_sweep_chunk.py`, `_tandu_family.py`, `_tandu_cfg.py`, `_idx_check2.py` (reference-definition + dead-`file://` linter).
+- `AGENTS.md` — files table + menu counts updated for `dynasty.html`.
+
+
+
+## 2026-11-10 ~02:00 (wide-scale pass) — the census, the Armory and the link vault
+
+- `_gewey_gui/roster.html` — **NEW page**, machine-generated by `..\Timeline\roster_extract.py`. The census: 54 retail character folders under `WTF\Account\QUAZZARR` across three realms, 9 genuinely played, 45 single-file shells; The Evidence Ladder, Realm Census, The Ghost Shells, Method & Limits. Prior render archived to `.history\`.
+- `_gewey_gui/gear.html` — **NEW page**, machine-generated by `..\Timeline\gear_extract.py`. The Armory snapshot: The Sixteen Slots (16 equipped items, ilvl 263, Wowhead item links), Progression, Provenance. Reads the cached Raider.IO capture `Research\_raw\tandumonium_full_profile.json` first and only calls the live API when that cache is absent — equipped gear is server-side and never lands in WTF.
+- `..\Timeline\roster_extract.py`, `..\Timeline\gear_extract.py` — **NEW** generators, both read-only on the game installs and both archiving the prior render to `.history\`. They sit beside `delve_extract.py` / `frontier_extract.py` as the reproducible source for the pages; note that `Timeline\.gitignore` (`*` + `!.gitignore`) keeps that whole folder untracked.
+- `_gewey_gui/eras.html`, `_gewey_gui/links.html`, `_gewey_gui/character.html`, `_gewey_gui/legacy.html` — **NEW hand-built panes** (no generator): the stratum map + confidence ledger; the public link vault mirroring the agent index; the frozen Raider.IO armory record (crawl `2026-11-05T12:46:46Z`); the 2008→2026 paper trail.
+- `..\Timeline\wing_links.py` — **NEW** nav reconciler. Appends missing wing links to the end of any existing `<nav class="panes">` block, never creates one, never reorders, never touches `aria-current`; `--check` reports drift without writing. Its first run reported `raidlogs.html` missing gear/roster/eras/links/Frontier; after the 02:08 catch-up `--check` reports **0 pages in drift**.
+- `_gewey_gui/raidlogs.html` — nav caught up to the seven new wings (5 links appended by `wing_links.py`).
+- `_gewey_gui/_fuhevva_evva.html` — the home pane stopped being 0 B: it is a real directory now (h1 "Tandumonium · Dark Portal station", `The Wings` + `Live Armory` sections, 14 links). Same pass, other surface; still hand-built, and it deliberately carries no `<nav class="panes">` block.
+- `_gewey_gui/index.html` — `iGear`, `iRoster`, `iEras`, `iLinks` promoted to live buttons. Menu is now **13 live / 3 disabled**.
+- `_gewey_gui/_css/holy_word.css` — `iCharacter` and `iGear` label rules added. `iRoster`, `iEras`, `iLinks` still have none, so those three render icon-only.
+- `.gitignore` — public/local split for the new wings: the pages are public, the census builders/notes/scratch (`Research\_local\`, `Research\_raw\`, `_wow_tmp\`, `*_dump*`) stay local.
+- `_gewey_gui/AGENTS.md` — live/placeholder tables corrected to 13/3, files table gained the seven wing pages and the three new generators, `delve_extract.py` version corrected 1.2.0 → 1.1.0, home pane documented as a real directory, a "Rebuilding the wings" runbook added, Known gaps updated (missing `::after` labels, generator-less `character.html`, absent ledger regression suite, hand-built navs needing `wing_links.py`).
+- `_gewey_gui/CHANGELOG.md` — this list.
 
 ## 2026-11-10 (second legacy pass) — Tandumonium opened the Raid Logs wing (tenure-scoped raid-log archive)
 

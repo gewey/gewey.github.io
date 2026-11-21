@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Almanac -- Almanac wing</title>
+<script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#010308;--panel:rgba(8,14,26,.82);--panel2:rgba(10,18,32,.94);
+ --line:rgba(64,255,180,.16);--ink:#e8fff4;--mut:#6f8f86;--green:#00ff9d;
+ --mag:#ff3ec8;--cyan:#37e6ff;--amber:#ffc46b;--red:#ff5470;
+ --glow:0 0 12px rgba(0,255,157,.55);--glowm:0 0 12px rgba(255,62,200,.5)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden;
+ background:linear-gradient(180deg,#010308 0%,#020812 55%,#04101e 100%)}
+.sky::before{content:'';position:absolute;inset:0;opacity:.8;background-image:
+ radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.85) 0,transparent 100%),
+ radial-gradient(1px 1px at 34% 9%,rgba(255,255,255,.6) 0,transparent 100%),
+ radial-gradient(1px 1px at 58% 22%,rgba(255,255,255,.9) 0,transparent 100%),
+ radial-gradient(1px 1px at 77% 7%,rgba(255,255,255,.7) 0,transparent 100%),
+ radial-gradient(1px 1px at 91% 16%,rgba(255,255,255,.5) 0,transparent 100%);
+ animation:tw 4.5s ease-in-out infinite}
+.band{position:fixed;bottom:8vh;width:70vw;height:46vh;z-index:0;filter:blur(60px);
+ mix-blend-mode:screen;border-radius:50%;opacity:.5;transform-origin:bottom center}
+.b1{left:-18vw;background:linear-gradient(0deg,transparent 0%,rgba(0,220,120,.16) 22%,
+ rgba(0,255,160,.4) 48%,rgba(0,230,130,.18) 66%,transparent 100%);
+ animation:au1 11s ease-in-out infinite}
+.b2{right:-22vw;background:linear-gradient(0deg,transparent 0%,rgba(150,0,220,.13) 18%,
+ rgba(255,62,200,.3) 44%,rgba(120,80,255,.16) 62%,transparent 100%);
+ animation:au2 14s ease-in-out infinite}
+.b3{left:26vw;bottom:2vh;width:46vw;height:36vh;background:linear-gradient(0deg,
+ transparent 0%,rgba(55,230,255,.12) 30%,rgba(55,230,255,.26) 52%,transparent 100%);
+ animation:au3 17s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes au1{0%,100%{transform:rotate(-4deg) translateY(3vh)}
+ 50%{transform:rotate(5deg) translateY(-3vh)}}
+@keyframes au2{0%,100%{transform:rotate(6deg) translateY(2vh)}
+ 50%{transform:rotate(-5deg) translateY(-4vh)}}
+@keyframes au3{0%,100%{transform:translateX(-4vw)}50%{transform:translateX(5vw)}}
+@media (prefers-reduced-motion:reduce){.band,.sky::before{animation:none}}
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:26px 18px 70px}
+header.hero h1{font-size:2rem;letter-spacing:.06em;color:var(--green);
+ text-shadow:var(--glow);font-weight:800}
+header.hero .sub{color:var(--mut);margin-top:8px;line-height:1.65;max-width:920px}
+header.hero .sub b{color:var(--ink)}
+header.hero .eyebrow{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
+ color:var(--cyan);font-weight:800;margin-bottom:6px}
+nav.panes{margin:16px 0 4px;display:flex;flex-wrap:wrap;gap:6px}
+nav.panes a{color:var(--cyan);text-decoration:none;font-size:.76rem;
+ border:1px solid rgba(55,230,255,.28);border-radius:8px;padding:4px 10px}
+nav.panes a:hover{background:rgba(55,230,255,.1)}
+nav.panes a[aria-current]{color:var(--green);border-color:var(--green);
+ text-shadow:var(--glow)}
+nav.jump{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+nav.jump a{color:var(--mut);text-decoration:none;font-size:.72rem;
+ border:1px dashed rgba(64,255,180,.25);border-radius:999px;padding:3px 10px}
+nav.jump a:hover{color:var(--ink);border-color:var(--green)}
+h2.sec{margin:38px 0 14px;font-size:1.02rem;letter-spacing:.11em;
+ text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);
+ padding-bottom:8px;scroll-margin-top:18px}
+h2.sec small{display:block;text-transform:none;letter-spacing:0;color:var(--mut);
+ font-size:.72rem;margin-top:5px;font-weight:400}
+
+.grid{display:grid;gap:10px}
+.vitals{grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+ padding:13px 15px;position:relative}
+.card .k{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);font-weight:800}
+.card .v{font-size:1.5rem;font-weight:800;margin-top:5px;color:var(--ink);
+ font-variant-numeric:tabular-nums}
+.card .s{font-size:.7rem;color:var(--mut);margin-top:4px;line-height:1.45}
+.card .v.g{color:var(--green)}.card .v.m{color:var(--mag)}
+.card .v.a{color:var(--amber)}.card .v.c{color:var(--cyan)}
+.card .v.r{color:var(--red)}
+.cols{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:172px 1fr 84px;gap:10px;align-items:center;
+ font-size:.76rem}
+.bar .lbl{color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .track{height:9px;background:rgba(255,255,255,.05);border-radius:999px;
+ overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:999px;background:linear-gradient(
+ 90deg,rgba(0,255,157,.35),var(--green));box-shadow:0 0 8px rgba(0,255,157,.45)}
+.bar.m .fill{background:linear-gradient(90deg,rgba(255,62,200,.3),var(--mag));
+ box-shadow:0 0 8px rgba(255,62,200,.45)}
+.bar.a .fill{background:linear-gradient(90deg,rgba(255,196,107,.3),var(--amber));
+ box-shadow:0 0 8px rgba(255,196,107,.4)}
+.bar.c .fill{background:linear-gradient(90deg,rgba(55,230,255,.28),var(--cyan));
+ box-shadow:0 0 8px rgba(55,230,255,.4)}
+.bar .val{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ text-align:right;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:.75rem}
+.tablewrap{padding:4px 6px;overflow-x:auto}
+th{color:var(--mut);text-align:left;font-size:.6rem;letter-spacing:.1em;
+ text-transform:uppercase;padding:7px 8px;border-bottom:1px solid var(--line);
+ white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px dashed rgba(64,255,180,.09);vertical-align:top}
+td.n,th.n{text-align:right;font-family:Consolas,ui-monospace,monospace;font-size:.7rem}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(0,255,157,.04)}
+.note{border:1px dashed var(--line);border-radius:10px;padding:12px 14px;
+ color:var(--mut);font-size:.78rem;line-height:1.7}
+.note b{color:var(--ink)}
+.kv{display:flex;justify-content:space-between;gap:14px;font-size:.76rem;
+ padding:5px 0;border-bottom:1px dashed rgba(64,255,180,.1)}
+.kv:last-child{border-bottom:none}
+.kv b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.tag{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+ border-radius:999px;padding:2px 8px;color:var(--amber);
+ background:rgba(255,196,107,.12);white-space:nowrap}
+.tag.g{color:var(--green);background:rgba(0,255,157,.1)}
+.tag.m{color:var(--mag);background:rgba(255,62,200,.12)}
+.tag.c{color:var(--cyan);background:rgba(55,230,255,.1)}
+.tag.r{color:var(--red);background:rgba(255,84,112,.12)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.68rem;border:1px solid var(--line);border-radius:999px;
+ padding:3px 10px;color:var(--mut)}
+.chip b{color:var(--ink)}
+
+.miles{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.mile{border:1px solid rgba(255,196,107,.22);border-left:3px solid var(--amber);
+ background:var(--panel);border-radius:10px;padding:10px 12px}
+.mile time{font-family:Consolas,ui-monospace,monospace;font-size:.7rem;
+ color:var(--cyan);letter-spacing:.04em}
+.mile .t{font-weight:700;margin:3px 0 4px;color:var(--ink);font-size:.86rem}
+.mile .d{color:var(--mut);font-size:.75rem;line-height:1.5}
+.mile.k-level{border-left-color:var(--green)}
+.mile.k-level time{color:var(--green)}
+.mile.k-skill{border-left-color:var(--mag)}
+.mile.k-dungeon{border-left-color:var(--red)}
+.mile.k-zone,.mile.k-area{border-left-color:var(--cyan)}
+.mile.k-spell{border-left-color:var(--amber)}
+.ladder{display:grid;gap:5px}
+.rung{display:grid;grid-template-columns:52px 1fr 78px 64px 92px 78px;gap:10px;
+ align-items:center;background:var(--panel2);border:1px solid var(--line);
+ border-radius:9px;padding:7px 12px;font-size:.75rem}
+.rung .lv{font-weight:800;color:var(--green);font-family:Consolas,monospace;
+ font-size:.82rem;text-shadow:var(--glow)}
+.rung .when{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--mut)}
+.rung .meta{font-family:Consolas,ui-monospace,monospace;font-size:.66rem;
+ color:var(--ink);text-align:right}
+.rung .meta b{color:var(--mut);font-weight:600}
+.dir{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.dir a{display:block;text-decoration:none;color:inherit;background:var(--panel);
+ border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:11px;
+ padding:12px 14px;transition:.15s}
+.dir a:hover{border-left-color:var(--green);background:rgba(0,255,157,.05)}
+.dir strong{display:block;color:var(--green);font-size:.92rem;letter-spacing:.03em}
+.dir em{display:block;font-style:normal;color:var(--mut);font-size:.73rem;
+ margin-top:4px;line-height:1.5}
+.front{display:grid;grid-template-columns:1fr auto;gap:4px 12px;
+ background:var(--panel2);border:1px solid var(--line);border-radius:10px;
+ padding:9px 12px;border-left:3px solid var(--mut)}
+.front.h{border-left-color:var(--red)}
+.front.a{border-left-color:var(--cyan)}
+.front .n{font-weight:700;font-size:.82rem}
+.front .t{grid-column:1/-1;font-family:Consolas,ui-monospace,monospace;
+ font-size:.64rem;color:var(--mut)}
+.legend{display:flex;gap:16px;color:var(--mut);font-size:.7rem;margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;
+ margin-right:5px;vertical-align:middle}
+.scroll{max-height:520px;overflow:auto;padding-right:4px}
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;
+ color:var(--mut);font-size:.72rem;line-height:1.8}
+footer a{color:var(--cyan);text-decoration:none}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="band b1"></div><div class="band b2"></div>
+<div class="band b3"></div>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">GEWEY G.U.I. - WING 18 - THE ALMANAC</div>
+<h1>Almanac</h1>
+<p class="sub">Five ledgers the client kept and no page had opened: <b>ForeverStats</b> metering every level, <b>FamiliarFaces</b> remembering every face, <b>Goldmind</b> counting the coin, <b>PlayerHistory</b> watching the population, and <b>Overlord</b> keeping the war-front scoreboard. Read out of <code>WTF\Account\QUAZZARR\SavedVariables</code>, read-only, nothing deleted.</p>
+<nav class="panes"><a href="index.html">Shell</a>
+<a href="Concordance.html">Concordance</a><a href="_fuhevva_evva.html">Home</a><a href="character.html">Character</a><a href="gear.html">Gear</a><a href="legacy.html">Legacy</a><a href="dynasty.html">Dynasty</a><a href="roster.html">Roster</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a><a href="links.html">Links</a><a href="raidlogs.html">Raid Logs</a><a href="Frontier.html">Frontier</a><a href="Timeline.html">Timeline</a><a href="Delve.html">Delve</a><a href="Chronicle.html">Chronicle</a><a href="relics.html">Relics</a><a href="macrocosm.html">Macrocosm</a><a href="Sortie.html">Sortie</a><a href="Residue.html">Residue</a><a href="Deeds.html">Deeds</a><a href="Heartbeat.html">Heartbeat</a><a href="Almanac.html" aria-current="page">Almanac</a><a href="Levelbook.html">Levelbook</a><a href="Faces.html">Faces</a><a href="Purse.html">Purse</a><a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+<nav class="jump"><a href="#vitals">Vitals</a><a href="#the-five-ledgers">The Five Ledgers</a><a href="#provenance">Provenance</a><a href="#the-deed-tape">The Deed Tape</a><a href="#method-limits">Method &amp; Limits</a></nav>
+</header>
+<h2 class="sec" id="vitals">01. Vitals<small>what five unread SavedVariables files actually contain</small></h2>
+<div class="grid vitals"><div class="card"><div class="k">faces met</div><div class="v g">1,528</div><div class="s">FamiliarFaces - 1,601 encounters</div></div><div class="card"><div class="k">players seen</div><div class="v c">1,052</div><div class="s">PlayerHistory across the retail realms</div></div><div class="card"><div class="k">targeted by</div><div class="v m">2,194</div><div class="s">WhoTargetsMe - last-seen ledger</div></div><div class="card"><div class="k">war fronts</div><div class="v a">67</div><div class="s">33 H / 34 A - 16 outposts</div></div><div class="card"><div class="k">meter sessions</div><div class="v g">30</div><div class="s">ForeverStats - 9 meters each</div></div><div class="card"><div class="k">loot rows</div><div class="v c">3,569</div><div class="s">Goldmind - kill + loot tape</div></div><div class="card"><div class="k">lore unlocks</div><div class="v m">17</div><div class="s">LorePath - 169 quest texts</div></div><div class="card"><div class="k">purse</div><div class="v a">1g 38s 62c</div><div class="s">Goldmind - Tandumonium Ebbeson</div></div></div>
+<h2 class="sec" id="the-five-ledgers">02. The Five Ledgers<small>each page is one addon's private ledger, opened</small></h2>
+<div class="dir"><a href="Levelbook.html"><strong>Levelbook</strong><em>ForeverStats: 17 rungs of the ladder, 160 dated milestones, 30 meter sessions</em></a><a href="Faces.html"><strong>Faces</strong><em>1,528 faces met, 1,052 players seen, 2,194 who targeted you</em></a><a href="Purse.html"><strong>Purse</strong><em>gold by character, the auction ledger, and 3,569 rows of loot</em></a><a href="Fronts.html"><strong>Fronts</strong><em>67 war fronts, 16 outposts, a Horde/Alliance split of 33/34</em></a><a href="Deeds.html"><strong>Deeds</strong><em>the deed tape this wing complements: 824 dated micro-accomplishments</em></a><a href="Residue.html"><strong>Residue</strong><em>the combat-log necropsy: bosses, damage, spellbook weather</em></a></div>
+<h2 class="sec" id="provenance">03. Provenance<small>every file read, its size, and when the client wrote it</small></h2>
+<div class="card tablewrap"><table><thead><tr><th>file</th><th class="n">size</th><th>written</th><th>what was read</th></tr></thead><tbody><tr><td>ForeverStats.lua</td><td class="n">1124 KB</td><td>2026-11-15 23:17</td><td>ForeverStats - level ladder, meters, records</td></tr><tr><td>Goldmind.lua</td><td class="n">4226 KB</td><td>2026-11-15 23:17</td><td>Goldmind - purse, auction ledger, loot tape</td></tr><tr><td>FamiliarFaces.lua</td><td class="n">3884 KB</td><td>2026-11-15 23:17</td><td>FamiliarFaces - 1,528 faces met</td></tr><tr><td>PlayerHistory.lua</td><td class="n">322 KB</td><td>2026-11-15 23:17</td><td>PlayerHistory - the wider population</td></tr><tr><td>WhoTargetsMe.lua</td><td class="n">419 KB</td><td>2026-11-15 23:17</td><td>WhoTargetsMe - everyone who targeted you</td></tr><tr><td>LorePath.lua</td><td class="n">148 KB</td><td>2026-11-15 23:17</td><td>LorePath - lore unlocks and quest text</td></tr><tr><td>Overlord.lua</td><td class="n">377 KB</td><td>2026-11-15 23:17</td><td>Overlord - war fronts, outposts, campaign</td></tr></tbody></table></div>
+<h2 class="sec" id="the-deed-tape">04. The Deed Tape<small>where this wing sits beside Deeds, Residue and Sortie</small></h2>
+<div class="cols"><div class="card"><div class="k">the deed tape (AutoBiographer, already on Deeds.html)</div><div class="chips" style="margin-top:9px"><span class="chip">events <b>824</b></span><span class="chip">levels <b>15</b></span><span class="chip">boss kills <b>5</b></span><span class="chip">achievements <b>26</b></span><span class="chip">statistics <b>5</b></span><span class="chip">skills <b>5</b></span><span class="chip">reputation <b>8</b></span><span class="chip">quests <b>103</b></span><span class="chip">zones <b>12</b></span></div></div><div class="card"><div class="k">what this wing adds</div><div class="note" style="border:none;padding:8px 0">Deeds counts what the biography database wrote down. The Almanac reads the metering addons instead: <b>ForeverStats</b> keeps a rung-by-rung ledger of every level (kills, quests, XP source, coin in and out, yards walked), <b>FamiliarFaces</b> keeps every NPC and player it ever hovered, <b>Goldmind</b> keeps the auction-house ledger and the loot tape, and <b>Overlord</b> keeps the war-front scoreboard. None of these files had a page before today.</div></div></div>
+<h2 class="sec" id="method-limits">05. Method &amp; Limits<small>how the numbers were taken, and what they refuse</small></h2>
+<div class="cols"><div class="card"><div class="k">what the residue says</div><ul style="margin:8px 0 0 18px;color:var(--mut);font-size:.78rem;line-height:1.85"><li><b>The Barrens</b> is the busiest face-zone: 559 encounters logged.</li><li><b>Tandumonium</b> is the largest single purse, holding 1g 38s 62c.</li><li>The war map is split <b>34 Alliance / 33 Horde</b> across 67 fronts.</li><li><b>276,982 yards</b> were walked, ridden and flown.</li><li>30 meter sessions were recorded, each keeping 9 meters.</li></ul></div><div class="card"><div class="k">how it was read</div><div class="note" style="border:none;padding:8px 0">Every SavedVariables file is tokenised once, then only the top-level keys this wing needs are materialised, so a 4 MB Goldmind.lua indexes in about a second. Timestamps are the addons' own epoch seconds, rendered in local time. Where an item ID has a cached tooltip in Goldmind's <b>items</b> table the name is resolved; otherwise the raw ID is printed rather than guessed.</div></div><div class="card"><div class="k">what it does not claim</div><div class="note" style="border:none;padding:8px 0">FamiliarFaces only records units the cursor touched or the nameplate exposed, so 1,528 is a floor, not a census. PlayerHistory is retail-era residue keyed by realm, not a Forever roster. Overlord's fronts are the addon's synthetic campaign, not live realm state. Gold is copper as cached by the addon and may lag the last sale.</div></div></div>
+<footer>Built by <b>almanac_extract.py</b> (Almanac wing, v1.0.0) at 2026-11-16 00:43:30 &middot; sources: <a href="../../WTF/Account/QUAZZARR/SavedVariables/">WTF\SavedVariables\</a>, <a href="../../Logs/">Logs\</a> &middot; companions: <a href="Timeline.html">Timeline</a>, <a href="Deeds.html">Deeds</a>, <a href="Residue.html">Residue</a>, <a href="Sortie.html">Sortie</a>. Read-only on the game install; nothing was deleted.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Forge &mdash; 1,820 lines signed Tandumonium | Gewey G.U.I.</title>
+<!--
+  Forge.html - built 2026-11-16 by Tandumonium (authored-code pass).
+
+  Why this page exists: relics.html lists the three authored addons as three
+  rows of metadata (folder, title, version, purpose). It never opened them.
+  This page reads the Lua and reports what the code actually does - commands,
+  settings keys, URL templates, keybinds, defaults, the patch doctrine comment.
+
+  Read-only walk of
+    Z:\World of Warcraft\_retail_\Interface\AddOns\Tandumonium_{UI,Patches,Macros}
+  Nothing was edited, no addon was loaded, the client was not launched.
+  Line counts are the physical line counts of the .lua files as shipped.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 8% -6%,rgba(255,196,107,.15),transparent 62%),
+  radial-gradient(820px 480px at 92% 4%,rgba(125,255,92,.10),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(55,230,255,.08),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-forge">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Authored code &middot; <span class="mono">_retail_\Interface\AddOns</span> &middot; read-only</p>
+ <h1>The Forge <span class="thin">1,820 lines, every one signed Tandumonium</span></h1>
+ <p class="lede">A character is an accumulation of other people&rsquo;s systems:
+ Blizzard&rsquo;s client, CurseForge&rsquo;s addons, Warcraft Logs&rsquo; parser.
+ Three folders in this install are the exception. They were written by the
+ player, the <span class="mono">Author</span> field says so, and nobody else has
+ them: <strong>Tandumonium UI 0.11.0</strong>,
+ <strong>Tandumonium Patches 0.1.0</strong>, <strong>Tandumonium Macros
+ 0.1.0</strong>. This page opens the Lua and reports what it does &mdash; the
+ commands, settings keys, URL templates, keybinds, defaults, and the doctrine
+ comments left in the source.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html" aria-current="page">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="talents.html">Talents</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="automations.html">Automations</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="ledger">
+ <h2>The Ledger</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">1,820<small>lines of Lua authored</small></div>
+   <p class="note">Five files across three addon folders. Physical line counts as
+   shipped, blank lines and comments included.</p></div>
+  <div class="card"><div class="stat">69,243<small>bytes of source</small></div>
+   <p class="note">Plus a shared 14,418-byte <span class="mono">GeweyGUI.tga</span>
+   copied into all three folders &mdash; the same artwork three times, so each
+   addon stays independently installable.</p></div>
+  <div class="card"><div class="stat">3<small>addons, all still installed</small></div>
+   <p class="note">All three are <em>disabled</em> in the character&rsquo;s
+   <span class="mono">AddOns.txt</span> as of the 2026-09-16 save. Written, kept,
+   currently switched off &mdash; the normal state of a personal toolkit between
+   patches.</p></div>
+ </div>
+</section>
+
+
+<section id="files">
+ <h2>File By File</h2>
+ <div class="scroll">
+ <table>
+  <caption>Contents of the three folders</caption>
+  <thead><tr><th>Addon</th><th>File</th><th>Lines</th><th>Bytes</th>
+   <th>Interface</th><th>Role</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Tandumonium_UI</strong><br><span class="mono">0.11.0</span></td>
+    <td class="mono">Tandumonium_UI.lua</td><td>661</td><td>23,997</td><td>120000</td>
+    <td>Settings enforcer, action-bar mapper, recommended-addon nudge</td></tr>
+   <tr><td><em>module</em></td>
+    <td class="mono">Tandumonium_UI_UMPD.lua</td><td>280</td><td>10,257</td><td>&mdash;</td>
+    <td>UnlimitedMapPinDistance 1.4.18, integrated</td></tr>
+   <tr><td><em>module</em></td>
+    <td class="mono">Tandumonium_UI_WowheadQuickLink.lua</td><td>544</td><td>21,969</td>
+    <td>&mdash;</td><td>Link generator: Wowhead / Armory / Raider.IO</td></tr>
+   <tr><td><strong>Tandumonium_Macros</strong><br><span class="mono">0.1.0</span></td>
+    <td class="mono">Tandumonium_Macros.lua</td><td>223</td><td>7,931</td><td>120000</td>
+    <td>Per-class &ldquo;main character&rdquo; picker</td></tr>
+   <tr><td><strong>Tandumonium_Patches</strong><br><span class="mono">0.1.0</span></td>
+    <td class="mono">Tandumonium_Patches.lua</td><td>112</td><td>5,089</td><td>120100</td>
+    <td>Runtime patch registry for third-party addons</td></tr>
+   <tr><td><em>all three</em></td>
+    <td class="mono">Media\GeweyGUI.tga</td><td>&mdash;</td><td>14,418 &times;3</td><td>&mdash;</td>
+    <td>The Gewey G.U.I. logo, duplicated so no addon depends on another</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Interface <span class="mono">120000</span> is patch 12.0.0;
+ <span class="mono">120100</span> is 12.1.0. The macro addon and the UI addon were
+ stamped for one build, the patch framework for the next &mdash; evidence of three
+ separate edits, not one export.</p>
+</section>
+
+<section id="enforcer">
+ <h2>The Enforcer</h2>
+ <p><span class="mono">Tandumonium_UI.lua</span> opens with a table literally
+ named <span class="mono">desired</span>: three settings the author wants true on
+ every character, every login, regardless of what that character last left
+ behind.</p>
+ <pre>local desired = {
+    autoLoot = true,
+    editModeLayout = "Gewey!!",
+    enableActionBars = true,
+}</pre>
+ <p>Anyone who has played more than one character knows why this exists:
+ Blizzard keeps half its settings <em>per character</em>. A player with 54 toons
+ does not want to re-tick auto-loot 54 times. So the addon re-asserts the
+ preference at login, and while it waits for the client to finish loading it
+ polls &mdash; <span class="mono">maxRetries = 30</span> at
+ <span class="mono">retryInterval = 0.5</span>, a fifteen-second grace window
+ before it gives up politely.</p>
+ <div class="grid g2">
+  <div class="card"><h3>The bar map</h3>
+   <p class="note">A default <span class="mono">barMapping</span> table holds
+   <strong>103 slot assignments</strong> across the action bars, each a literal
+   string: a key name (<span class="mono">Q E R T 1 2 3 5</span>), a macro token
+   (<span class="mono">/13</span> for the trinket slot,
+   <span class="mono">!STOP</span>), a spell id
+   (<span class="mono">spell:466930</span>, <span class="mono">spell:1264359</span>),
+   or a bag instruction (<span class="mono">$Loot</span>). It reseeds itself if
+   the saved table comes back empty.</p></div>
+  <div class="card"><h3>The command</h3>
+   <p class="note">One slash command, five verbs:
+   <span class="mono">/tand set &lt;bar&gt; &lt;button&gt; &lt;assignment&gt;</span>,
+   <span class="mono">clear</span>, <span class="mono">reset</span>,
+   <span class="mono">list</span>, <span class="mono">apply</span>. The help text
+   gives its own example &mdash; <span class="mono">/tand set 4 1 #sHrth</span>
+   &mdash; which is a real hunter macro token, not a placeholder.</p></div>
+  <div class="card"><h3>The options panel</h3>
+   <p class="note">Built on the modern Settings API, and deliberately lazy: the
+   source comment says fields are populated at <em>OnShow</em>, not at
+   registration, because the framework discards one-time writes. That comment
+   cites NotebookLM by name &mdash; a dated fingerprint of how the code was
+   written.</p></div>
+  <div class="card"><h3>The nudge</h3>
+   <p class="note">Seven addons are recommended by name
+   (<span class="mono">Select</span>,
+   <span class="mono">Tandumonium_Patches</span>,
+   <span class="mono">!BugGrabber</span>, <span class="mono">BugSack</span>,
+   <span class="mono">BetterBags</span>, <span class="mono">LiteMount</span>,
+   <span class="mono">DialogueUI</span>) with CurseForge links. Two different
+   popups: <em>installed but disabled</em> offers enable-and-reload;
+   <em>not installed</em> opens a link list. Opt-in, never a hard dependency.</p></div>
+ </div>
+</section>
+
+<section id="quicklink">
+ <h2>The Quick Link Engine</h2>
+ <p>The middle module is a whole tool wearing an addon&rsquo;s clothes. Hover
+ anything &mdash; a tooltip, an item, a spell, a frame &mdash; and it builds the
+ external lookup URL for that thing, pops it, and lets
+ <span class="mono">CTRL-C</span> take it away. Bound twice: a Wowhead binding and
+ a second binding for the alternative sites.</p>
+ <div class="scroll">
+ <table>
+  <caption>URL templates, branched by client flavor</caption>
+  <thead><tr><th>Flavor</th><th>Template</th></tr></thead>
+  <tbody>
+   <tr><td>Retail</td><td class="mono">https://%swowhead.com/%s=%s%s</td></tr>
+   <tr><td>Classic Era</td><td class="mono">https://%swowhead.com/classic/%s=%s%s</td></tr>
+   <tr><td>Burning Crusade</td><td class="mono">https://%swowhead.com/tbc/%s=%s%s</td></tr>
+   <tr><td>Mists Classic</td><td class="mono">https://%swowhead.com/mop-classic/%s=%s%s</td></tr>
+   <tr><td>Azerite essence</td><td class="mono">https://%swowhead.com/azerite-essence/%s%s</td></tr>
+   <tr><td>Trading Post activity</td><td class="mono">https://%swowhead.com/trading-post-activity/%s%s</td></tr>
+   <tr><td>Armory</td><td class="mono">https://worldofwarcraft.com/%s/character/%s/%s</td></tr>
+   <tr><td>Raider.IO</td><td class="mono">https://raider.io/characters/%s/%s/%s</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">The <span class="mono">%s</span> prefix/suffix pair is stored
+ config (<span class="mono">WowheadQuickLinkCfg.prefix / .suffix</span>) so a
+ regional domain can be swapped without touching code. The popup string is
+ <span class="mono">"%s Link\nCTRL-C to copy"</span> &mdash; four words and a key
+ hint, no chrome.</p>
+ <p>This is the obsession the whole dashboard is built on. Every page in this
+ HUD loads the Wowhead tooltip widget, and the reason is not decoration: it is
+ the same author making the same bet that a name is most useful when it can be
+ clicked into a database. The addon does it inside the client; the site does it
+ outside.</p>
+</section>
+
+<section id="pin">
+ <h2>The Pin Engine</h2>
+ <p>The third module is a fork-with-credit: <em>UnlimitedMapPinDistance</em>
+ v1.4.18 by XAM, integrated into the parent addon so it can never drift out of
+ sync with the shared saved-variable table. It removes the client&rsquo;s
+ 1,000-yard map-pin limit, prints distance and time-to-arrive, and adds
+ zone-aware waypoint commands.</p>
+ <div class="scroll">
+ <table>
+  <caption>Defaults shipped in UMPD (saved variables)</caption>
+  <thead><tr><th>Key</th><th>Default</th><th>Meaning</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">minDistance</td><td>0</td><td>no floor on pin range</td></tr>
+   <tr><td class="mono">maxDistance</td><td>0</td><td>no ceiling &mdash; the point of the fork</td></tr>
+   <tr><td class="mono">fadeDistance</td><td>1000</td><td>where alpha starts to drop</td></tr>
+   <tr><td class="mono">pinAlphaClamped</td><td>60</td><td>alpha at range</td></tr>
+   <tr><td class="mono">pinAlphaLong</td><td>60</td><td>alpha, long band</td></tr>
+   <tr><td class="mono">pinAlphaShort</td><td>100</td><td>alpha, short band</td></tr>
+   <tr><td class="mono">useMeters</td><td>false</td><td>yards, not metres</td></tr>
+   <tr><td class="mono">shortNumbers</td><td>true</td><td>1.2k, not 1200</td></tr>
+   <tr><td class="mono">timeDistance</td><td>true</td><td>show travel time as well as distance</td></tr>
+   <tr><td class="mono">fadeMouseOver</td><td>true</td><td>readable under the cursor</td></tr>
+   <tr><td class="mono">autoTrackPins</td><td>true</td><td>pins keep working after a zone change</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Commands exposed by the module: <span class="mono">/uway</span>,
+ <span class="mono">/pin</span>, <span class="mono">/way</span>, all zone-aware.
+ The shared table is named <span class="mono">UMPD</span> on purpose &mdash; it
+ merges with the original addon&rsquo;s saved variables instead of diverging from
+ them.</p>
+</section>
+
+<section id="kintsugi">
+ <h2>Kintsugi &mdash; The Patch Doctrine</h2>
+ <p><span class="mono">Tandumonium_Patches</span> is the smallest file and carries
+ the best sentence in the whole install. It exists because CurseForge wipes local
+ edits on every update, so the author patches other people&rsquo;s addons at
+ runtime, from his own folder, which updates never touch.</p>
+ <pre>-- WHY: We can't edit other addons' files directly - CurseForge wipes local
+-- edits on every update. So instead we patch them AT RUNTIME, from our own
+-- addon that survives updates untouched. This is the Gestalt Reification
+-- Engine's Kintsugi scar: we seal the crack from the outside, leaving the
+-- adaptive scar visible.</pre>
+ <p>The mechanism is small and disciplined: a registry keyed by addon folder
+ (<span class="mono">registry[addonName] = { {name, fn}, ... }</span>), each patch
+ fired after <span class="mono">ADDON_LOADED</span> for its target, every function
+ wrapped in <span class="mono">pcall</span> and required to be idempotent so a
+ re-run is harmless. Failures are swallowed, never escalated &mdash; a broken
+ patch must not take the client down.</p>
+ <p class="note">Kintsugi is the Japanese repair of broken pottery with gold:
+ the crack is kept as part of the object. Naming a compatibility layer after it
+ is a statement of philosophy, not a joke &mdash; the same instinct that builds a
+ &ldquo;Residue&rdquo; wing out of a combat log, or a &ldquo;Reliquary&rdquo; out
+ of a WTF folder.</p>
+</section>
+
+<section id="macros">
+ <h2>The Class Ledger</h2>
+ <p><span class="mono">Tandumonium_Macros</span> is deliberately unfinished
+ &mdash; the file header calls it <em>&ldquo;barebones&rdquo;</em> and admits
+ &ldquo;no macro logic yet&rdquo;. What it does ship is the shape of a
+ multi-class project: all thirteen class keys with display names, and one text
+ field per class where the author types the main character for that class,
+ e.g. <span class="mono">Tandumonium-Hyjal</span>.</p>
+ <div class="scroll">
+ <table>
+  <caption>Thirteen keys, as declared in the source</caption>
+  <thead><tr><th>Key</th><th>Display</th><th>Key</th><th>Display</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">hunter</td><td>Hunter</td><td class="mono">warrior</td><td>Warrior</td></tr>
+   <tr><td class="mono">paladin</td><td>Paladin</td><td class="mono">rogue</td><td>Rogue</td></tr>
+   <tr><td class="mono">mage</td><td>Mage</td><td class="mono">druid</td><td>Druid</td></tr>
+   <tr><td class="mono">warlock</td><td>Warlock</td><td class="mono">shaman</td><td>Shaman</td></tr>
+   <tr><td class="mono">priest</td><td>Priest</td><td class="mono">deathknight</td><td>Death Knight</td></tr>
+   <tr><td class="mono">monk</td><td>Monk</td><td class="mono">demonhunter</td><td>Demon Hunter</td></tr>
+   <tr><td class="mono">evoker</td><td>Evoker</td><td></td><td></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Saved variable: <span class="mono">TandumoniumMacrosDB</span>,
+ keyed by class, value trimmed and set to <span class="mono">nil</span> when
+ blank &mdash; a small hygiene detail that keeps empty strings out of the save
+ file.</p>
+</section>
+
+<section id="read">
+ <h2>What The Code Says About The Author</h2>
+ <p>Three addons, one voice. Every one of them exists to <em>enforce
+ continuity</em>: the same settings on every toon, the same lookup URLs in every
+ client flavor, the same pin behaviour across zone changes, the same patch
+ applied to an addon that keeps overwriting itself. Nothing here invents new
+ gameplay. All of it says: <em>I have been doing this long enough that I want my
+ environment to stop forgetting.</em></p>
+ <p>It also reads exactly like the rest of this station. The dashboard is a
+ folder of HTML pages that embed their data at build time so nothing can rot;
+ the addons are a folder of Lua files that re-assert their state at login so no
+ character drifts. Different client, same instinct, eighteen years apart.</p>
+ <p class="note warn">Not claimed: that these addons are published to CurseForge
+ (they are not &mdash; they are private, and the TOC says so by omission), that
+ they are currently enabled (they are not, per
+ <span class="mono">AddOns.txt</span>), or that the code is bug-free. It is a
+ personal toolkit, and this page reports it the way it reads.</p>
+</section>
+
+<section id="method">
+ <h2>Method &amp; Limits</h2>
+ <p>Source: a read-only walk of
+ <span class="mono">_retail_\Interface\AddOns\Tandumonium_UI</span>,
+ <span class="mono">\Tandumonium_Patches</span> and
+ <span class="mono">\Tandumonium_Macros</span>. Line counts are
+ <span class="mono">Get-Content | Measure</span> on the shipped files; byte counts
+ are file sizes. Everything quoted is copied verbatim from the source, including
+ the Kintsugi paragraph and the comment that cites NotebookLM. Nothing was
+ loaded, edited, packed or run.</p>
+ <p class="note">The <span class="mono">GeweyGUI.tga</span> artwork was not
+ rendered for this page: the file is a TGA, and neither GDI+ nor the browser
+ reads TGA directly. It is reported by size and by its three copies rather than
+ as an image, because a converted render would be a different artifact from the
+ one in the install.</p>
+</section>
+
+<footer>
+ The Forge &middot; built 2026-11-16 by Tandumonium from the retail AddOns folder
+ &middot; shell: <a class="ext" href="index.html">index.html</a> &middot;
+ sibling wings: <a class="ext" href="relics.html">Relics</a>,
+ <a class="ext" href="reliquary.html">Reliquary</a>,
+ <a class="ext" href="Stable.html">The Stable</a>,
+ <a class="ext" href="macrocosm.html">Macrocosm</a> &middot; link registry:
+ <span class="mono">Tandumonium.agent-index.md</span>
+</footer>
+
+</div>
+</body>
+</html>
+
+
+
+

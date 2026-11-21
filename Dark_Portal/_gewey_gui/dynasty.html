@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Dynasty &mdash; every Tandu the record still answers for | Gewey G.U.I.</title>
+<!--
+  DYNASTY.html - built 2026-11-10 by Tandumonium (fourth surface of the day).
+
+  Why this page exists: legacy.html lists the FOUR HANDLES and the guild matrix;
+  roster.html counts the 54 account folders; eras.html dates the layers. None of
+  them answers the question this page answers - how WIDE is the name, and how
+  DEEP do the roots go?
+
+  The unlock: the official Blizzard Armory answers in plain HTTP:
+    https://worldofwarcraft.blizzard.com/en-us/character/us/<realm>/<name>
+  Raider.IO returns 400 for every handle except Tandumonium. Blizzard returns
+  the whole character object for nine of them. Everything below is read out of
+  that embedded `model` blob - no API key, no sign-in, no scraping of rendered
+  text. Raw captures live in gitignored Research/_raw/.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.16),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+.race{border-left:3px solid var(--line);padding-left:.85rem}
+.race.b1{border-left-color:var(--crimson)}
+.race.b2{border-left-color:var(--fel)}
+.race.b3{border-left-color:var(--arcane)}
+.race.b4{border-left-color:var(--gold)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-dynasty">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Name Family &middot; account QUAZZARR &middot; 2008 &rarr; 2026</p>
+ <h1>The Dynasty <span class="thin">every Tandu the record still answers for</span></h1>
+ <p class="lede"><a class="ext" href="legacy.html">Legacy</a> lists the four
+ handles. <a class="ext" href="roster.html">Roster</a> counts the fifty-four
+ folders. <a class="ext" href="eras.html">Eras</a> dates the layers. This page
+ answers a different question: <strong>how wide is the name, and how deep do the
+ roots actually go?</strong> Nine of the spellings below are still answered for by
+ the official Blizzard Armory &mdash; in plain HTTP, no key, no sign-in &mdash;
+ and the answer includes a Classic-era reputation that can only be earned by
+ walking into Ahn&rsquo;Qiraj.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html" aria-current="page">Dynasty</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="gear.html">Gear</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="width">
+ <h2>The Widening</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">13<small>spellings probed this pass</small></div>
+   <p class="note">Across four realm-names: Hyjal, Shadowsong, Thrall,
+   Borean Tundra. Every one was asked of the Armory directly.</p></div>
+  <div class="card"><div class="stat">9<small>still answered for</small></div>
+   <p class="note">Nine handles return a live character object. Raider.IO
+   answered for <em>one</em>. The Armory is the wider door.</p></div>
+  <div class="card"><div class="stat">6<small>races worn</small></div>
+   <p class="note">Undead, Zandalari Troll, Haranir, Worgen, Void Elf,
+   Dracthyr &mdash; each documented by the server, not by memory.</p></div>
+ </div>
+ <p class="note warn"><strong>Read this before the tables.</strong> Achievement
+ points are <em>account-wide</em>. Tandumonium shows <span class="mono">21,685</span>,
+ Tandu-Hyjal <span class="mono">21,625</span> and Tandu-Shadowsong
+ <span class="mono">21,005</span> &mdash; the same number at three different
+ moments. That gap is the cache age of each page, <strong>not</strong> three
+ different players. Nothing here is inferred from the gap.</p>
+</section>
+
+<section id="family">
+ <h2>The Census &mdash; nine living, four gone</h2>
+ <div class="scroll">
+  <table>
+   <caption>Blizzard Armory, read 2026-11-10. &ldquo;Last seen&rdquo; is the
+   server&rsquo;s own <code>lastUpdatedTimestamp</code>, not a file mtime.</caption>
+   <thead><tr><th>Realm</th><th>Handle</th><th>Race</th><th>Class &middot; spec</th>
+   <th>Lvl</th><th>Last seen</th><th>Verdict</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">Hyjal</td><td><strong>Tandumonium</strong></td>
+        <td>Dracthyr</td><td>Hunter &middot; Beast Mastery</td><td>90</td>
+        <td class="mono">2026-11-05</td><td><span class="tag t-f">main</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tandu</strong></td>
+        <td>Undead</td><td>Hunter &middot; Beast Mastery</td><td>18</td>
+        <td class="mono">2026-08-26</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tandora</strong></td>
+        <td>Haranir</td><td>Warlock &middot; Demonology</td><td>10</td>
+        <td class="mono">2026-08-26</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tandulari</strong></td>
+        <td>Zandalari Troll</td><td>Druid</td><td>10</td>
+        <td class="mono">2026-08-26</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tangents</strong></td>
+        <td>Worgen</td><td>Hunter &middot; Survival</td><td>23</td>
+        <td class="mono">2026-08-26</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Shadowsong</td><td><strong>Tandu</strong></td>
+        <td>Zandalari Troll</td><td>Hunter &middot; Marksmanship</td><td>10</td>
+        <td class="mono">2025-06-19</td><td><span class="tag t-g">origin</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tantalous</strong></td>
+        <td>Void Elf</td><td>Priest &middot; Discipline</td><td>24</td>
+        <td class="mono">2025-07-07</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tantrums</strong></td>
+        <td>Zandalari Troll</td><td>Shaman &middot; Enhancement</td><td>56</td>
+        <td class="mono">2025-07-08</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td><strong>Tankadu</strong></td>
+        <td>Zandalari Troll</td><td>Paladin &middot; Protection</td><td>60</td>
+        <td class="mono">2024-12-01</td><td><span class="tag t-f">alive</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td>Tandaria</td>
+        <td colspan="4" class="mono">&mdash; HTTP 500, no such character &mdash;</td>
+        <td><span class="tag t-x">gone</span></td></tr>
+    <tr><td class="mono">Hyjal</td><td>Tankard</td>
+        <td colspan="4" class="mono">&mdash; HTTP 500, no such character &mdash;</td>
+        <td><span class="tag t-x">gone</span></td></tr>
+    <tr><td class="mono">Thrall</td><td>Tandu</td>
+        <td colspan="4" class="mono">&mdash; HTTP 500, no such character &mdash;</td>
+        <td><span class="tag t-x">gone</span></td></tr>
+    <tr><td class="mono">&mdash;</td><td>Tandieu</td>
+        <td colspan="4" class="mono">&mdash; 500 on all four realms &mdash;</td>
+        <td><span class="tag t-x">gone</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Six classes across one surname: Hunter &times;4, Warlock, Druid,
+ Priest, Paladin, Shaman. The hunter bias is not an accident &mdash; a stable of
+ alts is how a hunter main keeps from re-rolling a main.</p>
+</section>
+
+<section id="disk">
+ <h2>The Disk Forgets What The Server Remembers</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Three characters with one file each</h3>
+   <p class="note">On disk, <code>Tankadu</code>, <code>Tantrums</code> and
+   <code>Tantalous</code> are single-file shells &mdash; one
+   <code>AddOns.txt</code>, nothing else, all stamped
+   <span class="mono">2026-09-16 18:31:44</span> by the bulk copy. The Armory
+   says they are <strong>level 60</strong>, <strong>56</strong> and
+   <strong>24</strong> with 327, 296 and 58 equipped item level. A shell is not
+   an absence. It is a folder the client pruned and the server did not.</p>
+  </div>
+  <div class="card">
+   <h3>Two characters the disk kept, the server dropped</h3>
+   <p class="note"><code>Tandaria</code> and <code>Tankard</code> hold a folder on
+   Hyjal but return HTTP 500 from the Armory &mdash; renamed or deleted. So the
+   two sources disagree <em>in both directions</em>. Neither one alone is the
+   truth; only the pair is.</p>
+  </div>
+ </div>
+</section>
+
+
+<section id="races">
+ <h2>The Race Ladder &mdash; six costumes, one spine</h2>
+ <p class="note">These are the races the <em>server</em> reports today, one per
+ character. Not one of them is Blood Elf &mdash; and that is the point. The
+ Sin&rsquo;dorei is the constant underneath; every entry below is a form worn
+ for a mechanic, a phase, or a slow fall.</p>
+ <div class="grid g2">
+  <div class="card race b1">
+   <h3>Undead <span class="mono">(Forsaken)</span></h3>
+   <p><strong>Tandu &mdash; Hyjal &middot; level 18.</strong> The one handle that
+   survives on the oldest realm cluster wearing the newest dead face. This is the
+   Dark Ranger chapter, and it is no longer lore-only:
+   <span class="mono">race.name = &ldquo;Undead&rdquo;</span> is a hard field
+   from the Armory, captured 2026-11-10.</p>
+   <p class="note">Still a blood elf underneath. We don&rsquo;t leave our people
+   behind.</p>
+  </div>
+  <div class="card race b2">
+   <h3>Zandalari Troll <span class="mono">&times;4</span></h3>
+   <p><strong>Tankadu (60 Pally), Tantrums (56 Shaman), Tandulari (10 Druid),
+   Tandu-Shadowsong (10 Hunter).</strong> The single most-worn alternate form in
+   the family &mdash; four characters. Zandalari is where the engineering and the
+   BfA reputation push (see below) both live.</p>
+   <p class="note">A troll is a slow-fall race only in spirit; the real reason
+   here is the Zandalari Druid forms and the Paladin fantasy.</p>
+  </div>
+  <div class="card race b3">
+   <h3>Haranir <span class="mono">(Midnight)</span></h3>
+   <p><strong>Tandora &mdash; Hyjal &middot; level 10 Warlock.</strong> The newest
+   race in the game, on the newest expansion, on a name that has existed since
+   2008. A dynasty does not stop adopting.</p>
+  </div>
+  <div class="card race b4">
+   <h3>Worgen &middot; Void Elf &middot; Dracthyr</h3>
+   <p><strong>Tangents</strong> (Worgen, 23 Survival Hunter) &middot;
+   <strong>Tantalous</strong> (Void Elf, 24 Disc Priest) &middot;
+   <strong>Tandumonium</strong> (Dracthyr, 90 BM Hunter).</p>
+   <p class="note">The Dracthyr was chosen 100% for <strong>Glide</strong>. Not for
+   the scales, not for the visage &mdash; for slow fall, because
+   <strong>gravity</strong> is the deadliest boss in Mythic raiding.</p>
+  </div>
+ </div>
+</section>
+
+<section id="rep">
+ <h2>The Reputation Fossil Record</h2>
+ <p>The Armory publishes every faction on the account, grouped by expansion.
+ <strong>113 factions, 32 Exalted.</strong> This is the deepest evidence on the
+ whole dashboard, because reputation is not purchasable and not
+ account-transferable &mdash; you get it by being there.</p>
+ <div class="scroll">
+  <table>
+   <caption>Exalted counts per expansion block, read 2026-11-10</caption>
+   <thead><tr><th>Expansion</th><th>Factions</th><th>Exalted</th><th>Named</th></tr></thead>
+   <tbody>
+    <tr><td>Classic</td><td>14</td><td><strong>4</strong></td>
+        <td>Argent Dawn &middot; <strong>Brood of Nozdormu</strong> &middot; Cenarion Circle &middot; Thorium Brotherhood</td></tr>
+    <tr><td>The Burning Crusade</td><td>12</td><td><strong>3</strong></td>
+        <td><strong>Ashtongue Deathsworn</strong> &middot; The Consortium &middot; Tranquillien</td></tr>
+    <tr><td>Wrath of the Lich King</td><td>8</td><td><strong>6</strong></td>
+        <td>Argent Crusade &middot; Kirin Tor &middot; Knights of the Ebon Blade &middot; <strong>The Ashen Verdict</strong> &middot; The Wyrmrest Accord &middot; Horde Expedition</td></tr>
+    <tr><td>Cataclysm</td><td>7</td><td><strong>1</strong></td>
+        <td>Ramkahen</td></tr>
+    <tr><td>Mists of Pandaria</td><td>10</td><td>0</td>
+        <td class="mono">&mdash;</td></tr>
+    <tr><td>Warlords of Draenor</td><td>5</td><td>0</td>
+        <td class="mono">&mdash;</td></tr>
+    <tr><td>Legion</td><td>10</td><td><strong>2</strong></td>
+        <td>Armies of Legionfall &middot; The Nightfallen</td></tr>
+    <tr><td>Battle for Azeroth</td><td>10</td><td><strong>10</strong></td>
+        <td>Champions of Azeroth &middot; Rajani &middot; Rustbolt Resistance &middot; Talanji&rsquo;s Expedition &middot; The Honorbound &middot; The Unshackled &middot; Tortollan Seekers &middot; Uldum Accord &middot; Voldunai &middot; Zandalari Empire</td></tr>
+    <tr><td>Shadowlands</td><td>12</td><td><strong>5</strong></td>
+        <td>Court of Harvesters &middot; Death&rsquo;s Advance &middot; The Ascended &middot; The Undying Army &middot; The Wild Hunt</td></tr>
+    <tr><td>Dragonflight</td><td>6</td><td>0</td>
+        <td class="mono">&mdash;</td></tr>
+    <tr><td>The War Within</td><td>9</td><td>0</td>
+        <td class="mono">&mdash;</td></tr>
+    <tr><td>Midnight</td><td>9</td><td>0</td>
+        <td>Hara&rsquo;ti already at Renown 5</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note warn"><strong>Three raid receipts.</strong> Most reputations come
+ from dailies. Three do not. <strong>Brood of Nozdormu</strong> is earned in
+ Ahn&rsquo;Qiraj. <strong>Ashtongue Deathsworn</strong> is earned inside the Black
+ Temple. <strong>The Ashen Verdict</strong> only exists from Icecrown Citadel
+ raiding. These are raid attendance records that survived because Blizzard keeps
+ reputation forever and the internet kept nothing. It is the closest thing to a
+ log the 2008&ndash;2010 era will ever give up.</p>
+</section>
+
+
+<section id="prof">
+ <h2>The Profession Ladder</h2>
+ <p>Every expansion has its own skill band, and the Armory reports each band
+ separately. That makes a single profession a stratigraphy chart: <em>which bands
+ are full</em> is a list of expansions actually lived in, and <em>which bands are
+ near zero</em> is a list of expansions walked past.</p>
+ <div class="scroll">
+  <table>
+   <caption>Tandumonium-Hyjal, Engineering &middot; Enchanting &middot; Cooking &middot; Fishing, read 2026-11-10</caption>
+   <thead><tr><th>Band</th><th>Engineering</th><th>Enchanting</th><th>Cooking</th><th>Fishing</th></tr></thead>
+   <tbody>
+    <tr><td>Classic</td><td class="mono">300/300</td><td class="mono">300/300</td><td class="mono">300/300</td><td class="mono">300/300</td></tr>
+    <tr><td>Outland (TBC)</td><td class="mono">75/75</td><td class="mono">0/0</td><td class="mono">75/75</td><td class="mono">75/75</td></tr>
+    <tr><td>Northrend (WotLK)</td><td class="mono">75/75</td><td class="mono">25/75</td><td class="mono">75/75</td><td class="mono">75/75</td></tr>
+    <tr><td>Cataclysm</td><td class="mono">75/75</td><td class="mono">25/75</td><td class="mono">75/75</td><td class="mono">63/75</td></tr>
+    <tr><td>Pandaria</td><td class="mono">75/75</td><td class="mono">0/0</td><td class="mono">75/75</td><td class="mono">1/75</td></tr>
+    <tr><td>Draenor</td><td class="mono">100/100</td><td class="mono">46/100</td><td class="mono">54/100</td><td class="mono">1/100</td></tr>
+    <tr><td>Legion</td><td class="mono">92/100</td><td class="mono">100/100</td><td class="mono">47/100</td><td class="mono">2/100</td></tr>
+    <tr><td>Zandalari (BfA)</td><td class="mono">175/175</td><td class="mono">175/175</td><td class="mono">175/175</td><td class="mono">175/175</td></tr>
+    <tr><td>Shadowlands</td><td class="mono">100/100</td><td class="mono">115/115</td><td class="mono">75/75</td><td class="mono">200/200</td></tr>
+    <tr><td>Dragon Isles</td><td class="mono">58/100</td><td class="mono">71/100</td><td class="mono">50/100</td><td class="mono">18/100</td></tr>
+    <tr><td>Khaz Algar (TWW)</td><td class="mono">59/100</td><td class="mono">77/100</td><td class="mono">65/100</td><td class="mono">13/300</td></tr>
+    <tr><td>Midnight</td><td class="mono">1/100</td><td class="mono">25/100</td><td class="mono">1/100</td><td class="mono">5/300</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note"><strong>Read the fully-closed bands:</strong> Classic, Outland,
+ Northrend, Cataclysm, Pandaria, Zandalari and Shadowlands are all at cap. Four
+ bands in a row at exactly 75/75 is not luck &mdash; it is somebody who capped
+ each expansion as it shipped and then never went back. The one that
+ <em>isn&rsquo;t</em> capped in the Zandalari band is nothing: it is at 100%.
+ The near-zeros are Pandaria/Draenor/Legion Fishing (1, 1, 2), which is the most
+ honest line on the page &mdash; freed in every expansion, fished in none.</p>
+</section>
+
+<section id="marks">
+ <h2>Marks That Outlive A Spec</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">N&rsquo;Zoth<small>equipped title</small></div>
+   <p class="note"><span class="mono">Servant of N&rsquo;Zoth</span> &mdash; a
+   BfA 8.3 title, and the only title actually equipped on the main today. Four
+   expansions later the Old God is still on the nameplate.</p></div>
+  <div class="card"><div class="stat">Dorian<small>the wolf, level 90</small></div>
+   <p class="note">The active hunter pet on Tandumonium is a
+   <strong>Wolf named Dorian</strong>. The grey soul-shard of this pack is not a
+   metaphor invented for a chat log &mdash; it is a pet that has been fed, kept
+   and re-summoned across every expansion.
+   <a class="ext" href="Stable.html">The Stable</a> has the stills, including his
+   brother <strong>Faust</strong>: a blue exotic spirit beast, level 90, two
+   slots up the rail.</p></div>
+  <div class="card"><div class="stat">15,006<small>honorable kills &middot; honor 41</small></div>
+   <p class="note">PvP never was the main road, but 15k kills is a lot of
+   Battlegrounds accumulated in the margins of a PvE life.</p></div>
+  <div class="card"><div class="stat">Farstrider<small>a blood elf in the trinket slot</small></div>
+   <p class="note"><span class="mono">Forgotten Farstrider&rsquo;s Insignia</span>
+   is equipped in the second trinket slot. The Farstriders are the blood elf
+   ranger order. Whatever face is worn, the Sin&rsquo;dorei is still in the
+   inventory.</p></div>
+  <div class="card"><div class="stat">Harvesters<small>tabard worn</small></div>
+   <p class="note">The <span class="mono">Court of Harvesters Tabard</span>
+   (Venthyr, Revendreth) is the equipped tabard &mdash; and Court of Harvesters
+   is one of the five Shadowlands exalteds. Two independent fields, same fact.</p></div>
+  <div class="card"><div class="stat">the Seeker<small>on Tantrums</small></div>
+   <p class="note">The shaman carries <span class="mono">the Seeker</span>. A
+   whole second nameplate, on a character the disk had almost forgotten.</p></div>
+ </div>
+</section>
+
+
+<section id="method">
+ <h2>Method &amp; Limits</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>How this was read</h3>
+   <p class="note">One HTTP GET per handle, plain
+   <code>Mozilla/5.0</code> agent, no cookie jar, no login:
+   <span class="mono">worldofwarcraft.blizzard.com/en-us/character/us/&lt;realm&gt;/&lt;name&gt;</span>.
+   The page embeds its whole state in a <code>model = {&hellip;}</code> blob, so
+   the numbers here are read out of JSON, not out of rendered text. The
+   reputation table comes from the same route with
+   <code>/reputation</code> appended; the totals below are recounted from the
+   captured JSON, not typed by hand.</p>
+  </div>
+  <div class="card">
+   <h3>What it cannot prove</h3>
+   <p class="note">The Armory is <em>state</em>, not <em>history</em>. It will
+   tell you Tandu is Undead; it will never tell you <em>when</em> he became
+   Undead. Reputation proves you were in a raid instance; it does not prove you
+   killed the last boss. And a title can be earned once in 2020 and worn in 2026
+   &mdash; every date on this page that is not a
+   <code>lastUpdatedTimestamp</code> is a <strong>window</strong>, never a
+   point.</p>
+  </div>
+ </div>
+ <p class="note">Raw captures (five Armory pages plus the parsed JSON and this
+ pass&rsquo;s scratch scripts) live in <code>Research/_raw/</code> and
+ <code>Research/_local/</code>, both gitignored &mdash; the site carries the
+ findings, the vault carries the receipts. Nothing in this wing is fetched at
+ runtime; every table is baked in at build time.</p>
+</section>
+
+<section id="next">
+ <h2>Where This Leads Next</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>The remaining door: achievement dates</h3>
+   <p class="note">The <code>/achievements/&lt;category&gt;</code> routes return
+   HTTP 200 but only the category <em>counts</em> (Quests 226/527, 2,140 of
+   4,980 points). The per-achievement list &mdash; and with it the completion
+   timestamps that would date every layer to the day &mdash; is fetched
+   client-side by the armory front-end and was not resolved this pass. That is
+   the next unlock and it is worth more than everything above it: it would turn
+   this page from a map into a calendar.</p>
+  </div>
+  <div class="card">
+   <h3>Cross-links</h3>
+   <p class="note">Handle-by-handle external doors are in
+   <a class="ext" href="links.html">Link Vault</a>. The tenure-scoped raid-log
+   hunt is in <a class="ext" href="raidlogs.html">Raid Logs</a>. The layer dates
+   are in <a class="ext" href="eras.html">Eras</a>. The disk count is in
+   <a class="ext" href="roster.html">Roster</a>. The current armory snapshot in
+   prose is <a class="ext" href="character.html">Character</a>.</p>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <p>Gewey G.U.I. &middot; dynasty wing &middot; Blizzard Armory read
+ 2026-11-10 &middot; 13 handles probed, 9 answered &middot;
+ <a class="ext" href="index.html" target="_top">back to the shell</a></p>
+</footer>
+</div>
+</body>
+</html>
+

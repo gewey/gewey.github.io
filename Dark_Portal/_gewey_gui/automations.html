@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mechanical Chicken &mdash; Automation & Sidecar Cockpit | Gewey G.U.I.</title>
+<script>
+  const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<script src="https://gewey.github.io/js/dynamichead.js" defer></script>
+<!--
+  AUTOMATIONS.html — Built 2026-11-10 by Tandumonium.
+  SSOT Companion for Mechanical_Chicken/SCHEDULE_SSOT.md across both Cline & Antigravity.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05040a;--panel:rgba(14,10,22,.86);--panel-sub:rgba(22,16,36,.7);
+  --line:rgba(255,196,107,.18);--ink:#f3ecff;--mut:#9b8fb4;
+  --gold:#ffc46b;--crimson:#ff3b5c;--arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+  --glow:0 0 14px rgba(255,196,107,.45);
+  --font-mono:'Cascadia Mono','JetBrains Mono','Fira Code',Consolas,monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+  font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.16),transparent 62%),
+    radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.13),transparent 64%),
+    radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.11),transparent 68%),
+    linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(1.9rem,4.5vw,3.1rem);line-height:1.1;margin:.35rem 0 .5rem;
+  font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:76ch;font-size:.95rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);border:1px solid var(--line);
+  padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02);transition:all .15s ease}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold);background:rgba(255,196,107,.08)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem;color:var(--ink)}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.55rem .65rem;border-bottom:1px solid rgba(255,255,255,.07);
+  vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:var(--font-mono);font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.25rem}
+.grid{display:grid;gap:1rem}
+.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.stat{font-size:1.9rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mut);display:block;margin-top:.35rem}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid currentColor;padding:.12rem .45rem;border-radius:2px;line-height:1.5}
+.t-r{color:var(--crimson);border-color:var(--crimson)}
+.t-f{color:var(--fel);border-color:var(--fel)}
+.t-g{color:var(--gold);border-color:var(--gold)}
+.t-a{color:var(--arcane);border-color:var(--arcane)}
+.t-x{color:var(--grey);border-color:var(--grey)}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+  padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson);color:#ff9baa}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+  font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* Hourly Timeline Ring / Dial */
+.clock-strip{display:flex;flex-direction:column;gap:.75rem}
+.slot{display:flex;align-items:flex-start;gap:1rem;padding:.75rem .9rem;
+  background:var(--panel-sub);border:1px solid rgba(255,255,255,.06);border-radius:4px;
+  border-left:4px solid var(--line);transition:border-color .2s ease}
+.slot:hover{border-left-color:var(--gold);background:var(--panel)}
+.slot.s-gemini{border-left-color:var(--arcane)}
+.slot.s-cline{border-left-color:var(--fel)}
+.slot.s-master{border-left-color:var(--gold)}
+.slot-time{font-family:var(--font-mono);font-size:1.05rem;font-weight:700;
+  color:var(--gold);min-width:4rem;padding-top:.1rem}
+.slot-body{flex:1}
+.slot-title{font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:.6rem}
+.slot-desc{font-size:.78rem;color:var(--mut);margin-top:.2rem}
+</style>
+</head>
+<body class="gw-automations">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">Mechanical Chicken &middot; Automations &amp; Sidecars SSOT &middot; 2026</p>
+  <h1>The Automations <span class="thin">unified scheduler across Cline &amp; Antigravity</span></h1>
+  <p class="lede">Single source of truth for all autonomous tasks patrolling the Dark Portal station, Tesseract City, and the World of Warcraft: Forever runtime. Spaced across the hour to eliminate resource thrashing, concurrent file locks, and quota exhaustion.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+    <a href="index.html">Shell</a>
+    <a href="Concordance.html">Concordance</a>
+    <a href="_fuhevva_evva.html">Home</a>
+    <a href="Timeline.html">Timeline</a>
+    <a href="automations.html" aria-current="page">Automations</a>
+    <a href="character.html">Character</a>
+    <a href="gear.html">Gear</a>
+    <a href="legacy.html">Legacy</a>
+    <a href="dynasty.html">Dynasty</a>
+    <a href="roster.html">Roster</a>
+    <a href="tandu_legacy.html">Tandu Legacy</a>
+    <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="eras.html">Eras</a>
+    <a href="links.html">Links</a>
+    <a href="raidlogs.html">Raid Logs</a>
+    <a href="log_ledger.html">Log Ledger</a>
+    <a href="relics.html">Relics</a>
+    <a href="Chronicle.html">Chronicle</a>
+    <a href="Delve.html">Delve</a>
+    <a href="Frontier.html">Frontier</a>
+    <a href="macrocosm.html">Macrocosm</a>
+    <a href="Residue.html">Residue</a>
+    <a href="Sortie.html">Sortie</a>
+    <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+    <a href="Almanac.html">Almanac</a>
+    <a href="Levelbook.html">Levelbook</a>
+    <a href="Faces.html">Faces</a>
+    <a href="Purse.html">Purse</a>
+    <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+    <a href="Clockwork.html">Clockwork</a>
+    <a href="Chassis.html">Chassis</a>
+    <a href="Itinerary.html">Itinerary</a>
+    <a href="Milestones.html">Milestones</a>
+    <a href="Origins.html">Origins</a>
+    <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+    <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="metrics">
+  <div class="grid g4">
+    <div class="card">
+      <div class="stat">11 <small>Active Schedules</small></div>
+      <p class="note">8 Cline tasks (daily + hourly swarm) &amp; 3 Antigravity Sidecars.</p>
+    </div>
+    <div class="card">
+      <div class="stat">:30 / :00 <small>Antigravity Offset</small></div>
+      <p class="note">Viktor fires at <code class="mono">:00</code>; Tandumonium fires at <code class="mono">:30</code>. Zero overlap.</p>
+    </div>
+    <div class="card">
+      <div class="stat">Free-First <small>Rotation Mode</small></div>
+      <p class="note">Workers cycle on free Nemotron; falls back to DeepSeek v4.1 Flash when dry.</p>
+    </div>
+    <div class="card">
+      <div class="stat">2 SSOTs <small>Contract Anchors</small></div>
+      <p class="note"><code class="mono">SCHEDULE_SSOT.md</code> in repo &amp; <code class="mono">cron.db</code> / <code class="mono">sidecars/</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hourly-dial">
+  <h2>The Hourly Clock Matrix (Staggered Cadence)</h2>
+  <div class="clock-strip">
+    <div class="slot s-gemini">
+      <div class="slot-time">:00</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Antigravity: <code class="mono">whateva</code> (Viktor)</span>
+          <span class="tag t-a">Antigravity Sidecar</span>
+          <span class="tag t-f">Active</span>
+        </div>
+        <p class="slot-desc">Viktor Substrate &amp; Fabulinus Artificer. Mirrors substrate inside cubby, builds 3dsnek/fabulinus bridges, outputs rich HTML pages.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:00</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H6: Update docs (hourly)</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-x">sched_86cf3831</span>
+        </div>
+        <p class="slot-desc">Compares recent code changes against existing docs and closes documentation gaps.</p>
+      </div>
+    </div>
+    <div class="slot s-master">
+      <div class="slot-time">:05</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline Master: Hourly Omni Synchronizer</span>
+          <span class="tag t-g">Task Master</span>
+          <span class="tag t-a">Paid Fallback Safe</span>
+        </div>
+        <p class="slot-desc">Runs <code class="mono">model_rotation.py</code> across <code class="mono">cron.db</code> to detect quota exhaustion; syncs hourly prompt definitions with <code class="mono">SCHEDULE_SSOT.md</code>.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:10</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H1: Analyze and Visualize &amp; H7: Addon Brainstorm</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-x">sched_11bfa072 / 8494ceec</span>
+        </div>
+        <p class="slot-desc">Visualizes game logs into HTML wings; reviews third-party addons across _forever_, _classic_era_, and _retail_.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:11</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline S4: Forever Telemetry Audit</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-g">Core Telemetry</span>
+        </div>
+        <p class="slot-desc">Runs <code class="mono">Timeline\hourly_audit.py --quiet</code>; regenerates <code class="mono">Timeline.html</code> and logs client presence.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:20</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H2: Daily change digest (hourly)</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-x">sched_e7670d06</span>
+        </div>
+        <p class="slot-desc">Summarizes commits, merged changes, and risky diffs landing in the last 24 hours.</p>
+      </div>
+    </div>
+    <div class="slot s-gemini">
+      <div class="slot-time">:30</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Antigravity: <code class="mono">tandumonium</code> (Tandumonium)</span>
+          <span class="tag t-a">Antigravity Sidecar</span>
+          <span class="tag t-g">Station Sentinel</span>
+        </div>
+        <p class="slot-desc"><strong>Moved from :00 to :30 to eliminate collision with Viktor.</strong> Follows <code class="mono">Tandumonium.agent.md</code>, audits Dark_Portal, spaces sidecars, records Decision_Log.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:30</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H3: Find critical bugs (hourly)</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-x">sched_d78ff8cb</span>
+        </div>
+        <p class="slot-desc">Bug hunter tracking severe correctness bugs, unbounded loops, and silent truncation.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:40</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H4: Security scan (hourly)</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-r">Security Reviewer</span>
+        </div>
+        <p class="slot-desc">Scheduled security reviewer probing auth, sanitization, shell execution, and secret handling.</p>
+      </div>
+    </div>
+    <div class="slot s-cline">
+      <div class="slot-time">:50</div>
+      <div class="slot-body">
+        <div class="slot-title">
+          <span>Cline H5: Tandu Tandieu Tandumonium (hourly)</span>
+          <span class="tag t-f">Cline Task</span>
+          <span class="tag t-g">Wide-Scale Archaeologist</span>
+        </div>
+        <p class="slot-desc">Deep 2008&rarr;present archaeology, WoW: Forever character tracking, guild tenure governance, and HUD wing integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="antigravity-fleet">
+  <h2>Antigravity (Google) Sidecar Subsystem</h2>
+  <div class="card">
+    <p>Antigravity Sidecars reside in <code class="mono">C:\Users\Gewey\.gemini\config\sidecars\&lt;id&gt;\sidecar.json</code> and write execution telemetry to <code class="mono">C:\Users\Gewey\.gemini\antigravity\sidecar_data\&lt;id&gt;\logs\sidecar.log</code>.</p>
+    <div class="scroll" style="margin-top:1rem">
+      <table>
+        <caption>Fleet Inventory &amp; State</caption>
+        <thead>
+          <tr>
+            <th>Sidecar ID</th>
+            <th>Type</th>
+            <th>Cadence</th>
+            <th>Model</th>
+            <th>Resident Agent</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="mono">tandumonium</code></td>
+            <td>Scheduled Automation</td>
+            <td><code class="mono">30 * * * *</code> (Hourly at :30)</td>
+            <td><code class="mono">flash</code></td>
+            <td>Tandumonium (Dark Portal Sentinel)</td>
+            <td><span class="tag t-f">Active (Hot-Reloaded)</span></td>
+          </tr>
+          <tr>
+            <td><code class="mono">whateva</code></td>
+            <td>Scheduled Automation</td>
+            <td><code class="mono">0 * * * *</code> (Hourly at :00)</td>
+            <td><code class="mono">flash</code></td>
+            <td>Viktor (Fabulinus Artificer)</td>
+            <td><span class="tag t-f">Active</span></td>
+          </tr>
+          <tr>
+            <td><code class="mono">workspace-pulse</code></td>
+            <td>Background Daemon</td>
+            <td>Continuous (<code class="mono">on-failure</code>)</td>
+            <td>Python Runtime</td>
+            <td>System Telemetry Worker</td>
+            <td><span class="tag t-a">Monitoring</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <strong>The Stagger Rationale:</strong> Setting <code class="mono">tandumonium</code> to <code class="mono">CRON_TZ=America/New_York 30 * * * *</code> guarantees that Viktor and Tandumonium never spawn headless conversations simultaneously, ensuring clean token windows and zero race conditions on shared station files.
+    </div>
+  </div>
+</section>
+
+<section id="model-rotation">
+  <h2>Cline Free-First Model Rotation Architecture</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>The Operational Contract</h3>
+      <p>All Cline worker tasks attempt to run on free models (<code class="mono">cline-free/nemotron-3.5-super-vl</code>). When the daily quota is exhausted, the master flips the fleet to <code class="mono">cline-pass/deepseek-v4.1-flash-1017</code> for 20 hours before probing free quota again.</p>
+      <p class="note"><strong>Engine:</strong> <code class="mono">Mechanical_Chicken/model_rotation.py</code><br><strong>State:</strong> <code class="mono">Mechanical_Chicken/model_rotation.json</code><br><strong>DB:</strong> <code class="mono">C:\Users\Gewey\.cline\data\db\cron.db</code></p>
+    </div>
+    <div class="card">
+      <h3>Master Exemption Law</h3>
+      <p>The <strong>Hourly Omni Synchronizer</strong> runs on paid DeepSeek permanently. If the master were also placed on a free model and that model died, the fleet would be permanently stranded with no task capable of flipping it back.</p>
+      <p class="note warn"><strong>Safe Operation:</strong> The master is the unsinkable anchor that keeps the entire 10-minute swarm operational.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Gewey G.U.I. &middot; Mechanical Chicken Automation Cockpit &middot; Built 2026-11-10 &middot;
+  Shell: <a class="ext" href="index.html" target="_top">index.html</a> &middot;
+  SSOT: <code>V:\__inuus__\gewey.github.io\Dark_Portal\Mechanical_Chicken\SCHEDULE_SSOT.md</code>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retail Reliquary &mdash; what the install keeps | Gewey G.U.I.</title>
+<!--
+  reliquary.html - built 2026-11-16 by Tandumonium (retail reliquary pass).
+
+  Why this page exists: tandu_legacy.html counted the retail folders and
+  relics.html counted the artifacts. This wing reads the strata those two
+  never opened: the account-wide login ledger in Logs/AccountData.log, the
+  macro naming language inside every macros-cache.txt, the 8x12 action-bar
+  map in Tandumonium_UI.lua, the /played ledger in WoWForeverFitness.lua,
+  and the addon estate's family tree. It then re-probes every external
+  door that could still speak for a 2008-2026 character.
+
+  Method (both gitignored, both read-only, nothing written to the game tree):
+    Research/_local/_retail_reliquary_scan.py -> _raw/retail_reliquary.json
+    Research/_local/_retail_door_sweep.py     -> _raw/retail_door_sweep.json
+  Every number below is baked in at build time; the page fetches nothing.
+
+  GUILD TENURE RULE: only <Gehenna> evidence inside 2019 BfA (WCL guild
+  7287) and <Theorycrafters> on Thrall-US / Hyjal-US is recorded anywhere
+  in this station. Pre-tenure captures are deliberately absent.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;--violet:#b98cff;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 10% -8%,rgba(185,140,255,.16),transparent 62%),
+  radial-gradient(820px 480px at 90% 2%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 112%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+.t-a{color:var(--arcane)}.t-v{color:var(--violet)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.bar{display:flex;flex-wrap:wrap;gap:.28rem;margin:.3rem 0 .7rem}
+.bar b{font-size:.62rem;letter-spacing:.14em;color:var(--mut);display:block;
+ width:100%;text-transform:uppercase;margin-bottom:.1rem}
+.tok{font-family:'Cascadia Mono',Consolas,monospace;font-size:.7rem;padding:.12rem .4rem;
+ border:1px solid rgba(255,255,255,.12);border-radius:2px;white-space:nowrap}
+.k-m{color:var(--gold);border-color:rgba(255,196,107,.45)}
+.k-s{color:var(--arcane);border-color:rgba(55,230,255,.35)}
+.k-i{color:var(--fel);border-color:rgba(125,255,92,.35)}
+.k-c{color:var(--violet);border-color:rgba(185,140,255,.4)}
+.k-b{color:var(--grey);border-color:rgba(185,194,204,.28)}
+</style>
+</head>
+<body class="gw-reliquary">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Retail reliquary &middot; 54 slots &middot; 105 macros &middot; 234.7 days</p>
+ <h1>Retail Reliquary <span class="thin">what the install keeps that the Armory forgot</span></h1>
+ <p class="lede">The Blizzard Armory answers for exactly one character: the
+ current one. <code>_retail_</code> answers for all of them. This wing reads
+ the four strata the other retail pages never opened &mdash; an account-wide
+ <strong>login ledger</strong> written by the client itself, the
+ <strong>macro language</strong> repeated across five characters, the
+ <strong>94-slot action-bar map</strong> authored by hand, and the
+ <strong><code>/played</code> ledger</strong> that says how long this body has
+ actually existed &mdash; then re-probes every external door that could still
+ speak for a 2008&rarr;2026 character.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="persona.html">Persona</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html" aria-current="page">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="eras.html">Eras</a>
+  <a href="roster.html">Roster</a>
+  <a href="relics.html">Relics</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="links.html">Links</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="automations.html">Automations</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="counters">
+ <h2>The Six Numbers</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">54<small>character slots on disk</small></div>
+   <p class="note">29 Hyjal &middot; 12 Shadowsong &middot; 13 Thrall</p></div>
+  <div class="card"><div class="stat">9<small>slots that lived</small></div>
+   <p class="note">eight on Hyjal, one on Shadowsong, none on Thrall</p></div>
+  <div class="card"><div class="stat">45<small>ghost shells</small></div>
+   <p class="note">folders holding one <code>AddOns.txt</code> and nothing else</p></div>
+  <div class="card"><div class="stat">105<small>macro blocks</small></div>
+   <p class="note">57 distinct names &middot; five characters carry them</p></div>
+  <div class="card"><div class="stat">94<small>bar slots mapped</small></div>
+   <p class="note">eight bars, one hand-authored layout</p></div>
+  <div class="card"><div class="stat">234.7<small>days /played</small></div>
+   <p class="note">5,633.7 hours on one body, at level 90</p></div>
+ </div>
+</section>
+
+<section id="realms">
+ <h2>Three Realms, Three Tempers</h2>
+ <div class="scroll">
+  <table>
+   <caption>Slot density per realm. "Lived" means more than an AddOns.txt survives.</caption>
+   <thead><tr><th>Realm</th><th>Slots</th><th>Lived</th><th>Shells</th>
+    <th>Macro blocks</th><th>Reading</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Hyjal-US</strong></td><td>29</td><td class="t-f">8</td><td>21</td>
+        <td>83</td><td>the working realm &mdash; every authored addon, every bar map,
+        eleven <code>Tand*</code> spellings</td></tr>
+    <tr><td><strong>Shadowsong-US</strong></td><td>12</td><td class="t-g">1</td><td>11</td>
+        <td>22</td><td>the oldest realm, now one paladin deep: <code>Reticent</code>,
+        carrying a mirror of the hunter's macro law</td></tr>
+    <tr><td><strong>Thrall-US</strong></td><td>13</td><td class="t-r">0</td><td>13</td>
+        <td>0</td><td>a mausoleum &mdash; thirteen names, all shells stamped
+        <code>2026-09-16</code>, not one byte of play</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note warn">Thrall is the honest disappointment. Thirteen characters from the
+ &lt;Theorycrafters&gt; era survive as folder names only: the <code>AddOns.txt</code>
+ stub the client writes on first login, and nothing after it. No config, no macro
+ cache, no chat log. The realm remembers that they existed; it does not remember
+ what they did.</p>
+</section>
+
+<section id="nine">
+ <h2>The Nine That Lived</h2>
+ <div class="scroll">
+  <table>
+   <caption>Every retail folder holding more than an AddOns.txt stub, with the
+    client's own first/last mtime for its contents.</caption>
+   <thead><tr><th>Character</th><th>Realm</th><th>Class</th><th>Files</th>
+    <th>Macros</th><th>First</th><th>Last</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Tandumonium</strong></td><td>Hyjal</td>
+     <td class="t-a">Hunter &middot; Dracthyr BM</td><td>14</td><td class="t-g">28</td>
+     <td>2026-08-14</td><td class="t-f">2026-11-13</td></tr>
+    <tr><td><strong>Tangents</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>14</td><td class="t-g">30</td><td>2026-08-26</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Tandu</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>12</td><td>24</td><td>2026-08-26</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Reticent</strong></td><td>Shadowsong</td>
+     <td class="t-a">Paladin</td><td>13</td><td>22</td><td>2026-08-26</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Tandora</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>12</td><td>1</td><td>2026-08-18</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Fauxylauxy</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>11</td><td>0</td><td>2026-08-14</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Tandulari</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>10</td><td>0</td><td>2026-08-26</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Testytester</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>10</td><td>0</td><td>2026-08-26</td><td>2026-09-16</td></tr>
+    <tr><td><strong>Radaradas</strong></td><td>Hyjal</td><td class="t-x">not on any API</td>
+     <td>4</td><td>0</td><td>2026-08-18</td><td>2026-08-26</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Read the last column: <strong>Tandumonium is the only slot with a
+ 2026-11-13 timestamp</strong>. Everything else stops at <code>2026-09-16</code>,
+ the day the client last flushed a batch of untouched folders. Nine names lived;
+ one of them is still being lived in.</p>
+</section>
+
+<section id="macro-language">
+ <h2>The Macro Language</h2>
+ <p class="lede">105 macro blocks, 57 distinct names, and not one of them is
+ called "Bear Trap". The naming is a cipher that survived three realms and at
+ least two classes: sigil first, payload second.</p>
+ <div class="scroll">
+  <table>
+   <caption>Sigil census across all five characters that carry macros.</caption>
+   <thead><tr><th>Sigil</th><th>Blocks</th><th>Meaning, as written on the bar</th>
+    <th>Examples</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">#</td><td>31</td><td>named spell / utility slot &mdash; the
+     <code>#N</code> series is the numbered kit, <code>#s</code> the "s-" family</td>
+     <td class="mono">#N* #N+ #N- #N1 #N2 #N5 #N6 #N8 #N9 #sRacial #sHth #sFrm
+     #sBff #sFire #sPrfn #sMail</td></tr>
+    <tr><td class="mono">=</td><td>4</td><td>key-shape twin &mdash; the same action
+     bound to the same physical key on a second layout</td>
+     <td class="mono">= &middot; = - Pal</td></tr>
+    <tr><td class="t-x">plain</td><td>70</td><td>single-key ergonomics: letter, digit
+     or symbol only, so the bar reads as a keyboard</td>
+     <td class="mono">Q E R T Z F G 1 2 3 4 5 6 `</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3>Why the names are shaped like that</h3>
+ <p>The sigil is a <em>type tag</em> the eye parses before the icon loads:
+ <code>#</code> means "a spell lives here"; <code>$</code> means "a macro family
+ anchor" (<code>$Loot</code>, <code>$Dstry</code>, <code>$Fish</code>,
+ <code>$Targeting</code>); <code>!</code> means "a sequence token"
+ (<code>!STOP</code>, <code>!1</code>, <code>!2222</code>, <code>!SND</code>,
+ <code>!DR2</code>); <code>/</code> means "a slash command" (<code>/13</code>,
+ <code>/6</code>, <code>/TSM</code>, <code>/SUF</code>, <code>/fstk</code>);
+ <code>@</code> means "a mode switch" (<code>@PvP</code>, <code>@Raid</code>,
+ <code>@NO RAID</code>); <code>~</code> marks an item (<code>~skull</code>).</p>
+ <p class="note">The paladin on Shadowsong uses the <em>same</em> cipher with a
+ suffix: <code>#n1 - Pal</code> through <code>Z - Pal</code>. Twenty-two blocks,
+ one realm older, same law. That is the clearest proof this station holds that
+ the macro language is a personal convention rather than an addon's output: no
+ addon would invent <code>- Pal</code>. Only the same hands would.</p>
+</section>
+
+<section id="bar-map">
+ <h2>The Ninety-Four Slots</h2>
+ <p class="lede">This is not an addon's default. <code>Tandumonium_UI.lua</code>
+ stores a hand-authored <code>barMapping</code>: eight bars, 94 occupied slots,
+ each one a token the addon resolves at login. Read it as a picture of how the
+ character thinks: 48 macro references, 17 bare keybinds, 12 spell IDs, 10 slash
+ commands, 7 items.</p>
+ <div class="card">
+  <div class="bar"><b>Bar 1 &middot; the reach keys</b>
+   <span class="tok k-b">Q</span><span class="tok k-b">E</span>
+   <span class="tok k-b">R</span><span class="tok k-b">T</span>
+   <span class="tok k-c">/13</span><span class="tok k-m">!STOP</span>
+   <span class="tok k-s">spell:466930</span><span class="tok k-b">1</span>
+   <span class="tok k-b">2</span><span class="tok k-b">3</span>
+   <span class="tok k-s">spell:1264359</span><span class="tok k-b">5</span></div>
+  <div class="bar"><b>Bar 2 &middot; economy and identity</b>
+   <span class="tok k-m">$Loot</span><span class="tok k-m">#sRacial</span>
+   <span class="tok k-m">$Dstry</span><span class="tok k-c">/6</span>
+   <span class="tok k-b">=</span><span class="tok k-s">spell:90361</span>
+   <span class="tok k-b">Z</span><span class="tok k-b">F</span>
+   <span class="tok k-b">G</span><span class="tok k-b">s-G</span>
+   <span class="tok k-c">/14</span><span class="tok k-s">spell:403216</span></div>
+  <div class="bar"><b>Bar 3 &middot; the numbered kit</b>
+   <span class="tok k-m">#N+</span><span class="tok k-m">#N-</span>
+   <span class="tok k-m">#sHth</span><span class="tok k-m">#N8</span>
+   <span class="tok k-s">spell:1229376</span><span class="tok k-i">item:5512</span>
+   <span class="tok k-m">#N5</span><span class="tok k-m">#N6</span>
+   <span class="tok k-m">#N1</span><span class="tok k-m">#N2</span>
+   <span class="tok k-s">spell:186257</span>
+   <span class="tok k-b">6 - Intimidation</span></div>
+  <div class="bar"><b>Bar 4 &middot; travel and utility</b>
+   <span class="tok k-m">#sHrth</span><span class="tok k-m">#Whistle</span>
+   <span class="tok k-m">#sWrmhl</span><span class="tok k-i">item:198156</span>
+   <span class="tok k-m">#sOrg</span><span class="tok k-m">#sTrvl</span>
+   <span class="tok k-m">#N9</span><span class="tok k-i">item:253629</span>
+   <span class="tok k-m">!1</span><span class="tok k-m">!2222</span>
+   <span class="tok k-m">!3333</span><span class="tok k-m">!4444</span></div>
+  <div class="bar"><b>Bar 5 &middot; the console bar</b>
+   <span class="tok k-c">!/btwl</span><span class="tok k-c">/litemout</span>
+   <span class="tok k-c">/SUF</span><span class="tok k-m">!SND</span>
+   <span class="tok k-c">/fstk</span><span class="tok k-c">/addonprofiler</span>
+   <span class="tok k-m">@PvP</span><span class="tok k-m">@Raid</span>
+   <span class="tok k-m">@NO RAID</span><span class="tok k-m">!3333</span>
+   <span class="tok k-m">$Targeting</span><span class="tok k-m">#N*</span></div>
+  <div class="bar"><b>Bar 6 &middot; the ten-slot kit</b>
+   <span class="tok k-i">item:163742</span><span class="tok k-s">spell:372608</span>
+   <span class="tok k-m">~skull</span><span class="tok k-m">#sLst</span>
+   <span class="tok k-i">item:184075</span><span class="tok k-s">spell:403092</span>
+   <span class="tok k-c">/hnnew</span><span class="tok k-s">spell:372610</span>
+   <span class="tok k-i">item:122674</span><span class="tok k-c">/note</span></div>
+  <div class="bar"><b>Bar 7 &middot; the trades</b>
+   <span class="tok k-m">#sFrm</span><span class="tok k-m">#sBff</span>
+   <span class="tok k-m">#sFire</span><span class="tok k-s">spell:425782</span>
+   <span class="tok k-m">#sPrfn</span><span class="tok k-m">#sMail</span>
+   <span class="tok k-m">#s???</span><span class="tok k-m">!DR2</span>
+   <span class="tok k-m">#sDum</span><span class="tok k-s">spell:361584</span>
+   <span class="tok k-m">#sDed</span><span class="tok k-m">#sGme</span></div>
+  <div class="bar"><b>Bar 8 &middot; the deep bench</b>
+   <span class="tok k-m">#sXmg</span><span class="tok k-c">/TSM</span>
+   <span class="tok k-s">spell:436854</span><span class="tok k-m">$Fish</span>
+   <span class="tok k-m">#sRpr</span><span class="tok k-m">#sPot</span>
+   <span class="tok k-m">#sFsk</span><span class="tok k-m">#sRne</span>
+   <span class="tok k-m">#sOil</span><span class="tok k-i">item:186974</span>
+   <span class="tok k-m">#sFst</span><span class="tok k-m">#sFud</span></div>
+ </div>
+ <p class="note"><span class="tok k-m">gold</span> macro reference &middot;
+ <span class="tok k-s">cyan</span> spell ID &middot;
+ <span class="tok k-i">green</span> item ID &middot;
+ <span class="tok k-c">violet</span> slash command &middot;
+ <span class="tok k-b">grey</span> bare keybind. Spell and item IDs are shown raw
+ because that is what the file stores; Wowhead resolves them if you paste one
+ into the search box. <code>#s???</code> is in the source verbatim &mdash; a slot
+ the author left deliberately unnamed.</p>
+</section>
+
+<section id="played">
+ <h2>The Played Ledger</h2>
+ <p class="lede">The one number the Armory will never show you. The
+ <code>WoWForeverFitness</code> addon keeps its own account database, and its
+ <code>TimePlayed</code> field is the client's own <code>/played</code> for the
+ declared main: <strong>Tandumonium Hyjal</strong>.</p>
+ <div class="grid g3">
+  <div class="card"><div class="stat">234.7<small>days played</small></div>
+   <p class="note"><code>20,281,252</code> seconds &middot; 5,633.7 hours &middot;
+   contested time only, not character-select idle</p></div>
+  <div class="card"><div class="stat">90<small>level</small></div>
+   <p class="note">declared <strong>MAIN</strong> &middot; zero main swaps on record</p></div>
+  <div class="card"><div class="stat">112,087g<small>held</small></div>
+   <p class="note"><code>1,120,872,985</code> copper, as the addon stores it</p></div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>The authored-addon account record (WoWForeverFitness, QUAZZARR), verbatim keys.</caption>
+   <thead><tr><th>Field</th><th>Value</th><th>Reading</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">CurrentMain.Name</td><td class="mono">Tandumonium Hyjal</td>
+     <td>main declared once, never swapped</td></tr>
+    <tr><td class="mono">MainRegistry.MainSwaps</td><td class="mono">0</td>
+     <td>no re-declaration since install</td></tr>
+    <tr><td class="mono">AccountData.Level</td><td class="mono">90</td>
+     <td>current cap body</td></tr>
+    <tr><td class="mono">AccountData.WeeklyXP</td><td class="mono">7,850</td>
+     <td>the week the file was last written</td></tr>
+    <tr><td class="mono">Professions.PrimaryName</td><td class="mono">Engineering</td>
+     <td>skill 1 &mdash; a profession started and parked</td></tr>
+    <tr><td class="mono">Professions.SecondaryName</td><td class="mono">Enchanting</td>
+     <td>skill 25</td></tr>
+    <tr><td class="mono">Professions.Fishing</td><td class="mono">5</td>
+     <td>five points; the <code>$Fish</code> macro outlived the skill</td></tr>
+    <tr><td class="mono">Endurance.AccumulatedSeconds</td><td class="mono">83</td>
+     <td>83 seconds of tracked session, reset each run</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note ok">Cross-check: the Armory reports <strong>21,685</strong>
+ achievement points for the same character. Two independent records, one body:
+ the Armory counts what was earned, the addon counts how long it took.</p>
+</section>
+
+<section id="sessions">
+ <h2>The Login Tape</h2>
+ <p class="lede">Every <code>AccountData_Initialize: Character</code> /
+ <code>Destroy: Character</code> pair the client wrote between
+ <strong>2026-08-18</strong> and <strong>2026-11-13</strong>, across both
+ rotations of <code>Logs/AccountData.log</code>. That is the retail client
+ narrating its own uptime, one pair at a time.</p>
+ <div class="grid g3">
+  <div class="card"><div class="stat">22<small>sessions</small></div>
+   <p class="note">across 10 calendar days</p></div>
+  <div class="card"><div class="stat">13.0<small>hours logged</small></div>
+   <p class="note"><code>777.9</code> minutes inside a character</p></div>
+  <div class="card"><div class="stat">176<small>minutes</small></div>
+   <p class="note">the longest sit: 2026-09-03, 19:40&rarr;22:37</p></div>
+ </div>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>All 22 char-init windows, in order.</caption>
+   <thead><tr><th>Date</th><th>In</th><th>Out</th><th>Minutes</th><th>Shape</th></tr></thead>
+   <tbody>
+    <tr><td>2026-08-18</td><td class="mono">06:47</td><td class="mono">06:55</td><td>8.3</td><td>first touch</td></tr>
+    <tr><td>2026-08-18</td><td class="mono">06:56</td><td class="mono">07:32</td><td>36.1</td><td></td></tr>
+    <tr><td>2026-08-18</td><td class="mono">14:53</td><td class="mono">15:51</td><td>57.5</td><td></td></tr>
+    <tr><td>2026-08-24</td><td class="mono">13:21</td><td class="mono">13:52</td><td>31.0</td><td></td></tr>
+    <tr><td>2026-08-24</td><td class="mono">20:26</td><td class="mono">20:55</td><td>29.6</td><td></td></tr>
+    <tr><td>2026-08-25</td><td class="mono">18:48</td><td class="mono">19:48</td><td>60.5</td><td>the hour</td></tr>
+    <tr><td>2026-08-26</td><td class="mono">02:11</td><td class="mono">02:52</td><td>40.6</td><td>after midnight</td></tr>
+    <tr><td>2026-08-26</td><td class="mono">03:26</td><td class="mono">03:27</td><td>1.1</td><td>relog</td></tr>
+    <tr><td>2026-08-26</td><td class="mono">03:28</td><td class="mono">03:54</td><td>26.4</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">04:00</td><td class="mono">05:05</td><td>64.8</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">05:25</td><td class="mono">05:35</td><td>9.5</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">05:35</td><td class="mono">05:49</td><td>13.2</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">05:54</td><td class="mono">06:06</td><td>11.7</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">06:06</td><td class="mono">07:33</td><td>87.2</td><td>the long haul</td></tr>
+    <tr><td>2026-08-26</td><td class="mono">11:15</td><td class="mono">11:46</td><td>31.4</td><td></td></tr>
+    <tr><td>2026-08-26</td><td class="mono">12:24</td><td class="mono">13:00</td><td>36.6</td><td></td></tr>
+    <tr><td>2026-09-02</td><td class="mono">20:14</td><td class="mono">20:31</td><td>17.9</td><td></td></tr>
+    <tr><td>2026-09-03</td><td class="mono">19:40</td><td class="mono">22:37</td><td class="t-g">176.4</td><td>longest</td></tr>
+    <tr><td>2026-09-04</td><td class="mono">15:26</td><td class="mono">15:46</td><td>20.7</td><td></td></tr>
+    <tr><td>2026-09-16</td><td class="mono">18:31</td><td class="mono">18:37</td><td>5.6</td><td>the last flush</td></tr>
+    <tr><td>2026-11-05</td><td class="mono">05:40</td><td class="mono">05:50</td><td>9.7</td><td>patch-day touch</td></tr>
+    <tr><td>2026-11-13</td><td class="mono">03:43</td><td class="mono">03:45</td><td>2.1</td><td>two minutes, then gone</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Two of the 22 are two-minute logins, and twelve of the 22 start
+ before 08:00. The client does not editorialize; it just records
+ that the body came online at 03:26 and left at 03:27.</p>
+</section>
+
+<section id="estate">
+ <h2>The Addon Estate</h2>
+ <p class="lede">Forty addon folders, twenty-five SavedVariables files, four of
+ the addons written by hand. The estate is not a shopping list; it is a
+ self-portrait in dependencies.</p>
+ <div class="scroll">
+  <table>
+   <caption>Family census of Interface/AddOns (retail).</caption>
+   <thead><tr><th>Family</th><th>Count</th><th>What it says</th></tr></thead>
+   <tbody>
+    <tr><td><strong>EnhanceQoL</strong></td><td class="t-g">19</td>
+     <td>one author split across nineteen modules &mdash; unit frames, mover, tooltip,
+     cooldowns, damage meter, vendor, teleport compendium. The whole UI is one
+     codebase wearing nineteen hats.</td></tr>
+    <tr><td><strong>Raider.IO</strong> (+3 DB packs)</td><td>4</td>
+     <td>US realm databases, so the profile API answers offline too</td></tr>
+    <tr><td><strong>BtW</strong> (Quests / Loadouts)</td><td>3</td>
+     <td>290 KB of loadout sets and 284 KB of quest state</td></tr>
+    <tr><td><strong>Tandumonium</strong> (authored)</td><td class="t-v">3</td>
+     <td>UI, Macros, Patches &mdash; see below</td></tr>
+    <tr><td><strong>WoWForever</strong> (authored)</td><td class="t-v">1</td>
+     <td>Fitness: the /played ledger read above</td></tr>
+    <tr><td><strong>bug capture</strong></td><td>2</td>
+     <td><code>!BugGrabber</code> + <code>BugSack</code>, the lua-error net</td></tr>
+    <tr><td>singles</td><td>8</td>
+     <td>BetterBags, DialogueUI, LiteMount, MapLine, Plumber, Select,
+     UnlimitedMapPinDistance, WowheadQuickLink</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3>The four authored addons, by their own database keys</h3>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Tandumonium_UI</h3>
+   <p class="note">Keys: <code>TandumoniumUISettings</code> with
+   <code>autoLoot = true</code> and <code>barMapping</code> (the 94 slots above).
+   The same file carries <code>UMPD</code> (map-pin distances, fade 1000, clamped
+   alpha 60) and <code>WowheadQuickLinkCfg</code> &mdash; the in-game door back
+   to the same site this page lives on.</p>
+  </div>
+  <div class="card">
+   <h3>Tandumonium_Macros</h3>
+   <p class="note">Keys: <code>TandumoniumMacrosDB</code>, and the entire payload
+   is <code>minimapPos = -1.954</code>. A whole addon that exists to remember
+   where its minimap button sat on the circle.</p>
+  </div>
+  <div class="card">
+   <h3>Tandumonium_Patches</h3>
+   <p class="note">Keys: <code>TandumoniumPatchesDB = {}</code>. An empty table,
+   kept on disk on purpose: the slot where a patch shim goes when a Blizzard
+   change breaks something.</p>
+  </div>
+  <div class="card">
+   <h3>WoWForeverFitness</h3>
+   <p class="note">Keys: <code>WFF_GlobalDB</code> with
+   <code>MainRegistry</code>, <code>MainHistory</code>, <code>Endurance</code>,
+   <code>AccountData</code>, and five empty hall-of-fame tables
+   (<code>HallOfFame</code>, <code>HallOfShame</code>, <code>PvPHallOfFame</code>,
+   <code>WeeklyRecords</code>, <code>WorkplaceSafety</code>). Every ledger is
+   open. None of them has an entry yet.</p>
+  </div>
+ </div>
+</section>
+
+<section id="doors">
+ <h2>What Still Answers</h2>
+ <p class="lede">Thirteen spellings probed against Raider.IO's public profile API;
+ six doors probed for their HTTP verdict. Four names are still alive on the
+ internet. Nine are not.</p>
+ <div class="scroll">
+  <table>
+   <caption>Handle probe, 2026-11-16. Verdict is the API's own answer, not an inference.</caption>
+   <thead><tr><th>Handle</th><th>Realm</th><th>HTTP</th><th>Class</th><th>Reading</th></tr></thead>
+   <tbody>
+    <tr><td><strong>Tandumonium</strong></td><td>Hyjal</td><td class="t-f">200</td>
+     <td class="t-a">Hunter &middot; Dracthyr BM</td>
+     <td>the live body &middot; ilvl 263 &middot; 21,685 AP</td></tr>
+    <tr><td><strong>Tantrums</strong></td><td>Hyjal</td><td class="t-f">200</td>
+     <td class="t-a">Shaman</td><td>Zandalari Enhancement, ilvl 107</td></tr>
+    <tr><td><strong>Reticent</strong></td><td>Shadowsong</td><td class="t-f">200</td>
+     <td class="t-a">Paladin</td><td>the <code>- Pal</code> macro author</td></tr>
+    <tr><td><strong>Mortesque</strong></td><td>Thrall</td><td class="t-f">200</td>
+     <td class="t-a">Death Knight</td><td>a Thrall name that still answers, though
+     no local folder ever held it</td></tr>
+    <tr><td class="mono">Tandu</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>on disk, dark on the API</td></tr>
+    <tr><td class="mono">Tandora</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>on disk, dark on the API</td></tr>
+    <tr><td class="mono">Tangents</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>30 macros, no public record</td></tr>
+    <tr><td class="mono">Tandulari</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>on disk, dark on the API</td></tr>
+    <tr><td class="mono">Tankadu</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>shell only</td></tr>
+    <tr><td class="mono">Tantalous</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>shell only</td></tr>
+    <tr><td class="mono">Tandaria</td><td>Hyjal</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>shell only</td></tr>
+    <tr><td class="mono">Tandu</td><td>Shadowsong</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>the origin realm &mdash; no API trace</td></tr>
+    <tr><td class="mono">Tandu</td><td>Thrall</td><td class="t-r">400</td>
+     <td class="t-x">&mdash;</td><td>the &lt;Theorycrafters&gt; era &mdash; no API trace</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note warn">Every one of the four living names reports
+ <strong>0 scored M+ seasons</strong> and <strong>0 raid tiers</strong>. This is
+ not a gap in the probe: it is the answer. The 2008&rarr;2016 body predates
+ every API that would have recorded it, and the 2026 body has not raided. The
+ internet holds no raid log for any of these characters, and no amount of
+ searching changes that &mdash; only the local install remembers.</p>
+ <div class="scroll" style="margin-top:1rem">
+  <table>
+   <caption>The six doors, re-probed today. HTTP code alone is misleading; verdict reads the body.</caption>
+   <thead><tr><th>Door</th><th>HTTP</th><th>Bytes</th><th>Verdict</th></tr></thead>
+   <tbody>
+    <tr><td>Blizzard Armory &middot; Hyjal/Tandumonium</td><td>200</td>
+     <td class="mono">915,052</td><td class="t-f">OPEN</td></tr>
+    <tr><td>Warcraft Logs &middot; character</td><td>200</td>
+     <td class="mono">4,126</td><td class="t-r">BOT_WALL</td></tr>
+    <tr><td>Warcraft Logs &middot; guild <code>7287</code></td><td>200</td>
+     <td class="mono">4,126</td><td class="t-r">BOT_WALL</td></tr>
+    <tr><td>Wipefest &middot; guild <code>7287</code></td><td>200</td>
+     <td class="mono">2,223</td><td class="t-g">SPA_SHELL</td></tr>
+    <tr><td>Wayback CDX &middot; WCL thrall/tandu</td><td>429</td>
+     <td class="mono">0</td><td class="t-r">RATE_LIMITED</td></tr>
+    <tr><td>WoWProgress &middot; Hyjal/Tandumonium</td><td>403</td>
+     <td class="mono">0</td><td class="t-r">HTTP_403</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">A 200 is not a door. Warcraft Logs answers with a 4,126-byte
+ "Human Verification" interstitial, Wipefest answers with a 2,223-byte Angular
+ shell that carries no record in the body, and Wayback answers 429 to every
+ unauthenticated CDX query today. The one door that genuinely opens is the
+ Armory's 915 KB page &mdash; and it only knows about the present.</p>
+ <p class="note ok"><strong>Guild tenure rule, restated for the record:</strong>
+ &lt;Gehenna&gt; is cited only inside the 2019 BfA tenure (WCL guild
+ <code>7287</code>, Wipefest <code>7287</code>), and &lt;Theorycrafters&gt; only
+ on Thrall-US and Hyjal-US. Captures from 2009&ndash;2016 are excluded by rule,
+ not by accident, and none appear on this page.</p>
+</section>
+
+<section id="method">
+ <h2>Provenance</h2>
+ <p class="lede">Two scripts, both read-only, both local-only. Re-running them
+ reproduces every number on this page; the page itself fetches nothing at
+ runtime, so it renders identically offline.</p>
+ <pre>Research/_local/_retail_reliquary_scan.py   ->  _raw/retail_reliquary.json
+Research/_local/_retail_door_sweep.py     ->  _raw/retail_door_sweep.json</pre>
+ <ul class="note" style="list-style:none">
+  <li>&middot; Nothing was written inside <code>_retail_\</code> &mdash; no
+   <code>Logs\</code>, <code>WTF\</code> or <code>Interface\</code> writes, ever.</li>
+  <li>&middot; The game was not launched. No addon was loaded.</li>
+  <li>&middot; Only text files were read: <code>.lua</code>, <code>.txt</code>,
+   <code>.log</code>, <code>.wtf</code>.</li>
+  <li>&middot; Both outputs live under <code>Research/_raw/</code>, which is
+   gitignored, so the evidence never ships with the site.</li>
+  <li>&middot; The scan crossed 54 folders, 40 addons, 25 SavedVariables files,
+   2 log rotations, and 13 external handles.</li>
+ </ul>
+</section>
+
+<footer>
+ <p>Retail Reliquary &middot; built 2026-11-16 by Tandumonium &middot; every
+ figure baked in at build time, nothing fetched at runtime &middot; shell:
+ <a href="index.html" target="_top">index.html</a> &middot; sibling wings:
+ <a href="tandu_legacy.html">tandu_legacy</a>,
+ <a href="relics.html">relics</a>, <a href="web_ledger.html">web_ledger</a>,
+ <a href="persona.html">persona</a> &middot; link registry:
+ <code>Tandumonium.agent-index.md</code></p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tandu Legacy &mdash; what the retail install remembers | Gewey G.U.I.</title>
+<!--
+  TANDU_LEGACY.html - built 2026-11-16 by Tandumonium (wide-scale retail pass).
+
+  Why this page exists: relics.html counted the artifacts, dynasty.html read the
+  Armory, roster.html counted the folders, eras.html dated the layers. All of
+  them look at a character from OUTSIDE. This wing opens every one of the 54
+  retail character folders and reads what eighteen years of play left INSIDE:
+  per-character config flags that date each expansion, the macro naming
+  convention, addons that are remembered but no longer installed, and the one
+  public archive worth citing: the two Wayback captures of the <Gehenna> guild
+  page that fall INSIDE the BfA tenure (2019-08-19 and 2020-08-07). The CDX
+  index holds 26 captures in total, but everything before 2019 predates the
+  tenure and is deliberately NOT recorded here (GUILD TENURE RULE).
+
+  Method: two read-only probes, both gitignored.
+    Research/_local/_retail_legacy_scan.py -> Research/_raw/retail_legacy.json
+    Research/_local/_legacy_api_probe.py   -> Research/_raw/legacy_api_probe.json
+  Nothing was written into the game tree; nothing was opened in-game. Every
+  number on this page is reproducible by re-running the two scripts.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-tandu-legacy">
+<div class="field"></div>
+<div class="wrap">
+
+
+<header class="hero">
+ <p class="kicker">Retail deep dive &middot; 54 folders &middot; 2008 &rarr; 2026</p>
+ <h1>Tandu Legacy <span class="thin">what the retail install remembers</span></h1>
+ <p class="lede">The other wings read the Armory, the census, or the
+ <em>Forever</em> client. This one reads <code>_retail_</code> folder by folder
+ &mdash; all <strong>54</strong> character directories across Hyjal, Shadowsong and
+ Thrall &mdash; and finds the fingerprints that survive a reinstall: the
+ <strong>98-macro</strong> account library, <strong>105</strong> per-character macro
+ blocks, <strong>370</strong> cached <code>SET</code> lines, <strong>57</strong>
+ SavedVariables files, four addons the client still lists but no longer owns, and
+ one public archive that still answers for <strong>&lt;Gehenna&gt;</strong>:
+ <strong>two</strong> Wayback captures of the guild page inside the tenure
+ window, <strong>2019-08-19 &rarr; 2020-08-07</strong>. The CDX index holds
+ <strong>26</strong> captures in total; the other <strong>24</strong> predate
+ the tenure and are deliberately not recorded.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html" aria-current="page">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="relics.html">Reliquary</a>
+  <a href="eras.html">Eras</a>
+  <a href="links.html">Link Vault</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Flipbook.html">Flipbook</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
+</header>
+
+<section id="census">
+ <h2>The fold census &mdash; 54 directories, 9 of them lived in</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">54<small>character folders</small></div></div>
+  <div class="card"><div class="stat">9<small>bearing fingerprints</small></div></div>
+  <div class="card"><div class="stat">45<small>ghost shells (AddOns.txt only)</small></div></div>
+  <div class="card"><div class="stat">57<small>SavedVariables files</small></div></div>
+ </div>
+ <p>Every folder under <code>WTF\Account\QUAZZARR\{realm}\</code> is a name the
+ account has held on this install. A folder with <em>one</em> file
+ (<code>AddOns.txt</code>) is a <strong>ghost shell</strong>: the client wrote the
+ load list once and never returned. A folder with ten or more files was actually
+ played &mdash; config cache, chat cache, macro cache, saved variables.</p>
+ <div class="scroll">
+ <table>
+  <caption>Realm distribution &middot; read-only walk 2026-11-16</caption>
+  <thead><tr><th>Realm</th><th>Folders</th><th>Lived in</th><th>Ghost shells</th><th>Macro blocks</th><th>SVD files</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">Hyjal</td><td>29</td><td><strong>8</strong></td><td>21</td><td>83</td><td>46</td></tr>
+   <tr><td class="mono">Shadowsong</td><td>12</td><td><strong>1</strong></td><td>11</td><td>22</td><td>6</td></tr>
+   <tr><td class="mono">Thrall</td><td>13</td><td>0</td><td>13</td><td>0</td><td>0</td></tr>
+   <tr><td><strong>Total</strong></td><td><strong>54</strong></td><td><strong>9</strong></td><td><strong>45</strong></td><td><strong>105</strong></td><td><strong>57</strong></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Thrall is the purest fossil: thirteen names, thirteen
+ <code>AddOns.txt</code> files, zero play residue. The Thrall chapter of the
+ account exists only as a load list &mdash; which is exactly how a realm transfer
+ looks from inside <code>WTF</code>.</p>
+ <div class="scroll">
+ <table>
+  <caption>The nine lived-in folders, ranked by depth of residue</caption>
+  <thead><tr><th>Character</th><th>Realm</th><th>Files</th><th><code>SET</code> lines</th><th>Macros</th><th>SVDs</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td>14</td><td>79</td><td>28</td><td>12</td></tr>
+   <tr><td>Reticent</td><td class="mono">Shadowsong</td><td>13</td><td>56</td><td>22</td><td>6</td></tr>
+   <tr><td>Fauxylauxy</td><td class="mono">Hyjal</td><td>11</td><td>49</td><td>0</td><td>9</td></tr>
+   <tr><td>Tangents</td><td class="mono">Hyjal</td><td>14</td><td>45</td><td>30</td><td>6</td></tr>
+   <tr><td><strong>Tandu</strong></td><td class="mono">Hyjal</td><td>12</td><td>42</td><td>24</td><td>6</td></tr>
+   <tr><td>Tandora</td><td class="mono">Hyjal</td><td>12</td><td>27</td><td>1</td><td>6</td></tr>
+   <tr><td>Tandulari</td><td class="mono">Hyjal</td><td>10</td><td>27</td><td>0</td><td>6</td></tr>
+   <tr><td>Radaradas</td><td class="mono">Hyjal</td><td>4</td><td>23</td><td>0</td><td>1</td></tr>
+   <tr><td>Testytester</td><td class="mono">Hyjal</td><td>10</td><td>22</td><td>0</td><td>5</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note warn"><strong>The Tandu folder on Shadowsong holds one file;</strong>
+ the Tandu folder on Thrall holds one file. The
+ <a class="ext" href="dynasty.html">Dynasty</a> wing proves those names answered
+ the Armory as recently as 2025; here the disk says this install never loaded them.
+ Two different truths, two different doors &mdash; the server keeps the character,
+ the client keeps the habit.</p>
+</section>
+
+
+<section id="macros">
+ <h2>Macro DNA &mdash; the <code>#N*</code> convention</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">98<small>account macros</small></div></div>
+  <div class="card"><div class="stat">105<small>character macro blocks</small></div></div>
+  <div class="card"><div class="stat">5<small>toons with personal bars</small></div></div>
+  <div class="card"><div class="stat">0<small>character-scoped macros</small></div></div>
+ </div>
+ <p>The account library is the oldest artifact on the install:
+ <code>WTF\Account\QUAZZARR\macros-cache.txt</code>, sixteen kilobytes, ninety-eight
+ blocks. The naming is the fingerprint &mdash; not the bodies. Every block is
+ <code>VER 3 &lt;id&gt; "&lt;name&gt;" "&lt;icon&gt;"</code>, and the names cluster:</p>
+ <pre>[!]   !!!!, !!!!!, !!!!!!, !!Abandon Quests, !!Melee template
+[!]   !/btwl, !1, !2222, !3333, !4444         -&gt; scratch pad, never pruned
+[#N]  #N*, #N+, #N-, #N1, #N2, #N5, #N6, #N8, #N9
+[bar] 1, 2, 3, 4 ...                          -&gt; slot-numbered utilities</pre>
+ <p>Three naming families, one habit: <code>!</code> for "never delete this,
+ it is a scratch macro", <code>#N</code> for the numbered utility set that every
+ hunter shares, and bare slot numbers for one-offs. The <code>#N</code> cluster is
+ byte-identical across four characters, which means it was copied by hand from
+ toon to toon rather than rebuilt &mdash; the macro bar is the only thing in
+ <code>WTF</code> that is <em>deliberately</em> portable.</p>
+ <div class="scroll">
+ <table>
+  <caption>Per-character bars and their first names</caption>
+  <thead><tr><th>Character</th><th>Blocks</th><th>Evidence</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Tandumonium</strong> <span class="tag t-f">main</span></td><td>28</td>
+    <td class="mono">#N*, #N+, #N-, #N1, #N2, #N5, #N6, #N8, #N9, 1&hellip;</td></tr>
+   <tr><td>Tangents</td><td>30</td><td class="mono">#N*, #N+, #N-, #N1, #N2, #N8, 1, 2, 3, 4</td></tr>
+   <tr><td><strong>Tandu</strong> <span class="tag t-g">Hyjal</span></td><td>24</td>
+    <td class="mono">#N*, #N+, #N-, #N1, #N2, #N5, #N6, #N8, #N9, 1</td></tr>
+   <tr><td>Reticent <span class="tag t-x">Shadowsong</span></td><td>22</td>
+    <td class="mono">#n1 - Pal, #n2 - Pal, #n3 - Pal &hellip; <em>paladin set</em></td></tr>
+   <tr><td>Tandora</td><td>1</td><td class="mono">Z</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Reticent's suffix <code>- Pal</code> is the fossil of a
+ multi-class macro project: the same <code>#n</code> slots, labelled so a paladin
+ bar could coexist with the hunter set. That is the earliest evidence on this
+ install of the thing the addons later automate.</p>
+</section>
+
+<section id="strata">
+ <h2>Config strata &mdash; one file, eighteen years</h2>
+ <p><code>config-cache.wtf</code> is not a preferences file; it is a sediment
+ core. The client writes a flag the first time an expansion's systems are opened
+ and then <strong>never clears it</strong>. The main's 79 <code>SET</code> lines
+ therefore read as a stratigraphic column, oldest at the bottom:</p>
+ <div class="scroll">
+ <table>
+  <caption>Tandumonium &middot; Hyjal &middot; expansion flags still set</caption>
+  <thead><tr><th>Flag</th><th>Value</th><th>Era it dates</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">lastGarrisonMissionTutorial</td><td>8</td><td>Warlords of Draenor &mdash; garrison opened</td></tr>
+   <tr><td class="mono">orderHallMissionTutorial</td><td>983044</td><td>Legion &mdash; class hall opened</td></tr>
+   <tr><td class="mono">lastRenownForCovenant1</td><td>65</td><td>Shadowlands &mdash; covenant 1, renown 65</td></tr>
+   <tr><td class="mono">lastRenownForCovenant2/3/4</td><td>80 &middot; 80 &middot; 80</td><td>Shadowlands &mdash; <strong>all four covenants at cap</strong></td></tr>
+   <tr><td class="mono">eventSchedulerLastUpdate</td><td>1751242794</td><td>epoch &rarr; 2025-06-30 UTC (last scheduler write)</td></tr>
+   <tr><td class="mono">newMythicPlusSeason</td><td>14</td><td>M+ season counter on this client</td></tr>
+   <tr><td class="mono">newPvpSeason</td><td>38</td><td>PvP season counter</td></tr>
+   <tr><td class="mono">newDelvesSeason</td><td>2</td><td>Delves &mdash; The War Within onward</td></tr>
+   <tr><td class="mono">EJSelectedTier</td><td>505</td><td>Encounter Journal tier (alts cached <strong>516</strong>)</td></tr>
+   <tr><td class="mono">latestTransmogSetSource</td><td>309350</td><td>last transmog set source id opened</td></tr>
+   <tr><td class="mono">numReputationHeaders</td><td>28</td><td>28 expansion headers in the reputation pane</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note ok"><strong>Read this as attendance, not achievement.</strong>
+ A renown-80 covenant and an order-hall tutorial prove the account logged in and
+ opened those systems. They do not prove a kill. The kill proof lives in the
+ reputation payload on <a class="ext" href="dynasty.html">Dynasty</a> (Brood of
+ Nozdormu, Ashtongue Deathsworn, The Ashen Verdict) and in the report vault on
+ <a class="ext" href="raidlogs.html">Raid Logs</a>.</p>
+ <p>The same core on the older Hyjal <strong>Tandu</strong> stops earlier:
+ 42 <code>SET</code> lines, <code>EJSelectedTier 516</code>, no covenant flags,
+ and an <code>autoQuestPopUps</code> value of <code>v11-RB##$</code> &mdash; an
+ older serialization than the main's <code>v21</code>. Two characters, one
+ account, two different vintages of the same client.</p>
+</section>
+
+
+<section id="residue">
+ <h2>Addon residue &mdash; four addons the client still remembers</h2>
+ <p>Forty addon folders are installed. The character load lists name twenty-two
+ &mdash; and four of those have <strong>no folder on disk</strong>:</p>
+ <div class="scroll">
+ <table>
+  <caption>Remembered by <code>AddOns.txt</code>, absent from <code>Interface\AddOns</code></caption>
+  <thead><tr><th>Addon</th><th>What it was</th><th>Verdict</th></tr></thead>
+  <tbody>
+   <tr><td class="mono">Immersion</td><td>Quest-dialogue overhaul &mdash; the "talk to the NPC properly" mod</td><td><span class="tag t-r">deleted</span></td></tr>
+   <tr><td class="mono">WorldFlightMap</td><td>World-map flight-path overlay</td><td><span class="tag t-r">deleted</span></td></tr>
+   <tr><td class="mono">!Swatter</td><td>The error-swallowing engine under !BugGrabber</td><td><span class="tag t-r">deleted</span></td></tr>
+   <tr><td class="mono">!ImprovedErrorFrame</td><td>The original error-frame replacer</td><td><span class="tag t-r">deleted</span></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p>This is the cleanest kind of legacy: an addon cannot leave a folder behind
+ after removal, but the <em>character</em> keeps the enable list. The load list is
+ effectively an append-only log of what the UI looked like before the cull &mdash;
+ and <code>WorldFlightMap</code> is named in the retail
+ <code>AGENTS.md</code> as "removed since the 14-addon era", so the two sources
+ corroborate each other.</p>
+ <div class="grid g2">
+  <div class="card">
+   <h3>What is installed now</h3>
+   <p><strong>40</strong> folders: the 18-part <code>EnhanceQoL</code> suite, BetterBags,
+   BtWQuests (+Midnight), Plumber, RaiderIO (+3 region DBs), Select, LiteMount,
+   MapLine, DialogueUI, UnlimitedMapPinDistance, WowheadQuickLink, BugSack/!BugGrabber,
+   WoWForeverFitness &mdash; and three that carry the name as their author:
+   <code>Tandumonium_UI</code>, <code>Tandumonium_Patches</code>,
+   <code>Tandumonium_Macros</code>.</p>
+  </div>
+  <div class="card">
+   <h3>What each character actually loads</h3>
+   <p>Every one of the 54 folders lists the same six enabled:
+   <code>LiteMount</code>, <code>Blizzard_ObjectiveTracker</code>,
+   <code>Blizzard_CompactRaidFrames</code>, <code>BetterBags</code>,
+   <code>DialogueUI</code>, <code>Select</code>. The main disables <strong>16</strong>,
+   everything else <strong>14&ndash;15</strong>. The delta is where the third-party
+   toolkit actually lives.</p>
+  </div>
+ </div>
+</section>
+
+<section id="residue-files">
+ <h2>Screenshots &amp; logs &mdash; the part that cannot be re-derived</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">3<small>retail screenshots</small></div>
+   <p class="mono" style="font-size:.75rem">2026-11-05 05:47&ndash;05:48</p></div>
+  <div class="card"><div class="stat">270<small>Forever screenshots</small></div>
+   <p class="mono" style="font-size:.75rem">2026-10-31 &rarr; 2026-11-15</p></div>
+  <div class="card"><div class="stat">2.48<small>MB of client logs</small></div>
+   <p class="mono" style="font-size:.75rem">25 files</p></div>
+  <div class="card"><div class="stat">1.5<small>MB AccountData</small></div>
+   <p class="mono" style="font-size:.75rem">340 KB live + 1.17 MB <code>.old</code></p></div>
+ </div>
+ <p>The retail install keeps only three screenshots &mdash; all from a single
+ five-minute window on 2026-11-05 &mdash; because the <em>Forever</em> client owns
+ the screenshot stream (270 files in sixteen days). The logs are the reverse:
+ <code>AccountData.log.old</code> is 1.17&nbsp;MB of account-side writes going back
+ to 2026-08-26, and <code>Hotfix.log</code> is 400&nbsp;KB of server hotfix
+ announcements. Together they bracket the period this install actually ran.</p>
+ <p class="note">Log inventory (read-only, sizes only): <code>AccountData</code>,
+ <code>Aurora</code>, <code>Client</code>, <code>Connection</code>,
+ <code>EditMode</code>, <code>FrameXML</code>, <code>General</code>,
+ <code>gx</code>, <code>Hotfix</code>, <code>Model</code>, <code>Movie</code>,
+ <code>QuestCache</code>, <code>Sound</code>, <code>Tact</code>,
+ <code>threadpool</code>, <code>Voice</code>, <code>WowConnection</code>. Full
+ sizes live in the probe JSON; nothing was copied out of the game tree.</p>
+</section>
+
+
+<section id="wayback">
+ <h2>The Wayback record &mdash; the two tenure-era captures</h2>
+ <p>Every earlier pass recorded the Wayback CDX endpoint as hanging past twenty
+ seconds and wrote the archive off. It does not hang; it is <strong>slow and
+ throttled</strong>. A single plain request with a real user agent returns the
+ full capture index for the one page that matters:
+ <code>wowprogress.com/guild/us/borean-tundra/Gehenna</code>. The index holds
+ <strong>26</strong> captures, but only <strong>two</strong> of them fall
+ inside the <code>&lt;Gehenna&gt;</code> tenure window. Only those two are
+ listed. Everything from 2009&ndash;2016 predates the tenure and is
+ <strong>not</strong> Tandu's history, so it is not recorded.</p>
+ <div class="grid g3">
+  <div class="card"><div class="stat">2<small>tenure-era captures</small></div></div>
+  <div class="card"><div class="stat">2019<small>first &middot; 08-19 &middot; BfA</small></div></div>
+  <div class="card"><div class="stat">2020<small>last &middot; 08-07 &middot; BfA&rarr;SL</small></div></div>
+  <div class="card"><div class="stat">24<small>pre-tenure captures &middot; not recorded</small></div></div>
+ </div>
+ <div class="scroll">
+ <table>
+  <caption>Capture timestamps inside the BfA tenure &mdash; both HTTP 200</caption>
+  <thead><tr><th>#</th><th>Captured (UTC)</th><th>Era</th><th>Snapshot</th></tr></thead>
+  <tbody>
+   <tr><td>1</td><td class="mono">2019-08-19 15:08</td><td>Battle for Azeroth</td><td><a class="ext" href="https://web.archive.org/web/20190819150850/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">open</a></td></tr>
+   <tr><td>2</td><td class="mono">2020-08-07 21:09</td><td>BfA &rarr; Shadowlands</td><td><a class="ext" href="https://web.archive.org/web/20200807210910/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">open</a></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note warn"><strong>Honest limits.</strong> The capture <em>index</em>
+ resolved; the page <em>bodies</em> did not, on this pass &mdash; the archive
+ answered HTTP <code>429</code> to every follow-up request from this host. One
+ body was read far enough to confirm the shell ("WoW Guild Gehenna @ Borean
+ Tundra :: WoWProgress"), then throttling resumed. The 2019 body is the one worth
+ retrying later: it is the only capture inside the documented
+ <code>&lt;Gehenna&gt;</code> tenure window.</p>
+ <p class="note warn">Warcraft Logs remains a wall, not an absence:
+ <code>warcraftlogs.com/character/us/hyjal/tandumonium</code> answers
+ <strong>403</strong> to a plain request, and the guild page answers with the
+ 3.7&nbsp;KB Cloudflare "Human Verification" body &mdash; a <code>200</code> that
+ contains no record. No archived capture of any Tandu WCL character page exists in
+ the CDX index (checked across four realms). That is a real negative result, and
+ it is recorded here so nobody re-runs the same sweep expecting a different
+ answer.</p>
+</section>
+
+
+<section id="lineage">
+ <h2>The name lineage &mdash; and what still answers</h2>
+ <p>Ten of the fifty-four retail folders carry a <code>Tandu</code>-stem name,
+ all on Hyjal. That is not ten people; it is one name re-spelled for eighteen
+ years. Re-probed <code>2026-11-16</code>, the public armory answers for exactly
+ two of them.</p>
+ <div class="scroll">
+ <table>
+  <caption>Raider.IO probe, 2026-11-16 &mdash; <code>400</code> means the name no
+   longer resolves; the on-disk folder is a ghost shell, not a character</caption>
+  <thead><tr><th>Handle</th><th>Realm</th><th>Answers</th><th>What it says</th></tr></thead>
+  <tbody>
+   <tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td><span class="tag t-f">200</span></td><td>Dracthyr &middot; Hunter &middot; Beast Mastery &middot; ilvl <strong>263</strong> &middot; five raid tiers indexed</td></tr>
+   <tr><td><strong>Tantrums</strong></td><td class="mono">Hyjal</td><td><span class="tag t-f">200</span></td><td>Zandalari Troll &middot; Shaman &middot; Enhancement &middot; ilvl <strong>107</strong></td></tr>
+   <tr><td><strong>Tandu</strong></td><td class="mono">Hyjal</td><td><span class="tag t-x">400</span></td><td>Folder survives on disk; the character does not</td></tr>
+   <tr><td><strong>Tandu</strong></td><td class="mono">Shadowsong</td><td><span class="tag t-x">400</span></td><td>The <code>&lt;Gehenna&gt;</code> realm. Folder survives; character does not.</td></tr>
+   <tr><td><strong>Tandu</strong></td><td class="mono">Thrall</td><td><span class="tag t-x">400</span></td><td>The <code>&lt;Theorycrafters&gt;</code> realm. Folder survives; character does not.</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="note">Both guilds survive the same probe: <code>&lt;Gehenna&gt;</code> on
+ Borean Tundra and <code>&lt;Theorycrafters&gt;</code> on Hyjal answer
+ <code>200</code>, and both report the same five <em>Midnight</em>-era raid
+ tiers. That proves the guild <em>names</em> are alive today &mdash; it proves
+ nothing about tenure. Tenure evidence stays where it always was: Warcraft Logs
+ guild <code>7287</code> and the two tenure-era Wayback captures above.</p>
+</section>
+
+
+<section id="logs">
+ <h2>Where the actual raid logs live</h2>
+ <p>The logs were never on the disk, and never on the open web. They are in the
+ uploader account, and the vault already mirrors the index:</p>
+ <div class="scroll">
+ <table>
+  <caption>Raid-log doors, verified in earlier passes</caption>
+  <thead><tr><th>Door</th><th>What it holds</th><th>Entry</th></tr></thead>
+  <tbody>
+   <tr><td>WCL uploader <code>815764</code></td><td>470 reports, Oct 2018 &ndash; Dec 2024</td>
+    <td><a class="ext" href="https://www.warcraftlogs.com/user/reports-list/815764" target="_blank" rel="noopener">reports list</a></td></tr>
+   <tr><td>WCL guild <code>7287</code></td><td><code>&lt;Gehenna&gt;</code> guild reports, BfA tenure</td>
+    <td><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">guild page</a></td></tr>
+   <tr><td>Local index</td><td>470 URLs + CSV + JSON, parsed</td>
+    <td><a class="ext" href="raidlogs.html">raidlogs.html</a></td></tr>
+   <tr><td>Wipefest API</td><td><strong>Opened 2026-11-16:</strong> all 470 codes answered &mdash; per-night kills, wipes, instances &rarr; <a class="ext" href="log_ledger.html">Log Ledger</a></td>
+    <td><a class="ext" href="https://www.wipefest.gg/report/1C2vLpQMrVBTa3kY" target="_blank" rel="noopener">sample night</a></td></tr>
+   <tr><td>Raider.IO</td><td>Two handles still answer the public API: <code>Tandumonium</code> (ilvl 263) and <code>Tantrums</code> (ilvl 107)</td>
+    <td><a class="ext" href="https://raider.io/characters/us/hyjal/Tandumonium" target="_blank" rel="noopener">Tandumonium</a> ·
+        <a class="ext" href="https://raider.io/characters/us/hyjal/Tantrums" target="_blank" rel="noopener">Tantrums</a></td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p>Reputation is the other receipt, and it is the only one that predates the
+ logs: <strong>Brood of Nozdormu</strong> (Ahn'Qiraj, 2006-era content),
+ <strong>Ashtongue Deathsworn</strong> (Black Temple) and <strong>The Ashen
+ Verdict</strong> (Icecrown Citadel) cannot be bought and do not transfer. They
+ are attendance stamps for <code>2008&ndash;2010</code>, preserved on a
+ <code>2026</code> Dracthyr. Full faction matrix on
+ <a class="ext" href="dynasty.html">Dynasty</a>.</p>
+</section>
+
+<footer>
+ <p><strong>Method.</strong> Two read-only probes, both gitignored and
+ re-runnable: <code>Research/_local/_retail_legacy_scan.py</code> (walks all 54
+ folders and writes <code>Research/_raw/retail_legacy.json</code>) and
+ <code>Research/_local/_legacy_api_probe.py</code> (Raider.IO + Wayback CDX,
+ writes <code>Research/_raw/legacy_api_probe.json</code>). No file inside
+ <code>Z:\World of Warcraft\_retail_</code> was created, modified or deleted; no
+ game client was launched. Build date 2026-11-16.</p>
+ <p>Wings: <a class="ext" href="legacy.html">Legacy</a> &middot;
+ <a class="ext" href="dynasty.html">Dynasty</a> &middot;
+ <a class="ext" href="roster.html">Roster</a> &middot;
+ <a class="ext" href="relics.html">Reliquary</a> &middot;
+ <a class="ext" href="eras.html">Eras</a> &middot;
+ <a class="ext" href="raidlogs.html">Raid Logs</a> &middot;
+ <a class="ext" href="links.html">Link Vault</a></p>
+ <p>CDX query: <code>http://web.archive.org/cdx/search/cdx?url=wowprogress.com/guild/us/borean-tundra/Gehenna&amp;output=json&amp;collapse=digest</code></p>
+</footer>
+
+</div>
+</body>
+</html>

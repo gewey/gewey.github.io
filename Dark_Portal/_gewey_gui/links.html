@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+		<script>
+			const whTooltips = {
+				colorLinks: true,
+				iconizeLinks: true,
+				renameLinks: true,
+			};
+		</script>
+		<script src="https://wow.zamimg.com/widgets/power.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Link Vault &mdash; every door that might still open | Gewey G.U.I.</title>
@@ -98,18 +106,49 @@ footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
  re-checked, not trusted forever.<sup class="ref"><a class="ext" href="#f1">1</a></sup></p>
  <nav class="panes" aria-label="Dashboard panes">
   <a href="index.html">Shell</a>
+  <a href="Concordance.html">Concordance</a>
   <a href="_fuhevva_evva.html">Home</a>
   <a href="character.html">Character</a>
   <a href="legacy.html">Legacy</a>
   <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
   <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
   <a href="eras.html">Eras</a>
   <a href="links.html" aria-current="page">Link Vault</a>
   <a href="Timeline.html">Timeline</a>
   <a href="Delve.html">Delve</a>
   <a href="macrocosm.html">Macrocosm</a>
   <a href="gear.html">Gear</a>
-  <a href="Frontier.html">Frontier</a></nav>
+  <a href="Frontier.html">Frontier</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="talents.html">Talents</a>
+  <a href="automations.html">Automations</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="persona.html">Persona</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Origins.html">Origins</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a></nav>
 </header>
 
 <section id="characters">
@@ -181,13 +220,14 @@ footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
      <span class="badge b-dead">no reports</span></li>
     <li><a class="ext" href="https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">WoWProgress</a>
      <span class="badge b-wall">403</span></li>
-    <li><a class="ext" href="https://web.archive.org/web/20091016202417/http://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2009-10-16</a>
-     <span class="badge b-build">archive</span></li>
-    <li><a class="ext" href="https://web.archive.org/web/20100325140929/http://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2010-03-25</a>
-     <span class="badge b-build">archive</span></li>
-    <li><a class="ext" href="http://web.archive.org/web/20151210012514/http://us.battle.net/wow/en/guild/borean-tundra/Gehenna/">Battle.net armory 2015-12-10</a>
-     <span class="badge b-build">new find</span></li>
+    <li><a class="ext" href="https://web.archive.org/web/20190819150850/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2019-08-19</a>
+     <span class="badge b-build">tenure-era</span></li>
+    <li><a class="ext" href="https://web.archive.org/web/20200807210910/https://www.wowprogress.com/guild/us/borean-tundra/Gehenna">Wayback 2020-08-07</a>
+     <span class="badge b-build">tenure-era</span></li>
    </ul>
+   <p class="note">Only tenure-era captures are listed. The CDX index also holds
+   pre-2019 snapshots of this guild page; they predate the tenure, so they are
+   deliberately not recorded here.</p>
   </div>
   <div class="card">
    <h3>&lt;Theorycrafters&gt; &mdash; Thrall / Hyjal</h3>
@@ -243,7 +283,7 @@ footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
     <tr><td>Raider.IO</td><td class="mono">/api/search?term=Tandu</td><td>50 matches, none on our three realms</td><td><span class="badge b-ok">clean</span></td></tr>
     <tr><td>Raider.IO</td><td class="mono">/api/v1/characters/profile?realm=hyjal</td><td>200 &mdash; 0/9 current tier, no M+ seasons</td><td><span class="badge b-ok">clean</span></td></tr>
     <tr><td>Wayback availability</td><td class="mono">us.battle.net/.../character/.../tandu</td><td><span class="mono">archived_snapshots: {}</span> on all three realms</td><td><span class="badge b-dead">empty</span></td></tr>
-    <tr><td>Wayback availability</td><td class="mono">us.battle.net/.../guild/borean-tundra/Gehenna/</td><td>snapshot 2015-12-10 (direct fetch rate-limited, 429)</td><td><span class="badge b-build">hit</span></td></tr>
+    <tr><td>Wayback availability</td><td class="mono">us.battle.net/.../guild/borean-tundra/Gehenna/</td><td>no capture inside the tenure window; pre-tenure captures are out of scope and not recorded</td><td><span class="badge b-dead">out of scope</span></td></tr>
     <tr><td>Blizzard forums</td><td class="mono">us.forums.blizzard.com/en/wow/search.json?q=Tandumonium</td><td><span class="mono">posts: [] , users: []</span></td><td><span class="badge b-dead">empty</span></td></tr>
     <tr><td>GitHub API</td><td class="mono">/search/users + /search/repositories</td><td><span class="mono">total_count: 0</span></td><td><span class="badge b-dead">empty</span></td></tr>
     <tr><td>YouTube</td><td class="mono">results?search_query=Tandumonium</td><td>only generic &ldquo;WoW Forever&rdquo; guides, none ours</td><td><span class="badge b-dead">empty</span></td></tr>
