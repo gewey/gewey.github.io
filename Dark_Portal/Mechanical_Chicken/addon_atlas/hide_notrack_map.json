@@ -1,0 +1,1002 @@
+{
+  "AchievementsForever": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, Minimap, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "AdvancedInterfaceOptions": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "AdventurersLedger": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "AdventurersLog": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "AllTheThings": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, HIDDEN, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "AnimaCards": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "AnimatedBlizzPortrait": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "AutoBiographer": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hide, hidden, Hide, Hidden, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "AzerothTradingCards": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Baganator": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "BetterWoWGraphics": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Visible, visible, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Bouncy": {
+    "available": true,
+    "method": "Option key(s): overlayVisible, overlayVisibility, overlayShowDuration",
+    "notes": "Found 3 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "BuddyDex": {
+    "available": true,
+    "method": "Option key(s): hideInInstances, alpha, hideWeapons",
+    "notes": "Found 3 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "BugSack": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "CanIMogIt": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, IsVisible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Carbonite": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: MiniMap, Minimap, minimap, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Carbonite.Info": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: MiniMap, hide, minimap, HIDE, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "Carbonite.Notes": {
+    "available": true,
+    "method": "Option key(s): ShowMap",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Carbonite.Quests": {
+    "available": true,
+    "method": "Option key(s): HideLockedQuests, MapShowWatchAreas, MapWatchAreaAlpha",
+    "notes": "Found 9 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Carbonite.Warehouse": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, hide, hidden, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "CarnetAventure": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "CountSteps": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "CrownOfAzeroth": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DataStore_Characters": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, HIDE. Check addon's specific /slash command for a hide toggle."
+  },
+  "DBM-Core": {
+    "available": true,
+    "method": "Option key(s): maxFrameCount, initializeFrame",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "DBM-GUI": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DBM-Lairs-Midnight": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "DBM-PvP": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "DBM-Raids-Midnight": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "DBM-StatusBarTimers": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DialogueUI": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DingFanfare": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DopamineLoot": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DynamicCam": {
+    "available": true,
+    "method": "Option key(s): UIParentAlpha, hideFrameRate, keepAlertFrames",
+    "notes": "Found 9 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Elephant": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, MINIMAP, minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "EuphorrixSpellAnnouncerV2": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "FamiliarFaces": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "FellowshipLedger": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "FlightMinigames": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverBestiaryPetHunter": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverCombatText": {
+    "available": true,
+    "method": "Option key(s): hideFriendlyInCities",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "ForeverDex": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverEpicFrames": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverGraphicsControl": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, Minimap, minimap, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverLogsCompanion": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverLootSparkles": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverQuestTint": {
+    "available": true,
+    "method": "Option key(s): showTint, showLogo",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "ForeverSession": {
+    "available": true,
+    "method": "Option key(s): show",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "ForeverSocialCrests": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverStats": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ForeverStats_Combat": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverStats_Dungeons": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, visible, IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverStats_Guild": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverStats_PvP": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "ForeverTold": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "FriendGroups": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Goldmind": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "GraphicsUnlockedForever": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, visible, minimap, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "HandyNotes": {
+    "available": true,
+    "method": "Option key(s): icon_alpha, icon_scale_minimap, icon_alpha_minimap",
+    "notes": "Found 3 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "HandyNotes_ForeverBooks": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Visible, visible, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "HidingBar": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "HidingBar_Options": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "Hourstone": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, Visible, visible, minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "HuntersFieldGuide": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "HuntersGaze": {
+    "available": true,
+    "method": "Option key(s): alpha, alphaIdle, alphaSafe",
+    "notes": "Found 6 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "InkAndEmbers": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "InkAndEmbers_Campfire": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "InkAndEmbers_Crafting": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, hide, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "InkAndEmbers_Data": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "InkAndEmbers_Plans": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "InkAndEmbers_QuestData": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "InkAndEmbers_Quests": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "InkAndEmbers_QuestTracker": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "IRememberYou": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ItemLevelNameplate": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Kehets_Fellowship": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, hide, minimap, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "KelaGraphics": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "LastProdigy": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Librarian": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "LiteMount": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "LiveLocation": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, Visible, visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "LorePath": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "MacroAssistForever": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "MacroWorkshop": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Max_Camera_Distance": {
+    "available": true,
+    "method": "Option key(s): minimap",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Memento": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "MoveAny": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "MyNotepad": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "NovaInstanceTracker": {
+    "available": true,
+    "method": "Option key(s): showAltsLog, showPvpLog, showPveLog",
+    "notes": "Found 9 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "NPCTime": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "OpenMap": {
+    "available": true,
+    "method": "Option key(s): hideWorldPinsInInstances",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "OpulentCastingBars": {
+    "available": true,
+    "method": "Option key(s): showCastTime, showSpellName, hideBlizzardBar",
+    "notes": "Found 5 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "OpulentPlates": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Overlord": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Pagle": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Pagle_Hunts": {
+    "available": true,
+    "method": "Option key(s): showCompleted",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Pagle_Ledger": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Pagle_QoL": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Pagle_Stats": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Pagle_TackleBoard": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "PerfectScreenshot": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Persona": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "PetMentor": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, hide, visible, minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "PetTooltipInfo": {
+    "available": true,
+    "method": "Option key(s): showTooltipInfo, showFamilyTamed, showFamilyWild",
+    "notes": "Found 22 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "PetXPBar": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, visible, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "Plumber": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "ProcDoc": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "QFXAddonManager": {
+    "available": true,
+    "method": "Option key(s): minimap, collectMinimapButtons, minimapAngle",
+    "notes": "Found 4 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "QFXAddonManager_Config": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "QFXAddonManager_Toolbox_ChatBar": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "QFXAddonManager_Toolbox_Combat": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "QFXAddonManager_Toolbox_Daily": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "QuestCompletist": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, HIDE, MINIMAP, HIDDEN. Check addon's specific /slash command for a hide toggle."
+  },
+  "QuestieDB": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "RaiderIO": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Rarity": {
+    "available": true,
+    "method": "Option key(s): minimap",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Rarity_Options": {
+    "available": true,
+    "method": "Option key(s): showTrackedItemAsMinimapIcon, showAchievementToast, showCategoryIcons",
+    "notes": "Found 16 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Saga": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, hide, visible, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "SagaCompanion": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible, Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "SilverDragon": {
+    "available": true,
+    "method": "Option key(s): showMap, mapShowAll, show_lastseen",
+    "notes": "Found 6 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "SilverDragon_History": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "SilverDragon_Overlay": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, hide, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "SilverDragon_RangeExtender": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "SleekGoldAnimation": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "SleekXPBubbles": {
+    "available": true,
+    "method": "Option key(s): showText",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "SmoothExperienceBar": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "social_diary": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: IsVisible, visible, VISIBLE. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpeedyAutoLoot": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Spoken": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Spoken_Bosses": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: IsVisible, hidden, Hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Spoken_Places": {
+    "available": true,
+    "method": "Option key(s): showMapPanel, showPictures, showUndiscovered",
+    "notes": "Found 3 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Spoken_Quests": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Spoken_Readables": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "SpokenPlacesAudio": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpokenQuestsAudioAlliance": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpokenQuestsAudioGossip": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpokenQuestsAudioHorde": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpokenQuestsAudioShared": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "Spy": {
+    "available": true,
+    "method": "Option key(s): DisplayWarnings, ShowEncounters, MinimapButton",
+    "notes": "Found 18 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Syndicator": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "TalentsForeverBook": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Tamed": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "TameDex": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, Visible, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "Terminal": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Terminal_Extras": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Terminal_Share": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "totalRP3": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "totalRP3_Extended": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "totalRP3_Extended_Tools": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, showFrame, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "Trailbook": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "Travelogue": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "TrueshotLodge": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "UltimateGatheringCounter": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "Wayfarer": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "WeaponKillCounter": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "WhatsItFor": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsItFor_Data_Anniversary": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsItFor_Data_Classic": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsItFor_Data_Forever": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsItFor_Data_Mists": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsItFor_Data_Titan": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "WhatsTraining": {
+    "available": true,
+    "method": "Option key(s): showReputationRecipes, showOtherFactionRecipes",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "WhoTargetsMe": {
+    "available": true,
+    "method": "Option key(s): minimap, minimapAngle, shown",
+    "notes": "Found 3 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "WIM": {
+    "available": true,
+    "method": "Option key(s): showToolTips",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "WoWTaskManager": {
+    "available": true,
+    "method": "Option key(s): firstRunReportShown",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "YouJustMadeTheList": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible, IsVisible. Check addon's specific /slash command for a hide toggle."
+  },
+  "YourLegacy": {
+    "available": true,
+    "method": "Option key(s): minimap, minimapAngle, combatHide",
+    "notes": "Found 4 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "ZoneInfoForever": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DamageFilterFT": {
+    "available": true,
+    "method": "Option key(s): showSmall, showMedium",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "SleekRageBubbles": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "BetterBags": {
+    "available": true,
+    "method": "Option key(s): showBagButton, showBankTabs, showGuildBankTabs",
+    "notes": "Found 5 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "BtWLoadouts": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "BtWQuests": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "BtWQuestsMidnight": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoL": {
+    "available": true,
+    "method": "Option key(s): SHOW_IN_INSTANCE, hideBorder, showTooltips",
+    "notes": "Found 5 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "EnhanceQoLBags": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLChatSocial": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLClassBuffReminder": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLCooldownPanels": {
+    "available": true,
+    "method": "Option key(s): isShown, showCooldownText",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "EnhanceQoLCooldownPulse": {
+    "available": true,
+    "method": "Option key(s): showName",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "EnhanceQoLDamageMeter": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Visible, visible, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLDungeonRaid": {
+    "available": true,
+    "method": "Option key(s): backgroundAlpha, showTargets",
+    "notes": "Found 2 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "EnhanceQoLItems": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLMover": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, Visible, MINIMAP, Minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLQuickActions": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLResourceBars": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLSharedMedia": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLSkinner": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLSound": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: minimap. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLTeleportCompendium": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "EnhanceQoLTooltip": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, Visible, HIDE, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "EnhanceQoLUnitFrames": {
+    "available": true,
+    "method": "Option key(s): hideInPetBattle, hideInClientScene, showTooltip",
+    "notes": "Found 8 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "EnhanceQoLVendor": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "MapLine": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "Select": {
+    "available": true,
+    "method": "Option key(s): ShowSubtext",
+    "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
+  },
+  "Tandumonium_Macros": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Minimap, minimap, Hide, hidden, MINIMAP. Check addon's specific /slash command for a hide toggle."
+  },
+  "Tandumonium_Patches": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: visible. Check addon's specific /slash command for a hide toggle."
+  },
+  "Tandumonium_UI": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "WoWForeverFitness": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "WowheadQuickLink": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
+  }
+}

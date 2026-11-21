@@ -1,0 +1,859 @@
+{
+  "/buggrabber": [
+    "!BugGrabber",
+    "!BugGrabber"
+  ],
+  "/stopnag": [
+    "!BugGrabber",
+    "!BugGrabber"
+  ],
+  "/achievements": [
+    "AchievementsForever"
+  ],
+  "/af": [
+    "AchievementsForever"
+  ],
+  "/aio": [
+    "AdvancedInterfaceOptions"
+  ],
+  "/cvar": [
+    "AdvancedInterfaceOptions"
+  ],
+  "/adl": [
+    "AdventurersLedger"
+  ],
+  "/ledger": [
+    "AdventurersLedger"
+  ],
+  "/advlog": [
+    "AdventurersLog"
+  ],
+  "/alog": [
+    "AdventurersLog"
+  ],
+  "/reloadui": [
+    "AllTheThings"
+  ],
+  "/rl": [
+    "AllTheThings",
+    "QFXAddonManager"
+  ],
+  "/acards": [
+    "AnimaCards"
+  ],
+  "/anima": [
+    "AnimaCards"
+  ],
+  "/animacards": [
+    "AnimaCards"
+  ],
+  "/abp": [
+    "AnimatedBlizzPortrait"
+  ],
+  "/abnote": [
+    "AutoBiographer"
+  ],
+  "/abtask": [
+    "AutoBiographer"
+  ],
+  "/autobiographer": [
+    "AutoBiographer"
+  ],
+  "/autobiographertest": [
+    "AutoBiographer"
+  ],
+  "/autobiographerverify": [
+    "AutoBiographer"
+  ],
+  "/atc": [
+    "AzerothTradingCards"
+  ],
+  "/tcg": [
+    "AzerothTradingCards"
+  ],
+  "/baganator": [
+    "Baganator"
+  ],
+  "/bgr": [
+    "Baganator"
+  ],
+  "/betterwowgraphics": [
+    "BetterWoWGraphics"
+  ],
+  "/bwg": [
+    "BetterWoWGraphics"
+  ],
+  "/bcy": [
+    "Bouncy"
+  ],
+  "/bouncy": [
+    "Bouncy"
+  ],
+  "/ab": [
+    "BuddyDex"
+  ],
+  "/bd": [
+    "BuddyDex"
+  ],
+  "/buddydex": [
+    "BuddyDex"
+  ],
+  "/bugsack": [
+    "BugSack",
+    "BugSack"
+  ],
+  "/carb2": [
+    "Carbonite"
+  ],
+  "/cb": [
+    "Carbonite"
+  ],
+  "/ca": [
+    "CarnetAventure"
+  ],
+  "/carnet": [
+    "CarnetAventure"
+  ],
+  "/countsteps": [
+    "CountSteps"
+  ],
+  "/cs": [
+    "CountSteps"
+  ],
+  "/mosh": [
+    "CountSteps"
+  ],
+  "/coa": [
+    "CrownOfAzeroth"
+  ],
+  "/crown": [
+    "CrownOfAzeroth"
+  ],
+  "/break": [
+    "DBM-Core"
+  ],
+  "/dbm": [
+    "DBM-Core"
+  ],
+  "/distance": [
+    "DBM-Core"
+  ],
+  "/dway": [
+    "DBM-Core"
+  ],
+  "/pull": [
+    "DBM-Core"
+  ],
+  "/range": [
+    "DBM-Core"
+  ],
+  "/rdistance": [
+    "DBM-Core"
+  ],
+  "/rpull": [
+    "DBM-Core"
+  ],
+  "/rrange": [
+    "DBM-Core"
+  ],
+  "/ding": [
+    "DingFanfare"
+  ],
+  "/dingfanfare": [
+    "DingFanfare"
+  ],
+  "/fanfare": [
+    "DingFanfare"
+  ],
+  "/dl": [
+    "DopamineLoot"
+  ],
+  "/dcnew": [
+    "DynamicCam"
+  ],
+  "/sa": [
+    "EuphorrixSpellAnnouncerV2"
+  ],
+  "/faces": [
+    "FamiliarFaces"
+  ],
+  "/ff": [
+    "FamiliarFaces"
+  ],
+  "/kills": [
+    "FamiliarFaces"
+  ],
+  "/met": [
+    "FamiliarFaces"
+  ],
+  "/fellowshipledger": [
+    "FellowshipLedger"
+  ],
+  "/fl": [
+    "FellowshipLedger"
+  ],
+  "/flightgames": [
+    "FlightMinigames"
+  ],
+  "/games": [
+    "FlightMinigames"
+  ],
+  "/beastiary": [
+    "ForeverBestiaryPetHunter"
+  ],
+  "/bestiario": [
+    "ForeverBestiaryPetHunter"
+  ],
+  "/bestiary": [
+    "ForeverBestiaryPetHunter"
+  ],
+  "/fb": [
+    "ForeverBestiaryPetHunter"
+  ],
+  "/fbestiary": [
+    "ForeverBestiaryPetHunter"
+  ],
+  "/fct": [
+    "ForeverCombatText"
+  ],
+  "/forevertext": [
+    "ForeverCombatText"
+  ],
+  "/fdex": [
+    "ForeverDex"
+  ],
+  "/foreverdex": [
+    "ForeverDex"
+  ],
+  "/fep": [
+    "ForeverEpicFrames"
+  ],
+  "/fgc": [
+    "ForeverGraphicsControl"
+  ],
+  "/": [
+    "ForeverLogsCompanion"
+  ],
+  "/foreverlogs": [
+    "ForeverLogsCompanion"
+  ],
+  "/fqt": [
+    "ForeverQuestTint"
+  ],
+  "/fsess": [
+    "ForeverSession"
+  ],
+  "/fsession": [
+    "ForeverSession"
+  ],
+  "/fsc": [
+    "ForeverSocialCrests"
+  ],
+  "/socialcrests": [
+    "ForeverSocialCrests"
+  ],
+  "/foreverstats": [
+    "ForeverStats"
+  ],
+  "/fstats": [
+    "ForeverStats"
+  ],
+  "/forevertold": [
+    "ForeverTold"
+  ],
+  "/told": [
+    "ForeverTold"
+  ],
+  "/fg": [
+    "FriendGroups",
+    "HuntersFieldGuide"
+  ],
+  "/gm": [
+    "Goldmind"
+  ],
+  "/goldmind": [
+    "Goldmind"
+  ],
+  "/graphicsunlocked": [
+    "GraphicsUnlockedForever"
+  ],
+  "/guf": [
+    "GraphicsUnlockedForever"
+  ],
+  "/fbooks": [
+    "HandyNotes_ForeverBooks"
+  ],
+  "/foreverbooks": [
+    "HandyNotes_ForeverBooks"
+  ],
+  "/hb": [
+    "HidingBar"
+  ],
+  "/hidingbar": [
+    "HidingBar"
+  ],
+  "/hourstone": [
+    "Hourstone"
+  ],
+  "/fieldguide": [
+    "HuntersFieldGuide"
+  ],
+  "/hg": [
+    "HuntersGaze"
+  ],
+  "/huntersgaze": [
+    "HuntersGaze"
+  ],
+  "/chronik": [
+    "InkAndEmbers"
+  ],
+  "/ie": [
+    "InkAndEmbers"
+  ],
+  "/inkember": [
+    "InkAndEmbers"
+  ],
+  "/inkembers": [
+    "InkAndEmbers"
+  ],
+  "/irememberyou": [
+    "IRememberYou"
+  ],
+  "/irymap": [
+    "IRememberYou"
+  ],
+  "/memory": [
+    "IRememberYou"
+  ],
+  "/remember": [
+    "IRememberYou"
+  ],
+  "/fellow": [
+    "Kehets_Fellowship"
+  ],
+  "/fellowship": [
+    "Kehets_Fellowship"
+  ],
+  "/kelagraphics": [
+    "KelaGraphics"
+  ],
+  "/kg": [
+    "KelaGraphics"
+  ],
+  "/lp": [
+    "LastProdigy",
+    "LorePath"
+  ],
+  "/librarian": [
+    "Librarian"
+  ],
+  "/litemount": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "/lmt": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "/livelocation": [
+    "LiveLocation"
+  ],
+  "/lloc": [
+    "LiveLocation"
+  ],
+  "/lorepath": [
+    "LorePath"
+  ],
+  "/macroassist": [
+    "MacroAssistForever"
+  ],
+  "/macroworkshop": [
+    "MacroWorkshop"
+  ],
+  "/mw": [
+    "MacroWorkshop"
+  ],
+  "/mcd": [
+    "Max_Camera_Distance"
+  ],
+  "/mem": [
+    "Memento"
+  ],
+  "/notepad": [
+    "MyNotepad"
+  ],
+  "/np": [
+    "MyNotepad"
+  ],
+  "/ghetto": [
+    "NovaInstanceTracker"
+  ],
+  "/lua": [
+    "NovaInstanceTracker"
+  ],
+  "/luaoff": [
+    "NovaInstanceTracker"
+  ],
+  "/luaon": [
+    "NovaInstanceTracker"
+  ],
+  "/nit": [
+    "NovaInstanceTracker"
+  ],
+  "/npctime": [
+    "NPCTime"
+  ],
+  "/openmap": [
+    "OpenMap"
+  ],
+  "/ocb": [
+    "OpulentCastingBars"
+  ],
+  "/opulentcastingbars": [
+    "OpulentCastingBars"
+  ],
+  "/op": [
+    "OpulentPlates"
+  ],
+  "/opulentplates": [
+    "OpulentPlates"
+  ],
+  "/ov": [
+    "Overlord"
+  ],
+  "/overlord": [
+    "Overlord"
+  ],
+  "/pagle": [
+    "Pagle"
+  ],
+  "/perfectscreenshot": [
+    "PerfectScreenshot"
+  ],
+  "/pss": [
+    "PerfectScreenshot"
+  ],
+  "/persona": [
+    "Persona"
+  ],
+  "/petmentor": [
+    "PetMentor"
+  ],
+  "/pm": [
+    "PetMentor"
+  ],
+  "/pti": [
+    "PetTooltipInfo"
+  ],
+  "/petxp": [
+    "PetXPBar"
+  ],
+  "/ph": [
+    "PlayerHistory"
+  ],
+  "/phtooltip": [
+    "PlayerHistory"
+  ],
+  "/playerhistory": [
+    "PlayerHistory"
+  ],
+  "/pd": [
+    "ProcDoc"
+  ],
+  "/procdoc": [
+    "ProcDoc"
+  ],
+  "/qfxaddons": [
+    "QFXAddonManager"
+  ],
+  "/qfxam": [
+    "QFXAddonManager"
+  ],
+  "/qfx插件": [
+    "QFXAddonManager"
+  ],
+  "/qfw": [
+    "QFXAddonManager_Toolbox_ChatBar"
+  ],
+  "/qfxwhisper": [
+    "QFXAddonManager_Toolbox_ChatBar"
+  ],
+  "/qfxsm": [
+    "QFXAddonManager_Toolbox_Combat"
+  ],
+  "/qfxtsm": [
+    "QFXAddonManager_Toolbox_Combat"
+  ],
+  "/qsm": [
+    "QFXAddonManager_Toolbox_Combat"
+  ],
+  "/qc": [
+    "QuestCompletist"
+  ],
+  "/questc": [
+    "QuestCompletist"
+  ],
+  "/fcollector": [
+    "Saga"
+  ],
+  "/sagarec": [
+    "Saga"
+  ],
+  "/fcompanion": [
+    "SagaCompanion"
+  ],
+  "/saga": [
+    "SagaCompanion"
+  ],
+  "/sga": [
+    "SleekGoldAnimation"
+  ],
+  "/sleekgold": [
+    "SleekGoldAnimation"
+  ],
+  "/sxp": [
+    "SleekXPBubbles"
+  ],
+  "/xpb": [
+    "SleekXPBubbles"
+  ],
+  "/seb": [
+    "SmoothExperienceBar"
+  ],
+  "/sd": [
+    "social_diary"
+  ],
+  "/socialdiary": [
+    "social_diary"
+  ],
+  "/sal": [
+    "SpeedyAutoLoot"
+  ],
+  "/sp": [
+    "Spoken"
+  ],
+  "/spoken": [
+    "Spoken"
+  ],
+  "/spokenplaces": [
+    "Spoken_Places"
+  ],
+  "/spokenzones": [
+    "Spoken_Places"
+  ],
+  "/spp": [
+    "Spoken_Places"
+  ],
+  "/spz": [
+    "Spoken_Places"
+  ],
+  "/spqread": [
+    "Spoken_Quests"
+  ],
+  "/spb": [
+    "Spoken_Readables"
+  ],
+  "/spokenbooks": [
+    "Spoken_Readables"
+  ],
+  "/spokenreadables": [
+    "Spoken_Readables"
+  ],
+  "/spokenwritings": [
+    "Spoken_Readables"
+  ],
+  "/spr": [
+    "Spoken_Readables"
+  ],
+  "/spw": [
+    "Spoken_Readables"
+  ],
+  "/baganatorsearch": [
+    "Syndicator"
+  ],
+  "/bgrs": [
+    "Syndicator"
+  ],
+  "/syn": [
+    "Syndicator"
+  ],
+  "/syndicator": [
+    "Syndicator"
+  ],
+  "/syndicatorsearch": [
+    "Syndicator"
+  ],
+  "/syns": [
+    "Syndicator"
+  ],
+  "/talents": [
+    "TalentsForeverBook"
+  ],
+  "/talentsforever": [
+    "TalentsForeverBook"
+  ],
+  "/tf": [
+    "TalentsForeverBook"
+  ],
+  "/tfb": [
+    "TalentsForeverBook"
+  ],
+  "/tamed": [
+    "Tamed"
+  ],
+  "/tamedex": [
+    "TameDex"
+  ],
+  "/td": [
+    "TameDex"
+  ],
+  "/term": [
+    "Terminal"
+  ],
+  "/trp3": [
+    "totalRP3"
+  ],
+  "<data...>": [
+    "totalRP3"
+  ],
+  "<field>": [
+    "totalRP3"
+  ],
+  "Daydreaming about butterflies": [
+    "totalRP3"
+  ],
+  "Happy Bear; Angry Elf": [
+    "totalRP3"
+  ],
+  "[macro conditionals]": [
+    "totalRP3"
+  ],
+  "/trailbook": [
+    "Trailbook"
+  ],
+  "/ugc": [
+    "UltimateGatheringCounter"
+  ],
+  "/ultimategatheringcounter": [
+    "UltimateGatheringCounter"
+  ],
+  "/journal": [
+    "Wayfarer"
+  ],
+  "/wayfarer": [
+    "Wayfarer"
+  ],
+  "/wf": [
+    "Wayfarer"
+  ],
+  "/weaponkills": [
+    "WeaponKillCounter"
+  ],
+  "/wkc": [
+    "WeaponKillCounter"
+  ],
+  "/pqs": [
+    "WhatsItFor"
+  ],
+  "/wif": [
+    "WhatsItFor"
+  ],
+  "/wt": [
+    "WhatsTraining"
+  ],
+  "/whotargetsme": [
+    "WhoTargetsMe"
+  ],
+  "/wtm": [
+    "WhoTargetsMe"
+  ],
+  "/wim": [
+    "WIM"
+  ],
+  "/listdossier": [
+    "YouJustMadeTheList"
+  ],
+  "/listjournal": [
+    "YouJustMadeTheList"
+  ],
+  "/listledger": [
+    "YouJustMadeTheList"
+  ],
+  "/listnaughty": [
+    "YouJustMadeTheList"
+  ],
+  "/listnice": [
+    "YouJustMadeTheList"
+  ],
+  "/quicknaughty": [
+    "YouJustMadeTheList"
+  ],
+  "/quicknice": [
+    "YouJustMadeTheList"
+  ],
+  "/thelist": [
+    "YouJustMadeTheList"
+  ],
+  "/yl": [
+    "YourLegacy"
+  ],
+  "/yourlegacy": [
+    "YourLegacy"
+  ],
+  "/zif": [
+    "ZoneInfoForever"
+  ],
+  "/dfft": [
+    "DamageFilterFT"
+  ],
+  "/dfftm": [
+    "DamageFilterFT"
+  ],
+  "/fdf": [
+    "DamageFilterFT"
+  ],
+  "/sct": [
+    "DamageFilterFT"
+  ],
+  "/sctblit": [
+    "DamageFilterFT"
+  ],
+  "/scticon": [
+    "DamageFilterFT"
+  ],
+  "/scticondbg": [
+    "DamageFilterFT"
+  ],
+  "/scticonping": [
+    "DamageFilterFT"
+  ],
+  "/scticonraw": [
+    "DamageFilterFT"
+  ],
+  "/scticons": [
+    "DamageFilterFT"
+  ],
+  "/sctidebug": [
+    "DamageFilterFT"
+  ],
+  "/sctiforce": [
+    "DamageFilterFT"
+  ],
+  "/sctivis": [
+    "DamageFilterFT"
+  ],
+  "/sctmiss": [
+    "DamageFilterFT"
+  ],
+  "/sctring": [
+    "DamageFilterFT"
+  ],
+  "/sctringoff": [
+    "DamageFilterFT"
+  ],
+  "/sctwho": [
+    "DamageFilterFT"
+  ],
+  "/sctyoff": [
+    "DamageFilterFT"
+  ],
+  "/srb": [
+    "SleekRageBubbles"
+  ],
+  "/bb": [
+    "BetterBags"
+  ],
+  "/btwl": [
+    "BtWLoadouts"
+  ],
+  "/btwloadouts": [
+    "BtWLoadouts"
+  ],
+  "/btwq": [
+    "BtWQuests"
+  ],
+  "/btwquests": [
+    "BtWQuests"
+  ],
+  "/eqol": [
+    "EnhanceQoL"
+  ],
+  "/eqolvl": [
+    "EnhanceQoL"
+  ],
+  "/eqolbank": [
+    "EnhanceQoLBags"
+  ],
+  "/eim": [
+    "EnhanceQoLChatSocial"
+  ],
+  "/select": [
+    "Select"
+  ],
+  "/tarmacs": [
+    "Tandumonium_Macros"
+  ],
+  "/pin": [
+    "Tandumonium_UI",
+    "UnlimitedMapPinDistance"
+  ],
+  "/tand": [
+    "Tandumonium_UI"
+  ],
+  "/uway": [
+    "Tandumonium_UI",
+    "UnlimitedMapPinDistance"
+  ],
+  "/way": [
+    "Tandumonium_UI",
+    "UnlimitedMapPinDistance"
+  ],
+  "/umpd": [
+    "UnlimitedMapPinDistance"
+  ],
+  "/wff": [
+    "WoWForeverFitness"
+  ],
+  "/wffbankruptcy": [
+    "WoWForeverFitness"
+  ],
+  "/wffendurance": [
+    "WoWForeverFitness"
+  ],
+  "/wffgamble": [
+    "WoWForeverFitness"
+  ],
+  "/wffguild": [
+    "WoWForeverFitness"
+  ],
+  "/wffheat": [
+    "WoWForeverFitness"
+  ],
+  "/wffkos": [
+    "WoWForeverFitness"
+  ],
+  "/wffpvp": [
+    "WoWForeverFitness"
+  ],
+  "/wffquick": [
+    "WoWForeverFitness"
+  ],
+  "/wffresetach": [
+    "WoWForeverFitness"
+  ],
+  "/wffresetall": [
+    "WoWForeverFitness"
+  ],
+  "/wffskin": [
+    "WoWForeverFitness"
+  ],
+  "/wfftracker": [
+    "WoWForeverFitness"
+  ],
+  "/wowheadquicklink": [
+    "WowheadQuickLink"
+  ],
+  "/wql": [
+    "WowheadQuickLink"
+  ]
+}

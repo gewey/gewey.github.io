@@ -1,0 +1,3195 @@
+{
+  "background": [
+    "AnimatedBlizzPortrait"
+  ],
+  "dark": [
+    "AnimatedBlizzPortrait"
+  ],
+  "text": [
+    "AnimatedBlizzPortrait",
+    "CanIMogIt",
+    "PetTooltipInfo",
+    "EnhanceQoLMover"
+  ],
+  "source": [
+    "AzerothTradingCards"
+  ],
+  "GLOBAL_VIEW_TYPE": [
+    "Baganator"
+  ],
+  "evolutionSound": [
+    "Bouncy"
+  ],
+  "feedSound": [
+    "Bouncy"
+  ],
+  "leaderboardSharing": [
+    "Bouncy"
+  ],
+  "levelSound": [
+    "Bouncy"
+  ],
+  "overlayCounter": [
+    "Bouncy"
+  ],
+  "overlayFadeDuration": [
+    "Bouncy"
+  ],
+  "overlayLocked": [
+    "Bouncy"
+  ],
+  "overlayPoint": [
+    "Bouncy"
+  ],
+  "overlayScale": [
+    "Bouncy"
+  ],
+  "overlayShowDuration": [
+    "Bouncy"
+  ],
+  "overlayStyle": [
+    "Bouncy"
+  ],
+  "overlayVisibility": [
+    "Bouncy"
+  ],
+  "overlayVisible": [
+    "Bouncy"
+  ],
+  "reducedMotion": [
+    "Bouncy"
+  ],
+  "windowSkin": [
+    "Bouncy"
+  ],
+  "alpha": [
+    "BuddyDex",
+    "HuntersGaze",
+    "OpulentCastingBars"
+  ],
+  "announce": [
+    "BuddyDex",
+    "SilverDragon",
+    "YourLegacy"
+  ],
+  "chattiness": [
+    "BuddyDex"
+  ],
+  "clampToScreen": [
+    "BuddyDex"
+  ],
+  "clickThrough": [
+    "BuddyDex",
+    "EnhanceQoL"
+  ],
+  "combat": [
+    "BuddyDex"
+  ],
+  "companion": [
+    "BuddyDex"
+  ],
+  "echoChat": [
+    "BuddyDex"
+  ],
+  "facing": [
+    "BuddyDex"
+  ],
+  "hideInInstances": [
+    "BuddyDex"
+  ],
+  "hideWeapons": [
+    "BuddyDex"
+  ],
+  "locked": [
+    "BuddyDex",
+    "OpulentCastingBars",
+    "SilverDragon",
+    "Wayfarer",
+    "WhoTargetsMe",
+    "YourLegacy"
+  ],
+  "scale": [
+    "BuddyDex",
+    "DBM-Core",
+    "HandyNotes_ForeverBooks",
+    "OpulentCastingBars",
+    "QFXAddonManager",
+    "Wayfarer",
+    "WoWTaskManager",
+    "YourLegacy"
+  ],
+  "sleepWhenAway": [
+    "BuddyDex"
+  ],
+  "voiceMode": [
+    "BuddyDex"
+  ],
+  "setItems": [
+    "CanIMogIt"
+  ],
+  "size": [
+    "CanIMogIt"
+  ],
+  "type": [
+    "CanIMogIt",
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "Carbonite.Quests",
+    "HandyNotes",
+    "Max_Camera_Distance",
+    "NovaInstanceTracker",
+    "Rarity_Options",
+    "SilverDragon",
+    "Spy",
+    "EnhanceQoLMover"
+  ],
+  "args": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "Carbonite.Quests",
+    "HandyNotes",
+    "Max_Camera_Distance",
+    "NovaInstanceTracker",
+    "Rarity_Options",
+    "SilverDragon",
+    "Spy"
+  ],
+  "desc": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "HandyNotes",
+    "Rarity_Options",
+    "SilverDragon",
+    "Spy",
+    "EnhanceQoLMover"
+  ],
+  "get": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "HandyNotes",
+    "PetTooltipInfo",
+    "SilverDragon",
+    "EnhanceQoL",
+    "EnhanceQoLMover",
+    "EnhanceQoLResourceBars"
+  ],
+  "icon": [
+    "Carbonite"
+  ],
+  "inline": [
+    "Carbonite",
+    "Rarity_Options"
+  ],
+  "name": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "Carbonite.Quests",
+    "HandyNotes",
+    "Max_Camera_Distance",
+    "NovaInstanceTracker",
+    "Rarity_Options",
+    "SilverDragon",
+    "Spy",
+    "EnhanceQoL",
+    "EnhanceQoLClassBuffReminder",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLQuickActions",
+    "EnhanceQoLResourceBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "order": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "Carbonite.Quests",
+    "HandyNotes",
+    "Max_Camera_Distance",
+    "NovaInstanceTracker",
+    "Rarity_Options",
+    "SilverDragon",
+    "Spy"
+  ],
+  "set": [
+    "Carbonite",
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "HandyNotes",
+    "PetTooltipInfo",
+    "SilverDragon",
+    "EnhanceQoL",
+    "EnhanceQoLMover",
+    "EnhanceQoLResourceBars"
+  ],
+  "Info": [
+    "Carbonite.Info"
+  ],
+  "InfoData": [
+    "Carbonite.Info"
+  ],
+  "InfoFont": [
+    "Carbonite.Info"
+  ],
+  "InfoFontOutline": [
+    "Carbonite.Info"
+  ],
+  "InfoFontShadow": [
+    "Carbonite.Info"
+  ],
+  "InfoFontSize": [
+    "Carbonite.Info"
+  ],
+  "InfoFontSpacing": [
+    "Carbonite.Info"
+  ],
+  "InfoLock": [
+    "Carbonite.Info"
+  ],
+  "KillIconAutoClearSecs": [
+    "Carbonite.Info"
+  ],
+  "KillIconKeepForever": [
+    "Carbonite.Info"
+  ],
+  "KillIcons": [
+    "Carbonite.Info"
+  ],
+  "ListCol": [
+    "Carbonite.Info"
+  ],
+  "Lock": [
+    "Carbonite.Info"
+  ],
+  "profile": [
+    "Carbonite.Info",
+    "Carbonite.Notes",
+    "Carbonite.Quests",
+    "Carbonite.Warehouse",
+    "DynamicCam",
+    "HandyNotes",
+    "Rarity",
+    "SilverDragon",
+    "Spoken_Quests",
+    "WoWTaskManager"
+  ],
+  "width": [
+    "Carbonite.Info",
+    "PetTooltipInfo",
+    "Wayfarer",
+    "WhoTargetsMe",
+    "EnhanceQoL",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLResourceBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "GatherLite": [
+    "Carbonite.Notes"
+  ],
+  "GatherLiteSize": [
+    "Carbonite.Notes"
+  ],
+  "HandyNotes": [
+    "Carbonite.Notes"
+  ],
+  "HandyNotesSize": [
+    "Carbonite.Notes"
+  ],
+  "Notes": [
+    "Carbonite.Notes"
+  ],
+  "Questie": [
+    "Carbonite.Notes"
+  ],
+  "QuestieSE": [
+    "Carbonite.Notes"
+  ],
+  "QuestieSize": [
+    "Carbonite.Notes"
+  ],
+  "RXP": [
+    "Carbonite.Notes"
+  ],
+  "RXPArrow": [
+    "Carbonite.Notes"
+  ],
+  "RXPIntegration": [
+    "Carbonite.Notes"
+  ],
+  "RXPSize": [
+    "Carbonite.Notes"
+  ],
+  "RareScanner": [
+    "Carbonite.Notes"
+  ],
+  "RareScannerSize": [
+    "Carbonite.Notes"
+  ],
+  "ShowMap": [
+    "Carbonite.Notes"
+  ],
+  "ZygorArrow": [
+    "Carbonite.Notes"
+  ],
+  "notemap": [
+    "Carbonite.Notes"
+  ],
+  "AddTooltip": [
+    "Carbonite.Quests",
+    "Carbonite.Warehouse"
+  ],
+  "AutoAccept": [
+    "Carbonite.Quests"
+  ],
+  "AutoTurnIn": [
+    "Carbonite.Quests"
+  ],
+  "AutoTurnInAC": [
+    "Carbonite.Quests"
+  ],
+  "BroadcastQChanges": [
+    "Carbonite.Quests"
+  ],
+  "BroadcastQChangesNum": [
+    "Carbonite.Quests"
+  ],
+  "DetailBC": [
+    "Carbonite.Quests"
+  ],
+  "DetailScale": [
+    "Carbonite.Quests"
+  ],
+  "DetailTC": [
+    "Carbonite.Quests"
+  ],
+  "Enable": [
+    "Carbonite.Quests",
+    "Carbonite.Warehouse"
+  ],
+  "HCheckCompleted": [
+    "Carbonite.Quests"
+  ],
+  "HideLockedQuests": [
+    "Carbonite.Quests"
+  ],
+  "LevelsToLoad": [
+    "Carbonite.Quests"
+  ],
+  "Load0": [
+    "Carbonite.Quests"
+  ],
+  "Load1": [
+    "Carbonite.Quests"
+  ],
+  "Load10": [
+    "Carbonite.Quests"
+  ],
+  "Load11": [
+    "Carbonite.Quests"
+  ],
+  "Load12": [
+    "Carbonite.Quests"
+  ],
+  "Load2": [
+    "Carbonite.Quests"
+  ],
+  "Load3": [
+    "Carbonite.Quests"
+  ],
+  "Load4": [
+    "Carbonite.Quests"
+  ],
+  "Load5": [
+    "Carbonite.Quests"
+  ],
+  "Load6": [
+    "Carbonite.Quests"
+  ],
+  "Load7": [
+    "Carbonite.Quests"
+  ],
+  "Load8": [
+    "Carbonite.Quests"
+  ],
+  "Load9": [
+    "Carbonite.Quests"
+  ],
+  "MapQuestGiversHighLevel": [
+    "Carbonite.Quests"
+  ],
+  "MapQuestGiversLowLevel": [
+    "Carbonite.Quests"
+  ],
+  "MapShowWatchAreas": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchAreaAlpha": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchAreaGfx": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchAreaHoverColor": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchAreaTrackColor": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC1": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC10": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC11": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC12": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC2": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC3": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC4": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC5": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC6": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC7": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC8": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchC9": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchColorCnt": [
+    "Carbonite.Quests"
+  ],
+  "MapWatchColorPerQ": [
+    "Carbonite.Quests"
+  ],
+  "PartyShare": [
+    "Carbonite.Quests"
+  ],
+  "Quest": [
+    "Carbonite.Quests"
+  ],
+  "QuestFont": [
+    "Carbonite.Quests"
+  ],
+  "QuestFontOutline": [
+    "Carbonite.Quests"
+  ],
+  "QuestFontShadow": [
+    "Carbonite.Quests"
+  ],
+  "QuestFontSize": [
+    "Carbonite.Quests"
+  ],
+  "QuestFontSpacing": [
+    "Carbonite.Quests"
+  ],
+  "QuestOpts": [
+    "Carbonite.Quests"
+  ],
+  "QuestWatch": [
+    "Carbonite.Quests"
+  ],
+  "ScrollIMG": [
+    "Carbonite.Quests"
+  ],
+  "ShowAllMapPOIs": [
+    "Carbonite.Quests"
+  ],
+  "ShowDailyCount": [
+    "Carbonite.Quests"
+  ],
+  "ShowDailyReset": [
+    "Carbonite.Quests"
+  ],
+  "ShowId": [
+    "Carbonite.Quests"
+  ],
+  "ShowLinkExtra": [
+    "Carbonite.Quests"
+  ],
+  "ShowQuestOffers": [
+    "Carbonite.Quests"
+  ],
+  "SideBySide": [
+    "Carbonite.Quests"
+  ],
+  "Snd1": [
+    "Carbonite.Quests"
+  ],
+  "Snd2": [
+    "Carbonite.Quests"
+  ],
+  "Snd3": [
+    "Carbonite.Quests"
+  ],
+  "Snd4": [
+    "Carbonite.Quests"
+  ],
+  "Snd5": [
+    "Carbonite.Quests"
+  ],
+  "Snd6": [
+    "Carbonite.Quests"
+  ],
+  "Snd7": [
+    "Carbonite.Quests"
+  ],
+  "Snd8": [
+    "Carbonite.Quests"
+  ],
+  "SndPlayCompleted": [
+    "Carbonite.Quests"
+  ],
+  "UseAltLKey": [
+    "Carbonite.Quests"
+  ],
+  "childGroups": [
+    "Carbonite.Quests",
+    "Rarity_Options"
+  ],
+  "maxLoadLevel": [
+    "Carbonite.Quests"
+  ],
+  "quest": [
+    "Carbonite.Quests"
+  ],
+  "IgnoreList": [
+    "Carbonite.Warehouse"
+  ],
+  "TooltipIgnore": [
+    "Carbonite.Warehouse"
+  ],
+  "Warehouse": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseData": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseFont": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseFontOutline": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseFontShadow": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseFontSize": [
+    "Carbonite.Warehouse"
+  ],
+  "WarehouseFontSpacing": [
+    "Carbonite.Warehouse"
+  ],
+  "candidateFilters": [
+    "DBM-Core",
+    "Plumber",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "Plumber"
+  ],
+  "color": [
+    "DBM-Core",
+    "PetTooltipInfo",
+    "SleekRageBubbles"
+  ],
+  "duration": [
+    "DBM-Core"
+  ],
+  "elementHeight": [
+    "DBM-Core"
+  ],
+  "elementSpacing": [
+    "DBM-Core"
+  ],
+  "elementWidth": [
+    "DBM-Core"
+  ],
+  "frequency": [
+    "DBM-Core"
+  ],
+  "glowType": [
+    "DBM-Core"
+  ],
+  "initializeFrame": [
+    "DBM-Core"
+  ],
+  "key": [
+    "DBM-Core",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLResourceBars"
+  ],
+  "layout": [
+    "DBM-Core",
+    "PetTooltipInfo",
+    "EnhanceQoLCooldownPanels"
+  ],
+  "lineSpacing": [
+    "DBM-Core"
+  ],
+  "maxFrameCount": [
+    "DBM-Core"
+  ],
+  "sortDirection": [
+    "DBM-Core"
+  ],
+  "sortMethod": [
+    "DBM-Core"
+  ],
+  "startAnim": [
+    "DBM-Core"
+  ],
+  "xOffset": [
+    "DBM-Core"
+  ],
+  "yOffset": [
+    "DBM-Core"
+  ],
+  "UIParentAlpha": [
+    "DynamicCam"
+  ],
+  "cameraDistanceMaxZoomFactor": [
+    "DynamicCam"
+  ],
+  "cameraFov": [
+    "DynamicCam"
+  ],
+  "cameraPitchMoveSpeed": [
+    "DynamicCam"
+  ],
+  "cameraYawMoveSpeed": [
+    "DynamicCam"
+  ],
+  "cameraZoomSpeed": [
+    "DynamicCam"
+  ],
+  "customFramesToKeep": [
+    "DynamicCam"
+  ],
+  "cvars": [
+    "DynamicCam"
+  ],
+  "hideFrameRate": [
+    "DynamicCam"
+  ],
+  "keepAlertFrames": [
+    "DynamicCam"
+  ],
+  "keepChatFrame": [
+    "DynamicCam"
+  ],
+  "keepCustomFrames": [
+    "DynamicCam"
+  ],
+  "keepEncounterBar": [
+    "DynamicCam"
+  ],
+  "keepMinimap": [
+    "DynamicCam"
+  ],
+  "keepPartyRaidFrame": [
+    "DynamicCam"
+  ],
+  "keepTooltip": [
+    "DynamicCam"
+  ],
+  "keepTrackingBar": [
+    "DynamicCam"
+  ],
+  "reactiveZoomAddIncrements": [
+    "DynamicCam"
+  ],
+  "reactiveZoomAddIncrementsAlways": [
+    "DynamicCam"
+  ],
+  "reactiveZoomEnabled": [
+    "DynamicCam"
+  ],
+  "reactiveZoomIncAddDifference": [
+    "DynamicCam"
+  ],
+  "reactiveZoomMaxZoomTime": [
+    "DynamicCam"
+  ],
+  "standardSettings": [
+    "DynamicCam"
+  ],
+  "test_cameraDynamicPitch": [
+    "DynamicCam"
+  ],
+  "test_cameraDynamicPitchBaseFovPad": [
+    "DynamicCam"
+  ],
+  "test_cameraDynamicPitchBaseFovPadDownScale": [
+    "DynamicCam"
+  ],
+  "test_cameraDynamicPitchBaseFovPadFlying": [
+    "DynamicCam"
+  ],
+  "test_cameraDynamicPitchSmartPivotCutoffDist": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementDeadZone": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementFirstPersonDampRate": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementMovingDampRate": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementMovingStrength": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementRangeScale": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementStandingDampRate": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementStandingStrength": [
+    "DynamicCam"
+  ],
+  "test_cameraHeadMovementStrength": [
+    "DynamicCam"
+  ],
+  "test_cameraOverShoulder": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusEnemyEnable": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusEnemyStrengthPitch": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusEnemyStrengthYaw": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusInteractEnable": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusInteractStrengthPitch": [
+    "DynamicCam"
+  ],
+  "test_cameraTargetFocusInteractStrengthYaw": [
+    "DynamicCam"
+  ],
+  "trackingBarAlpha": [
+    "DynamicCam"
+  ],
+  "zoomRestoreSetting": [
+    "DynamicCam"
+  ],
+  "button": [
+    "Elephant"
+  ],
+  "chatlog": [
+    "Elephant"
+  ],
+  "combatlog": [
+    "Elephant"
+  ],
+  "defaultlog": [
+    "Elephant"
+  ],
+  "events": [
+    "Elephant"
+  ],
+  "logs": [
+    "Elephant"
+  ],
+  "maxcopyletters": [
+    "Elephant"
+  ],
+  "addonNumbers": [
+    "ForeverCombatText"
+  ],
+  "blizzardHealingWhenPlatesOff": [
+    "ForeverCombatText"
+  ],
+  "blizzardInstanceHealing": [
+    "ForeverCombatText"
+  ],
+  "damage": [
+    "ForeverCombatText"
+  ],
+  "damageSchoolColors": [
+    "ForeverCombatText"
+  ],
+  "eliteIcons": [
+    "ForeverCombatText"
+  ],
+  "enabled": [
+    "ForeverCombatText",
+    "HandyNotes",
+    "OpenMap",
+    "OpulentPlates",
+    "WIM",
+    "WoWTaskManager",
+    "SleekRageBubbles",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLUnitFrames"
+  ],
+  "healing": [
+    "ForeverCombatText"
+  ],
+  "hideFriendlyInCities": [
+    "ForeverCombatText"
+  ],
+  "minionPlates": [
+    "ForeverCombatText"
+  ],
+  "npcPlates": [
+    "ForeverCombatText"
+  ],
+  "physical": [
+    "ForeverCombatText"
+  ],
+  "schoolColors": [
+    "ForeverCombatText"
+  ],
+  "scope": [
+    "ForeverCombatText"
+  ],
+  "showLogo": [
+    "ForeverQuestTint"
+  ],
+  "showTint": [
+    "ForeverQuestTint"
+  ],
+  "tint": [
+    "ForeverQuestTint"
+  ],
+  "kills": [
+    "ForeverSession"
+  ],
+  "money": [
+    "ForeverSession"
+  ],
+  "show": [
+    "ForeverSession",
+    "SilverDragon"
+  ],
+  "time": [
+    "ForeverSession"
+  ],
+  "version": [
+    "ForeverSession",
+    "QFXAddonManager"
+  ],
+  "caps": [
+    "ForeverStats"
+  ],
+  "build": [
+    "ForeverTold"
+  ],
+  "subtitle": [
+    "ForeverTold"
+  ],
+  "title": [
+    "ForeverTold",
+    "PetTooltipInfo"
+  ],
+  "disabled": [
+    "HandyNotes"
+  ],
+  "enabledPlugins": [
+    "HandyNotes"
+  ],
+  "global": [
+    "HandyNotes"
+  ],
+  "icon_alpha": [
+    "HandyNotes"
+  ],
+  "icon_alpha_minimap": [
+    "HandyNotes"
+  ],
+  "icon_scale": [
+    "HandyNotes"
+  ],
+  "icon_scale_minimap": [
+    "HandyNotes"
+  ],
+  "autoCollect": [
+    "HandyNotes_ForeverBooks"
+  ],
+  "world": [
+    "HandyNotes_ForeverBooks"
+  ],
+  "alphaIdle": [
+    "HuntersGaze"
+  ],
+  "alphaSafe": [
+    "HuntersGaze"
+  ],
+  "barTexture": [
+    "HuntersGaze"
+  ],
+  "barsOffset": [
+    "HuntersGaze"
+  ],
+  "border": [
+    "HuntersGaze"
+  ],
+  "dangerAt": [
+    "HuntersGaze"
+  ],
+  "effect": [
+    "HuntersGaze"
+  ],
+  "group": [
+    "HuntersGaze"
+  ],
+  "identity": [
+    "HuntersGaze"
+  ],
+  "mode": [
+    "HuntersGaze"
+  ],
+  "mouseoverFull": [
+    "HuntersGaze"
+  ],
+  "pulse": [
+    "HuntersGaze"
+  ],
+  "rangeNumbers": [
+    "HuntersGaze"
+  ],
+  "showPercent": [
+    "HuntersGaze"
+  ],
+  "showRange": [
+    "HuntersGaze"
+  ],
+  "showThreat": [
+    "HuntersGaze"
+  ],
+  "stateFade": [
+    "HuntersGaze"
+  ],
+  "unlocked": [
+    "HuntersGaze"
+  ],
+  "warnAt": [
+    "HuntersGaze"
+  ],
+  "RenderScale": [
+    "KelaGraphics"
+  ],
+  "allowUnknownAuto": [
+    "KelaGraphics"
+  ],
+  "allowUnverifiedAuto": [
+    "KelaGraphics"
+  ],
+  "buildSafety": [
+    "KelaGraphics"
+  ],
+  "debug": [
+    "KelaGraphics",
+    "Spoken_Places",
+    "Spoken_Readables",
+    "BetterBags"
+  ],
+  "schemaVersion": [
+    "KelaGraphics",
+    "EnhanceQoLDungeonRaid"
+  ],
+  "char": [
+    "LiteMount",
+    "TrueshotLodge",
+    "LiteMount"
+  ],
+  "combatMacro": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "configVersion": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "debugEnabled": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "flagChanges": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "groups": [
+    "LiteMount",
+    "BetterBags",
+    "LiteMount"
+  ],
+  "mountPriorities": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "uiDebugEnabled": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "unavailableMacro": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "useCombatMacro": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "useUnavailableMacro": [
+    "LiteMount",
+    "LiteMount"
+  ],
+  "fontSize": [
+    "Max_Camera_Distance",
+    "NovaInstanceTracker",
+    "Spoken_Places",
+    "Spy",
+    "Wayfarer",
+    "EnhanceQoL"
+  ],
+  "header": [
+    "Max_Camera_Distance"
+  ],
+  "maxZoomFactor": [
+    "Max_Camera_Distance"
+  ],
+  "minimap": [
+    "Max_Camera_Distance",
+    "QFXAddonManager",
+    "Rarity",
+    "WhoTargetsMe",
+    "YourLegacy"
+  ],
+  "BounceHeight": [
+    "NovaInstanceTracker"
+  ],
+  "Duration": [
+    "NovaInstanceTracker"
+  ],
+  "Smoothing": [
+    "NovaInstanceTracker"
+  ],
+  "autoBlackMorass": [
+    "NovaInstanceTracker"
+  ],
+  "autoCavernsArthas": [
+    "NovaInstanceTracker"
+  ],
+  "autoCavernsFlight": [
+    "NovaInstanceTracker"
+  ],
+  "autoGammaBuff": [
+    "NovaInstanceTracker"
+  ],
+  "autoGammaBuffReminder": [
+    "NovaInstanceTracker"
+  ],
+  "autoGammaBuffType": [
+    "NovaInstanceTracker"
+  ],
+  "autoSfkDoor": [
+    "NovaInstanceTracker"
+  ],
+  "autoSlavePens": [
+    "NovaInstanceTracker"
+  ],
+  "autoWrathDailies": [
+    "NovaInstanceTracker"
+  ],
+  "charsMinLevel": [
+    "NovaInstanceTracker"
+  ],
+  "charsWindowHeight": [
+    "NovaInstanceTracker"
+  ],
+  "charsWindowWidth": [
+    "NovaInstanceTracker"
+  ],
+  "chatColorB": [
+    "NovaInstanceTracker"
+  ],
+  "chatColorG": [
+    "NovaInstanceTracker"
+  ],
+  "chatColorR": [
+    "NovaInstanceTracker"
+  ],
+  "copyTradeRecords": [
+    "NovaInstanceTracker"
+  ],
+  "copyTradeTime": [
+    "NovaInstanceTracker"
+  ],
+  "copyTradeTimeAgo": [
+    "NovaInstanceTracker"
+  ],
+  "copyTradeZone": [
+    "NovaInstanceTracker"
+  ],
+  "detectSameInstance": [
+    "NovaInstanceTracker"
+  ],
+  "dungeonPopTimer": [
+    "NovaInstanceTracker"
+  ],
+  "enteredMsg": [
+    "NovaInstanceTracker"
+  ],
+  "handler": [
+    "NovaInstanceTracker",
+    "Rarity_Options"
+  ],
+  "ignore40Man": [
+    "NovaInstanceTracker"
+  ],
+  "instanceResetMsg": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutput": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputAverageGroupLevel": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputAverageXP": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputCurrency": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputGold": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputHK": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputMobCount": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputRep": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputRunsNextLevel": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputRunsPerLevel": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputTime": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputWhere": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputXP": [
+    "NovaInstanceTracker"
+  ],
+  "instanceStatsOutputXpPerHour": [
+    "NovaInstanceTracker"
+  ],
+  "instanceWindowHeight": [
+    "NovaInstanceTracker"
+  ],
+  "instanceWindowWidth": [
+    "NovaInstanceTracker"
+  ],
+  "lastVersionMsg": [
+    "NovaInstanceTracker"
+  ],
+  "logSize": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderMysRelic": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderMysRelicParty": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderReal": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderSize": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderX": [
+    "NovaInstanceTracker"
+  ],
+  "lootReminderY": [
+    "NovaInstanceTracker"
+  ],
+  "mergeColorB": [
+    "NovaInstanceTracker"
+  ],
+  "mergeColorG": [
+    "NovaInstanceTracker"
+  ],
+  "mergeColorR": [
+    "NovaInstanceTracker"
+  ],
+  "minimapButton": [
+    "NovaInstanceTracker"
+  ],
+  "minimapIcon": [
+    "NovaInstanceTracker",
+    "YourLegacy"
+  ],
+  "moneyString": [
+    "NovaInstanceTracker"
+  ],
+  "noRaidInstanceMergeMsg": [
+    "NovaInstanceTracker"
+  ],
+  "printRaidInstead": [
+    "NovaInstanceTracker"
+  ],
+  "pvpEnteredMsg": [
+    "NovaInstanceTracker"
+  ],
+  "raidEnteredMsg": [
+    "NovaInstanceTracker"
+  ],
+  "resetCelestialBuffChoice": [
+    "NovaInstanceTracker"
+  ],
+  "resetCharData": [
+    "NovaInstanceTracker"
+  ],
+  "restedCharsOnly": [
+    "NovaInstanceTracker"
+  ],
+  "rgentDawnTrinketReminder": [
+    "NovaInstanceTracker"
+  ],
+  "show24HourOnly": [
+    "NovaInstanceTracker"
+  ],
+  "showAltsLog": [
+    "NovaInstanceTracker"
+  ],
+  "showLockoutTime": [
+    "NovaInstanceTracker"
+  ],
+  "showMoneyTradedChat": [
+    "NovaInstanceTracker"
+  ],
+  "showPveLog": [
+    "NovaInstanceTracker"
+  ],
+  "showPvpLog": [
+    "NovaInstanceTracker"
+  ],
+  "showStatsInRaid": [
+    "NovaInstanceTracker"
+  ],
+  "skipRealMsgIfCapped": [
+    "NovaInstanceTracker"
+  ],
+  "soundsLootReminder": [
+    "NovaInstanceTracker"
+  ],
+  "statsOnlyWhenActivity": [
+    "NovaInstanceTracker"
+  ],
+  "timeStampFormat": [
+    "NovaInstanceTracker"
+  ],
+  "timeStampZone": [
+    "NovaInstanceTracker"
+  ],
+  "timeStringType": [
+    "NovaInstanceTracker"
+  ],
+  "titleText": [
+    "NovaInstanceTracker"
+  ],
+  "tradeWindowHeight": [
+    "NovaInstanceTracker"
+  ],
+  "tradeWindowWidth": [
+    "NovaInstanceTracker"
+  ],
+  "trimDataBelowLevel": [
+    "NovaInstanceTracker"
+  ],
+  "versions": [
+    "NovaInstanceTracker"
+  ],
+  "wipeUpgradeData": [
+    "NovaInstanceTracker"
+  ],
+  "autoSwitch": [
+    "OpenMap"
+  ],
+  "boats": [
+    "OpenMap"
+  ],
+  "brightness": [
+    "OpenMap"
+  ],
+  "darkenColor": [
+    "OpenMap"
+  ],
+  "darkening": [
+    "OpenMap"
+  ],
+  "flight": [
+    "OpenMap"
+  ],
+  "hideWorldPinsInInstances": [
+    "OpenMap"
+  ],
+  "hoverHighlight": [
+    "OpenMap"
+  ],
+  "iconScale": [
+    "OpenMap"
+  ],
+  "icons": [
+    "OpenMap"
+  ],
+  "iconsFrom": [
+    "OpenMap"
+  ],
+  "playerArrow": [
+    "OpenMap"
+  ],
+  "zeppelins": [
+    "OpenMap"
+  ],
+  "anchor": [
+    "OpulentCastingBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "barHeight": [
+    "OpulentCastingBars"
+  ],
+  "barWidth": [
+    "OpulentCastingBars"
+  ],
+  "channelTicks": [
+    "OpulentCastingBars"
+  ],
+  "defaultSchool": [
+    "OpulentCastingBars"
+  ],
+  "empowerKeepDefault": [
+    "OpulentCastingBars"
+  ],
+  "empowerNumberSize": [
+    "OpulentCastingBars"
+  ],
+  "empowerRankNumbers": [
+    "OpulentCastingBars"
+  ],
+  "empowerRankText": [
+    "OpulentCastingBars"
+  ],
+  "empowerStageStyle": [
+    "OpulentCastingBars"
+  ],
+  "empowerStages": [
+    "OpulentCastingBars"
+  ],
+  "empowerTextColor": [
+    "OpulentCastingBars"
+  ],
+  "empowerTextOutline": [
+    "OpulentCastingBars"
+  ],
+  "empowerTextSize": [
+    "OpulentCastingBars"
+  ],
+  "empowerTextX": [
+    "OpulentCastingBars"
+  ],
+  "empowerTextY": [
+    "OpulentCastingBars"
+  ],
+  "fileID": [
+    "OpulentCastingBars"
+  ],
+  "hideBlizzardBar": [
+    "OpulentCastingBars"
+  ],
+  "hideWhenIdle": [
+    "OpulentCastingBars"
+  ],
+  "showCastTime": [
+    "OpulentCastingBars"
+  ],
+  "showSpellName": [
+    "OpulentCastingBars"
+  ],
+  "themeAssignments": [
+    "OpulentCastingBars"
+  ],
+  "useSchoolDetection": [
+    "OpulentCastingBars"
+  ],
+  "useThemeAssignments": [
+    "OpulentCastingBars"
+  ],
+  "uvSpeed": [
+    "OpulentCastingBars"
+  ],
+  "yaw": [
+    "OpulentCastingBars"
+  ],
+  "auraSize": [
+    "OpulentPlates"
+  ],
+  "casts": [
+    "OpulentPlates"
+  ],
+  "decorations": [
+    "OpulentPlates"
+  ],
+  "distanceFade": [
+    "OpulentPlates"
+  ],
+  "motion": [
+    "OpulentPlates",
+    "Wayfarer"
+  ],
+  "normalOpacity": [
+    "OpulentPlates"
+  ],
+  "offsetX": [
+    "OpulentPlates"
+  ],
+  "questOnly": [
+    "OpulentPlates"
+  ],
+  "anglerTooltips": [
+    "Pagle"
+  ],
+  "clockFormat": [
+    "Pagle"
+  ],
+  "lengthUnit": [
+    "Pagle"
+  ],
+  "newsSign": [
+    "Pagle"
+  ],
+  "party": [
+    "Pagle"
+  ],
+  "partyHunts": [
+    "Pagle"
+  ],
+  "reloadReminder": [
+    "Pagle"
+  ],
+  "wrap": [
+    "Pagle"
+  ],
+  "companionHint": [
+    "Pagle_Hunts"
+  ],
+  "lastHintNod": [
+    "Pagle_Hunts"
+  ],
+  "pins": [
+    "Pagle_Hunts"
+  ],
+  "showCompleted": [
+    "Pagle_Hunts"
+  ],
+  "windowMoments": [
+    "Pagle_Hunts"
+  ],
+  "prestigeSources": [
+    "Pagle_Ledger"
+  ],
+  "titleLogged": [
+    "Pagle_Ledger"
+  ],
+  "clams": [
+    "Pagle_QoL"
+  ],
+  "input": [
+    "Pagle_QoL"
+  ],
+  "tracker": [
+    "Pagle_Stats",
+    "Pagle_TackleBoard"
+  ],
+  "lean": [
+    "Pagle_TackleBoard"
+  ],
+  "trackerCollapsed": [
+    "Pagle_TackleBoard"
+  ],
+  "autoShotTimerHeight": [
+    "PetTooltipInfo"
+  ],
+  "autoShotTimerLocked": [
+    "PetTooltipInfo"
+  ],
+  "autoShotTimerWidth": [
+    "PetTooltipInfo"
+  ],
+  "fullHeight": [
+    "PetTooltipInfo"
+  ],
+  "fullWidth": [
+    "PetTooltipInfo"
+  ],
+  "hawkTrackerHideIdle": [
+    "PetTooltipInfo"
+  ],
+  "hawkTrackerLocked": [
+    "PetTooltipInfo"
+  ],
+  "hawkTrackerSize": [
+    "PetTooltipInfo"
+  ],
+  "height": [
+    "PetTooltipInfo",
+    "Wayfarer",
+    "WhoTargetsMe",
+    "EnhanceQoL",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLResourceBars"
+  ],
+  "hideLearnedTrainable": [
+    "PetTooltipInfo"
+  ],
+  "label": [
+    "PetTooltipInfo",
+    "EnhanceQoLBags",
+    "EnhanceQoLCooldownPanels"
+  ],
+  "list": [
+    "PetTooltipInfo"
+  ],
+  "manaRegenTimerHeight": [
+    "PetTooltipInfo"
+  ],
+  "manaRegenTimerLocked": [
+    "PetTooltipInfo"
+  ],
+  "manaRegenTimerWidth": [
+    "PetTooltipInfo"
+  ],
+  "max": [
+    "PetTooltipInfo"
+  ],
+  "meleeOffTimerHeight": [
+    "PetTooltipInfo"
+  ],
+  "meleeOffTimerLocked": [
+    "PetTooltipInfo"
+  ],
+  "meleeOffTimerWidth": [
+    "PetTooltipInfo"
+  ],
+  "meleeTimerHeight": [
+    "PetTooltipInfo"
+  ],
+  "meleeTimerLocked": [
+    "PetTooltipInfo"
+  ],
+  "meleeTimerWidth": [
+    "PetTooltipInfo"
+  ],
+  "min": [
+    "PetTooltipInfo"
+  ],
+  "onClick": [
+    "PetTooltipInfo"
+  ],
+  "onEnter": [
+    "PetTooltipInfo"
+  ],
+  "onLeave": [
+    "PetTooltipInfo"
+  ],
+  "parent": [
+    "PetTooltipInfo"
+  ],
+  "showAbilities": [
+    "PetTooltipInfo"
+  ],
+  "showArmorTamed": [
+    "PetTooltipInfo"
+  ],
+  "showArmorWild": [
+    "PetTooltipInfo"
+  ],
+  "showAttackSpeedTamed": [
+    "PetTooltipInfo"
+  ],
+  "showAttackSpeedWild": [
+    "PetTooltipInfo"
+  ],
+  "showAutoShotTimer": [
+    "PetTooltipInfo"
+  ],
+  "showDietTamed": [
+    "PetTooltipInfo"
+  ],
+  "showDietWild": [
+    "PetTooltipInfo"
+  ],
+  "showExperience": [
+    "PetTooltipInfo"
+  ],
+  "showFamilyTamed": [
+    "PetTooltipInfo"
+  ],
+  "showFamilyWild": [
+    "PetTooltipInfo"
+  ],
+  "showHawkTracker": [
+    "PetTooltipInfo"
+  ],
+  "showHealthTamed": [
+    "PetTooltipInfo"
+  ],
+  "showHealthWild": [
+    "PetTooltipInfo"
+  ],
+  "showManaRegenTimer": [
+    "PetTooltipInfo"
+  ],
+  "showMeleeTimer": [
+    "PetTooltipInfo"
+  ],
+  "showOffenseTamed": [
+    "PetTooltipInfo"
+  ],
+  "showOffenseWild": [
+    "PetTooltipInfo"
+  ],
+  "showTamable": [
+    "PetTooltipInfo"
+  ],
+  "showTooltipInfo": [
+    "PetTooltipInfo"
+  ],
+  "step": [
+    "PetTooltipInfo"
+  ],
+  "timerBarTexture": [
+    "PetTooltipInfo"
+  ],
+  "tooltip": [
+    "PetTooltipInfo",
+    "SilverDragon"
+  ],
+  "playerRealm": [
+    "PlayerHistory"
+  ],
+  "region": [
+    "PlayerHistory"
+  ],
+  "includeSpellIDs": [
+    "Plumber",
+    "Plumber"
+  ],
+  "collectMinimapButtons": [
+    "QFXAddonManager"
+  ],
+  "language": [
+    "QFXAddonManager"
+  ],
+  "lastCategory": [
+    "QFXAddonManager"
+  ],
+  "lastSearch": [
+    "QFXAddonManager"
+  ],
+  "minimapAngle": [
+    "QFXAddonManager",
+    "WhoTargetsMe",
+    "YourLegacy"
+  ],
+  "openOptionsOnCardClick": [
+    "QFXAddonManager"
+  ],
+  "point": [
+    "QFXAddonManager",
+    "Wayfarer",
+    "WhoTargetsMe",
+    "EnhanceQoL",
+    "EnhanceQoLUnitFrames"
+  ],
+  "showTechnical": [
+    "QFXAddonManager"
+  ],
+  "ui": [
+    "QFXAddonManager"
+  ],
+  "lines": [
+    "QFXAddonManager_Config"
+  ],
+  "style": [
+    "QFXAddonManager_Config",
+    "SilverDragon",
+    "EnhanceQoLClassBuffReminder",
+    "EnhanceQoLUnitFrames"
+  ],
+  "cancelFunc": [
+    "RaiderIO",
+    "totalRP3",
+    "RaiderIO",
+    "RaiderIO"
+  ],
+  "hasOpacity": [
+    "RaiderIO",
+    "totalRP3",
+    "RaiderIO",
+    "RaiderIO"
+  ],
+  "opacity": [
+    "RaiderIO",
+    "Wayfarer",
+    "RaiderIO",
+    "RaiderIO"
+  ],
+  "opacityFunc": [
+    "RaiderIO",
+    "totalRP3",
+    "RaiderIO",
+    "RaiderIO"
+  ],
+  "swatchFunc": [
+    "RaiderIO",
+    "totalRP3",
+    "RaiderIO",
+    "RaiderIO"
+  ],
+  "accountWideStatistics": [
+    "Rarity",
+    "Rarity_Options"
+  ],
+  "debugMode": [
+    "Rarity",
+    "Rarity_Options"
+  ],
+  "enableAnnouncements": [
+    "Rarity"
+  ],
+  "enableProfiling": [
+    "Rarity",
+    "Rarity_Options"
+  ],
+  "firstAttemptDaily": [
+    "Rarity"
+  ],
+  "importedFromBunnyHunter": [
+    "Rarity"
+  ],
+  "lastRevision": [
+    "Rarity"
+  ],
+  "mapIds": [
+    "Rarity"
+  ],
+  "onlyAnnounceFound": [
+    "Rarity",
+    "Rarity_Options"
+  ],
+  "trackedGroup": [
+    "Rarity"
+  ],
+  "trackedItem": [
+    "Rarity"
+  ],
+  "accountWideStatisticsBackup": [
+    "Rarity_Options"
+  ],
+  "blankLineAfterRarity": [
+    "Rarity_Options"
+  ],
+  "blankLineBeforeTooltipAdditions": [
+    "Rarity_Options"
+  ],
+  "community": [
+    "Rarity_Options"
+  ],
+  "debugMsg": [
+    "Rarity_Options"
+  ],
+  "disableCustomErrors": [
+    "Rarity_Options"
+  ],
+  "enableTooltipAdditions": [
+    "Rarity_Options"
+  ],
+  "feedText": [
+    "Rarity_Options"
+  ],
+  "func": [
+    "Rarity_Options",
+    "Spy"
+  ],
+  "general": [
+    "Rarity_Options",
+    "WoWTaskManager"
+  ],
+  "github": [
+    "Rarity_Options"
+  ],
+  "hideDefeated": [
+    "Rarity_Options"
+  ],
+  "hideHighChance": [
+    "Rarity_Options"
+  ],
+  "hideKnownItemsInTooltip": [
+    "Rarity_Options"
+  ],
+  "hideOutsideZone": [
+    "Rarity_Options"
+  ],
+  "hideUnavailable": [
+    "Rarity_Options"
+  ],
+  "hideUntrackedItemsInTooltip": [
+    "Rarity_Options"
+  ],
+  "holidayReminder": [
+    "Rarity_Options"
+  ],
+  "importIsError": [
+    "Rarity_Options"
+  ],
+  "lastImportString": [
+    "Rarity_Options"
+  ],
+  "onlyShowItemsWithAttempts": [
+    "Rarity_Options"
+  ],
+  "showAchievementToast": [
+    "Rarity_Options"
+  ],
+  "showCategoryIcons": [
+    "Rarity_Options"
+  ],
+  "showLuckinessColumn": [
+    "Rarity_Options"
+  ],
+  "showTSMColumn": [
+    "Rarity_Options"
+  ],
+  "showTimeColumn": [
+    "Rarity_Options"
+  ],
+  "showTrackedItemAsMinimapIcon": [
+    "Rarity_Options"
+  ],
+  "showZoneColumn": [
+    "Rarity_Options"
+  ],
+  "sortMode": [
+    "Rarity_Options"
+  ],
+  "statusTip": [
+    "Rarity_Options"
+  ],
+  "takeScreenshot": [
+    "Rarity_Options"
+  ],
+  "tooltipActivation": [
+    "Rarity_Options"
+  ],
+  "tooltipAttempts": [
+    "Rarity_Options"
+  ],
+  "tooltipHideDelay": [
+    "Rarity_Options"
+  ],
+  "tooltipScale": [
+    "Rarity_Options"
+  ],
+  "tooltipShowDelay": [
+    "Rarity_Options"
+  ],
+  "verifyDatabaseOnLogin": [
+    "Rarity_Options"
+  ],
+  "about": [
+    "SilverDragon"
+  ],
+  "alts_achievements_count": [
+    "SilverDragon"
+  ],
+  "announceChannel": [
+    "SilverDragon"
+  ],
+  "chat": [
+    "SilverDragon"
+  ],
+  "closeAfter": [
+    "SilverDragon"
+  ],
+  "closeDead": [
+    "SilverDragon"
+  ],
+  "darkmagic": [
+    "SilverDragon"
+  ],
+  "dead": [
+    "SilverDragon"
+  ],
+  "fake": [
+    "SilverDragon"
+  ],
+  "filter": [
+    "SilverDragon",
+    "SilverDragon_Overlay",
+    "WhoTargetsMe"
+  ],
+  "filterIgnored": [
+    "SilverDragon"
+  ],
+  "filterWatched": [
+    "SilverDragon"
+  ],
+  "groupBySource": [
+    "SilverDragon"
+  ],
+  "grouping": [
+    "SilverDragon"
+  ],
+  "groupsync": [
+    "SilverDragon"
+  ],
+  "grouptarget": [
+    "SilverDragon"
+  ],
+  "guildsync": [
+    "SilverDragon"
+  ],
+  "help": [
+    "SilverDragon"
+  ],
+  "hidden": [
+    "SilverDragon"
+  ],
+  "loot": [
+    "SilverDragon"
+  ],
+  "lootappearances": [
+    "SilverDragon"
+  ],
+  "mapShowAll": [
+    "SilverDragon"
+  ],
+  "model": [
+    "SilverDragon"
+  ],
+  "mounts": [
+    "SilverDragon"
+  ],
+  "mouseover": [
+    "SilverDragon"
+  ],
+  "nameplate": [
+    "SilverDragon"
+  ],
+  "nearby": [
+    "SilverDragon"
+  ],
+  "recent": [
+    "SilverDragon"
+  ],
+  "showMap": [
+    "SilverDragon"
+  ],
+  "showSource": [
+    "SilverDragon"
+  ],
+  "showStatus": [
+    "SilverDragon"
+  ],
+  "show_lastseen": [
+    "SilverDragon"
+  ],
+  "sources": [
+    "SilverDragon"
+  ],
+  "stacksize": [
+    "SilverDragon"
+  ],
+  "style_options": [
+    "SilverDragon"
+  ],
+  "target": [
+    "SilverDragon"
+  ],
+  "transmog_specific": [
+    "SilverDragon"
+  ],
+  "value": [
+    "SilverDragon",
+    "EnhanceQoLBags",
+    "EnhanceQoLCooldownPanels"
+  ],
+  "values": [
+    "SilverDragon"
+  ],
+  "vignette": [
+    "SilverDragon"
+  ],
+  "worldmap": [
+    "SilverDragon"
+  ],
+  "filterTreasure": [
+    "SilverDragon_Overlay"
+  ],
+  "icon_color": [
+    "SilverDragon_Overlay"
+  ],
+  "anchors": [
+    "SleekXPBubbles"
+  ],
+  "enabledHonor": [
+    "SleekXPBubbles"
+  ],
+  "enabledRep": [
+    "SleekXPBubbles"
+  ],
+  "enabledXP": [
+    "SleekXPBubbles"
+  ],
+  "forcePortraitManual": [
+    "SleekXPBubbles"
+  ],
+  "portrait": [
+    "SleekXPBubbles"
+  ],
+  "showText": [
+    "SleekXPBubbles"
+  ],
+  "BackgroundSound": [
+    "Spoken"
+  ],
+  "CompendiumFontSize": [
+    "Spoken"
+  ],
+  "InterfaceLanguage": [
+    "Spoken"
+  ],
+  "Layout": [
+    "Spoken"
+  ],
+  "LoweredVolumes": [
+    "Spoken"
+  ],
+  "NewCharacterProfile": [
+    "Spoken"
+  ],
+  "Welcomed": [
+    "Spoken"
+  ],
+  "compendiumFoundOnly": [
+    "Spoken_Bosses",
+    "Spoken_Readables"
+  ],
+  "unlockUnfound": [
+    "Spoken_Bosses",
+    "Spoken_Readables"
+  ],
+  "autoplay": [
+    "Spoken_Places",
+    "Spoken_Readables"
+  ],
+  "autoplayEveryVisit": [
+    "Spoken_Places"
+  ],
+  "autoplayEveryVisitGap": [
+    "Spoken_Places"
+  ],
+  "autoplayExplored": [
+    "Spoken_Places"
+  ],
+  "autoplayStopInCombat": [
+    "Spoken_Places"
+  ],
+  "autoplaySubzones": [
+    "Spoken_Places"
+  ],
+  "highlightOpacity": [
+    "Spoken_Places"
+  ],
+  "languagePreview": [
+    "Spoken_Places"
+  ],
+  "loreDiscoveredOnly": [
+    "Spoken_Places"
+  ],
+  "loreVoicedOnly": [
+    "Spoken_Places"
+  ],
+  "mapPanelCollapsed": [
+    "Spoken_Places"
+  ],
+  "panelWidth": [
+    "Spoken_Places"
+  ],
+  "showMapPanel": [
+    "Spoken_Places"
+  ],
+  "showPictures": [
+    "Spoken_Places"
+  ],
+  "showUndiscovered": [
+    "Spoken_Places"
+  ],
+  "voiceEnabled": [
+    "Spoken_Places"
+  ],
+  "Audio": [
+    "Spoken_Quests"
+  ],
+  "Autoplay": [
+    "Spoken_Quests"
+  ],
+  "DebugEnabled": [
+    "Spoken_Quests"
+  ],
+  "FallbackLanguage": [
+    "Spoken_Quests"
+  ],
+  "FollowupLines": [
+    "Spoken_Quests"
+  ],
+  "GossipFrequency": [
+    "Spoken_Quests"
+  ],
+  "GreetingFirst": [
+    "Spoken_Quests"
+  ],
+  "OGThrall": [
+    "Spoken_Quests"
+  ],
+  "ProgressText": [
+    "Spoken_Quests"
+  ],
+  "QuestLogPlayButton": [
+    "Spoken_Quests"
+  ],
+  "ReadAfterClose": [
+    "Spoken_Quests"
+  ],
+  "SeenDuplicatePlayerDialog": [
+    "Spoken_Quests"
+  ],
+  "StopAudioOnDisengage": [
+    "Spoken_Quests"
+  ],
+  "TrackerPlayButton": [
+    "Spoken_Quests"
+  ],
+  "VoiceLanguage": [
+    "Spoken_Quests"
+  ],
+  "bookAsOneLine": [
+    "Spoken_Readables"
+  ],
+  "closeWhenRead": [
+    "Spoken_Readables"
+  ],
+  "compendiumByZone": [
+    "Spoken_Readables"
+  ],
+  "compendiumVoicedOnly": [
+    "Spoken_Readables"
+  ],
+  "fallbackLanguage": [
+    "Spoken_Readables"
+  ],
+  "readOnce": [
+    "Spoken_Readables"
+  ],
+  "readWholeBook": [
+    "Spoken_Readables"
+  ],
+  "stopOnClose": [
+    "Spoken_Readables"
+  ],
+  "voiceLanguage": [
+    "Spoken_Readables"
+  ],
+  "About": [
+    "Spy"
+  ],
+  "AlertWindowLocationSize": [
+    "Spy"
+  ],
+  "AlertWindowNameSize": [
+    "Spy"
+  ],
+  "Announce": [
+    "Spy"
+  ],
+  "AnnounceChannel": [
+    "Spy"
+  ],
+  "AppendUnitKoSCheck": [
+    "Spy"
+  ],
+  "AppendUnitNameCheck": [
+    "Spy"
+  ],
+  "BarTexture": [
+    "Spy"
+  ],
+  "ClampToScreen": [
+    "Spy"
+  ],
+  "Colors": [
+    "Spy"
+  ],
+  "CurrentList": [
+    "Spy"
+  ],
+  "CustomSounds": [
+    "Spy"
+  ],
+  "DisableWhenPVPUnflagged": [
+    "Spy"
+  ],
+  "DisplayKOSReason": [
+    "Spy"
+  ],
+  "DisplayLastSeen": [
+    "Spy"
+  ],
+  "DisplayListData": [
+    "Spy"
+  ],
+  "DisplayOnMap": [
+    "Spy"
+  ],
+  "DisplayTooltipNearSpyWindow": [
+    "Spy"
+  ],
+  "DisplayWarnings": [
+    "Spy"
+  ],
+  "DisplayWarningsInErrorsFrame": [
+    "Spy"
+  ],
+  "DisplayWinLossStatistics": [
+    "Spy"
+  ],
+  "EnableSound": [
+    "Spy"
+  ],
+  "Enabled": [
+    "Spy"
+  ],
+  "EnabledInArenas": [
+    "Spy"
+  ],
+  "EnabledInBattlegrounds": [
+    "Spy"
+  ],
+  "EnabledInSanctuaries": [
+    "Spy"
+  ],
+  "EnabledInWintergrasp": [
+    "Spy"
+  ],
+  "EncounterPeriod": [
+    "Spy"
+  ],
+  "Font": [
+    "Spy"
+  ],
+  "HideSpy": [
+    "Spy"
+  ],
+  "InvertSpy": [
+    "Spy"
+  ],
+  "Locked": [
+    "Spy"
+  ],
+  "MainWindow": [
+    "Spy"
+  ],
+  "MainWindowVis": [
+    "Spy"
+  ],
+  "MapDisplayLimit": [
+    "Spy"
+  ],
+  "MinimapButton": [
+    "Spy"
+  ],
+  "MinimapDetails": [
+    "Spy"
+  ],
+  "MinimapDetection": [
+    "Spy"
+  ],
+  "OnlyAnnounceKoS": [
+    "Spy"
+  ],
+  "OnlySoundKoS": [
+    "Spy"
+  ],
+  "OutlineText": [
+    "Spy"
+  ],
+  "PlayerMenuEntries": [
+    "Spy"
+  ],
+  "PrioritiseKoS": [
+    "Spy"
+  ],
+  "PurgeData": [
+    "Spy"
+  ],
+  "PurgeKoS": [
+    "Spy"
+  ],
+  "PurgeWinLossData": [
+    "Spy"
+  ],
+  "RemoveUndetected": [
+    "Spy"
+  ],
+  "ResizeSpy": [
+    "Spy"
+  ],
+  "ResizeSpyLimit": [
+    "Spy"
+  ],
+  "Scaling": [
+    "Spy"
+  ],
+  "SelectWarnRace": [
+    "Spy"
+  ],
+  "ShareData": [
+    "Spy"
+  ],
+  "ShareKOSBetweenCharacters": [
+    "Spy"
+  ],
+  "ShortAnnounce": [
+    "Spy"
+  ],
+  "ShowEncounters": [
+    "Spy"
+  ],
+  "ShowKoSButton": [
+    "Spy"
+  ],
+  "ShowNearbyList": [
+    "Spy"
+  ],
+  "ShowOnDetection": [
+    "Spy"
+  ],
+  "ShowOnlyPvPFlagged": [
+    "Spy"
+  ],
+  "SoundChannel": [
+    "Spy"
+  ],
+  "StopAlertsOnTaxi": [
+    "Spy"
+  ],
+  "SwitchToZone": [
+    "Spy"
+  ],
+  "TargetsYouAlert": [
+    "Spy"
+  ],
+  "TargetsYouMarker": [
+    "Spy"
+  ],
+  "TooltipAnchor": [
+    "Spy"
+  ],
+  "UseData": [
+    "Spy"
+  ],
+  "WarnOnGuildWatch": [
+    "Spy"
+  ],
+  "WarnOnKOS": [
+    "Spy"
+  ],
+  "WarnOnKOSGuild": [
+    "Spy"
+  ],
+  "WarnOnRace": [
+    "Spy"
+  ],
+  "WarnOnStealth": [
+    "Spy"
+  ],
+  "WindowBorder": [
+    "Spy"
+  ],
+  "ZoneMessages": [
+    "Spy"
+  ],
+  "dialogHidden": [
+    "Spy"
+  ],
+  "intro1": [
+    "Spy"
+  ],
+  "id": [
+    "TalentsForeverBook",
+    "EnhanceQoL",
+    "EnhanceQoLClassBuffReminder",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLQuickActions",
+    "EnhanceQoLResourceBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "createProfile": [
+    "totalRP3"
+  ],
+  "duplicateProfile": [
+    "totalRP3"
+  ],
+  "getData": [
+    "totalRP3"
+  ],
+  "getDataDefault": [
+    "totalRP3"
+  ],
+  "getDefaultProfile": [
+    "totalRP3"
+  ],
+  "getPlayerCurrentProfile": [
+    "totalRP3"
+  ],
+  "getProfiles": [
+    "totalRP3"
+  ],
+  "isProfileNameAvailable": [
+    "totalRP3"
+  ],
+  "selectProfile": [
+    "totalRP3"
+  ],
+  "trained": [
+    "TrueshotLodge"
+  ],
+  "animationIntensity": [
+    "UltimateGatheringCounter"
+  ],
+  "fish": [
+    "UltimateGatheringCounter"
+  ],
+  "goal": [
+    "UltimateGatheringCounter"
+  ],
+  "herbs": [
+    "UltimateGatheringCounter"
+  ],
+  "leather": [
+    "UltimateGatheringCounter"
+  ],
+  "milestoneNotifications": [
+    "UltimateGatheringCounter"
+  ],
+  "notificationSounds": [
+    "UltimateGatheringCounter"
+  ],
+  "ore": [
+    "UltimateGatheringCounter"
+  ],
+  "overlayLayout": [
+    "UltimateGatheringCounter"
+  ],
+  "overlayView": [
+    "UltimateGatheringCounter"
+  ],
+  "overlayWidth": [
+    "UltimateGatheringCounter"
+  ],
+  "uiTheme": [
+    "UltimateGatheringCounter"
+  ],
+  "accent": [
+    "Wayfarer"
+  ],
+  "edge": [
+    "Wayfarer"
+  ],
+  "fadeInCombat": [
+    "Wayfarer"
+  ],
+  "font": [
+    "Wayfarer",
+    "EnhanceQoLCooldownPulse"
+  ],
+  "lootMemory": [
+    "Wayfarer"
+  ],
+  "pattern": [
+    "Wayfarer"
+  ],
+  "shareCompanions": [
+    "Wayfarer"
+  ],
+  "shareEdits": [
+    "Wayfarer"
+  ],
+  "skin": [
+    "Wayfarer"
+  ],
+  "sounds": [
+    "Wayfarer"
+  ],
+  "writing": [
+    "Wayfarer"
+  ],
+  "showOtherFactionRecipes": [
+    "WhatsTraining"
+  ],
+  "showReputationRecipes": [
+    "WhatsTraining"
+  ],
+  "classIcons": [
+    "WhoTargetsMe"
+  ],
+  "fade": [
+    "WhoTargetsMe"
+  ],
+  "shown": [
+    "WhoTargetsMe"
+  ],
+  "theme": [
+    "WhoTargetsMe",
+    "BetterBags"
+  ],
+  "modules": [
+    "WIM"
+  ],
+  "showToolTips": [
+    "WIM"
+  ],
+  "firstRunReportShown": [
+    "WoWTaskManager"
+  ],
+  "lastPage": [
+    "WoWTaskManager"
+  ],
+  "onboardingDone": [
+    "WoWTaskManager"
+  ],
+  "openOnSpike": [
+    "WoWTaskManager"
+  ],
+  "printOnLogin": [
+    "WoWTaskManager"
+  ],
+  "windowHeight": [
+    "WoWTaskManager"
+  ],
+  "windowWidth": [
+    "WoWTaskManager"
+  ],
+  "animations": [
+    "YourLegacy"
+  ],
+  "combatHide": [
+    "YourLegacy"
+  ],
+  "unlockLegacy": [
+    "YourLegacy"
+  ],
+  "bigMin": [
+    "DamageFilterFT"
+  ],
+  "globalAnchorToTarget": [
+    "DamageFilterFT"
+  ],
+  "mediumMax": [
+    "DamageFilterFT"
+  ],
+  "playerSideSpread": [
+    "DamageFilterFT"
+  ],
+  "shortMedium": [
+    "DamageFilterFT"
+  ],
+  "shortSmall": [
+    "DamageFilterFT"
+  ],
+  "showMedium": [
+    "DamageFilterFT"
+  ],
+  "showSmall": [
+    "DamageFilterFT"
+  ],
+  "smallColor": [
+    "DamageFilterFT"
+  ],
+  "smallMax": [
+    "DamageFilterFT"
+  ],
+  "veryBigMin": [
+    "DamageFilterFT"
+  ],
+  "__bankCategoriesScopedByBankType": [
+    "BetterBags"
+  ],
+  "__bankDefaultTabsFixed": [
+    "BetterBags"
+  ],
+  "__groupsScopedByKind": [
+    "BetterBags"
+  ],
+  "__profileSystemMigrated": [
+    "BetterBags"
+  ],
+  "animateItemMovement": [
+    "BetterBags"
+  ],
+  "autoSellLimit": [
+    "BetterBags"
+  ],
+  "categoryFilters": [
+    "BetterBags"
+  ],
+  "categorySell": [
+    "BetterBags"
+  ],
+  "categoryToGroup": [
+    "BetterBags"
+  ],
+  "clampBagsToScreen": [
+    "BetterBags"
+  ],
+  "collapsedSections": [
+    "BetterBags"
+  ],
+  "customCategoryFilters": [
+    "BetterBags"
+  ],
+  "customCategoryIndex": [
+    "BetterBags"
+  ],
+  "customSectionSort": [
+    "BetterBags"
+  ],
+  "debugBackpackDump": [
+    "BetterBags"
+  ],
+  "debugBackpackDumpClient": [
+    "BetterBags"
+  ],
+  "debugDumpExtras": [
+    "BetterBags"
+  ],
+  "enableBagFading": [
+    "BetterBags"
+  ],
+  "enableBankBag": [
+    "BetterBags"
+  ],
+  "enterToMakeCategory": [
+    "BetterBags"
+  ],
+  "ephemeralCategoryFilters": [
+    "BetterBags"
+  ],
+  "extraGlowyButtons": [
+    "BetterBags"
+  ],
+  "firstTimeMenu": [
+    "BetterBags"
+  ],
+  "groupCounter": [
+    "BetterBags"
+  ],
+  "groupsEnabled": [
+    "BetterBags"
+  ],
+  "hideEmptyGroups": [
+    "BetterBags"
+  ],
+  "inBagSearch": [
+    "BetterBags"
+  ],
+  "itemLevelColor": [
+    "BetterBags"
+  ],
+  "lockedItems": [
+    "BetterBags"
+  ],
+  "newItemTime": [
+    "BetterBags"
+  ],
+  "nextChain": [
+    "BetterBags"
+  ],
+  "nextCurrencies": [
+    "BetterBags"
+  ],
+  "nextEnabled": [
+    "BetterBags"
+  ],
+  "nextGlassTint": [
+    "BetterBags"
+  ],
+  "nextGuildBankEnabled": [
+    "BetterBags"
+  ],
+  "nextSectionSortSplit": [
+    "BetterBags"
+  ],
+  "nextSize": [
+    "BetterBags"
+  ],
+  "nextSmallChain": [
+    "BetterBags"
+  ],
+  "nextTheme": [
+    "BetterBags"
+  ],
+  "nextVendorEnabled": [
+    "BetterBags"
+  ],
+  "preserveItemGaps": [
+    "BetterBags"
+  ],
+  "quickFindEnabled": [
+    "BetterBags"
+  ],
+  "showBagButton": [
+    "BetterBags"
+  ],
+  "showBankTabs": [
+    "BetterBags"
+  ],
+  "showGuildBankTabs": [
+    "BetterBags"
+  ],
+  "showKeybindWarning": [
+    "BetterBags"
+  ],
+  "upgradeIconProvider": [
+    "BetterBags"
+  ],
+  "upgradeIconProviderUserSet": [
+    "BetterBags"
+  ],
+  "ALWAYS_HIDDEN": [
+    "EnhanceQoL"
+  ],
+  "ALWAYS_IN_COMBAT": [
+    "EnhanceQoL"
+  ],
+  "ALWAYS_OUT_OF_COMBAT": [
+    "EnhanceQoL"
+  ],
+  "CLASS": [
+    "EnhanceQoL"
+  ],
+  "FLYING_ACTIVE": [
+    "EnhanceQoL"
+  ],
+  "FLYING_INACTIVE": [
+    "EnhanceQoL"
+  ],
+  "MOUSEOVER": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_CASTING": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_HAS_ATTACKABLE_TARGET": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_HAS_FOCUS": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_HAS_TARGET": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_IN_GROUP": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_MOUNTED": [
+    "EnhanceQoL"
+  ],
+  "PLAYER_NOT_MOUNTED": [
+    "EnhanceQoL"
+  ],
+  "SHOW_IN_INSTANCE": [
+    "EnhanceQoL"
+  ],
+  "SKYRIDING_ACTIVE": [
+    "EnhanceQoL"
+  ],
+  "SKYRIDING_INACTIVE": [
+    "EnhanceQoL"
+  ],
+  "allowInput": [
+    "EnhanceQoL"
+  ],
+  "atlas": [
+    "EnhanceQoL"
+  ],
+  "autoWidth": [
+    "EnhanceQoL"
+  ],
+  "backgroundColor": [
+    "EnhanceQoL",
+    "EnhanceQoLDungeonRaid"
+  ],
+  "backgroundCustomTexture": [
+    "EnhanceQoL"
+  ],
+  "backgroundOffsetX": [
+    "EnhanceQoL"
+  ],
+  "backgroundOffsetY": [
+    "EnhanceQoL"
+  ],
+  "backgroundSizeOffsetX": [
+    "EnhanceQoL"
+  ],
+  "backgroundSizeOffsetY": [
+    "EnhanceQoL"
+  ],
+  "backgroundTexture": [
+    "EnhanceQoL",
+    "EnhanceQoLDungeonRaid"
+  ],
+  "backgroundUseCustomTexture": [
+    "EnhanceQoL"
+  ],
+  "borderColor": [
+    "EnhanceQoL"
+  ],
+  "borderOffset": [
+    "EnhanceQoL"
+  ],
+  "borderSize": [
+    "EnhanceQoL"
+  ],
+  "borderTexture": [
+    "EnhanceQoL"
+  ],
+  "colorBreakpointCount": [
+    "EnhanceQoL"
+  ],
+  "colorBreakpoints": [
+    "EnhanceQoL"
+  ],
+  "contentAnchor": [
+    "EnhanceQoL"
+  ],
+  "default": [
+    "EnhanceQoL",
+    "EnhanceQoLMover"
+  ],
+  "defaultCollapsed": [
+    "EnhanceQoL",
+    "EnhanceQoLClassBuffReminder",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLQuickActions",
+    "EnhanceQoLResourceBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "field": [
+    "EnhanceQoL",
+    "EnhanceQoLResourceBars"
+  ],
+  "fontFace": [
+    "EnhanceQoL"
+  ],
+  "fontStyle": [
+    "EnhanceQoL"
+  ],
+  "formatter": [
+    "EnhanceQoL",
+    "EnhanceQoLDungeonRaid"
+  ],
+  "generator": [
+    "EnhanceQoL",
+    "EnhanceQoLResourceBars"
+  ],
+  "hideBorder": [
+    "EnhanceQoL"
+  ],
+  "kind": [
+    "EnhanceQoL",
+    "EnhanceQoLClassBuffReminder",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLQuickActions",
+    "EnhanceQoLResourceBars",
+    "EnhanceQoLUnitFrames"
+  ],
+  "lowAmmo": [
+    "EnhanceQoL"
+  ],
+  "maxValue": [
+    "EnhanceQoL"
+  ],
+  "minValue": [
+    "EnhanceQoL"
+  ],
+  "prefix": [
+    "EnhanceQoL"
+  ],
+  "relativePoint": [
+    "EnhanceQoL",
+    "EnhanceQoLUnitFrames"
+  ],
+  "showTooltips": [
+    "EnhanceQoL"
+  ],
+  "strata": [
+    "EnhanceQoL",
+    "EnhanceQoLCooldownPanels"
+  ],
+  "streamFontScale": [
+    "EnhanceQoL"
+  ],
+  "streamGap": [
+    "EnhanceQoL"
+  ],
+  "streams": [
+    "EnhanceQoL"
+  ],
+  "texCoord": [
+    "EnhanceQoL"
+  ],
+  "textAlphaInCombat": [
+    "EnhanceQoL"
+  ],
+  "textAlphaOutOfCombat": [
+    "EnhanceQoL"
+  ],
+  "textColor": [
+    "EnhanceQoL"
+  ],
+  "texture": [
+    "EnhanceQoL"
+  ],
+  "tooltipGrowth": [
+    "EnhanceQoL"
+  ],
+  "unit": [
+    "EnhanceQoL",
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLDungeonRaid"
+  ],
+  "useClassTextColor": [
+    "EnhanceQoL"
+  ],
+  "useCustomTextColor": [
+    "EnhanceQoL"
+  ],
+  "valueStep": [
+    "EnhanceQoL"
+  ],
+  "headerTitleMode": [
+    "EnhanceQoLBags"
+  ],
+  "direction": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "entry": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "iconSize": [
+    "EnhanceQoLCooldownPanels",
+    "EnhanceQoLCooldownPulse"
+  ],
+  "isShown": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "showCooldownText": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "spacing": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "wrapCount": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "wrapDirection": [
+    "EnhanceQoLCooldownPanels"
+  ],
+  "showName": [
+    "EnhanceQoLCooldownPulse"
+  ],
+  "backgroundAlpha": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "backgroundEnabled": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "clearText": [
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLResourceBars"
+  ],
+  "countdown1": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "expiredText": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "layoutMode": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "owner": [
+    "EnhanceQoLDungeonRaid",
+    "EnhanceQoLResourceBars"
+  ],
+  "paddingBottom": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "paddingLeft": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "paddingRight": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "paddingTop": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "showTargets": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "updateNow": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "useProfileConfig": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "zeroDurationText": [
+    "EnhanceQoLDungeonRaid"
+  ],
+  "dbKey": [
+    "EnhanceQoLMover"
+  ],
+  "var": [
+    "EnhanceQoLMover"
+  ],
+  "profileKey": [
+    "EnhanceQoLResourceBars"
+  ],
+  "anchorTarget": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "auraType": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "healthHeight": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "hideInClientScene": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "hideInPetBattle": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "percentColorCurvePointCount": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "percentColorCurvePoints": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "percentColorCurveType": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "player": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "powerHeight": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "secondaryPowerHeight": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "showTooltip": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "showWhenHarmful": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "showWhenHelpful": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "showWithoutDispelType": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "smoothFill": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "statusHeight": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "tooltipUseEditMode": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "usePercentColorCurve": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "visibility": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "visibilityFadeStrength": [
+    "EnhanceQoLUnitFrames"
+  ],
+  "DontAddToMacroTooltip": [
+    "Select"
+  ],
+  "DontSelectWithAlt": [
+    "Select"
+  ],
+  "EquipslotOnlySoulbound": [
+    "Select"
+  ],
+  "OnlySummonableMounts": [
+    "Select"
+  ],
+  "ShowSubtext": [
+    "Select"
+  ],
+  "UseFlatStyle": [
+    "Select"
+  ],
+  "UseOnRightClick": [
+    "Select"
+  ],
+  "UseWhenSelecting": [
+    "Select"
+  ]
+}
