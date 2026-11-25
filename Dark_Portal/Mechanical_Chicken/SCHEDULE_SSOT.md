@@ -13,7 +13,7 @@
 | 1 | Analyze and Visualize | `sched_0e643cfb` | Daily | 5:00 PM | yolo | 11/8 12:30 AM ✅ | 11/10 5:00 PM | — |
 | 2 | Daily change digest | `sched_74ec9a75` | Daily | 5:00 PM | yolo | 11/8 12:16 AM ✅ | 11/10 5:00 PM | — |
 | 3 | Find critical bugs | `sched_a045fc4b` | Daily | 9:00 AM | yolo | 11/8 9:04 AM ✅ | 11/10 9:00 AM | — |
-| 4 | Forever Telemetry Audit (hourly) | `sched_2ca93382` | Hourly at :11 | America/New_York | act | 11/8 3:13 PM ✅ | 11/10 12:11 AM | ✅ true |
+| 4 | Forever Telemetry Audit (hourly) | `sched_2ca93382` | Hourly at :11 | America/New_York | act | 11/25 9:11 AM ✅ | 11/25 10:11 AM | ✅ true |
 | 5 | Security scan | `sched_154dfa5b` | Mon | 8:00 AM | yolo | 11/6 8:57 PM ✅ | 11/16 8:00 AM | — |
 | 6 | Tandu Tandieu Tandumonium | `sched_807fc5b0` | Daily | 1:00 AM | yolo | — (never run) | 11/10 1:00 AM | — |
 | 7 | Update docs | `sched_b4fc5e0c` | Fri | 10:00 AM | yolo | 11/6 8:59 PM ✅ | 11/13 10:00 AM | — |
@@ -125,8 +125,8 @@
   4. On failure: capture stderr, append to `Timeline\data\failures.log`, retry ONCE, then report plainly and stop.
 - **Hard rules:** Never write inside `Logs\`, `WTF\`, or `Interface\`. Never edit the engine script. No full-file reads except ledger tail. Do not run Dark_Portal scry tools.
 - **Engine outputs:** Timestamped report to `Timeline\audit_logs\`; appends events to `data\events.jsonl`; updates `data\dashboard.json`; regenerates `_gewey_gui\Timeline.html` (previous render archived to `_gewey_gui\.history\`).
-- **Last run:** 11/8/2026 3:13:51 PM — success (38 events, client IDLE)
-- **Last Timeline.html regen:** 11/8/2026 3:39 PM
+- **Last run:** 11/25/2026 9:11:45 AM — success (1 event, client IDLE; ledger row `2026-11-25 09:11:45 | 11.0s | 1 ev | hf 0/0 | tree +1509/-~7`)
+- **Last Timeline.html regen:** 11/25/2026 9:11:56 AM, 281,722 B
 - **Cron note:** IDE may label this as "Daily · 9:11 AM" but actual cron is `11 * * * *` (hourly at :11 past every hour). To make it truly daily, change cron to e.g. `11 9 * * *`.
 
 ---
