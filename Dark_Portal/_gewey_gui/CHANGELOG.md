@@ -1,5 +1,167 @@
 # Must Contain a List of every file you edit
+## 2026-11-25 (retail-sediment pass) — Wing 41, `Strata.html`
+
+The retail folder had one door nobody had opened: `config-cache.wtf`. Nine of the
+fifty-four shells keep one, and it is not a log — it is a CVar tape, the exact
+settings a shell held at its last save. It carries era clocks: `latestSplashScreen`
+climbs **94 → 95 → 96** across the tapes, and `Hyjal/Tandumonium` alone still holds
+`lastRenownForCovenant1..4 = 65/80/80/80`, a Shadowlands covenant record that
+outlived Shadowlands. `EJLootClass` is Blizzard-written, so it is a class census
+without an addon in the loop: Hunter ×3, Paladin ×2, Warlock, Monk, Druid, Evoker.
+
+Second door: all **54** handles asked live off the Raider.IO armory, once each.
+**12** answer, **42** are gone; `Thrall/Obsequy` was last crawled **2021-05-02**.
+`<Gehenna>` on Borean Tundra still answers (crawled 2026-03-14) with **two**
+members and `0/9` current tier — the guild outlived the tenure, and the page says
+so without claiming it.
+
+Two macro caches came out of the same pass and into Macrocosm:
+`Reticent-Shadowsong_macros-cache.html` (**22**, paladin) and
+`Tangents-Hyjal_macros-cache.html` (**30**, hunter). Both are wired as sources
+and as plain-anchor direct links, so a crawler can reach them.
+
+The agent index also got its promised cleanup: sections 7–8 are now a router to
+the grimoire that lives in `Tandumonium.agent-expanded.md`, the seven `armory-*`
+references that had been used-but-undefined resolve, and section 6.20 records
+this wing. Local scanners (`_strata_scan.py`, `_strata_doors.py`,
+`_strata_build.py`, `_macro_page_build.py`) and both payloads are gitignored.
+
+Files this pass: `_gewey_gui/Strata.html`,
+`_gewey_gui/Reticent-Shadowsong_macros-cache.html`,
+`_gewey_gui/Tangents-Hyjal_macros-cache.html`, `_gewey_gui/index.html`
+(`iStrata`), `_gewey_gui/_css/holy_word.css`, `_gewey_gui/_fuhevva_evva.html`,
+`_gewey_gui/macrocosm.html`, `_gewey_gui/AGENTS.md`, `_gewey_gui/CHANGELOG.md`,
+`Timeline/wing_links.py`, `Dark_Portal/.gitignore`, 45 pane nav strips via
+`wing_links.py`, plus the three true agent paths
+(`Tandumonium.agent-index.md`, `Tandumonium.agent.md` ×2 mirrors,
+`Tandumonium.agent-expanded.md`).
+
+
+## 2026-11-25 (docs pass) — the index catches up to Wings 36–41
+
+The code moved five times after the last index pass and the shell grew with it.
+`README_BODY.md` still said **50 live panes**; `index.html` now holds **55** menu
+buttons, **54** of them live, with `iSettings` the only disabled one. The Vessel pass
+added `iVessel` and the long-missing `iMilestones`, so the paragraph calling Milestones
+"reached from the home directory rather than the menu" was no longer true.
+
+**Five live wings had no index row.** `Bestiary.html` (Wing 36), `Passersby.html` (38),
+`Vessel.html` (39), `Watchtower.html` (40) and `Strata.html` (41) each got one: source files, build command,
+the figures the page prints, and the `--check` / `--json` limits. `Kindred.html` (37)
+already had a row; it kept it. The `Timeline\` row now names `bestiary_extract.py`,
+`passersby_extract.py` and `watchtower_extract.py`, which were live but unlisted.
+
+**The drift counts were stale by two.** `wing_links.py --check` reports **0** pages of
+drift across **45** of the **63** pages that carry a `nav.panes` strip (18 have none and
+are skipped), and `WINGS` now ends at `Watchtower.html` — not `Kindred.html`. The runbook
+(`Timeline\README.md`, local-only) gained the missing `bestiary_extract.py` rows, the
+missing hardcoded-root warning, and the true patch lineage (70862, 70938, live 70959)
+instead of stopping at 70862.
+
+The HUD's own map (`_gewey_gui/AGENTS.md`) had no `Kindred.html` row at all and no
+`Vessel.html` file row; both are added, `iKindred` joins the button table, the home pane's
+link count is corrected from 40 to 50 pane links, and the 2026-11-16 label-gap note now
+records that the shell has grown to 53 live / 54 names.
+
+Files this pass: `_gewey_gui/CHANGELOG.md`, `README_BODY.md` (folded by `python
+READUS.py` into `README.md` and `AGENTS.md`), `_gewey_gui/AGENTS.md`,
+`Mechanical_Chicken/SCHEDULE_SSOT.md` (the :05 Hourly Omni Synchronizer was missing from
+the hourly table). Local-only, gitignored with the rest of the folder: `Timeline/README.md`.
+
+
+## 2026-11-25 (vessel pass) - the account file that outlives the character
+
+The other wing doors read the **client**: logs, SavedVariables, screenshots,
+addon folders. This one reads `_retail_\Logs\AccountData.log` and its rotated
+twin `.old` - the client's own persistence dump, which no wing had opened.
+
+Every slot in it carries a `Server Save Time` stamp, so the file draws its own
+dated column: **61** stamps across **15** dates, with the oldest at
+**2018-09-06** - older than the first report in the 470-report Warcraft Logs
+vault (Oct 2018) and older than every file mtime in the retail tree. Slot 3
+carries it and is never rewritten. The longest silence is **2,334 days**
+(2018-09-06 → 2025-01-26). The 2026 reinstall did not erase it; the account
+data carried the stamp forward.
+
+**Seventeen slots** answer, and their shapes are read rather than guessed:
+type **2** is the bind map, type **4** the macro records, type **13** the Edit
+Mode layouts whose first named block opens `7 Gewey!! 52` - the same layout
+name the Forever client logs in `Chassis.html`. Type 0 carries **173** distinct
+account settings, and the tape's only name is a macro body: `/btwl a Tandu`,
+**41** times. The account never stores who the character is; it stores a
+command that points at one.
+
+**The hands section** compares the four bind caches: **51** retail keys,
+**54** Forever, **54** vs **51** differing in exactly **four** places. Retail
+gained `CTRL-SHIFT-C → WOWHEAD_QUICK_LINK_RAIDERIO_NAME` between 2026-08-17 and
+2026-08-26; Forever gained `CTRL-SHIFT-= → MULTIACTIONBAR4BUTTON12` between
+2026-11-17 and 2026-11-22. Pawn is installed on neither client - all **40**
+retail and **190** Forever addon folders are clean - yet `[` and `]` are still
+bound to its compare functions on both. The addon left; the muscle did not.
+
+**Two wiring gaps closed.** `iMilestones` existed as a page and a chip but had
+no shell button since the wing shipped; it has one now. And four panes that
+were reachable only through each other - `races.html`, `handles.html`,
+`web_legacy.html`, `wide_legacy.html` - now have cards in `_fuhevva_evva.html`.
+
+Files this pass: `_gewey_gui/Vessel.html` (new), `_gewey_gui/index.html`
+(`iVessel`, `iMilestones`), `_gewey_gui/_css/holy_word.css` (both labels),
+`_gewey_gui/_fuhevva_evva.html` (5 cards), `_gewey_gui/AGENTS.md`,
+`_gewey_gui/CHANGELOG.md`, `Timeline/wing_links.py` (Wing 39), `.gitignore`,
+and **43** panes for the Vessel chip. Local, gitignored:
+`Research/_local/_vessel_build.py`, `Research/_raw/vessel_20261125.json`.
+
+**Root-cause fix on the way.** `Passersby.html` (regenerated without it) and
+`Watchtower.html` (new) shipped with no WOWHEAD block, so the "every pane loads
+the tooltip widget" rule was broken by two generators, not by two pages. Both
+`passersby_extract.py` and `watchtower_extract.py` now emit the `whTooltips` +
+`power.js` block in their `<head>`, and the two current renders were backfilled
+by hand. A full sweep of `_gewey_gui\*.html` reports **0** pages missing it.
+
+
+# Must Contain a List of every file you edit
+## 2026-11-25 (kindred pass) - the whole name family, swept live
+
+Every wing before this one read **one** character. This pass knocked on
+**thirteen** doors at once - one per `Tan*` handle the disk knows - and let the
+armory answer. Nine opened. Four returned `500` with the same generic landing
+page, which is how a rename looks from the outside.
+
+**Kindred.html** carries the sweep: `Tandumonium` 90 Dracthyr BM (263 ilvl),
+`Tankadu` 60 Zandalari Prot (**327**, the only one at cap), `Tantrums` 56
+Zandalari Enh (296), `Tandu`-Hyjal **18 Undead BM** (the undeath stint, still
+standing, still a hunter), `Tantalous` 24 Void Elf Disc, `Tangents` 23 Worgen
+SV, `Tandora` 10 Haranir Demo, `Tandulari` 10 Zandalari Druid,
+`Tandu`-Shadowsong 10 Zandalari MM in `<Randomality>`. Gone: `Tandieu`,
+`Tandaria`, `Tankard`, `Tandu`-Thrall.
+
+**The number that matters is a zero.** Nine live characters, six races, six
+classes, **no blood elf** - the armory has never printed a Sin'dorei beside
+this name. So the baseline stays attested and the page says so instead of
+dressing it up.
+
+**Two corrections fell out of it.** The `2026-11-16` claim that `Tandu`
+returns `400` on all three realms is false as of today: it answers `200` on
+Hyjal and Shadowsong and `500` on Thrall only. And `Tantrums` answers
+Raider.IO with a `2022-08-04` crawl at ilvl `107` while the armory says `296`
+- four years of drift on an aggregator that nobody feeds.
+
+**Two gaps closed on the way.** `Company.html` was the one wing with no
+WOWHEAD block; it has one now (plus `Passersby.html` and `wide_legacy.html`,
+which arrived without it). And the four `*-macros-cache.html` pages were
+iframe-only, so nothing could crawl or deep-link them - `macrocosm.html` now
+carries a plain-anchor list beside the iframe.
+
+**Files.** New: `_gewey_gui/Kindred.html`. Edited: `_gewey_gui/index.html`
+(button `iKindred`), `_css/holy_word.css` (label rule),
+`_fuhevva_evva.html` (card), `macrocosm.html` (chip + cache links),
+`Company.html`, `Passersby.html`, `wide_legacy.html` (WOWHEAD blocks), 40 pages
+(one Kindred nav chip each), `Timeline/wing_links.py` (Wing 37 registered).
+Local only: `Research/_local/_kindred_build.py`, `_wire_kindred_nav.py`,
+`_tooltip_gap_fix.py`, `Research/_raw/kindred_armory_20261125.json`.
+
 ## 2026-11-20 (docs pass) - the index catches up to the last three wings
+
 
 The shell says what it holds now: **46 live panes, 1 disabled** (`iSettings`) -
 47 buttons in `index.html`, one of them disabled. The old row said 44.

@@ -232,8 +232,11 @@
 | H5 | Tandu Tandieu Tandumonium (hourly) | `sched_011ec24a` | Hourly at :50 | America/New_York | yolo | — | ✅ true |
 | H6 | Update docs (hourly) | `sched_86cf3831` | Hourly at :00 | America/New_York | yolo | — | ✅ true |
 | H7 | WoW Forever Addon brainstorm (hourly) | `sched_8494ceec` | Hourly at :10 | America/New_York | yolo | — | ✅ true |
+| H8 | Hourly Omni Synchronizer | `cspec_8635fe9b` | Hourly at :05 | America/New_York | yolo | — | ✅ true |
 
-> **Overlap note:** H1 and H7 both run at :10 past every hour, and the existing Forever Telemetry Audit runs at :11. With 8 hourly schedules across 10-minute slots, some overlap is expected and accepted per your instructions.
+> **Overlap note:** H1 and H7 both run at :10 past every hour, and the existing Forever Telemetry Audit runs at :11. With 8 hourly schedules across 10-minute slots, some overlap is expected and accepted per your instructions. H8 is the task master: it fires at :05, owns model rotation, and propagates this file's hourly definitions to the scheduled tasks.
+>
+> **Schedule IDs:** the IDs in the tables are the values last recorded here; `cron_specs.spec_id` in `C:\Users\Gewey\.cline\data\db\cron.db` is authoritative and is what the Omni actually edits.
 
 
 ---
