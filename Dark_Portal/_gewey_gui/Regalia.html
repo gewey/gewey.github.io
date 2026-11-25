@@ -62,6 +62,8 @@ a.w:hover{color:var(--gold);border-color:var(--gold)}
 .chips{display:flex;flex-wrap:wrap;gap:.35rem}
 .chips a{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
  border-radius:2px;background:rgba(255,255,255,.02)}
+.chips span{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02);color:var(--grey)}
 .scroll{max-height:26rem;overflow:auto;border:1px solid var(--line);border-radius:3px;
  background:rgba(8,6,15,.6)}
 .scroll table{font-size:.82rem}
@@ -166,8 +168,17 @@ the dracthyr took the main slot.</p>
 <section><h2>The doors, with their literal answers</h2>
 <p class="note">Every status below was measured on 2026-11-25 by
 <code>Research/_local/_web_hunt4_20261125.py</code> and
-<code>_web_hunt5_20261125.py</code>. Warcraft Logs answers 200 with a human
-verification page, so the 470 captured report codes remain unread.</p>
+<code>_web_hunt5_20261125.py</code>, and the Wipefest API by
+<code>_wipefest_probe.py</code>. Warcraft Logs answers 200 with a human
+verification page, so the 470 captured report codes stay unread at the front
+door &mdash; but the second door is open: <code>api.wipefest.gg/report/&lt;CODE&gt;</code>
+returned <strong>200</strong> with <strong>23,183 B</strong> of JSON for
+<code>GNbCDMZpj7cn2aPv</code> (<code>owner: Tandu</code>, title
+<code>10-3-18 LFR &amp; Normal Uldir</code>), which is how
+<a class="w" href="log_ledger.html">Log Ledger</a> was built. The guild door is
+shut for good, though: <code>api.wipefest.gg/guild/us/shadowsong/gehenna</code>
+answers <strong>400</strong> &mdash; <em>No guild exists for this
+name/server/region</em>. No pre-tenure ghost can be cited from there either.</p>
 <table><thead><tr><th>door</th><th>status 2026-11-25</th><th>verdict</th></tr></thead><tbody><tr><td>armory tandumonium-hyjal</td><td class="num">200</td><td>character profile served</td></tr><tr><td>armory tandu-shadowsong</td><td class="num">200</td><td>character profile served</td></tr><tr><td>armory tandu-thrall</td><td class="num">500</td><td>no profile</td></tr><tr><td>armory tandieu-hyjal</td><td class="num">500</td><td>no profile</td></tr><tr><td>armory tandieu-shadowsong</td><td class="num">500</td><td>no profile</td></tr><tr><td>warcraftlogs wcl_uploader</td><td class="num">200</td><td>human verification wall</td></tr><tr><td>warcraftlogs wcl_guild_7287</td><td class="num">200</td><td>human verification wall</td></tr><tr><td>wowprogress_char</td><td class="num">403</td><td>bot wall</td></tr><tr><td>rio_char_page</td><td class="num">403</td><td>bot wall</td></tr><tr><td>wayback_cdx_gehenna</td><td class="num">429</td><td>archive throttled</td></tr><tr><td>ddg_html</td><td class="num">200</td><td>bot challenge</td></tr><tr><td>reddit_search</td><td class="num">403</td><td>blocked</td></tr><tr><td>github_users</td><td class="num">200</td><td>0 accounts</td></tr><tr><td>stackoverflow</td><td class="num">200</td><td>0 users</td></tr></tbody></table></section>
 <section><h2>Method &amp; limits</h2>
 <div class="warn">The armory only carries the current expansion's raid ledger, so
