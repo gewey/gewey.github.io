@@ -176,6 +176,7 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iOrigins"]::after      { content: " Origins"; }
 .gw-shell button[name="iTenure"]::after      { content: " Tenure"; }
 .gw-shell button[name="iConcordance"]::after  { content: " Concordance"; }
+.gw-shell button[name="iKindred"]::after      { content: " Kindred"; }
 .gw-shell button[name="iMuster"]::after      { content: " Muster"; }
 .gw-shell button[name="iDeeds"]::after           { content: " Deeds"; }
 .gw-shell button[name="iResidue"]::after         { content: " Residue"; }
@@ -192,6 +193,7 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iVignettes"]::after       { content: " Vignettes"; }
 .gw-shell button[name="iFlipbook"]::after        { content: " Flipbook"; }
 .gw-shell button[name="iCompany"]::after         { content: " Company"; }
+.gw-shell button[name="iWatchtower"]::after      { content: " Watchtower"; }
 
 /* ---- Placeholders — labelled, not built yet ------------------------------- */
 .gw-shell button[name="iCharacter"]::after { content: " Character"; }
@@ -209,3 +211,9 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
   text-align: left;
   line-height: 1.25;
 }
+
+.gw-shell button[name="iMilestones"]::after  { content: " Milestones"; }
+.gw-shell button[name="iVessel"]::after      { content: " Vessel"; }
+.gw-shell button[name="iStrata"]::after      { content: " Strata"; }
+.gw-shell button[name="iWitnesses"]::after   { content: " Witnesses"; }
+.gw-shell button[name="iDoors"]::after       { content: " Doors"; }

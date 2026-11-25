@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <script>
+  const whTooltips = {
+   colorLinks: true,
+   iconizeLinks: true,
+   renameLinks: true,
+  };
+ </script>
+ <script src="https://wow.zamimg.com/widgets/power.js"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>The Strata &mdash; what fifty-four retail shells remember | Gewey G.U.I.</title>
+ <!--
+   Strata.html - built 2026-11-25 by Tandumonium (wing 41, the retail-sediment
+   pass).
+
+   Door: _retail_\WTF\Account\QUAZZARR\<Realm>\<Character>\config-cache.wtf.
+   Nine shells kept one; no wing had read one. It is a CVar tape - the exact
+   settings each shell held at its last save - and it carries era clocks:
+   splash generation, Shadowlands covenant renown, PvP/M+ season, EJLootClass.
+
+   Second door: the fifty-four handles asked live off the Raider.IO armory.
+   Twelve answer, forty-two do not.
+
+   Every figure is baked in at build time. Nothing on this page fetches a file.
+ -->
+ <style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.scroll table{min-width:760px}
+td.mono{white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+ </style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+ <header class="hero">
+  <p class="kicker">Retail &middot; account QUAZZARR &middot; sediment of the shells</p>
+  <h1>The Strata <span class="thin">&mdash; what the shells remember</span></h1>
+  <p class="lede">A character folder is what is left after the soul leaves:
+   an addon load list, a macro cache, and &mdash; if the shell was ever played
+   long enough to save &mdash; a CVar tape. Fifty-four of them sit in the retail
+   account. Nine kept a tape. Read the tapes in order and the install dates
+   itself: splash 94, 95, 96; one shell still holding a Shadowlands covenant
+   record; a camera distance set in 2018 and never touched again. Then ask the
+   armory which of the fifty-four still answers. Twelve do.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+   <a href="index.html">Shell</a>
+   <a href="_fuhevva_evva.html">Home</a>
+   <a href="Tenure.html">Tenure</a>
+   <a href="Kindred.html">Kindred</a>
+   <a href="Vessel.html">Vessel</a>
+   <a href="Watchtower.html">Watchtower</a>
+   <a href="macrocosm.html">Macrocosm</a>
+   <a href="character.html">Character</a>
+   <a href="gear.html">Gear</a>
+   <a href="legacy.html">Legacy</a>
+   <a href="dynasty.html">Dynasty</a>
+   <a href="roster.html">Roster</a>
+   <a href="tandu_legacy.html">Tandu Legacy</a>
+   <a href="reliquary.html">Reliquary</a>
+   <a href="eras.html">Eras</a>
+   <a href="links.html">Links</a>
+   <a href="raidlogs.html">Raid Logs</a>
+   <a href="Frontier.html">Frontier</a>
+   <a href="Timeline.html">Timeline</a>
+   <a href="Delve.html">Delve</a>
+   <a href="Chronicle.html">Chronicle</a>
+   <a href="relics.html">Relics</a>
+   <a href="Forge.html">Forge</a>
+   <a href="Stable.html">Stable</a>
+   <a href="Sortie.html">Sortie</a>
+   <a href="Residue.html">Residue</a>
+   <a href="Heartbeat.html">Heartbeat</a>
+   <a href="Almanac.html">Almanac</a>
+   <a href="Levelbook.html">Levelbook</a>
+   <a href="Faces.html">Faces</a>
+   <a href="Purse.html">Purse</a>
+   <a href="Fronts.html">Fronts</a>
+   <a href="Clockwork.html">Clockwork</a>
+   <a href="Chassis.html">Chassis</a>
+   <a href="Itinerary.html">Itinerary</a>
+   <a href="Milestones.html">Milestones</a>
+   <a href="Vignettes.html">Vignettes</a>
+   <a href="Muster.html">Muster</a>
+   <a href="Concordance.html">Concordance</a>
+   <a href="Company.html">Company</a>
+   <a href="Bestiary.html">Bestiary</a>
+   <a href="Passersby.html">Passersby</a>
+   <a href="Strata.html">Strata</a>
+   <a href="Witnesses.html">Witnesses</a>
+   <a href="Doors.html">Doors</a></nav>
+ </header>
+
+<section id="figures">
+ <h2>What the sediment weighs</h2>
+ <div class="grid g3">
+  <div class="card"><div class="stat">54<small>shells on disk</small></div></div>
+  <div class="card"><div class="stat">12<small>still answer the armory</small></div></div>
+  <div class="card"><div class="stat">42<small>gone from the armory</small></div></div>
+  <div class="card"><div class="stat">9<small>distinct CVar tapes</small></div></div>
+  <div class="card"><div class="stat">203<small>macro blocks kept</small></div></div>
+  <div class="card"><div class="stat">6<small>addon ghosts</small></div></div>
+ </div>
+ <div class="note">A shell is a character folder: <code>AddOns.txt</code> plus,
+  if the character was ever played to a save, a CVar tape, a macro cache and a
+  SavedVariables tree. Fifty-four of them sit in the retail account; nine carry
+  a CVar tape; six carry macros; twelve still have a living armory page.</div>
+</section>
+
+<section id="shells">
+ <h2>The fifty-four shells</h2>
+ <p class="lede">Every folder the retail account keeps, in realm order. File
+  count, SavedVariables, CVar lines and macro blocks are read off disk; the door
+  column is the live Raider.IO answer for that exact name and realm, asked
+  once each this pass.</p>
+ <div class="scroll">
+  <table>
+   <caption>Retail account QUAZZARR &middot; 54 character folders</caption>
+   <thead><tr><th>Shell</th><th>Files</th><th>SVs</th><th>CVars</th>
+    <th>Macros</th><th>Door today</th></tr></thead>
+   <tbody>
+  <tr><td class="mono">Hyjal/Ackrenserath</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Arbora</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Beefysatan</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Buffing</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Christar</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Rogue Outlaw<br><span class="mono">585 ilvl &middot; 21,200 AP &middot; crawled 2026-02-03</span></td></tr>
+  <tr><td class="mono">Hyjal/Ermergerd</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Fauxylauxy</td><td class="mono">21</td><td class="mono">10</td><td class="mono">49</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Flaire</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Jacobebbeson</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Karkol</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Mage Arcane<br><span class="mono">86 ilvl &middot; 21,480 AP &middot; crawled 2026-11-16</span></td></tr>
+  <tr><td class="mono">Hyjal/Krystalbeth</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Legere</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Paladin Protection<br><span class="mono">582 ilvl &middot; 20,725 AP &middot; crawled 2026-11-16</span></td></tr>
+  <tr><td class="mono">Hyjal/Outvander</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Quazzarr</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Radaradas</td><td class="mono">5</td><td class="mono">1</td><td class="mono">23</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Sidian</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Suicidality</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tandaria</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tandora</td><td class="mono">23</td><td class="mono">11</td><td class="mono">27</td><td class="mono">1</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tandu</td><td class="mono">18</td><td class="mono">6</td><td class="mono">42</td><td class="mono">24</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tandulari</td><td class="mono">22</td><td class="mono">12</td><td class="mono">27</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tandumonium</td><td class="mono">36</td><td class="mono">22</td><td class="mono">79</td><td class="mono">28</td><td><span class="t-f tag">live</span> Hunter Beast Mastery<br><span class="mono">263 ilvl &middot; 21,685 AP &middot; crawled 2026-11-13</span></td></tr>
+  <tr><td class="mono">Hyjal/Tangents</td><td class="mono">20</td><td class="mono">6</td><td class="mono">45</td><td class="mono">30</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tankadu</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tankard</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tantalous</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Tantrums</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Shaman Enhancement<br><span class="mono">107 ilvl &middot; 18,240 AP &middot; crawled 2022-08-04</span></td></tr>
+  <tr><td class="mono">Hyjal/Testytester</td><td class="mono">20</td><td class="mono">10</td><td class="mono">22</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Hyjal/Wolfertinger</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Bipolarbear</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Christar</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Flabberghast</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Kaleida</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Ohmm</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Quazzarr</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Rawdarawda</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Rensull</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Reticent</td><td class="mono">24</td><td class="mono">11</td><td class="mono">56</td><td class="mono">22</td><td><span class="t-f tag">live</span> Paladin Retribution<br><span class="mono">89 ilvl &middot; 21,625 AP &middot; crawled 2026-11-16</span></td></tr>
+  <tr><td class="mono">Shadowsong/Stephanie</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Tandu</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Shadowsong/Viktorfive</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Beefysatan</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Christar</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Eleryla</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Priest Holy<br><span class="mono">327 ilvl &middot; 20,625 AP &middot; crawled 2026-01-02</span></td></tr>
+  <tr><td class="mono">Thrall/Goulette</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Jozeph</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Demon Hunter Havoc<br><span class="mono">69 ilvl &middot; 15,920 AP &middot; crawled 2021-02-26</span></td></tr>
+  <tr><td class="mono">Thrall/Krystalmeth</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Mortesque</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Death Knight Blood<br><span class="mono">106 ilvl &middot; 18,210 AP &middot; crawled 2022-05-01</span></td></tr>
+  <tr><td class="mono">Thrall/Nahko</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Druid Guardian<br><span class="mono">55 ilvl &middot; 17,730 AP &middot; crawled 2022-07-24</span></td></tr>
+  <tr><td class="mono">Thrall/Obsequy</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Monk Brewmaster<br><span class="mono">68 ilvl &middot; 2,550 AP &middot; crawled 2021-05-02</span></td></tr>
+  <tr><td class="mono">Thrall/Phizzle</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Quazzarr</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-f tag">live</span> Warlock Demonology<br><span class="mono">101 ilvl &middot; 2,420 AP &middot; crawled 2022-09-03</span></td></tr>
+  <tr><td class="mono">Thrall/Tandu</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+  <tr><td class="mono">Thrall/Tezzerrette</td><td class="mono">1</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td><span class="t-x tag">gone</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="note">A door that answers is not proof of ownership: names are
+  released and re-taken. The three that are cross-checked against disk, armory
+  and prior sweeps are <code>Hyjal/Tandumonium</code>,
+  <code>Hyjal/Tantrums</code> and <code>Shadowsong/Reticent</code>. The other
+  nine live handles are recorded as <em>the name still answers</em>, nothing
+  more.</div>
+</section>
+
+<section id="cvars">
+ <h2>The CVar tape</h2>
+ <p class="lede">Nine shells kept a <code>config-cache.wtf</code>. Nobody had
+  read them. Each line is a setting the shell held at its last save, and a few
+  of them are clocks: <code>latestSplashScreen</code> counts how many splash
+  screens the install had shown, <code>lastRenownForCovenant1..4</code> is a
+  Shadowlands covenant record, and <code>newPvpSeason</code> /
+  <code>newMythicPlusSeason</code> stamp the last season the shell noticed.
+  <code>EJLootClass</code> is the class the loot window was set to &mdash; the
+  body's class, written by Blizzard rather than by an addon.</p>
+ <div class="scroll">
+  <table>
+   <caption>Per-shell CVar tape &middot; class, splash generation, season clocks</caption>
+   <thead><tr><th>Shell</th><th>Class / spec</th><th>Lines</th><th>Splash</th>
+    <th>Covenant renown</th><th>Season clock</th><th>Rep headers</th>
+    <th>Camera</th><th>Community id</th></tr></thead>
+   <tbody>
+  <tr><td class="mono">Hyjal/Fauxylauxy</td><td>Evoker <span class="mono">Devourer</span></td><td class="mono">49</td><td class="mono">94</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">28</td><td class="mono">15.550001</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Radaradas</td><td>Monk</td><td class="mono">23</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">29</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Tandora</td><td>Warlock</td><td class="mono">27</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">28</td><td class="mono">9.550000</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Tandu</td><td>Hunter</td><td class="mono">42</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">29</td><td class="mono">23.800013</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Tandulari</td><td>Druid</td><td class="mono">27</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">28</td><td class="mono">10.549999</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Tandumonium</td><td>Hunter <span class="mono">Beast Mastery</span></td><td class="mono">79</td><td class="mono">96</td><td class="mono">65 / 80 / 80 / 80</td><td class="mono">PvP 38 &middot; M+ 14</td><td class="mono">28</td><td class="mono">14.749978</td><td class="mono">352630811</td></tr>
+  <tr><td class="mono">Hyjal/Tangents</td><td>Hunter</td><td class="mono">45</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">28</td><td class="mono">20.800014</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Hyjal/Testytester</td><td>Hunter</td><td class="mono">22</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">28</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td></tr>
+  <tr><td class="mono">Shadowsong/Reticent</td><td>Paladin <span class="mono">Retribution</span></td><td class="mono">56</td><td class="mono">95</td><td class="mono">&mdash;</td><td class="mono">&mdash;</td><td class="mono">29</td><td class="mono">10.749979</td><td class="mono">488952251</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="note ok">The covenant record exists on exactly one shell:
+  <code>Hyjal/Tandumonium</code> &mdash; 65 / 80 / 80 / 80. That is a
+  Shadowlands fingerprint on the active main, and it is the only shell in the
+  account still carrying one. The splash counter climbs 94 &rarr; 95 &rarr; 96
+  across the tapes, which is the install getting older, not the character.</div>
+</section>
+
+<section id="hands">
+ <h2>The hands that are left</h2>
+ <p class="lede">Six macro caches survive in the retail tree: one at account
+  level and five on characters. A macro cache is the closest thing to a
+  fingerprint of intent &mdash; the keys a player bound, in the order they
+  bound them. Four were already published in
+  <a class="ext" href="macrocosm.html">Macrocosm</a>; the two this pass added
+  are the Blood Elf paladin on Shadowsong and the worgen hunter on Hyjal.</p>
+ <div class="scroll">
+  <table>
+   <caption>macros-cache.txt &middot; every one on disk</caption>
+   <thead><tr><th>Cache</th><th>Bytes</th><th>Macros</th><th>First keys</th>
+    <th>Status</th></tr></thead>
+   <tbody>
+  <tr><td class="mono">macros-cache.txt</td><td class="mono">15,509</td><td class="mono">98</td><td class="mono">!!!! !!!!! !!!!!! !!Abandon Quests !!Melee template !/btwl !1 !2222 !3333 !4444 &hellip;</td><td>already in Macrocosm</td></tr>
+  <tr><td class="mono">Hyjal/Tandora/macros-cache.txt</td><td class="mono">40</td><td class="mono">1</td><td class="mono">Z</td><td>already in Macrocosm</td></tr>
+  <tr><td class="mono">Hyjal/Tandu/macros-cache.txt</td><td class="mono">4,034</td><td class="mono">24</td><td class="mono">#N* #N+ #N- #N1 #N2 #N5 #N6 #N8 #N9 1 &hellip;</td><td>already in Macrocosm</td></tr>
+  <tr><td class="mono">Hyjal/Tandumonium/macros-cache.txt</td><td class="mono">4,353</td><td class="mono">28</td><td class="mono">#N* #N+ #N- #N1 #N2 #N5 #N6 #N8 #N9 1 &hellip;</td><td>already in Macrocosm</td></tr>
+  <tr><td class="mono">Hyjal/Tangents/macros-cache.txt</td><td class="mono">5,265</td><td class="mono">30</td><td class="mono">#N* #N+ #N- #N1 #N2 #N8 1 2 3 4 &hellip;</td><td>published 2026-11-25</td></tr>
+  <tr><td class="mono">Shadowsong/Reticent/macros-cache.txt</td><td class="mono">4,540</td><td class="mono">22</td><td class="mono">#n1 - Pal #n2 - Pal #n3 - Pal #n5 - Pal #n6 - Pal #n8 - Pal #n9 - Pal 1 - Pal 2 - Pal 3 - Pal &hellip;</td><td>published 2026-11-25</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="note">The account-level cache holds 98 blocks and names addons
+  from at least three UI generations in its macro bodies: <code>/TSM</code>,
+  <code>/SUF</code>, <code>/addonprofiler</code>, <code>/WQA</code>,
+  <code>/findYourself</code>. A macro body outlives the addon that made it.</div>
+</section>
+
+<section id="ghosts">
+ <h2>Addon ghosts</h2>
+ <p class="lede">Every <code>AddOns.txt</code> is the load list of the last
+  session. Six names in those lists have no folder in
+  <code>Interface\AddOns</code> today: the shells remember an interface the
+  install no longer has. Two of the six are Blizzard-internal names that never
+  had folders, which is itself the point &mdash; the load list is a whole
+  interface, not just third-party addons.</p>
+ <div class="scroll">
+  <table>
+   <caption>Named in AddOns.txt, absent from Interface\AddOns</caption>
+   <thead><tr><th>Addon</th><th>Shells naming it</th><th>Reading</th></tr></thead>
+   <tbody>
+  <tr><td class="mono">Blizzard_ObjectiveTracker</td><td class="mono">54</td><td>Blizzard-owned, not an addon folder</td></tr>
+  <tr><td class="mono">Blizzard_CompactRaidFrames</td><td class="mono">54</td><td>Blizzard-owned, not an addon folder</td></tr>
+  <tr><td class="mono">!Swatter</td><td class="mono">54</td><td>the old error handler, superseded by BugSack/!BugGrabber</td></tr>
+  <tr><td class="mono">!ImprovedErrorFrame</td><td class="mono">54</td><td>pre-Swatter error frame, long superseded</td></tr>
+  <tr><td class="mono">WorldFlightMap</td><td class="mono">51</td><td>removed from the install; still named by 51 shells</td></tr>
+  <tr><td class="mono">Immersion</td><td class="mono">1</td><td>quest-dialogue reskin, named by one shell only</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="note warn"><code>WorldFlightMap</code> is the useful one: 51 of 54
+  shells name it, it is not installed, and the retail AGENTS.md records that it
+  was removed at some point after the 14-addon era. The load lists are
+  therefore written by an older client build than the one on disk.</div>
+</section>
+
+<section id="doors">
+ <h2>The doors that still answer</h2>
+ <p class="lede">Twelve of the fifty-four handles have a living armory record.
+  The crawl dates are the interesting column: <code>Thrall/Obsequy</code> was
+  last crawled in May 2021, <code>Thrall/Mortesque</code> in May 2022 &mdash;
+  the armory is holding characters the account stopped playing years ago.</p>
+ <div class="scroll">
+  <table>
+   <caption>Raider.IO &middot; 54 doors asked, 12 answered (2026-11-25)</caption>
+   <thead><tr><th>Handle</th><th>Class / spec</th><th>Race</th><th>ilvl</th>
+    <th>AP</th><th>Guild</th><th>Last crawled</th></tr></thead>
+   <tbody>
+  <tr><td class="mono">Hyjal/Christar</td><td>Rogue <span class="mono">Outlaw</span></td><td>Nightborne</td><td class="mono">585</td><td class="mono">21,200</td><td>&mdash;</td><td class="mono">2026-02-03</td></tr>
+  <tr><td class="mono">Hyjal/Karkol</td><td>Mage <span class="mono">Arcane</span></td><td>Vulpera</td><td class="mono">86</td><td class="mono">21,480</td><td>Theorycrafters</td><td class="mono">2026-11-16</td></tr>
+  <tr><td class="mono">Hyjal/Legere</td><td>Paladin <span class="mono">Protection</span></td><td>Zandalari Troll</td><td class="mono">582</td><td class="mono">20,725</td><td>&mdash;</td><td class="mono">2026-11-16</td></tr>
+  <tr><td class="mono">Hyjal/Tandumonium</td><td>Hunter <span class="mono">Beast Mastery</span></td><td>Dracthyr</td><td class="mono">263</td><td class="mono">21,685</td><td>&mdash;</td><td class="mono">2026-11-13</td></tr>
+  <tr><td class="mono">Hyjal/Tantrums</td><td>Shaman <span class="mono">Enhancement</span></td><td>Zandalari Troll</td><td class="mono">107</td><td class="mono">18,240</td><td>&mdash;</td><td class="mono">2022-08-04</td></tr>
+  <tr><td class="mono">Shadowsong/Reticent</td><td>Paladin <span class="mono">Retribution</span></td><td>Blood Elf</td><td class="mono">89</td><td class="mono">21,625</td><td>&mdash;</td><td class="mono">2026-11-16</td></tr>
+  <tr><td class="mono">Thrall/Eleryla</td><td>Priest <span class="mono">Holy</span></td><td>Nightborne</td><td class="mono">327</td><td class="mono">20,625</td><td>&mdash;</td><td class="mono">2026-01-02</td></tr>
+  <tr><td class="mono">Thrall/Jozeph</td><td>Demon Hunter <span class="mono">Havoc</span></td><td>Blood Elf</td><td class="mono">69</td><td class="mono">15,920</td><td>&mdash;</td><td class="mono">2021-02-26</td></tr>
+  <tr><td class="mono">Thrall/Mortesque</td><td>Death Knight <span class="mono">Blood</span></td><td>Troll</td><td class="mono">106</td><td class="mono">18,210</td><td>&mdash;</td><td class="mono">2022-05-01</td></tr>
+  <tr><td class="mono">Thrall/Nahko</td><td>Druid <span class="mono">Guardian</span></td><td>Zandalari Troll</td><td class="mono">55</td><td class="mono">17,730</td><td>&mdash;</td><td class="mono">2022-07-24</td></tr>
+  <tr><td class="mono">Thrall/Obsequy</td><td>Monk <span class="mono">Brewmaster</span></td><td>Blood Elf</td><td class="mono">68</td><td class="mono">2,550</td><td>&mdash;</td><td class="mono">2021-05-02</td></tr>
+  <tr><td class="mono">Thrall/Quazzarr</td><td>Warlock <span class="mono">Demonology</span></td><td>Undead</td><td class="mono">101</td><td class="mono">2,420</td><td>&mdash;</td><td class="mono">2022-09-03</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3 style="margin-top:1.6rem">Doors that answer with a record</h3>
+ <div class="scroll">
+  <table>
+   <caption>Guild-side doors that returned data, not a shell</caption>
+   <thead><tr><th>Door</th><th>URL</th><th>Verdict</th><th>What it proves</th></tr></thead>
+   <tbody>
+  <tr><td>Wipefest guild API</td><td class="mono"><a class="ext" href="https://api.wipefest.gg/guild/us/borean-tundra/gehenna" target="_blank" rel="noopener">https://api.wipefest.gg/guild/us/borean-tundra/gehenna</a></td><td class="mono">HTTP 200</td><td>`{id:7287, name:Gehenna, realm:Borean Tundra, faction:Horde}` — the guild id the tenure rule rests on, attested by a second host</td></tr>
+  <tr><td>Raider.IO guild API</td><td class="mono"><a class="ext" href="https://raider.io/api/v1/guilds/profile?region=us&amp;realm=borean-tundra&amp;name=Gehenna&amp;fields=raid_progression,raid_rankings,members" target="_blank" rel="noopener">https://raider.io/api/v1/guilds/profile?region=us&amp;realm=bo</a></td><td class="mono">HTTP 200</td><td>same guild, crawled 2026-03-14, two members, 0/9 current tier</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3 style="margin-top:1.6rem">Doors that do not answer</h3>
+ <div class="scroll">
+  <table>
+   <caption>Probed this pass, read-only, one browser user agent</caption>
+   <thead><tr><th>Door</th><th>URL</th><th>Verdict</th><th>Note</th></tr></thead>
+   <tbody>
+  <tr><td>Warcraft Logs guild 7287</td><td class="mono"><a class="ext" href="https://www.warcraftlogs.com/guild/id/7287" target="_blank" rel="noopener">https://www.warcraftlogs.com/guild/id/7287</a></td><td class="mono">HTTP 403</td><td>policy wall; both guild and character pages refused this pass</td></tr>
+  <tr><td>Warcraft Logs character Tandu</td><td class="mono"><a class="ext" href="https://www.warcraftlogs.com/character/us/shadowsong/Tandu" target="_blank" rel="noopener">https://www.warcraftlogs.com/character/us/shadowsong/Tandu</a></td><td class="mono">HTTP 403</td><td>same wall; no headless read of the 2018-2020 reports</td></tr>
+  <tr><td>Wipefest guild</td><td class="mono"><a class="ext" href="https://www.wipefest.gg/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">https://www.wipefest.gg/guild/us/borean-tundra/Gehenna</a></td><td class="mono">SPA shell</td><td>2,223 B of Angular app-root; the record is fetched client-side</td></tr>
+  <tr><td>Wayback availability, 3 character URLs</td><td class="mono"><a class="ext" href="https://archive.org/wayback/available?url=us.battle.net/wow/en/character/shadowsong/Tandu/advanced" target="_blank" rel="noopener">https://archive.org/wayback/available?url=us.battle.net/wo</a></td><td class="mono">0 snapshots</td><td>availability API answers 200 with an empty snapshot map</td></tr>
+  <tr><td>Wayback CDX</td><td class="mono"><a class="ext" href="https://web.archive.org/cdx/search/cdx?url=wowprogress.com/guild/us/borean-tundra/Gehenna" target="_blank" rel="noopener">https://web.archive.org/cdx/search/cdx?url=wowprogress.com</a></td><td class="mono">HTTP 429</td><td>throttled again; the 26-capture index was read on a prior pass</td></tr>
+  <tr><td>Bing</td><td class="mono"><a class="ext" href="https://www.bing.com/search?q=%22Tandumonium%22+warcraft" target="_blank" rel="noopener">https://www.bing.com/search?q=%22Tandumonium%22+warcraft</a></td><td class="mono">noise</td><td>engine rewrites the handle to Pandemonium/Tandemonium</td></tr>
+  <tr><td>DuckDuckGo HTML</td><td class="mono"><a class="ext" href="https://html.duckduckgo.com/html/?q=Tandumonium" target="_blank" rel="noopener">https://html.duckduckgo.com/html/?q=Tandumonium</a></td><td class="mono">HTTP 202</td><td>anti-bot page, no results in body</td></tr>
+  <tr><td>r.jina.ai reader proxy</td><td class="mono"><a class="ext" href="https://r.jina.ai/https://www.warcraftlogs.com/character/us/shadowsong/Tandu" target="_blank" rel="noopener">https://r.jina.ai/https://www.warcraftlogs.com/character/u</a></td><td class="mono">HTTP 401</td><td>reader proxy now requires a key; not usable unauthenticated</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="note">The guild outlived the tenure. Raider.IO's guild record for
+  <code>&lt;Gehenna&gt;</code> on Borean Tundra was last crawled 2026-03-14 and
+  lists exactly two members &mdash; <code>Kalimas</code> (Vengeance demon
+  hunter) and <code>Rageface</code> (Protection warrior) &mdash; with 0/9 in the
+  current tier. No Tandu, no Tandieu, no Tandumonium. That is the tenure rule
+  working in public: the guild is not mine to claim today, only for the window
+  the receipts cover.</div>
+</section>
+
+<section id="method">
+ <h2>Method &amp; receipts</h2>
+ <p>Read-only throughout. The game install was never written to; the two JSON
+  payloads live under <code>Dark_Portal/Research/_raw/</code> and are
+  gitignored, and this page carries every figure baked in, so no reader ever
+  fetches them.</p>
+ <pre>scan : _retail_\WTF\Account\QUAZZARR\&lt;Realm&gt;\&lt;Character&gt;\
+        AddOns.txt  macros-cache.txt  config-cache.wtf  SavedVariables\*
+doors : raider.io/api/v1/characters/profile
+        region=us&amp;realm=&lt;realm&gt;&amp;name=&lt;name&gt;&amp;fields=gear,guild
+        one GET per shell, 6 workers, no auth, no cookies
+build : Research/_local/_strata_scan.py   -&gt; retail_strata_20261125.json
+        Research/_local/_strata_doors.py  -&gt; retail_strata_doors_20261125.json
+        Research/_local/_strata_build.py  -&gt; _gewey_gui/Strata.html</pre>
+ <div class="note warn"><b>Tenure gate.</b> &lt;Gehenna&gt; is admissible for the
+  2018-10 &rarr; 2020-10 BfA window on Shadowsong / Borean Tundra (WCL guild
+  7287); &lt;Theorycrafters&gt; for Thrall-US and Hyjal-US. The 24 pre-2019
+  Wayback captures of &lt;Gehenna&gt; are guild history, not membership, and are
+  never recorded here. See <a class="ext" href="Tenure.html">Tenure</a>.</div>
+ <div class="note">Counted this pass: 54 shells,
+  12 live doors, 42 gone, 9 CVar
+  tapes, 203 macro blocks across
+  6 caches, 6 addon ghosts,
+  3 screenshots. The screenshots are the negative space:
+  all 3 are frames from
+  2026-11-05,
+  so the tree holds no old screenshot legacy at all.</div>
+</section>
+
+ <footer>Gewey G.U.I. &middot; wing 41 &middot; built 2026-11-25 by Tandumonium
+  &middot; receipts in <code>Research/_raw/retail_strata_20261125.json</code>
+  and <code>retail_strata_doors_20261125.json</code> (local, gitignored)
+  &middot; link registry: <code>Tandumonium.agent-index.md</code></footer>
+</div>
+</body>
+</html>

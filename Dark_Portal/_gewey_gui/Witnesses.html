@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <script>
+  const whTooltips = {
+   colorLinks: true,
+   iconizeLinks: true,
+   renameLinks: true,
+  };
+ </script>
+ <script src="https://wow.zamimg.com/widgets/power.js"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>The Witnesses &mdash; what the databases say, and what they refuse</title>
+ <!--
+   Witnesses.html - built 2026-11-25 by Tandumonium (wing 42).
+   The door this pass opened is the Raider.IO addon client
+   database: Interface/AddOns/RaiderIO/db/db_client_characters.lua
+   remembers the last five characters inspected at the armory,
+   and db_client_guilds.lua holds Theorycrafters-Hyjal best
+   runs with full party rosters. Second door: the offline US
+   raiding (960,246 names) and M+ (1,570,811 names) databases
+   shipped inside the same addon, used here as a collision
+   register - the negative half of the tenure rule.
+   Third: retail Logs and Errors, never read by any wing.
+   Nothing on this page fetches a file; every figure is baked in.
+ -->
+ <style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;
+ padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;
+ margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+ color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);
+ box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;
+ gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+ padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;
+ border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;
+ color:var(--arcane)}
+.scroll{overflow-x:auto}
+.scroll table{min-width:760px}
+td.mono{white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;
+ letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;
+ text-transform:uppercase;border:1px solid currentColor;padding:.1rem .45rem;
+ border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}
+.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;
+ font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem;
+ line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;
+ border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+ </style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+ <header class="hero">
+  <p class="kicker">Retail &middot; account QUAZZARR &middot; third-party memory</p>
+  <h1>The Witnesses <span class="thin">&mdash; what the databases say</span></h1>
+  <p class="lede">A character is easy to lie about. A database is not. The armory forgot the handle in 2020; the addon on the disk still has it. Raider.IO&rsquo;s client cache remembered the five people I last looked up, and its US tables carry a million characters&rsquo; worth of names that are <em>not</em> me. This page is the account&rsquo;s case file: five witnesses, one collision register, one closed census, and two nights the client fell over.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+   <a href="index.html">Shell</a>
+   <a href="_fuhevva_evva.html">Home</a>
+   <a href="Tenure.html">Tenure</a>
+   <a href="Kindred.html">Kindred</a>
+   <a href="Vessel.html">Vessel</a>
+   <a href="Strata.html">Strata</a>
+   <a href="Watchtower.html">Watchtower</a>
+   <a href="legacy.html">Legacy</a>
+   <a href="Origins.html">Origins</a>
+   <a href="Concordance.html">Concordance</a>
+   <a href="Doors.html">Doors</a>
+   <a href="Witnesses.html" aria-current="page">Witnesses</a>
+  </nav> </header>
+ <section id="rules">
+  <h2>Three rules, then a witness</h2>
+  <div class="grid g3">
+   <div class="card"><h3>The tenure rule</h3><p class="note">A guild is only mine during the era I was inside it. &lt;Gehenna&gt; 2019, yes. &lt;Gehenna&gt; 2009&ndash;2016 Wayback captures, never.</p></div>
+   <div class="card"><h3>The name rule</h3><p class="note">A Tand-shaped name on a realm I never played is a stranger. Tandemonium lives on Argent Dawn. That is not this account.</p></div>
+   <div class="card"><h3>The realm rule</h3><p class="note">Shadowsong, Borean Tundra, Thrall, Hyjal. Four retail realms, two clusters. Anything outside them needs an owner field.</p></div>
+  </div>
+  <p class="note">All three rules read the same way: positive evidence beats a resemblance. What follows is positive evidence only.</p>
+ </section>
+ <section id="cache">
+  <h2>1. The addon remembers who I looked at</h2>
+  <p>Every Raider.IO lookup writes a stub into the client cache. Five stubs survive in this install, all stamped <code>2026-11-05T13:43:33Z</code>. Nobody had read this file before this pass: it is the only artefact on either disk that records <em>other people</em> rather than me.</p>
+  <div class="scroll"><table>
+   <caption>db_client_characters.lua &middot; 5 entries &middot; race/class ids are the client&rsquo;s own numbering</caption>
+   <thead><tr><th>Key</th><th>Race</th><th>Class</th><th>race id</th><th>class id</th><th>Flag</th><th>M+ score</th></tr></thead>
+   <tbody>
+<tr><td class="mono">Reticent-Shadowsong</td><td>Blood Elf</td><td>Paladin</td><td class="mono">10</td><td class="mono">2</td><td><span class="tag t-r">blood elf</span></td><td class="mono">0</td></tr>
+<tr><td class="mono">Tandumonium-Hyjal</td><td>Dracthyr</td><td>Hunter</td><td class="mono">70</td><td class="mono">3</td><td><span class="tag t-x">cached</span></td><td class="mono">0</td></tr>
+<tr><td class="mono">Christar-Hyjal</td><td>Nightborne</td><td>Rogue</td><td class="mono">27</td><td class="mono">4</td><td><span class="tag t-x">cached</span></td><td class="mono">0</td></tr>
+<tr><td class="mono">Karkol-Hyjal</td><td>Vulpera</td><td>Mage</td><td class="mono">35</td><td class="mono">8</td><td><span class="tag t-x">cached</span></td><td class="mono">0</td></tr>
+<tr><td class="mono">Legere-Hyjal</td><td>Zandalari Troll</td><td>Paladin</td><td class="mono">31</td><td class="mono">2</td><td><span class="tag t-x">cached</span></td><td class="mono">0</td></tr>
+   </tbody>
+  </table></div>
+  <p class="note ok"><strong>The one blood elf.</strong> Reticent-Shadowsong is race <code>10</code> &mdash; Blood Elf &mdash; and answered <code>400</code> to the armory on the Kindred sweep, which is why that sweep counted &ldquo;9 live characters, 0 blood elves&rdquo;. The account&rsquo;s only Sin&rsquo;dorei is a ghost the live door cannot see and the client cache can. That is the whole thesis of this character in one row: the blood elf outlives the record.</p>
+  <p class="note">Tandumonium-Hyjal reads race <code>70</code> (Dracthyr), class <code>3</code> (Hunter) from a third source, independent of the Raider.IO API crawl and the armory render.</p>
+ </section>
+ <section id="runs">
+  <h2>2. The guild&rsquo;s own best runs</h2>
+  <p><code>db_client_guilds.lua</code> was generated <code>2026-11-05T12:42:17Z</code> and holds exactly one guild: <strong>&lt;Theorycrafters&gt;-Hyjal</strong> (horde). Seven unique keystone runs, each with the whole party named &mdash; the only place on disk where my guildmates&rsquo; names survive next to a dungeon and a clock.</p>
+  <div class="scroll"><table>
+   <caption>Key level, upgrades and clear time as the client recorded them &middot; fraction = the client&rsquo;s own run weight</caption>
+   <thead><tr><th>Dungeon</th><th>Key</th><th>Upg</th><th>Fraction</th><th>Clear</th><th>Party</th></tr></thead>
+   <tbody>
+<tr><td>The Blinding Vale</td><td class="mono">+13</td><td class="mono">1</td><td class="mono">0.80</td><td class="mono">00:24:05.471</td><td>Apocalýpsè <span class="tag t-x">Warrior</span>, Lünärä <span class="tag t-x">Druid</span>, Kidneytape <span class="tag t-x">Rogue</span>, Mýthra <span class="tag t-x">Mage</span>, Stinkychef <span class="tag t-x">Warlock</span></td></tr>
+<tr><td>Den of Nalorakk</td><td class="mono">+14</td><td class="mono">1</td><td class="mono">0.95</td><td class="mono">00:30:26.047</td><td>Chuzen <span class="tag t-x">Death Knight</span>, Yuju <span class="tag t-x">Paladin</span>, Doombunny <span class="tag t-x">Hunter</span>, Stinkychef <span class="tag t-x">Warlock</span>, Terrytate <span class="tag t-x">Warrior</span></td></tr>
+<tr><td>Altar of Fangs</td><td class="mono">+15</td><td class="mono">1</td><td class="mono">0.86</td><td class="mono">00:25:45.677</td><td>Baikonur <span class="tag t-x">Death Knight</span>, Aaltairpally <span class="tag t-x">Paladin</span>, Etheriane <span class="tag t-x">Demon Hunter</span>, Pichazoscr <span class="tag t-x">Warrior</span>, Twilune <span class="tag t-x">Shaman</span></td></tr>
+<tr><td>Voidscar Arena</td><td class="mono">+14</td><td class="mono">2</td><td class="mono">0.78</td><td class="mono">00:23:15.735</td><td>Bamkin <span class="tag t-x">Druid</span>, Aaltairpally <span class="tag t-x">Paladin</span>, Blinkeysham <span class="tag t-x">Shaman</span>, Evepls <span class="tag t-x">Demon Hunter</span>, Twilune <span class="tag t-x">Shaman</span></td></tr>
+<tr><td>Kings&#x27; Rest</td><td class="mono">+16</td><td class="mono">0</td><td class="mono">1.25</td><td class="mono">00:41:17.093</td><td>Bamkin <span class="tag t-x">Druid</span>, Aaltairpally <span class="tag t-x">Paladin</span>, Bete <span class="tag t-x">Warrior</span>, Enshi <span class="tag t-x">Hunter</span>, Twilune <span class="tag t-x">Shaman</span></td></tr>
+<tr><td>Kings&#x27; Rest</td><td class="mono">+8</td><td class="mono">2</td><td class="mono">0.70</td><td class="mono">00:22:57.818</td><td>Caddokin <span class="tag t-x">Warrior</span>, Mezand <span class="tag t-x">Paladin</span>, Muddybutt <span class="tag t-x">Warrior</span>, Scarza <span class="tag t-x">Monk</span>, Twilune <span class="tag t-x">Shaman</span></td></tr>
+<tr><td>The Blinding Vale</td><td class="mono">+9</td><td class="mono">2</td><td class="mono">0.78</td><td class="mono">00:23:24.203</td><td>Ninuth <span class="tag t-x">Demon Hunter</span>, Shamanchef <span class="tag t-x">Shaman</span>, Maelle <span class="tag t-x">Mage</span>, Thruzt <span class="tag t-x">Death Knight</span>, Visla <span class="tag t-x">Rogue</span></td></tr>
+   </tbody>
+  </table></div>
+  <p class="note">Twilune appears in four of the seven parties and is the only name that recurs at every key level; Aaltairpally in three. Highest key held: <strong>+16</strong> (Kings&#x27; Rest, 00:41:17.093). The guild&rsquo;s best is the same shape the raid vault found: deep enough to matter, never a world rank.</p>
+ </section>
+ <section id="realms">
+  <h2>3. A thousand and thirty-six realms, and not one Ebbeson</h2>
+  <div class="grid g3">
+   <div class="card"><div class="stat">1036<small>realm slugs in db_realms.lua</small></div></div>
+   <div class="card"><div class="stat">4<small>retail realms this account ever lived on</small></div></div>
+   <div class="card"><div class="stat">0<small>retail slugs for &ldquo;Ebbeson&rdquo;, the Forever realm</small></div></div>
+  </div>
+  <p>The slug table is dated <code>Jan 23 2023</code> and carries every realm name Blizzard ever shipped a URL for. Shadowsong and Borean Tundra both resolve &mdash; one cluster, two doors &mdash; which is why &lt;Gehenna&gt; can be cited on either realm and mean the same guild. <strong>Ebbeson does not exist here.</strong> The Forever realm is not a retail realm; the retail client has no word for where Tandumonium-Ebbeson lives. Two installs, one name, no shared address.</p>
+  <pre>{
+ &quot;Shadowsong&quot;: &quot;shadowsong&quot;,
+ &quot;BoreanTundra&quot;: &quot;borean-tundra&quot;,
+ &quot;Hyjal&quot;: &quot;hyjal&quot;,
+ &quot;Thrall&quot;: &quot;thrall&quot;,
+ &quot;Ebbeson&quot;: null,
+ &quot;ArgentDawn&quot;: &quot;argent-dawn&quot;
+}</pre>
+ </section>
+ <section id="collisions">
+  <h2>4. The collision register &mdash; names that are not me</h2>
+  <div class="grid g3">
+   <div class="card"><div class="stat">64<small>Tand*-shaped names in the US raiding DB</small></div></div>
+   <div class="card"><div class="stat">51<small>Tand*-shaped names in the US M+ DB</small></div></div>
+   <div class="card"><div class="stat">0<small>of them named Tandu, Tandieu or Tandumonium on my realms</small></div></div>
+  </div>
+  <p>The addon ships the whole US ladder offline: <strong>960,246</strong> raiding characters across <strong>247</strong> realm buckets and <strong>1,570,811</strong> M+ characters across <strong>246</strong>, both stamped <code>2026-11-05</code>. Read it as a wall of strangers with my prefix &mdash; and as proof that the resemblance is not the man.</p>
+  <div class="scroll"><table>
+   <caption>Prefix matches that DO live on one of my four realms &middot; all four are strangers</caption>
+   <thead><tr><th>Realm</th><th>Name(s)</th><th>Table</th></tr></thead>
+   <tbody>
+<tr><td>ArgentDawn</td><td class="mono">Tandemonium</td><td>raiding</td></tr>
+<tr><td>BoreanTundra</td><td class="mono">Tandria</td><td>raiding</td></tr>
+<tr><td>Hyjal</td><td class="mono">Tandëm</td><td>raiding</td></tr>
+<tr><td>ArgentDawn</td><td class="mono">Tandemonium</td><td>M+</td></tr>
+<tr><td>BoreanTundra</td><td class="mono">Tandria</td><td>M+</td></tr>
+<tr><td>Hyjal</td><td class="mono">Tandiish</td><td>M+</td></tr>
+   </tbody>
+  </table></div>
+  <p class="note warn"><strong>The named exception.</strong> &ldquo;Tandemonium&rdquo; on <em>Argent Dawn</em> is the trap this page exists to close. Search engines have repeatedly rewritten Tandumonium to Tandemonium and returned that character&rsquo;s pages; Argent Dawn is not one of my four realms, so the name rule rejects it outright, and it is recorded here as excluded rather than quietly dropped.</p>
+  <p class="note">Full prefix census: 64 names in the raiding bucket, 51 in the M+ bucket. Two of the on-realm matches exist in one database only, which is what a dead alt looks like.</p>
+ </section>
+ <section id="census">
+  <h2>5. The census that closed</h2>
+  <p>Between 2005 and 2016 the only public record of a levelling character was <strong>warcraftrealms.com</strong> &mdash; a crowd-sourced census with first-seen and last-seen dates per name. For a 2008 blood elf it was the closest thing to a birth certificate.</p>
+  <p>Asked today, that domain serves a <em>Midnight item database</em> titled &ldquo;Midnight Database &mdash; Warcraft DB&rdquo;. The census is gone from the surface web; the archive answers on its behalf. Verified this run: <code>archive.org/wayback/available?url=warcraftrealms.com/charsheet.php</code> returns <code>available: true</code> with a closest snapshot, so the <em>shape</em> of the census survives even where the rows do not.</p>
+  <p class="note">Practically: the pre-2018 decade has no machine-readable witness left. Everything the Origins wing asserts for 2008&ndash;2016 is reconstruction from macro text, ghost addons and memory &mdash; not from a census row. That is the honest ceiling, and it is written down here instead of assumed.</p>
+ </section>
+ <section id="constant">
+  <h2>6. The one constant in 470 reports</h2>
+  <div class="grid g3">
+   <div class="card"><div class="stat">470<small>reports in the vault</small></div></div>
+   <div class="card"><div class="stat">470/470<small>owner field = &ldquo;Tandu&rdquo;</small></div></div>
+   <div class="card"><div class="stat">1<small>rename that did NOT move it</small></div></div>
+  </div>
+  <p>The character renamed on <strong>2020-09-16</strong> &mdash; the rosters prove it, &ldquo;Tandu&rdquo; stops and &ldquo;Tandieu&rdquo; begins. The logs do not notice. All 470 reports, from the first Uldir night in October 2018 to the last pull in December 2024, carry the same <code>owner</code> value: <code>Tandu</code>. Warcraft Logs stores the <em>account</em>, not the character sheet.</p>
+  <p class="note ok">That is the cleanest proof of identity in the whole file: three handles, four realms, two installs, one owner. The name changed; the person filing the paperwork did not.</p>
+ </section>
+ <section id="blackbox">
+  <h2>7. The black box &mdash; two nights the client fell over</h2>
+  <div class="scroll"><table>
+   <caption>_retail_\Errors &middot; 4 files &middot; 7,368,044 bytes &middot; no wing had read them before this pass</caption>
+   <thead><tr><th>When</th><th>Build</th><th>Code</th><th>Cause</th><th>Artefacts</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">2026-09-02 20:06:46</td><td class="mono">69587</td><td class="mono">#134 (0x85100086)</td><td>fatal condition: <code>Cache\ADB\enUS\SceneScriptText27640.tmp</code> could not be opened</td><td class="mono">.dmp 3.6 MB + .txt 51 KB</td></tr>
+    <tr><td class="mono">2026-09-02 20:10:58</td><td class="mono">69587</td><td class="mono">#134 (0x85100086)</td><td>same fatal condition, second process</td><td class="mono">.dmp 3.7 MB + .txt 51 KB</td></tr>
+   </tbody>
+  </table></div>
+  <p>Four minutes apart, same build, same missing scene-script cache file. Not a memory fault and not an addon &mdash; a client that wanted a cache file the folder did not have. Both dumps keep the full stack inside <code>Wow.exe</code> and carry nothing of the world; they are the only two dated events on the retail disk that belong to the <em>machine</em> rather than the character.</p>
+ </section>
+ <section id="inventory">
+  <h2>8. What the retail disk actually holds</h2>
+  <div class="scroll"><table>
+   <caption>_retail_ census, read this run &middot; excluding the Dark_Portal junction</caption>
+   <thead><tr><th>Folder</th><th>Files</th><th>Bytes</th><th>Oldest</th><th>Newest</th></tr></thead>
+   <tbody>
+    <tr><td class="mono">WTF</td><td class="mono">303</td><td class="mono">2,142,079</td><td class="mono">2026-08-14</td><td class="mono">2026-11-13</td></tr>
+    <tr><td class="mono">Logs</td><td class="mono">25</td><td class="mono">2,480,980</td><td class="mono">2026-08-18</td><td class="mono">2026-11-13</td></tr>
+    <tr><td class="mono">Interface</td><td class="mono">3,240</td><td class="mono">185,515,343</td><td class="mono">2026-06-06</td><td class="mono">2026-11-22</td></tr>
+    <tr><td class="mono">Errors</td><td class="mono">4</td><td class="mono">7,368,044</td><td class="mono">2026-09-03</td><td class="mono">2026-09-03</td></tr>
+    <tr><td class="mono">Screenshots</td><td class="mono">3</td><td class="mono">2,253,345</td><td class="mono">2026-11-05</td><td class="mono">2026-11-05</td></tr>
+   </tbody>
+  </table></div>
+  <p class="note">Fifty-four character shells (Hyjal 29, Shadowsong 12, Thrall 13), 40 addon folders, and an <code>Interface</code> tree whose oldest file is <code>2026-06-06</code>. The install is younger than the character by eighteen years. Nothing on the retail disk can be older than that reinstatement date &mdash; which is exactly why the witnesses have to come from outside the folder.</p>
+ </section>
+ <section id="doors">
+  <h2>9. What answered, and what refused</h2>
+  <p>Fifty-one doors were asked this run across three probes; every status is recorded row by row on the <a class="ext" href="Doors.html">Doors</a> register. The shape of the wall, in one line: the archives that <em>render</em> pages answer, the archives that <em>index</em> them do not.</p>
+  <div class="grid g3">
+   <div class="card"><div class="stat">WCL<small>human verification &mdash; 200 with a challenge body</small></div></div>
+   <div class="card"><div class="stat">Wayback CDX<small>429, rate limited &mdash; retried, still shut</small></div></div>
+   <div class="card"><div class="stat">Wipefest<small>200 &mdash; the only door to the 470 reports</small></div></div>
+  </div>
+  <p class="note ok">Nothing here is a dead end. A refused door is a fact with a date on it, and the register is the only part of this site that gets <em>more</em> useful every time a run is refused.</p>
+ </section>
+<footer>
+ Built <strong>2026-11-25</strong> by <strong>Tandumonium</strong> &mdash; wing
+ <strong>42</strong> of the Dark_Portal HUD. Sources are named on the page;
+ the raw payloads stay local (<code>Research/_raw/</code>, gitignored) so the
+ site ships renders only. Every number here was read this run, not remembered.
+</footer>
+</div>
+</body>
+</html>

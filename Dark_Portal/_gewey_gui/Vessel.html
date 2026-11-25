@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <script>
+  const whTooltips = {
+   colorLinks: true,
+   iconizeLinks: true,
+   renameLinks: true,
+  };
+ </script>
+ <script src="https://wow.zamimg.com/widgets/power.js"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>The Vessel &mdash; what the retail account data remembers | Gewey G.U.I.</title>
+ <!--
+   Vessel.html - built 2026-11-25 07:48 by Tandumonium (wing 39, the persistence pass).
+
+   Door: _retail_\Logs\AccountData.log and AccountData.log.old. No other wing
+   opened them. They are the client's own persistence dump, and every slot in
+   them carries a Server Save Time stamp.
+
+   The find: one slot still holds a 2018-09-06 save. That is the oldest dated
+   artifact in the retail tree - older than the first report in the 470-report
+   Warcraft Logs vault (Oct 2018) - and it is the reason this page exists.
+
+   Every figure is re-derived at build time from the two logs and the four
+   bind caches. No runtime fetch; no data file ships beside the page.
+ -->
+ <style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.scroll table{min-width:760px}
+td.mono{white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+ </style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+ <header class="hero">
+  <p class="kicker">Retail &middot; account QUAZZARR &middot; the persistence tape</p>
+  <h1>The Vessel <span class="thin">&mdash; the account file that outlives the character</span></h1>
+  <p class="lede">A character is a vessel: it is renamed, rerolled, race-changed,
+   deleted, restored. What sits underneath it is not. <code>AccountData.log</code>
+   is the client's own persistence dump &mdash; account-wide settings, the bind
+   map, the macro records, the Edit Mode layouts &mdash; and every slot in it
+   carries a <em>Server Save Time</em> stamp. Read the stamps in order and the
+   account draws its own column of memory, from
+   <strong>2018-09-06</strong> to <strong>2026-11-05</strong>, with the silences in
+   between measured to the day.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Origins.html">Origins</a>
+  <a href="persona.html">Persona</a>
+  <a href="races.html">Races</a>
+  <a href="handles.html">Handles</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="relics.html">Relics</a>
+  <a href="eras.html">Eras</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="web_legacy.html">Web Legacy</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Kindred.html">Kindred</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a>
+  <a href="Bestiary.html">Bestiary</a>
+  <a href="Passersby.html">Passersby</a>
+  <a href="Watchtower.html">Watchtower</a>
+  <a href="Vessel.html" aria-current="page">Vessel</a>
+  <a href="Strata.html">Strata</a>
+  <a href="Witnesses.html">Witnesses</a>
+  <a href="Doors.html">Doors</a></nav>
+ </header>
+
+ <section id="tape">
+  <h2>The two tapes</h2>
+  <div class="grid g3">
+   <div class="card"><p class="stat">10,613<small>lines in the current tape</small></p></div>
+   <div class="card"><p class="stat">38,454<small>lines in the rotated tape</small></p></div>
+   <div class="card"><p class="stat">61<small>save stamps, both files</small></p></div>
+   <div class="card"><p class="stat">173<small>distinct account settings seen</small></p></div>
+   <div class="card"><p class="stat">17<small>persistence slots present (ids 0&ndash;19)</small></p></div>
+   <div class="card"><p class="stat">2018-09-06<small>oldest stamp still standing</small></p></div>
+  </div>
+  <div class="scroll">
+   <table>
+    <caption>What the client actually wrote, both rotations</caption>
+    <thead><tr><th>File</th><th>Lines</th><th>Bytes</th>
+     <th>Settings records</th><th>Save stamps</th>
+     <th>Sections (account / character)</th><th>Clock span inside the file</th></tr></thead>
+    <tbody>
+     <tr><td><code>AccountData.log</code></td><td class="mono">10,613</td>
+      <td class="mono">340,330</td><td class="mono">2,340</td>
+      <td class="mono">19</td>
+      <td class="mono">7 / 6</td>
+      <td class="mono">9/2 20:12:43.376 &rarr; 11/13 03:45:47.907</td></tr>
+     <tr><td><code>AccountData.log.old</code></td><td class="mono">38,454</td>
+      <td class="mono">1,174,481</td><td class="mono">5,114</td>
+      <td class="mono">42</td>
+      <td class="mono">10 / 16</td>
+      <td class="mono">8/18 06:47:17.209 &rarr; 8/26 13:00:54.941</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note">The clock span is the tape's own <code>M/D hh:mm:ss</code>
+   column, not a file mtime. It is the only place in the retail tree where a
+   write is timestamped <em>by the client that made it</em>.</p>
+ </section>
+
+ <section id="column">
+  <h2>The memory column</h2>
+  <p>Every distinct <em>Local Save Time</em> in both files, in order. A slot is
+   only rewritten when its own data changes, so the column is not a play log
+   &mdash; it is a ledger of the moments something in the account was worth
+   saving.</p>
+  <div class="scroll">
+   <table>
+    <caption>Save dates, the silence before each, and the slots stamped that day</caption>
+    <thead><tr><th>Date (UTC)</th><th>Silence before</th>
+     <th>Slots written</th></tr></thead>
+    <tbody>
+    <tr><td class="mono">2018-09-06</td><td class="mono">the anchored beginning</td><td class="mono">3</td></tr>
+    <tr><td class="mono">2025-01-26</td><td class="mono">2,334 d of silence</td><td class="mono">15</td></tr>
+    <tr><td class="mono">2025-10-08</td><td class="mono">255 d of silence</td><td class="mono">8</td></tr>
+    <tr><td class="mono">2025-10-22</td><td class="mono">14 d of silence</td><td class="mono">5, 9, 12</td></tr>
+    <tr><td class="mono">2026-03-15</td><td class="mono">144 d of silence</td><td class="mono">4</td></tr>
+    <tr><td class="mono">2026-08-15</td><td class="mono">153 d of silence</td><td class="mono">7, 11, 14</td></tr>
+    <tr><td class="mono">2026-08-18</td><td class="mono">3 d of silence</td><td class="mono">0, 1, 2, 5, 6, 7, 9, 10, 11, 12, 13, 14, 16</td></tr>
+    <tr><td class="mono">2026-08-24</td><td class="mono">6 d of silence</td><td class="mono">0, 1, 6, 7, 10, 11, 16</td></tr>
+    <tr><td class="mono">2026-08-25</td><td class="mono">1 d of silence</td><td class="mono">1, 6, 10</td></tr>
+    <tr><td class="mono">2026-08-26</td><td class="mono">1 d of silence</td><td class="mono">0, 1, 2, 6, 7, 9, 10, 11, 12, 14, 16</td></tr>
+    <tr><td class="mono">2026-09-03</td><td class="mono">8 d of silence</td><td class="mono">0, 1, 6, 10</td></tr>
+    <tr><td class="mono">2026-09-04</td><td class="mono">1 d of silence</td><td class="mono">0, 1, 6, 10</td></tr>
+    <tr><td class="mono">2026-09-16</td><td class="mono">12 d of silence</td><td class="mono">0, 1, 6, 10</td></tr>
+    <tr><td class="mono">2026-10-26</td><td class="mono">40 d of silence</td><td class="mono">10</td></tr>
+    <tr><td class="mono">2026-11-05</td><td class="mono">10 d of silence</td><td class="mono">0, 1, 6, 7, 10</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note warn">The first gap is <strong>2,334 days</strong>.
+   Nothing in this file was worth a stamp between 2018-09-06 and 2025-01-26
+   &mdash; or, more honestly, the slot that carries the 2018 stamp is a scope
+   the client simply never rewrote again. Both readings are stated because the
+   tape supports both: the stamp is measured, the reason is inference.</p>
+ </section>
+
+
+ <section id="strata">
+  <h2>What each slot remembers</h2>
+  <p>Seventeen slot ids appear across the two rotations (of the 0&ndash;19 space).
+   Their last write is
+   the interesting part: a slot stamped 2018 or 2025 is a scope the client
+   never needed to touch again.</p>
+  <div class="scroll">
+   <table>
+    <caption>Slot type &rarr; last save stamp, record count, and what the payload shape shows</caption>
+    <thead><tr><th>Type</th><th>Last write (UTC)</th><th>Records</th>
+     <th>Payload opens with</th><th>Reading</th></tr></thead>
+    <tbody>
+    <tr><td class="mono">0</td><td class="mono">2026-11-05 10:41</td><td class="mono">93</td><td><code>SET housingDecorGridSnapEnabled "1"</code></td><td>account-wide CVars &mdash; every <code>SET</code> line it owns</td></tr>
+    <tr><td class="mono">1</td><td class="mono">2026-11-05 10:41</td><td class="mono">79</td><td><code>SET trackedAchievements "v21#*4$#*29#*.2#*4%#*</code></td><td>account-wide CVars &mdash; every <code>SET</code> line it owns</td></tr>
+    <tr><td class="mono">2</td><td class="mono">2026-08-26 08:01</td><td class="mono">50</td><td><code>bind CTRL-SHIFT-C WOWHEAD_QUICK_LINK_RAIDERIO_</code></td><td>the bind map &mdash; <code>bind</code> lines, the same set the keybind caches hold</td></tr>
+    <tr><td class="mono">3</td><td class="mono">2018-09-06 04:58</td><td class="mono">1</td><td><code>(empty in this rotation)</code></td><td>empty slot, frozen since 2018 &mdash; never rewritten</td></tr>
+    <tr><td class="mono">4</td><td class="mono">2026-03-15 22:30</td><td class="mono">98</td><td><code>VER 3 0000000000000115 "~~clk qst dlg" "INV_MI</code></td><td>a <code>VER 3</code> record set &mdash; named entries with icon IDs</td></tr>
+    <tr><td class="mono">5</td><td class="mono">2026-08-18 08:42</td><td class="mono">1</td><td><code>VER 3 0100000000000001 "Z" "134400"</code></td><td>a <code>VER 3</code> record set &mdash; named entries with icon IDs</td></tr>
+    <tr><td class="mono">6</td><td class="mono">2026-11-05 10:41</td><td class="mono">1</td><td><code>Version: 1</code></td><td>a versioned settings payload</td></tr>
+    <tr><td class="mono">7</td><td class="mono">2026-11-05 10:41</td><td class="mono">1</td><td><code>3</code></td><td>a single integer slot</td></tr>
+    <tr><td class="mono">8</td><td class="mono">2025-10-08 18:15</td><td class="mono">1</td><td><code>3</code></td><td>a single integer slot</td></tr>
+    <tr><td class="mono">9</td><td class="mono">2026-08-26 15:15</td><td class="mono">1</td><td><code>3</code></td><td>a single integer slot</td></tr>
+    <tr><td class="mono">10</td><td class="mono">2026-11-05 10:41</td><td class="mono">1</td><td><code>2 #####0uM#&&lt;/#%=##%AK#%?m#)DH#)D*#%?V#%?/#</code></td><td>unlabelled slot &mdash; shape recorded, meaning not claimed</td></tr>
+    <tr><td class="mono">11</td><td class="mono">2026-08-26 15:15</td><td class="mono">1</td><td><code>2</code></td><td>a single integer slot</td></tr>
+    <tr><td class="mono">12</td><td class="mono">2026-08-26 15:15</td><td class="mono">1</td><td><code>1</code></td><td>a single integer slot</td></tr>
+    <tr><td class="mono">13</td><td class="mono">2026-08-18 06:29</td><td class="mono">1</td><td><code>2 36 1 50 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 </code></td><td>Edit Mode layouts &mdash; the named layout block, its frame anchors and offsets</td></tr>
+    <tr><td class="mono">14</td><td class="mono">2026-08-26 15:15</td><td class="mono">1</td><td><code>2 -1 -1 -1 -1 -1</code></td><td>a small ordered numeric payload</td></tr>
+    <tr><td class="mono">15</td><td class="mono">2025-01-26 23:28</td><td class="mono">1</td><td><code>(empty in this rotation)</code></td><td>save stamp only &mdash; no payload in this rotation</td></tr>
+    <tr><td class="mono">16</td><td class="mono">2026-08-26 15:46</td><td class="mono">1</td><td><code>Version: 2</code></td><td>a versioned settings payload</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note">Slot meanings are read from payload shape, not from
+   documentation: a block that opens with <code>SET</code> lines is CVars, one
+   that opens with <code>bind</code> lines is the bind map, and only type 13
+   carries a named, anchored frame layout. Where the shape did not justify a
+   claim, the table says so instead of guessing.</p>
+ </section>
+
+ <section id="hand">
+  <h2>The hand that holds the vessel</h2>
+  <p>Binds are the one legacy that never had a name attached. The retail map
+   carries <strong>51</strong> keys, the Forever map <strong>54</strong>.
+   They persist across realms, renames and race changes, because the game
+   stores them per account, not per character &mdash; and the two clients that
+   hold this account differ in exactly four places.</p>
+  <div class="scroll">
+   <table>
+    <caption>Retail cache &mdash; what changed between 2026-08-17 and 2026-08-26</caption>
+    <thead><tr><th>Key</th><th>2026-08-17</th><th>2026-08-26</th></tr></thead>
+    <tbody>
+    <tr><td><code>CTRL-SHIFT-C</code></td><td><code>&mdash;</code></td><td><code>WOWHEAD_QUICK_LINK_RAIDERIO_NAME</code></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="scroll">
+   <table>
+    <caption>Forever cache &mdash; what changed between 2026-11-17 and 2026-11-22</caption>
+    <thead><tr><th>Key</th><th>2026-11-17</th><th>2026-11-22</th></tr></thead>
+    <tbody>
+    <tr><td><code>CTRL-SHIFT--</code></td><td><code>&mdash;</code></td><td><code>NONE</code></td></tr>
+    <tr><td><code>CTRL-SHIFT-=</code></td><td><code>&mdash;</code></td><td><code>MULTIACTIONBAR4BUTTON12</code></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="scroll">
+   <table>
+    <caption>Retail vs Forever, current caches &mdash; the whole divergence</caption>
+    <thead><tr><th>Key</th><th>Retail</th><th>Forever</th></tr></thead>
+    <tbody>
+    <tr><td><code>CTRL-SHIFT--</code></td><td><code>&mdash;</code></td><td><code>NONE</code></td></tr>
+    <tr><td><code>CTRL-SHIFT-=</code></td><td><code>&mdash;</code></td><td><code>MULTIACTIONBAR4BUTTON12</code></td></tr>
+    <tr><td><code>SHIFT-SPACE</code></td><td><code>CLICK LM_B1:LeftButton</code></td><td><code>TOGGLEAUTORUN</code></td></tr>
+    <tr><td><code>SHIFT-Y</code></td><td><code>&mdash;</code></td><td><code>ACHFOREVER_TOGGLE</code></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="scroll">
+   <table>
+    <caption>Binds worth reading, both clients</caption>
+    <thead><tr><th>Key</th><th>Retail</th><th>Forever</th><th>Why it matters</th></tr></thead>
+    <tbody>
+    <tr><td><code>[</code></td><td><code>PAWN_COMPARE_LEFT</code></td><td><code>PAWN_COMPARE_LEFT</code></td><td>Pawn stat-weight compare &mdash; the addon is gone, the bind is not</td></tr>
+    <tr><td><code>]</code></td><td><code>PAWN_COMPARE_RIGHT</code></td><td><code>PAWN_COMPARE_RIGHT</code></td><td>the other half of the Pawn pair</td></tr>
+    <tr><td><code>CTRL-C</code></td><td><code>WOWHEAD_QUICK_LINK_NAME</code></td><td><code>WOWHEAD_QUICK_LINK_NAME</code></td><td>his own addon, bound in both clients</td></tr>
+    <tr><td><code>CTRL-SHIFT-C</code></td><td><code>WOWHEAD_QUICK_LINK_RAIDERIO_NAME</code></td><td><code>WOWHEAD_QUICK_LINK_RAIDERIO_NAME</code></td><td>the Raider.IO variant &mdash; newer than the 2026-08-17 cache</td></tr>
+    <tr><td><code>SHIFT-Y</code></td><td><code>&mdash;</code></td><td><code>ACHFOREVER_TOGGLE</code></td><td>Forever only: the achievements addon</td></tr>
+    <tr><td><code>ALT-1</code></td><td><code>SHAPESHIFTBUTTON1</code></td><td><code>SHAPESHIFTBUTTON1</code></td><td>druid form slot &mdash; an alt's muscle memory, kept account-wide</td></tr>
+    <tr><td><code>BUTTON5</code></td><td><code>TOGGLEPINGLISTENER</code></td><td><code>TOGGLEPINGLISTENER</code></td><td>mouse thumb button, ping system</td></tr>
+    <tr><td><code>ALT-CTRL-SHIFT-Z</code></td><td><code>TOGGLEUI</code></td><td><code>TOGGLEUI</code></td><td>the screenshot chord</td></tr>
+    <tr><td><code>CTRL-SHIFT-=</code></td><td><code>&mdash;</code></td><td><code>MULTIACTIONBAR4BUTTON12</code></td><td>Forever only: bar 4, slot 12</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note ok">The Pawn pair is the sharpest line on this page. Pawn is
+   not installed on either client any more &mdash; it is absent from all
+   40 retail and 190 Forever addon folders &mdash; but
+   <code>[</code> and <code>]</code> are still bound to its compare functions
+   on both. The addon left; the muscle did not.</p>
+ </section>
+
+ <section id="defaults">
+  <h2>The settings fingerprint</h2>
+  <p>A handful of the settings in the tape read like a playstyle rather than a
+   preference. Values below are the final <code>SET</code> in the current
+   rotation.</p>
+  <div class="scroll">
+   <table>
+    <caption>Named account settings, final values, and what they suggest</caption>
+    <thead><tr><th>Setting</th><th>Value</th><th>Reading</th></tr></thead>
+    <tbody>
+    <tr><td><code>cameraDistanceMaxZoomFactor</code></td><td class="mono">2.6</td><td>pulled the camera past the default clamp</td></tr>
+    <tr><td><code>cameraPitchSmoothSpeed</code></td><td class="mono">45</td><td>pitch smoothing, tuned off default</td></tr>
+    <tr><td><code>cameraZoomSpeed</code></td><td class="mono">50</td><td>zoom speed, tuned off default</td></tr>
+    <tr><td><code>nameplateMaxDistance</code></td><td class="mono">60</td><td>sixty yards of nameplates &mdash; hunter eyes</td></tr>
+    <tr><td><code>nameplateSelectedScale</code></td><td class="mono">1.2</td><td>the selected plate drawn 20% larger</td></tr>
+    <tr><td><code>autoLootDefault</code></td><td class="mono">1</td><td>loot without a click</td></tr>
+    <tr><td><code>colorChatNamesByClass</code></td><td class="mono">1</td><td>chat names by class colour</td></tr>
+    <tr><td><code>guildShowOffline</code></td><td class="mono">0</td><td>offline guildmates hidden</td></tr>
+    <tr><td><code>timeMgrAlarmMessage</code></td><td class="mono">STV</td><td>the stopwatch is labelled <code>STV</code></td></tr>
+    <tr><td><code>talentPointsSpent</code></td><td class="mono">1</td><td>one talent point spent in this state</td></tr>
+    <tr><td><code>lastRenownForDelvesSeason</code></td><td class="mono">3</td><td>delves season track remembered at 3</td></tr>
+    <tr><td><code>autoInteract</code></td><td class="mono">1</td><td>interact without a keypress</td></tr>
+    <tr><td><code>findYourselfMode</code></td><td class="mono">1</td><td>camera finds the character on demand</td></tr>
+    <tr><td><code>xpBarText</code></td><td class="mono">1</td><td>experience shown as text on the bar</td></tr>
+    <tr><td><code>mountJournalTypeFilter</code></td><td class="mono">31</td><td>mount journal filtered to one type</td></tr>
+    <tr><td><code>wholeChatWindowClickable</code></td><td class="mono">0</td><td>only the chat input line is clickable</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note">Readings are inference and marked as such; the values are
+   measured. No setting here is claimed to be a non-default unless the tape
+   itself says so.</p>
+ </section>
+
+ <section id="names">
+  <h2>The only name in the file</h2>
+  <p>The account tape is almost perfectly impersonal: no character names, no
+   realm names, no guild names. Two strings break that silence.</p>
+  <div class="grid g2">
+   <div class="card">
+    <p class="stat">41<small>copies of one macro body, both rotations</small></p>
+    <p>The macro record slot contains a macro whose body is
+     <code>/btwl a Tandu</code> followed by
+     <code>/run SetTracking(10, true)</code>. The account file does not know
+     the character's name &mdash; it knows a <em>command that targets</em> it.</p>
+   </div>
+   <div class="card">
+    <p class="stat">22<small>occurrences of the name <code>Gewey!!</code></small></p>
+    <p>The Edit Mode slot's first named layout block opens
+     <code>7 Gewey!! 52</code> and anchors frames such as
+     <code>MainActionBar</code> and <code>MainStatusTrackingBarContainer</code>.
+     It is the same layout name the Forever client logs in
+     <a class="ext" href="Chassis.html">Chassis</a> &mdash; one naming habit,
+     two clients.</p>
+   </div>
+  </div>
+  <p class="note">A name-family sweep also finds <strong>41</strong>
+   case-insensitive hits for <code>tandu</code> across both rotations; every
+   one resolves to the macro body above, not to a roster or a saved character
+   key. That is why the page cites the macro, not the name.</p>
+ </section>
+
+
+ <section id="limits">
+  <h2>Provenance &amp; limits</h2>
+  <div class="scroll">
+   <table>
+    <caption>Every class of figure on this page and how it was obtained</caption>
+    <thead><tr><th>Figure</th><th>Source</th><th>Kind</th></tr></thead>
+    <tbody>
+     <tr><td>Line and byte counts</td>
+      <td><code>_retail_\Logs\AccountData.log</code>, <code>.old</code></td>
+      <td><span class="tag t-f">measured</span></td></tr>
+     <tr><td>Save stamps and dates</td>
+      <td><code>Data Type N: Server Save Time S, Local Save Time S</code> lines</td>
+      <td><span class="tag t-f">measured</span></td></tr>
+     <tr><td>Slot shape readings</td>
+      <td>last payload-bearing block of each slot</td>
+      <td><span class="tag t-f">measured</span> / shape only</td></tr>
+     <tr><td>Bind counts and diffs</td>
+      <td>four <code>bindings-cache.*</code> files, both clients</td>
+      <td><span class="tag t-f">measured</span></td></tr>
+     <tr><td>Setting values</td>
+      <td>last <code>SET</code> record in the current rotation</td>
+      <td><span class="tag t-f">measured</span></td></tr>
+     <tr><td>Playstyle readings</td>
+      <td>this page's interpretation of those values</td>
+      <td><span class="tag t-g">inferred</span></td></tr>
+     <tr><td>2018 stamp meaning</td>
+      <td>slot 3 carries it and is never rewritten</td>
+      <td><span class="tag t-g">inferred</span></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <h3>What this tape cannot tell you</h3>
+  <p>It has no character names, no realm names and no guild names. It does not
+   record playtime, kills or quests. It only proves that a scope was written on
+   a date &mdash; and it proves that on both clients' terms, not mine. The
+   2018-09-06 stamp is the oldest dated thing in the retail tree, but the
+   retail tree itself was reinstalled in 2026; the stamp survived the
+   reinstall inside the account data, which is the whole point.</p>
+  <p class="note warn">Tenure rule: nothing on this page attaches a guild to a
+   year. The guild matrix lives in <a class="ext" href="Tenure.html">Tenure</a>
+   and <a class="ext" href="legacy.html">Legacy</a>, scoped to the eras the
+   account can actually prove.</p>
+ </section>
+
+ <footer>
+  <p><strong>Vessel.html</strong> &mdash; wing 39, built 2026-11-25 07:48 by Tandumonium.
+   Rebuild: <code>python "Z:\World of Warcraft\_forever_\Dark_Portal\Research\_local\_vessel_build.py"</code>
+   &middot; shell: <a class="ext" href="index.html" target="_top">index.html</a>
+   &middot; <a class="ext" href="reliquary.html">Reliquary</a>
+   &middot; <a class="ext" href="reliquary.html#sessions">sessions</a>
+   &middot; <a class="ext" href="eras.html">Eras</a>
+   &middot; <a class="ext" href="Chassis.html">Chassis</a>
+   &middot; <a class="ext" href="Echoes.html">Echoes</a>
+   &middot; <a class="ext" href="handles.html">Handles</a></p>
+ </footer>
+</div>
+</body>
+</html>

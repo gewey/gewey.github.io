@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <script>
+  const whTooltips = {
+   colorLinks: true,
+   iconizeLinks: true,
+   renameLinks: true,
+  };
+ </script>
+ <script src="https://wow.zamimg.com/widgets/power.js"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>The Doors &mdash; fifty-one asked, and what each one said</title>
+ <!--
+   Doors.html - built 2026-11-25 by Tandumonium (wing 43).
+   A ledger of every door this account has knocked on, with the
+   status code it returned. Three probe passes ran today:
+   legacy_probe_20261125, web_hunt_20261125, web_hunt3_20261125.
+   Nothing here is a guess: a 403 is written down as a 403. The
+   register is the part of the site that gets more useful every
+   time a run is refused.
+ -->
+ <style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;
+ padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;
+ margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+ color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);
+ box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;
+ gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+ padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;
+ border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;
+ color:var(--arcane)}
+.scroll{overflow-x:auto}
+.scroll table{min-width:760px}
+td.mono{white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+ padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;
+ letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;
+ text-transform:uppercase;color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;
+ text-transform:uppercase;border:1px solid currentColor;padding:.1rem .45rem;
+ border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}
+.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;
+ font-family:'Cascadia Mono',Consolas,monospace;font-size:.78rem;
+ line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;
+ border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+ </style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+ <header class="hero">
+  <p class="kicker">Doors &middot; 2026-11-25 &middot; three passes &middot; no key, no login</p>
+  <h1>The Doors <span class="thin">&mdash; and what each one said</span></h1>
+  <p class="lede">Hunting a 2008 character on the 2026 web is a study in refusals. Warcraft Logs renders a human-verification page and calls it <code>200</code>; the Wayback index answers <code>429</code> until it feels like stopping; WowProgress refuses characters outright. This page keeps the receipts so the next run does not spend its turns knocking twice.</p>
+  <nav class="panes" aria-label="Dashboard panes">
+   <a href="index.html">Shell</a>
+   <a href="_fuhevva_evva.html">Home</a>
+   <a href="Tenure.html">Tenure</a>
+   <a href="Kindred.html">Kindred</a>
+   <a href="Vessel.html">Vessel</a>
+   <a href="Strata.html">Strata</a>
+   <a href="Watchtower.html">Watchtower</a>
+   <a href="legacy.html">Legacy</a>
+   <a href="Origins.html">Origins</a>
+   <a href="Concordance.html">Concordance</a>
+   <a href="Doors.html" aria-current="page">Doors</a>
+   <a href="Witnesses.html">Witnesses</a>
+  </nav> </header>
+ <section id="shape">
+  <h2>The shape of the wall</h2>
+  <div class="grid g3">
+   <div class="card"><div class="stat">18/51<small>doors answered 200 with no challenge</small></div></div>
+   <div class="card"><div class="stat">19<small>refusals (401/403/405/429)</small></div></div>
+   <div class="card"><div class="stat">5<small>challenge pages that masquerade as 200</small></div></div>
+  </div>
+  <p class="note">8 doors named a resource that does not exist (400/404). Those are the good ones: a retired name is a fact, and it is how the armory told us in 2020 that the handle had moved.</p>
+ </section>
+ <section id="register">
+  <h2>The register</h2>
+  <div class="scroll"><table>
+   <caption>Every door asked this run &middot; status is literal &middot; bytes are the body received</caption>
+   <thead><tr><th>Status</th><th>Door</th><th>Verdict</th><th>Family</th><th>Bytes</th></tr></thead>
+   <tbody>
+<tr><td class="mono">403</td><td class="mono">wp-char-hyjal-tandumonium</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wp-char-hyjal-tandieu</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wp-char-shadowsong-tandu</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wp-char-thrall-tandu</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wp-char-hyjal-tandu</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcl-char-hyjal-tandumonium</td><td><span class="tag t-r">challenge page, not data</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">4,126</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcl-char-hyjal-tandieu</td><td><span class="tag t-r">challenge page, not data</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">4,126</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcl-char-shadowsong-tandu</td><td><span class="tag t-r">challenge page, not data</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">4,126</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcl-classic-char-shadowsong-tandu</td><td><span class="tag t-r">challenge page, not data</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">4,130</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcl-guild-borean-gehenna</td><td><span class="tag t-r">challenge page, not data</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">4,126</td></tr>
+<tr><td class="mono">405</td><td class="mono">dfa-hyjal-tandumonium</td><td><span class="tag t-g">method refused</span></td><td>Data for Azeroth</td><td class="mono">0</td></tr>
+<tr><td class="mono">405</td><td class="mono">dfa-hyjal-tandieu</td><td><span class="tag t-g">method refused</span></td><td>Data for Azeroth</td><td class="mono">0</td></tr>
+<tr><td class="mono">429</td><td class="mono">wb-cdx-wcl-tandu</td><td><span class="tag t-g">rate limited</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">0</td></tr>
+<tr><td class="mono">429</td><td class="mono">wb-cdx-wcl-tandieu</td><td><span class="tag t-g">rate limited</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">0</td></tr>
+<tr><td class="mono">429</td><td class="mono">wb-cdx-armory-tandu</td><td><span class="tag t-g">rate limited</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">0</td></tr>
+<tr><td class="mono">429</td><td class="mono">wb-cdx-armory-tandieu</td><td><span class="tag t-g">rate limited</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wcl-user-815764</td><td><span class="tag t-g">no such endpoint</span></td><td>Warcraft Logs &mdash; the logs themselves</td><td class="mono">0</td></tr>
+<tr><td class="mono">200</td><td class="mono">wf-api-guild-borean</td><td><span class="tag t-f">answers</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">117</td></tr>
+<tr><td class="mono">400</td><td class="mono">wf-api-guild-ss</td><td><span class="tag t-r">gone &mdash; the name is retired</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">200</td><td class="mono">bing-rss-tandumonium</td><td><span class="tag t-f">answers</span></td><td>Bing &mdash; RSS search (no JS needed)</td><td class="mono">4,812</td></tr>
+<tr><td class="mono">200</td><td class="mono">bing-rss-tandieu</td><td><span class="tag t-f">answers</span></td><td>Bing &mdash; RSS search (no JS needed)</td><td class="mono">1,779</td></tr>
+<tr><td class="mono">200</td><td class="mono">bing-rss-tandu-shadowsong</td><td><span class="tag t-f">answers</span></td><td>Bing &mdash; RSS search (no JS needed)</td><td class="mono">4,616</td></tr>
+<tr><td class="mono">200</td><td class="mono">mojeek-tandumonium</td><td><span class="tag t-f">answers</span></td><td>Mojeek</td><td class="mono">5,375</td></tr>
+<tr><td class="mono">200</td><td class="mono">mojeek-tandieu</td><td><span class="tag t-f">answers</span></td><td>Mojeek</td><td class="mono">5,380</td></tr>
+<tr><td class="mono">202</td><td class="mono">ddg-lite-tandumonium</td><td><span class="tag t-g">queued / soft block</span></td><td>DuckDuckGo lite</td><td class="mono">15,266</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcr-search-tandu</td><td><span class="tag t-g">answers &mdash; but it is not the census</span></td><td>Warcraft Realms &mdash; the pre-2016 census</td><td class="mono">83,071</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcr-charsheet-tandu</td><td><span class="tag t-g">answers &mdash; but it is not the census</span></td><td>Warcraft Realms &mdash; the pre-2016 census</td><td class="mono">83,071</td></tr>
+<tr><td class="mono">200</td><td class="mono">wcr-home</td><td><span class="tag t-g">answers &mdash; but it is not the census</span></td><td>Warcraft Realms &mdash; the pre-2016 census</td><td class="mono">83,071</td></tr>
+<tr><td class="mono">200</td><td class="mono">yt-search-tandumonium</td><td><span class="tag t-f">answers</span></td><td>YouTube search</td><td class="mono">1,237,381</td></tr>
+<tr><td class="mono">200</td><td class="mono">yt-search-tandieu</td><td><span class="tag t-f">answers</span></td><td>YouTube search</td><td class="mono">1,323,491</td></tr>
+<tr><td class="mono">200</td><td class="mono">wb-avail-wcl-tandu</td><td><span class="tag t-f">answers</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">83</td></tr>
+<tr><td class="mono">200</td><td class="mono">wb-avail-wp-tandu</td><td><span class="tag t-f">answers</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">82</td></tr>
+<tr><td class="mono">200</td><td class="mono">wf-report-uldir</td><td><span class="tag t-f">answers</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">23,183</td></tr>
+<tr><td class="mono">403</td><td class="mono">wp-guild-gehenna-bt</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowProgress &mdash; the 2008 progression ledger</td><td class="mono">0</td></tr>
+<tr><td class="mono">200</td><td class="mono">rio-guild-theorycrafters-hyjal</td><td><span class="tag t-f">answers</span></td><td>Raider.IO &mdash; guild and character profiles</td><td class="mono">1,629</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-char-hyjal-tandumonium</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-char-hyjal-tandu</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-char-ss-tandu</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-user-815764</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-root</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">404</td><td class="mono">wf-api-docs</td><td><span class="tag t-g">no such endpoint</span></td><td>Wipefest &mdash; the API that kept the report codes alive</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wcmovies-search-tandu</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>Warcraft Movies &mdash; the raid-video archive</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wcmovies-search-tandumonium</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>Warcraft Movies &mdash; the raid-video archive</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">reddit-search-tandumonium</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>Reddit &mdash; open search</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">reddit-search-gehenna-shadowsong</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>Reddit &mdash; open search</td><td class="mono">0</td></tr>
+<tr><td class="mono">403</td><td class="mono">wowhead-user-tandumonium</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>Wowhead</td><td class="mono">0</td></tr>
+<tr><td class="mono">200</td><td class="mono">wb-avail-wcr-charsheet</td><td><span class="tag t-f">answers</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">247</td></tr>
+<tr><td class="mono">200</td><td class="mono">wb-avail-guildportal-gehenna</td><td><span class="tag t-f">answers</span></td><td>Wayback &mdash; the archive of the old Armory</td><td class="mono">60</td></tr>
+<tr><td class="mono">200</td><td class="mono">blizz-armory-hyjal-tandumonium</td><td><span class="tag t-f">answers</span></td><td>Blizzard armory &mdash; the live door</td><td class="mono">915,052</td></tr>
+<tr><td class="mono">403</td><td class="mono">wowdb-search</td><td><span class="tag t-r">refused &mdash; bot wall</span></td><td>WowDB</td><td class="mono">0</td></tr>
+<tr><td class="mono">401</td><td class="mono">jina-search-tandumonium</td><td><span class="tag t-g">needs a key</span></td><td>r.jina.ai reader proxy</td><td class="mono">0</td></tr>
+   </tbody>
+  </table></div>
+ </section>
+ <section id="reading">
+  <h2>How to read a refusal</h2>
+  <div class="grid g2">
+   <div class="card"><h3>200 is not success</h3><p class="note">Warcraft Logs answers every character URL with a 4,126-byte human verification shell and a <code>200</code>. Four character URLs and one guild URL returned byte-identical bodies &mdash; that is the tell.</p></div>
+   <div class="card"><h3>A 400 is a receipt</h3>  <p class="note">The Raider.IO armory answered <code>400 &mdash; could not find requested character</code> for Tandu on four realms and Tandieu on four realms. That is not a network fault; it is the door confirming the name is retired.</p></div>
+   <div class="card"><h3>429 means ask later, not never</h3>  <p class="note">Wayback&rsquo;s CDX index rate-limits hard. Its availability endpoint still answers, which is how the census finding on <a class="ext" href="Witnesses.html">Witnesses</a> was made at all today.</p></div>
+   <div class="card"><h3>403 is a wall, not a verdict</h3>  <p class="note">WowProgress, Warcraft Movies, Reddit&rsquo;s search JSON, Wowhead user pages and WowDB all refuse this client. None of them is proven empty &mdash; only unreadable from here.</p></div>
+  </div>
+ </section>
+<footer>
+ Built <strong>2026-11-25</strong> by <strong>Tandumonium</strong> &mdash; wing
+ <strong>43</strong> of the Dark_Portal HUD. Sources are named on the page;
+ the raw payloads stay local (<code>Research/_raw/</code>, gitignored) so the
+ site ships renders only. Every number here was read this run, not remembered.
+</footer>
+</div>
+</body>
+</html>

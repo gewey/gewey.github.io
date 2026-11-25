@@ -1,4 +1,38 @@
 # Must Contain a List of every file you edit
+## 2026-11-25 (witness-build pass) — ignore rules, agent surfaces, two stale links
+
+Build detail for the two wings the entry below records. The pages are rendered by
+`Research/_local/_witnesses_build.py` from six gitignored payloads, so nothing
+needs a data file beside them at runtime.
+
+Files this pass, outside the two pages themselves:
+
+- `.gitignore` — one documented block naming every local artefact this pass made
+  (`Research/_raw/legacy_probe_*`, `web_hunt*`, `witnesses_*`, `collisions_*`,
+  `retail_inventory_*` and the `_*_20261125.py` probes/builders), with
+  belt-and-braces patterns for anyone who moves one out of `Research/_local/`.
+  `git check-ignore` confirms both payloads resolve to lines 42 and 51; neither
+  HTML page is ignored, and both are intended for the live site.
+- `_gewey_gui/index.html` — `iWitnesses` (`verified_user`) and `iDoors`
+  (`sensor_door`) buttons after `iStrata`.
+- `_gewey_gui/_css/holy_word.css` — the two matching `::after` label rules.
+- `_gewey_gui/_fuhevva_evva.html` — the two directory cards.
+- `_gewey_gui/CHANGELOG.md` — this entry.
+- `Timeline/wing_links.py` — Wings 42/43 in `WINGS` (already recorded below).
+
+Agent surfaces (outside this repo, listed for the record): the zero-prose router
+gained §6.21/§6.22 plus 15 reference definitions, and its two footnote definitions
+were repointed at the real heading slug — `[^R]`/`[^F]` had been carrying a
+`#character-record-section` placeholder that resolved to nothing, and now say
+`#9-character-record--names-servers-guilds-2008present`. The stale
+`Dark_Portal_MONOLITH_20261105_154300.md` reference was repointed at the only
+monolith on disk, `…20261120_154913.md`. The expanded file gained the narrative
+section *The Witnesses* and a `### The Witness Arc` clause under Character Lore;
+both Core files gained the same dense block, so the three stay functionally
+matching. Verified: 0 missing definitions, 0 duplicates, 0 broken `file://`
+targets, 0 broken nav chips across 66 pages, footnotes last with a blank line
+between them.
+
 ## 2026-11-25 (docs pass) — the index catches up to Wings 42–43 and the Saga tape
 
 Wings 42 and 43 (`Witnesses.html`, `Doors.html`) and the Saga tape shipped after the last

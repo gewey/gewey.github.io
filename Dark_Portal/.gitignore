@@ -484,6 +484,14 @@ Research/_raw/muster_*.*
 
 
 # ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, wide-scale legacy pass).
+#
+# PUBLIC this pass - one new wing and every edge that reaches it:
+#   _gewey_gui/wide_legacy.html   both installs, every handle, every race; self-contained
+#   _gewey_gui/index.html         button "iWideLegacy" (history_toggle_off icon)
+# Every figure on the pane is baked in at build time, so no data file has to
+# ship beside it.
+# ---------------------------------------------------------------------------
 # Added 2026-11-20 (Tandumonium, "two-install bridge" pass).
 #
 # PUBLIC this pass - one new wing and every edge that reaches it:
@@ -512,3 +520,152 @@ Research/_raw/concordance_doors*.*
 **/_concordance_doors2.py
 
 
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, "kindred" live-armory pass).
+#
+# PUBLIC this pass - one new wing and every edge that reaches it:
+#   _gewey_gui/Kindred.html       the Tan* family swept off the armory
+#   _gewey_gui/index.html         button "iKindred" (diversity_3 icon)
+#   _gewey_gui/_css/holy_word.css label rule for iKindred
+#   _gewey_gui/_fuhevva_evva.html directory card
+#   _gewey_gui/macrocosm.html     Kindred chip + a plain-anchor list for the
+#                                 four macro caches (they were iframe-only, so
+#                                 nothing could crawl or deep-link them)
+#   _gewey_gui/Company.html       WOWHEAD block added (it was the one wing with
+#                                 no whTooltips / power.js)
+#   _gewey_gui/Passersby.html     WOWHEAD block added (same gap, other wing)
+#   _gewey_gui/wide_legacy.html   WOWHEAD block added (same gap, shell stub)
+#   _gewey_gui/<40 pages>.html    one Kindred nav chip each (wing_links.py)
+#   Timeline/wing_links.py        Wing 37 registered so --check keeps it
+# Every figure on Kindred.html (13 doors, 9 live, 4 gone, 41 btwl saves) is
+# baked in at build time, so no data file has to ship beside the page.
+#
+# LOCAL this pass - builders, wires and the payload they read:
+#   Research/_local/_kindred_build.py      the table -> the page + the payload
+#   Research/_local/_wire_kindred_nav.py   button, css rule, card, chips
+#   Research/_local/_tooltip_gap_fix.py    the tooltip backfill above
+#   Research/_raw/kindred_armory_20261125.json   the sweep, for re-derivation
+# Research/_local/ and Research/_raw/ already cover those; the patterns below
+# are belt and braces for anyone who moves one out of those folders.
+# ---------------------------------------------------------------------------
+Research/_raw/kindred_*.*
+**/_kindred_build.py
+**/_wire_kindred_nav.py
+**/_tooltip_gap_fix.py
+**/_kindred_*.out
+**/_kindred_*.err
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, "vessel" persistence pass).
+#
+# PUBLIC this pass - one new wing and every edge that reaches it:
+#   _gewey_gui/Vessel.html       retail account-data strata, 2018 -> 2026
+#   _gewey_gui/index.html        button "iVessel" (inventory_2), plus the
+#                                missing "iMilestones" button (known gap)
+#   _gewey_gui/_css/holy_word.css  label rules for iVessel and iMilestones
+#   _gewey_gui/_fuhevva_evva.html  Vessel card + the four orphan cards
+#                                  (Races, Handles, Wide Legacy, Web Legacy)
+#   _gewey_gui/<43 pages>.html   one Vessel nav chip each (wing_links.py)
+#   Timeline/wing_links.py       Wing 39 registered so --check keeps it
+# Every figure on Vessel.html (61 stamps, 10,613 / 38,454 lines, 17 slots,
+# 51 / 54 binds, 4 cross-client diffs) is baked in at build time, so no data
+# file has to ship beside it.
+#
+# LOCAL this pass - the builder and the payload it reads:
+#   Research/_local/_vessel_build.py     both logs + four bind caches -> page
+#   Research/_raw/vessel_YYYYMMDD.json    the numbers, no page fetches it
+# Research/_local/ and Research/_raw/ already cover those; the patterns below
+# are belt and braces for anyone who moves one out of those folders.
+# ---------------------------------------------------------------------------
+Research/_raw/vessel_*.*
+**/_vessel_build.py
+**/_vessel_*.out
+**/_vessel_*.err
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, "strata" retail-sediment pass).
+#
+# PUBLIC this pass - one new wing, two new macro caches, every edge to them:
+#   _gewey_gui/Strata.html                        54 shells, 9 CVar tapes
+#   _gewey_gui/Reticent-Shadowsong_macros-cache.html   22 paladin macros
+#   _gewey_gui/Tangents-Hyjal_macros-cache.html        30 hunter macros
+#   _gewey_gui/index.html                          button "iStrata" (layers)
+#   _gewey_gui/_css/holy_word.css                  label rule for iStrata
+#   _gewey_gui/_fuhevva_evva.html                  Strata directory card
+#   _gewey_gui/macrocosm.html                      two sources + two direct
+#                                                  links for the new caches
+#   _gewey_gui/<45 pages>.html                     one Strata nav chip each
+#   Timeline/wing_links.py                         Wing 41 registered
+# Every figure on Strata.html (54 shells, 12 live doors, 6 ghosts, 205 macro
+# blocks) is baked in at build time; no data file ships beside the page.
+#
+# LOCAL this pass - scanners, builder and the payloads they read:
+#   Research/_local/_strata_scan.py     shells + CVar tapes + addon ghosts
+#   Research/_local/_strata_doors.py    54 live armory doors
+#   Research/_local/_strata_build.py    the two payloads -> the page
+#   Research/_local/_macro_page_build.py  macros-cache.txt -> macro page
+#   Research/_raw/retail_strata_*.json  the numbers, no page fetches them
+# Research/_local/ and Research/_raw/ already cover those; the patterns below
+# are belt and braces for anyone who moves one out of those folders.
+# ---------------------------------------------------------------------------
+Research/_raw/retail_strata_*.*
+**/_strata_scan.py
+**/_strata_doors.py
+**/_strata_build.py
+**/_macro_page_build.py
+**/_strata_*.out
+**/_strata_*.err
+**/strata_doors.out
+**/strata_doors.err
+
+# ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, "witnesses / doors" pass - wings 42 and 43).
+#
+# PUBLIC this pass - two new wings and every edge that reaches them:
+#   _gewey_gui/Witnesses.html                     5 remembered characters,
+#                                                 7 guild keys, 1,036 realm
+#                                                 slugs, 64/51 collision names,
+#                                                 the closed census, 2 crashes
+#   _gewey_gui/Doors.html                         51 doors + literal status
+#   _gewey_gui/index.html                         buttons iWitnesses, iDoors
+#   _gewey_gui/_css/holy_word.css                 label rules for both
+#   _gewey_gui/_fuhevva_evva.html                 two directory cards
+#   _gewey_gui/<48 pages>.html                    one chip each (wing_links.py)
+#   Timeline/wing_links.py                        Wings 42, 43 registered
+# Every figure on both pages is baked in at build time, so no data file ships
+# beside them.
+#
+# LOCAL this pass - scanners, builders and the payloads they read:
+#   Research/_local/_legacy_probe_20261125.py   19 doors, pass 1
+#   Research/_local/_web_hunt_20261125.py       16 doors, pass 2
+#   Research/_local/_web_hunt3_20261125.py      16 doors, pass 3
+#   Research/_local/_witnesses_scan.py          RIO client DB -> payload
+#   Research/_local/_collision_scan.py          Tand* names across US DBs
+#   Research/_local/_retail_inventory.py        retail folder census
+#   Research/_local/_witnesses_build.py         payloads -> both wings
+#   Research/_local/_residue_probe.py           crash dumps, edit-mode tape
+#   Research/_raw/witnesses_20261125.json       the numbers, no page fetches
+#   Research/_raw/collisions_20261125.json
+#   Research/_raw/retail_inventory_20261125.json
+#   Research/_raw/legacy_probe_20261125.json
+#   Research/_raw/web_hunt_20261125.json
+#   Research/_raw/web_hunt3_20261125.json
+# Research/_local/ and Research/_raw/ already cover those; the patterns below
+# are belt and braces for anyone who moves one out of those folders.
+# ---------------------------------------------------------------------------
+Research/_raw/legacy_probe_*.*
+Research/_raw/web_hunt*.*
+Research/_raw/witnesses_*.*
+Research/_raw/collisions_*.*
+Research/_raw/retail_inventory_*.*
+**/_legacy_probe_*.py
+**/_web_hunt*.py
+**/_witnesses_scan.py
+**/_witnesses_build.py
+**/_collision_scan.py
+**/_retail_inventory.py
+**/_residue_probe.py
+**/_verify_wings.py
+**/_witnesses_*.out
+**/_witnesses_*.err

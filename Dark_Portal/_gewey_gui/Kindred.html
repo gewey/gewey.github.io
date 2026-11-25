@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <script>
+  const whTooltips = {
+   colorLinks: true,
+   iconizeLinks: true,
+   renameLinks: true,
+  };
+ </script>
+ <script src="https://wow.zamimg.com/widgets/power.js"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Kindred &mdash; the Tan* family, swept live | Gewey G.U.I.</title>
+ <!--
+   Kindred.html - built 2026-11-25 by Tandumonium (live armory sweep).
+
+   Every other wing reads ONE character. This one reads the whole name family
+   at once, because the armory answers per character and a rename quietly
+   orphans a door. Thirteen handles were probed on 2026-11-25: nine answered
+   with a race, a class, a level and an ilvl; four answered 500 with the same
+   generic landing shell.
+
+   Method: curl -L per character page (20 s cap); og:description and the
+   embedded character JSON as the parser. Nothing in _retail_ was written.
+   Builder: Research/_local/_kindred_build.py (local, gitignored).
+   Payload: Research/_raw/kindred_armory_20261125.json (local, gitignored).
+ -->
+ <style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;
+ --glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:
+  radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  radial-gradient(1200px 700px at 50% 110%,rgba(255,196,107,.10),transparent 68%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:.35rem 0 .5rem;
+ font-weight:800;letter-spacing:-.02em}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:74ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0;scroll-margin-top:1.2rem}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+h3{font-size:.95rem;margin:.2rem 0 .3rem}
+p{margin:.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+caption{caption-side:top;text-align:left;font-size:.72rem;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--mut);padding-bottom:.5rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(255,255,255,.07);
+ vertical-align:top}
+th{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+tbody tr:hover{background:rgba(255,196,107,.05)}
+code,.mono{font-family:'Cascadia Mono',Consolas,monospace;font-size:.84em;color:var(--arcane)}
+.scroll{overflow-x:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{font-size:1.85rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.stat small{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--mut);display:block;margin-top:.35rem}
+.note{font-size:.8rem;color:var(--mut);border-left:2px solid var(--line);
+ padding-left:.8rem;margin-top:.9rem}
+.warn{border-left-color:var(--crimson)}
+.ok{border-left-color:var(--fel)}
+.tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+ border:1px solid currentColor;padding:.1rem .45rem;border-radius:2px;line-height:1.6}
+.t-r{color:var(--crimson)}.t-f{color:var(--fel)}.t-g{color:var(--gold)}.t-x{color:var(--grey)}
+pre{background:rgba(0,0,0,.42);border:1px solid var(--line);border-radius:3px;
+ padding:.7rem .8rem;overflow-x:auto;font-family:'Cascadia Mono',Consolas,monospace;
+ font-size:.78rem;line-height:1.5;color:#d9d2ea;margin:.5rem 0}
+footer{margin-top:3.4rem;border-top:1px solid var(--line);padding-top:1rem;
+ font-size:.74rem;color:var(--mut)}
+a.ext{color:var(--arcane);text-decoration:none;border-bottom:1px dotted rgba(55,230,255,.4)}
+a.ext:hover{color:var(--gold);border-bottom-color:var(--gold)}
+</style>
+</head>
+<body class="gw-kindred">
+<div class="field"></div>
+<div class="wrap">
+
+<header class="hero">
+ <p class="kicker">Live armory sweep &middot; 2026-11-25T11:35Z &middot; 13 handles</p>
+ <h1>Kindred <span class="thin">the Tan* family, and which of them answer</span></h1>
+ <p class="lede">Thirteen handles carry the name. The armory answers per
+ character, so a rename, a delete or a transfer quietly turns a door into a
+ <code>500</code> and nobody notices. On <strong>2026-11-25</strong> all
+ thirteen were knocked on: <strong>9</strong> opened with a race, a
+ class, a level and an item level; <strong>4</strong> returned the same
+ generic landing shell. What the nine living ones say is not flattering and not
+ sad &mdash; it is just true: six races, six classes, one blood elf short.</p>
+ <nav class="panes" aria-label="Dashboard panes">
+  <a href="index.html">Shell</a>
+  <a href="_fuhevva_evva.html">Home</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Origins.html">Origins</a>
+  <a href="persona.html">Persona</a>
+  <a href="races.html">Races</a>
+  <a href="handles.html">Handles</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="tandu_legacy.html">Tandu Legacy</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="relics.html">Relics</a>
+  <a href="eras.html">Eras</a>
+  <a href="raidlogs.html">Raid Logs</a>
+  <a href="log_ledger.html">Log Ledger</a>
+  <a href="web_ledger.html">Web Ledger</a>
+  <a href="web_legacy.html">Web Legacy</a>
+  <a href="links.html">Link Vault</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="talents.html">Talents</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="Deeds.html">Deeds</a>
+  <a href="Echoes.html">Echoes</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Kindred.html" aria-current="page">Kindred</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Company.html">Company</a>
+  <a href="Bestiary.html">Bestiary</a>
+  <a href="Passersby.html">Passersby</a>
+  <a href="Vessel.html">Vessel</a>
+  <a href="Watchtower.html">Watchtower</a>
+  <a href="Strata.html">Strata</a>
+  <a href="Witnesses.html">Witnesses</a>
+  <a href="Doors.html">Doors</a></nav>
+</header>
+
+<section id="sweep">
+ <h2>The sweep in six figures</h2>
+ <div class="grid g3">
+  <div class="card"><p class="stat">13<small>handles knocked on</small></p></div>
+  <div class="card"><p class="stat">9<small>live characters</small></p></div>
+  <div class="card"><p class="stat">4<small>gone (500)</small></p></div>
+  <div class="card"><p class="stat">6<small>races still standing</small></p></div>
+  <div class="card"><p class="stat">0<small>blood elves measured</small></p></div>
+  <div class="card"><p class="stat">327<small>best ilvl (Tankadu)</small></p></div>
+ </div>
+ <p class="note warn">Every figure here is one <code>curl -L</code> away from
+ being re-derived. Byte counts are the sizes the server actually returned,
+ because a <code>200</code> carrying 17 KB is not a character &mdash; it is a
+ landing page. Status and size are recorded together on purpose.</p>
+</section>
+
+<section id="roll">
+ <h2>The nine that answered</h2>
+ <div class="scroll">
+  <table>
+   <caption>Live armory reads, 2026-11-25 &mdash; race, class, level, equipped ilvl</caption>
+   <thead><tr><th>Handle</th><th>Realm</th><th>HTTP</th><th>Bytes</th>
+    <th>Identity</th><th>Lvl</th><th>iLvl</th><th>Note</th></tr></thead>
+   <tbody>
+    <tr><td><code>Tandumonium</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">915,052</td><td>Dracthyr Hunter &middot; Beast Mastery</td><td class="mono">90</td><td class="mono">263</td><td>the main; the door every other wing cites</td></tr>
+    <tr><td><code>Tankadu</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">451,600</td><td>Zandalari Troll Paladin &middot; Protection</td><td class="mono">60</td><td class="mono">327</td><td>only character at cap; best-geared of the family</td></tr>
+    <tr><td><code>Tantrums</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">408,491</td><td>Zandalari Troll Shaman &middot; Enhancement</td><td class="mono">56</td><td class="mono">296</td><td>Raider.IO still shows its 2022 crawl: ilvl 107</td></tr>
+    <tr><td><code>Tandu</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">375,382</td><td>Undead Hunter &middot; Beast Mastery</td><td class="mono">18</td><td class="mono">20</td><td>the undeath stint, still standing, still a hunter</td></tr>
+    <tr><td><code>Tangents</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">439,797</td><td>Worgen Hunter &middot; Survival</td><td class="mono">23</td><td class="mono">20</td><td>the only Worgen the account ever carried</td></tr>
+    <tr><td><code>Tantalous</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">348,552</td><td>Void Elf Priest &middot; Discipline</td><td class="mono">24</td><td class="mono">58</td><td>the only Void Elf; healer in a family of hunters</td></tr>
+    <tr><td><code>Tandora</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">210,691</td><td>Haranir Warlock &middot; Demonology</td><td class="mono">10</td><td class="mono">6</td><td>the only Haranir; 783 quests in BtWQuests</td></tr>
+    <tr><td><code>Tandulari</code></td><td>Hyjal-US</td><td><span class="tag t-f">200</span></td><td class="mono">245,444</td><td>Zandalari Troll Druid</td><td class="mono">10</td><td class="mono">5</td><td>og:description prints the raw token character.class</td></tr>
+    <tr><td><code>Tandu</code></td><td>Shadowsong-US</td><td><span class="tag t-f">200</span></td><td class="mono">297,737</td><td>Zandalari Troll Hunter &middot; Marksmanship</td><td class="mono">10</td><td class="mono">8</td><td>live tag ❮Randomality❯ · 2026 only</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note ok">Two rows are the same name on two realms:
+ <code>Tandu</code> lives on Hyjal as an <strong>18 Undead Beast Mastery
+ Hunter</strong> and on Shadowsong as a <strong>10 Zandalari Troll Marksmanship
+ Hunter</strong> in <code>&lt;Randomality&gt;</code>. The name was never a
+ person; it was a shell the character walked into at level 1, every time.</p>
+</section>
+
+<section id="lineage">
+ <h2>What the sweep says about the lineage</h2>
+ <div class="grid g2">
+  <div class="card">
+   <h3>Races, measured</h3>
+   <div class="scroll">
+    <table>
+     <caption>Nine live characters, 2026-11-25</caption>
+     <thead><tr><th>Race</th><th>Count</th><th>Who</th></tr></thead>
+     <tbody>
+    <tr><td>Zandalari Troll</td><td class="mono">4</td><td>Tantrums, Tankadu, Tandu (Shadowsong), Tandulari</td></tr>
+    <tr><td>Dracthyr</td><td class="mono">1</td><td>Tandumonium</td></tr>
+    <tr><td>Undead</td><td class="mono">1</td><td>Tandu (Hyjal)</td></tr>
+    <tr><td>Haranir</td><td class="mono">1</td><td>Tandora</td></tr>
+    <tr><td>Worgen</td><td class="mono">1</td><td>Tangents</td></tr>
+    <tr><td>Void Elf</td><td class="mono">1</td><td>Tantalous</td></tr>
+    <tr><td><strong>Blood Elf</strong></td><td class="mono">0</td><td>never once shown by the armory</td></tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+  <div class="card">
+   <h3>Classes, measured</h3>
+   <div class="scroll">
+    <table>
+     <caption>Nine live characters, 2026-11-25</caption>
+     <thead><tr><th>Class</th><th>Count</th><th>Spec seen</th></tr></thead>
+     <tbody>
+    <tr><td>Hunter</td><td class="mono">4</td><td>Beast Mastery &times; 2, Marksmanship, Survival</td></tr>
+    <tr><td>Paladin</td><td class="mono">1</td><td>Protection</td></tr>
+    <tr><td>Shaman</td><td class="mono">1</td><td>Enhancement</td></tr>
+    <tr><td>Priest</td><td class="mono">1</td><td>Discipline</td></tr>
+    <tr><td>Warlock</td><td class="mono">1</td><td>Demonology</td></tr>
+    <tr><td>Druid</td><td class="mono">1</td><td>no spec readable at level 10</td></tr>
+    <tr><td>Warrior / Mage / Rogue</td><td class="mono">0</td><td>&mdash;</td></tr>
+    <tr><td>DK / Monk / DH / Evoker</td><td class="mono">0</td><td>&mdash;</td></tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
+
+ <h3>The hunter thread</h3>
+ <p>Four of the nine are hunters: <strong>90</strong> Beast Mastery,
+ <strong>23</strong> Survival, <strong>18</strong> Beast Mastery,
+ <strong>10</strong> Marksmanship. One class across four races (Dracthyr,
+ Worgen, Undead, Zandalari Troll) and four specs &mdash; the only continuous
+ line in the family. Everything else changed.</p>
+
+ <h3>The undeath stint, confirmed by a machine</h3>
+ <p><code>Tandu</code> on Hyjal is an <strong>18 Undead Beast Mastery
+ Hunter</strong>. That is the stint, still standing on a live server years
+ after the fact &mdash; not a memory, a row. And it is a hunter: the vessel
+ changed, the aim did not.</p>
+
+ <h3>The blood-elf problem</h3>
+ <p class="note warn">Nine live characters. Zero blood elves. The armory has
+ <strong>never once</strong> shown a Sin&#39;dorei for this account, across
+ every door this vault has opened. So the &ldquo;always a blood elf&rdquo;
+ baseline cannot be measured &mdash; it is <strong>attested</strong>, and this
+ page will not dress an attestation as a measurement. The armory can prove the
+ vessels; it cannot prove the soul. What it does prove is that the soul kept
+ rolling hunters.</p>
+</section>
+
+<section id="gone">
+ <h2>The four that do not answer</h2>
+ <div class="scroll">
+  <table>
+   <caption>HTTP 500 &mdash; one generic landing shell, 17,976&ndash;18,010 bytes</caption>
+   <thead><tr><th>Handle</th><th>Realm</th><th>HTTP</th><th>Bytes</th>
+    <th>What it was</th></tr></thead>
+   <tbody>
+    <tr><td><code>Tandieu</code></td><td>Hyjal-US</td><td><span class="tag t-r">500</span></td><td class="mono">17,993</td><td>the rename; survives only in raid logs</td></tr>
+    <tr><td><code>Tandu</code></td><td>Thrall-US</td><td><span class="tag t-r">500</span></td><td class="mono">17,976</td><td>the Theorycrafters-era folder, empty shell</td></tr>
+    <tr><td><code>Tandaria</code></td><td>Hyjal-US</td><td><span class="tag t-r">500</span></td><td class="mono">18,010</td><td>folder only, never answered</td></tr>
+    <tr><td><code>Tankard</code></td><td>Hyjal-US</td><td><span class="tag t-r">500</span></td><td class="mono">17,993</td><td>folder only, never answered</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">A dead handle is not a deleted memory. <code>Tandieu</code> is
+ the 2020-09-16 rename and it has <strong>no</strong> armory shell at all
+ &mdash; but it is the name on <strong>250</strong> Warcraft Logs reports from
+ 2020-09-16 to 2024-10-20. The logs kept what the armory dropped. That is the
+ argument for this vault in one line: the raid logs are the only place a
+ renamed character still exists by name.</p>
+</section>
+
+<section id="doors">
+ <h2>Doors, and what they did today</h2>
+ <div class="scroll">
+  <table>
+   <caption>10 endpoints, unauthenticated, 2026-11-25</caption>
+   <thead><tr><th>Door</th><th>Status</th><th>Size</th>
+    <th>Title / verdict</th><th>Scope</th></tr></thead>
+   <tbody>
+    <tr><td><code>warcraftlogs.com/character/us/hyjal/&lt;name&gt;</code></td><td><span class="tag t-r">403</span></td><td class="mono">5,472&ndash;5,484 B</td><td><code>Just a moment...</code></td><td>10 of 10 URLs</td></tr>
+    <tr><td><code>warcraftlogs.com/reports/&lt;code&gt;</code></td><td><span class="tag t-r">403</span></td><td class="mono">5,472 B</td><td><code>Just a moment...</code></td><td>2 of 2 sampled</td></tr>
+    <tr><td><code>raider.io character API</code></td><td><span class="tag t-f">200</span></td><td class="mono">1,783 B / 8,613 B</td><td>open, but stale</td><td>2 answers, 9 refusals</td></tr>
+    <tr><td><code>worldofwarcraft.blizzard.com character</code></td><td><span class="tag t-r">200/500</span></td><td class="mono">210 KB &ndash; 915 KB</td><td><code>&lt;Handle&gt; - Character</code></td><td>9 live, 4 gone</td></tr>
+    <tr><td><code>worldofwarcraft.blizzard.com guild</code></td><td><span class="tag t-f">200</span></td><td class="mono">21,473 B</td><td>Horde guild summary</td><td>shadowsong/randomality</td></tr>
+    <tr><td><code>html.duckduckgo.com</code></td><td><span class="tag t-x">&mdash;</span></td><td class="mono">0 hits</td><td>autocorrected to <code>Tandemonium</code></td><td>3 queries</td></tr>
+    <tr><td><code>mojeek.com</code></td><td><span class="tag t-x">&mdash;</span></td><td class="mono">0 hits</td><td>no result rows at all</td><td>3 queries</td></tr>
+    <tr><td><code>bing.com</code></td><td><span class="tag t-x">&mdash;</span></td><td class="mono">0 hits</td><td>no result rows at all</td><td>4 queries</td></tr>
+    <tr><td><code>warcraftrealms.com</code></td><td><span class="tag t-x">301</span></td><td class="mono">795 B</td><td>redirect only</td><td>1 query</td></tr>
+    <tr><td><code>guilds/search (WCL)</code></td><td><span class="tag t-r">403</span></td><td class="mono">5,514 B</td><td>Cloudflare interstitial</td><td>1 query</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <h3>The WCL wall changed shape this week</h3>
+ <p>On <strong>2026-11-20</strong> the Warcraft Logs character URLs answered
+ <code>200</code> with a <strong>4,126 B</strong> body titled
+ <code>Human Verification</code>. On <strong>2026-11-25</strong> the same URLs
+ answer <code>403</code> with a <strong>5,472&ndash;5,484 B</strong> body titled
+ <code>Just a moment...</code>. Same wall, new paint &mdash; and a naive status
+ check would have called the first one a success. Record status, size and title
+ together or the wall disappears into a green tick.</p>
+
+ <h3>Raider.IO is four years behind on an alt</h3>
+ <p><code>Tantrums</code> answers the Raider.IO API with
+ <code>last_crawled_at 2022-08-04</code>, ilvl <strong>107</strong>, 18,240
+ achievement points, 0/9 in a Midnight tier. The armory, read today, says
+ <strong>56 Zandalari Troll Enhancement Shaman, 296 ilvl</strong>. Raider.IO is
+ not wrong; it is <em>stale by four years</em> on a character nobody feeds. Use
+ it for the main, read the armory for the family.</p>
+
+ <h3>Search engines index nothing</h3>
+ <p>Three engines, ten queries, zero rows. DuckDuckGo autocorrects
+ <code>Tandumonium</code> to <em>Tandemonium</em> (the Steam game) and returns
+ nothing else; Mojeek and Bing return no result markup at all. The name is
+ unique enough to be unambiguous and obscure enough to be unindexed &mdash;
+ which is why the record has to live on disk.</p>
+</section>
+
+<section id="receipt">
+ <h2>The loadout receipt</h2>
+ <p>While the armory was being swept, the client&rsquo;s own config logs were
+ counted. Across <code>AccountData.log</code> (10,613 lines) and
+ <code>AccountData.log.old</code> (38,454 lines) the same three lines appear
+ <strong>41</strong> times each:</p>
+ <pre>/btwl a Tandu
+/btwl a Raid
+/btwl a PvP</pre>
+ <p>That is BtWLoadouts being asked to apply three saved gear sets, over and
+ over, re-saving the account cache each time. The set named
+ <strong>Tandu</strong> is still live in the engine: the old handle is not a
+ history entry, it is a button the game presses. Three sets, 41 saves, one name
+ that outlived its character.</p>
+</section>
+
+<section id="tenure">
+ <h2>Guild tags, present tense</h2>
+ <div class="card">
+  <h3>&lt;Randomality&gt; &mdash; Shadowsong-US (Horde)</h3>
+  <p>The Shadowsong <code>Tandu</code> carries this tag on
+  <strong>2026-11-25</strong> and the guild page answers <code>200</code> /
+  <strong>21,473 B</strong>. It is recorded as a <em>present-day</em> tag and
+  nothing more: not a tenure-era guild, no bearing on the tenure table, and no
+  evidence of membership in anything from 2019.</p>
+ </div>
+ <p class="note warn"><strong>Guild Tenure Rule.</strong> Only
+ <code>&lt;Gehenna&gt;</code> inside the 2019 BfA window (WCL guild
+ <code>7287</code>, Borean Tundra / Shadowsong) and
+ <code>&lt;Theorycrafters&gt;</code> on Thrall-US and Hyjal-US are claimable as
+ tenure. The 24 pre-2019 Wayback captures of <code>&lt;Gehenna&gt;</code> are
+ guild history, not membership, and are never recorded &mdash; not on
+ <a class="ext" href="Tenure.html">Tenure.html</a>, not here, not in any agent
+ file.</p>
+</section>
+
+<section id="provenance">
+ <h2>Provenance &amp; method</h2>
+ <div class="scroll">
+  <table>
+   <caption>Where every figure on this page came from</caption>
+   <thead><tr><th>Figure</th><th>Source</th><th>Kind</th></tr></thead>
+   <tbody>
+    <tr><td>13 doors, 9 live, 4 gone</td>
+     <td><code>curl -L</code> per character page, 2026-11-25</td>
+     <td><span class="tag t-f">measured</span></td></tr>
+    <tr><td>Race / class / level / ilvl per character</td>
+     <td>armory <code>og:description</code> + embedded character JSON</td>
+     <td><span class="tag t-f">measured</span></td></tr>
+    <tr><td>Tantrums ilvl 107 @ 2022-08-04</td>
+     <td>Raider.IO character API, read 2026-11-25</td>
+     <td><span class="tag t-f">measured</span></td></tr>
+    <tr><td>41 &times; each <code>/btwl</code> line</td>
+     <td><code>_retail_\Logs\AccountData.log</code> (+ <code>.old</code>)</td>
+     <td><span class="tag t-f">measured</span></td></tr>
+    <tr><td>Tandieu: 250 reports, 2020-09-16 &rarr; 2024-10-20</td>
+     <td><a class="ext" href="Muster.html">Muster.html</a> roster census</td>
+     <td><span class="tag t-f">measured</span></td></tr>
+    <tr><td>Blood elf as the eternal baseline</td>
+     <td>player attestation, <code>Tandumonium.agent-expanded.md</code></td>
+     <td><span class="tag t-x">attested</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="note">Static and self-contained: no runtime fetch, no API key, no
+ login. Re-derive the table with
+ <code>Research/_local/_kindred_build.py</code> (local, gitignored) &mdash; it
+ writes <code>Research/_raw/kindred_armory_20261125.json</code> and repaints
+ this page from the same records.</p>
+</section>
+
+<footer>
+ <p><strong>Kindred.html</strong> &mdash; swept by Tandumonium, 2026-11-25
+  &middot; shell <a class="ext" href="index.html" target="_top">index.html</a>
+  &middot; <a class="ext" href="handles.html">Handles</a>
+  &middot; <a class="ext" href="races.html">Races</a>
+  &middot; <a class="ext" href="persona.html">Persona</a>
+  &middot; <a class="ext" href="Tenure.html">Tenure</a>
+  &middot; <a class="ext" href="dynasty.html">Dynasty</a>
+  &middot; <a class="ext" href="roster.html">Roster</a>
+  &middot; <a class="ext" href="links.html">Link Vault</a></p>
+</footer>
+
+</div>
+</body>
+</html>
