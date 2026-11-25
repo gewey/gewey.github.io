@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vantage &mdash; 31 outside doors asked in one pass | Gewey G.U.I.</title>
+<!--
+  Vantage.html - built 2026-11-25 by Tandumonium.
+
+  Doors.html and Witnesses.html each kept their own dated register. This wing
+  keeps today's: every outside door knocked in this pass, the literal status it
+  returned, and the four character records that came back with a name in them.
+  The point is not the walls - it is that the walls are dated, and that the
+  records which do answer carry their own crawl stamps.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;--glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.35rem 0 .5rem;font-weight:800}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:78ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+ margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+.stat{background:var(--panel);border:1px solid var(--line);padding:.85rem .9rem;border-radius:3px}
+.stat b{display:block;font-size:1.5rem;color:var(--gold);line-height:1.1}
+.stat span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+th{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--grey)}
+a.w{color:var(--arcane);text-decoration:none;border-bottom:1px dashed rgba(55,230,255,.5)}
+a.w:hover{color:var(--gold);border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chips a{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02)}
+.chips span{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02);color:var(--grey)}
+.scroll{max-height:26rem;overflow:auto;border:1px solid var(--line);border-radius:3px;
+ background:rgba(8,6,15,.6)}
+.scroll table{font-size:.82rem}
+.stills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.still figure{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.still img{width:100%;display:block}
+.still figcaption{padding:.55rem .7rem;font-size:.76rem;color:var(--mut)}
+.note{font-size:.78rem;color:var(--mut)}
+.warn{border-left:3px solid var(--crimson);padding:.6rem .9rem;background:rgba(255,59,92,.06);
+ font-size:.86rem;color:var(--ink)}
+
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:.8rem;color:var(--grey)}
+.s200{color:var(--fel)}
+.s400{color:var(--gold)}
+.s403{color:var(--crimson)}
+.sother{color:var(--arcane)}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+<p class="kicker">Gewey G.U.I. &mdash; Legacy Wing &mdash; the
+outside view</p>
+<h1>Vantage <span class="thin">what still answers from outside</span></h1>
+<p class="lede">Read-only pass logged 2026-11-25T16:08:31Z: 31 doors, one HTTP verb, no
+credentials, no scraping behind a wall. Eighteen years of play leave a trace in
+exactly one class of place: the third-party character index that caches what it
+crawled. Four records came back with a name in them, and each one carries the
+date Raider.IO last saw that name &mdash; a clock no other source gave us.</p>
+<nav class="panes"><a href="index.html">Shell</a><a href="_fuhevva_evva.html">Home</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="raidlogs.html">Raid Logs</a><a href="legacy.html">Legacy</a><a href="reliquary.html">Reliquary</a><a href="Kindred.html">Kindred</a><a href="Regalia.html">Regalia</a><a href="Witnesses.html">Witnesses</a><a href="Doors.html">Doors</a><a href="links.html">Links</a><a href="Vantage.html" aria-current="page">Vantage</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="eras.html">Eras</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="Company.html">Company</a>
+  <a href="Bestiary.html">Bestiary</a>
+  <a href="Passersby.html">Passersby</a>
+  <a href="Vessel.html">Vessel</a>
+  <a href="Watchtower.html">Watchtower</a>
+  <a href="Strata.html">Strata</a>
+  <a href="Concourse.html">Concourse</a>
+  <a href="Souvenirs.html">Souvenirs</a>
+  <a href="Stride.html">Stride</a>
+  <a href="Phalanx.html">Phalanx</a></nav></header>
+<section id="verdict"><h2>The Verdict</h2>
+<div class="stats"><div class="stat"><b>31</b><span>doors knocked today</span></div><div class="stat"><b>17</b><span>answered 200</span></div><div class="stat"><b>7</b><span>walled (403/429/202)</span></div><div class="stat"><b>7</b><span>refused (400/404/405)</span></div><div class="stat"><b>4</b><span>character records returned</span></div><div class="stat"><b>7</b><span>wings that already map this ground</span></div></div>
+<p class="note">Walled means the server answered but would not show the record:
+Cloudflare and bot challenges on WowProgress and Wowhead, a 202 challenge on
+DuckDuckGo, a 429 on the Wayback CDX index.</p></section>
+<section id="records"><h2>The Four Records</h2>
+<table><thead><tr><th>character</th><th>race / class</th><th>spec</th><th>ach. pts</th><th>ilvl</th><th>guild</th><th>current-tier kills</th><th>Raider.IO last crawled</th></tr></thead><tbody><tr><td><strong>Tandumonium</strong><br><span class="mono">Hyjal-US</span></td><td>Dracthyr<br>Hunter</td><td>Beast Mastery</td><td class="num">21,685</td><td class="num">263</td><td>no guild</td><td class="num">0/20</td><td class="mono">2026-11-13</td></tr><tr><td><strong>Tantrums</strong><br><span class="mono">Hyjal-US</span></td><td>Zandalari Troll<br>Shaman</td><td>Enhancement</td><td class="num">18,240</td><td class="num">107</td><td>no guild</td><td class="num">0/20</td><td class="mono">2022-08-04</td></tr><tr><td><strong>Tantrums</strong><br><span class="mono">Thrall-US</span></td><td>Mag'har Orc<br>Warrior</td><td>Fury</td><td class="num">17,215</td><td class="num">217</td><td>no guild</td><td class="num">0/20</td><td class="mono">2022-08-20</td></tr><tr><td><strong>Tankard</strong><br><span class="mono">Shadowsong-US</span></td><td>Dwarf<br>Monk</td><td>Brewmaster</td><td class="num">28,640</td><td class="num">116</td><td>The SCP Foundation</td><td class="num">0/20</td><td class="mono">2026-04-13</td></tr></tbody></table>
+<p class="note">Kills are counted only in Normal, Heroic and Mythic. Zero across
+all five current tiers matches the armory read on Regalia: this character has no
+non-LFR boss credit in the current expansion.</p></section>
+<section id="stamps"><h2>The Crawl Stamps</h2>
+<table><thead><tr><th>name</th><th>realm</th><th>last crawled</th><th>race / class</th><th>ach. pts</th></tr></thead><tbody><tr><td><strong>Tantrums</strong></td><td class="mono">Hyjal</td><td class="mono">2022-08-04</td><td>Zandalari Troll Shaman</td><td class="num">18,240</td></tr><tr><td><strong>Tantrums</strong></td><td class="mono">Thrall</td><td class="mono">2022-08-20</td><td>Mag'har Orc Warrior</td><td class="num">17,215</td></tr><tr><td><strong>Tankard</strong></td><td class="mono">Shadowsong</td><td class="mono">2026-04-13</td><td>Dwarf Monk</td><td class="num">28,640</td></tr><tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td class="mono">2026-11-13</td><td>Dracthyr Hunter</td><td class="num">21,685</td></tr></tbody></table>
+<div class="warn">Two of these are stamps from 2022, not records of 2022
+progress: Raider.IO kept the last crawl it made before those names stopped
+answering. That is a dated anchor, not a claim about what the character did in
+Shadowlands.</div></section>
+<section id="register"><h2>The Door Register &mdash; 2026-11-25T16:08:31Z</h2>
+<div class="scroll" style="max-height:none"><table><thead><tr><th>door</th><th>kind</th><th>status</th><th>bytes</th><th>what it said</th></tr></thead><tbody><tr><td>Raider.IO API — Tandumonium/Hyjal</td><td class="mono">character</td><td class="num s200">200</td><td class="num">8,160</td><td>200 record</td></tr><tr><td>Raider.IO API — Tantrums/Hyjal</td><td class="mono">character</td><td class="num s200">200</td><td class="num">1,228</td><td>200 record</td></tr><tr><td>Raider.IO API — Tantrums/Thrall</td><td class="mono">character</td><td class="num s200">200</td><td class="num">1,222</td><td>200 record</td></tr><tr><td>Raider.IO API — Tankard/Shadowsong</td><td class="mono">character</td><td class="num s200">200</td><td class="num">1,234</td><td>200, unclaimed</td></tr><tr><td>Raider.IO API — Tandu/Shadowsong</td><td class="mono">character</td><td class="num s400">400</td><td class="num">87</td><td>400 not found</td></tr><tr><td>Raider.IO API — Tandieu/Hyjal</td><td class="mono">character</td><td class="num s400">400</td><td class="num">87</td><td>400 not found</td></tr><tr><td>Raider.IO guild — Gehenna/Shadowsong</td><td class="mono">guild</td><td class="num s400">400</td><td class="num">83</td><td>400 not found</td></tr><tr><td>Raider.IO guild — Theorycrafters/Thrall</td><td class="mono">guild</td><td class="num s400">400</td><td class="num">83</td><td>400 not found</td></tr><tr><td>Raider.IO character page (HTML)</td><td class="mono">web</td><td class="num s403">403</td><td class="num">14,018</td><td>403 bot wall</td></tr><tr><td>Warcraft Logs — character page</td><td class="mono">web</td><td class="num s200">200</td><td class="num">4,126</td><td>human-verification shell</td></tr><tr><td>Warcraft Logs — guild 7287</td><td class="mono">web</td><td class="num s200">200</td><td class="num">4,126</td><td>human-verification shell</td></tr><tr><td>Warcraft Logs Classic — guild 7287</td><td class="mono">web</td><td class="num s200">200</td><td class="num">4,130</td><td>human-verification shell</td></tr><tr><td>Wipefest — guild Gehenna/Shadowsong</td><td class="mono">api</td><td class="num s400">400</td><td class="num">44</td><td>400 no guild</td></tr><tr><td>Wayback availability — guild 7287</td><td class="mono">archive</td><td class="num s200">200</td><td class="num">67</td><td>zero snapshots</td></tr><tr><td>Wayback availability — wowprogress character</td><td class="mono">archive</td><td class="num s200">200</td><td class="num">83</td><td>zero snapshots</td></tr><tr><td>Wayback CDX index</td><td class="mono">archive</td><td class="num sother">429</td><td class="num">564</td><td>429 throttled</td></tr><tr><td>WowProgress — character</td><td class="mono">web</td><td class="num s403">403</td><td class="num">5,766</td><td>403 Cloudflare</td></tr><tr><td>Data for Azeroth — character</td><td class="mono">web</td><td class="num sother">405</td><td class="num">2,364</td><td>405 method not allowed</td></tr><tr><td>Check-PvP — player API</td><td class="mono">api</td><td class="num sother">404</td><td class="num">94</td><td>404 no route</td></tr><tr><td>Ironforge.pro — player API</td><td class="mono">api</td><td class="num s200">200</td><td class="num">779</td><td>shell, no record</td></tr><tr><td>Wowhead — faction probe (170 ids)</td><td class="mono">web</td><td class="num s403">403</td><td class="num">919</td><td>403 on every HEAD</td></tr><tr><td>Wowhead — site search</td><td class="mono">web</td><td class="num s403">403</td><td class="num">919</td><td>403 bot wall</td></tr><tr><td>Bing RSS</td><td class="mono">search</td><td class="num s200">200</td><td class="num">4,812</td><td>Tandemonium noise</td></tr><tr><td>Google</td><td class="mono">search</td><td class="num s200">200</td><td class="num">94,099</td><td>shell, zero results</td></tr><tr><td>DuckDuckGo HTML</td><td class="mono">search</td><td class="num sother">202</td><td class="num">15,098</td><td>202 challenge</td></tr><tr><td>Mojeek</td><td class="mono">search</td><td class="num s200">200</td><td class="num">5,375</td><td>zero results</td></tr><tr><td>Reddit JSON search</td><td class="mono">search</td><td class="num s403">403</td><td class="num">20,000</td><td>403 blocked</td></tr><tr><td>YouTube search</td><td class="mono">media</td><td class="num s200">200</td><td class="num">400,000</td><td>1 hit, not this player</td></tr><tr><td>Wago (WeakAura registry)</td><td class="mono">registry</td><td class="num s200">200</td><td class="num">3,100</td><td>no record</td></tr><tr><td>GitHub users API</td><td class="mono">registry</td><td class="num s200">200</td><td class="num">73</td><td>no account</td></tr><tr><td>Blizzard armory — Dracthyr profile</td><td class="mono">armory</td><td class="num s200">200</td><td class="num">400,000</td><td>200 character JSON</td></tr></tbody></table></div></section>
+<section id="walls"><h2>What The Walls Mean</h2>
+<p class="note"><strong>Warcraft Logs is not scrapable from here.</strong> Both
+the retail and the classic guild doors answer 200 with a human-verification
+shell, so any WCL work in this corpus has to go through the Wipefest report API
+(which answers) or a person opening the page. That is the operative constraint
+for every future raid-log pass.</p>
+<p class="note"><strong>The archive holds no capture of these pages.</strong> The
+availability API answers 200 and reports zero snapshots for the guild page and
+the character page, and the CDX index throttles to 429. The 2019 Battle for
+Azeroth era cannot be recovered from the Wayback Machine by this route, which is
+also why no pre-2019 capture is ever cited on this site.</p>
+<p class="note"><strong>Wowhead blocks programmatic reads.</strong> Every one of
+the 170 faction probes answered 403. That is why a standings table keeps its
+faction names as text: a link nobody can verify is worse than no link.</p>
+<p class="note"><strong>The search engines cannot spell it.</strong> Bing answers
+200 and returns the Steam game <em>Tandemonium</em> for every quoted variant;
+Google answers a shell with zero parsed results; DuckDuckGo answers 202; Mojeek
+answers 200 with nothing. YouTube returns one video for the exact name and it is
+somebody else's footage. An eighteen-year character with a unique name is still
+invisible to web search, which is worth knowing before another pass is spent on
+it.</p>
+</section>
+
+<section id="unclaimed"><h2>The Name We Cannot Claim</h2>
+<p class="note"><strong>Tankard-Shadowsong</strong> is a Dwarf Brewmaster Monk
+with 28,640 achievement points, guild <em>The SCP Foundation</em> of Terenas,
+last crawled 2026-04-13. The account holds a <code>Tankard</code> folder on
+Hyjal, not on Shadowsong, so this record is <em>not</em> attributed to the
+family anywhere in this corpus. It is listed because a name collision is a fact
+worth recording, not because the identity is proven.</p>
+<p class="note">The same rule applies to <strong>Tantrums-Thrall</strong>: the
+account has no Thrall folder by that name. Only
+<strong>Tantrums-Hyjal</strong> matches a folder the account actually holds.</p>
+</section>
+
+<section id="method"><h2>Method &amp; Limits</h2>
+<p class="note">One GET per door with a desktop user agent and a fifteen second
+timeout; status, byte count and verdict written to
+<code>Research/_raw/doors_register_20261125.json</code> (gitignored) before this
+page was built, so the table is a transcription and not a recollection. Nothing
+was submitted, posted or logged in to. Where a door answered 200 with a bot
+challenge instead of a record, the verdict says so rather than reading the 200
+as success.</p>
+<p class="note">Tenure rule honoured: no guild membership is asserted here. The
+only in-window guild record remains the 2019 Battle for Azeroth
+<code>&lt;Gehenna&gt;</code> era (Warcraft Logs guild 7287) already carried on
+legacy.html; the Raider.IO guild probes for <code>Gehenna</code> and
+<code>Theorycrafters</code> both answer 400 and are reported as such.</p>
+</section>
+
+<p class="note" style="margin-top:2rem">
+<a href="Doors.html">Doors</a> &middot;
+<a href="Witnesses.html">Witnesses</a> &middot;
+<a href="Regalia.html">Regalia</a> &middot;
+<a href="raidlogs.html">Raid Logs</a> &middot;
+<a href="Phalanx.html">Phalanx</a> &middot;
+<a href="index.html">Shell</a></p>
+
+</div>
+</body>
+</html>

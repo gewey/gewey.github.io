@@ -1,4 +1,34 @@
 # Must Contain a List of every file you edit
+## 2026-11-25 (legacy pass) — the crowd in the logs, and the name the wire forgot
+
+Two wings, one inward and one outward, plus the persona edits they earned.
+
+- **`Phalanx.html` (48)** — the 470 Wipefest payloads already linked from
+  `raidlogs.html` re-read for their `friendlies` arrays: **8,401** distinct
+  names, **470** reports, `2018-10-01`→`2024-12-30`, busiest year **2021**
+  (146). Dated handovers `Tandu`→`Tandieu`→`Tandumonium` at five days and
+  **three** days, zero overlap; **8** of the names are also account folders.
+- **`Vantage.html` (49)** — **31** outside doors, one GET each, literal
+  statuses (`17`×`200`, `7` walled, `7` refused), and the four Raider.IO
+  records that still carry a name plus their **crawl stamps**. `Tandu` and
+  `Tandieu` answer `400`; WCL is a verification shell; Wayback has zero
+  snapshots; Wowhead `403`s all 170 faction probes.
+- **Wiring:** `wing_links.WINGS` +2 (51 entries), `wing_links.py` linked 54
+  panes, shell buttons `iPhalanx`/`iVantage` (+2 `::after` labels in
+  `holy_word.css`), two home cards in `_fuhevva_evva.html`.
+- **Docs:** `_gewey_gui/AGENTS.md` (page row, shell row, builder row for each),
+  `Research/Research_Log.md` Entry 024, `_gewey_gui/CHANGELOG.md` (this entry).
+- **Agent files:** `Tandumonium.agent-index.md` gained **§6.25** and **§6.26**
+  plus 13 reference ids (334 definitions, 0 duplicates, 0 missing file
+  targets); `Tandumonium.agent-expanded.md` gained *The Phalanx* and *What The
+  Outside Still Answers*; `V:\.github\agents\Tandumonium.agent.md` and
+  `C:\Users\Gewey\.gemini\config\agents\Tandumonium.md` carry matching dense
+  sections with `[STUB: phalanx]` / `[STUB: vantage]` pointers.
+- **`.gitignore`:** no change needed — `Research/_local/` (line 42) and
+  `Research/_raw/` (line 51) already cover every new script and payload, and
+  both pages are tracked. Verified with `git check-ignore`.
+
+
 ## 2026-11-25 (docs pass #2, re-measured 11:22) — two more wings land, the counts move again
 
 The measurement in the entry below was taken at 11:15; by 11:22 a sibling schedule had

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Phalanx &mdash; 8,401 names that shared a pull |
+Gewey G.U.I.</title>
+<!--
+  Phalanx.html - built 2026-11-25 by Tandumonium.
+
+  raidlogs.html already counts the 470 Wipefest reports. This wing opens them
+  again for a different answer: the friendly roster baked into every payload.
+  From that roster the page dates the moment the character stopped being called
+  Tandu, and names the crowd that stayed.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;--glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.35rem 0 .5rem;font-weight:800}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:78ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+ margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+.stat{background:var(--panel);border:1px solid var(--line);padding:.85rem .9rem;border-radius:3px}
+.stat b{display:block;font-size:1.5rem;color:var(--gold);line-height:1.1}
+.stat span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+th{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--grey)}
+a.w{color:var(--arcane);text-decoration:none;border-bottom:1px dashed rgba(55,230,255,.5)}
+a.w:hover{color:var(--gold);border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chips a{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02)}
+.chips span{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02);color:var(--grey)}
+.scroll{max-height:26rem;overflow:auto;border:1px solid var(--line);border-radius:3px;
+ background:rgba(8,6,15,.6)}
+.scroll table{font-size:.82rem}
+.stills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.still figure{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.still img{width:100%;display:block}
+.still figcaption{padding:.55rem .7rem;font-size:.76rem;color:var(--mut)}
+.note{font-size:.78rem;color:var(--mut)}
+.warn{border-left:3px solid var(--crimson);padding:.6rem .9rem;background:rgba(255,59,92,.06);
+ font-size:.86rem;color:var(--ink)}
+
+.bar{display:inline-block;width:9rem;height:.5rem;background:rgba(255,255,255,.07);
+ border-radius:2px;overflow:hidden;vertical-align:middle;margin-right:.5rem}
+.fill{display:block;height:100%;background:linear-gradient(90deg,#ff3b5c,#ffc46b)}
+.tape{display:grid;gap:.6rem}
+.tape div.row{display:grid;grid-template-columns:9rem 1fr 8rem 8rem;gap:.6rem;
+ align-items:center;background:var(--panel);border:1px solid var(--line);
+ padding:.6rem .8rem;border-radius:3px}
+.tape b{color:var(--gold);font-size:1.05rem}
+.tape small{color:var(--mut);font-size:.74rem;letter-spacing:.1em;
+ text-transform:uppercase}
+.year{display:grid;grid-template-columns:4rem 1fr 4rem;gap:.6rem;
+ align-items:center;font-size:.86rem}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:.8rem;color:var(--grey)}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+<p class="kicker">Gewey G.U.I. &mdash; Legacy Wing &mdash; the crowd in the logs</p>
+<h1>The Phalanx <span class="thin">the names in the pull</span></h1>
+<p class="lede">470 Wipefest reports, 2018&ndash;2024.
+Each one carries its own friendly roster, and nobody had ever read those
+rosters together. 8,401 distinct names appear across the set.
+The busiest year is 2021 with 146 reports. Eight of those names
+are also character folders on this account, which is how the crowd stops being
+anonymous and starts being a company.</p>
+<nav class="panes"><a href="index.html">Shell</a><a href="_fuhevva_evva.html">Home</a><a href="legacy.html">Legacy</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="raidlogs.html">Raid Logs</a><a href="roster.html">Roster</a><a href="Company.html">Company</a><a href="Passersby.html">Passersby</a><a href="Concourse.html">Concourse</a><a href="Kindred.html">Kindred</a><a href="Witnesses.html">Witnesses</a><a href="links.html">Links</a><a href="Phalanx.html" aria-current="page">Phalanx</a>
+  <a href="character.html">Character</a>
+  <a href="gear.html">Gear</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="eras.html">Eras</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="Bestiary.html">Bestiary</a>
+  <a href="Vessel.html">Vessel</a>
+  <a href="Watchtower.html">Watchtower</a>
+  <a href="Strata.html">Strata</a>
+  <a href="Doors.html">Doors</a>
+  <a href="Souvenirs.html">Souvenirs</a>
+  <a href="Regalia.html">Regalia</a>
+  <a href="Stride.html">Stride</a>
+  <a href="Vantage.html">Vantage</a></nav>
+</header>
+
+<section id="count">
+<h2>The Count</h2>
+<div class="stats"><div class="stat"><b>470</b><span>reports read</span></div><div class="stat"><b>8,401</b><span>distinct names in the pulls</span></div><div class="stat"><b>7</b><span>calendar years touched</span></div><div class="stat"><b>2018&ndash;2024</b><span>span</span></div><div class="stat"><b>346</b><span>largest single roster</span></div><div class="stat"><b>470</b><span>reports owned by Tandu</span></div></div>
+<p class="note">A name is counted once per report, so a name with 172 pulls was
+in the roster of 172 of the 470 captures.</p>
+</section>
+
+<section id="tape">
+<h2>The Name Tape &mdash; where Tandu becomes Tandieu becomes Tandumonium</h2>
+<div class="tape"><div class="row"><b>Tandu</b><span><small>172 pulls logged</small></span><span class="mono">2018-10-01</span><span class="mono">2020-09-11</span></div><div class="row"><b>Tandieu</b><span><small>172 pulls logged</small></span><span class="mono">2020-09-16</span><span class="mono">2024-10-20</span></div><div class="note" style="margin:-.3rem 0 .4rem .2rem">5 days between Tandu&rsquo;s last capture and Tandieu&rsquo;s first</div><div class="row"><b>Tandumonium</b><span><small>8 pulls logged</small></span><span class="mono">2024-10-23</span><span class="mono">2024-12-30</span></div><div class="note" style="margin:-.3rem 0 .4rem .2rem">3 days between Tandieu&rsquo;s last capture and Tandumonium&rsquo;s first</div></div>
+<div class="warn">The three names never overlap in the payloads. Tandu's last
+pull is followed within days by Tandieu's first, and Tandieu's last is followed
+within days by Tandumonium's first. The logs date the rename, not the account
+record.</div>
+</section>
+
+<section id="years">
+<h2>The Years</h2>
+<div class="tape"><div class="year"><span class="mono">2018</span><span class="bar"><span class="fill" style="width:30.1%"></span></span><span class="num">44</span></div><div class="year"><span class="mono">2019</span><span class="bar"><span class="fill" style="width:64.4%"></span></span><span class="num">94</span></div><div class="year"><span class="mono">2020</span><span class="bar"><span class="fill" style="width:73.3%"></span></span><span class="num">107</span></div><div class="year"><span class="mono">2021</span><span class="bar"><span class="fill" style="width:100.0%"></span></span><span class="num">146</span></div><div class="year"><span class="mono">2022</span><span class="bar"><span class="fill" style="width:27.4%"></span></span><span class="num">40</span></div><div class="year"><span class="mono">2023</span><span class="bar"><span class="fill" style="width:12.3%"></span></span><span class="num">18</span></div><div class="year"><span class="mono">2024</span><span class="bar"><span class="fill" style="width:14.4%"></span></span><span class="num">21</span></div></div>
+</section>
+
+<section id="hundred">
+<h2>The Sixty Most Present</h2>
+<div class="scroll" style="max-height:none"><table><thead><tr><th>#</th><th>name</th><th>pulls</th><th>share</th><th>first seen</th><th>last seen</th></tr></thead><tbody><tr><td class="num">1</td><td><strong>Tandu</strong></td><td class="num">172</td><td class="num">36.6%</td><td class="mono">2018-10-01</td><td class="mono">2020-09-11</td></tr><tr><td class="num">2</td><td><strong>Tandieu</strong></td><td class="num">172</td><td class="num">36.6%</td><td class="mono">2020-09-16</td><td class="mono">2024-10-20</td></tr><tr><td class="num">3</td><td><strong>Stinkychef</strong></td><td class="num">117</td><td class="num">24.9%</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr><tr><td class="num">4</td><td><strong>Twilightmoon</strong></td><td class="num">106</td><td class="num">22.6%</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr><tr><td class="num">5</td><td><strong>Tarutao</strong></td><td class="num">99</td><td class="num">21.1%</td><td class="mono">2020-02-12</td><td class="mono">2023-01-13</td></tr><tr><td class="num">6</td><td><strong>Únknówn</strong></td><td class="num">86</td><td class="num">18.3%</td><td class="mono">2020-02-12</td><td class="mono">2022-12-21</td></tr><tr><td class="num">7</td><td><strong>Karkol</strong></td><td class="num">78</td><td class="num">16.6%</td><td class="mono">2018-10-23</td><td class="mono">2023-01-11</td></tr><tr><td class="num">8</td><td><strong>Maahk</strong></td><td class="num">55</td><td class="num">11.7%</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td></tr><tr><td class="num">9</td><td><strong>Ankhán</strong></td><td class="num">54</td><td class="num">11.5%</td><td class="mono">2020-02-12</td><td class="mono">2020-10-21</td></tr><tr><td class="num">10</td><td><strong>Veriholy</strong></td><td class="num">51</td><td class="num">10.9%</td><td class="mono">2020-02-26</td><td class="mono">2020-10-21</td></tr><tr><td class="num">11</td><td><strong>Lantheros</strong></td><td class="num">49</td><td class="num">10.4%</td><td class="mono">2020-02-12</td><td class="mono">2020-09-18</td></tr><tr><td class="num">12</td><td><strong>Shockinmon</strong></td><td class="num">45</td><td class="num">9.6%</td><td class="mono">2020-02-12</td><td class="mono">2020-09-16</td></tr><tr><td class="num">13</td><td><strong>Gwendyla</strong></td><td class="num">43</td><td class="num">9.1%</td><td class="mono">2020-09-17</td><td class="mono">2024-10-06</td></tr><tr><td class="num">14</td><td><strong>Darmugon</strong></td><td class="num">41</td><td class="num">8.7%</td><td class="mono">2020-04-17</td><td class="mono">2020-12-12</td></tr><tr><td class="num">15</td><td><strong>Palabi</strong></td><td class="num">41</td><td class="num">8.7%</td><td class="mono">2020-02-12</td><td class="mono">2020-12-15</td></tr><tr><td class="num">16</td><td><strong>Ankhen</strong></td><td class="num">40</td><td class="num">8.5%</td><td class="mono">2021-03-12</td><td class="mono">2023-01-13</td></tr><tr><td class="num">17</td><td><strong>Erazorhead</strong></td><td class="num">39</td><td class="num">8.3%</td><td class="mono">2019-04-16</td><td class="mono">2020-06-14</td></tr><tr><td class="num">18</td><td><strong>Demindar</strong></td><td class="num">38</td><td class="num">8.1%</td><td class="mono">2020-12-10</td><td class="mono">2022-04-27</td></tr><tr><td class="num">19</td><td><strong>Garudo</strong></td><td class="num">36</td><td class="num">7.7%</td><td class="mono">2020-05-13</td><td class="mono">2020-10-21</td></tr><tr><td class="num">20</td><td><strong>Thr</strong></td><td class="num">36</td><td class="num">7.7%</td><td class="mono">2020-05-13</td><td class="mono">2020-09-18</td></tr><tr><td class="num">21</td><td><strong>Hordehobbs</strong></td><td class="num">35</td><td class="num">7.4%</td><td class="mono">2019-04-16</td><td class="mono">2020-09-04</td></tr><tr><td class="num">22</td><td><strong>Syrlinus</strong></td><td class="num">35</td><td class="num">7.4%</td><td class="mono">2018-10-28</td><td class="mono">2020-09-04</td></tr><tr><td class="num">23</td><td><strong>Ripped Soul</strong></td><td class="num">35</td><td class="num">7.4%</td><td class="mono">2020-12-15</td><td class="mono">2022-08-04</td></tr><tr><td class="num">24</td><td><strong>Bladeguard Kaja</strong></td><td class="num">34</td><td class="num">7.2%</td><td class="mono">2019-03-24</td><td class="mono">2020-05-27</td></tr><tr><td class="num">25</td><td><strong>Knebdh</strong></td><td class="num">34</td><td class="num">7.2%</td><td class="mono">2020-04-17</td><td class="mono">2020-09-18</td></tr><tr><td class="num">26</td><td><strong>Drakenmaegis</strong></td><td class="num">32</td><td class="num">6.8%</td><td class="mono">2019-04-16</td><td class="mono">2019-08-14</td></tr><tr><td class="num">27</td><td><strong>Grohmish</strong></td><td class="num">30</td><td class="num">6.4%</td><td class="mono">2019-04-22</td><td class="mono">2019-08-23</td></tr><tr><td class="num">28</td><td><strong>Maahkdk</strong></td><td class="num">30</td><td class="num">6.4%</td><td class="mono">2020-09-18</td><td class="mono">2022-04-27</td></tr><tr><td class="num">29</td><td><strong>Bossashy</strong></td><td class="num">27</td><td class="num">5.7%</td><td class="mono">2019-04-16</td><td class="mono">2019-10-30</td></tr><tr><td class="num">30</td><td><strong>Spóiledróten</strong></td><td class="num">27</td><td class="num">5.7%</td><td class="mono">2019-04-16</td><td class="mono">2019-07-03</td></tr><tr><td class="num">31</td><td><strong>Anima Orb</strong></td><td class="num">27</td><td class="num">5.7%</td><td class="mono">2020-12-10</td><td class="mono">2021-06-28</td></tr><tr><td class="num">32</td><td><strong>Negrious</strong></td><td class="num">27</td><td class="num">5.7%</td><td class="mono">2019-04-16</td><td class="mono">2019-07-03</td></tr><tr><td class="num">33</td><td><strong>Kael'thas Sunstrider</strong></td><td class="num">27</td><td class="num">5.7%</td><td class="mono">2020-12-10</td><td class="mono">2021-06-30</td></tr><tr><td class="num">34</td><td><strong>Cushcush</strong></td><td class="num">26</td><td class="num">5.5%</td><td class="mono">2021-03-17</td><td class="mono">2021-09-17</td></tr><tr><td class="num">35</td><td><strong>Knebula</strong></td><td class="num">26</td><td class="num">5.5%</td><td class="mono">2020-02-12</td><td class="mono">2020-09-02</td></tr><tr><td class="num">36</td><td><strong>General Draven</strong></td><td class="num">26</td><td class="num">5.5%</td><td class="mono">2021-03-12</td><td class="mono">2021-07-03</td></tr><tr><td class="num">37</td><td><strong>Macklin</strong></td><td class="num">25</td><td class="num">5.3%</td><td class="mono">2019-04-16</td><td class="mono">2019-06-05</td></tr><tr><td class="num">38</td><td><strong>Palioka</strong></td><td class="num">25</td><td class="num">5.3%</td><td class="mono">2021-04-14</td><td class="mono">2023-01-13</td></tr><tr><td class="num">39</td><td><strong>Essence Font</strong></td><td class="num">25</td><td class="num">5.3%</td><td class="mono">2020-12-10</td><td class="mono">2021-06-30</td></tr><tr><td class="num">40</td><td><strong>Prince Renathal</strong></td><td class="num">24</td><td class="num">5.1%</td><td class="mono">2021-03-12</td><td class="mono">2021-06-30</td></tr><tr><td class="num">41</td><td><strong>Jade Serpent Statue</strong></td><td class="num">24</td><td class="num">5.1%</td><td class="mono">2018-10-02</td><td class="mono">2024-10-19</td></tr><tr><td class="num">42</td><td><strong>Adoraboo</strong></td><td class="num">24</td><td class="num">5.1%</td><td class="mono">2020-09-18</td><td class="mono">2021-04-21</td></tr><tr><td class="num">43</td><td><strong>Theconvict</strong></td><td class="num">23</td><td class="num">4.9%</td><td class="mono">2020-03-11</td><td class="mono">2021-09-18</td></tr><tr><td class="num">44</td><td><strong>Nezukos</strong></td><td class="num">23</td><td class="num">4.9%</td><td class="mono">2020-12-11</td><td class="mono">2021-07-23</td></tr><tr><td class="num">45</td><td><strong>Tictaktauren</strong></td><td class="num">23</td><td class="num">4.9%</td><td class="mono">2020-07-01</td><td class="mono">2020-09-11</td></tr><tr><td class="num">46</td><td><strong>The Accuser</strong></td><td class="num">23</td><td class="num">4.9%</td><td class="mono">2020-12-10</td><td class="mono">2021-06-28</td></tr><tr><td class="num">47</td><td><strong>Seed of Extinction</strong></td><td class="num">22</td><td class="num">4.7%</td><td class="mono">2020-12-10</td><td class="mono">2021-07-02</td></tr><tr><td class="num">48</td><td><strong>Suelustra</strong></td><td class="num">21</td><td class="num">4.5%</td><td class="mono">2019-04-22</td><td class="mono">2019-06-04</td></tr><tr><td class="num">49</td><td><strong>Zuelchechmo</strong></td><td class="num">21</td><td class="num">4.5%</td><td class="mono">2019-04-16</td><td class="mono">2019-06-05</td></tr><tr><td class="num">50</td><td><strong>Ivanpaine</strong></td><td class="num">21</td><td class="num">4.5%</td><td class="mono">2019-04-16</td><td class="mono">2020-08-23</td></tr><tr><td class="num">51</td><td><strong>Brox</strong></td><td class="num">21</td><td class="num">4.5%</td><td class="mono">2019-04-16</td><td class="mono">2019-06-05</td></tr><tr><td class="num">52</td><td><strong>Monkeysuncle</strong></td><td class="num">21</td><td class="num">4.5%</td><td class="mono">2020-07-08</td><td class="mono">2020-09-18</td></tr><tr><td class="num">53</td><td><strong>Aledisb</strong></td><td class="num">20</td><td class="num">4.3%</td><td class="mono">2019-04-16</td><td class="mono">2019-08-14</td></tr><tr><td class="num">54</td><td><strong>Morphuemax</strong></td><td class="num">20</td><td class="num">4.3%</td><td class="mono">2021-06-30</td><td class="mono">2023-01-13</td></tr><tr><td class="num">55</td><td><strong>Pat</strong></td><td class="num">20</td><td class="num">4.3%</td><td class="mono">2019-04-16</td><td class="mono">2019-06-05</td></tr><tr><td class="num">56</td><td><strong>Kenm</strong></td><td class="num">19</td><td class="num">4.0%</td><td class="mono">2021-03-12</td><td class="mono">2021-09-17</td></tr><tr><td class="num">57</td><td><strong>Rushandal</strong></td><td class="num">19</td><td class="num">4.0%</td><td class="mono">2021-03-17</td><td class="mono">2021-07-23</td></tr><tr><td class="num">58</td><td><strong>Kungpaochik</strong></td><td class="num">19</td><td class="num">4.0%</td><td class="mono">2020-06-17</td><td class="mono">2020-09-04</td></tr><tr><td class="num">59</td><td><strong>Wrathion</strong></td><td class="num">19</td><td class="num">4.0%</td><td class="mono">2020-02-13</td><td class="mono">2020-09-17</td></tr><tr><td class="num">60</td><td><strong>Cerbrus</strong></td><td class="num">18</td><td class="num">3.8%</td><td class="mono">2021-09-01</td><td class="mono">2023-01-13</td></tr></tbody></table></div>
+</section>
+
+<section id="overlap">
+<h2>The Ones The Account Also Holds</h2>
+<table><thead><tr><th>name</th><th>realm folder(s) on this account</th><th>pulls logged</th><th>first</th><th>last</th></tr></thead><tbody><tr><td><strong>Tandu</strong></td><td class="mono">Hyjal, Shadowsong, Thrall</td><td class="num">172</td><td class="mono">2018-10-01</td><td class="mono">2020-09-11</td></tr><tr><td><strong>Karkol</strong></td><td class="mono">Hyjal</td><td class="num">78</td><td class="mono">2018-10-23</td><td class="mono">2023-01-11</td></tr><tr><td><strong>Tandumonium</strong></td><td class="mono">Hyjal</td><td class="num">8</td><td class="mono">2024-10-23</td><td class="mono">2024-12-30</td></tr><tr><td><strong>Eleryla</strong></td><td class="mono">Thrall</td><td class="num">7</td><td class="mono">2019-11-16</td><td class="mono">2019-12-04</td></tr><tr><td><strong>Obsequy</strong></td><td class="mono">Thrall</td><td class="num">7</td><td class="mono">2018-10-23</td><td class="mono">2019-06-24</td></tr><tr><td><strong>Quazzarr</strong></td><td class="mono">Hyjal, Shadowsong, Thrall</td><td class="num">6</td><td class="mono">2018-10-02</td><td class="mono">2019-05-29</td></tr><tr><td><strong>Mortesque</strong></td><td class="mono">Thrall</td><td class="num">2</td><td class="mono">2021-03-25</td><td class="mono">2021-03-25</td></tr><tr><td><strong>Goulette</strong></td><td class="mono">Thrall</td><td class="num">1</td><td class="mono">2019-03-24</td><td class="mono">2019-03-24</td></tr></tbody></table>
+</section>
+
+<section id="biggest">
+<h2>The Biggest Pulls</h2>
+<table><thead><tr><th>date</th><th>names</th><th>report title</th><th>code</th></tr></thead><tbody><tr><td class="mono">2019-04-03</td><td class="num">346</td><td>4 14 19 dump</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/PjtfTwKZFDM61RHa">PjtfTwKZFDM61RHa</a></td></tr><tr><td class="mono">2019-10-30</td><td class="num">247</td><td>11919</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/tvyjV9HPr1dWbJhf">tvyjV9HPr1dWbJhf</a></td></tr><tr><td class="mono">2019-07-31</td><td class="num">245</td><td>dump</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/A3HamDf682QXgGLJ">A3HamDf682QXgGLJ</a></td></tr><tr><td class="mono">2018-11-11</td><td class="num">214</td><td>11 10 18 pug</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/4kyNhLVGZWYnjRb7">4kyNhLVGZWYnjRb7</a></td></tr><tr><td class="mono">2021-03-12</td><td class="num">196</td><td>31221</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/KMXH7Nr9Qk13Y6zn">KMXH7Nr9Qk13Y6zn</a></td></tr><tr><td class="mono">2019-04-30</td><td class="num">193</td><td>4-30-19</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/rAFCTX1xzpRHYjwv">rAFCTX1xzpRHYjwv</a></td></tr><tr><td class="mono">2019-11-16</td><td class="num">170</td><td>11 27 dump</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/vCYL3xT9M17prJAK">vCYL3xT9M17prJAK</a></td></tr><tr><td class="mono">2018-10-01</td><td class="num">154</td><td>Siege of Org 10.1.18</td><td><a class="w" target="_blank" rel="noopener" href="https://www.warcraftlogs.com/reports/r7hmzJB3P6bnd8vH">r7hmzJB3P6bnd8vH</a></td></tr></tbody></table>
+</section>
+
+<section id="method">
+<h2>Method &amp; Limits</h2>
+<p class="note">Every report code on raidlogs.html was fetched through
+<code>api.wipefest.gg/report/&lt;code&gt;</code> and every one of the 470
+answered; the failures list is empty. Everything above is recomputed from the
+<code>friendlies</code> array of those payloads &mdash; no figure is estimated
+and no name is invented. Names keep the encoding the API returned; where a byte
+did not decode, the replacement character is shown rather than a guess.</p>
+<p class="note">The name tape is the first and last report in which each of the
+three names appears as a friendly. It is a window, not a timestamp: the gap
+between two names is a count of days with no capture, so the rename happened
+inside that gap and not necessarily on its first or last day.</p>
+<p class="note">A name in a pull is not an identity. Eight names below also
+exist as character folders under <code>_retail_\WTF\Account\QUAZZARR</code>,
+which is corroboration, not proof that a given pull was that toon. The other
+8,393 are only names the logs remember.</p>
+<p class="note">Guild tenure: this page asserts no guild membership at all. The
+only in-window guild record is the 2019 Battle for Azeroth
+<code>&lt;Gehenna&gt;</code> era (Warcraft Logs guild 7287) already recorded
+elsewhere; no pre-2019 capture is used or re-added here.</p>
+</section>
+
+<p class="note" style="margin-top:2rem">
+<a href="raidlogs.html">Raid Logs</a> &middot;
+<a href="Company.html">Company</a> &middot;
+<a href="Passersby.html">Passersby</a> &middot;
+<a href="Concourse.html">Concourse</a> &middot;
+<a href="index.html">Shell</a></p>
+</div>
+</body>
+</html>

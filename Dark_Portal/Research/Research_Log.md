@@ -3,6 +3,65 @@
 **Station:** `Z:\World of Warcraft\_forever_` · client **1.60.1.70790**, flavor **`wowf`**, D3D12/SM6.
 **Rule:** findings come from files read and behavior observed — never inferred from log categories alone (per the 02:05 EST ledger correction). NEW ENTRIES AT TOP.
 
+## 2026-11-25 ~11:40 EST - Entry 024: eight thousand names, and the name that answers `400`
+
+**Scope note:** read-only. No file in either game install was written. The
+retail walk touched `WTF\Account\QUAZZARR` (303 files), `Interface\AddOns`
+(3,251), `Logs` (25), `Cache` (47) and the three root text files; the outside
+walk was 31 single GETs. Scratch stayed in `C:\Users\Gewey\.cline\schedules`;
+builders and payloads live under `Research\_local\_` and `Research\_raw\`
+(both gitignored).
+
+1. **The 470 Wipefest payloads already on `raidlogs.html` carry rosters, and
+   nobody had read them.** Recomputed from the `friendlies` arrays: **470**
+   reports, **8,401** distinct names, `2018-10-01` → `2024-12-30`, every
+   `owner` field `Tandu`, zero fetch failures. Years: 2018 44 · 2019 94 ·
+   2020 107 · 2021 146 · 2022 40 · 2023 18 · 2024 21 — the busiest year is
+   **2021**, not the Battle for Azeroth year.
+2. **The name tape has three rows, not two, and now it is dated at both seams.**
+   `Tandu` 172 pulls `2018-10-01`→`2020-09-11` · `Tandieu` 172 pulls
+   `2020-09-16`→`2024-10-20` · `Tandumonium` 8 pulls `2024-10-23`→`2024-12-30`.
+   Five days between the first handover and **three** between the second, with
+   no overlap at either seam. The 2024 date is new: the current name was in a
+   raid log two months before the account folders were reworked.
+3. **Eight names in the pulls are also account folders** — `Tandu` (172),
+   `Karkol` (78, spanning `2018-10-23`→`2023-01-11`), `Tandumonium` (8),
+   `Eleryla` (7), `Obsequy` (7), `Quazzarr` (6), `Mortesque` (2),
+   `Goulette` (1). The other 8,393 are only names.
+4. **The outside view is a wall with four windows.** 31 doors: 17×`200`,
+   7 walled (`403`/`429`/`202`), 7 refused (`400`/`404`/`405`). Raider.IO's
+   **API** works with no key and no login and hands back a **crawl stamp**:
+   `Tandumonium`-Hyjal `2026-11-13` · `Tantrums`-Hyjal `2022-08-04` ·
+   `Tantrums`-Thrall `2022-08-20` · `Tankard`-Shadowsong `2026-04-13`.
+5. **`Tandu` and `Tandieu` answer `400`** on every realm tried. Sixteen years of
+   names, absent from the index — the index only remembers what it crawled
+   while the current name was live. WCL is a human-verification shell on both
+   retail and classic; Wayback holds **zero** snapshots of the guild page and
+   the character page; Wowhead `403`s every one of the 170 faction probes.
+6. **Search engines cannot spell it.** Bing returns the Steam game
+   *Tandemonium* for every quoted variant, Google parses to zero results,
+   DuckDuckGo answers `202`, Mojeek and Marginalia answer `200` with nothing,
+   and YouTube's single hit for the exact name is another player's footage. An
+   eighteen-year character with a unique name is still invisible to web search.
+7. **Two collisions, recorded and refused.** `Tankard`-Shadowsong (Dwarf
+   Brewmaster, 28,640 ach, guild `The SCP Foundation` of Terenas) — the account
+   holds `Tankard` on Hyjal, not Shadowsong. `Tantrums`-Thrall — no Thrall
+   folder by that name. Only `Tantrums`-Hyjal matches a folder.
+8. **Retail token scan, for the record.** 1,904 text files scanned (1,718 binary
+   skipped, `Dark_Portal` junction excluded): `Tandu` 492 · `Tandumonium` 436 ·
+   `Hyjal` 141 · `Shadowsong` 19 · `Tandora` 14 · `Tandulari` 6 · `Gehenna` 4 ·
+   `Theorycrafters` 2 — 782 of them inside `WTF`, 259 in `Interface`.
+9. **`BtWQuests.lua` stores 170 faction standings for the main** (28 exalted)
+   and **13,041 completed quest ids**, but **no character name anywhere** —
+   identity has to be joined by race/class/realm against Raider.IO. Recorded in
+   `_raw/standing_20261125.json`; not published as a wing this pass.
+
+**Wings:** `Phalanx.html` (48) and `Vantage.html` (49), both wired into
+`wing_links.WINGS`, the shell menu, the home cards and the local `AGENTS.md`.
+
+-Signed, Tandumonium
+
+
 ---
 
 ## 2026-11-25 ~10:20 EST - Entry 023: the caches were never empty, and one old handle still answers
