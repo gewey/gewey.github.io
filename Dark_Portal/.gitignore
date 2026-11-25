@@ -669,3 +669,68 @@ Research/_raw/retail_inventory_*.*
 **/_verify_wings.py
 **/_witnesses_*.out
 **/_witnesses_*.err
+# ---------------------------------------------------------------------------
+# Added 2026-11-25 (Tandumonium, retail cache + raw armory pass - wings 45/46).
+#
+# PUBLIC this pass - two new wings plus the images they serve:
+#   _gewey_gui/Souvenirs.html                  three WDB caches decoded (326
+#                                              creatures / 194 objects / 105
+#                                              quests), DamageMeter roster,
+#                                              three stills, .build.info
+#   _gewey_gui/Regalia.html                    Blizzard armory JSON: dated LFR
+#                                              ledger, PvP ledger, 17-slot gear
+#                                              wall, Tandu-Shadowsong profile
+#   _gewey_gui/_img/retail/retail_*.jpg        the three stills, downscaled to
+#                                              1280 px (~176 KB each)
+#   _gewey_gui/index.html                      buttons iSouvenirs, iRegalia
+#   _gewey_gui/_css/holy_word.css              labels for iConcourse/iSouvenirs/
+#                                              iRegalia
+#   _gewey_gui/_fuhevva_evva.html              two directory cards
+#   _gewey_gui/<48 pages>.html                 one chip each (wing_links.py)
+#   Timeline/wing_links.py                     Wings 45, 46 registered
+# Every figure on both pages is baked in at build time, so no data file ships
+# beside them. The three stills are the only binaries added.
+#
+# LOCAL this pass - probes, builders, saved pages and the payloads they read:
+#   Research/_local/_launcher_probe.py         Launcher.db / .product.db / .build.info
+#   Research/_local/_souvenirs_probe.py        WDB headers, meter strings, stills
+#   Research/_local/_wdb_parse.py              the record walker (id/size/payload)
+#   Research/_local/_souvenirs_build.py        payloads -> Souvenirs.html
+#   Research/_local/_web_hunt4_20261125.py     thirty doors, pass 4
+#   Research/_local/_web_hunt5_20261125.py     armory + check-pvp + DDG, pass 5
+#   Research/_local/_armory_once.py            one GET, page saved to _raw
+#   Research/_local/_armory_carve.py           brace-walk smoke test
+#   Research/_local/_armory_shape.py           shape report for the carved JSON
+#   Research/_local/_armory_extract.py         carved JSON -> page payload
+#   Research/_local/_armory_tandu.py           Tandu-Shadowsong page
+#   Research/_local/_regalia_build.py          payload -> Regalia.html
+#   Research/_local/_verify_router.py          agent-index invariants
+#   Research/_raw/launcher_20261125.json
+#   Research/_raw/souvenirs_20261125.json
+#   Research/_raw/wdb_20261125.json
+#   Research/_raw/armory_20261125.json
+#   Research/_raw/armory_hyjal_20261125.html   the saved armory page (915 KB)
+#   Research/_raw/armory_hyjal_parsed.json
+#   Research/_raw/armory_tandu_shadowsong_20261125.html
+#   Research/_raw/web_hunt4_20261125.json
+#   Research/_raw/web_hunt5_20261125.json
+# Research/_local/ and Research/_raw/ already cover those; the patterns below
+# are belt and braces for anyone who moves one out of those folders.
+# ---------------------------------------------------------------------------
+Research/_raw/launcher_*.*
+Research/_raw/souvenirs_*.*
+Research/_raw/wdb_*.*
+Research/_raw/armory_*.*
+Research/_raw/web_hunt4*.*
+Research/_raw/web_hunt5*.*
+**/_launcher_probe.py
+**/_souvenirs_probe.py
+**/_souvenirs_build.py
+**/_wdb_parse.py
+**/_web_hunt4*.py
+**/_web_hunt5*.py
+**/_armory_*.py
+**/_regalia_build.py
+**/_verify_router.py
+**/_wh4.*
+**/_wh5.*

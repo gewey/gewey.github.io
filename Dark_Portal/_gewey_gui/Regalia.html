@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regalia &mdash; the armory, read raw | Gewey G.U.I.</title>
+<!--
+  REGALIA.html - built 2026-11-25 by Tandumonium (wide-scale retail pass).
+
+  Why this page exists: character.html and gear.html read the Raider.IO API.
+  The Blizzard armory serves a bigger payload than that API returns - dated boss
+  kills, the PvP ledger, professions, the title suffix, and the profile of an old
+  handle - and it renders server-side, so it can be read without a key. This wing
+  is that payload, carved out of the page and rendered whole.
+
+  The find worth the page: Tandu-Shadowsong still answers. Level 10 Zandalari
+  Troll Marksmanship hunter, 21,005 achievement points, last updated 2025-06-19.
+  Tandieu-* and Tandu-Thrall answer HTTP 500 - no profile.
+-->
+<script>
+const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true };
+</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#05040a;--panel:rgba(14,10,22,.86);--line:rgba(255,196,107,.18);
+ --ink:#f3ecff;--mut:#9b8fb4;--gold:#ffc46b;--crimson:#ff3b5c;
+ --arcane:#37e6ff;--fel:#7dff5c;--grey:#b9c2cc;--glow:0 0 14px rgba(255,196,107,.45)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);min-height:100vh;
+ font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(900px 520px at 12% -6%,rgba(255,59,92,.15),transparent 62%),
+  radial-gradient(820px 480px at 88% 4%,rgba(55,230,255,.12),transparent 64%),
+  linear-gradient(180deg,#05040a 0%,#08060f 60%,#0a0714 100%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:2.2rem 1.4rem 4rem}
+header.hero{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2rem}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.35rem 0 .5rem;font-weight:800}
+h1 .thin{font-weight:300;color:var(--mut)}
+.lede{color:var(--mut);max-width:78ch;font-size:.98rem}
+nav.panes{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+nav.panes a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+ text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ padding:.35rem .7rem;border-radius:2px;background:rgba(255,255,255,.02)}
+nav.panes a:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow)}
+nav.panes a[aria-current]{border-color:var(--gold);color:var(--gold)}
+section{margin:2.6rem 0}
+h2{font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+ margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+h2::after{content:'';flex:1;height:1px;background:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+.stat{background:var(--panel);border:1px solid var(--line);padding:.85rem .9rem;border-radius:3px}
+.stat b{display:block;font-size:1.5rem;color:var(--gold);line-height:1.1}
+.stat span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th,td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+th{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--grey)}
+a.w{color:var(--arcane);text-decoration:none;border-bottom:1px dashed rgba(55,230,255,.5)}
+a.w:hover{color:var(--gold);border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chips a{font-size:.78rem;padding:.2rem .5rem;border:1px solid var(--line);
+ border-radius:2px;background:rgba(255,255,255,.02)}
+.scroll{max-height:26rem;overflow:auto;border:1px solid var(--line);border-radius:3px;
+ background:rgba(8,6,15,.6)}
+.scroll table{font-size:.82rem}
+.stills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.still figure{background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.still img{width:100%;display:block}
+.still figcaption{padding:.55rem .7rem;font-size:.76rem;color:var(--mut)}
+.note{font-size:.78rem;color:var(--mut)}
+.warn{border-left:3px solid var(--crimson);padding:.6rem .9rem;background:rgba(255,59,92,.06);
+ font-size:.86rem;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="field"></div>
+<div class="wrap">
+<header class="hero">
+<p class="kicker">Armory &middot; Hyjal &amp; Shadowsong &middot; read from the server</p>
+<h1>Regalia <span class="thin">&mdash; the armory, read raw</span></h1>
+<p class="lede">The live profile of <strong>Tandumonium</strong> as Blizzard
+serves it: Servant of N'Zoth, 21,685 achievement
+points, 263 average item level. Below it, the same page for a
+handle that has outlived two renames.</p>
+<nav class="panes"><a href="index.html">Shell</a><a href="_fuhevva_evva.html">Home</a><a href="character.html">Character</a><a href="gear.html">Gear</a><a href="tandu_legacy.html">Tandu Legacy</a><a href="Souvenirs.html">Souvenirs</a><a href="raidlogs.html">Raid Logs</a><a href="Doors.html">Doors</a><a href="Witnesses.html">Witnesses</a><a href="links.html">Links</a>
+  <a href="legacy.html">Legacy</a>
+  <a href="dynasty.html">Dynasty</a>
+  <a href="roster.html">Roster</a>
+  <a href="reliquary.html">Reliquary</a>
+  <a href="eras.html">Eras</a>
+  <a href="Frontier.html">Frontier</a>
+  <a href="Timeline.html">Timeline</a>
+  <a href="Delve.html">Delve</a>
+  <a href="Chronicle.html">Chronicle</a>
+  <a href="relics.html">Relics</a>
+  <a href="Forge.html">Forge</a>
+  <a href="Stable.html">Stable</a>
+  <a href="macrocosm.html">Macrocosm</a>
+  <a href="Sortie.html">Sortie</a>
+  <a href="Residue.html">Residue</a>
+  <a href="Heartbeat.html">Heartbeat</a>
+  <a href="Almanac.html">Almanac</a>
+  <a href="Levelbook.html">Levelbook</a>
+  <a href="Faces.html">Faces</a>
+  <a href="Purse.html">Purse</a>
+  <a href="Fronts.html">Fronts</a>
+  <a href="Clockwork.html">Clockwork</a>
+  <a href="Chassis.html">Chassis</a>
+  <a href="Itinerary.html">Itinerary</a>
+  <a href="Milestones.html">Milestones</a>
+  <a href="Vignettes.html">Vignettes</a>
+  <a href="Muster.html">Muster</a>
+  <a href="Tenure.html">Tenure</a>
+  <a href="Concordance.html">Concordance</a>
+  <a href="Company.html">Company</a>
+  <a href="Bestiary.html">Bestiary</a>
+  <a href="Kindred.html">Kindred</a>
+  <a href="Passersby.html">Passersby</a>
+  <a href="Vessel.html">Vessel</a>
+  <a href="Watchtower.html">Watchtower</a>
+  <a href="Strata.html">Strata</a>
+  <a href="Concourse.html">Concourse</a>
+  <a href="Regalia.html">Regalia</a>
+  <a href="Stride.html">Stride</a></nav>
+</header>
+<section><h2>The character the server hands out</h2>
+<div class="stats"><div class="stat"><b>90</b><span>level</span></div><div class="stat"><b>Dracthyr</b><span>race</span></div><div class="stat"><b>Hunter</b><span>class</span></div><div class="stat"><b>Beast Mastery</b><span>spec</span></div><div class="stat"><b>Hyjal</b><span>realm</span></div><div class="stat"><b>Horde</b><span>faction</span></div><div class="stat"><b>Servant of N'Zoth</b><span>title</span></div><div class="stat"><b>21,685</b><span>achievement points</span></div><div class="stat"><b>263</b><span>average item level</span></div><div class="stat"><b>—</b><span>last armory update</span></div></div>
+<p class="note" style="margin-top:.8rem">9 boss kills recorded across
+6 raids, every one of them in LFR. Difficulties present in the
+payload: Heroic, LFR, Mythic, Normal. Professions: Engineering, Enchanting, Archaeology, Cooking, Fishing.</p></section>
+<section><h2>Raid ledger, with dates</h2>
+<p class="note">Kill counts and the newest kill date per raid, straight from the
+profile JSON. Nothing outside LFR has ever been cleared on this character &mdash;
+that is the honest record, and it is the one thing a persona cannot argue with.</p>
+<table><thead><tr><th>raid</th><th>LFR</th><th>Normal</th><th>Heroic</th><th>Mythic</th><th>newest kill</th><th>bosses down</th></tr></thead><tbody><tr><td>The Dreamrift</td><td class="num">1/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">2026-08-15</td><td>Chimaerus the Undreamt God</td></tr><tr><td>The Voidspire</td><td class="num">6/6</td><td class="num">0/6</td><td class="num">0/6</td><td class="num">0/6</td><td class="num">2026-06-20</td><td>Imperator Averzian, Vorasius, Fallen-King Salhadaar, Vaelgor &amp; Ezzorak, Lightblinded Vanguard, Crown of the Cosmos</td></tr><tr><td>March on Quel'Danas</td><td class="num">0/2</td><td class="num">0/2</td><td class="num">0/2</td><td class="num">0/2</td><td class="num">&mdash;</td><td>no boss killed</td></tr><tr><td>Sporefall</td><td class="num">1/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">2026-08-15</td><td>Rotmire</td></tr><tr><td>The Venomous Abyss</td><td class="num">0/8</td><td class="num">0/8</td><td class="num">0/8</td><td class="num">0/8</td><td class="num">&mdash;</td><td>no boss killed</td></tr><tr><td>The Unbinding of Kith'ix</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">0/1</td><td class="num">&mdash;</td><td>no boss killed</td></tr></tbody></table></section>
+<section><h2>Mythic+ board &mdash; Midnight Season 2</h2>
+<p class="note">Expansion Midnight. Eight dungeons listed; the
+profile carries no run, no key level and no score for any of them.</p>
+<div class="chips"><a>Altar of Fangs</a><a>Murder Row</a><a>Den of Nalorakk</a><a>Voidscar Arena</a><a>The Blinding Vale</a><a>Ruby Life Pools</a><a>Temple of Sethraliss</a><a>Kings' Rest</a></div>
+</section>
+<section><h2>PvP ledger</h2>
+<div class="stats">
+<div class="stat"><b>15,006</b><span>honorable kills</span></div>
+<div class="stat"><b>41</b><span>honor level</span></div>
+<div class="stat"><b>0</b><span>rated wins</span></div>
+<div class="stat"><b>0</b><span>best bracket rating</span></div>
+</div>
+<p class="note" style="margin-top:.8rem">Fifteen thousand honorable kills and a
+forty-one honour level against an empty arena record: world PvP and battlegrounds,
+never the ladder. The armory says so plainly.</p></section>
+<section><h2>Gear wall</h2>
+<p class="note">Seventeen equipped slots. Every item links to Wowhead, so the
+tooltip shows what the armory only names.</p>
+<table><thead><tr><th>slot</th><th>item</th><th>ilvl</th><th>quality</th></tr></thead><tbody><tr><td>Back</td><td><a class="w" href="https://www.wowhead.com/item=259360" target="_blank" rel="noopener">Steelbark Cloak</a></td><td class="num">282</td><td>Epic</td></tr><tr><td>Chest</td><td><a class="w" href="https://www.wowhead.com/item=278878" target="_blank" rel="noopener">Crypt Cleanser Chestguard</a></td><td class="num">256</td><td>Uncommon</td></tr><tr><td>Feet</td><td><a class="w" href="https://www.wowhead.com/item=276005" target="_blank" rel="noopener">Skytalon Treads</a></td><td class="num">266</td><td>Rare</td></tr><tr><td>Hands</td><td><a class="w" href="https://www.wowhead.com/item=268238" target="_blank" rel="noopener">Grips of Swirling Fury</a></td><td class="num">279</td><td>Epic</td></tr><tr><td>Head</td><td><a class="w" href="https://www.wowhead.com/item=249988" target="_blank" rel="noopener">Primal Sentry's Maw</a></td><td class="num">253</td><td>Epic</td></tr><tr><td>Ring 1</td><td><a class="w" href="https://www.wowhead.com/item=276037" target="_blank" rel="noopener">Counter-Curse Circlet</a></td><td class="num">276</td><td>Rare</td></tr><tr><td>Trinket 1</td><td><a class="w" href="https://www.wowhead.com/item=280377" target="_blank" rel="noopener">Breath of Jan'alai</a></td><td class="num">263</td><td>Rare</td></tr><tr><td>Legs</td><td><a class="w" href="https://www.wowhead.com/item=275508" target="_blank" rel="noopener">Preyhunter's Rugged Legguards</a></td><td class="num">292</td><td>Epic</td></tr><tr><td>Neck</td><td><a class="w" href="https://www.wowhead.com/item=249368" target="_blank" rel="noopener">Eternal Voidsong Chain</a></td><td class="num">250</td><td>Epic</td></tr><tr><td>Ring 2</td><td><a class="w" href="https://www.wowhead.com/item=280715" target="_blank" rel="noopener">Eye of Skully</a></td><td class="num">266</td><td>Rare</td></tr><tr><td>Trinket 2</td><td><a class="w" href="https://www.wowhead.com/item=250462" target="_blank" rel="noopener">Forgotten Farstrider's Insignia</a></td><td class="num">253</td><td>Epic</td></tr><tr><td>Shirt</td><td><a class="w" href="https://www.wowhead.com/item=98543" target="_blank" rel="noopener">Wraps of the Blood-Soaked Brawler</a></td><td class="num">1</td><td>Epic</td></tr><tr><td>Shoulders</td><td><a class="w" href="https://www.wowhead.com/item=249986" target="_blank" rel="noopener">Primal Sentry's Trophies</a></td><td class="num">240</td><td>Epic</td></tr><tr><td>Tabard</td><td><a class="w" href="https://www.wowhead.com/item=179282" target="_blank" rel="noopener">Court of Harvesters Tabard</a></td><td class="num">14</td><td>Epic</td></tr><tr><td>Waist</td><td><a class="w" href="https://www.wowhead.com/item=278906" target="_blank" rel="noopener">Tomb-Sealed Girdle</a></td><td class="num">256</td><td>Uncommon</td></tr><tr><td>Main Hand</td><td><a class="w" href="https://www.wowhead.com/item=279232" target="_blank" rel="noopener">Ancient Amani Longbow</a></td><td class="num">263</td><td>Rare</td></tr><tr><td>Wrist</td><td><a class="w" href="https://www.wowhead.com/item=278890" target="_blank" rel="noopener">Armbands of Brothers</a></td><td class="num">256</td><td>Uncommon</td></tr></tbody></table></section>
+<section><h2>The old handle that still answers</h2>
+<div class="stats"><div class="stat"><b>10</b><span>level</span></div><div class="stat"><b>Zandalari Troll</b><span>race</span></div><div class="stat"><b>Hunter</b><span>class</span></div><div class="stat"><b>Marksmanship</b><span>spec</span></div><div class="stat"><b>Shadowsong</b><span>realm</span></div><div class="stat"><b>Horde</b><span>faction</span></div><div class="stat"><b>—</b><span>title</span></div><div class="stat"><b>21,005</b><span>achievement points</span></div><div class="stat"><b>8</b><span>average item level</span></div><div class="stat"><b>2025-06-19T22:49:55Z</b><span>last armory update</span></div></div>
+<p class="note" style="margin-top:.9rem">Tandu on Shadowsong is the 2008-era
+handle. The armory still serves it: level ten after the level squish, wearing the
+Heartbonded questing set, achievement points keeping pace with the account. Last
+update 2025-06-19 &mdash; years after the &lt;Gehenna&gt; tenure ended and before
+the dracthyr took the main slot.</p>
+<table><thead><tr><th>slot</th><th>item</th><th>ilvl</th><th>quality</th></tr></thead><tbody><tr><td>Chest</td><td><a class="w" href="https://www.wowhead.com/item=157674" target="_blank" rel="noopener">Heartbonded Vest</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Feet</td><td><a class="w" href="https://www.wowhead.com/item=157675" target="_blank" rel="noopener">Heartbonded Greaves</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Hands</td><td><a class="w" href="https://www.wowhead.com/item=157676" target="_blank" rel="noopener">Heartbonded Gauntlets</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Legs</td><td><a class="w" href="https://www.wowhead.com/item=157678" target="_blank" rel="noopener">Heartbonded Legguards</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Waist</td><td><a class="w" href="https://www.wowhead.com/item=157680" target="_blank" rel="noopener">Heartbonded Belt</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Main Hand</td><td><a class="w" href="https://www.wowhead.com/item=157649" target="_blank" rel="noopener">Goldstring Recurve</a></td><td class="num">16</td><td>Uncommon</td></tr><tr><td>Wrist</td><td><a class="w" href="https://www.wowhead.com/item=157681" target="_blank" rel="noopener">Heartbonded Bracers</a></td><td class="num">16</td><td>Uncommon</td></tr></tbody></table>
+</section>
+<section><h2>The doors, with their literal answers</h2>
+<p class="note">Every status below was measured on 2026-11-25 by
+<code>Research/_local/_web_hunt4_20261125.py</code> and
+<code>_web_hunt5_20261125.py</code>. Warcraft Logs answers 200 with a human
+verification page, so the 470 captured report codes remain unread.</p>
+<table><thead><tr><th>door</th><th>status 2026-11-25</th><th>verdict</th></tr></thead><tbody><tr><td>armory tandumonium-hyjal</td><td class="num">200</td><td>character profile served</td></tr><tr><td>armory tandu-shadowsong</td><td class="num">200</td><td>character profile served</td></tr><tr><td>armory tandu-thrall</td><td class="num">500</td><td>no profile</td></tr><tr><td>armory tandieu-hyjal</td><td class="num">500</td><td>no profile</td></tr><tr><td>armory tandieu-shadowsong</td><td class="num">500</td><td>no profile</td></tr><tr><td>warcraftlogs wcl_uploader</td><td class="num">200</td><td>human verification wall</td></tr><tr><td>warcraftlogs wcl_guild_7287</td><td class="num">200</td><td>human verification wall</td></tr><tr><td>wowprogress_char</td><td class="num">403</td><td>bot wall</td></tr><tr><td>rio_char_page</td><td class="num">403</td><td>bot wall</td></tr><tr><td>wayback_cdx_gehenna</td><td class="num">429</td><td>archive throttled</td></tr><tr><td>ddg_html</td><td class="num">200</td><td>bot challenge</td></tr><tr><td>reddit_search</td><td class="num">403</td><td>blocked</td></tr><tr><td>github_users</td><td class="num">200</td><td>0 accounts</td></tr><tr><td>stackoverflow</td><td class="num">200</td><td>0 users</td></tr></tbody></table></section>
+<section><h2>Method &amp; limits</h2>
+<div class="warn">The armory only carries the current expansion's raid ledger, so
+the absence of 2008&ndash;2019 bosses here is not absence of play &mdash; it is the
+armory forgetting. The dated LFR kills are real; the silence before Midnight is
+not evidence.</div>
+<p class="note" style="margin-top:.8rem">Read-only: one GET per handle, page saved
+to <code>Research/_raw/</code> (gitignored), JSON carved by brace-walking the
+embedded character object. Related wings:
+<a class="w" href="Souvenirs.html">Souvenirs</a> (caches and stills),
+<a class="w" href="character.html">Character</a> (the Raider.IO view),
+<a class="w" href="raidlogs.html">Raid Logs</a> (470 captured report codes),
+<a class="w" href="tandu_legacy.html">Tandu Legacy</a> (the retail disk).</p>
+</section>
+<p class="note">Built 2026-11-25 by Tandumonium. Shell:
+<a class="w" href="index.html" target="_top">index.html</a></p>
+</div>
+</body>
+</html>

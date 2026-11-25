@@ -5,6 +5,138 @@
 
 ---
 
+## 2026-11-25 ~10:20 EST - Entry 023: the caches were never empty, and one old handle still answers
+
+**Scope note:** read-only on the game install. Opened `_retail_\Cache\WDB\enUS`
+(all six `*.wdb`), `Cache\DamageMeter.bin`, `Screenshots\`, `Logs\` inventory,
+`Z:\World of Warcraft\.build.info`, and one live GET per armory handle. Nothing
+was written into the game tree; nothing was launched in-game.
+
+1. **The WDB caches decoded for the first time.** Six files, three populated:
+   `creaturecache.wdb` **326** records (**324** carry a printable name),
+   `gameobjectcache.wdb` **194** (**192** named), `questcache.wdb` **105** quest
+   IDs and **zero** titles. `npccache`, `pagetextcache`, `petitioncache` are
+   **32-byte** stubs — a signature with nothing behind it. Record layout,
+   verified by hand: `[4B signature][u32 build][4B locale][3×u32]` then repeated
+   `[u32 id][u32 size][size bytes payload]`; every file reports build **70783**.
+   Names are real Legion-era client memory: `Mystic Birdhat` (62821),
+   `Black Hawkstrider` (20222), `Hivemother Kraxi` (130443), `Fetid Devourer`
+   (133298).
+2. **`Cache\DamageMeter.bin` is a roster, not a log.** 446,154 B, 400 printable
+   strings. My own handle appears as `Tandumonium` + `HUNTER`; the rest of the
+   block is a pickup crowd carrying realms — `Boatboat-Thrall`,
+   `Kneecap-Daggerspine`, `Bassinyoface-Mug'thol`, `Myrionar-MoonGuard`,
+   `Ryetz-Area52` — and the corpses the meter counted: `Dark Hound`,
+   `Void Remnant`, `Fenryr`, `Springclaw Elder`.
+3. **The only dated artifacts on the retail tree are three stills.** All
+   `2026-11-05` within eleven seconds (05:47:51, 05:47:54, 05:48:02), 747,654 /
+   753,928 / 751,763 B. Downscaled to 1280px (~176 KB) for the site; originals
+   untouched. A cache record carries no timestamp, so no NPC on the new wing may
+   be given a date — that rule is printed on the page itself.
+4. **`.build.info` carries three full clients:** `wow` **12.1.5.70961**,
+   `wow_classic_era` **1.15.9.70576**, `wowf` **1.60.1.71091**. `Launcher.db` is
+   a 4-byte stub and `.product.db` (1,574 B) is not SQLite — no install history
+   survives there, so the "when did I install" question stays open.
+5. **The Blizzard armory serves more than the Raider.IO API, without a key.**
+   `worldofwarcraft.blizzard.com/en-us/character/us/hyjal/tandumonium` → `200`,
+   915,052 B, with a 225,702 B character JSON embedded (carved by brace-walk):
+   level **90** Dracthyr BM Hunter, title `Servant of N'Zoth`, **21,685**
+   achievement points, ilvl **263** over **17** slots, **15,006** honorable
+   kills, honour **41**, Engineering + Enchanting (+ Archaeology/Cooking/
+   Fishing), Midnight Season 2 with **eight dungeons and zero runs**.
+6. **The raid ledger is LFR and only LFR.** `Dreamrift` 1/1 and `Sporefall` 1/1
+   on `2026-08-15`; `Voidspire` 6/6 on `2026-06-20`; `March on Quel'Danas`,
+   `The Venomous Abyss`, `The Unbinding of Kith'ix` all `0/n`. Normal, Heroic and
+   Mythic: **0** across all six. The armory publishes current-expansion progress
+   only, so pre-Midnight silence is forgetting, not proof.
+7. **`Tandu`-Shadowsong still answers `200`** (297,737 B): level **10**
+   Zandalari Troll Marksmanship hunter, **21,005** achievement points, ilvl **8**,
+   seven `Heartbonded` pieces, last sync `2025-06-19T22:49:55Z`. `Tandieu`-Hyjal,
+   `Tandieu`-Shadowsong and `Tandu`-Thrall answer **500**; the Raider.IO API
+   still answers for `Tandumonium`-Hyjal (`200`, id **230240816**) and `400` for
+   every other handle.
+8. **Doors, literal:** WCL `200` inside a *Human Verification* shell (3,765 B —
+   the 470 uploader reports stay unread by machine), WowProgress `403`,
+   Raider.IO HTML `403`, Wayback CDX `429`, DuckDuckGo `202`, Mojeek captcha,
+   Startpage anubis challenge, Reddit `403`, GitHub `0` users, StackExchange `0`.
+9. **Two wings shipped:** `_gewey_gui\Souvenirs.html` (45) and
+   `_gewey_gui\Regalia.html` (46), both registered in `Timeline\wing_links.py`,
+   both carrying the Wowhead widget (625 and 24 live Wowhead links), both on a
+   card in `_fuhevva_evva.html` and a shell button (`iSouvenirs` /
+   `iRegalia`). Tenure rule untouched: no pre-2019 `<Gehenna>` claim is made
+   anywhere, and the armory profile has no guild field to claim from.
+
+-Signed, Tandumonium
+
+---
+
+## 2026-11-25 ~08:10 EST - Entry 022: the retail shells keep a CVar tape, and 12 of 54 handles still answer
+
+**Scope note:** read-only. `_retail_\WTF\Account\QUAZZARR\<Realm>\<Character>\` in full
+(54 folders: `AddOns.txt`, `macros-cache.txt`, `config-cache.wtf`, `SavedVariables\*.lua`
+counts), `Interface\AddOns` for the installed set, `Screenshots\`, `Logs\AccountData.log`
+already covered by Wing 39. Then 54 live GETs, one per handle, to
+`raider.io/api/v1/characters/profile`. No game file was written; nothing was deleted.
+
+### 1. The unread door is `config-cache.wtf`, and only nine shells keep one
+
+No earlier wing read a single line of it. It is not a log: it is a **CVar tape**, the exact
+settings the shell held at its last save. Nine of the fifty-four keep one — Fauxylauxy,
+Radaradas, Tandora, Tandu, Tandulari, Tandumonium, Tangents, Testytester (Hyjal) and
+Reticent (Shadowsong). The other forty-five are `AddOns.txt` only.
+
+### 2. The tape carries era clocks, and one of them is Shadowlands
+
+- `latestSplashScreen` reads **94 / 95 / 96** across the tapes: the install ageing, not the
+  character.
+- `Hyjal/Tandumonium` alone holds `lastRenownForCovenant1..4 = 65 / 80 / 80 / 80` — a
+  covenant record that outlived Shadowlands. `newPvpSeason 38`, `newMythicPlusSeason 14`.
+- `EJLootClass` is Blizzard-written, not an addon guess, so it is a class census: **3**
+  Hunter ×3 (Tandu, Tandumonium, Tangents, Testytester), **2** Paladin (Reticent,
+  Fauxylauxy), **9** Warlock (Tandora), **10** Monk (Radaradas), **11** Druid (Tandulari),
+  **13** Evoker.
+
+### 3. Six addon ghosts: the load lists predate the install
+
+`WorldFlightMap` is named by **51** shells and is not installed; `!Swatter` by **54**;
+`!ImprovedErrorFrame` by **54**; `Immersion` by **1**. Two more names are
+Blizzard-internal (`Blizzard_ObjectiveTracker`, `Blizzard_CompactRaidFrames`) and never had
+folders. The load lists are from an older client build than the one on disk.
+
+### 4. Twelve of fifty-four handles still answer the armory; forty-two do not
+
+Live: Hyjal — Christar (Rogue), Karkol (Mage, `<Theorycrafters>`), Legere (Paladin),
+Tandumonium (Hunter), Tantrums (Shaman); Shadowsong — Reticent (Paladin); Thrall — Eleryla
+(Priest), Jozeph (DH), Mortesque (DK), Nahko (Druid), Obsequy (Monk), Quazzarr (Warlock).
+The crawl dates are the useful part: `Obsequy` 2021-05-02, `Mortesque` 2022-05-01,
+`Nahko` 2022-07-24, `Tantrums` 2022-08-04. A live name is not proof of ownership on nine
+of the twelve; only Tandumonium, Tantrums and Reticent are triple-checked.
+
+### 5. `<Gehenna>` still exists and is not mine
+
+Raider.IO's guild record for Borean Tundra, last crawled 2026-03-14: **2** members
+(`Kalimas`, `Rageface`), `0/9` in `tier-mn-1`. The tenure window stays 2018-10 → 2020-10
+(WCL guild 7287); the 24 pre-2019 Wayback captures stay unrecorded.
+
+### 6. Walls re-probed, all still walls — except one guild door that opened
+
+WCL guild **and** character pages `403`; Wipefest the website is a 2,223 B SPA shell, but
+its **API** answers: `api.wipefest.gg/guild/us/borean-tundra/gehenna` → `200`
+`{id:7287, name:Gehenna, realm:Borean Tundra, faction:Horde}` — a second host attesting the
+guild id the tenure rule rests on. Its report list is still not reachable (`404`).
+Wayback availability `200` with **zero** snapshots for three character URLs (armory, WCL,
+wowprogress); CDX `429`; `r.jina.ai` reader proxy now `401`; Bing rewrites the handle to
+*Tandemonium*; DuckDuckGo `202`. GitHub `api.github.com/users/gewey/repos` `200` — **6**
+public repos, oldest `gewey.github.io` created 2019-03-03, no Warcraft-data repo.
+
+**Materials:** `Research/_local/_strata_scan.py`, `_strata_doors.py`, `_strata_build.py`,
+`_macro_page_build.py`; payloads `Research/_raw/retail_strata_20261125.json` and
+`retail_strata_doors_20261125.json` (both local, gitignored). Render:
+`_gewey_gui/Strata.html` (wing 41) plus two new macro caches,
+`Reticent-Shadowsong` (22) and `Tangents-Hyjal` (30).
+
+---
+
 ## 2026-11-16 ~06:15 EST - Entry 021: the errors are a login burst, and the boss mod names itself
 
 **Scope note:** read-only. All 178 `_forever_` `.toc` files (every TOC per folder, not the first),

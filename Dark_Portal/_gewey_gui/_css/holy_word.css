@@ -217,3 +217,9 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 .gw-shell button[name="iStrata"]::after      { content: " Strata"; }
 .gw-shell button[name="iWitnesses"]::after   { content: " Witnesses"; }
 .gw-shell button[name="iDoors"]::after       { content: " Doors"; }
+/* 2026-11-25 (wings 45-46): the accidental archive and the raw armory. */
+.gw-shell button[name="iConcourse"]::after   { content: " Concourse"; }
+.gw-shell button[name="iSouvenirs"]::after   { content: " Souvenirs"; }
+.gw-shell button[name="iRegalia"]::after     { content: " Regalia"; }
+/* 2026-11-25 (wing 47): the body's ledger. */
+.gw-shell button[name="iStride"]::after      { content: " Stride"; }
