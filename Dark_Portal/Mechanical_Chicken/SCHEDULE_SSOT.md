@@ -126,7 +126,7 @@
 - **Hard rules:** Never write inside `Logs\`, `WTF\`, or `Interface\`. Never edit the engine script. No full-file reads except ledger tail. Do not run Dark_Portal scry tools.
 - **Engine outputs:** Timestamped report to `Timeline\audit_logs\`; appends events to `data\events.jsonl`; updates `data\dashboard.json`; regenerates `_gewey_gui\Timeline.html` (previous render archived to `_gewey_gui\.history\`).
 - **Last run:** 11/25/2026 9:11:45 AM — success (1 event, client IDLE; ledger row `2026-11-25 09:11:45 | 11.0s | 1 ev | hf 0/0 | tree +1509/-~7`)
-- **Last Timeline.html regen:** 11/25/2026 9:11:56 AM, 281,722 B
+- **Last Timeline.html regen:** 11/25/2026 9:11:56 AM, 281,722 B — that is the **engine's** last render. Wing builders also splice into the same file (`saga_wing_build.py`, `concourse_wing_build.py`, `milestone_batch_*`), so a newer mtime or size means a builder ran, not that the engine did; only `run_ledger.md` proves the engine. The 9:59 AM `Concourse` pass left it at 285,031 B.
 - **Cron note:** IDE may label this as "Daily · 9:11 AM" but actual cron is `11 * * * *` (hourly at :11 past every hour). To make it truly daily, change cron to e.g. `11 9 * * *`.
 
 ---
