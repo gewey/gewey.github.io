@@ -52,7 +52,7 @@
     "root": "forever",
     "toc": {
       "title": "Achievements Forever",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "author": "regular",
       "secure": null,
       "notes": "Achievement window for WoW Forever, built on the client's own achievement data.",
@@ -65,6 +65,7 @@
       "Libs\\CallbackHandler-1.0\\CallbackHandler-1.0.lua",
       "Libs\\LibDataBroker-1.1\\LibDataBroker-1.1.lua",
       "Libs\\LibDBIcon-1.0\\LibDBIcon-1.0.lua",
+      "ForeverOptions.lua",
       "Core.lua",
       "Custom.lua",
       "Darkmoon.lua",
@@ -72,8 +73,7 @@
       "Minimap.lua",
       "Shape.lua",
       "UI.lua",
-      "Legacy.lua",
-      "LegacyDump.lua"
+      "Legacy.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -83,7 +83,8 @@
     ],
     "commands": [
       "/achievements",
-      "/af"
+      "/af",
+      "/afskin"
     ],
     "options": [],
     "tags": [
@@ -101,8 +102,8 @@
     ],
     "hide_without_disable": {
       "available": true,
-      "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, Minimap, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "method": "frame:SetAlpha(0)",
+      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
     },
     "files": [
       {
@@ -118,15 +119,19 @@
         "role": "module"
       },
       {
+        "path": "ForeverOptions.lua",
+        "role": "module"
+      },
+      {
         "path": "Legacy.lua",
         "role": "module"
       },
       {
-        "path": "LegacyDump.lua",
+        "path": "Minimap.lua",
         "role": "module"
       },
       {
-        "path": "Minimap.lua",
+        "path": "RetailSkin.lua",
         "role": "module"
       },
       {
@@ -516,7 +521,7 @@
     "root": "forever",
     "toc": {
       "title": "AllTheThings",
-      "version": "5.4.14",
+      "version": "5.4.17",
       "author": "Crieve",
       "secure": null,
       "notes": "",
@@ -562,7 +567,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, HIDDEN, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, visible, Hidden, Hide, HIDDEN. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -812,7 +817,7 @@
     "root": "forever",
     "toc": {
       "title": "Arcane Wizard: Library",
-      "version": "v1.56",
+      "version": "v1.57",
       "author": "Arcane Wizard | created by diomsg",
       "secure": null,
       "notes": "This addon provides the shared foundation for all Arcane Wizard addons. It brings common functionality together in one place, making it easier to develop and maintain the addons that use it.",
@@ -940,7 +945,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hide, hidden, Hide, Hidden, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Hidden, IsVisible, Hide, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -1251,7 +1256,7 @@
     "root": "forever",
     "toc": {
       "title": "Baganator",
-      "version": "866",
+      "version": "868",
       "author": "plusmouse",
       "secure": null,
       "notes": "",
@@ -1461,7 +1466,7 @@
     "root": "forever",
     "toc": {
       "title": "BetterWoWGraphics by |cFF69CCF0Foofi|r",
-      "version": "1.8.2",
+      "version": "1.8.4",
       "author": "Foofi",
       "secure": null,
       "notes": "One slider for nicer graphics with gamma, contrast and brightness controls, a Recommended button and an FPS readout.",
@@ -1493,7 +1498,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Visible, visible, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, visible, Hidden, Hide, Visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -1509,7 +1514,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffA0E4FFBouncy Jump Counter|r",
-      "version": "1.3.12",
+      "version": "1.3.15",
       "author": "Bouncy",
       "secure": null,
       "notes": "Counts jumps and streaks, unlocks Bouncy achievements, and levels up your companions.",
@@ -1969,7 +1974,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, IsVisible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -2160,7 +2165,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: MiniMap, Minimap, minimap, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Minimap, minimap, Hidden, MiniMap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -2380,7 +2385,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: MiniMap, hide, minimap, HIDE, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: HIDE, minimap, IsVisible, MiniMap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -2951,7 +2956,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, hide, hidden, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, visible, IsVisible, Hide, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -3240,7 +3245,7 @@
     "root": "forever",
     "toc": {
       "title": "CountSteps",
-      "version": "3.0.1",
+      "version": "3.0.4",
       "author": "You",
       "secure": null,
       "notes": "Estimates steps and miles traveled on foot; tracks jumps, deaths, and dances.",
@@ -3272,8 +3277,10 @@
     ],
     "events": [
       "ADDON_LOADED",
+      "GROUP_ROSTER_UPDATE",
       "PLAYER_DEAD",
       "PLAYER_ENTERING_WORLD",
+      "PLAYER_GUILD_UPDATE",
       "PLAYER_LEAVING_WORLD",
       "PLAYER_LOGOUT",
       "PLAYER_REGEN_ENABLED",
@@ -3282,8 +3289,8 @@
     ],
     "hide_without_disable": {
       "available": true,
-      "method": "frame:SetAlpha(0)",
-      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+      "method": "Hide/Show frame toggle (source-level)",
+      "notes": "Found hide-related references: Hide, hidden, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -3691,7 +3698,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Core|r|cffffe00a>|r |cff69ccf0Main Core|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS, QartemisT",
       "secure": null,
       "notes": "Deadly Boss Mods",
@@ -3767,7 +3774,8 @@
       "NAME_PLATE_UNIT_ADDED",
       "PLAYER_ENTERING_WORLD",
       "PLAYER_REGEN_DISABLED",
-      "RAID_TARGET_UPDATE"
+      "RAID_TARGET_UPDATE",
+      "UNIT_DIED"
     ],
     "hide_without_disable": {
       "available": true,
@@ -3904,7 +3912,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Core|r|cffffe00a>|r |cff69ccf0Options GUI|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS, QartemisT",
       "secure": null,
       "notes": "GUI for Deadly Boss Mods",
@@ -4027,7 +4035,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cffff6010Lairs (Midnight)|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS",
       "secure": null,
       "notes": "",
@@ -4092,7 +4100,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cff10ff10World Bosses (Midnight)|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS",
       "secure": null,
       "notes": "",
@@ -4192,7 +4200,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -4308,7 +4316,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cffff6010Raids (Midnight)|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS",
       "secure": null,
       "notes": "",
@@ -4489,7 +4497,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffe00a<|r|cffff7d0aDBM Core|r|cffffe00a>|r |cff69ccf0Status Bar Timers|r",
-      "version": "12.1.23",
+      "version": "12.1.25",
       "author": "MysticalOS, QartemisT",
       "secure": null,
       "notes": "DBM - status bar timer library",
@@ -4557,6 +4565,94 @@
     },
     "files": [],
     "main_file": null
+  },
+  "DeleteCheapestItem": {
+    "name": "DeleteCheapestItem",
+    "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\DeleteCheapestItem",
+    "root": "forever",
+    "toc": {
+      "title": "DeleteCheapestItem Reloaded",
+      "version": "v1.9.1",
+      "author": "Sander Vispoel (sandervspl)",
+      "secure": null,
+      "notes": "Find the least valuable bag stacks to delete or sell when your inventory is full.",
+      "savedVariables": "DCI_ProfilesDB",
+      "savedVariablesPerCharacter": "DCI_DB, DCI_CharDB",
+      "iconTexture": "Interface\\AddOns\\DeleteCheapestItem\\Media\\icon"
+    },
+    "loadOrder": [
+      "Libs/LibStub/LibStub.lua",
+      "Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua",
+      "Libs/AceDB-3.0/AceDB-3.0.lua",
+      "Libs/LibDataBroker-1.1/LibDataBroker-1.1.lua",
+      "Libs/LibDBIcon-1.0/LibDBIcon-1.0.lua",
+      "Localization.lua",
+      "Profiles.lua",
+      "ProfileUI.lua",
+      "DeleteCheapestItem.lua",
+      "Broker.lua"
+    ],
+    "enabled": true,
+    "functionality": [
+      "ui_hide_ready"
+    ],
+    "commands": [
+      "/dci"
+    ],
+    "options": [],
+    "tags": [
+      "ui_hide_ready"
+    ],
+    "events": [
+      "ADDON_LOADED",
+      "BAG_CLOSED",
+      "BAG_OPEN",
+      "BAG_UPDATE",
+      "GET_ITEM_INFO_RECEIVED",
+      "GOSSIP_SHOW",
+      "LOOT_CLOSED",
+      "LOOT_OPENED",
+      "MAIL_FAILED",
+      "MAIL_SHOW",
+      "PLAYER_REGEN_DISABLED",
+      "PLAYER_REGEN_ENABLED",
+      "QUEST_COMPLETE",
+      "QUEST_DETAIL",
+      "QUEST_PROGRESS",
+      "START_LOOT_ROLL",
+      "TRADE_SHOW",
+      "TRADE_TARGET_ITEM_CHANGED",
+      "UI_ERROR_MESSAGE",
+      "UI_INFO_MESSAGE"
+    ],
+    "hide_without_disable": {
+      "available": true,
+      "method": "frame:SetAlpha(0)",
+      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+    },
+    "files": [
+      {
+        "path": "Broker.lua",
+        "role": "module"
+      },
+      {
+        "path": "DeleteCheapestItem.lua",
+        "role": "main"
+      },
+      {
+        "path": "Localization.lua",
+        "role": "module"
+      },
+      {
+        "path": "Profiles.lua",
+        "role": "module"
+      },
+      {
+        "path": "ProfileUI.lua",
+        "role": "module"
+      }
+    ],
+    "main_file": "DeleteCheapestItem.lua"
   },
   "DialogueUI": {
     "name": "DialogueUI",
@@ -4736,7 +4832,7 @@
     "root": "forever",
     "toc": {
       "title": "Ding Fanfare by |cFF69CCF0Foofi|r",
-      "version": "1.11.3",
+      "version": "1.11.7",
       "author": "Foofi",
       "secure": null,
       "notes": "Achievement-style toasts when your friends, guildmates and group members level up, plus \"Server First (seen)\" toasts when /who shows someone above the highest level seen on your realm.",
@@ -5323,7 +5419,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, MINIMAP, minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, MINIMAP, minimap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -5389,6 +5485,99 @@
     ],
     "main_file": "Core.lua"
   },
+  "ElitePlayerFrame_Enhanced": {
+    "name": "ElitePlayerFrame_Enhanced",
+    "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\ElitePlayerFrame_Enhanced",
+    "root": "forever",
+    "toc": {
+      "title": "Elite Player Frame (Enhanced)",
+      "version": "1.11.7",
+      "author": "Zeal Vurte",
+      "secure": null,
+      "notes": "Changes the look of your player frame to various target and custom frames.",
+      "savedVariables": null,
+      "savedVariablesPerCharacter": "ElitePlayerFrame_Enhanced_Settings",
+      "iconTexture": null
+    },
+    "loadOrder": [
+      "GameType.lua",
+      "Core.lua",
+      "\\Core.lua",
+      "\\Frame.xml",
+      "\\CustomFrameModes.lua",
+      "\\AddonCompartmentTooltip.xml",
+      "\\AddonCompartmentTooltip.lua"
+    ],
+    "enabled": true,
+    "functionality": [
+      "ui",
+      "ui_hide_ready"
+    ],
+    "commands": [],
+    "options": [],
+    "tags": [
+      "ui",
+      "ui_hide_ready"
+    ],
+    "events": [
+      "BARBER_SHOP_APPEARANCE_APPLIED",
+      "DISPLAY_SIZE_CHANGED",
+      "LOADING_SCREEN_DISABLED",
+      "MAX_EXPANSION_LEVEL_UPDATED",
+      "MIN_EXPANSION_LEVEL_UPDATED",
+      "NEUTRAL_FACTION_SELECT_RESULT",
+      "PLAYER_ENTERING_WORLD",
+      "PLAYER_LEVEL_UP",
+      "PLAYER_TALENT_UPDATE",
+      "SHOW_SUBSCRIPTION_INTERSTITIAL",
+      "UPDATE_EXPANSION_LEVEL",
+      "ZONE_CHANGED_NEW_AREA"
+    ],
+    "hide_without_disable": {
+      "available": true,
+      "method": "Hide/Show frame toggle (source-level)",
+      "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
+    },
+    "files": [
+      {
+        "path": "Core.lua",
+        "role": "module"
+      },
+      {
+        "path": "FrameMixin.lua",
+        "role": "module"
+      },
+      {
+        "path": "GameType.lua",
+        "role": "module"
+      },
+      {
+        "path": "Classic\\Core.lua",
+        "role": "module"
+      },
+      {
+        "path": "Classic\\CustomFrameModes.lua",
+        "role": "module"
+      },
+      {
+        "path": "Mainline\\AddonCompartmentTooltip.lua",
+        "role": "module"
+      },
+      {
+        "path": "Mainline\\AddonCompartmentTooltipMixin.lua",
+        "role": "module"
+      },
+      {
+        "path": "Mainline\\Core.lua",
+        "role": "module"
+      },
+      {
+        "path": "Mainline\\CustomFrameModes.lua",
+        "role": "module"
+      }
+    ],
+    "main_file": "Core.lua"
+  },
   "EuphorrixSpellAnnouncerV2": {
     "name": "EuphorrixSpellAnnouncerV2",
     "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\EuphorrixSpellAnnouncerV2",
@@ -5443,7 +5632,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -5682,7 +5871,7 @@
     "root": "forever",
     "toc": {
       "title": "Fellowship Ledger |cffff4040(unsupported client)|r",
-      "version": "1.14.6",
+      "version": "1.14.7",
       "author": "Decoupled Lane Studio",
       "secure": null,
       "notes": "Fallback file. Supported clients load FellowshipLedger_Forever.toc or FellowshipLedger_Mainline.toc instead.",
@@ -5716,7 +5905,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Minimap, minimap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -5848,7 +6037,7 @@
     "root": "forever",
     "toc": {
       "title": "Frugal's Flight Minigames",
-      "version": "2.6.11",
+      "version": "2.6.13",
       "author": "Tom",
       "secure": null,
       "notes": "Peg'gul and GemWaves, /games to open",
@@ -6211,7 +6400,7 @@
     "root": "forever",
     "toc": {
       "title": "Forever Combat Text",
-      "version": "0.16.2",
+      "version": "0.17.0",
       "author": "Morpster",
       "secure": null,
       "notes": "Simple nameplate combat text with damage-school colors and a few useful options for WoW Forever beta.",
@@ -6242,6 +6431,7 @@
       "damageSchoolColors",
       "eliteIcons",
       "enabled",
+      "groupHealingOnly",
       "healing",
       "hideFriendlyInCities",
       "minionPlates",
@@ -6282,6 +6472,200 @@
       },
       {
         "path": "Options.lua",
+        "role": "module"
+      }
+    ],
+    "main_file": "Core.lua"
+  },
+  "ForeverCore": {
+    "name": "ForeverCore",
+    "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\ForeverCore",
+    "root": "forever",
+    "toc": {
+      "title": "ForeverCore",
+      "version": "1.17.1",
+      "author": "cjber",
+      "secure": null,
+      "notes": "Shared code the Forever addons need. Nothing to set up: each Forever addon uses it for its tracker column and settings.",
+      "savedVariables": "ForeverCoreDB",
+      "savedVariablesPerCharacter": null,
+      "iconTexture": "Interface\\AddOns\\ForeverCore\\media\\Icon"
+    },
+    "loadOrder": [
+      "Core\\Loader.lua",
+      "Begin.lua",
+      "Core.lua",
+      "Locales\\enUS.lua",
+      "Locales\\deDE.lua",
+      "Locales\\esES.lua",
+      "Locales\\esMX.lua",
+      "Locales\\frFR.lua",
+      "Locales\\koKR.lua",
+      "Locales\\ptBR.lua",
+      "Locales\\ruRU.lua",
+      "Locales\\zhCN.lua",
+      "Locales\\zhTW.lua",
+      "Data\\Credits.lua",
+      "Core\\SafeCall.lua",
+      "Core\\Open.lua",
+      "Core\\OpenMap.lua",
+      "Core\\OpenSettings.lua",
+      "Core\\Log.lua",
+      "Core\\Capture.lua"
+    ],
+    "enabled": true,
+    "functionality": [
+      "tracking_trackers",
+      "ui_hide_ready"
+    ],
+    "commands": [
+      "/fcore"
+    ],
+    "options": [],
+    "tags": [
+      "tracking_trackers",
+      "ui_hide_ready"
+    ],
+    "events": [
+      "ADDON_ACTION_BLOCKED",
+      "ADDON_ACTION_FORBIDDEN",
+      "ADDON_LOADED",
+      "DISPLAY_SIZE_CHANGED",
+      "EDIT_MODE_LAYOUTS_UPDATED",
+      "GLOBAL_MOUSE_DOWN",
+      "GLOBAL_MOUSE_UP",
+      "LUA_WARNING",
+      "PLAYER_ENTERING_WORLD",
+      "PLAYER_LOGIN",
+      "PLAYER_REGEN_DISABLED",
+      "PLAYER_REGEN_ENABLED",
+      "UI_SCALE_CHANGED",
+      "VARIABLES_LOADED"
+    ],
+    "hide_without_disable": {
+      "available": true,
+      "method": "frame:SetAlpha(0)",
+      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+    },
+    "files": [
+      {
+        "path": "Begin.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core.lua",
+        "role": "module"
+      },
+      {
+        "path": "End.lua",
+        "role": "module"
+      },
+      {
+        "path": "Expose.lua",
+        "role": "module"
+      },
+      {
+        "path": "ForeverCoreReady.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\API.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\APIKit.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Capture.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Character.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Loader.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Log.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Open.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\OpenMap.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\OpenSettings.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Performance.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\SafeCall.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core\\Text.lua",
+        "role": "module"
+      },
+      {
+        "path": "Data\\Credits.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\deDE.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\enUS.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\esES.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\esMX.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\frFR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\koKR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\ptBR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\ruRU.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\zhCN.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\zhTW.lua",
+        "role": "module"
+      },
+      {
+        "path": "UI\\Art.lua",
+        "role": "module"
+      },
+      {
+        "path": "UI\\ContextMenu.lua",
         "role": "module"
       }
     ],
@@ -6478,50 +6862,6 @@
     ],
     "main_file": "ForeverDex.lua"
   },
-  "ForeverEpicFrames": {
-    "name": "ForeverEpicFrames",
-    "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\ForeverEpicFrames",
-    "root": "forever",
-    "toc": {
-      "title": "Forever Epic Frames",
-      "version": "0.3.11",
-      "author": "Palpe Lo",
-      "secure": null,
-      "notes": "Marcos epicos para personaje, objetivo y objetivo del objetivo. Conserva los elementos originales de Blizzard.",
-      "savedVariables": "ForeverEpicFramesDB",
-      "savedVariablesPerCharacter": null,
-      "iconTexture": "Interface\\Icons\\INV_Shield_06"
-    },
-    "loadOrder": [
-      "EpicSkin.lua"
-    ],
-    "enabled": true,
-    "functionality": [
-      "ui",
-      "ui_hide_ready"
-    ],
-    "commands": [
-      "/fep"
-    ],
-    "options": [],
-    "tags": [
-      "ui",
-      "ui_hide_ready"
-    ],
-    "events": [],
-    "hide_without_disable": {
-      "available": true,
-      "method": "frame:SetAlpha(0)",
-      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
-    },
-    "files": [
-      {
-        "path": "EpicSkin.lua",
-        "role": "module"
-      }
-    ],
-    "main_file": null
-  },
   "ForeverGraphicsControl": {
     "name": "ForeverGraphicsControl",
     "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\ForeverGraphicsControl",
@@ -6563,7 +6903,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, Minimap, minimap, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Minimap, visible, minimap, IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -6633,7 +6973,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, minimap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -6848,7 +7188,7 @@
     "root": "forever",
     "toc": {
       "title": "|cff4cc9ffForever|r Social Crests",
-      "version": "2.7.0",
+      "version": "2.7.5",
       "author": "Antonio Terrón",
       "secure": null,
       "notes": "Party/raid icon and guild crest next to your companions' names. Works in classic mode and with BetterBlizzMarkers.",
@@ -6873,10 +7213,10 @@
       "Share.lua",
       "Plates.lua",
       "Frames.lua",
+      "Finder.lua",
       "NameStyle.lua",
       "Chat.lua",
-      "Tooltip.lua",
-      "Skin.lua"
+      "Tooltip.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -6919,6 +7259,10 @@
       },
       {
         "path": "Diplomacy.lua",
+        "role": "module"
+      },
+      {
+        "path": "Finder.lua",
         "role": "module"
       },
       {
@@ -6998,7 +7342,7 @@
     "root": "forever",
     "toc": {
       "title": "ForeverStats",
-      "version": "0.87.0",
+      "version": "0.88.2",
       "author": "mafagdevelopments",
       "secure": null,
       "notes": "Lifetime statistics for every character (retail, Forever and Classic): time played, time per level, sessions, quests, XP, money, deaths, kills, loot, group, milestones, inventory, gold per enemy and dungeon runs.",
@@ -7184,7 +7528,7 @@
     "root": "forever",
     "toc": {
       "title": "ForeverStats - Combat",
-      "version": "0.87.0",
+      "version": "0.88.2",
       "author": "mafagdevelopments",
       "secure": null,
       "notes": "ForeverStats combat tracking: every fight read from the game's damage meter, with where it happened, enemies, damage, healing, your combat pet and records.",
@@ -7252,7 +7596,7 @@
     "root": "forever",
     "toc": {
       "title": "ForeverStats - Dungeons",
-      "version": "0.87.0",
+      "version": "0.88.2",
       "author": "mafagdevelopments",
       "secure": null,
       "notes": "ForeverStats dungeon tool: every dungeon, delve and raid run with its pulls, bosses, map, group and loot, plus route planning.",
@@ -7264,6 +7608,7 @@
       "Main.lua",
       "Recorder.lua",
       "Data.lua",
+      "Score.lua",
       "Sync.lua",
       "Stats.lua",
       "Diagnostics.lua",
@@ -7289,7 +7634,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, visible, IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, IsVisible, visible, Minimap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -7313,6 +7658,10 @@
         "role": "module"
       },
       {
+        "path": "Score.lua",
+        "role": "module"
+      },
+      {
         "path": "Stats.lua",
         "role": "module"
       },
@@ -7333,10 +7682,10 @@
     "root": "forever",
     "toc": {
       "title": "ForeverStats - Guild",
-      "version": "0.87.0",
+      "version": "0.88.2",
       "author": "mafagdevelopments",
       "secure": null,
-      "notes": "ForeverStats guild sharing: members, who knows each recipe, crafting orders, shared records and materials, «Wanted» lists and order statistics, between guild members with the addon.",
+      "notes": "ForeverStats guild sharing: members, who knows each recipe, crafting orders, shared records and materials, «Wanted» lists, order statistics and dungeon outings, between guild members with the addon.",
       "savedVariables": "ForeverStats_GuildDB",
       "savedVariablesPerCharacter": null,
       "iconTexture": null
@@ -7345,8 +7694,10 @@
       "Main.lua",
       "Stats.lua",
       "Guild.lua",
+      "Outings.lua",
       "Diagnostics.lua",
-      "Tab.lua"
+      "Tab.lua",
+      "OutingsTab.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -7365,7 +7716,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -7378,6 +7729,14 @@
       },
       {
         "path": "Main.lua",
+        "role": "module"
+      },
+      {
+        "path": "Outings.lua",
+        "role": "module"
+      },
+      {
+        "path": "OutingsTab.lua",
         "role": "module"
       },
       {
@@ -7397,7 +7756,7 @@
     "root": "forever",
     "toc": {
       "title": "ForeverStats - PvP",
-      "version": "0.87.0",
+      "version": "0.88.2",
       "author": "mafagdevelopments",
       "secure": null,
       "notes": "ForeverStats PvP: battleground and arena matches with the full scoreboard, ratings, honorable kills and open-world PvP (1v1 encounters, nemesis, kill streak).",
@@ -7654,7 +8013,7 @@
     "root": "forever",
     "toc": {
       "title": "FriendGroups",
-      "version": "13.1.3",
+      "version": "13.1.4",
       "author": "Osiris the Kiwi / Discord: osirisnz / Original authors: mkp_tv / Hayato2846 / Thainii",
       "secure": null,
       "notes": "|cfffe7b2cFriendGroups - Custom folders, known alt tracking, auto guild groups, smart search, mass invites, and rich realm/class info|r",
@@ -7669,6 +8028,7 @@
       "Libs\\LibDataBroker-1.1\\LibDataBroker-1.1.lua",
       "Libs\\LibDBIcon-1.0\\lib.xml",
       "Compat.lua",
+      "Perf.lua",
       "locales\\localizations.xml",
       "Platform_Menu.lua",
       "Platform_Render.lua",
@@ -7731,6 +8091,10 @@
       },
       {
         "path": "Minimap.lua",
+        "role": "module"
+      },
+      {
+        "path": "Perf.lua",
         "role": "module"
       },
       {
@@ -7810,7 +8174,7 @@
     "root": "forever",
     "toc": {
       "title": "Goldmind",
-      "version": "0.2.16",
+      "version": "0.2.17",
       "author": "Cromie Labs",
       "secure": null,
       "notes": "Free auction house market data collector for WoW Forever. Reads only; never posts, buys, bids or cancels.",
@@ -8022,7 +8386,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, visible, minimap, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hidden, hidden, minimap, visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -8215,7 +8579,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Visible, visible, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: minimap, visible, Hide, Visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -8419,7 +8783,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Minimap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -8491,7 +8855,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, Visible, visible, minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: visible, Visible, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -8547,7 +8911,7 @@
     "root": "forever",
     "toc": {
       "title": "Hunter's Field Guide",
-      "version": "1.1.1",
+      "version": "1.2.3",
       "author": "Alezyzz",
       "secure": null,
       "notes": "A hunter's beast journal. Cast Beast Lore to record what beasts teach, and see where to find them.",
@@ -8790,7 +9154,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers: An Adventurer's Journal",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Writes your leveling journey as a travel journal: map, chronicle, quests, moments and more.",
@@ -8978,7 +9342,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Campfire",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Campfire for Ink & Embers: campfire notes, smoke signals and the \"At the fire\" view of the companions.",
@@ -9016,7 +9380,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9068,7 +9432,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Crafting",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Crafting for Ink & Embers: recipe book and work orders, with bars at the profession window and at the auction house.",
@@ -9115,7 +9479,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, hide, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, visible, Hidden, Hide, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9247,7 +9611,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Data",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Enemy and item lists for the to-do goals and profession recipes of Ink & Embers. Loaded on demand only.",
@@ -9282,7 +9646,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9326,7 +9690,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Plans",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Plans for Ink & Embers: to-dos with the on-screen note, trainer plan and pet training.",
@@ -9421,7 +9785,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Quest data",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Open quests and quest givers for Ink & Embers (data: QuestieDB). Loaded on demand only.",
@@ -9451,7 +9815,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9483,7 +9847,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Quests",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Open quests, dungeon quests and zone overview for Ink & Embers (the quest history stays in the journal).",
@@ -9520,7 +9884,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Hidden, visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9560,7 +9924,7 @@
     "root": "forever",
     "toc": {
       "title": "Ink & Embers - Quest tracker",
-      "version": "v1.1.0",
+      "version": "v1.1.1",
       "author": "EveN",
       "secure": null,
       "notes": "Own quest tracker for Ink & Embers in WoW Forever, with quest item bar.",
@@ -9722,7 +10086,7 @@
     "root": "forever",
     "toc": {
       "title": "Item Level Nameplate by |cFF69CCF0Foofi|r",
-      "version": "2.5.3",
+      "version": "2.6.0",
       "author": "Foofi",
       "secure": null,
       "notes": "Shows your target's item level by the target frame and in player tooltips",
@@ -9760,7 +10124,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -9792,7 +10156,7 @@
     "root": "forever",
     "toc": {
       "title": "|cFF009900Kehet's|r Fellowship",
-      "version": "2.8.0",
+      "version": "2.9.0",
       "author": "Kehet",
       "secure": null,
       "notes": "Rate the players you group with and see their score when they join you again",
@@ -9820,7 +10184,9 @@
       "/fellow",
       "/fellowship"
     ],
-    "options": [],
+    "options": [
+      "presetTags"
+    ],
     "tags": [
       "ui_hide_ready"
     ],
@@ -9831,7 +10197,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, hide, minimap, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Minimap, minimap, Hide, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -10064,7 +10430,7 @@
     "root": "forever",
     "toc": {
       "title": "LastProdigy",
-      "version": "1.4.2",
+      "version": "1.4.3",
       "author": null,
       "secure": null,
       "notes": "A collection of small quality-of-life tweaks. Type /lp to open the options.",
@@ -10288,7 +10654,7 @@
     "root": "forever",
     "toc": {
       "title": "Librarian",
-      "version": "v1.3.4",
+      "version": "v1.3.5",
       "author": "thoriphes",
       "secure": null,
       "notes": "Library books tracker for WoW Forever: journal, map pins, zone toast, tracker section.",
@@ -10423,7 +10789,7 @@
     "root": "retail",
     "toc": {
       "title": "LiteMount",
-      "version": "12.1.5-2",
+      "version": "12.1.5-3",
       "author": "Xodiv-Nagrand",
       "secure": null,
       "notes": "",
@@ -10470,6 +10836,7 @@
       "flagChanges",
       "groups",
       "mountPriorities",
+      "profile",
       "uiDebugEnabled",
       "unavailableMacro",
       "useCombatMacro",
@@ -10797,13 +11164,165 @@
     ],
     "main_file": "Core.lua"
   },
+  "Lueur": {
+    "name": "Lueur",
+    "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\Lueur",
+    "root": "forever",
+    "toc": {
+      "title": "Lueur",
+      "version": "2.0.0",
+      "author": null,
+      "secure": null,
+      "notes": "Makes ore veins, herbs, quest objects and chests glow as you approach them, with a choice of light effects (uses Blizzard's soft targeting).",
+      "savedVariables": "LueurDB",
+      "savedVariablesPerCharacter": "LueurCharDB",
+      "iconTexture": "Interface\\AddOns\\Lueur\\Media\\icon.tga"
+    },
+    "loadOrder": [
+      "Locales\\Locales.lua",
+      "Locales\\enUS.lua",
+      "Locales\\frFR.lua",
+      "Locales\\deDE.lua",
+      "Locales\\esES.lua",
+      "Locales\\ruRU.lua",
+      "Locales\\ptBR.lua",
+      "Locales\\itIT.lua",
+      "Locales\\koKR.lua",
+      "Locales\\zhCN.lua",
+      "Locales\\zhTW.lua",
+      "Effects.lua",
+      "Core.lua",
+      "CVars.lua",
+      "Classify.lua",
+      "Glow.lua",
+      "Lueur.lua",
+      "Settings.lua",
+      "Commands.lua",
+      "Tracking.lua"
+    ],
+    "enabled": true,
+    "functionality": [
+      "ui_hide_ready"
+    ],
+    "commands": [
+      "/lueur"
+    ],
+    "options": [],
+    "tags": [
+      "ui_hide_ready"
+    ],
+    "events": [
+      "PLAYER_LOGIN",
+      "UPDATE_BINDINGS"
+    ],
+    "hide_without_disable": {
+      "available": true,
+      "method": "frame:SetAlpha(0)",
+      "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+    },
+    "files": [
+      {
+        "path": "Classify.lua",
+        "role": "module"
+      },
+      {
+        "path": "Commands.lua",
+        "role": "module"
+      },
+      {
+        "path": "Core.lua",
+        "role": "module"
+      },
+      {
+        "path": "CVars.lua",
+        "role": "module"
+      },
+      {
+        "path": "Effects.lua",
+        "role": "module"
+      },
+      {
+        "path": "Glow.lua",
+        "role": "module"
+      },
+      {
+        "path": "Lueur.lua",
+        "role": "main"
+      },
+      {
+        "path": "Menu.lua",
+        "role": "module"
+      },
+      {
+        "path": "Preview.lua",
+        "role": "module"
+      },
+      {
+        "path": "Settings.lua",
+        "role": "module"
+      },
+      {
+        "path": "Skin.lua",
+        "role": "module"
+      },
+      {
+        "path": "Tracking.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\deDE.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\enUS.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\esES.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\frFR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\itIT.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\koKR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\Locales.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\ptBR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\ruRU.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\zhCN.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\zhTW.lua",
+        "role": "module"
+      }
+    ],
+    "main_file": "Core.lua"
+  },
   "MacroAssistForever": {
     "name": "MacroAssistForever",
     "directory": "Z:\\World of Warcraft\\_forever_\\Interface\\AddOns\\MacroAssistForever",
     "root": "forever",
     "toc": {
       "title": "Macro Assist Forever",
-      "version": "v0.8.3",
+      "version": "0.8.12",
       "author": "cjber",
       "secure": null,
       "notes": "A macro list and editor with completions, live checks and a bundled mono font.",
@@ -10994,7 +11513,7 @@
     "root": "forever",
     "toc": {
       "title": "Macro Workshop by |cFF69CCF0Foofi|r",
-      "version": "1.5.2",
+      "version": "1.5.5",
       "author": "Foofi",
       "secure": null,
       "notes": "Makes the macro window better: move and resize it, a command list to click or drag into your macro, autocomplete, spells dragged from your bars, and friendly checks. Type /macro.",
@@ -11318,7 +11837,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -11390,7 +11909,7 @@
     "root": "forever",
     "toc": {
       "title": "MoveAny by |cff55d2ffD4KiR |T132115:16:16:0:0|t",
-      "version": "1.14.23",
+      "version": "1.14.25",
       "author": "D4KiR |T132115:16:16:0:0|t",
       "secure": null,
       "notes": "MoveAny is an add-on that lets you unlock and move user interface elements",
@@ -11577,7 +12096,7 @@
     "root": "forever",
     "toc": {
       "title": "MyNotepad by |cFF69CCF0Foofi|r",
-      "version": "2.6.4",
+      "version": "2.7.0",
       "author": "Foofi",
       "secure": null,
       "notes": "A notepad with named pages, shared or per-character notes, links, location stamps, search and page sharing between players. Saves as you type. Type /notepad or /np to toggle.",
@@ -11589,6 +12108,7 @@
       "Templates.xml",
       "FoofiNote.lua",
       "MyNotepad.lua",
+      "Pin.lua",
       "Sounds.lua",
       "Preview.lua",
       "Dialog.lua",
@@ -11614,6 +12134,9 @@
       "ADDON_LOADED",
       "CHAT_MSG_ADDON",
       "GLOBAL_MOUSE_DOWN",
+      "GROUP_ROSTER_UPDATE",
+      "GUILD_ROSTER_UPDATE",
+      "PLAYER_ENTERING_WORLD",
       "PLAYER_LOGIN",
       "PLAYER_LOGOUT",
       "PLAYER_REGEN_DISABLED",
@@ -11638,6 +12161,10 @@
         "role": "main"
       },
       {
+        "path": "Pin.lua",
+        "role": "module"
+      },
+      {
         "path": "Preview.lua",
         "role": "module"
       },
@@ -11658,7 +12185,7 @@
     "root": "forever",
     "toc": {
       "title": "Nova Instance Tracker",
-      "version": "2.32",
+      "version": "2.34",
       "author": "Novaspark-Arugal OCE",
       "secure": null,
       "notes": "Instance lockout tracking with mob count/xp/gold/trade logs, battleground/arena logs, and much more.",
@@ -11961,7 +12488,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffe6b85cOpen|rMap",
-      "version": "v0.8.10",
+      "version": "v0.8.13",
       "author": "OpenMap contributors",
       "secure": null,
       "notes": "One seamless world map: every zone stitched together, zoom out of one into the next. Blizzard's map, quest log and Questie keep working. /openmap",
@@ -12014,6 +12541,8 @@
       "icons",
       "iconsFrom",
       "playerArrow",
+      "playerArrowOnTop",
+      "playerArrowScale",
       "zeppelins"
     ],
     "tags": [
@@ -12113,7 +12642,15 @@
         "role": "module"
       },
       {
+        "path": "Map\\DungeonJournal.lua",
+        "role": "module"
+      },
+      {
         "path": "Map\\Dungeons.lua",
+        "role": "module"
+      },
+      {
+        "path": "Map\\Explore.lua",
         "role": "module"
       },
       {
@@ -12142,14 +12679,6 @@
       },
       {
         "path": "Map\\News.lua",
-        "role": "module"
-      },
-      {
-        "path": "Map\\PadView.lua",
-        "role": "module"
-      },
-      {
-        "path": "Map\\Paint.lua",
         "role": "module"
       }
     ],
@@ -12391,7 +12920,7 @@
     "root": "forever",
     "toc": {
       "title": "Opulent Nameplates",
-      "version": "0.5.8-alpha2",
+      "version": "0.5.8-alpha3",
       "author": "Simon",
       "secure": null,
       "notes": "Nine premium animated themes, including Heritage bronze and turquoise, Runeforge and Prism. Standalone Retail and Classic nameplates.",
@@ -13378,7 +13907,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -13870,7 +14399,7 @@
     "root": "forever",
     "toc": {
       "title": "|cff00aaffPerfect|r Screenshot",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "author": "Xunga (Myriana@EU-DALARAN)",
       "secure": null,
       "notes": "Screenshot format (JPG, PNG, TGA) and JPG quality, a key for screenshots without interface, and an information overlay (date, character, zone) on your pictures",
@@ -13884,6 +14413,8 @@
       "Locales\\deDE.lua",
       "Locales\\esES.lua",
       "Locales\\itIT.lua",
+      "Locales\\zhCN.lua",
+      "Locales\\koKR.lua",
       "PerfectScreenshot_Defaults.lua",
       "PerfectScreenshot.lua",
       "PerfectScreenshot_Capture.lua",
@@ -13891,6 +14422,7 @@
       "PerfectScreenshot_Options.lua",
       "PerfectScreenshot_Builder.lua",
       "PerfectScreenshot_OptionsOverlay.lua",
+      "PerfectScreenshot_Window.lua",
       "PerfectScreenshot_Minimap.lua"
     ],
     "enabled": true,
@@ -13959,6 +14491,10 @@
         "role": "module"
       },
       {
+        "path": "PerfectScreenshot_Window.lua",
+        "role": "module"
+      },
+      {
         "path": "Locales\\deDE.lua",
         "role": "module"
       },
@@ -13976,6 +14512,14 @@
       },
       {
         "path": "Locales\\itIT.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\koKR.lua",
+        "role": "module"
+      },
+      {
+        "path": "Locales\\zhCN.lua",
         "role": "module"
       }
     ],
@@ -14039,7 +14583,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -14117,7 +14661,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, hide, visible, minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Minimap, minimap, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -14373,7 +14917,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, visible, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -15572,7 +16116,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, HIDE, MINIMAP, HIDDEN. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, HIDDEN, HIDE, MINIMAP. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -15696,7 +16240,7 @@
     "root": "forever",
     "toc": {
       "title": "QuestieDB",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "author": "Code: Logonz Data: Muehe/TheCrux(BreakBB)/Drejjmit/Dyaxler/Cheeq/TechnoHunter/Yttrium/Everyone else",
       "secure": null,
       "notes": "The database Questie consumes.",
@@ -15717,14 +16261,14 @@
       "src\\corrections\\enum\\constants.lua",
       "src\\corrections\\enum\\items.lua",
       "src\\corrections\\enum\\quests.lua",
+      "src\\corrections\\enum\\npcs.lua",
       "src\\corrections\\enum\\professions.lua",
       "src\\corrections\\enum\\factions.lua",
       "src\\corrections\\enum\\zones.lua",
       "src\\corrections\\enum\\phases.lua",
       "src\\corrections\\enum\\icons.lua",
       "src\\corrections\\enum\\waypoints.lua",
-      "src\\corrections\\enum\\expansions.lua",
-      "src\\support\\data.lua"
+      "src\\corrections\\enum\\expansions.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -15741,7 +16285,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hidden, visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -16304,7 +16848,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, hide, visible, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Minimap, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -16414,7 +16958,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: visible, Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Minimap, visible, minimap, Hide, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -16878,7 +17422,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, hide, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Minimap, minimap, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -16947,7 +17491,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, MINIMAP, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -17331,7 +17875,7 @@
     "root": "forever",
     "toc": {
       "title": "Social Diary",
-      "version": "4.2.1",
+      "version": "4.2.4",
       "author": "social-diary",
       "secure": null,
       "notes": "Remembers the people you meet in the open world.",
@@ -17381,7 +17925,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: IsVisible, visible, VISIBLE. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: IsVisible, VISIBLE, visible. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -17569,7 +18113,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": null,
       "secure": null,
       "notes": "Reads the game aloud: quests, gossip, places and readables. One queue, one narrator, one minimap button, and the settings for all of it.",
@@ -17615,6 +18159,8 @@
       "PLAYER_ENTERING_WORLD",
       "PLAYER_LOGIN",
       "PLAYER_LOGOUT",
+      "PLAYER_REGEN_DISABLED",
+      "PLAYER_REGEN_ENABLED",
       "QUEST_FINISHED"
     ],
     "hide_without_disable": {
@@ -17752,7 +18298,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r |cff6cb8ffBosses|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": "Nucabe",
       "secure": null,
       "notes": "The bosses of every dungeon and raid, and their stories, in Azeroth's Compendium.",
@@ -17774,13 +18320,13 @@
       "Core.lua",
       "Data/Bosses.lua",
       "Data/Creatures.lua",
+      "Data/Cameras.lua",
+      "Data/CameraNudges.lua",
       "Data/Stories.lua",
       "Audio.lua",
       "UI/Bosses.lua",
       "MapLore.lua",
-      "Leatrix.lua",
-      "OpenMap.lua",
-      "UI/CopyLink.lua"
+      "Leatrix.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -17810,7 +18356,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: IsVisible, hidden, Hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, IsVisible, Hidden. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -17843,6 +18389,14 @@
       },
       {
         "path": "Data\\Bosses.lua",
+        "role": "module"
+      },
+      {
+        "path": "Data\\CameraNudges.lua",
+        "role": "module"
+      },
+      {
+        "path": "Data\\Cameras.lua",
         "role": "module"
       },
       {
@@ -17914,7 +18468,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r |cff6cb8ffPlaces|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": "rusty",
       "secure": null,
       "notes": "Zone and subzone lore on the world map, read aloud through Spoken.",
@@ -18113,7 +18667,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r |cff6cb8ffQuests|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": null,
       "secure": null,
       "notes": "Quest and gossip dialogue read aloud through Spoken. Restores quest and gossip voiceovers on supported clients.",
@@ -18165,6 +18719,7 @@
       "ReadAfterClose",
       "SeenDuplicatePlayerDialog",
       "StopAudioOnDisengage",
+      "StopOnAccept",
       "TrackerPlayButton",
       "VoiceLanguage",
       "profile"
@@ -18312,7 +18867,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r |cff6cb8ffReadables|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": "rusty",
       "secure": null,
       "notes": "Books, letters, notes and plaques read aloud through Spoken.",
@@ -18374,6 +18929,7 @@
     ],
     "events": [
       "ADDON_LOADED",
+      "BAG_UPDATE_DELAYED",
       "ITEM_TEXT_BEGIN",
       "ITEM_TEXT_CLOSED",
       "ITEM_TEXT_READY",
@@ -18545,7 +19101,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r |cff6cb8ffContributions|r",
-      "version": "3.10.1",
+      "version": "3.12.1",
       "author": null,
       "secure": null,
       "notes": "Where Spoken keeps the lines it gathered for you. Upload SavedVariables/SpokenContributions.lua at spoken.quest/contribute.",
@@ -18553,7 +19109,9 @@
       "savedVariablesPerCharacter": null,
       "iconTexture": "Interface\\AddOns\\SpokenContributions\\icon.tga"
     },
-    "loadOrder": [],
+    "loadOrder": [
+      "Sent.lua"
+    ],
     "enabled": true,
     "functionality": [
       "misc"
@@ -18569,7 +19127,12 @@
       "method": null,
       "notes": "No hide-without-disable mechanism found in source scan. Manual review needed."
     },
-    "files": [],
+    "files": [
+      {
+        "path": "Sent.lua",
+        "role": "module"
+      }
+    ],
     "main_file": null
   },
   "SpokenPlacesAudio": {
@@ -18658,7 +19221,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r Audio: Quests - Alliance",
-      "version": "2.7.1",
+      "version": "2.7.3",
       "author": null,
       "secure": null,
       "notes": "Narrated quests and gossip from the Vanilla era, for Spoken Quests.|n|nIt's OK for this addon to appear \"disabled\" or \"out of date\", it's compatible with any client and Spoken Quests will load it even if it's disabled or out of date.",
@@ -18671,22 +19234,22 @@
       "generated\\body_model_lookups.lua",
       "generated\\followup_lookups.lua",
       "generated\\item_name_lookups.lua",
+      "generated\\line_text_table.lua",
       "generated\\npc_bodies_lookups.lua",
       "generated\\npc_body_followup_lookups.lua",
       "generated\\npc_body_gossip_file_lookups.lua",
       "generated\\npc_body_quest_file_lookups.lua",
-      "generated\\npc_gossip_file_lookups.lua",
-      "generated\\npc_name_gossip_file_lookups.lua",
       "generated\\npc_name_lookups.lua",
       "generated\\npc_quest_file_lookups.lua",
       "generated\\npc_sex_followup_lookups.lua",
       "generated\\npc_sex_gossip_file_lookups.lua",
       "generated\\npc_sex_lookups.lua",
       "generated\\npc_sex_quest_file_lookups.lua",
-      "generated\\object_gossip_file_lookups.lua",
-      "generated\\object_name_gossip_file_lookups.lua",
       "generated\\object_name_lookups.lua",
-      "generated\\object_quest_file_lookups.lua"
+      "generated\\object_quest_file_lookups.lua",
+      "generated\\quest_id_lookups.lua",
+      "generated\\quest_wording_lookups.lua",
+      "generated\\questlog_item_lookups.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -18701,7 +19264,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -18721,6 +19284,10 @@
         "role": "module"
       },
       {
+        "path": "generated\\line_text_table.lua",
+        "role": "module"
+      },
+      {
         "path": "generated\\npc_bodies_lookups.lua",
         "role": "module"
       },
@@ -18734,14 +19301,6 @@
       },
       {
         "path": "generated\\npc_body_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -18766,14 +19325,6 @@
       },
       {
         "path": "generated\\npc_sex_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -18810,6 +19361,10 @@
       },
       {
         "path": "generated\\text_table.lua",
+        "role": "module"
+      },
+      {
+        "path": "generated\\title_table.lua",
         "role": "module"
       },
       {
@@ -18825,7 +19380,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r Audio: Gossip",
-      "version": "2.7.1",
+      "version": "2.7.3",
       "author": null,
       "secure": null,
       "notes": "Narrated quests and gossip from the Vanilla era, for Spoken Quests.|n|nIt's OK for this addon to appear \"disabled\" or \"out of date\", it's compatible with any client and Spoken Quests will load it even if it's disabled or out of date.",
@@ -18838,6 +19393,7 @@
       "generated\\body_model_lookups.lua",
       "generated\\followup_lookups.lua",
       "generated\\item_name_lookups.lua",
+      "generated\\line_text_table.lua",
       "generated\\npc_bodies_lookups.lua",
       "generated\\npc_body_followup_lookups.lua",
       "generated\\npc_body_gossip_file_lookups.lua",
@@ -18852,8 +19408,7 @@
       "generated\\npc_sex_quest_file_lookups.lua",
       "generated\\object_gossip_file_lookups.lua",
       "generated\\object_name_gossip_file_lookups.lua",
-      "generated\\object_name_lookups.lua",
-      "generated\\object_quest_file_lookups.lua"
+      "generated\\object_name_lookups.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -18868,7 +19423,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -18885,6 +19440,10 @@
       },
       {
         "path": "generated\\item_name_lookups.lua",
+        "role": "module"
+      },
+      {
+        "path": "generated\\line_text_table.lua",
         "role": "module"
       },
       {
@@ -18977,6 +19536,10 @@
       },
       {
         "path": "generated\\text_table.lua",
+        "role": "module"
+      },
+      {
+        "path": "generated\\title_table.lua",
         "role": "module"
       },
       {
@@ -18992,7 +19555,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r Audio: Quests - Horde",
-      "version": "2.7.1",
+      "version": "2.7.3",
       "author": null,
       "secure": null,
       "notes": "Narrated quests and gossip from the Vanilla era, for Spoken Quests.|n|nIt's OK for this addon to appear \"disabled\" or \"out of date\", it's compatible with any client and Spoken Quests will load it even if it's disabled or out of date.",
@@ -19005,22 +19568,22 @@
       "generated\\body_model_lookups.lua",
       "generated\\followup_lookups.lua",
       "generated\\item_name_lookups.lua",
+      "generated\\line_text_table.lua",
       "generated\\npc_bodies_lookups.lua",
       "generated\\npc_body_followup_lookups.lua",
       "generated\\npc_body_gossip_file_lookups.lua",
       "generated\\npc_body_quest_file_lookups.lua",
-      "generated\\npc_gossip_file_lookups.lua",
-      "generated\\npc_name_gossip_file_lookups.lua",
       "generated\\npc_name_lookups.lua",
       "generated\\npc_quest_file_lookups.lua",
       "generated\\npc_sex_followup_lookups.lua",
       "generated\\npc_sex_gossip_file_lookups.lua",
       "generated\\npc_sex_lookups.lua",
       "generated\\npc_sex_quest_file_lookups.lua",
-      "generated\\object_gossip_file_lookups.lua",
-      "generated\\object_name_gossip_file_lookups.lua",
       "generated\\object_name_lookups.lua",
-      "generated\\object_quest_file_lookups.lua"
+      "generated\\object_quest_file_lookups.lua",
+      "generated\\quest_id_lookups.lua",
+      "generated\\quest_wording_lookups.lua",
+      "generated\\questlog_item_lookups.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -19035,7 +19598,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -19055,6 +19618,10 @@
         "role": "module"
       },
       {
+        "path": "generated\\line_text_table.lua",
+        "role": "module"
+      },
+      {
         "path": "generated\\npc_bodies_lookups.lua",
         "role": "module"
       },
@@ -19068,14 +19635,6 @@
       },
       {
         "path": "generated\\npc_body_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -19100,14 +19659,6 @@
       },
       {
         "path": "generated\\npc_sex_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -19144,6 +19695,10 @@
       },
       {
         "path": "generated\\text_table.lua",
+        "role": "module"
+      },
+      {
+        "path": "generated\\title_table.lua",
         "role": "module"
       },
       {
@@ -19159,7 +19714,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r Audio: Quests - Shared",
-      "version": "2.7.1",
+      "version": "2.7.3",
       "author": null,
       "secure": null,
       "notes": "Narrated quests and gossip from the Vanilla era, for Spoken Quests.|n|nIt's OK for this addon to appear \"disabled\" or \"out of date\", it's compatible with any client and Spoken Quests will load it even if it's disabled or out of date.",
@@ -19172,22 +19727,22 @@
       "generated\\body_model_lookups.lua",
       "generated\\followup_lookups.lua",
       "generated\\item_name_lookups.lua",
+      "generated\\line_text_table.lua",
       "generated\\npc_bodies_lookups.lua",
       "generated\\npc_body_followup_lookups.lua",
       "generated\\npc_body_gossip_file_lookups.lua",
       "generated\\npc_body_quest_file_lookups.lua",
-      "generated\\npc_gossip_file_lookups.lua",
-      "generated\\npc_name_gossip_file_lookups.lua",
       "generated\\npc_name_lookups.lua",
       "generated\\npc_quest_file_lookups.lua",
       "generated\\npc_sex_followup_lookups.lua",
       "generated\\npc_sex_gossip_file_lookups.lua",
       "generated\\npc_sex_lookups.lua",
       "generated\\npc_sex_quest_file_lookups.lua",
-      "generated\\object_gossip_file_lookups.lua",
-      "generated\\object_name_gossip_file_lookups.lua",
       "generated\\object_name_lookups.lua",
-      "generated\\object_quest_file_lookups.lua"
+      "generated\\object_quest_file_lookups.lua",
+      "generated\\quest_id_lookups.lua",
+      "generated\\quest_wording_lookups.lua",
+      "generated\\questlog_item_lookups.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -19202,7 +19757,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -19222,6 +19777,10 @@
         "role": "module"
       },
       {
+        "path": "generated\\line_text_table.lua",
+        "role": "module"
+      },
+      {
         "path": "generated\\npc_bodies_lookups.lua",
         "role": "module"
       },
@@ -19235,14 +19794,6 @@
       },
       {
         "path": "generated\\npc_body_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\npc_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -19267,14 +19818,6 @@
       },
       {
         "path": "generated\\npc_sex_quest_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_gossip_file_lookups.lua",
-        "role": "module"
-      },
-      {
-        "path": "generated\\object_name_gossip_file_lookups.lua",
         "role": "module"
       },
       {
@@ -19314,6 +19857,10 @@
         "role": "module"
       },
       {
+        "path": "generated\\title_table.lua",
+        "role": "module"
+      },
+      {
         "path": "generated\\word_times_table.lua",
         "role": "module"
       }
@@ -19326,7 +19873,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffb48cffSpoken|r Audio: Readables",
-      "version": "2.3.1",
+      "version": "2.4.2",
       "author": "rusty",
       "secure": null,
       "notes": "Narrated books, letters, notes and plaques for Spoken Readables.|n|nKeep it enabled: it loads with the game, and Spoken Readables plays from it.",
@@ -19339,18 +19886,18 @@
     ],
     "enabled": true,
     "functionality": [
-      "misc"
+      "ui_hide_ready"
     ],
     "commands": [],
     "options": [],
     "tags": [
-      "misc"
+      "ui_hide_ready"
     ],
     "events": [],
     "hide_without_disable": {
-      "available": false,
-      "method": null,
-      "notes": "No hide-without-disable mechanism found in source scan. Manual review needed."
+      "available": true,
+      "method": "Hide/Show frame toggle (source-level)",
+      "notes": "Found hide-related references: hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -19366,7 +19913,7 @@
     "root": "forever",
     "toc": {
       "title": "Spy",
-      "version": "1.3.8-forever24",
+      "version": "1.3.8-forever28",
       "author": "Slipjack",
       "secure": null,
       "notes": "Detects and alerts you to the presence of nearby enemy players.",
@@ -19430,10 +19977,13 @@
       "EnabledInBattlegrounds",
       "EnabledInSanctuaries",
       "EnabledInWintergrasp",
+      "EncounterMapLimit",
+      "EncounterMark",
       "EncounterPeriod",
       "Font",
       "HideSpy",
       "InvertSpy",
+      "KoSOnlyPopup",
       "Locked",
       "MainWindow",
       "MainWindowVis",
@@ -19442,6 +19992,7 @@
       "MinimapDetails",
       "MinimapDetection",
       "OnlyAnnounceKoS",
+      "OnlyFlaggedEnemies",
       "OnlySoundKoS",
       "OutlineText",
       "PlayerMenuEntries",
@@ -19491,9 +20042,11 @@
       "ui_hide_ready"
     ],
     "events": [
+      "ADDON_LOADED",
       "GROUP_ROSTER_UPDATE",
       "PLAYER_ENTERING_WORLD",
       "PLAYER_LOGOUT",
+      "PLAYER_REGEN_DISABLED",
       "PLAYER_REGEN_ENABLED",
       "PLAYER_TARGET_CHANGED"
     ],
@@ -19520,6 +20073,10 @@
         "role": "module"
       },
       {
+        "path": "Flagged.lua",
+        "role": "module"
+      },
+      {
         "path": "Fonts.lua",
         "role": "module"
       },
@@ -19529,6 +20086,10 @@
       },
       {
         "path": "Guilds.lua",
+        "role": "module"
+      },
+      {
+        "path": "KoSPopup.lua",
         "role": "module"
       },
       {
@@ -19614,14 +20175,6 @@
       {
         "path": "Locales\\Spy-ptBR.lua",
         "role": "module"
-      },
-      {
-        "path": "Locales\\Spy-ruRU.lua",
-        "role": "module"
-      },
-      {
-        "path": "Locales\\Spy-zhCN.lua",
-        "role": "module"
       }
     ],
     "main_file": "Spy.lua"
@@ -19632,7 +20185,7 @@
     "root": "forever",
     "toc": {
       "title": "Syndicator",
-      "version": "291",
+      "version": "293",
       "author": "plusmouse",
       "secure": null,
       "notes": "",
@@ -19836,7 +20389,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffffd75eTalents Forever|r",
-      "version": "0.38.28.20261119",
+      "version": "0.38.31.20261122",
       "author": "talentsforever.com",
       "secure": null,
       "notes": "The talentsforever.com calculator inside the game. Plan a build without spending a point, follow it level by level, share it by link, try the popular builds. Type /tf.",
@@ -19985,7 +20538,7 @@
     "root": "forever",
     "toc": {
       "title": "Tamed",
-      "version": "2.0.1",
+      "version": "2.2.0",
       "author": "https://github.com/moody",
       "secure": null,
       "notes": "A guide to tamed pet abilities.",
@@ -20007,13 +20560,13 @@
       "src\\events\\event-manager.lua",
       "src\\locale.lua",
       "src\\utils\\colors.lua",
+      "src\\utils\\npc-text.lua",
       "src\\utils\\ticker-manager.lua",
       "src\\data.lua",
+      "src\\tame-finder.lua",
       "src\\commands.lua",
       "src\\store\\state-manager.lua",
-      "src\\tooltips.lua",
-      "src\\data\\TameableNPCs-Vanilla.lua",
-      "src\\data\\TameableAbilities-Vanilla.lua"
+      "src\\tooltips.lua"
     ],
     "enabled": true,
     "functionality": [
@@ -20034,7 +20587,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, MINIMAP, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -20047,6 +20600,10 @@
       },
       {
         "path": "src\\locale.lua",
+        "role": "module"
+      },
+      {
+        "path": "src\\tame-finder.lua",
         "role": "module"
       },
       {
@@ -20250,7 +20807,7 @@
     "root": "forever",
     "toc": {
       "title": "Terminal",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "author": "pjeli",
       "secure": null,
       "notes": "Fuzzy-finder terminal. Search items, quests (by text), spells, mounts, achievements, keybindings, slash commands and more, then open and highlight the result.",
@@ -20441,7 +20998,7 @@
     "root": "forever",
     "toc": {
       "title": "Terminal |cff7fb2ffExtras|r",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "author": "pjeli",
       "secure": null,
       "notes": "Terminal's extras, loaded the first time you use one. Comes with Terminal.",
@@ -20543,7 +21100,7 @@
     "root": "forever",
     "toc": {
       "title": "Terminal |cff7fb2ffShare|r",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "author": "pjeli",
       "secure": null,
       "notes": "Terminal: Share. The share shell (.share): friends who run Terminal and share a group, by invite, see each other's bags in their searches. What they send is never saved.",
@@ -21054,7 +21611,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, showFrame, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, IsVisible, showFrame, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -21173,7 +21730,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -21621,7 +22178,7 @@
     "root": "forever",
     "toc": {
       "title": "|cffd9b06bUltimate Gathering Counter|r",
-      "version": "1.4.7",
+      "version": "1.4.8",
       "author": "UGC",
       "secure": null,
       "notes": "Tracks gathered herbs, ores, fish, and leather with per-hour rates and Auctionator/TSM price integration.",
@@ -21974,7 +22531,7 @@
     "root": "forever",
     "toc": {
       "title": "Weapon Kill Counter by |cFF69CCF0Foofi|r",
-      "version": "1.2.4",
+      "version": "1.2.7",
       "author": "Foofi",
       "secure": null,
       "notes": "Every weapon remembers its kills. Hover one of your weapons to see its Monster kills and Player kills: your killing blows (and your pet's) while that exact weapon was equipped, on all your characters. Optional Trophy Case, character panel badges and milestone alerts. Type /wkc.",
@@ -22051,7 +22608,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For?",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "What is this item for? Recipes, crafting costs, shopping lists and more.",
@@ -22125,7 +22682,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22225,7 +22782,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For? - data (Anniversary)",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "Recipe and where-to-get data for Anniversary. Loaded by What's It For? when needed.",
@@ -22251,7 +22808,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22267,7 +22824,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For? - data (Classic)",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "Recipe and where-to-get data for Classic. Loaded by What's It For? when needed.",
@@ -22293,7 +22850,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22309,7 +22866,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For? - data (Forever)",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "Recipe and where-to-get data for Forever. Loaded by What's It For? when needed.",
@@ -22335,7 +22892,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22351,7 +22908,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For? - data (Mists)",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "Recipe and where-to-get data for Mists. Loaded by What's It For? when needed.",
@@ -22377,7 +22934,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22393,7 +22950,7 @@
     "root": "forever",
     "toc": {
       "title": "What's It For? - data (Titan)",
-      "version": "v1.1.51",
+      "version": "v1.1.53",
       "author": "Kalinauskas",
       "secure": null,
       "notes": "Recipe and where-to-get data for Titan. Loaded by What's It For? when needed.",
@@ -22419,7 +22976,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -22729,7 +23286,7 @@
     "root": "forever",
     "toc": {
       "title": "WIM",
-      "version": "3.19.7",
+      "version": "3.19.8",
       "author": "Pazza (Bronzebeard), (Updated by Sylvanaar/MysticalOS/Humfras)",
       "secure": null,
       "notes": "Give whispers an instant messenger feel.",
@@ -22794,8 +23351,8 @@
       "GROUP_ROSTER_UPDATE",
       "GUILD_ROSTER_UPDATE",
       "IGNORELIST_UPDATE",
-      "PLAYER_ENTERING_WORLD",
-      "PLAYER_LOGIN"
+      "MODIFIER_STATE_CHANGED",
+      "PLAYER_ENTERING_WORLD"
     ],
     "hide_without_disable": {
       "available": true,
@@ -23157,7 +23714,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible, IsVisible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, IsVisible, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -23351,7 +23908,7 @@
     "root": "forever",
     "toc": {
       "title": "Zone Info: Forever",
-      "version": "1.11.0",
+      "version": "1.11.1",
       "author": "Vaniron",
       "secure": null,
       "notes": "A zero-bloat map tooltip enhancement displaying zone levels and other information - created specifically for WoW: Forever.",
@@ -23756,7 +24313,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: Hide, visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -25622,7 +26179,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Visible, visible, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, visible, Hide, Visible, hide. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -27028,7 +27585,7 @@
     "hide_without_disable": {
       "available": true,
       "method": "Hide/Show frame toggle (source-level)",
-      "notes": "Found hide-related references: Minimap, minimap, Hide, hidden, MINIMAP. Check addon's specific /slash command for a hide toggle."
+      "notes": "Found hide-related references: hidden, Minimap, minimap, Hide, MINIMAP. Check addon's specific /slash command for a hide toggle."
     },
     "files": [
       {
@@ -27267,6 +27824,7 @@
       "ENCOUNTER_END",
       "MAIL_CLOSED",
       "MAIL_SHOW",
+      "PLAYER_ALIVE",
       "PLAYER_CONTROL_GAINED",
       "PLAYER_CONTROL_LOST",
       "PLAYER_DEAD",
@@ -27277,6 +27835,7 @@
       "PLAYER_MONEY",
       "PLAYER_PVP_KILLS_CHANGED",
       "PLAYER_TARGET_CHANGED",
+      "PLAYER_UNGHOST",
       "PLAYER_XP_UPDATE",
       "SKILL_LINES_CHANGED",
       "TAXIMAP_OPENED",

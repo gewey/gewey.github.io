@@ -272,10 +272,12 @@
     "Carbonite.Warehouse",
     "DynamicCam",
     "HandyNotes",
+    "LiteMount",
     "Rarity",
     "SilverDragon",
     "Spoken_Quests",
-    "WoWTaskManager"
+    "WoWTaskManager",
+    "LiteMount"
   ],
   "width": [
     "Carbonite.Info",
@@ -849,6 +851,9 @@
     "EnhanceQoLDungeonRaid",
     "EnhanceQoLUnitFrames"
   ],
+  "groupHealingOnly": [
+    "ForeverCombatText"
+  ],
   "healing": [
     "ForeverCombatText"
   ],
@@ -992,6 +997,9 @@
   ],
   "warnAt": [
     "HuntersGaze"
+  ],
+  "presetTags": [
+    "Kehets_Fellowship"
   ],
   "RenderScale": [
     "KelaGraphics"
@@ -1373,6 +1381,12 @@
     "OpenMap"
   ],
   "playerArrow": [
+    "OpenMap"
+  ],
+  "playerArrowOnTop": [
+    "OpenMap"
+  ],
+  "playerArrowScale": [
     "OpenMap"
   ],
   "zeppelins": [
@@ -2204,6 +2218,9 @@
   "StopAudioOnDisengage": [
     "Spoken_Quests"
   ],
+  "StopOnAccept": [
+    "Spoken_Quests"
+  ],
   "TrackerPlayButton": [
     "Spoken_Quests"
   ],
@@ -2318,6 +2335,12 @@
   "EnabledInWintergrasp": [
     "Spy"
   ],
+  "EncounterMapLimit": [
+    "Spy"
+  ],
+  "EncounterMark": [
+    "Spy"
+  ],
   "EncounterPeriod": [
     "Spy"
   ],
@@ -2328,6 +2351,9 @@
     "Spy"
   ],
   "InvertSpy": [
+    "Spy"
+  ],
+  "KoSOnlyPopup": [
     "Spy"
   ],
   "Locked": [
@@ -2352,6 +2378,9 @@
     "Spy"
   ],
   "OnlyAnnounceKoS": [
+    "Spy"
+  ],
+  "OnlyFlaggedEnemies": [
     "Spy"
   ],
   "OnlySoundKoS": [

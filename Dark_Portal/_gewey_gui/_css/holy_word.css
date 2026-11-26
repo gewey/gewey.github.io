@@ -227,3 +227,7 @@ body.gw-macro { font-size: 18px; line-height: 1.6; }
 /* 2026-11-25 (wings 48-49): the crowd in the logs and the outside view. */
 .gw-shell button[name="iPhalanx"]::after    { content: " Phalanx"; }
 .gw-shell button[name="iVantage"]::after    { content: " Vantage"; }
+
+/* 2026-11-25 (wing 50): the sitting ledger. */
+.gw-shell button[name="iVigil"]::after      { content: " Vigil"; }
+

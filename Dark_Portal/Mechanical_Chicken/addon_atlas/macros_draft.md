@@ -1,7 +1,7 @@
 # Addon Atlas — Mass-Set Macro Draft
 
-Generated: 2026-11-20T15:38:01.564875
-Addons scanned: 233
+Generated: 2026-11-25T11:39:34.944351
+Addons scanned: 236
 
 ## How to Use
 
@@ -14,13 +14,13 @@ function calls after verifying the addon's API.
 
 ---
 
-## Tracking Trackers (56)
+## Tracking Trackers (57)
 
 ### AchievementsForever
 
 - **TOC Title:** Achievements Forever
-- **Commands:** `/achievements`, `/af`
-- **Hide UI (keep tracking):** YES — Hide/Show frame toggle (source-level)
+- **Commands:** `/achievements`, `/af`, `/afskin`
+- **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
 
 ```lua
 -- Hide AchievementsForever UI (placeholder)
@@ -90,7 +90,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** CountSteps
 - **Commands:** `/countsteps`, `/cs`, `/mosh`
-- **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
+- **Hide UI (keep tracking):** YES — Hide/Show frame toggle (source-level)
 
 ```lua
 -- Hide CountSteps UI (placeholder)
@@ -184,6 +184,17 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** Forever Bestiary (Pet Hunter) · bridge
 - **Hide UI (keep tracking):** NOT FOUND — manual review needed
+
+### ForeverCore
+
+- **TOC Title:** ForeverCore
+- **Commands:** `/fcore`
+- **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
+
+```lua
+-- Hide ForeverCore UI (placeholder)
+-- /run <addon_api>:Hide()
+```
 
 ### ForeverLogsCompanion
 
@@ -376,7 +387,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** |cffe6b85cOpen|rMap
 - **Commands:** `/openmap`
-- **Options:** `autoSwitch`, `boats`, `brightness`, `darkenColor`, `darkening`, `enabled`, `flight`, `hideWorldPinsInInstances`, `hoverHighlight`, `iconScale`, `icons`, `iconsFrom`, `playerArrow`, `zeppelins`
+- **Options:** `autoSwitch`, `boats`, `brightness`, `darkenColor`, `darkening`, `enabled`, `flight`, `hideWorldPinsInInstances`, `hoverHighlight`, `iconScale`, `icons`, `iconsFrom`, `playerArrow`, `playerArrowOnTop`, `playerArrowScale`
 - **Hide UI (keep tracking):** YES — Option key(s): hideWorldPinsInInstances
 
 ```lua
@@ -485,7 +496,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** |cffb48cffSpoken|r |cff6cb8ffQuests|r
 - **Commands:** `/spqread`
-- **Options:** `Audio`, `Autoplay`, `DebugEnabled`, `FallbackLanguage`, `FollowupLines`, `GossipFrequency`, `GreetingFirst`, `OGThrall`, `ProgressText`, `QuestLogPlayButton`, `ReadAfterClose`, `SeenDuplicatePlayerDialog`, `StopAudioOnDisengage`, `TrackerPlayButton`, `VoiceLanguage`
+- **Options:** `Audio`, `Autoplay`, `DebugEnabled`, `FallbackLanguage`, `FollowupLines`, `GossipFrequency`, `GreetingFirst`, `OGThrall`, `ProgressText`, `QuestLogPlayButton`, `ReadAfterClose`, `SeenDuplicatePlayerDialog`, `StopAudioOnDisengage`, `StopOnAccept`, `TrackerPlayButton`
 - **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
 
 ```lua
@@ -820,7 +831,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** Forever Combat Text
 - **Commands:** `/fct`, `/forevertext`
-- **Options:** `addonNumbers`, `blizzardHealingWhenPlatesOff`, `blizzardInstanceHealing`, `damage`, `damageSchoolColors`, `eliteIcons`, `enabled`, `healing`, `hideFriendlyInCities`, `minionPlates`, `npcPlates`, `physical`, `schoolColors`, `scope`
+- **Options:** `addonNumbers`, `blizzardHealingWhenPlatesOff`, `blizzardInstanceHealing`, `damage`, `damageSchoolColors`, `eliteIcons`, `enabled`, `groupHealingOnly`, `healing`, `hideFriendlyInCities`, `minionPlates`, `npcPlates`, `physical`, `schoolColors`, `scope`
 - **Hide UI (keep tracking):** YES — Option key(s): hideFriendlyInCities
 
 ```lua
@@ -955,7 +966,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** LiteMount
 - **Commands:** `/litemount`, `/lmt`
-- **Options:** `char`, `combatMacro`, `configVersion`, `debugEnabled`, `flagChanges`, `groups`, `mountPriorities`, `uiDebugEnabled`, `unavailableMacro`, `useCombatMacro`, `useUnavailableMacro`
+- **Options:** `char`, `combatMacro`, `configVersion`, `debugEnabled`, `flagChanges`, `groups`, `mountPriorities`, `profile`, `uiDebugEnabled`, `unavailableMacro`, `useCombatMacro`, `useUnavailableMacro`
 - **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
 
 ```lua
@@ -967,7 +978,7 @@ function calls after verifying the addon's API.
 
 - **TOC Title:** LiteMount
 - **Commands:** `/litemount`, `/lmt`
-- **Options:** `char`, `combatMacro`, `configVersion`, `debugEnabled`, `flagChanges`, `groups`, `mountPriorities`, `uiDebugEnabled`, `unavailableMacro`, `useCombatMacro`, `useUnavailableMacro`
+- **Options:** `char`, `combatMacro`, `configVersion`, `debugEnabled`, `flagChanges`, `groups`, `mountPriorities`, `profile`, `uiDebugEnabled`, `unavailableMacro`, `useCombatMacro`, `useUnavailableMacro`
 - **Hide UI (keep tracking):** YES — frame:SetAlpha(0)
 
 ```lua

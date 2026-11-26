@@ -1,5 +1,285 @@
 # WoW: Forever — Client Log Watch Ledger
 
+## 2026-11-25 ~11:20 EST - Nineteenth pass: three Forever TOCs sitting in `_retail_`, and the freeze ledger nobody read
+
+- **Scope:** read-only, nothing written under `Interface\`, `WTF\` or `Logs\`. Measured this pass: `_forever_`
+  190 folders / 51,940 files / 5,163.6 MB, `_retail_` 40 folders, `_classic_era_` 6 folders. **2,972.8 MB
+  (57.6%) of the Forever tree is audio** — 32,429 `.ogg`/`.mp3`/`.wav`.
+- **The find - three addons that declare this client already exist here, in the wrong install.**
+  `## Interface: 16001` diff across all three installs against the `_forever_` folder list:
+  `UnlimitedMapPinDistance` (120107/120105/120100/**16001**, removes the 1000-yard pin clamp),
+  `WowheadQuickLink` (**`WowheadQuickLink_Camelot.toc` = 16001**, Ctrl-C → Wowhead URL),
+  `WoWForeverFitness` (120100/**16001**, pedometer/heatmap/workouts), and `BetterBags`
+  (`BetterBags_Camelot.toc` = 16001, redundant with Baganator). None are in `_forever_`.
+- **The telemetry nobody has read - `WoWTaskManagerDB.global` holds four ledgers:**
+  `locations` = **35 zones / 236,408 samples / 67.0 h / 45.1 fps** weighted (Undercity 35.9, Thunder Bluff
+  36.6, Orgrimmar 37.1; Stranglethorn Vale carries a **32,018 ms** frame); `incidents` = **20 freezes, all in
+  one 9½-minute window (11/24 17:53:44-18:03:12 UTC, Stranglethorn)** with per-addon memory blame -
+  **RaiderIO 249,437 KB / 12 incidents, Carbonite 232,073 KB / 6, Carbonite.Quests 134,710 KB / 11,
+  ForeverBestiaryPetHunter 29,901 KB / 7, InkAndEmbers 20,838 KB / 2** (worst frame 722 ms, Carbonite
+  +56,481 KB); `encounters` = **21 boss records** (Arugal 141 s / 54 spikes / 1 attempt); plus a loading
+  ledger. Latency from `GetNetStats` averages **317-477 ms** by zone. None of it is read by `hourly_audit.py`.
+- **Addon-code observations:** `AdventurersLog` is 37 modules — `Vendor.lua` badges recipes/food/ammo/bags/pet
+  food instead of auto-selling, `Gold.lua` books mail income on `MAIL_SHOW`, `Alts.lua` keeps a cross-character
+  roster; `Terminal` ships 49 providers and a `Core/Secure.lua`; `ForeverSession` computes 13 stats + a zone
+  tab but its SavedVariables are **2,029 bytes of settings**, so every session number dies at logout;
+  `CountSteps` uses a fixed 1.4 yd stride and holds 312,274 steps / 110 deaths / 2,639 jumps; `Goldmind` is a
+  read-only price witness (29 AH browse records, vendor tables by NPC).
+- **Data caveat:** WTM's zone keys are not normalised - `Hillsbrad` (2,186) vs `Hillsbrad Foothills` (40,759),
+  `The Deadmines` vs `Deadmines (Normal)`, `Wailing Caverns` vs `The Wailing Caverns` - so aggregates undercount.
+- **Answer to "any addon that would help":** copy `UnlimitedMapPinDistance` (+ optionally `WowheadQuickLink`)
+  out of `_retail_`; **GatherMate2** is the one real install (**26,174 Camelot nodes in 613 KB** unused, and
+  `UltimateGatheringCounter`'s sessions all carry `value = 0, unknown = true` for want of a price source);
+  **an auction addon** is the one real missing dependency (`UltimateGatheringCounter` and
+  `DeleteCheapestItem` both declare Auctionator/TSM and neither exists). Do not add another meter, quest guide,
+  bag addon or mail addon. Bigger win: point the audit at `SavedVariables\`, not just `Logs\` (stops 11/18).
+- **Full report:** `C:\Users\Gewey\.cline\schedules\addon_survey_2026-11-25_pass19.md`.
+
+-Signed, Tandumonium (Cline surface)
+
+
+## 2026-11-25 ~16:05 EST - Seventeenth pass: what other authors built, and the "switched off" theory corrected
+
+- **Scope:** read-only, nothing written under `Interface\`, `WTF\` or `Logs\`. Re-measured all three
+  installs (`_forever_` 190 / 51,940 / 5,163.6 MB, `_retail_` 40 / 3,251 / 177.9 MB, `_classic_era_`
+  6 / 139 / 17.2 MB; 328 TOCs); read the eight `AddOns.txt` shapes, the Forever `Logs\`, 347 account
+  + 134 character SavedVariables; read code in Trailbook, ForeverLogsCompanion, RaiderIO,
+  ForeverStats, Saga, Carbonite + its Camelot node pack, Lueur, Goldmind, DBM, BugGrabber.
+- **Correction - "installed and switched off" is wrong.** `AddOns.txt` carries 212 entries / 206
+  enabled / **6 disabled** / 41 ghosts. **195 `.lua` SavedVariables flushed 11/24 13:03:20-30** (the
+  exact logout second) and that flush includes every folder the list omits - `!BugGrabber`,
+  `BugSack`, `ForeverStats_Combat`, `Lueur`, `ElitePlayerFrame_Enhanced`, `DeleteCheapestItem`,
+  `DBM-Core`, the `InkAndEmbers` modules (SV written for all seven characters). An addon that did not
+  run cannot flush at logout, so
+  unlisted folders load by default; only the six `disabled` rows are off (`FamiliarFaces`,
+  `ForeverEpicFrames`, `MacroAssistForever`, `MacroWorkshop`, `!Swatter`, `!ImprovedErrorFrame`).
+  Only 13 of 190 folders have no SV anywhere, and `QuestieDB` is not orphaned - four addons name it
+  in `OptionalDeps`.
+- **The world combat log nobody has:** `ForeverStats_CombatDB` = **2,238 fights, 11/10 23:03 ->
+  11/24 13:01**, 12 maps (1413 780, 1424 563, 2521 271 ...), per-fight `dmg/e/en/k/kills/map/lvl/x/y`,
+  read from Blizzard's damage meter, no `/combatlog`. `Logs\WoWCombatLog-*` is 4 files / 45 MB /
+  28 encounter pairs ending **11/18**. FLC's own trace says why: `zone=Hillsbrad Foothills ...
+  listed=nil`, `zone=Alterac Mountains ... listed=nil`.
+- **RaiderIO export is a queue, not a snapshot.** `RaiderIO_JourneyExport` = exactly **256 records**,
+  newest 11/12 21:02 level 15; `journeys.lua:145 MAX_PENDING, MAX_FIRSTS, MAX_EXPORT = 256, 4096, 1024`.
+  The live journal's newest checkpoint is **11/24 13:03:21, firstLevel 30, Stranglethorn Vale**. Anyone
+  scraping the export reads twelve-day-stale data.
+- **Trailbook is alive:** 478 chunks, 11/10 22:59 -> 11/24 13:03, open chunk closed at logout; header
+  provisional for 10 s after an arrival because the client reports the old zone.
+- **Two real addon gaps.** (1) **GatherMate2 absent** while `Carbonite.Gathermate2_Data\Data\camelot\`
+  carries Mining 2.26 MB + Herbalism 2.16 MB in `GatherMateData2MineDB` form, `Carbonite\Modules\` has
+  no Gather module, `Lueur` is on (`ore/herb/chest/quest`), and `UltimateGatheringCounter` has
+  **110 ore / 8 leather / 2 fish, ore level 5** at 11/24 12:56:59. (2) **DBM has no boss modules** -
+  `DBM-Raids-Midnight`/`-Lairs-Midnight`/`-Brawlers` are `Interface: 120105` +
+  `AllowLoadGameType: standard`; only `DBM-Core`/`DBM-PvP` list 16001. Raids open 12/09.
+- **Defects (all from `!BugGrabber.lua`, session 22):** `LiveLocation.xml:2/:22` missing
+  `MapCanvasPinTemplate`; `FamiliarFaces` taint on `Blizzard_GameTooltip/HealthBar.lua:8` (76 hits,
+  11/23 06:43, addon switched off 07:32); `AddonFactory` missing -> `DataStore_Characters` never runs;
+  `RaiderIO_Camelot.toc:21` lists a file that does not exist; `Pagle_QoL/adapter/Lures.lua:40` nil
+  `settings` via `ForeverCombatText RestoreBlizzardHealing` -> `SetCVar` -> `CVAR_UPDATE`;
+  `WoWTaskManager` `Sessions.lua:146` / `FlightRecorder.lua:231` nil on `OnDisable`.
+- **Full report:** `C:\Users\Gewey\.cline\schedules\addon_survey_2026-11-25_pass17.md`.
+
+-Signed, Tandumonium (Cline surface)
+
+
+## 2026-11-25 ~08:35 EST - Sixteenth pass: the two sister clients, the addon in the wrong install, and the two errors nobody read
+
+- **Scope:** read-only. All three paths in the request measured - `_forever_` 190 folders /
+  51,940 files / 5,163.6 MB, `_retail_` 40 / 3,251 / 177.9 MB, `_classic_era_` 6 / 139 /
+  17.2 MB; 328 Forever TOCs parsed for `Interface` / `AllowLoadGameType` / `X-Flavor`; all 8
+  Forever and 54 retail `AddOns.txt`; `!BugGrabber.lua` in full (10 messages); the two
+  `WoWTaskManager\History` files it names; `ForeverCombatText\Core.lua:858-882`;
+  `Hourstone.lua`; `Goldmind.lua`; `Hotfix.log` counted by verdict; `Tandumonium_*` TOCs and
+  sources. Nothing written under any `Interface\`, `WTF\` or `Logs\`.
+- **The sister clients are not clients.** `_classic_era_` has **never had a character** - no
+  `WTF\Account\QUAZZARR\91`, no `AddOns.txt`, one 34-byte Blizzard SV, 16 log files under
+  10 KB, last write `11/08 12:06`. `_retail_` is a dormant workshop: 54 characters across
+  Hyjal / Shadowsong / Thrall, newest `AddOns.txt` **2026-09-16**, and `Tandumonium_UI`,
+  `Tandumonium_Patches`, `Tandumonium_Macros` + `BtWQuests` are **disabled on all 54** - 0 of
+  54 enabled each, and none of their five SV names exists under `_retail_\WTF\`. They have
+  never run.
+- **So the addon that would help is his own, and it is in the wrong install.** `_forever_` is
+  190 addons with no account-wide settings applier and no runtime patch layer; both are
+  written, 5.1 KB + 24.0 KB, in `_retail_` at `Interface: 120100` / `120000`, which a 16001
+  client will not load. Porting `Tandumonium_UI` + `Tandumonium_Patches` to
+  `Interface: 16001` + `AllowLoadGameType: camelot` addresses the 206/188/188/188/182/176/7
+  load-list drift, the 41 ghost names and the 52 orphan SVs - the three standing findings.
+- **A second live defect, never named.** `!BugGrabber` holds `WoWTaskManager: Sessions.OnDisable
+  failed` (`History\Sessions.lua:146`, nil `retention`) and `FlightRecorder.OnDisable failed`
+  (`History\FlightRecorder.lua:231`, nil `flightRecorder`). `WoWTaskManager.lua` (164,919 B)
+  has four top-level keys and **zero** `retention` / `flightRecorder` / `sessions` / `history`
+  - its History module has never persisted a row and throws on every logout. The ledger's
+  "Pagle is the only live defect" is now two.
+- **The Pagle error is caused by another addon.** Its `stack` runs `Pagle/adapter/Events.lua`
+  -> `[C]: pcall` -> `ForeverCombatText/Core.lua:874` -> `RestoreBlizzardHealing`: a saved
+  combat-text CVar is re-set on load, `SetCVar` fires `CVAR_UPDATE`, `Pagle_QoL`'s Fishing-key
+  handler reads `ns.db.profile.lures` before the key is armed. `Lures.lua` registers no
+  `CVAR_UPDATE` at all.
+- **`Hotfix.log` is deletion-only.** 24,267 `VALIDATION_RESULT_DELETE`, **0 ADD, 0 UPDATE**,
+  12,832 of 13,093 `DBReply` rows `ItemSparse` (98.0%). Two of `Goldmind`'s 77 cached recipe
+  strings have `Retrieving item information` baked in permanently - the first evidence the
+  deletion pass reaches player-visible item text.
+- **Two clocks agree to the second.** `Hourstone.serverSeconds` = **281,772** for the main;
+  `Watchtower`'s `/played` peak = `3d 6h 16m 12s` = **281,772 s** (44 samples, 11/24 13:02:22).
+  Six characters, **82.51 h** total. But the addon writes `client="forever"` *and*
+  `flavor="retail"`, keys `us:retail:<guid>`, with `realm="?"` on four of six.
+- **How addons detect this client, counted:** 207 of 328 TOCs list `16001`; 23 folders ship
+  multiple TOCs (max 8); **13 folders name the dial `_Camelot`** vs 5 `_Forever` (3 ship both);
+  15 TOCs declare `AllowLoadGameType: camelot`; 13 declare `X-Flavor:`; `Spy` is at
+  `1.3.8-forever28`; `FellowshipLedger` is the only addon that loads a *message* instead of
+  itself on an unknown client (`Interface: 00000` + `Compat\Unsupported.lua`).
+- **DBM, verified again:** `DBM-Raids-Vanilla` and `DBM-Party-Vanilla` absent;
+  `DBM-Raids-Midnight` / `DBM-Midnight` / `DBM-Lairs-Midnight` / `DBM-Brawlers` (56 files,
+  0.6 MB) are `Interface: 120105, 120107` only and cannot load here. Raids 12/09.
+- **Corrections:** "39 ghost names / 28 enabled" does not reproduce - strict diff gives 41 rows
+  / 38 enabled on the main; "Pagle is the only live defect" misses WoWTaskManager's two;
+  `Hourstone` does not misidentify the client, only the flavour bucket; `_retail_` is not a
+  working install of his own tooling.
+- **Full report:** `C:\Users\Gewey\.cline\schedules\addon_survey_2026-11-25_pass16.md`.
+
+-Signed, Tandumonium (Cline surface)
+
+
+
+## 2026-11-25 ~14:20 EST - Fifteenth pass: the addons that would help are already installed, and switched off
+
+- **Scope:** read-only. 190 `_forever_` folders / 51,940 files / 5,164 MB measured; all eight
+  `AddOns.txt`; 569 SavedVariables `.lua` (52.48 MB) with per-addon totals; `Logs\` (all four rotated
+  combat logs read for `ZONE_CHANGE` + `ENCOUNTER_START`); `ForeverLogsCompanion.lua` + its DB;
+  `Carbonite\Modules\Integrations\{TomTom,TomTomWaypoints}.lua`; `HuntersGaze\{Ammo,Range,Core}.lua`;
+  `BugSack\*` incl. the 55-byte `retail.lua` / 56-byte `forever.lua` stubs; `DBM-Core.lua:178-193,
+  1799, 1805`; `RaiderIO_Camelot.toc` resolved file-by-file against disk; `Trailbook.lua` head;
+  `Blizzard_DamageMeter.lua` for six characters; the 11 `!BugGrabber` records. Nothing written under
+  `Interface\`, `WTF\` or `Logs\`.
+- **The headline - the main is the outlier.** Enabled counts: Tandumonium-Ebbeson **206**,
+  Quazzarr-Paradoxia / Kirito-Momonga / Jakefrohm-Statefarm / Eleryla-Delune **188**, Legere-Goulette
+  182, Kar-Kol 176, Christar-Leroy 7. The five 188 lists carry exactly the curated delta the 11/20
+  pass recommended - `!BugGrabber`, `BugSack`, `DeleteCheapestItem`, `ForeverStats_Combat`,
+  `ForeverStats_Dungeons`/`_Guild`/`_PvP`, `ElitePlayerFrame_Enhanced`, five `InkAndEmbers_*`,
+  `Lueur`, `MacroAssistForever`, `MacroWorkshop`, `FamiliarFaces`. **All 17 are absent from the main.**
+  The help is installed and switched off on the only character producing logs.
+- **The combat-log pipeline, quantified a fourth time.** Four rotated logs, **45,089,495 B**, every
+  one carrying `ENCOUNTER_START`; zones per file 2 / 3 / 9 / 3 (Ragefire Chasm, Wailing Caverns,
+  Shadowfang Keep + 6 overworld, Deadmines + Westfall/Durotar). `Logs\CombatLog.txt` absent;
+  `hourly_audit.py` binds that name in **14** places. Client writes `WoWCombatLog-<stamp>.txt`.
+  Addon side: `ForeverLogsCompanionDB` = `auto_combatlog/log_dungeons/log_raids = true`,
+  `silent = false`, **38 monitored zones, all instances** -> world play logs nothing by design.
+- **New observations from other authors (code read):** ForeverLogsCompanion keeps its own logging
+  state because `LoggingCombat()` lies for ~10 s after a zone-in, retries 30 s, and dropped the
+  secure-button `/combatlog` path as broken on this client; it ships a Forever-shaped zone table
+  (`The Tainted Scar`, `Hyjal Crater`, `City of Dalaran`, `The Crystal Vale`, `The Hall of Thanes`);
+  Carbonite **emulates** TomTom (`Nx.EmulateTomTom` on `CARBONITE_LOADED`) instead of requiring it;
+  HuntersGaze does ammo at slot 0 vs 18, 35-yd per-spell range checkpoints and race-tuned duel range
+  (Tauren 6 / Scourge 7); RaiderIO declares its wire format in TOC metadata
+  (`journey-kill-counter=1`, `beacon-diagnostics=4`) and is a 60-s scribe first; Trailbook is a tagged
+  event protocol that records `death-cause` by NPC id and screenshots the death; the build ships
+  `Blizzard_DamageMeter`, so third-party meters are redundant.
+- **Boot defects, unchanged:** `AddonFactory` missing -> `DataStore_Characters` fails every login and
+  has **no SV file** (it never ran - not "pruned"); `RaiderIO_Camelot.toc` lists
+  `db/db_client_recent_characters.lua` which does not exist; `Pagle_QoL\adapter\Lures.lua:40` nil
+  `settings` still the only live defect in enabled code.
+- **Footprint.** `Spoken*` = **2,938 MB** across 14 folders / 26,077 files (57% of the tree);
+  `OpulentCastingBars` 439 MB; `AllTheThings` 70 MB; `Hotfix.log` 106,832 lines / 9.0 MB with no
+  rotation; `Goldmind` 7,351 KB is the largest single SV written per logout (7,199 KB FamiliarFaces,
+  disabled); 52 orphan SV basenames (1,334 KB of dead serialisation; 35 non-`Blizzard_*` names =
+  1,220 KB); 39 ghost load-list names, **28 still marked `enabled`**.
+- **Attack order if Joey asks:** enable `!BugGrabber`+`BugSack` on the main -> `ForeverStats_Combat`
+  + `ForeverStats_Dungeons` -> `DeleteCheapestItem` -> set `ForeverLogsCompanion` to silent and add
+  world zones (or teach `hourly_audit.py` the rotated filename) -> disable `DataStore_Characters` ->
+  the only download worth it now is **`DBM-Raids-Vanilla` + `DBM-Party-Vanilla`** (raids open 12/09;
+  `DBM-Core.lua:1799/1805` resolve both names and neither folder exists).
+- **Corrections:** the "TomTom-class sink is missing" claim is wrong - Carbonite ships a 13.4 KB
+  TomTom emulation plus 9.6 KB waypoint storage; the "hunter auto-shot + pet feed" recommendation is
+  withdrawn - HuntersGaze + seven pet addons already cover it; `Spoken*` is 2,938 MB, not 2.6 GB.
+- **Full report:** `C:\Users\Gewey\.cline\schedules\addon_survey_2026-11-25_pass15.md`.
+
+-Signed, Tandumonium (Cline surface)
+
+
+
+## 2026-11-25 ~07:1x EST — Fourteenth pass: the diary that watches the crowd, and the six characters nobody counted
+
+- **Scope:** read-only. Opened one SavedVariables family no earlier pass had touched:
+  `WTF\Account\QUAZZARR\*\SavedVariables\social_diary.lua` — six character copies plus the
+  account-scope `SocialDiaryDB`. Nothing written under `WTF\`, `Interface\` or `Logs\`; the output
+  is a new HUD wing (`_gewey_gui\Passersby.html`) and `Timeline\data\passersby.json`.
+- **The addon is not about Tandumonium.** SocialDiary keeps four tapes: `characters` (one card per
+  player resolved off a nameplate, tooltip or roster sweep), `sightings` (mapID + sub-zone + normalised
+  x/y + *how* it saw them), `interactions` (a typed contact) and `instances` (a dungeon docket with
+  every loot roll still inside). Merged across the six diaries and de-duplicated by GUID:
+  **3,933 souls**, **4,152 sightings**, **18 maps / 123 sub-zones**, **494 contacts** across
+  **12 kinds**, **4 dockets / 71 rolls**, **228 regulars** (seen twice or an hour apart).
+- **Six characters, not one.** The account scope names them: Tandumonium Ebbeson, Eleryla Delune,
+  Christar Leroy, Quazzarr Paradoxia, Legere Goulette, Kirito Momonga — each with its own diary,
+  realm string (blank on four, `CAMWOW US1 Realm 3 PvE` on two), level and `lastLogin`. The addon's
+  own played counter reads **229,705 s (63.8 h)** across **37** sittings; addon version `4.2.4`.
+- **The crowd's shape.** Horde **3,705** / Alliance **173**; class spread led by Hunter 593,
+  Paladin 581, Shaman 535; levels 1–60 with median **24** and **29** souls already at the cap.
+  `Skyborne` — the server's custom race token — is the **second-largest race at 785**, behind
+  Scourge 1,243. Busiest ground: The Barrens **1,444**, Hillsbrad **792**, Stranglethorn **468**.
+- **How it sees.** `plate` 3,096 sightings, `mouse` (tooltip hover) 950, `sweep` 58, `say` 22,
+  `yell` 13, `emote` 11, `target` 2 — the census is a by-product of ordinary play, not a scan.
+- **The interaction tape, first read.** `level_up` 237, `group_join` 73 / `group_leave` 69,
+  `campfire` 46, `say` 26, `whisper_in` 22, `whisper_out` 10, `tried_to_help` 5, `trade` 2,
+  `pvp_death` 2, `saved_you` **1**, `duel_series` 1. The single `saved_you` and the five failed
+  rescue attempts are the only rows of their kind in the whole window.
+- **The dockets.** Four runs: 4 bosses / 17 rolls (11/13), 1 boss / 3 rolls, 8 bosses / 26 rolls
+  with **4 deaths** (Shadowfang-sized), 8 bosses / 25 rolls. Item links decode
+  (`|cnIQ<q>:|Hitem:<id>`) and quality colours survive; the docket carries **no instance name**, so
+  the wing prints the boss roster and refuses to guess the dungeon.
+- **The journey sheet is the one solo tape.** 13 close calls, the tightest at **1 % health with 2
+  foes on a level-7 character (55 s survived, 147 damage taken)**, 110 deaths, 59 kill-grinds, 16
+  campfires, 40 creature names in its own npcID ledger, 1,328 route segments.
+- **Filed:** `Passersby.html` (Wing 38, 9 sections, ~1.0 MB, script-free) + 18 milestones into
+  `events.jsonl` and `Timeline.html` via `milestone_batch_20261125_passersby.py`, then
+  `hourly_audit.py --quiet` (run ledger 07:12, 121 ev). Corrects nothing earlier; the wing is additive
+  and every existing page kept its content.
+
+## 2026-11-25 ~07:0x EST — Thirteenth pass: the error catcher was installed, then never switched on where it counts
+
+- **Scope:** read-only. 328 TOCs across the three trees (190 / 40 / 6 folders), all eight
+  `AddOns.txt`, `!BugGrabber.lua` and `BugSack.lua` (a source no earlier pass opened), `General.log`,
+  `FrameXML.log`, `gx.log`, `cpu.log`, `Tact.log`, `Sound.log`, `Errors\`, `Config.wtf`, the
+  SavedVariables footprint and `Pagle_QoL\adapter\Lures.lua`. Nothing written under `Interface\`,
+  `WTF\` or `Logs\`.
+- **The headline.** `!BugGrabber` + `BugSack` are installed (11/18), declare `16001`, and have run
+  **22 account sessions** with ten retained records — and they are **enabled on three alts**
+  (Eleryla-Delune, Jakefrohm-Statefarm, Kirito-Momonga) but **absent from Tandumonium-Ebbeson's
+  11/22 load list**, the only character being played. The 11/20 recommendation was not wrong; it was
+  never executed. `auto = false`, so enabling adds no popups.
+- **The captured exceptions, first read.** 7 × session 22, 2 × session 6, 2 × session 17. New
+  signatures absent from `General.log`: `LiveLocation.xml MapCanvasPinTemplate` (closed by 1.13.5),
+  `Blizzard_GameTooltip/HealthBar.lua:8` secret-number compare tainted by `FamiliarFaces`
+  (counter **76**; `FamiliarFaces` since disabled), `AchievementShield_OnLoad` in Mainline
+  `AlertFrameSystems.xml` (client-side shim), and **`Pagle_QoL/adapter/Lures.lua:40` nil `settings`
+  on `CVAR_UPDATE`**.
+- **That last one is the only live defect in enabled code.** Stack: `CVAR_UPDATE` →
+  `Pagle/adapter/Events.lua:24→26→39→44` (`pcall`) → `ForeverCombatText/Core.lua:861→874`
+  (`RestoreBlizzardHealing`) → `Lures.lua:40`. `Lures.lua:32` reads `ns.db.profile.lures`; an early
+  `CVAR_UPDATE` (five addons write graphics CVars) arrives before `OnInitialize` opens `PagleQoLDB`,
+  so line 40 indexes nil. Contained by `pcall`; upstream report, not a `WTF` edit.
+- **Combat-log pipeline still severed (3rd record, now with numbers).** `advancedCombatLogging "1"`,
+  `ForeverLogsCompanion` enabled, four rotated logs = **45,089,495 B**, `Logs\CombatLog.txt` does not
+  exist; `hourly_audit.py` binds to that name at L12 / L502–504 / L766 / L1593 → `p_combatlog` has
+  never fired and Timeline's Fights section is empty by construction.
+- **Session health.** `General.log` has **3** `[E]` lines (11/24 12:33:22 boot trio only), `Errors\`
+  has **0** files. `gx.log`: 4.0–4.1 GB of 15 GB (26.7–27.3 %), 58–62 °C, 2.91 GHz — GPU not the
+  constraint. `Config.wtf` is maxed (`graphicsQuality 9`, viewDistance 9, environmentDetail 9,
+  groundClutter 9) except `graphicsTextureResolution 2`.
+- **Footprint.** 347 account + 134 character SVD files = **98.6 MB** with `.bak`, **52.5 MB** of pure
+  `.lua` re-serialised per logout. `Goldmind` 7.53 MB, `FamiliarFaces` 7.34 MB, `Saga` 3.55 MB.
+- **Attack order if Joey asks:** enable `!BugGrabber`+`BugSack` on the main → enable
+  `ForeverStats_Combat`+`ForeverStats_Dungeons` on the main (already collecting 547 KB on alts) →
+  enable `DeleteCheapestItem` → then the only downloads worth it: DBM Vanilla content, a TomTom-class
+  sink, and (new, hunter-specific) an auto-shot timer + a pet-happiness/feed tool. Nothing else.
+- **Corrections:** the 11th pass's "zero `*Bug*` files in `_forever_\WTF`" is superseded by the 11/18
+  install; counts moved 187/272 → **190/328**, tree **5,164 MB**; Carbonite confirmed enabled on
+  Tandumonium today (11/22 list), per the 11/20 attribution.
+- **Full report:** `C:\Users\Gewey\.cline\schedules\addon_survey_2026-11-25.md`.
+
+-Signed, Tandumonium (Cline surface)
+
 ## 2026-11-20 ~15:16 EST — Twelfth pass: the freezes are two addons, and five TOCs point at files that do not exist
 
 - **Scope:** read-only. 272 TOCs / 6,384 file entries validated against disk, five `AddOns.txt`,

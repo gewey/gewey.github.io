@@ -13,6 +13,9 @@
   "/af": [
     "AchievementsForever"
   ],
+  "/afskin": [
+    "AchievementsForever"
+  ],
   "/aio": [
     "AdvancedInterfaceOptions"
   ],
@@ -156,6 +159,9 @@
   "/rrange": [
     "DBM-Core"
   ],
+  "/dci": [
+    "DeleteCheapestItem"
+  ],
   "/ding": [
     "DingFanfare"
   ],
@@ -219,14 +225,14 @@
   "/forevertext": [
     "ForeverCombatText"
   ],
+  "/fcore": [
+    "ForeverCore"
+  ],
   "/fdex": [
     "ForeverDex"
   ],
   "/foreverdex": [
     "ForeverDex"
-  ],
-  "/fep": [
-    "ForeverEpicFrames"
   ],
   "/fgc": [
     "ForeverGraphicsControl"
@@ -363,6 +369,9 @@
   ],
   "/lorepath": [
     "LorePath"
+  ],
+  "/lueur": [
+    "Lueur"
   ],
   "/macroassist": [
     "MacroAssistForever"

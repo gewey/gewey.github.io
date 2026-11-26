@@ -1,8 +1,8 @@
 {
   "AchievementsForever": {
     "available": true,
-    "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, Minimap, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
   },
   "AdvancedInterfaceOptions": {
     "available": true,
@@ -22,7 +22,7 @@
   "AllTheThings": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, HIDDEN, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, visible, Hidden, Hide, HIDDEN. Check addon's specific /slash command for a hide toggle."
   },
   "AnimaCards": {
     "available": true,
@@ -37,7 +37,7 @@
   "AutoBiographer": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hide, hidden, Hide, Hidden, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Hidden, IsVisible, Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "AzerothTradingCards": {
     "available": true,
@@ -52,7 +52,7 @@
   "BetterWoWGraphics": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Visible, visible, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, visible, Hidden, Hide, Visible. Check addon's specific /slash command for a hide toggle."
   },
   "Bouncy": {
     "available": true,
@@ -72,17 +72,17 @@
   "CanIMogIt": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, IsVisible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Carbonite": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: MiniMap, Minimap, minimap, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Minimap, minimap, Hidden, MiniMap. Check addon's specific /slash command for a hide toggle."
   },
   "Carbonite.Info": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: MiniMap, hide, minimap, HIDE, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: HIDE, minimap, IsVisible, MiniMap, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Carbonite.Notes": {
     "available": true,
@@ -97,7 +97,7 @@
   "Carbonite.Warehouse": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, hide, hidden, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, visible, IsVisible, Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "CarnetAventure": {
     "available": true,
@@ -106,8 +106,8 @@
   },
   "CountSteps": {
     "available": true,
-    "method": "frame:SetAlpha(0)",
-    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hidden, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "CrownOfAzeroth": {
     "available": true,
@@ -137,7 +137,7 @@
   "DBM-PvP": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "DBM-Raids-Midnight": {
     "available": true,
@@ -145,6 +145,11 @@
     "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "DBM-StatusBarTimers": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
+  "DeleteCheapestItem": {
     "available": true,
     "method": "frame:SetAlpha(0)",
     "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
@@ -172,12 +177,17 @@
   "Elephant": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, MINIMAP, minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, MINIMAP, minimap, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "ElitePlayerFrame_Enhanced": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "EuphorrixSpellAnnouncerV2": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
   },
   "FamiliarFaces": {
     "available": true,
@@ -187,7 +197,7 @@
   "FellowshipLedger": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Minimap, minimap, hide. Check addon's specific /slash command for a hide toggle."
   },
   "FlightMinigames": {
     "available": true,
@@ -204,12 +214,12 @@
     "method": "Option key(s): hideFriendlyInCities",
     "notes": "Found 1 hide/visibility option(s). Set the option to hide the frame while tracking continues."
   },
-  "ForeverDex": {
+  "ForeverCore": {
     "available": true,
     "method": "frame:SetAlpha(0)",
     "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
   },
-  "ForeverEpicFrames": {
+  "ForeverDex": {
     "available": true,
     "method": "frame:SetAlpha(0)",
     "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
@@ -217,12 +227,12 @@
   "ForeverGraphicsControl": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, Minimap, minimap, Hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Minimap, visible, minimap, IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
   },
   "ForeverLogsCompanion": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, minimap, hide. Check addon's specific /slash command for a hide toggle."
   },
   "ForeverLootSparkles": {
     "available": true,
@@ -257,12 +267,12 @@
   "ForeverStats_Dungeons": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, visible, IsVisible, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, IsVisible, visible, Minimap. Check addon's specific /slash command for a hide toggle."
   },
   "ForeverStats_Guild": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "ForeverStats_PvP": {
     "available": true,
@@ -287,7 +297,7 @@
   "GraphicsUnlockedForever": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, visible, minimap, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hidden, hidden, minimap, visible. Check addon's specific /slash command for a hide toggle."
   },
   "HandyNotes": {
     "available": true,
@@ -297,7 +307,7 @@
   "HandyNotes_ForeverBooks": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Visible, visible, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: minimap, visible, Hide, Visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "HidingBar": {
     "available": true,
@@ -307,12 +317,12 @@
   "HidingBar_Options": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Minimap, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Hourstone": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, Visible, visible, minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: visible, Visible, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
   },
   "HuntersFieldGuide": {
     "available": true,
@@ -332,17 +342,17 @@
   "InkAndEmbers_Campfire": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "InkAndEmbers_Crafting": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, hide, Hide, Hidden, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, visible, Hidden, Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "InkAndEmbers_Data": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "InkAndEmbers_Plans": {
     "available": true,
@@ -352,12 +362,12 @@
   "InkAndEmbers_QuestData": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "InkAndEmbers_Quests": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Hidden, visible. Check addon's specific /slash command for a hide toggle."
   },
   "InkAndEmbers_QuestTracker": {
     "available": true,
@@ -372,12 +382,12 @@
   "ItemLevelNameplate": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Kehets_Fellowship": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, hide, minimap, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Minimap, minimap, Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "KelaGraphics": {
     "available": true,
@@ -409,6 +419,11 @@
     "method": "frame:SetAlpha(0)",
     "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
   },
+  "Lueur": {
+    "available": true,
+    "method": "frame:SetAlpha(0)",
+    "notes": "Addon uses SetAlpha for frame visibility. A macro can set alpha to 0 to hide while keeping event handlers active."
+  },
   "MacroAssistForever": {
     "available": true,
     "method": "frame:SetAlpha(0)",
@@ -427,7 +442,7 @@
   "Memento": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
   },
   "MoveAny": {
     "available": true,
@@ -487,7 +502,7 @@
   "Pagle_QoL": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Pagle_Stats": {
     "available": true,
@@ -507,12 +522,12 @@
   "Persona": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "PetMentor": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, hide, visible, minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Minimap, minimap, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "PetTooltipInfo": {
     "available": true,
@@ -522,7 +537,7 @@
   "PetXPBar": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, visible, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, visible. Check addon's specific /slash command for a hide toggle."
   },
   "Plumber": {
     "available": true,
@@ -562,12 +577,12 @@
   "QuestCompletist": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, HIDE, MINIMAP, HIDDEN. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, HIDDEN, HIDE, MINIMAP. Check addon's specific /slash command for a hide toggle."
   },
   "QuestieDB": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hidden, visible. Check addon's specific /slash command for a hide toggle."
   },
   "RaiderIO": {
     "available": true,
@@ -587,12 +602,12 @@
   "Saga": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, hide, visible, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Minimap, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SagaCompanion": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: visible, Minimap, hide, minimap, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Minimap, visible, minimap, Hide, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SilverDragon": {
     "available": true,
@@ -607,12 +622,12 @@
   "SilverDragon_Overlay": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, hide, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Minimap, minimap, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SilverDragon_RangeExtender": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, MINIMAP, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
   },
   "SleekGoldAnimation": {
     "available": true,
@@ -632,7 +647,7 @@
   "social_diary": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: IsVisible, visible, VISIBLE. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: IsVisible, VISIBLE, visible. Check addon's specific /slash command for a hide toggle."
   },
   "SpeedyAutoLoot": {
     "available": true,
@@ -647,7 +662,7 @@
   "Spoken_Bosses": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: IsVisible, hidden, Hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, IsVisible, Hidden. Check addon's specific /slash command for a hide toggle."
   },
   "Spoken_Places": {
     "available": true,
@@ -672,22 +687,27 @@
   "SpokenQuestsAudioAlliance": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SpokenQuestsAudioGossip": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SpokenQuestsAudioHorde": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "SpokenQuestsAudioShared": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
+  },
+  "SpokenReadablesAudio": {
+    "available": true,
+    "method": "Hide/Show frame toggle (source-level)",
+    "notes": "Found hide-related references: hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Spy": {
     "available": true,
@@ -707,7 +727,7 @@
   "Tamed": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, MINIMAP, minimap, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, MINIMAP, minimap, Minimap. Check addon's specific /slash command for a hide toggle."
   },
   "TameDex": {
     "available": true,
@@ -742,12 +762,12 @@
   "totalRP3_Extended_Tools": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, showFrame, IsVisible, hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, IsVisible, showFrame, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Trailbook": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: hidden, hide, Hide. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "Travelogue": {
     "available": true,
@@ -777,32 +797,32 @@
   "WhatsItFor": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsItFor_Data_Anniversary": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsItFor_Data_Classic": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsItFor_Data_Forever": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsItFor_Data_Mists": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsItFor_Data_Titan": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, Hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, Hidden, hide. Check addon's specific /slash command for a hide toggle."
   },
   "WhatsTraining": {
     "available": true,
@@ -827,7 +847,7 @@
   "YouJustMadeTheList": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible, IsVisible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, IsVisible, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "YourLegacy": {
     "available": true,
@@ -847,7 +867,7 @@
   "SleekRageBubbles": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Hide, hide, visible. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: Hide, visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "BetterBags": {
     "available": true,
@@ -902,7 +922,7 @@
   "EnhanceQoLDamageMeter": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Visible, visible, hide, Hide, hidden. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, visible, Hide, Visible, hide. Check addon's specific /slash command for a hide toggle."
   },
   "EnhanceQoLDungeonRaid": {
     "available": true,
@@ -977,7 +997,7 @@
   "Tandumonium_Macros": {
     "available": true,
     "method": "Hide/Show frame toggle (source-level)",
-    "notes": "Found hide-related references: Minimap, minimap, Hide, hidden, MINIMAP. Check addon's specific /slash command for a hide toggle."
+    "notes": "Found hide-related references: hidden, Minimap, minimap, Hide, MINIMAP. Check addon's specific /slash command for a hide toggle."
   },
   "Tandumonium_Patches": {
     "available": true,

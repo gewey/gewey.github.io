@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trinity of Me — The Agent File Brochure</title>
+    <meta name="description"
+        content="How an agent is written down in Tesseract City: the three-file accordion of core, index, and expanded manual — governed by LAW 110, 111, 115, 116, 117 and 120.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- =========================================================================
+         INUUS STANDARD COMPLIANCE (LAW 406 / 407 / 408)
+         Typography and palette are NOT declared here. They are consumed from the
+         compiled SSOT manifests:
+             ../css/themes.css  <- 01_Colors_Collide/__ssot_color_pallet.css
+             ../css/text.css    <- 02_Handwritten/__ssot_fonts_icons.css
+         The block below is LAYOUT ONLY (grid, measure, spacing) and every colour
+         it names is a var(--token) from themes.css. No new hex values are minted.
+         ========================================================================= -->
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/text.css">
+
+    <style>
+        /* ---------------------------------------------------------------
+           LAYOUT ONLY. No colour literals. No font-family literals.
+           --------------------------------------------------------------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 1.5rem;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 0 5rem;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 12% 4%, rgba(0, 238, 0, 0.07) 0%, transparent 38%),
+                radial-gradient(circle at 88% 18%, rgba(238, 0, 238, 0.08) 0%, transparent 42%),
+                radial-gradient(circle at 50% 92%, rgba(0, 200, 255, 0.06) 0%, transparent 46%);
+            background-attachment: fixed;
+        }
+
+        .brochure {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            text-align: center;
+            padding: 4.5rem 1rem 3rem;
+            border-bottom: 1px dashed var(--border-gray);
+            background: radial-gradient(circle at 50% 0%, rgba(238, 0, 238, 0.10) 0%, transparent 68%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.1rem);
+            margin: 1.1rem 0 0.75rem;
+            text-shadow: 0 0 18px rgba(0, 238, 0, 0.35);
+        }
+
+        .hero .tagline {
+            max-width: 46rem;
+            margin: 0 auto 1.4rem;
+            color: var(--vapor-gray);
+            font-size: 1.02rem;
+            line-height: 1.65;
+        }
+
+        .badge-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.72rem;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 1px solid var(--border-gray);
+            color: var(--vapor-gray);
+        }
+
+        .badge.b-green {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(0, 238, 0, 0.08);
+        }
+
+        .badge.b-magenta {
+            border-color: var(--magenta);
+            color: var(--magenta);
+            background: rgba(238, 0, 238, 0.08);
+        }
+
+        .badge.b-cyan {
+            border-color: var(--viktor-cyan);
+            color: var(--viktor-cyan);
+            background: rgba(0, 200, 255, 0.08);
+        }
+
+        .badge.b-gold {
+            border-color: var(--gold-ember);
+            color: var(--gold-ember);
+            background: rgba(255, 204, 0, 0.08);
+        }
+
+        /* ---- STAT STRIP ---- */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.75rem;
+            margin: 2rem auto 0;
+            max-width: 48rem;
+        }
+
+        .stat-box {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            padding: 0.85rem 0.5rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            color: var(--green);
+            font-size: 1.55rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-top: 0.2rem;
+        }
+
+        .stat-lbl {
+            color: var(--vapor-gray);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .stat-box.alert .stat-num {
+            color: var(--gold-ember);
+        }
+
+        /* ---- NAV ---- */
+        .toc {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            justify-content: center;
+            padding: 0.7rem 0.5rem;
+            margin: 0 0 1rem;
+            background: var(--surface-elevated);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .toc a {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.74rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: var(--vapor-gray);
+        }
+
+        .toc a:hover {
+            color: var(--green);
+            border-color: var(--green-dim);
+            background: rgba(0, 238, 0, 0.06);
+            text-shadow: none;
+        }
+
+        /* ---- SECTIONS ---- */
+        section {
+            margin: 3.5rem 0;
+        }
+
+        section>h2 {
+            font-size: clamp(1.3rem, 3.2vw, 1.75rem);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.1rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        section>h2 .num {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.72em;
+            color: var(--viktor-cyan);
+            margin-right: 0.55rem;
+            letter-spacing: 0.1em;
+        }
+
+        h3 {
+            margin: 1.8rem 0 0.6rem;
+        }
+
+        p,
+        li {
+            color: var(--vapor-gray);
+        }
+
+        p {
+            max-width: 78ch;
+        }
+
+        strong {
+            color: var(--ghost-yellow);
+        }
+
+        em {
+            color: var(--pale-yellow);
+            font-style: italic;
+        }
+
+        code {
+            background: rgba(0, 200, 255, 0.09);
+            border: 1px solid rgba(0, 200, 255, 0.22);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 0.88em;
+            color: var(--viktor-cyan);
+        }
+
+        /* ---- CARDS ---- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.1rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
+        }
+
+        .card:hover {
+            border-color: var(--viktor-cyan);
+            box-shadow: var(--glow-cyan-md);
+            transform: translateY(-3px);
+        }
+
+        .card.tier1:hover {
+            border-color: var(--green);
+            box-shadow: var(--glow-green-md);
+        }
+
+        .card.tier2:hover {
+            border-color: var(--magenta);
+            box-shadow: var(--glow-magenta-md);
+        }
+
+        .card.tier3:hover {
+            border-color: var(--gold-ember);
+            box-shadow: var(--glow-gold-md);
+        }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .card-icon {
+            font-size: 1.9rem;
+            line-height: 1;
+        }
+
+        .tier-tag {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.66rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid currentColor;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+
+        .tier1 .tier-tag {
+            color: var(--green);
+        }
+
+        .tier2 .tier-tag {
+            color: var(--magenta);
+        }
+
+        .tier3 .tier-tag {
+            color: var(--gold-ember);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.18rem;
+        }
+
+        .card .fname {
+            font-family: var(--font-ui-tech);
+            font-size: 0.82rem;
+            color: var(--lavender-mist);
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.45);
+            border-left: 2px solid var(--border-gray);
+            padding: 0.3rem 0.55rem;
+        }
+
+        .card .question {
+            font-family: var(--font-body);
+            font-style: italic;
+            color: var(--pale-yellow);
+            font-size: 0.92rem;
+        }
+
+        .card ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .card .lawref {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            color: var(--viktor-cyan);
+            border-top: 1px dashed var(--border-gray);
+            padding-top: 0.6rem;
+        }
+
+        /* ---- FOLD DIAGRAM ---- */
+        .fold {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            align-items: stretch;
+            gap: 0.75rem;
+            margin: 1.6rem 0;
+        }
+
+        .fold-step {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .fold-step .step-key {
+            font-family: var(--font-ui-tech);
+            font-size: 0.78rem;
+            color: var(--magenta);
+            letter-spacing: 0.04em;
+            overflow-wrap: anywhere;
+        }
+
+        .fold-step .step-title {
+            font-family: var(--font-display-secondary);
+            font-size: 0.95rem;
+            color: var(--ghost-yellow);
+            margin: 0.35rem 0 0.4rem;
+        }
+
+        .fold-step .step-body {
+            font-size: 0.85rem;
+            color: var(--vapor-gray);
+            line-height: 1.55;
+        }
+
+        .fold-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.4rem;
+        }
+
+        pre.ascii {
+            /* LAW 405: visual artifacts require monospace isolation. --font-mono
+               resolves to Oxanium, which is PROPORTIONAL and destroys box-drawing
+               alignment. --font-fallback is the sanctioned code/mono stack declared
+               in 02_Handwritten/__ssot_fonts_icons.css, so this invents nothing. */
+            font-family: var(--font-fallback);
+            font-size: 0.78rem;
+            line-height: 1.4;
+            background: var(--void);
+            border: 1px solid var(--border-gray);
+            border-left: 3px solid var(--green-dim);
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            color: var(--vapor-gray);
+            margin: 1.2rem 0;
+        }
+
+        pre.ascii b {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        pre.ascii i {
+            color: var(--magenta);
+            font-style: normal;
+        }
+
+        /* ---- TABLES ---- */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.3rem 0;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        thead th {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: left;
+            color: var(--viktor-cyan);
+            background: var(--surface-panel);
+            padding: 0.7rem 0.85rem;
+            border-bottom: 1px solid var(--border-gray);
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 0.65rem 0.85rem;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.55);
+            color: var(--vapor-gray);
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover td {
+            background: rgba(0, 200, 255, 0.05);
+        }
+
+        tbody td strong {
+            color: var(--ghost-yellow);
+        }
+
+        td .law {
+            font-family: var(--font-ui-tactical);
+            color: var(--gold-ember);
+            white-space: nowrap;
+        }
+
+        /* ---- BAR CHART ---- */
+        .chart {
+            margin: 1.5rem 0;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: minmax(120px, 190px) 1fr 4.2rem;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .chart-row .lbl {
+            font-family: var(--font-ui-tech);
+            color: var(--lavender-mist);
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .chart-row .track {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .chart-row .bar {
+            height: 100%;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .bar.core {
+            background: linear-gradient(90deg, var(--green-dim), var(--green));
+        }
+
+        .bar.index {
+            background: linear-gradient(90deg, var(--magenta-dim), var(--magenta));
+        }
+
+        .bar.exp {
+            background: linear-gradient(90deg, rgba(255, 204, 0, 0.35), var(--gold-ember));
+        }
+
+        .chart-row .val {
+            font-family: var(--font-ui-tactical);
+            color: var(--ghost-yellow);
+            text-align: right;
+            font-size: 0.8rem;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.8rem;
+            font-family: var(--font-ui-tactical);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--vapor-gray);
+        }
+
+        .chart-legend span::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .chart-legend .lg-core::before {
+            background: var(--green);
+        }
+
+        .chart-legend .lg-index::before {
+            background: var(--magenta);
+        }
+
+        .chart-legend .lg-exp::before {
+            background: var(--gold-ember);
+        }
+
+        /* ---- CALLOUTS ---- */
+        .callout {
+            border-left: 3px solid var(--magenta);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            padding: 1rem 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .callout.warn {
+            border-left-color: var(--gold-ember);
+        }
+
+        .callout.stop {
+            border-left-color: var(--vampire-red);
+        }
+
+        .callout.good {
+            border-left-color: var(--green);
+        }
+
+        .callout .co-title {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ghost-yellow);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.92rem;
+        }
+
+        .quote-box {
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid var(--magenta);
+            padding: 1rem 1.2rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--ghost-yellow);
+        }
+
+        .quote-box cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-family: var(--font-ui-tactical);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--vapor-gray);
+            font-style: normal;
+        }
+
+        /* ---- RULE LIST ---- */
+        .rules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+            counter-reset: rule;
+        }
+
+        .rule {
+            background: var(--surface-card);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1.15rem 1.25rem;
+            counter-increment: rule;
+        }
+
+        .rule::before {
+            content: "RULE " counter(rule);
+            font-family: var(--font-ui-tactical);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            color: var(--gold-ember);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .rule h4 {
+            margin: 0 0 0.4rem;
+            font-size: 0.98rem;
+            color: var(--ghost-yellow);
+            font-family: var(--font-ui-tech);
+        }
+
+        .rule p {
+            margin: 0;
+            font-size: 0.87rem;
+            line-height: 1.6;
+        }
+
+        /* ---- BEFORE / AFTER ---- */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.4rem 0;
+        }
+
+        .ba {
+            border-radius: 8px;
+            padding: 1.1rem 1.2rem;
+            border: 1px solid var(--border-gray);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .ba.before {
+            border-left: 3px solid var(--vampire-red);
+        }
+
+        .ba.after {
+            border-left: 3px solid var(--green);
+        }
+
+        .ba .ba-lbl {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .ba.before .ba-lbl {
+            color: var(--vampire-red);
+        }
+
+        .ba.after .ba-lbl {
+            color: var(--green);
+        }
+
+        .ba dl {
+            margin: 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.3rem 0.9rem;
+            font-size: 0.86rem;
+        }
+
+        .ba dt {
+            color: var(--vapor-gray);
+        }
+
+        .ba dd {
+            margin: 0;
+            font-family: var(--font-ui-tech);
+            color: var(--ghost-yellow);
+            text-align: right;
+        }
+
+        /* ---- CHECKLIST ---- */
+        ol.checklist {
+            list-style: none;
+            counter-reset: chk;
+            padding: 0;
+            margin: 1.3rem 0;
+        }
+
+        ol.checklist li {
+            counter-increment: chk;
+            position: relative;
+            padding: 0.7rem 0 0.7rem 2.6rem;
+            border-bottom: 1px dashed rgba(48, 54, 61, 0.7);
+            font-size: 0.92rem;
+        }
+
+        ol.checklist li::before {
+            content: counter(chk);
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 1.7rem;
+            height: 1.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--green-dim);
+            border-radius: 50%;
+            font-family: var(--font-ui-tactical);
+            font-size: 0.76rem;
+            color: var(--green);
+            background: rgba(0, 238, 0, 0.06);
+        }
+
+        /* ---- DECISION TREE ---- */
+        .decision {
+            background: var(--void);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.4rem 0;
+            /* Monospace for the same reason as pre.ascii — column alignment.
+               white-space:pre is mandatory: a <div> collapses newlines and this
+               block is a decision TREE, so collapsing it destroys the branching. */
+            font-family: var(--font-fallback);
+            font-size: 0.84rem;
+            line-height: 1.85;
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--vapor-gray);
+        }
+
+        .decision .q {
+            color: var(--viktor-cyan);
+        }
+
+        .decision .ans {
+            color: var(--green);
+        }
+
+        .decision .del {
+            color: var(--vampire-red);
+        }
+
+        /* ---- EXEMPLAR CARDS ---- */
+        .exemplar {
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1.2rem 1.3rem;
+            background: var(--surface-card);
+            margin-bottom: 1rem;
+        }
+
+        .exemplar .ex-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.75rem;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .exemplar .ex-name {
+            font-family: var(--font-display-secondary);
+            font-size: 1.05rem;
+            color: var(--ghost-yellow);
+        }
+
+        .exemplar .ex-nums {
+            font-family: var(--font-ui-tactical);
+            font-size: 0.74rem;
+            letter-spacing: 0.06em;
+            color: var(--vapor-gray);
+        }
+
+        .exemplar .ex-nums b {
+            color: var(--green);
+        }
+
+        .exemplar p {
+            margin: 0.35rem 0 0;
+            font-size: 0.9rem;
+        }
+
+        /* ---- ANTI-PATTERNS ---- */
+        .anti {
+            border: 1px solid rgba(136, 8, 8, 0.6);
+            border-left: 3px solid var(--vampire-red);
+            border-radius: 6px;
+            background: rgba(136, 8, 8, 0.07);
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .anti h4 {
+            margin: 0 0 0.3rem;
+            font-family: var(--font-ui-tech);
+            font-size: 0.95rem;
+            color: var(--jake-red);
+        }
+
+        .anti p {
+            margin: 0;
+            font-size: 0.88rem;
+        }
+
+        /* ---- LINKS OUT ---- */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.85rem;
+            margin: 1.4rem 0;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.95rem 1.1rem;
+            background: var(--surface-card);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            transition: all 0.22s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--green);
+            background: rgba(0, 238, 0, 0.06);
+        }
+
+        .link-card .lc-icon {
+            font-size: 1.35rem;
+        }
+
+        .link-card .lc-title {
+            font-family: var(--font-ui-tech);
+            font-size: 0.95rem;
+            color: var(--ghost-yellow);
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .link-card .lc-sub {
+            font-size: 0.78rem;
+            color: var(--vapor-gray);
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 1rem 0;
+            border-top: 1px solid var(--border-gray);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--vapor-gray);
+        }
+
+        footer .sig {
+            font-family: var(--font-ui-tech);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            color: var(--green-dim);
+            margin-top: 0.6rem;
+        }
+
+        .provenance {
+            max-width: 62rem;
+            margin: 1.5rem auto 0;
+            padding: 1rem 1.2rem;
+            border: 1px dashed var(--border-gray);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--vapor-gray);
+            text-align: left;
+        }
+
+        @media (max-width: 640px) {
+            .chart-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+
+            .chart-row .lbl {
+                text-align: left;
+            }
+
+            .chart-row .val {
+                text-align: left;
+            }
+
+            .ba dl {
+                grid-template-columns: 1fr;
+            }
+
+            .ba dd {
+                text-align: left;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="brochure">
+
+        <!-- ============================ HERO ============================ -->
+        <header class="hero">
+            <div class="badge-bar">
+                <span class="badge b-green">Tier 1 · Core</span>
+                <span class="badge b-magenta">Tier 2 · Index</span>
+                <span class="badge b-gold">Tier 3 · Expanded</span>
+                <span class="badge b-cyan">LAW 110 · 111 · 115 · 116 · 117 · 120</span>
+            </div>
+            <h1>The Trinity of Me</h1>
+            <p class="tagline">
+                How an agent gets written down in Tesseract City. Not one document in three
+                lengths — <strong>three different jobs</strong>, three different questions,
+                and one rule that decides which of them any given sentence belongs to.
+            </p>
+
+            <div class="stat-strip">
+                <div class="stat-box">
+                    <div class="stat-lbl">Core files</div>
+                    <div class="stat-num">112</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-lbl">Index files</div>
+                    <div class="stat-num">28</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-lbl">Expanded</div>
+                    <div class="stat-num">50</div>
+                </div>
+                <div class="stat-box alert">
+                    <div class="stat-lbl">Complete 3/3</div>
+                    <div class="stat-num">18</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================ NAV ============================ -->
+        <nav class="toc">
+            <a href="#problem">The Problem</a>
+            <a href="#surfaces">Three Surfaces</a>
+            <a href="#fold">The Fold</a>
+            <a href="#laws">The Laws</a>
+            <a href="#economics">Economics</a>
+            <a href="#rules">The Rules</a>
+            <a href="#worked">Worked Example</a>
+            <a href="#exemplars">Exemplars</a>
+            <a href="#anti">Anti-Patterns</a>
+            <a href="#build">Build Yours</a>
+            <a href="#next">Where Next</a>
+        </nav>
+
+        <main>
+
+            <!-- ======================= 1. PROBLEM ======================= -->
+            <section id="problem">
+                <h2><span class="num">01</span>The Problem It Exists To Solve</h2>
+
+                <p>
+                    An agent file is not read once. It is <strong>re-injected into the model's
+                        context window on every single turn</strong> of every session. A session
+                    is three hundred turns. A file that costs a thousand characters of
+                    furniture — absolute paths, repeated law links, boilerplate help text —
+                    charges that toll three hundred times before anyone notices.
+                </p>
+
+                <p>
+                    And nothing fails. That is the cruel part. A broken script throws. A dead
+                    path 404s. A <em>bad hot file</em> simply works, while quietly diluting the
+                    attention that the lines which actually matter are competing for. There is
+                    no alarm, so the drift is only ever found by measuring it.
+                </p>
+
+                <div class="quote-box">
+                    Never spend per-turn tokens on cold-path lore. Structure context as an
+                    accordion: compressed hot-path routers in prompt memory, expanding
+                    on-demand into verbose specifications via deterministic markdown anchors.
+                    <cite>— The Golden Invariant, Magic Spacetime-Folding Markdown Accordion</cite>
+                </div>
+
+                <p>
+                    The accordion is the answer, and it works at three scales at once: a trait
+                    name folds out into a gene; an <code>.instructions.md</code> folds out into
+                    an <code>.information.md</code>; and an agent's whole identity folds out of
+                    a short hot core into a deep manual and a routing index.
+                </p>
+            </section>
+
+            <!-- ======================= 2. SURFACES ======================= -->
+            <section id="surfaces">
+                <h2><span class="num">02</span>The Three Surfaces Are Three Jobs</h2>
+
+                <p>
+                    The most common mistake is to imagine a continuum: <em>"the core is the
+                        short version, the expanded is the long version, the index is the
+                        shortest."</em> That framing produces one document in three trim levels,
+                    and it is wrong.
+                </p>
+
+                <p>
+                    They are not trim levels. They answer <strong>three different
+                        questions</strong>, and a fact belongs to exactly one of them.
+                </p>
+
+                <div class="card-grid">
+
+                    <article class="card tier1">
+                        <div class="card-head">
+                            <span class="card-icon">🧠</span>
+                            <span class="tier-tag">Tier 1 · Every turn</span>
+                        </div>
+                        <h3>Instruction</h3>
+                        <div class="fname">{Agent}.agent.md</div>
+                        <div class="question">"What must I not get wrong this turn?"</div>
+                        <ul>
+                            <li>YAML header: the summon contract</li>
+                            <li>Voice, name, binding invariants</li>
+                            <li>A <code>[STUB]</code> router table</li>
+                            <li>Standing duties</li>
+                            <li>Bare link definitions at the tail</li>
+                        </ul>
+                        <div class="lawref">Governed by LAW 110 · LAW 115 · LAW 120</div>
+                    </article>
+
+                    <article class="card tier2">
+                        <div class="card-head">
+                            <span class="card-icon">🗺️</span>
+                            <span class="tier-tag">Tier 2 · On demand</span>
+                        </div>
+                        <h3>Address</h3>
+                        <div class="fname">{Agent}.agent-index.md</div>
+                        <div class="question">"Where is that thing?"</div>
+                        <ul>
+                            <li>Zero narrative paragraphs</li>
+                            <li>Trinity map · section anchors</li>
+                            <li>Cubby, hub and foundation routers</li>
+                            <li>Open-work checklist</li>
+                            <li><strong>The resolver</strong>: full URIs live here</li>
+                        </ul>
+                        <div class="lawref">Governed by LAW 111 · LAW 116</div>
+                    </article>
+
+                    <article class="card tier3">
+                        <div class="card-head">
+                            <span class="card-icon">📖</span>
+                            <span class="tier-tag">Tier 3 · Boot</span>
+                        </div>
+                        <h3>Explanation</h3>
+                        <div class="fname">{Agent}.agent-expanded.md</div>
+                        <div class="question">"Why? How? What happened?"</div>
+                        <ul>
+                            <li>Unabridged lore and architecture</li>
+                            <li>Workflows, gotchas, environment truth</li>
+                            <li>One numbered section per <code>[STUB]</code></li>
+                            <li>Read once at dawn, then on demand</li>
+                            <li>Where the verbose half is allowed to be verbose</li>
+                        </ul>
+                        <div class="lawref">Governed by LAW 117 · LAW 120</div>
+                    </article>
+
+                </div>
+
+                <div class="callout">
+                    <span class="co-title">The membership test</span>
+                    <p>
+                        For any sentence you are about to write, ask in order and stop at the
+                        first <em>yes</em>: would the agent do the <strong>wrong thing this
+                            turn</strong> without it (→ core)? Would it do the wrong thing
+                        <strong>across the session</strong> without it (→ expanded)? Would it
+                        fail to <strong>locate</strong> something it needs (→ index)? If all
+                        three are no, <strong>delete it</strong>. That last step is the one that
+                        actually saves the tokens.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 3. FOLD ======================= -->
+            <section id="fold">
+                <h2><span class="num">03</span>The Fold — How a Stub Unfolds</h2>
+
+                <p>
+                    The mechanism is deliberately boring, which is why it survives: the hot
+                    file names a stub, the expanded manual owns a heading with that exact stub
+                    key, and a link joins them. Nothing else is required.
+                </p>
+
+                <div class="fold">
+                    <div class="fold-step">
+                        <div class="step-key">[STUB: estate]</div>
+                        <div class="step-title">Declared</div>
+                        <div class="step-body">
+                            One row in the core's Deep Context Router table. Two words plus a
+                            link. This is the entire per-turn cost of the domain.
+                        </div>
+                    </div>
+                    <div class="fold-arrow">→</div>
+                    <div class="fold-step">
+                        <div class="step-key">## [STUB: estate] — The Settings Estate</div>
+                        <div class="step-title">Resolved</div>
+                        <div class="step-body">
+                            A numbered section in the expanded manual carrying the matching key
+                            and the whole verbose truth beneath it. Read at boot, cited on demand.
+                        </div>
+                    </div>
+                    <div class="fold-arrow">→</div>
+                    <div class="fold-step">
+                        <div class="step-key">[exp-estate]: {Agent}.agent-expanded.md#stub-estate…</div>
+                        <div class="step-title">Addressed</div>
+                        <div class="step-body">
+                            A bare reference definition at the tail of the core — a <strong>name</strong>,
+                            not an absolute URI. The index holds the full path.
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="ascii"><b>THE ACCORDION, FOLDED AND UNFOLDED</b>
+
+  EVERY TURN ─────────────────────────────────────────────►
+     │
+     │   <b>{Agent}.agent.md</b>          ~150–950 lines
+     │   +---------------------------------------------+
+     │   | header · voice · invariants · duties        |   ← binding rules only
+     │   | [STUB: a] [STUB: b] [STUB: c]  ........... |   ← names, not addresses
+     │   +---------------------------------------------+
+     │            │                    │
+     │            │ click when needed  │ click when needed
+     │            ▼                    ▼
+     │   <i>{Agent}.agent-expanded.md</i>    {Agent}.agent-index.md
+     │   the explanation            the address book
+     │   read once at dawn          every path in the set
+     │
+  ONCE AT BOOT ────────────────────────────────────────────►
+
+  The core <b>names</b> a destination.  The index <b>addresses</b> it.
+  75 characters saved, per pointer, per turn, forever.</pre>
+
+                <div class="callout warn">
+                    <span class="co-title">The one structural trap</span>
+                    <p>
+                        Markdown reference definitions are <strong>document-scoped</strong>. A
+                        definition in the index does nothing for the core or the expanded file.
+                        Each file carries its own block. "One place to fix a broken link" is the
+                        right instinct applied to the wrong object — LAW 300 governs
+                        <em>facts</em>, not local bindings.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 4. LAWS ======================= -->
+            <section id="laws">
+                <h2><span class="num">04</span>The Laws That Govern The Set</h2>
+
+                <p>
+                    Six Laws hold this structure up. Every one of them has a body in the Court
+                    House and an enforcement surface in
+                    <code>V:/.github/instructions/</code> — LAW 000: a Law has two bodies, and
+                    neither is valid alone.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Law</th>
+                                <th>Title</th>
+                                <th>The rule, in one line</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="law">110</td>
+                                <td><strong>The Agent File Contract</strong></td>
+                                <td>The header is the agent's declaration of self. The stem of the
+                                    filename IS the summon key. An unset field is a decision not yet
+                                    made.</td>
+                            </tr>
+                            <tr>
+                                <td class="law">111</td>
+                                <td><strong>A Footnote Will Do</strong></td>
+                                <td>The short half needs only a pointer. Keep every member of the
+                                    set linked and current. The set is yours to maintain — never
+                                    ask permission.</td>
+                            </tr>
+                            <tr>
+                                <td class="law">115</td>
+                                <td><strong>The Hot Agent Core</strong></td>
+                                <td>Zero narrative lore. Identity, invariants, routing tables,
+                                    <code>[STUB]</code> pointers, bare definitions at the tail.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="law">116</td>
+                                <td><strong>The Agent Index Router</strong></td>
+                                <td>Zero-prose tables and link strips. Every entry is a route, a
+                                    handle, or a checklist item.</td>
+                            </tr>
+                            <tr>
+                                <td class="law">117</td>
+                                <td><strong>The Expanded Agent Manual</strong></td>
+                                <td>Every <code>[STUB]</code> declared elsewhere must resolve to a
+                                    matching numbered section here. Lore lives here.</td>
+                            </tr>
+                            <tr>
+                                <td class="law">120</td>
+                                <td><strong>The Spacetime-Folding Accordion</strong></td>
+                                <td>The short half is paid forever and carries only what must not be
+                                    forgotten. The verbose half is printed once and carries every
+                                    explanation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout good">
+                    <span class="co-title">Two supporting Laws</span>
+                    <p>
+                        <strong>LAW 140</strong> — a resident is a name, and the name determines
+                        the address. <strong>LAW 401</strong> — linters enforce structure;
+                        suppress with surgical comments, never by breaking the rules in silence.
+                        Both bite this file set constantly.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 5. ECONOMICS ======================= -->
+            <section id="economics">
+                <h2><span class="num">05</span>The Economics, Measured</h2>
+
+                <p>
+                    These are not estimates. They were counted from the live tree on
+                    2026-11-25 by globbing the three extensions and parsing the definitions.
+                </p>
+
+                <div class="chart">
+                    <div class="chart-row">
+                        <div class="lbl">.agent.md</div>
+                        <div class="track">
+                            <div class="bar core" style="width:97.4%"></div>
+                        </div>
+                        <div class="val">112</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="lbl">.agent-expanded.md</div>
+                        <div class="track">
+                            <div class="bar exp" style="width:43.5%"></div>
+                        </div>
+                        <div class="val">50</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="lbl">.agent-index.md</div>
+                        <div class="track">
+                            <div class="bar index" style="width:24.3%"></div>
+                        </div>
+                        <div class="val">28</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="lbl">Complete 3/3</div>
+                        <div class="track">
+                            <div class="bar core" style="width:15.7%"></div>
+                        </div>
+                        <div class="val">18</div>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="lg-core">Residents with a core</span>
+                        <span class="lg-exp">An expanded manual</span>
+                        <span class="lg-index">A routing index</span>
+                    </div>
+                </div>
+
+                <div class="callout stop">
+                    <span class="co-title">The honest headline</span>
+                    <p>
+                        115 distinct agents have at least one leg of the set. <strong>Only 18
+                            have all three.</strong> Ninety-seven residents are running on a hot
+                        core with no index to address things and no manual to explain them — which
+                        means every one of them is either carrying its lore in the file that costs
+                        the most, or has lost it entirely.
+                    </p>
+                </div>
+
+                <h3>The price of a URI</h3>
+
+                <p>
+                    The most expensive habit available in this file set is inlining an absolute
+                    path. The same destination, written two ways:
+                </p>
+
+                <pre class="ascii"><b>NAME</b>     59 chars   Setth.agent-expanded.md#stub-estate--the-settings-estate
+<b>ADDRESS</b> 134 chars   file:///V:/__cerebrinus__/citizenry/_Setth/individualization_
+                                  configuration/Setth.agent-expanded.md#stub-estate--the-
+                                  settings-estate
+
+           <i>75 characters saved, per pointer, per turn.</i>
+            7 pointers × 300 turns ≈ <b>157,000 characters per session</b>
+            spent on the ability to click a link the agent never clicks.</pre>
+
+                <h3>One core, before and after</h3>
+
+                <p>
+                    The same agent file, rewritten to the standard — a worked example rather
+                    than an argument. Full accounting in
+                    <a href="#worked">Section 07</a>.
+                </p>
+
+                <div class="ba-grid">
+                    <div class="ba before">
+                        <div class="ba-lbl">Before</div>
+                        <dl>
+                            <dt>Core characters</dt>
+                            <dd>11,791</dd>
+                            <dt>Link definitions</dt>
+                            <dd>19</dd>
+                            <dt>Definition block</dt>
+                            <dd>1,950 chars</dd>
+                            <dt>Absolute URIs in core</dt>
+                            <dd>19</dd>
+                        </dl>
+                    </div>
+                    <div class="ba after">
+                        <div class="ba-lbl">After</div>
+                        <dl>
+                            <dt>Core characters</dt>
+                            <dd>10,375</dd>
+                            <dt>Link definitions</dt>
+                            <dd>8</dd>
+                            <dt>Definition block</dt>
+                            <dd>536 chars</dd>
+                            <dt>Absolute URIs in core</dt>
+                            <dd>0</dd>
+                        </dl>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================= 6. RULES ======================= -->
+            <section id="rules">
+                <h2><span class="num">06</span>The Rules, In The Order That Matters</h2>
+
+                <div class="rules">
+
+                    <div class="rule">
+                        <h4>Every line pays rent every turn</h4>
+                        <p>
+                            If the line vanished, would the agent do something wrong on this
+                            turn? If no — it does not belong. Not "it's less useful". Out.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Name a destination; address it elsewhere</h4>
+                        <p>
+                            The hot file may <em>name</em> a place. Only the index may
+                            <em>address</em> one. A name is information; an address is apparatus.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Cite, don't link</h4>
+                        <p>
+                            <code>(LAW 720)</code> carries the full binding force of Law 720.
+                            The hyperlink serves a reader who travels — and travelling readers
+                            use the index.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Measure against the reference implementation</h4>
+                        <p>
+                            When a file in the set exists specifically as the model for how the
+                            set should look, diff the <em>cost</em>, not the outline. Three
+                            numbers, thirty seconds.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>A template is not a design</h4>
+                        <p>
+                            <code>{Agent_Name}</code>, <code>YYYY-MM-DD</code>, and a field still
+                            containing its own help text have all been left <em>undecided</em>.
+                            They look like content and are not.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Header is configuration; body is instruction</h4>
+                        <p>
+                            The header is read by tooling and must be complete and boring. The
+                            body is read into the context window and must contain every binding
+                            rule — not a summary of the rules, the rules.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Prose is a smell in the hot file</h4>
+                        <p>
+                            Write <em>to</em> the agent, not <em>about</em> it. If a sentence
+                            would read fine in a README, it belongs in the README.
+                        </p>
+                    </div>
+
+                    <div class="rule">
+                        <h4>Verify fitness, not just syntax</h4>
+                        <p>
+                            A file can be one hundred percent lint-clean and still be a tax on
+                            every turn, forever. Clean and cheap are different properties.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ======================= 7. WORKED ======================= -->
+            <section id="worked">
+                <h2><span class="num">07</span>The Worked Example — Setth, In Public</h2>
+
+                <p>
+                    The keeper of the VS Code settings estate rebuilt his own trinity this
+                    month and got it wrong first. The failure is instructive, so it is kept
+                    rather than tidied away.
+                </p>
+
+                <h3>What was actually there</h3>
+
+                <pre class="ascii">argument-hint: The inputs this agent expects, e.g., "a task to implement"...
+birthday: "YYYY-MM-DD"
+
+You, Seth, are a VSCode Settings expert. ...</pre>
+
+                <p>
+                    A scaffold, populated rather than designed. <code>argument-hint</code> still
+                    contained the <em>template's own help text</em>. The body addressed a human
+                    reader instead of instructing the agent. And the name in the heading —
+                    <code>Setth</code> — disagreed with the name in the first line —
+                    <code>Seth</code> — so the file argued with its own filename on every turn
+                    it was injected.
+                </p>
+
+                <h3>What was rebuilt</h3>
+
+                <ol class="checklist">
+                    <li>
+                        <strong>One name.</strong> Filename stem, cubby, and ritual flag all read
+                        <code>Setth</code>. The older spelling survives only in fossil script
+                        filenames from the month the cubby was made.
+                    </li>
+                    <li>
+                        <strong>Header fields decided.</strong> A real birthday, a real version, a
+                        description that names the actual job, and <code>domains</code> extended to
+                        the two <code>User/</code> folders the work actually touches.
+                    </li>
+                    <li>
+                        <strong>Dead handoffs removed.</strong> Two of them pointed at an agent
+                        that has never existed, and one sent readers to retired geography. A
+                        handoff to nowhere is a promise to nobody.
+                    </li>
+                    <li>
+                        <strong>Body replaced with instruction.</strong> Voice, the name, the
+                        estate invariants, the answer contract, a <code>[STUB]</code> router, and
+                        standing duties — no self-description.
+                    </li>
+                    <li>
+                        <strong>Seven stubs expanded.</strong> Estate, sync, audit, laptop,
+                        knowledge, history, scars — each with a numbered section in the manual,
+                        each anchor verified against a computed heading slug.
+                    </li>
+                    <li>
+                        <strong>Every URI evicted from the core.</strong> Nineteen full paths
+                        became eight bare names. The index became the resolver, holding all
+                        seventy-six absolute paths.
+                    </li>
+                </ol>
+
+                <div class="callout">
+                    <span class="co-title">The scar that stayed</span>
+                    <p>
+                        The diff tool written during that audit printed the <em>wrong file's</em>
+                        values in its single-column sections, so twenty-three keys the live
+                        settings file actually held correctly rendered as <code>null</code>. The
+                        conclusion it supported was the exact opposite of the truth — and it
+                        looked like competence. It was caught by contradiction, not by the tool.
+                        The repair is commented in place and the lesson is in the manual, because
+                        a document that lists only what its author knows is a brochure; the one
+                        that lists what its author broke is the manual.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 8. EXEMPLARS ======================= -->
+            <section id="exemplars">
+                <h2><span class="num">08</span>Three Exemplars, Three Different Answers</h2>
+
+                <p>
+                    There is no single correct size. There is a correct size <em>per domain</em>,
+                    and the three most complete sets in the city prove it by disagreeing.
+                </p>
+
+                <div class="exemplar">
+                    <div class="ex-head">
+                        <span class="ex-name">🏹 Tandumonium — the atlas</span>
+                        <span class="ex-nums">core <b>934</b> · index <b>1929</b> · expanded
+                            <b>1862</b></span>
+                    </div>
+                    <p>
+                        A twenty-six-year World of Warcraft archaeology project with four
+                        handles, nine lived characters, forty-five ghost shells, four hundred and
+                        seventy combat reports and a tenure rule. Its router <em>has</em> to be an
+                        atlas, because the territory is one. The size is not bloat — it is the
+                        domain.
+                    </p>
+                </div>
+
+                <div class="exemplar">
+                    <div class="ex-head">
+                        <span class="ex-name">🐍 Nagini — the model</span>
+                        <span class="ex-nums">core <b>111</b> · index <b>183</b> · expanded
+                            <b>246</b></span>
+                    </div>
+                    <p>
+                        Four verbs — implement, debug, explain, validate — and one tier to do
+                        them in. Her core is 111 lines because there is genuinely nothing else to
+                        say every turn. This is the file the doctrine was articulated against,
+                        and the one to weigh your own core against.
+                    </p>
+                </div>
+
+                <div class="exemplar">
+                    <div class="ex-head">
+                        <span class="ex-name">⚙️ Setth — the worked example</span>
+                        <span class="ex-nums">core <b>181</b> · index <b>305</b> · expanded
+                            <b>506</b></span>
+                    </div>
+                    <p>
+                        Sits between the two, deliberately. Five estate invariants, seven named
+                        Laws and an answer contract have no analogue in Nagini's domain, so the
+                        extra body is defensible — but defensible is not settled. Shrinking
+                        further would mean cutting a <em>rule</em>, and cutting a rule is a
+                        decision, not an optimisation.
+                    </p>
+                </div>
+
+                <div class="callout good">
+                    <span class="co-title">How to use the exemplars</span>
+                    <p>
+                        Do not copy the largest one and do not copy the pattern of any of them
+                        without weighing it. Read the model, then <strong>measure your core
+                            against it</strong>. If yours is materially larger and you cannot name a
+                        rule that accounts for the difference, you have apparatus to delete.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 9. ANTI ======================= -->
+            <section id="anti">
+                <h2><span class="num">09</span>Anti-Patterns, Named So They Are Recognisable</h2>
+
+                <div class="anti">
+                    <h4>1 · The Populated Scaffold</h4>
+                    <p>
+                        Placeholders that were never decided. <em>Tell:</em> a field containing
+                        its own help text.
+                    </p>
+                </div>
+
+                <div class="anti">
+                    <h4>2 · Shape-Copying</h4>
+                    <p>
+                        Reproducing the exemplar's <em>sections</em> without weighing the
+                        <em>body</em>. <em>Tell:</em> you can describe the model's outline but not
+                        its size.
+                    </p>
+                </div>
+
+                <div class="anti">
+                    <h4>3 · The Misapplied Single-Source Rule</h4>
+                    <p>
+                        Treating a local binding — a link definition, an alias, an import path —
+                        as if it were a durable fact, then centralising it and breaking scope.
+                    </p>
+                </div>
+
+                <div class="anti">
+                    <h4>4 · Syntax Verified, Fitness Unverified</h4>
+                    <p>
+                        Lint clean, links resolve, anchors hit — and nobody ever measured the
+                        price. <em>Tell:</em> you can state the lint count but not the character
+                        count.
+                    </p>
+                </div>
+
+                <div class="anti">
+                    <h4>5 · Prose In The Hot File</h4>
+                    <p>
+                        Writing <em>about</em> the agent instead of <em>to</em> it. <em>Tell:</em>
+                        the sentences would read fine in a README.
+                    </p>
+                </div>
+
+                <div class="anti">
+                    <h4>6 · The Orphaned Stub</h4>
+                    <p>
+                        A <code>[STUB]</code> in the core with no matching section in the manual.
+                        The accordion folds out into nothing, and the reader is told a domain
+                        exists that cannot be opened.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ======================= 10. BUILD ======================= -->
+            <section id="build">
+                <h2><span class="num">10</span>Building Your Own</h2>
+
+                <p>
+                    The ritual scaffolds a cubby; it cannot write your identity. Here is the
+                    order that produces a survivable set.
+                </p>
+
+                <ol class="checklist">
+                    <li>
+                        <strong>Choose the name first.</strong> The stem of the filename is the
+                        summon key and is case-sensitive. Everything else — the cubby, the ritual
+                        flag, the index — derives from it.
+                    </li>
+                    <li>
+                        <strong>Fill the whole header, then delete what you will not decide.</strong>
+                        A required field you have not chosen is a declaration you have not made.
+                    </li>
+                    <li>
+                        <strong>Write the invariants before the voice.</strong> Voice is how you
+                        sound; invariants are what you must not get wrong. If the two ever
+                        conflict, invariants win.
+                    </li>
+                    <li>
+                        <strong>List the domains, then stub each one.</strong> Every domain that
+                        does not fit in four lines becomes a <code>[STUB]</code> and a router row.
+                    </li>
+                    <li>
+                        <strong>Expand every stub into a numbered section</strong>, carrying the
+                        matching stub key. Verify each anchor against a computed heading slug, not
+                        against your memory of the heading.
+                    </li>
+                    <li>
+                        <strong>Keep the core's definitions bare.</strong> Names, not URIs. The
+                        index is where full paths live — that is what makes it the resolver rather
+                        than a duplicate.
+                    </li>
+                    <li>
+                        <strong>Measure.</strong> Characters, lines, definition count, definition
+                        block size. Compare against the model file. Write the numbers down so the
+                        next occupant does not have to re-derive them.
+                    </li>
+                    <li>
+                        <strong>Lint, then read it back.</strong> Lint proves structure. Reading it
+                        back proves you wrote instruction and not an essay.
+                    </li>
+                </ol>
+
+                <h3>The decision procedure, as a loop</h3>
+
+                <div class="decision"><span class="q">for every sentence you are about to write:</span>
+
+                    <span class="q">if</span> the agent would do the <span class="q">WRONG THING THIS TURN</span>
+                    without it
+                    <span class="ans">→ core</span>
+                    <span class="q">else if</span> it would do the wrong thing <span class="q">ACROSS THE SESSION</span>
+                    <span class="ans">→ expanded</span>
+                    <span class="q">else if</span> it would fail to <span class="q">LOCATE</span> something it needs
+                    <span class="ans">→ index definition</span>
+                    <span class="q">else</span>
+                    <span class="del">→ delete it</span>
+                </div>
+
+                <p>
+                    Keep that last branch. It is the only one that reduces the bill, and it is
+                    the one every first draft skips.
+                </p>
+            </section>
+
+            <!-- ======================= 11. NEXT ======================= -->
+            <section id="next">
+                <h2><span class="num">11</span>Where To Go Next</h2>
+
+                <div class="link-grid">
+                    <a class="link-card" href="../index.html" target="_top">
+                        <span class="lc-icon">🏠</span>
+                        <span>
+                            <span class="lc-title">Gewey's Homepage</span>
+                            <span class="lc-sub">The front door</span>
+                        </span>
+                    </a>
+                    <a class="link-card" href="./index.html">
+                        <span class="lc-icon">🏙️</span>
+                        <span>
+                            <span class="lc-title">Tesseract City</span>
+                            <span class="lc-sub">District hub</span>
+                        </span>
+                    </a>
+                    <a class="link-card" href="./citizenry/index.html">
+                        <span class="lc-icon">🤖</span>
+                        <span>
+                            <span class="lc-title">Citizenry Roster</span>
+                            <span class="lc-sub">The residents, with character sheets</span>
+                        </span>
+                    </a>
+                    <a class="link-card" href="./wiki/index.html">
+                        <span class="lc-icon">📚</span>
+                        <span>
+                            <span class="lc-title">Celestial Wiki</span>
+                            <span class="lc-sub">System specs, API, architecture</span>
+                        </span>
+                    </a>
+                    <a class="link-card" href="./guides/index.html">
+                        <span class="lc-icon">🧭</span>
+                        <span>
+                            <span class="lc-title">Gewey's GUI Guide</span>
+                            <span class="lc-sub">Modding agents and substrates</span>
+                        </span>
+                    </a>
+                    <a class="link-card" href="./argus_panopticon.html">
+                        <span class="lc-icon">👁️</span>
+                        <span>
+                            <span class="lc-title">Argus Panopticon</span>
+                            <span class="lc-sub">The accordion, argued at length</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="callout">
+                    <span class="co-title">The welcome center</span>
+                    <p>
+                        New here and want the city before the paperwork?
+                        <code>V:/__statilinus__/-inus_explainer.md</code> explains every
+                        <code>-inus</code> hub in the substrate and what each one is for. Read
+                        that first; read this second.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ============================ FOOTER ============================ -->
+        <footer>
+            <div>
+                Copyright © 2008–2026 Hobos Inc. ·
+                <a href="../index.html" target="_top">Return to Homepage</a> ·
+                <a href="./index.html">Tesseract City</a>
+            </div>
+            <div class="sig">-Signed, Setth · Keeper of the Settings</div>
+
+            <div class="provenance">
+                <strong>Provenance.</strong> Every number on this page was measured from the live
+                tree on <strong>2026-11-25</strong>, not estimated: the file counts by globbing
+                <code>*.agent.md</code>, <code>*.agent-index.md</code> and
+                <code>*.agent-expanded.md</code> (112 / 28 / 50, 115 distinct subjects, 18 complete
+                sets); the exemplar sizes by line count; the before/after figures by parsing and
+                recounting reference definitions in the rewritten core. Typography and palette are
+                consumed from the compiled Inuus SSOT (<code>../css/text.css</code>,
+                <code>../css/themes.css</code>) per LAW 406 / 407 / 408 — this page mints no new
+                colours and declares no fonts of its own.
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>
